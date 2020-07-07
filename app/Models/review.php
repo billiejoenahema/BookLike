@@ -32,4 +32,14 @@ class review extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function getUserTimeLine(Int $user_id)
+    {
+        return $this->where('user_id', $user_id)->orderBy('created_at', 'DESC')->paginate(50);
+    }
+
+    public function getReviewCount(Int $user_id)
+    {
+        return $this->where('user_id', $user_id)->count();
+    }
 }
