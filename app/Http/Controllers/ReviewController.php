@@ -37,7 +37,11 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user();
+
+        return view('reviews.create', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -46,9 +50,18 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Review $review)
     {
-        //
+        $user = auth()->user();
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'text' => ['required', 'string', 'max:200']
+        ]);
+
+        $validator->validate();
+        $review->reviewStore($user->id, $data);
+
+        return redirect('reviews');
     }
 
     /**

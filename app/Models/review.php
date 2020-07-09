@@ -62,4 +62,13 @@ class review extends Model
                     ->where('id', $review_id)
                     ->first();
     }
+
+    public function reviewStore(Int $user_id, Array $data)
+    {
+        $this->user_id = $user_id;
+        $this->text = $data['text'];
+        $this->save();
+
+        return;
+    }
 }
