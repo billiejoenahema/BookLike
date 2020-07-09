@@ -22,4 +22,11 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getComments(Int $review_id)
+    {
+        return $this->with('user')
+                    ->where('review_id', $review_id)
+                    ->get();
+    }
 }

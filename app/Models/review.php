@@ -35,11 +35,31 @@ class review extends Model
 
     public function getUserTimeLine(Int $user_id)
     {
-        return $this->where('user_id', $user_id)->orderBy('created_at', 'DESC')->paginate(50);
+        return $this->where('user_id', $user_id)
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(50);
     }
 
     public function getReviewCount(Int $user_id)
     {
         return $this->where('user_id', $user_id)->count();
+    }
+
+    // 一覧画面
+    public function getTimeLines(Int $user_id, Array $follow_ids)
+    {
+        // 自身とフォローしているユーザIDを結合する
+        $follow_ids[] = $user_id;
+        return $this->whereIn('user_id', $follow_ids)
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(50);
+    }
+
+    // 詳細画面
+    public function getReview(Int $review_id)
+    {
+        return $this->with('user')
+                    ->where('id', $review_id)
+                    ->first();
     }
 }
