@@ -71,4 +71,27 @@ class review extends Model
 
         return;
     }
+
+    public function getEditReview(Int $user_id, Int $review_id)
+    {
+        return $this->where('user_id', $user_id)
+                    ->where('id', $review_id)
+                    ->first();
+    }
+
+    public function reviewUpdate(Int $review_id, Array $data)
+    {
+        $this->id = $review_id;
+        $this->text = $data['text'];
+        $this->update();
+
+        return;
+    }
+
+    public function reviewDestroy(Int $user_id, Int $review_id)
+    {
+        return $this->where('user_id', $user_id)
+                    ->where('id', $review_id)
+                    ->delete();
+    }
 }

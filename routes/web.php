@@ -33,4 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
     // レビュー投稿関連
     Route::resource('reviews', 'ReviewController', ['only'
     => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+
+    // コメント関連
+    Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 });

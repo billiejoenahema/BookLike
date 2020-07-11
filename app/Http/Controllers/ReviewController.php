@@ -89,9 +89,19 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Review $review)
     {
-        //
+        $user = auth()->user();
+        $reviews = $review->getEditReview($user->id, $review->id);
+
+        if (!isset($review)) {
+            return redirect('reviews');
+        }
+
+        return view('reviews.edit', [
+            'user'   => $user,
+            'reviews' => $reviews
+        ]);
     }
 
     /**
@@ -101,9 +111,17 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Review $review)
     {
-        //
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'text' => ['required', 'string', 'max:200']
+        ]);
+
+        $validator->validate();
+        $review->reviewUpdate($review->id, $data);
+
+        return redirect('reviews');
     }
 
     /**
@@ -112,8 +130,11 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Review $review)
     {
-        //
+        $user = auth()->user();
+        $review->reviewDestroy($user->id, $review->id);
+
+        return back();
     }
 }

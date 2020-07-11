@@ -29,4 +29,14 @@ class Comment extends Model
                     ->where('review_id', $review_id)
                     ->get();
     }
+
+    public function commentStore(Int $user_id, Array $data)
+    {
+        $this->user_id = $user_id;
+        $this->review_id = $data['review_id'];
+        $this->text = $data['text'];
+        $this->save();
+
+        return;
+    }
 }
