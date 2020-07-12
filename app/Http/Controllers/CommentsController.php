@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Comment;
 
 class CommentsController extends Controller
 {
@@ -32,9 +34,19 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Comment $comment)
     {
-        //
+        $user = auth()->user();
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'review_id' =>['required', 'integer'],
+            'text'     => ['required', 'string', 'max:200']
+        ]);
+
+        $validator->validate();
+        $comment->commentStore($user->id, $data);
+
+        return back();
     }
 
     /**
