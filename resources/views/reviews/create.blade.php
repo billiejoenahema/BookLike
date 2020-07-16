@@ -13,7 +13,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12 p-3 w-100 d-flex">
-                            @if($user->image == null)
+                            @if($user->profile_image == null)
                                 <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="100" height="100">
                             @else
                                 <img src="{{ asset('storage/profile_image/' .auth()->user()->profile_image) }}" class="rounded-circle" width="50" height="50">

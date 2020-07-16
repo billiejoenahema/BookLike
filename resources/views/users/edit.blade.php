@@ -16,10 +16,10 @@
                             <label for="profile_image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
                             <div class="col-md-6 d-flex align-items-center">
-                            @if($user->image == null)
-                                <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="50" height="50">
+                            @if($user->profile_image == null)
+                                <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
                             @else
-                                <img src="{{ asset('storage/profile_image/' .auth()->user()->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ $profile_image }}" class="rounded-circle" width="50" height="50">
                             @endif
                             <input type="file" name="profile_image" class="@error('profile_image') is-invalid @enderror" autocomplete="profile_image">
 

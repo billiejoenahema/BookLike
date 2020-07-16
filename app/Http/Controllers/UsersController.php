@@ -19,9 +19,13 @@ class UsersController extends Controller
     public function index(User $user)
     {
         $all_users = $user->getAllUsers(auth()->user()->id);
+        $profile_image = asset('storage/profile_image/'.$user->profile_image);
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('users.index', [
-            'all_users'  => $all_users
+            'all_users'  => $all_users,
+            'profile_image' => $profile_image,
+            'default_image' => $default_image
         ]);
     }
 
@@ -61,6 +65,10 @@ class UsersController extends Controller
         $review_count = $review->getReviewCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);
+        $profile_image = asset('storage/profile_image/'.$user->profile_image);
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
+
 
         return view('users.show', [
             'user'           => $user,
@@ -69,19 +77,29 @@ class UsersController extends Controller
             'timelines'      => $timelines,
             'review_count'    => $review_count,
             'follow_count'   => $follow_count,
-            'follower_count' => $follower_count
-        ]);
-    }
+            'follower_count' => $follower_count,
+            'profile_image' => $profile_image,
+            'default_image' => $default_image
+            ]);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        return view('users.edit', ['user' => $user]);
+        /**
+         * Show the form for editing the specified resource.
+         *
+         * @param  int  $id
+         * @return \Illuminate\Http\Response
+         */
+        public function edit(User $user)
+        {
+            $profile_image = asset('storage/profile_image/'.$user->profile_image);
+            $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
+        return view('users.edit', [
+            'user' => $user,
+            'profile_image' => $profile_image,
+            'default_image' => $default_image
+
+        ]);
     }
 
     /**
