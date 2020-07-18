@@ -46,7 +46,7 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <div class="p-2 d-flex flex-column align-items-center">
-                                <p class="font-weight-bold">ツイート数</p>
+                                <p class="font-weight-bold">レビュー数</p>
                                 <span>{{ $review_count }}</span>
                             </div>
                             <div class="p-2 d-flex flex-column align-items-center">
@@ -71,7 +71,8 @@
                             <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
                         @else
                             <img src="{{ $profile_image }}" class="rounded-circle" width="50" height="50">
-                        @endif                            <div class="ml-2 d-flex flex-column flex-grow-1">
+                        @endif
+                        <div class="ml-2 d-flex flex-column flex-grow-1">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
                                 <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
                             </div>
@@ -100,16 +101,19 @@
                                 </div>
                             @endif
 
+                            <!-- コメントボタン -->
                             <div class="mr-3 d-flex align-items-center">
                                 <a href="{{ url('reviews/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
                                 <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
                             </div>
+
+                            <!-- いいねボタン -->
                             <div class="d-flex align-items-center">
                             @if (!in_array(Auth::user()->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
                                     <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
                                         @csrf
 
-                                        <input type="hidden" name="reviews_id" value="{{ $timeline->id }}">
+                                        <input type="hidden" name="review_id" value="{{ $timeline->id }}">
                                         <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
                                     </form>
                                 @else

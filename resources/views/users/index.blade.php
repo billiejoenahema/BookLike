@@ -8,9 +8,9 @@
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @if($user->profile_image == null)
-                                <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="50" height="50">
                             @else
-                                <img src="{{ $profile_image }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle" width="50" height="50">
                             @endif
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $user->name }}</p>

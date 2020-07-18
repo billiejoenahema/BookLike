@@ -19,13 +19,9 @@ class UsersController extends Controller
     public function index(User $user)
     {
         $all_users = $user->getAllUsers(auth()->user()->id);
-        $profile_image = asset('storage/profile_image/'.$user->profile_image);
-        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('users.index', [
             'all_users'  => $all_users,
-            'profile_image' => $profile_image,
-            'default_image' => $default_image
         ]);
     }
 
