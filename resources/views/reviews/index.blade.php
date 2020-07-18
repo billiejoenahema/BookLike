@@ -11,7 +11,7 @@
                 <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                        @if($user->profile_image == null)
+                        @if($timeline->user->profile_image == null)
                             <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="50" height="50">
                         @else
                             <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle" width="50" height="50">
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            {!! nl2br(e($timeline->text)) !!}
+                            <a href="{{ url('reviews/' .$timeline->id) }}" class="text-reset">{!! nl2br(e($timeline->text)) !!}</a>
                         </div>
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
                             @if ($timeline->user->id === Auth::user()->id)

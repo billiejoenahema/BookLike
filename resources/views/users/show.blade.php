@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            {{ $timeline->text }}
+                        <a href="{{ url('reviews/' .$timeline->id) }}" class="text-reset">{!! nl2br(e($timeline->text)) !!}</a>
                         </div>
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
                             @if ($timeline->user->id === Auth::user()->id)
