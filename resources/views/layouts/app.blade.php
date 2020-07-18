@@ -58,7 +58,7 @@
                             @endif
                         @else
                             <li class="nav-item mr-5">
-                                <a href="{{ url('reviews/create')}}" class="btn btn-md btn-primary">レビューを投稿する</a>
+                                <a href="{{ url('reviews/create')}}" class="btn btn-lg btn-primary rounded-circle font-weight-bold shadow-sm">+</a>
                             </li>
                             <li class="nav-item">
                                 @if($login_user->profile_image == null)
@@ -90,10 +90,10 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
+
     </div>
 </body>
 </html>

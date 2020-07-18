@@ -19,7 +19,7 @@
                             @if($login_user->profile_image == null)
                                 <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
                             @else
-                                <img src="{{ $profile_image }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="50" height="50">
                             @endif
                             <input type="file" name="profile_image" class="@error('profile_image') is-invalid @enderror" autocomplete="profile_image">
 
@@ -75,7 +75,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">更新する</button>
+                                <button type="submit" class="btn btn-primary shadow-sm">更新する</button>
                             </div>
                         </div>
                     </form>

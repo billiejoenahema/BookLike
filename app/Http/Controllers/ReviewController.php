@@ -23,10 +23,12 @@ class ReviewController extends Controller
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
         $timelines = $review->getTimelines($login_user->id, $following_ids);
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('reviews.index', [
             'login_user'      => $login_user,
-            'timelines' => $timelines
+            'timelines' => $timelines,
+            'default_image' => $default_image
         ]);
     }
 
@@ -38,9 +40,11 @@ class ReviewController extends Controller
     public function create()
     {
         $login_user = auth()->user();
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('reviews.create', [
-            'login_user' => $login_user
+            'login_user' => $login_user,
+            'default_image' => $default_image
         ]);
     }
 
@@ -75,12 +79,15 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         $review = $review->getReview($review->id);
         $comments = $comment->getComments($review->id);
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
 
         return view('reviews.show', [
             // 'user'     => $user,
             'review' => $review,
             'comments' => $comments,
-            'login_user' => $login_user
+            'login_user' => $login_user,
+            'default_image' => $default_image
         ]);
     }
 

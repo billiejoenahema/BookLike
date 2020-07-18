@@ -5,10 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 @foreach ($all_users as $user)
-                    <div class="card">
+                    <div class="card mb-1">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @if($user->profile_image == null)
-                                <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
                             @else
                                 <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle" width="50" height="50">
                             @endif
@@ -22,18 +22,18 @@
                                 </div>
                             @endif
                             <div class="d-flex justify-content-end flex-grow-1">
-                                @if (auth()->user()->isFollowing($user->id))
+                                @if ($login_user->isFollowing($user->id))
                                     <form action="{{ route('unfollow', $user->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
-                                        <button type="submit" class="btn btn-danger">フォロー解除</button>
+                                        <button type="submit" class="btn btn-danger shadow-sm">フォロー解除</button>
                                     </form>
                                 @else
                                     <form action="{{ route('follow', $user->id) }}" method="POST">
                                         {{ csrf_field() }}
 
-                                        <button type="submit" class="btn btn-primary">フォローする</button>
+                                        <button type="submit" class="btn btn-primary shadow-sm">フォローする</button>
                                     </form>
                                 @endif
                             </div>

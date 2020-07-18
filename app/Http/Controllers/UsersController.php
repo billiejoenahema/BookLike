@@ -93,12 +93,10 @@ class UsersController extends Controller
         public function edit(User $user)
         {
             $login_user = auth()->user();
-            $profile_image = asset('storage/profile_image/'.$user->profile_image);
             $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('users.edit', [
             'login_user' => $login_user,
-            'profile_image' => $profile_image,
             'default_image' => $default_image
 
         ]);
