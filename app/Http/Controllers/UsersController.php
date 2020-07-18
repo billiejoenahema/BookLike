@@ -18,10 +18,15 @@ class UsersController extends Controller
      */
     public function index(User $user)
     {
+        $login_user = auth()->user();
         $all_users = $user->getAllUsers(auth()->user()->id);
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
 
         return view('users.index', [
             'all_users'  => $all_users,
+            'default_image' => $default_image,
+            'login_user' => $login_user
         ]);
     }
 
@@ -61,20 +66,20 @@ class UsersController extends Controller
         $review_count = $review->getReviewCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);
-        $profile_image = asset('storage/profile_image/'.$user->profile_image);
+        // $profile_image = asset('storage/profile_image/'.$login_user->profile_image);
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
 
 
         return view('users.show', [
             'user'           => $user,
+            'login_user' => $login_user,
             'is_following'   => $is_following,
             'is_followed'    => $is_followed,
             'timelines'      => $timelines,
             'review_count'    => $review_count,
             'follow_count'   => $follow_count,
             'follower_count' => $follower_count,
-            'profile_image' => $profile_image,
             'default_image' => $default_image
             ]);
         }
@@ -87,11 +92,12 @@ class UsersController extends Controller
          */
         public function edit(User $user)
         {
+            $login_user = auth()->user();
             $profile_image = asset('storage/profile_image/'.$user->profile_image);
             $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('users.edit', [
-            'user' => $user,
+            'login_user' => $login_user,
             'profile_image' => $profile_image,
             'default_image' => $default_image
 

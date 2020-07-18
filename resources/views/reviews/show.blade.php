@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="d-flex align-items-center">
-                    @if (!in_array($user->id, array_column($review->favorites->toArray(), 'user_id'), TRUE))
+                    @if (!in_array($login_user->id, array_column($review->favorites->toArray(), 'user_id'), TRUE))
                             <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
                                 @csrf
 
@@ -53,7 +53,7 @@
                                 <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
                             </form>
                         @else
-                            <form method="POST" action="{{ url('favorites/' .array_column($review->favorites->toArray(), 'id', 'user_id')[$user->id]) }}" class="mb-0">
+                            <form method="POST" action="{{ url('favorites/' .array_column($review->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}" class="mb-0">
                                 @csrf
                                 @method('DELETE')
 
@@ -102,14 +102,14 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 p-3 w-100 d-flex">
-                                @if($user->profile_image == null)
+                                @if($login_user->profile_image == null)
                                     <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="50" height="50">
                                 @else
-                                    <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="50" height="50">
                                 @endif
                                 <div class="ml-2 d-flex flex-column">
-                                        <p class="mb-0">{{ $user->name }}</p>
-                                        <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
+                                        <p class="mb-0">{{ $login_user->name }}</p>
+                                        <a href="{{ url('users/' .$login_user->id) }}" class="text-secondary">{{ $review->user->screen_name }}</a>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

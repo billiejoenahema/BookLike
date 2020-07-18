@@ -17,15 +17,15 @@ class ReviewController extends Controller
      */
     public function index(Review $review, Follower $follower)
     {
-        $user = auth()->user();
-        $follow_ids = $follower->followingIds($user->id);
+        $login_user = auth()->user();
+        $follow_ids = $follower->followingIds($login_user->id);
         // followed_idだけ抜き出す
         $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
-        $timelines = $review->getTimelines($user->id, $following_ids);
+        $timelines = $review->getTimelines($login_user->id, $following_ids);
 
         return view('reviews.index', [
-            'user'      => $user,
+            'login_user'      => $login_user,
             'timelines' => $timelines
         ]);
     }
@@ -37,10 +37,10 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        $user = auth()->user();
+        $login_user = auth()->user();
 
         return view('reviews.create', [
-            'user' => $user
+            'login_user' => $login_user
         ]);
     }
 
@@ -52,14 +52,14 @@ class ReviewController extends Controller
      */
     public function store(Request $request, Review $review)
     {
-        $user = auth()->user();
+        $login_user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
             'text' => ['required', 'string', 'max:200']
         ]);
 
         $validator->validate();
-        $review->reviewStore($user->id, $data);
+        $review->reviewStore($login_user->id, $data);
 
         return redirect('reviews');
     }
@@ -72,14 +72,15 @@ class ReviewController extends Controller
      */
     public function show(Review $review, Comment $comment)
     {
-        $user = auth()->user();
+        $login_user = auth()->user();
         $review = $review->getReview($review->id);
         $comments = $comment->getComments($review->id);
 
         return view('reviews.show', [
-            'user'     => $user,
+            // 'user'     => $user,
             'review' => $review,
-            'comments' => $comments
+            'comments' => $comments,
+            'login_user' => $login_user
         ]);
     }
 
@@ -91,15 +92,15 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        $user = auth()->user();
-        $reviews = $review->getEditReview($user->id, $review->id);
+        $login_user = auth()->user();
+        $reviews = $review->getEditReview($login_user->id, $review->id);
 
         if (!isset($review)) {
             return redirect('reviews');
         }
 
         return view('reviews.edit', [
-            'user'   => $user,
+            'login_user'   => $login_user,
             'reviews' => $reviews
         ]);
     }
@@ -132,8 +133,8 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        $user = auth()->user();
-        $review->reviewDestroy($user->id, $review->id);
+        $login_user = auth()->user();
+        $review->reviewDestroy($login_user->id, $review->id);
 
         return back();
     }

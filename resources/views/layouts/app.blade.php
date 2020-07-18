@@ -61,10 +61,10 @@
                                 <a href="{{ url('reviews/create')}}" class="btn btn-md btn-primary">レビューを投稿する</a>
                             </li>
                             <li class="nav-item">
-                                @if($user->profile_image == null)
-                                    <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="50" height="50">
+                                @if($login_user->profile_image == null)
+                                    <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
                                 @else
-                                    <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="50" height="50">
                                 @endif
                             </li>
                             <li class="nav-item dropdown">
