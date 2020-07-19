@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">プロフィールを編集</div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ url('users/' .$login_user->id) }}" enctype="multipart/form-data">
                         @csrf

@@ -19,20 +19,29 @@
                     </div>
                     <div class="p-3 d-flex flex-column justify-content-between">
                         <div class="d-flex">
-                            <div>
+                            <div class="d-flex">
                                 @if ($user->id === Auth::user()->id)
                                     <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
+                                    <form method="POST" action="{{ route('users.destroy', $login_user->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger">
+                                            {{ __('アカウント削除') }}
+                                        </button>
+                                    </form>
+
                                 @else
                                     @if ($is_following)
                                         <form action="{{ route('unfollow', $user->id) }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
+                                            @csrf
+                                            @method('DELETE')
 
                                             <button type="submit" class="btn btn-danger shadow-sm">フォロー解除</button>
                                         </form>
                                     @else
                                         <form action="{{ route('follow', $user->id) }}" method="POST">
-                                            {{ csrf_field() }}
+                                            @csrf
 
                                             <button type="submit" class="btn btn-primary shadow-sm">フォローする</button>
                                         </form>

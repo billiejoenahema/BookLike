@@ -66,7 +66,6 @@ class UsersController extends Controller
         $review_count = $review->getReviewCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);
-        // $profile_image = asset('storage/profile_image/'.$login_user->profile_image);
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
 
@@ -132,7 +131,15 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // ログインユーザーのidを取得してユーザーを特定する
+        // deleteメソッドを実行
+        // ログアウト処理
+        // ホーム画面へリダイレクト
+        $login_user = auth()->user();
+        $login_user->delete();
+        $login_user->logout();
+        return redirect()->route('home');
+
     }
 
     // フォロー
