@@ -37,7 +37,7 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="btn btn-danger shadow-sm">フォロー解除</button>
+                                            <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
                                         </form>
                                     @else
                                         <form action="{{ route('follow', $user->id) }}" method="POST">
