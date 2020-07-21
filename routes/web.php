@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return Redirect::to('/reviews');
+    }
     return view('welcome');
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Follower;
@@ -131,14 +132,14 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        // ログインユーザーのidを取得してユーザーを特定する
-        // deleteメソッドを実行
-        // ログアウト処理
-        // ホーム画面へリダイレクト
         $login_user = auth()->user();
+
+        // ログアウトは不要？
+        // Auth::logout();
         $login_user->delete();
-        $login_user->logout();
-        return redirect()->route('home');
+
+        // ホーム画面へリダイレクト
+        return redirect('/');
 
     }
 
