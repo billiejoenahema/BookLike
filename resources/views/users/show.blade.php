@@ -53,6 +53,9 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="d-flex">
+                            <p>{{ $user->description }}</p>
+                        </div>
                         <div class="d-flex justify-content-end">
                             <div class="p-2 d-flex flex-column align-items-center">
                                 <p class="font-weight-bold">レビュー数</p>

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'profile_iamge',
         'email',
         'password',
+        'description'
     ];
 
     /**
@@ -95,6 +96,7 @@ class User extends Authenticatable
                         'name'          => $params['name'],
                         'profile_image' => basename($file_name),
                         'email'         => $params['email'],
+                        'description'   => $params['description']
                     ]);
             } else {
                 $this::where('id', $this->id)
@@ -102,6 +104,7 @@ class User extends Authenticatable
                         'screen_name'   => $params['screen_name'],
                         'name'          => $params['name'],
                         'email'         => $params['email'],
+                        'description'   => $params['description']
                     ]);
             }
 

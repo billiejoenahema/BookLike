@@ -72,6 +72,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('自己紹介') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="description" type="text" class="form-control" name="description" value="{{ $login_user->description }}">
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary shadow-sm">更新する</button>
