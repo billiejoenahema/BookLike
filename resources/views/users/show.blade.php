@@ -3,87 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 mb-3">
-            <div class="card">
-                <div class="d-inline-flex">
-                    <div class="p-3 d-flex flex-column">
-                        @if($user->profile_image == null)
-                            <img src="{{ $default_image }}" class="rounded-circle" width=100 height="100">
-                        @else
-                            <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle" width="100" height="100">
-                        @endif
-                    <div class="mt-3 d-flex flex-column">
-                            <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
-                            <span class="text-secondary">{{ $user->screen_name }}</span>
-                        </div>
-                    </div>
-                    <div class="p-3 d-flex flex-column justify-content-between">
-                        <div class="d-flex">
-                            <div class="d-flex">
-                                @if ($user->id === Auth::user()->id)
-                                    <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
-                                    <form method="POST" action="{{ route('users.destroy', $login_user->id) }}">
-                                        @csrf
-                                        @method('DELETE')
+        @include('components.user_profile')
 
-                                        <button type="submit" class="btn btn-danger">
-                                            {{ __('アカウント削除') }}
-                                        </button>
-                                    </form>
-
-                                @else
-                                    @if ($is_following)
-                                        <form action="{{ route('unfollow', $user->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
-                                        </form>
-                                    @else
-                                        <form action="{{ route('follow', $user->id) }}" method="POST">
-                                            @csrf
-
-                                            <button type="submit" class="btn btn-primary shadow-sm">フォローする</button>
-                                        </form>
-                                    @endif
-
-                                    @if ($is_followed)
-                                        <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
-                                    @endif
-                                @endif
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <p>{{ $user->description }}</p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="p-2 d-flex flex-column align-items-center">
-                                <p class="font-weight-bold">レビュー数</p>
-                                <span>{{ $review_count }}</span>
-                            </div>
-                            <div class="p-2 d-flex flex-column align-items-center">
-                                <p class="font-weight-bold">フォロー数</p>
-                                <span>{{ $follow_count }}</span>
-                            </div>
-                            <div class="p-2 d-flex flex-column align-items-center">
-                                <p class="font-weight-bold">フォロワー数</p>
-                                <span>{{ $follower_count }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
                 <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                        @if($user->profile_image == null)
-                            <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
-                        @else
-                            <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle" width="50" height="50">
-                        @endif
+                        @include('components.user_image')
                         <div class="ml-2 d-flex flex-column flex-grow-1">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
                                 <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
