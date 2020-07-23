@@ -39,10 +39,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto align-items-center">
@@ -61,16 +57,16 @@
                                 <a href="{{ url('reviews/create')}}" class="btn btn-lg btn-primary rounded-circle font-weight-bold shadow-sm">+</a>
                             </li>
                             <li class="nav-item">
-                                @if($login_user->profile_image == null)
-                                    <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
-                                @else
-                                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="50" height="50">
-                                @endif
                             </li>
                             <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ auth()->user()->name }} <span class="caret"></span>
-                            </a>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @if($login_user->profile_image == null)
+                                    <img src="{{ $default_image }}" class="rounded-circle" width="40" height="40">
+                                @else
+                                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="40" height="40">
+                                @endif
+                                    <span>{{ auth()->user()->name }}</span>
+                                </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item" >マイページ</a>
