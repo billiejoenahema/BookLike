@@ -3,7 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        @include('components.user_profile')
+        @if($user == $login_user)
+            @include('components.login_user_profile')
+        @else
+            @include('components.user_profile')
+        @endif
 
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
@@ -13,7 +17,7 @@
                         @include('components.user_image')
                         <div class="ml-2 d-flex flex-column flex-grow-1">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
-                                <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
+                                <span class="text-secondary">{{ $timeline->user->screen_name }}</span>
                             </div>
                             <div class="d-flex justify-content-end flex-grow-1">
                                 <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>

@@ -29,7 +29,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', 'UsersController', ['only'
     => ['index', 'show', 'edit', 'update', 'destroy']]);
 
-    // フォロー/フォロー解除を追加
+    // フォローしているユーザーを一覧表示
+    Route::get('users/{user}/following', 'UsersController@following')->name('users.following');
+
+    // フォロワーを一覧表示
+    Route::get('users/{user}/followers', 'UsersController@followers')->name('users.followers');
+
+    // いいねしたレビューを一覧表示
+    Route::get('users/{user}/favorite', 'UsersController@favorite')->name('users.favorite');
+
+    // フォロー/フォロー解除
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 

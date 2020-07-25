@@ -11,14 +11,15 @@
                 <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                        @if($timeline->user->profile_image == null)
+                            @include('components.user_image', ['user' => $timeline->user])
+                        <!-- @if($timeline->user->profile_image == null)
                             <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="50" height="50">
                         @else
                             <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle" width="50" height="50">
-                        @endif
+                        @endif -->
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
-                                <a href="{{ url('users/' .$timeline->user->id) }}" class="text-secondary">{{ $timeline->user->screen_name }}</a>
+                                <span class="text-secondary">{{ $timeline->user->screen_name }}</span>
                             </div>
                             <div class="d-flex justify-content-end flex-grow-1">
                                 <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>

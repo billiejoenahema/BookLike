@@ -13,7 +13,7 @@
                     @endif
                     <div class="ml-2 d-flex flex-column">
                         <p class="mb-0">{{ $review->user->name }}</p>
-                        <a href="{{ url('users/' .$review->user->id) }}" class="text-secondary">{{ $review->user->screen_name }}</a>
+                        <span class="text-secondary">{{ $review->user->screen_name }}</span>
                     </div>
                     <div class="d-flex justify-content-end flex-grow-1">
                         <p class="mb-0 text-secondary">{{ $review->created_at->format('Y-m-d H:i') }}</p>
@@ -80,7 +80,7 @@
                             @endif
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $comment->user->name }}</p>
-                                <a href="{{ url('users/' .$comment->user->id) }}" class="text-secondary">{{ $comment->user->screen_name }}</a>
+                                <span class="text-secondary">{{ $comment->user->screen_name }}</span>
                             </div>
                             <div class="d-flex justify-content-end flex-grow-1">
                                 <p class="mb-0 text-secondary">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
@@ -109,7 +109,7 @@
                                 @endif
                                 <div class="ml-2 d-flex flex-column">
                                         <p class="mb-0">{{ $login_user->name }}</p>
-                                        <a href="{{ url('users/' .$login_user->id) }}" class="text-secondary">{{ $review->user->screen_name }}</a>
+                                        <span class="text-secondary">{{ $review->user->screen_name }}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

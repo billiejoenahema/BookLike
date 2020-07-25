@@ -10,7 +10,7 @@
                             @include('components.user_image')
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $user->name }}</p>
-                                <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
+                                <span class="text-secondary">{{ $user->screen_name }}</span>
                             </div>
                             @if (auth()->user()->isFollowed($user->id))
                                 <div class="px-2">

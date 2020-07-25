@@ -13,7 +13,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12 p-3 w-100 d-flex">
-                                @include('components.user_image')
+                                @include('components.user_image', ['user' => $login_user])
                                 <div class="ml-2 d-flex flex-column">
                                     <p class="mb-0">{{ $login_user->name }}</p>
                                     <a href="{{ url('users/' .$login_user->id) }}" class="text-secondary">{{ $login_user->screen_name }}</a>

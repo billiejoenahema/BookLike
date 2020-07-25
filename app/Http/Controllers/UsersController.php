@@ -24,11 +24,16 @@ class UsersController extends Controller
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
 
-        return view('users.index', [
-            'all_users'  => $all_users,
-            'default_image' => $default_image,
-            'login_user' => $login_user
-        ]);
+        return view('users.index', compact(
+            'all_users',
+            'default_image',
+            'login_user'
+        ));
+        // return view('users.index', [
+        //     'all_users'  => $all_users,
+        //     'default_image' => $default_image,
+        //     'login_user' => $login_user
+        // ]);
     }
 
     /**
@@ -71,17 +76,17 @@ class UsersController extends Controller
 
 
 
-        return view('users.show', [
-            'user'           => $user,
-            'login_user' => $login_user,
-            'is_following'   => $is_following,
-            'is_followed'    => $is_followed,
-            'timelines'      => $timelines,
-            'review_count'    => $review_count,
-            'follow_count'   => $follow_count,
-            'follower_count' => $follower_count,
-            'default_image' => $default_image
-            ]);
+        return view('users.show', compact(
+            'user',
+            'login_user',
+            'is_following',
+            'is_followed',
+            'timelines',
+            'review_count',
+            'follow_count',
+            'follower_count',
+            'default_image'
+        ));
         }
 
         /**
@@ -95,11 +100,11 @@ class UsersController extends Controller
             $login_user = auth()->user();
             $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-        return view('users.edit', [
-            'login_user' => $login_user,
-            'default_image' => $default_image
+        return view('users.edit', compact(
+            'login_user',
+            'default_image'
 
-        ]);
+        ));
     }
 
     /**
@@ -168,4 +173,32 @@ class UsersController extends Controller
             return back();
         }
     }
+
+    // フォローしているユーザー
+    public function following(User $user, Review $review, Follower $follower)
+    {
+        $following_users = $user->getFollowingUsers($user->id);
+        // dd($following_users);
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
+        $review_count = $review->getReviewCount($user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
+        return view('users.following', compact(
+            'following_users',
+            'user',
+            'login_user',
+            'is_following',
+            'is_followed',
+            'review_count',
+            'follow_count',
+            'follower_count',
+            'default_image'
+        ));
+    }
+
+
 }

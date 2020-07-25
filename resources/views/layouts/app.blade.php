@@ -39,7 +39,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+                    <form class="form-inline my-2 my-lg-0">
+                        @csrf
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto align-items-center">
                         <!-- Authentication Links -->
@@ -59,7 +63,7 @@
                             <li class="nav-item">
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @if($login_user->profile_image == null)
                                     <img src="{{ $default_image }}" class="rounded-circle" width="40" height="40">
                                 @else
