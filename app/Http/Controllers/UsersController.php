@@ -199,5 +199,29 @@ class UsersController extends Controller
         ));
     }
 
+    public function followers(User $user, Review $review, Follower $follower)
+    {
+        $followers = $user->getFollowers($user->id);
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
+        $review_count = $review->getReviewCount($user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
+        return view('users.followers', compact(
+            'followers',
+            'user',
+            'login_user',
+            'is_following',
+            'is_followed',
+            'review_count',
+            'follow_count',
+            'follower_count',
+            'default_image'
+        ));
+    }
+
 
 }

@@ -12,11 +12,6 @@
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image', ['user' => $timeline->user])
-                        <!-- @if($timeline->user->profile_image == null)
-                            <img src="{{ asset('storage/profile_image/Default_User_Icon.jpeg') }}" class="rounded-circle" width="50" height="50">
-                        @else
-                            <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle" width="50" height="50">
-                        @endif -->
                             <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
                                 <span class="text-secondary">{{ $timeline->user->screen_name }}</span>

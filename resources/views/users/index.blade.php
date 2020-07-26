@@ -12,12 +12,12 @@
                                 <p class="mb-0">{{ $user->name }}</p>
                                 <span class="text-secondary">{{ $user->screen_name }}</span>
                             </div>
-                            @if (auth()->user()->isFollowed($user->id))
+                            @if ($login_user->isFollowed($user->id))
                                 <div class="px-2">
                                     <span class="px-1 bg-secondary text-light">フォローされています</span>
                                 </div>
                             @endif
-                            <div class="d-flex justify-content-end flex-grow-1">
+                            <div class="d-flex justify-content-end ml-auto">
                                 @if ($login_user->isFollowing($user->id))
                                     <form action="{{ route('unfollow', $user->id) }}" method="POST">
                                         @csrf

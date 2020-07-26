@@ -12,56 +12,73 @@
                     <span class="text-secondary">{{ $login_user->screen_name }}</span>
                 </div>
             </div>
-            <div class="p-3 d-flex flex-column justify-content-between">
-                <div class="d-flex">
-                    <div class="d-flex">
+            <div class="p-3 flex-column">
+                <div class="d-flex justify-content-between">
+                    <div class="p-1">
                         <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
-                        <form method="POST" action="{{ route('users.destroy', $login_user->id) }}">
-                            @csrf
-                            @method('DELETE')
+                    </div>
+                    <div class="dropdown p-1">
+                        <a class="btn dropdown-toggle"
+                        href="#" role="button"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                        </a>
 
-                            <button type="submit" class="btn btn-danger ml-3">
-                                {{ __('アカウント削除') }}
-                            </button>
-                        </form>
-                        <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                ログアウト
                             </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a  href="{{ route('logout') }}" class="dropdown-item"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('ログアウト') }}
+                                @csrf
+                            </form>
+                            <form method="POST" action="{{ route('users.destroy', $login_user->id) }}" id="delete_{{ $login_user->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <a class="dropdown-item"
+                                    href="#"
+                                    data-id="{{ $login_user->id }}"
+                                    onclick="deletePost(this);"
+                                >
+                                    アカウントを削除
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex">
                     <p>{{ $login_user->description }}</p>
                 </div>
+
                 <div class="d-flex justify-content-end">
                     <div class="p-2 d-flex flex-column align-items-center">
                         <p class="font-weight-bold">レビュー数</p>
-                        <span>{{ $review_count }}</span>
+                        <a class="btn bg-light" href="#">{{ $review_count }}</a>
                     </div>
                     <div class="p-2 d-flex flex-column align-items-center">
                         <p class="font-weight-bold">フォロー数</p>
-                        <a href="{{ url('/users/' .$login_user->id .'/following') }}">{{ $follow_count }}</a>
+                        <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/following') }}">{{ $follow_count }}</a>
                     </div>
                     <div class="p-2 d-flex flex-column align-items-center">
                         <p class="font-weight-bold">フォロワー数</p>
-                        <span>{{ $follower_count }}</span>
+                        <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/followers') }}">{{ $follower_count }}</a>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+
+<script>
+function  deletePost(e) {
+    'use strict';
+    if (confirm('アカウントを削除しますか？')) {
+        const delete_id = document.getElementById('delete_' + e.dataset.id)
+        delete_id.submit();
+    }
+};
+</script>
