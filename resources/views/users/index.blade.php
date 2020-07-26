@@ -22,7 +22,6 @@
                                     <form action="{{ route('unfollow', $user->id) }}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }}
-
                                         <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
                                     </form>
                                 @else

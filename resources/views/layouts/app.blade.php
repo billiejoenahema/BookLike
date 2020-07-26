@@ -62,28 +62,14 @@
                             </li>
                             <li class="nav-item">
                             </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <li class="nav-item">
+                                <a href="{{ url('users/' .$login_user->id) }}">
                                 @if($login_user->profile_image == null)
                                     <img src="{{ $default_image }}" class="rounded-circle" width="40" height="40">
                                 @else
                                     <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="40" height="40">
                                 @endif
-                                    <span>{{ auth()->user()->name }}</span>
                                 </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item" >マイページ</a>
-                                <a  href="{{ route('logout') }}" class="dropdown-item"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('ログアウト') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
                             </li>
                         @endguest
                     </ul>

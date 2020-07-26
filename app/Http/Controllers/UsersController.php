@@ -178,7 +178,6 @@ class UsersController extends Controller
     public function following(User $user, Review $review, Follower $follower)
     {
         $following_users = $user->getFollowingUsers($user->id);
-        // dd($following_users);
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($user->id);
         $is_followed = $login_user->isFollowed($user->id);

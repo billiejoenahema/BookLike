@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mb-3 text-right">
-            <a href="{{ url('users') }}">ユーザ一覧 <i class="fas fa-users" class="fa-fw"></i> </a>
+            <a href="{{ url('users') }}">ユーザ一覧</a>
         </div>
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
