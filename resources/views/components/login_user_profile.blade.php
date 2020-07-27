@@ -1,11 +1,11 @@
 <div class="col-md-8 mb-3">
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="d-inline-flex">
             <div class="p-3 d-flex flex-column">
-                @if($login_user->profile_image == null)
-                    <img src="{{ $default_image }}" class="rounded-circle" width=100 height="100">
+                @if($login_user->profile_image === null)
+                    <img src="{{ $default_image }}" class="rounded-circle shadow-sm" width=100 height="100">
                 @else
-                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="100" height="100">
+                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle shadow-sm" width="100" height="100">
                 @endif
             <div class="mt-3 d-flex flex-column">
                     <h4 class="mb-0 font-weight-bold">{{ $login_user->name }}</h4>

@@ -47,8 +47,9 @@ Route::group(['middleware' => 'auth'], function() {
     => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
     // コメント関連
-    Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+    Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
 
     // いいね関連
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
+
 });

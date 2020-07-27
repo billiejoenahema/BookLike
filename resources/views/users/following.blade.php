@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
 
-            @if($user == $login_user)
+            @if($user === $login_user)
                 @include('components.login_user_profile')
             @else
                 @include('components.user_profile')
@@ -14,7 +14,7 @@
                 @foreach ($following_users as $following)
                     @if($following->id != $login_user->id && $following->id != $user->id)
                         <div class="col-md-8">
-                            <div class="card mb-1">
+                            <div class="card mb-1 shadow-sm">
                                 <div class="card-haeder p-3 w-100 d-flex">
                                     @include('components.user_image', ['user' => $following])
                                     <div class="ml-2 d-flex flex-column">

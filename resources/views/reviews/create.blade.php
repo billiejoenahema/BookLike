@@ -4,7 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            @include('components.back_button')
+            <div class="card shadow-sm">
                 <div class="card-header">新規投稿</div>
 
                 <div class="card-body">
@@ -16,7 +17,7 @@
                                 @include('components.user_image', ['user' => $login_user])
                                 <div class="ml-2 d-flex flex-column">
                                     <p class="mb-0">{{ $login_user->name }}</p>
-                                    <a href="{{ url('users/' .$login_user->id) }}" class="text-secondary">{{ $login_user->screen_name }}</a>
+                                    {{ $login_user->screen_name }}
                                 </div>
                             </div>
                             <div class="col-md-12">

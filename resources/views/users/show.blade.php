@@ -12,7 +12,7 @@
         @if (isset($timelines))
             @foreach ($timelines as $timeline)
                 <div class="col-md-8 mb-3">
-                    <div class="card">
+                    <div class="card shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex">
                         @include('components.user_image')
                         <div class="ml-2 d-flex flex-column flex-grow-1">
