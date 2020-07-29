@@ -23,7 +23,6 @@ class UsersController extends Controller
         $all_users = $user->getAllUsers(auth()->user()->id);
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-
         return view('users.index', compact(
             'all_users',
             'default_image',
@@ -223,5 +222,28 @@ class UsersController extends Controller
         ));
     }
 
+    public function favorite(User $user, Review $review, Follower $follower)
+  {
+    $timelines = $review->getFavoriteReviews($user->id);
+    $login_user = auth()->user();
+    $is_following = $login_user->isFollowing($user->id);
+    $is_followed = $login_user->isFollowed($user->id);
+    $review_count = $review->getReviewCount($user->id);
+    $follow_count = $follower->getFollowCount($user->id);
+    $follower_count = $follower->getFollowerCount($user->id);
+    $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
+    return view('users.favorite', compact(
+        'user',
+        'login_user',
+        'is_following',
+        'is_followed',
+        'timelines',
+        'review_count',
+        'follow_count',
+        'follower_count',
+        'default_image'
+    ));
+  }
 
 }

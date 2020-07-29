@@ -122,4 +122,6 @@ class User extends Authenticatable
     {
         return $this->followers()->where('followed_id', $user_id)->paginate(6);
     }
+
+
 }

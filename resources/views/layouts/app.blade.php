@@ -58,19 +58,49 @@
                             @endif
                         @else
                             <li class="nav-item mr-5">
-                                <a href="{{ url('reviews/create')}}" class="btn btn-lg btn-primary rounded-circle font-weight-bold shadow-sm">+</a>
+                                <a href="{{ url('reviews/create')}}"
+                                type="button"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="レビューを投稿する"
+                                class="btn btn-lg btn-primary rounded-circle font-weight-bold shadow-sm"
+                                >+</a>
                             </li>
                             <li class="nav-item">
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('users/' .$login_user->id) }}">
-                                @if($login_user->profile_image == null)
-                                    <img src="{{ $default_image }}" class="rounded-circle" width="40" height="40">
+                                @if($login_user->profile_image === null)
+                                    <img src="{{ $default_image }}"
+                                        class="rounded-circle shadow-sm"
+                                        width="50" height="50">
                                 @else
-                                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="40" height="40">
+                                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
+                                        class="rounded-circle shadow-sm"
+                                        width="50" height="50">
                                 @endif
                                 </a>
                             </li>
+                            <div class="dropdown p-1">
+                        <a class="btn dropdown-toggle"
+                        href="#" role="button"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                ログアウト
+                            </a>
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
                         @endguest
                     </ul>
                 </div>

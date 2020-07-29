@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+
         @if($user == $login_user)
             @include('components.login_user_profile')
         @else
@@ -14,8 +15,8 @@
                 <div class="col-md-8 mb-3">
                     <div class="card shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex">
-                        @include('components.user_image')
-                        <div class="ml-2 d-flex flex-column flex-grow-1">
+                            @include('components.user_image', ['user' => $timeline->user])
+                            <div class="ml-2 d-flex flex-column">
                                 <p class="mb-0">{{ $timeline->user->name }}</p>
                                 <span class="text-secondary">{{ $timeline->user->screen_name }}</span>
                             </div>
@@ -24,7 +25,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                        <a href="{{ url('reviews/' .$timeline->id) }}" class="text-reset">{!! nl2br(e($timeline->text)) !!}</a>
+                            <a href="{{ url('reviews/' .$timeline->id) }}" class="text-reset">{!! nl2br(e($timeline->text)) !!}</a>
                         </div>
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
                             @if ($timeline->user->id === Auth::user()->id)
@@ -43,27 +44,21 @@
                                     </div>
                                 </div>
                             @endif
-
-                            <!-- コメントボタン -->
                             <div class="mr-3 d-flex align-items-center">
                                 <a href="{{ url('reviews/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
                                 <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
                             </div>
-
-                            <!-- いいねボタン -->
-                            <div class="d-flex align-items-center">
-                            @if (!in_array(Auth::user()->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
+                            <div class="mr-3 d-flex align-items-center">
+                            @if (!in_array($login_user->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
                                     <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
                                         @csrf
-
                                         <input type="hidden" name="review_id" value="{{ $timeline->id }}">
                                         <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
                                     </form>
                                 @else
-                                    <form method="POST"action="{{ url('favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[Auth::user()->id]) }}" class="mb-0">
+                                    <form method="POST" action="{{ url('favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}" class="mb-0">
                                         @csrf
                                         @method('DELETE')
-
                                         <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
                                     </form>
                                 @endif

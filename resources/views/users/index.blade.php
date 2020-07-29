@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 @foreach ($all_users as $user)
-                    <div class="card mb-1">
+                    <div class="card mb-1 shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image')
                             <div class="ml-2 d-flex flex-column">

@@ -94,4 +94,17 @@ class review extends Model
                     ->where('id', $review_id)
                     ->delete();
     }
+
+    //いいねしたレビューをすべて取得
+    public function getFavoriteReviews(Int $user_id)
+    {
+        $favorite_reviews = $this->whereHas(
+            'favorites', function($query) use ($user_id)
+        {
+            $query->where('user_id', $user_id);
+        }
+        )->paginate(6);
+
+        return $favorite_reviews;
+    }
 }
