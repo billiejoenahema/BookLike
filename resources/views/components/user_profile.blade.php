@@ -7,7 +7,7 @@
             @else
                 <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle shadow-sm" width="100" height="100">
             @endif
-            <div class="mt-3 d-flex flex-column">
+                <div class="mt-3 d-flex flex-column">
                     <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
                     <span class="text-secondary">{{ $user->screen_name }}</span>
                 </div>

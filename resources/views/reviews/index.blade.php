@@ -13,8 +13,10 @@
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image', ['user' => $timeline->user])
                             <div class="ml-2 d-flex flex-column">
-                                <p class="mb-0">{{ $timeline->user->name }}</p>
-                                <span class="text-secondary">{{ $timeline->user->screen_name }}</span>
+                                <a href="{{ url('users/' .$timeline->user->id) }}" class="text-reset">
+                                    <p class="mb-0">{{ $timeline->user->name }}</p>
+                                    <span class="text-secondary">{{ $timeline->user->screen_name }}</span>
+                                </a>
                             </div>
                             <div class="d-flex justify-content-end flex-grow-1">
                                 <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
