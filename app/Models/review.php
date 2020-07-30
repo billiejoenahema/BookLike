@@ -95,7 +95,7 @@ class review extends Model
                     ->delete();
     }
 
-    //いいねしたレビューをすべて取得
+    // いいねしたレビューをすべて取得
     public function getFavoriteReviews(Int $user_id)
     {
         $favorite_reviews = $this->whereHas(
@@ -107,4 +107,5 @@ class review extends Model
 
         return $favorite_reviews;
     }
+
 }

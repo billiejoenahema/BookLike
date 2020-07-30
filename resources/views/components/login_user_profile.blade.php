@@ -47,20 +47,20 @@
 
                 <div class="d-flex justify-content-end">
                     <div class="p-2 d-flex flex-column align-items-center">
-                        <p class="font-weight-bold">レビュー数</p>
-                        <a class="btn bg-light" href="#">{{ $review_count }}</a>
+                        <p class="font-weight-bold">レビュー</p>
+                        <a class="btn bg-light" href="{{ url('users/' .$user->id) }}">{{ $review_count }}</a>
                     </div>
                     <div class="p-2 d-flex flex-column align-items-center">
-                        <p class="font-weight-bold">フォロー数</p>
+                        <p class="font-weight-bold">フォロー</p>
                         <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/following') }}">{{ $follow_count }}</a>
                     </div>
                     <div class="p-2 d-flex flex-column align-items-center">
-                        <p class="font-weight-bold">フォロワー数</p>
+                        <p class="font-weight-bold">フォロワー</p>
                         <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/followers') }}">{{ $follower_count }}</a>
                     </div>
                     <div class="p-2 d-flex flex-column align-items-center">
                         <p class="font-weight-bold">いいねしたレビュー</p>
-                        <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/favorite') }}">{{ __('いいね数') }}</a>
+                        <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/favorite') }}">{{ $favorite_reviews_count }}</a>
                     </div>
                 </div>
 

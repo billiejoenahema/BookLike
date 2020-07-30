@@ -71,6 +71,7 @@ class UsersController extends Controller
         $review_count = $review->getReviewCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);
+        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
 
@@ -84,6 +85,7 @@ class UsersController extends Controller
             'review_count',
             'follow_count',
             'follower_count',
+            'favorite_reviews_count',
             'default_image'
         ));
         }
@@ -183,6 +185,7 @@ class UsersController extends Controller
         $review_count = $review->getReviewCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);
+        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('users.following', compact(
@@ -194,6 +197,7 @@ class UsersController extends Controller
             'review_count',
             'follow_count',
             'follower_count',
+            'favorite_reviews_count',
             'default_image'
         ));
     }
@@ -207,6 +211,7 @@ class UsersController extends Controller
         $review_count = $review->getReviewCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);
+        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('users.followers', compact(
@@ -218,6 +223,7 @@ class UsersController extends Controller
             'review_count',
             'follow_count',
             'follower_count',
+            'favorite_reviews_count',
             'default_image'
         ));
     }
@@ -231,6 +237,7 @@ class UsersController extends Controller
     $review_count = $review->getReviewCount($user->id);
     $follow_count = $follower->getFollowCount($user->id);
     $follower_count = $follower->getFollowerCount($user->id);
+    $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
     $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
     return view('users.favorite', compact(
@@ -242,6 +249,7 @@ class UsersController extends Controller
         'review_count',
         'follow_count',
         'follower_count',
+        'favorite_reviews_count',
         'default_image'
     ));
   }
