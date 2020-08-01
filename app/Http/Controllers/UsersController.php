@@ -17,22 +17,39 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index(Request $request, User $user)
     {
         $login_user = auth()->user();
-        $all_users = $user->getAllUsers(auth()->user()->id);
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+        $search = $request->input('search');
+
+        // 検索ワードの全角スペースを半角に変換
+        $search_split = mb_convert_kana($search, 's');
+
+        // スペースで区切る
+        $search_words = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
+
+
+        // もしキーワードがあったら
+        if($search !== null) {
+
+            // 検索ワードにヒットしたユーザーを取得
+            foreach($search_words as $word) {
+                $search_users = User::where('name', 'like', '%'.$word.'%')->paginate(10);
+            }
+        }
+
+        if ($search !== null) {
+            $all_users = $search_users;
+        } else {
+            $all_users = $user->getAllUsers(auth()->user()->id);
+        }
 
         return view('users.index', compact(
             'all_users',
             'default_image',
             'login_user'
         ));
-        // return view('users.index', [
-        //     'all_users'  => $all_users,
-        //     'default_image' => $default_image,
-        //     'login_user' => $login_user
-        // ]);
     }
 
     /**

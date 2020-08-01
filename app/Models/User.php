@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function getAllUsers(Int $user_id)
     {
-        return $this->Where('id', '<>', $user_id)->paginate(5);
+        return $this->Where('id', '<>', $user_id)->paginate(10);
     }
 
     // フォローする
@@ -122,6 +122,5 @@ class User extends Authenticatable
     {
         return $this->followers()->where('followed_id', $user_id)->paginate(6);
     }
-
 
 }
