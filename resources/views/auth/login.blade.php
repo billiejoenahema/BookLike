@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('ログイン') }}</div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -21,7 +20,6 @@
                                         name="email"
                                         value="{{ old('email') }}"
                                         required autocomplete="email"
-                                        placeholder="example@example.com"
                                         autofocus>
 
                                 @error('email')
@@ -76,6 +74,14 @@
                             </div>
                         </div>
                     </form>
+                    <div class="w-100 mt-5 text-white">
+                        <form action="{{ route('login') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="email" value="gestuser@example.com">
+                            <input type="hidden" name="password" value="12345678">
+                            <button type="submit" class="btn w-100 bg-success text-reset">{{ __('お試しログイン') }}</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

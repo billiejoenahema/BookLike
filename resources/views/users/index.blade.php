@@ -9,9 +9,14 @@
                 <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
+        @if($search !== null)
+        <div>
+        <h2 class="text-center">検索結果 "{{ $search }}"</span></h2>
+        </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-8">
-                @foreach ($all_users as $user)
+                @foreach ($users as $user)
                     <div class="card mb-1 shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image')
@@ -21,11 +26,17 @@
                                     <span class="text-secondary">{{ $user->screen_name }}</span>
                                 </a>
                             </div>
+
                             @if ($login_user->isFollowed($user->id))
-                                <div class="px-2">
-                                    <span class="px-1 bg-secondary text-light">フォローされています</span>
-                                </div>
+                            <div class="px-2">
+                                <span class="px-1 bg-secondary text-light">フォローされています</span>
+                            </div>
                             @endif
+
+                            <div class="px-2">
+                                <p>{{ $user->description }}</p>
+                            </div>
+
                             <div class="d-flex justify-content-end ml-auto">
                                 @if ($login_user->isFollowing($user->id))
                                     <form action="{{ route('unfollow', $user->id) }}" method="POST">
@@ -41,13 +52,14 @@
                                     </form>
                                 @endif
                             </div>
+
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
         <div class="my-4 d-flex justify-content-center">
-            {{ $all_users->links() }}
+            {{ $users->links() }}
         </div>
     </div>
 @endsection
