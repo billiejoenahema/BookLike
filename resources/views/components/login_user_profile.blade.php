@@ -13,6 +13,11 @@
                 </div>
             </div>
             <div class="p-3 flex-column">
+                @if($login_user->id == 1)
+                <div class="btn btn-danger text-white">
+                    {{ __('ゲストユーザーはプロフィールを編集できません') }}
+                </div>
+                @else
                 <div class="d-flex justify-content-between">
                     <div class="p-1">
                         <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
@@ -41,6 +46,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="d-flex">
                     <p>{{ $login_user->description }}</p>
                 </div>
