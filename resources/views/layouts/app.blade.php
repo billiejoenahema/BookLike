@@ -38,6 +38,12 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                @if($login_user->id == 1)
+                    <div class="btn btn-success text-white ml-5">
+                        {{ __('ゲストユーザーとしてログインしています') }}
+                    </div>
+                @endif
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto align-items-center">
