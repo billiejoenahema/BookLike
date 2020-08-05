@@ -16,7 +16,11 @@
         @endif
         <div class="row justify-content-center">
             <div class="col-md-8">
+<<<<<<< HEAD
                 @foreach ($users as $user)
+=======
+                @foreach ($all_users as $user)
+>>>>>>> 5bf089e80c267f1748e9a7e161d6b6cc5f54173d
                     <div class="card mb-1 shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image')

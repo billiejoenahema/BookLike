@@ -4,7 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+<<<<<<< HEAD
             @include('components.cross_button')
+=======
+            @include('components.back_button')
+>>>>>>> 5bf089e80c267f1748e9a7e161d6b6cc5f54173d
             <div class="card shadow-sm">
                 <div class="card-header">新規投稿</div>
 
