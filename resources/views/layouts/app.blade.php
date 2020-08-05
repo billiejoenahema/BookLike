@@ -38,11 +38,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                @if($login_user->id == 1)
-                    <div class="btn btn-success text-white ml-5">
-                        {{ __('ゲストユーザーとしてログインしています') }}
-                    </div>
-                @endif
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
@@ -58,6 +54,11 @@
                                 </li>
                             @endif
                         @else
+                            @if($login_user->id == 1)
+                                <div class="btn bg-success text-white mr-5">
+                                    {{ __('ゲストユーザーとしてログインしています') }}
+                                </div>
+                            @endif
                             <li class="nav-item mr-5">
                                 <a href="{{ url('reviews/create')}}"
                                 type="button"
