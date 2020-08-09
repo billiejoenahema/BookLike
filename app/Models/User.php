@@ -123,4 +123,10 @@ class User extends Authenticatable
         return $this->followers()->where('followed_id', $user_id)->paginate(6);
     }
 
+    // 検索ワードに部分一致するユーザーを取得
+    public function getSearchUsers($user_id, $search)
+    {
+        return User::where('id', '<>', $user_id)->where('name', 'like', '%'.$search.'%');
+    }
+
 }

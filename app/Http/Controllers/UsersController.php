@@ -17,6 +17,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request, User $user)
     {
         $login_user = auth()->user();
@@ -28,7 +29,8 @@ class UsersController extends Controller
         if($search !== null) {
 
             // 検索ワードに部分一致するユーザーをすべて取得
-            $search_user = User::where('id', '<>', $user_id)->where('name', 'like', '%'.$search.'%');
+            $search_user = $user->getSearchUsers($user_id, $search);
+            // $search_user = User::where('id', '<>', $user_id)->where('name', 'like', '%'.$search.'%');
             $users = $search_user->paginate(10);
 
         } else {
