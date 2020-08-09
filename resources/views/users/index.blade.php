@@ -2,22 +2,28 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center mb-3">
-            <form method="GET" action="{{ route('users.index') }}" class="form-inline my-2 my-lg-0">
-                @csrf
-                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            </form>
+        <div class="col-md-8 justify-content-center m-auto">
+            <div class="mb-3">
+                <form method="GET" action="{{ route('users.index') }}" class="form-inline my-2 my-lg-0">
+                    @csrf
+                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            @if($search !== null)
+            <div class="mb-3">
+                <h2 class="text-center">検索結果 "{{ $search }}"</span></h2>
+            </div>
+            <div class="mb-3 text-right">
+                <a href="{{ url('users') }}">ユーザ一覧</a>
+            </div>
+            @endif
         </div>
-        @if($search !== null)
-        <div>
-        <h2 class="text-center">検索結果 "{{ $search }}"</span></h2>
-        </div>
-        @endif
-        <div class="row justify-content-center">
+        <div class="row justify-content-center m-auto">
             <div class="col-md-8">
                 @foreach ($users as $user)
-                    <div class="card mb-1 shadow-sm">
+                    <div class="card mb-3 shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image')
                             <div class="ml-2 d-flex flex-column">
