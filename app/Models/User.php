@@ -126,7 +126,7 @@ class User extends Authenticatable
     // 検索ワードに部分一致するユーザーを取得
     public function getSearchUsers($user_id, $search)
     {
-        return User::where('id', '<>', $user_id)->where('name', 'like', '%'.$search.'%');
+        return User::where('id', '<>', $user_id)->where('name', 'like', '%'.$search.'%')->paginate(10);
     }
 
 }

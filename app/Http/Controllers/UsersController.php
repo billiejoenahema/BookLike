@@ -29,12 +29,11 @@ class UsersController extends Controller
         if($search !== null) {
 
             // 検索ワードに部分一致するユーザーをすべて取得
-            $search_user = $user->getSearchUsers($user_id, $search);
-            // $search_user = User::where('id', '<>', $user_id)->where('name', 'like', '%'.$search.'%');
-            $users = $search_user->paginate(10);
+            $users = $user->getSearchUsers($user_id, $search);
 
         } else {
 
+            // すべてのユーザーを取得
             $users = $user->getAllUsers(auth()->user()->id);
         }
 
