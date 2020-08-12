@@ -185,7 +185,7 @@ class UsersController extends Controller
         }
     }
 
-    // フォローしているユーザー
+    // フォローしている全ユーザー
     public function following(User $user, Review $review, Follower $follower)
     {
         $following_users = $user->getFollowingUsers($user->id);
@@ -212,7 +212,7 @@ class UsersController extends Controller
         ));
     }
 
-    // フォロワー
+    // 全フォロワー
     public function followers(User $user, Review $review, Follower $follower)
     {
         $followers = $user->getFollowers($user->id);
@@ -239,7 +239,7 @@ class UsersController extends Controller
         ));
     }
 
-    // いいね
+    // いいねした投稿
     public function favorite(User $user, Review $review, Follower $follower)
   {
     $timelines = $review->getFavoriteReviews($user->id);

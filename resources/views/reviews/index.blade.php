@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <!-- フラッシュメッセージ -->
+        @if (session('login_message'))
+            <div class="login_message col-md-8 mb-3 text-center text-dark rounded">
+                {{ session('login_message') }}
+            </div>
+        @endif
         <div class="col-md-8 mb-3 text-right">
             <a href="{{ url('users') }}">ユーザ一覧</a>
         </div>
