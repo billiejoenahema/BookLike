@@ -26,7 +26,7 @@
                     <div class="card mb-3 shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image')
-                            <div class="ml-2 d-flex flex-column">
+                            <div class="ml-2 d-flex flex-column col-sm-2">
                                 <a href="{{ url('users/' .$user->id) }}" class="text-reset">
                                     <p class="mb-0">{{ $user->name }}</p>
                                     <span class="text-secondary">{{ $user->screen_name }}</span>
@@ -39,8 +39,8 @@
                             </div>
                             @endif
 
-                            <div class="px-2">
-                                <p>{{ $user->description }}</p>
+                            <div class="px-2 col-sm-6">
+                                <p>{{ \Illuminate\Support\Str::limit($user->description, 80, '・・・') }}</p>
                             </div>
 
                             <div class="d-flex justify-content-end ml-auto">

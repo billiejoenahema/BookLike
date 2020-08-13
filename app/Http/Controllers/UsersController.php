@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Follower;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
