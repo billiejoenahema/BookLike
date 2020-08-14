@@ -108,4 +108,5 @@ class review extends Model
         return $favorite_reviews;
     }
 
+
 }
