@@ -15,6 +15,9 @@ class review extends Model
      * @var array
      */
     protected $fillable = [
+        'asin',
+        'title',
+        'image_url',
         'text'
     ];
 

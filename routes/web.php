@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
+    // 書籍検索
+    Route::get('searchItems', 'Api\SearchItemsController')->name('searchItems');
+
     // レビュー投稿関連
     Route::resource('reviews', 'ReviewController', ['only'
     => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
@@ -51,5 +54,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     // いいね関連
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
+
 
 });

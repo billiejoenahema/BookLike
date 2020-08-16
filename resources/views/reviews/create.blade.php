@@ -20,7 +20,10 @@
                                     {{ $login_user->screen_name }}
                                 </div>
                             </div>
+                            <!-- trigger modal -->
+                            <div id="searchItems" class="col-12 d-flex"></div>
                             <div class="col-md-12">
+                                <h5>おすすめポイント</h5>
                                 <textarea class="form-control @error('text') is-invalid @enderror" name="text" required autocomplete="text" rows="4">{{ old('text') }}</textarea>
 
                                 @error('text')
@@ -30,18 +33,39 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row mb-0">
-                        <script type="text/javascript">amzn_assoc_ad_type ="responsive_search_widget"; amzn_assoc_tracking_id ="billiejoenahe-22"; amzn_assoc_marketplace ="amazon"; amzn_assoc_region ="JP"; amzn_assoc_placement =""; amzn_assoc_search_type = "search_widget";amzn_assoc_width ="auto"; amzn_assoc_height ="auto"; amzn_assoc_default_search_category ="Books"; amzn_assoc_default_search_key ="";amzn_assoc_theme ="light"; amzn_assoc_bg_color ="FFFFFF"; </script><script src="//z-fe.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1&Marketplace=JP"></script>
                             <div class="col-md-12 text-right">
                                 <p class="mb-4 text-danger">200文字以内</p>
-                                <button type="submit" class="btn btn-primary shadow-sm">
+                                <button type="input" class="btn btn-primary shadow-sm">
                                     投稿する
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal SearchItems-->
+<div class="modal fade" id="searchItems" tabindex="-1" role="dialog" aria-labelledby="searchItemsTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-title" id="searchResultTitle">検索結果</h5>
+                <!-- 検索結果をforeachでまわす -->
+                <div class="card">
+                    <h4>{{ $title ?? 'title' }}</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                <button type="button" class="btn btn-primary">決定</button>
             </div>
         </div>
     </div>

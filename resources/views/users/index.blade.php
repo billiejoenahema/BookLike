@@ -6,7 +6,7 @@
             <div class="mb-3">
                 <form method="GET" action="{{ route('users.index') }}" class="form-inline my-2 my-lg-0">
                     @csrf
-                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="ユーザー検索" required autocomplete="on">
                     <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
