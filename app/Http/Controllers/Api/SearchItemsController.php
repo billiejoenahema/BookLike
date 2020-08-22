@@ -17,19 +17,19 @@ class SearchItemsController extends Controller
     public function __invoke(Request $request, SearchItems $searchitems)
     {
         $keyword = $request->input('keyword');
-        dd($keyword);
 
         $login_user = auth()->user();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         $search_items = $searchitems->getSearchItems($keyword);
-        // とりあえず最初に検索にヒットした書籍のタイトルを表示させる
-        $title = $search_items[0]->ItemInfo->Title->DisplayValue;
+        // $title = $search_items[0]->ItemInfo->Title->DisplayValue;
+        // dd($search_items);
 
-        return view('reviews.create', compact(
-            'title',
+        return view('reviews.search_items', compact(
+            'search_items',
             'login_user',
-            'default_image'
+            'default_image',
+            'keyword'
         ));
     }
 }

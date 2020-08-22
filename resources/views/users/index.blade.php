@@ -26,39 +26,44 @@
                     <div class="card mb-3 shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image')
-                            <div class="ml-2 d-flex flex-column col-sm-2">
-                                <a href="{{ url('users/' .$user->id) }}" class="text-reset">
-                                    <p class="mb-0">{{ $user->name }}</p>
-                                    <span class="text-secondary">{{ $user->screen_name }}</span>
-                                </a>
-                            </div>
+                            <div class="d-flex flex-row col-11">
+                                <div class="ml-2 d-flex flex-column">
+                                    <a href="{{ url('users/' .$user->id) }}" class="text-reset">
+                                        <p class="mb-0">{{ $user->name }}</p>
+                                        <span class="text-secondary">{{ $user->screen_name }}</span>
+                                    </a>
+                                </div>
 
-                            @if ($login_user->isFollowed($user->id))
-                            <div class="px-2">
-                                <span class="px-1 bg-secondary text-light">フォローされています</span>
-                            </div>
-                            @endif
-
-                            <div class="px-2 col-sm-6">
-                                <p>{{ \Illuminate\Support\Str::limit($user->description, 80, '・・・') }}</p>
-                            </div>
-
-                            <div class="d-flex justify-content-end ml-auto">
-                                @if ($login_user->isFollowing($user->id))
-                                    <form action="{{ route('unfollow', $user->id) }}" method="POST">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('follow', $user->id) }}" method="POST">
-                                        @csrf
-
-                                        <button type="submit" class="btn btn-primary shadow-sm">フォローする</button>
-                                    </form>
+                                @if ($login_user->isFollowed($user->id))
+                                <div class="px-2">
+                                    <span class="px-1 bg-secondary text-light">フォローされています</span>
+                                </div>
                                 @endif
+
+
+                                <!-- フォローボタン -->
+                                <div class="d-flex justify-content-end ml-auto">
+                                    @if ($login_user->isFollowing($user->id))
+                                        <form action="{{ route('unfollow', $user->id) }}" method="POST">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('follow', $user->id) }}" method="POST">
+                                            @csrf
+
+                                            <button type="submit" class="btn btn-primary shadow-sm">フォローする</button>
+                                        </form>
+                                    @endif
+                                </div>
                             </div>
 
+                        </div>
+                        <div class="col-12 d-flex justify-content-end">
+                            <div class="px-2 col-11">
+                                <p>{{ \Illuminate\Support\Str::limit($user->description, 200, '・・・') }}</p>
+                            </div>
                         </div>
                     </div>
                 @endforeach

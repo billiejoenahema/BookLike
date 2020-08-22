@@ -14,7 +14,7 @@
             </div>
             <div class="p-3 flex-column">
                 @if($login_user->id == 1)
-                <div class="btn btn-danger text-white">
+                <div class="btn btn-secondary mb-3">
                     {{ __('ゲストユーザーはプロフィールを編集できません') }}
                 </div>
                 @else
@@ -31,11 +31,11 @@
                         aria-expanded="false">
                         </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-menu mb-3" aria-labelledby="dropdownMenuLink">
                             <form method="POST" action="{{ route('users.destroy', $login_user->id) }}" id="delete_{{ $login_user->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <a class="dropdown-item"
+                                <a class="dropdown-item text-danger"
                                     href="#"
                                     data-id="{{ $login_user->id }}"
                                     onclick="deletePost(this);"

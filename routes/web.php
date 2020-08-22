@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
     // 書籍検索
-    Route::get('searchItems', 'Api\SearchItemsController')->name('searchItems');
+    Route::get('reviews/search_items', 'Api\SearchItemsController')->name('search_items');
 
     // レビュー投稿関連
     Route::resource('reviews', 'ReviewController', ['only'
