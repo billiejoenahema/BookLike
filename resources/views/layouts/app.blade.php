@@ -59,7 +59,7 @@
                                 </div>
                             @endif
                             <li class="nav-item mr-5">
-                                <a href="{{ url('reviews/create')}}"
+                                <a href="{{ url('reviews/create') }}"
                                 type="button"
                                 data-toggle="tooltip"
                                 data-placement="bottom"

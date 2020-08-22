@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
 
-            @if($user === $login_user)
+            @if($user == $login_user)
                 @include('components.login_user_profile')
             @else
                 @include('components.user_profile')

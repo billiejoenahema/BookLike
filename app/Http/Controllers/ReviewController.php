@@ -25,11 +25,11 @@ class ReviewController extends Controller
         $timelines = $review->getTimelines($login_user->id, $following_ids);
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-        return view('reviews.index', [
-            'login_user'      => $login_user,
-            'timelines' => $timelines,
-            'default_image' => $default_image
-        ]);
+        return view('reviews.index', compact(
+            'login_user',
+            'timelines',
+            'default_image'
+        ));
     }
 
     /**
@@ -42,12 +42,21 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-        return view('reviews.create', [
-            'login_user' => $login_user,
-            'default_image' => $default_image
-        ]);
+        return view('reviews.create', compact(
+            'login_user',
+            'default_image'
+        ));
     }
 
+    // Post review text
+    public function posts(Request $request)
+    {
+        dd($request);
+
+        return view('reviews.posts', compact(
+            'request'
+        ));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -82,13 +91,13 @@ class ReviewController extends Controller
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
 
-        return view('reviews.show', [
+        return view('reviews.show', compact(
             // 'user'     => $user,
-            'review' => $review,
-            'comments' => $comments,
-            'login_user' => $login_user,
-            'default_image' => $default_image
-        ]);
+            'review',
+            'comments',
+            'login_user',
+            'default_image'
+        ));
     }
 
     /**
@@ -106,10 +115,10 @@ class ReviewController extends Controller
             return redirect('reviews');
         }
 
-        return view('reviews.edit', [
-            'login_user'   => $login_user,
-            'reviews' => $reviews
-        ]);
+        return view('reviews.edit', compact(
+            'login_user',
+            'reviews'
+        ));
     }
 
     /**

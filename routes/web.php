@@ -45,9 +45,11 @@ Route::group(['middleware' => 'auth'], function() {
     // 書籍検索
     Route::get('reviews/search_items', 'Api\SearchItemsController')->name('search_items');
 
-    // レビュー投稿関連
-    Route::resource('reviews', 'ReviewController', ['only'
-    => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+    // レビュー新規投稿
+    Route::resource('reviews', 'ReviewController');
+
+    // レビュー入力画面
+    Route::get('reviews/posts', 'ReviewController@posts')->name('reviews.posts');
 
     // コメント関連
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);

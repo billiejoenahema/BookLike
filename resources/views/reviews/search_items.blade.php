@@ -13,14 +13,14 @@
                 <div class="card-body m-auto">
                     <div class="d-flex mb-3">
                         @include('components.user_image', ['user' => $login_user])
-                        <div class="col-4">
+                        <div class="col-6">
                             <p class="m-0">{{ $login_user->name }}</p>
                             <p class="m-0">{{ $login_user->screen_name }}</p>
                         </div>
                     </div>
 
                     <div class="form-group mb-0">
-                        <span>キーワドを変えて再検索</span>
+                        <span>キーワードを変えて再検索</span>
                         <!-- 書籍検索フォーム -->
                         <div class="d-flex flex-row justify-content-between col-12 mb-3 p-0">
                             <div class="col-8 p-0">
@@ -47,20 +47,24 @@
                     <!-- 検索結果一覧表示 -->
                     <div>
                     <!-- 決定ボタン -->
-                        <div class="mb-3">
-                            <form action="submit">
-                                <button class="btn btn-success">この書籍で確定</button>
-                            </form>
-                        </div>
+                        <form method="GET" action="{{ route('reviews.posts') }}">
+                            <input id="asin"
+                                type="hidden"
+                                name="asin"
+                                value="">
+                            <div class="mb-3">
+                                <button id="confirmButton" type="submit" class="btn btn-success disabled">この書籍で確定</button>
+                            </div>
+                        </form>
                         @if ($search_items == null)
                             <div>「キーワード」に該当する書籍は見つかりませんでした</div>
                         @else
-                            <div class="overflow-auto" style="max-height: 400px;">
+                            <div class="overflow-auto" style="height: 70vw; max-height: 400px;">
                             @foreach ($search_items as $search_item)
                             <!-- 検索結果をforeachでまわす -->
-                                <div class="card flex-row p-2 mb-2 search-item" onClick="selectItem(this)" id="{{ $search_item->ASIN }}">
+                                <div class="card flex-row p-2 mb-2 search-item btn text-left" onClick="selectItem(this)" id="{{ $search_item->ASIN }}">
                                     <div class="col-sm-3">
-                                        <img class="m-auto" src="{{ $search_item->Images->Primary->Medium->URL }}" width="100" alt="">
+                                        <img class="m-auto" src="{{ $search_item->Images->Primary->Medium->URL }}" width="80">
                                     </div>
                                     <div class="col-sm-9" >
                                         <h5>{{ $search_item->ItemInfo->Title->DisplayValue }}</h5>

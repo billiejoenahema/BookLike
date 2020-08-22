@@ -7,5 +7,9 @@ function selectItem(e) {
 
     e.classList.add('selected')
     e.style.border = "solid 3px blue"
-}
+    document.getElementById('asin').value = e.id
 
+    const confirmButton = document.getElementById('confirmButton')
+    confirmButton.classList.remove('disabled')
+    confirmButton.classList.add('active')
+}

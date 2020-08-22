@@ -21,7 +21,7 @@
                                 <div>
                                     <!-- 書籍検索フォーム -->
                                     <div class="mb-3">
-                                        <label>書籍を検索</label>
+                                        <label>投稿したい書籍を検索してください</label>
                                         <form method="GET" action="{{ route('search_items') }}" class="form-inline">
                                             @csrf
                                             <input class="form-control col-9 @error('keyword') is-invalid @enderror"
@@ -36,45 +36,6 @@
                                             <button class="btn btn-outline-success ml-2" type="submit">
                                                 <i class="fas fa-search"></i>
                                             </button>
-                                        </form>
-                                    </div>
-
-                                    <!-- 選択した書籍情報 -->
-                                    <div>
-                                        <ul class="list-unstyled">
-                                            <li><img src="{{ $image_url ?? '' }}"></li>
-                                            <li>タイトル：{{ $title ?? '' }}</li>
-                                            <li>著者：{{ $name ?? '' }}</li>
-                                            <li>ASIN：{{ $asin ?? '' }}</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- レビュー投稿テキストエリア -->
-                                    <div>
-                                        <form method="POST" action="{{ route('reviews.store') }}">
-                                            @csrf
-                                                <div class="col-12 p-0">
-                                                <label>おすすめの理由</label>
-                                                    <textarea class="form-control @error('text') is-invalid @enderror"
-                                                    name="text"
-                                                    required
-                                                    autocomplete="text"
-                                                    rows="4"
-                                                    ></textarea>
-                                                    @error('text')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            <div class="form-group row mb-0">
-                                                <div class="col-md-12 text-right">
-                                                    <p class="mb-4 text-danger">200文字以内</p>
-                                                    <button type="input" class="btn btn-primary shadow-sm">
-                                                        投稿する
-                                                    </button>
-                                                </div>
-                                            </div>
                                         </form>
                                     </div>
                                 </div>
