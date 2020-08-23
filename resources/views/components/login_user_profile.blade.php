@@ -3,9 +3,9 @@
         <div class="d-inline-flex">
             <div class="p-3 d-flex flex-column">
                 @if($login_user->profile_image === null)
-                    <img src="{{ $default_image }}" class="rounded-circle shadow-sm" width=100 height="100">
+                    <img src="{{ $default_image }}" class="rounded-circle shadow-sm img-fluid" width=100 height="100">
                 @else
-                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle shadow-sm" width="100" height="100">
+                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle shadow-sm img-fluid" width="100" height="100">
                 @endif
                 <div class="mt-3 d-flex flex-column">
                     <h4 class="mb-0 font-weight-bold">{{ $login_user->name }}</h4>

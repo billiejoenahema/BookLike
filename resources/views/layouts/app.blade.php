@@ -24,27 +24,17 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top col-12">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm sticky-top col-12">
             <div class="container">
 
                 <!-- ロゴ -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <!-- スマホ用ハンバーガーメニュー -->
-                <button class="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto align-items-center d-flex flex-row">
+                    <ul class="navbar-nav ml-auto align-items-center d-flex flex-row justify-content-end">
                         <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
@@ -58,13 +48,13 @@
                     @else
 
                         <!-- 新規投稿ボタン -->
-                        <li class="nav-item mr-5">
+                        <li class="nav-item mr-2">
                             <a href="{{ url('reviews/create') }}">
                                 <button class="btn btn-primary rounded-circle font-weight-bold shadow-sm"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 title="Tooltip on bottom">
-                                    <span class="h4">+</span>
+                                    <span>+</span>
                                 </button>
                             </a>
                         </li>
@@ -77,11 +67,11 @@
                             @if($login_user->profile_image === null)
                                 <img src="{{ $default_image }}"
                                     class="rounded-circle shadow-sm"
-                                    width="50" height="50">
+                                    width="40" height="40">
                             @else
                                 <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
                                     class="rounded-circle shadow-sm"
-                                    width="50" height="50">
+                                    width="40" height="40">
                             @endif
                             </a>
                         </li>
