@@ -11,13 +11,6 @@
                 <div class="card-header">新規投稿</div>
                 <div class="card-body">
                     <div class="col-lg-10 m-auto">
-                        <div class="d-flex mb-3">
-                            @include('components.user_image', ['user' => $login_user])
-                            <div class="col-4">
-                                <p class="m-0">{{ $login_user->name }}</p>
-                                <p class="m-0">{{ $login_user->screen_name }}</p>
-                            </div>
-                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-12 p-3 d-flex-column">
                                 <!-- 選択した書籍情報 -->

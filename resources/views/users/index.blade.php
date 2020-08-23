@@ -69,8 +69,8 @@
                 @endforeach
             </div>
         </div>
-        <div class="my-4 d-flex justify-content-center">
-            {{ $users->links() }}
+        <div>
+            {{ $users->links('vendor.pagination.custom-pagination') }}
         </div>
     </div>
 @endsection

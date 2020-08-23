@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,11 +24,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top col-12">
             <div class="container">
+
+                <!-- ロゴ -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <!-- スマホ用ハンバーガーメニュー -->
                 <button class="navbar-toggler"
                         type="button"
                         data-toggle="collapse"
@@ -41,48 +44,49 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto align-items-center">
+                    <ul class="navbar-nav ml-auto align-items-center d-flex flex-row">
                         <!-- Authentication Links -->
-                        @guest
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                        </li>
+                        @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
-                                </li>
+                        @endif
+                    @else
+
+                        <!-- 新規投稿ボタン -->
+                        <li class="nav-item mr-5">
+                            <a href="{{ url('reviews/create') }}">
+                                <button class="btn btn-primary rounded-circle font-weight-bold shadow-sm"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="Tooltip on bottom">
+                                    <span class="h4">+</span>
+                                </button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+
+                        <!-- ユーザーアイコン -->
+                        <li class="nav-item">
+                            <a href="{{ url('users/' .$login_user->id) }}">
+                            @if($login_user->profile_image === null)
+                                <img src="{{ $default_image }}"
+                                    class="rounded-circle shadow-sm"
+                                    width="50" height="50">
+                            @else
+                                <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
+                                    class="rounded-circle shadow-sm"
+                                    width="50" height="50">
                             @endif
-                        @else
-                            @if($login_user->id == 1)
-                                <div class="btn bg-success text-white mr-5">
-                                    {{ __('ゲストユーザーとしてログインしています') }}
-                                </div>
-                            @endif
-                            <li class="nav-item mr-5">
-                                <a href="{{ url('reviews/create') }}">
-                                    <button class="btn btn-primary rounded-circle font-weight-bold shadow-sm"
-                                    data-toggle="tooltip"
-                                    data-placement="bottom"
-                                    title="Tooltip on bottom">
-                                        <span class="h4">+</span>
-                                    </button>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('users/' .$login_user->id) }}">
-                                @if($login_user->profile_image === null)
-                                    <img src="{{ $default_image }}"
-                                        class="rounded-circle shadow-sm"
-                                        width="50" height="50">
-                                @else
-                                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
-                                        class="rounded-circle shadow-sm"
-                                        width="50" height="50">
-                                @endif
-                                </a>
-                            </li>
+                            </a>
+                        </li>
+
+                        <!-- ドロップダウンメニュー -->
                         <div class="dropdown p-1">
                             <a class="btn dropdown-toggle"
                             href="#" role="button"
@@ -91,26 +95,32 @@
                             aria-haspopup="true"
                             aria-expanded="false">
                             </a>
-
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">マイページ</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="logout()"
-                                    >ログアウト</a>
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    ログアウト
+                                </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                     @csrf
                                 </form>
                             </div>
                         </div>
+
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
+        @if($login_user->id == 1)
+            <div class="bg-success text-center text-white col-12">
+                {{ __('ゲストユーザーとしてログインしています') }}
+            </div>
+        @endif
         <main class="py-4">
             @yield('content')
         </main>
-
     </div>
 </body>
 </html>

@@ -44,7 +44,7 @@
                             value="">
                         <div class="mb-3">
                             <button
-                                class="btn btn-success disabled rounded-pill"
+                                class="btn btn-success disabled rounded-pill col-3"
                                 id="confirmButton"
                                 type="submit"
                                 disabled
