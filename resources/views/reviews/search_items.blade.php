@@ -8,21 +8,13 @@
                 <i class="fas fa-chevron-left"></i> 戻る
             </button>
             <div class="card shadow-sm">
-                <div class="card-header">検索結果</div>
+                <div class="card-header">検索結果一覧</div>
 
                 <div class="card-body m-auto">
-                    <div class="d-flex mb-3">
-                        @include('components.user_image', ['user' => $login_user])
-                        <div class="col-6">
-                            <p class="m-0">{{ $login_user->name }}</p>
-                            <p class="m-0">{{ $login_user->screen_name }}</p>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-0">
+                    <div class="form-group mb-3">
                         <span>キーワードを変えて再検索</span>
                         <!-- 書籍検索フォーム -->
-                        <div class="d-flex flex-row justify-content-between col-12 mb-3 p-0">
+                        <div class="d-flex flex-row justify-content-between col-12 mb-5 p-0">
                             <div class="col-8 p-0">
                                 <form method="GET" action="{{ route('search_items') }}" class="form-inline">
                                     @csrf
@@ -40,7 +32,6 @@
                                     </button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                     <!-- 検索結果一覧表示 -->
@@ -68,12 +59,12 @@
                         <!-- 検索結果をforeachでまわす -->
                             <div class="card flex-row p-2 mb-2 search-item btn text-left" onClick="selectItem(this)" id="{{ $search_item->ASIN }}">
                                 <div class="col-sm-3">
-                                    <img class="m-auto" src="{{ $search_item->Images->Primary->Medium->URL }}" width="80">
+                                    <img class="m-auto" src="{{ $search_item->Images->Primary->Large->URL ?? asset('storage/images/NoImage.png') }}" width="80">
                                 </div>
                                 <div class="col-sm-9" >
-                                    <h5>{{ $search_item->ItemInfo->Title->DisplayValue }}</h5>
+                                    <h5>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h5>
                                     <ul class="list-unstyled">
-                                        <li class="list-item">{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name }}</li>
+                                        <li class="list-item">{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}</li>
                                         <li class="list-item">{{ $search_item->ASIN }}</li>
                                     </ul>
                                 </div>
@@ -87,7 +78,5 @@
     </div>
 </div>
 <script src="{{ asset('/js/selectItem.js') }}"></script>
-
-
 
 @endsection

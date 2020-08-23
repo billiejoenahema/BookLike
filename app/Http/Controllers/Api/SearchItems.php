@@ -21,7 +21,7 @@ class SearchItems {
         $payload="{"
             ." \"Keywords\": \"$keyword\","
             ." \"Resources\": ["
-            ."  \"Images.Primary.Medium\","
+            ."  \"Images.Primary.Large\","
             ."  \"ItemInfo.ByLineInfo\","
             ."  \"ItemInfo.ManufactureInfo\","
             ."  \"ItemInfo.Title\","
@@ -61,6 +61,7 @@ class SearchItems {
         $stream = stream_context_create ( $params );
 
         $fp = @fopen ( 'https://'.$host.$uriPath, 'rb', false, $stream );
+
         if (! $fp) {
             throw new \Exception ( "Exception Occured" );
         }
@@ -72,6 +73,9 @@ class SearchItems {
 
         // json形式からオブジェクトへ変換
         $results = json_decode($response);
+        if (array_key_exists('Errors', $results)) {
+            return null;
+        }
         $items = $results->SearchResult->Items;
 
         return $items;

@@ -23,7 +23,7 @@
                                 <!-- 選択した書籍情報 -->
                                 <div class="card flex-row p-2 mb-4 btn text-left">
                                     <div class="col-sm-4">
-                                        <img class="m-auto" src="{{ $get_item->Images->Primary->Medium->URL }}" width="100">
+                                        <img class="m-auto" src="{{ $get_item->Images->Primary->Large->URL }}" width="100">
                                     </div>
                                     <div class="col-sm-8" >
                                         <h5>{{ $get_item->ItemInfo->Title->DisplayValue }}</h5>
@@ -39,7 +39,7 @@
                                     <form method="POST" action="{{ route('reviews.store') }}">
                                         @csrf
                                             <div class="col-12 p-0">
-                                            <label>おすすめの理由</label>
+                                            <label>おすすめの理由を教えてください</label>
                                                 <textarea class="form-control @error('text') is-invalid @enderror"
                                                 name="text"
                                                 required

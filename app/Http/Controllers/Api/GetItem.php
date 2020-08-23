@@ -23,7 +23,7 @@ class GetItem {
             ."  \"$asin\""
             ." ],"
             ." \"Resources\": ["
-            ."  \"Images.Primary.Medium\","
+            ."  \"Images.Primary.Large\","
             ."  \"ItemInfo.ByLineInfo\","
             ."  \"ItemInfo.Title\","
             ."  \"Offers.Listings.Price\""
