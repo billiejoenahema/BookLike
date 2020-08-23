@@ -1,6 +1,6 @@
 <div class="col-md-8 mb-3">
     <div class="card shadow-sm">
-        <div class="d-inline-flex">
+        <div class="d-sm-flex">
             <div class="p-3 d-flex flex-column">
                 @if($login_user->profile_image === null)
                     <img src="{{ $default_image }}" class="rounded-circle shadow-sm img-fluid" width=100 height="100">

@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm sticky-top col-12">
+        <nav class="navbar navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
 
                 <!-- ロゴ -->
@@ -34,7 +34,7 @@
 
                 <div>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto align-items-center d-flex flex-row justify-content-end">
+                    <ul class="navbar-nav d-flex flex-row justify-content-end">
                         <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
@@ -58,19 +58,17 @@
                                 </button>
                             </a>
                         </li>
-                        <li class="nav-item">
-                        </li>
 
                         <!-- ユーザーアイコン -->
                         <li class="nav-item">
                             <a href="{{ url('users/' .$login_user->id) }}">
                             @if($login_user->profile_image === null)
                                 <img src="{{ $default_image }}"
-                                    class="rounded-circle shadow-sm"
+                                    class="rounded-circle shadow-sm img-fluid"
                                     width="40" height="40">
                             @else
                                 <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
-                                    class="rounded-circle shadow-sm"
+                                    class="rounded-circle shadow-sm img-fluid"
                                     width="40" height="40">
                             @endif
                             </a>

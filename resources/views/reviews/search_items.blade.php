@@ -10,7 +10,7 @@
             <div class="card shadow-sm">
                 <div class="card-header">検索結果一覧</div>
 
-                <div class="card-body m-auto">
+                <div class="card-body">
                     <div class="form-group mb-3">
                         <span>キーワードを変えて再検索</span>
                         <!-- 書籍検索フォーム -->
@@ -51,6 +51,8 @@
                                 >確定</button>
                         </div>
                     </form>
+                    <div>
+                    <h5>投稿する本を選んでください</h5>
                     @if ($search_items == null)
                         <div>「キーワード」に該当する書籍は見つかりませんでした</div>
                     @else
@@ -58,10 +60,10 @@
                         @foreach ($search_items as $search_item)
                         <!-- 検索結果をforeachでまわす -->
                             <div class="card flex-row p-2 mb-2 search-item btn text-left" onClick="selectItem(this)" id="{{ $search_item->ASIN }}">
-                                <div class="col-sm-3">
+                                <div class="d-flex">
                                     <img class="m-auto" src="{{ $search_item->Images->Primary->Large->URL ?? asset('storage/images/NoImage.png') }}" width="80">
                                 </div>
-                                <div class="col-sm-9" >
+                                <div class="d-flex flex-column pl-2" >
                                     <h5>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h5>
                                     <ul class="list-unstyled">
                                         <li class="list-item">{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}</li>
@@ -72,6 +74,7 @@
                         @endforeach
                         </div>
                     @endif
+                    </div>
                 </div>
             </div>
         </div>
