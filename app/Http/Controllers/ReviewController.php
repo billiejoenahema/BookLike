@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Review;
 use App\Models\Comment;
 use App\Models\Follower;
+use App\Http\Controllers\Api\GetItem;
 
 class ReviewController extends Controller
 {
@@ -48,15 +49,22 @@ class ReviewController extends Controller
         ));
     }
 
-    // Post review text
-    public function posts(Request $request)
+    // Post review text form
+    public function posts(Request $request, GetItem $get_item)
     {
-        dd($request);
+        $login_user = auth()->user();
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
+        $asin = $request->asin;
+        $get_item = $get_item->getItem($asin);
 
         return view('reviews.posts', compact(
-            'request'
+            'login_user',
+            'default_image',
+            'get_item'
         ));
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -68,7 +76,7 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
-            'text' => ['required', 'string', 'max:200']
+            'text' => ['required', 'string', 'max:400']
         ]);
 
         $validator->validate();
@@ -92,7 +100,6 @@ class ReviewController extends Controller
 
 
         return view('reviews.show', compact(
-            // 'user'     => $user,
             'review',
             'comments',
             'login_user',

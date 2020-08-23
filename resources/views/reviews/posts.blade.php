@@ -4,7 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @include('components.cross_button')
+            <button type="button" onclick="history.back()" class="btn">
+                <i class="fas fa-chevron-left"></i> 戻る
+            </button>
             <div class="card shadow-sm">
                 <div class="card-header">新規投稿</div>
                 <div class="card-body">
@@ -18,65 +20,48 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-12 p-3 d-flex-column">
-                                <div>
-                                    <!-- 書籍検索フォーム -->
-                                    <div class="mb-3">
-                                        <label>書籍を変更する</label>
-                                        <form method="GET" action="{{ route('search_items') }}" class="form-inline">
-                                            @csrf
-                                            <input class="form-control col-9 @error('keyword') is-invalid @enderror"
-                                            name="keyword"
-                                            type="search"
-                                            placeholder="キーワードを入力"
-                                            aria-label="書籍を検索"
-                                            required autocomplete="on">
-                                            @error('searchItems')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                            <button class="btn btn-outline-success ml-2" type="submit">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </form>
+                                <!-- 選択した書籍情報 -->
+                                <div class="card flex-row p-2 mb-4 btn text-left">
+                                    <div class="col-sm-4">
+                                        <img class="m-auto" src="{{ $get_item->Images->Primary->Medium->URL }}" width="100">
                                     </div>
-
-                                    <!-- 選択した書籍情報 -->
-                                    <div>
+                                    <div class="col-sm-8" >
+                                        <h5>{{ $get_item->ItemInfo->Title->DisplayValue }}</h5>
                                         <ul class="list-unstyled">
-                                            <li><img src="{{ $image_url ?? '' }}"></li>
-                                            <li>タイトル：{{ $title ?? '' }}</li>
-                                            <li>著者：{{ $name ?? '' }}</li>
-                                            <li>ASIN：{{ $asin ?? '' }}</li>
+                                            <li class="list-item">{{ $get_item->ItemInfo->ByLineInfo->Contributors[0]->Name }}</li>
+                                            <li class="list-item">{{ $get_item->ASIN }}</li>
                                         </ul>
                                     </div>
+                                </div>
 
-                                    <!-- レビュー投稿テキストエリア -->
-                                    <div>
-                                        <form method="POST" action="{{ route('reviews.store') }}">
-                                            @csrf
-                                                <div class="col-12 p-0">
-                                                <label>おすすめの理由</label>
-                                                    <textarea class="form-control @error('text') is-invalid @enderror"
-                                                    name="text"
-                                                    required
-                                                    autocomplete="text"
-                                                    rows="4"
-                                                    ></textarea>
-                                                    @error('text')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            <div class="form-group row mb-0">
-                                                <div class="col-md-12 text-right">
-                                                    <p class="mb-4 text-danger">200文字以内</p>
-                                                    <button type="input" class="btn btn-primary shadow-sm">
-                                                        投稿する
-                                                    </button>
-                                                </div>
+                                <!-- レビュー投稿テキストエリア -->
+                                <div class="form-group">
+                                    <form method="POST" action="{{ route('reviews.store') }}">
+                                        @csrf
+                                            <div class="col-12 p-0">
+                                            <label>おすすめの理由</label>
+                                                <textarea class="form-control @error('text') is-invalid @enderror"
+                                                name="text"
+                                                required
+                                                autocomplete="text"
+                                                rows="4"
+                                                ></textarea>
+                                                @error('text')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
-                                        </form>
-                                    </div>
+                                        <div class="form-group row mb-0">
+                                            <div class="col-md-12 text-right">
+                                                <p class="mb-4 text-danger">400文字以内</p>
+                                                <input type="button" value="送信" class="btn btn-primary shadow-sm">
+                                                <button type="input" class="btn btn-primary shadow-sm">
+                                                    投稿する
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

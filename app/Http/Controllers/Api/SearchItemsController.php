@@ -16,14 +16,11 @@ class SearchItemsController extends Controller
      */
     public function __invoke(Request $request, SearchItems $searchitems)
     {
-        $keyword = $request->input('keyword');
-
         $login_user = auth()->user();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
+        $keyword = $request->input('keyword');
         $search_items = $searchitems->getSearchItems($keyword);
-        // $title = $search_items[0]->ItemInfo->Title->DisplayValue;
-        // dd($search_items);
 
         return view('reviews.search_items', compact(
             'search_items',

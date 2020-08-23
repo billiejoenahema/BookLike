@@ -11,5 +11,6 @@ function selectItem(e) {
 
     const confirmButton = document.getElementById('confirmButton')
     confirmButton.classList.remove('disabled')
+    confirmButton.disabled = false
     confirmButton.classList.add('active')
 }

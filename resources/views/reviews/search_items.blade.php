@@ -43,42 +43,44 @@
 
                         </div>
                     </div>
-
                     <!-- 検索結果一覧表示 -->
-                    <div>
                     <!-- 決定ボタン -->
-                        <form method="GET" action="{{ route('reviews.posts') }}">
-                            <input id="asin"
-                                type="hidden"
-                                name="asin"
-                                value="">
-                            <div class="mb-3">
-                                <button id="confirmButton" type="submit" class="btn btn-success disabled">この書籍で確定</button>
-                            </div>
-                        </form>
-                        @if ($search_items == null)
-                            <div>「キーワード」に該当する書籍は見つかりませんでした</div>
-                        @else
-                            <div class="overflow-auto" style="height: 70vw; max-height: 400px;">
-                            @foreach ($search_items as $search_item)
-                            <!-- 検索結果をforeachでまわす -->
-                                <div class="card flex-row p-2 mb-2 search-item btn text-left" onClick="selectItem(this)" id="{{ $search_item->ASIN }}">
-                                    <div class="col-sm-3">
-                                        <img class="m-auto" src="{{ $search_item->Images->Primary->Medium->URL }}" width="80">
-                                    </div>
-                                    <div class="col-sm-9" >
-                                        <h5>{{ $search_item->ItemInfo->Title->DisplayValue }}</h5>
-                                        <ul class="list-unstyled">
-                                            <li class="list-item">{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name }}</li>
-                                            <li class="list-item">{{ $search_item->ASIN }}</li>
-                                        </ul>
-                                    </div>
+                    <form method="GET" action="{{ route('reviews.posts') }}">
+                        <input
+                            id="asin"
+                            type="hidden"
+                            name="asin"
+                            value="">
+                        <div class="mb-3">
+                            <button
+                                id="confirmButton"
+                                type="submit"
+                                class="btn btn-success disabled"
+                                disabled
+                                >確定</button>
+                        </div>
+                    </form>
+                    @if ($search_items == null)
+                        <div>「キーワード」に該当する書籍は見つかりませんでした</div>
+                    @else
+                        <div class="overflow-auto" style="height: 70vw; max-height: 400px;">
+                        @foreach ($search_items as $search_item)
+                        <!-- 検索結果をforeachでまわす -->
+                            <div class="card flex-row p-2 mb-2 search-item btn text-left" onClick="selectItem(this)" id="{{ $search_item->ASIN }}">
+                                <div class="col-sm-3">
+                                    <img class="m-auto" src="{{ $search_item->Images->Primary->Medium->URL }}" width="80">
                                 </div>
-                            @endforeach
+                                <div class="col-sm-9" >
+                                    <h5>{{ $search_item->ItemInfo->Title->DisplayValue }}</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="list-item">{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name }}</li>
+                                        <li class="list-item">{{ $search_item->ASIN }}</li>
+                                    </ul>
+                                </div>
                             </div>
-                        @endif
-                    </div>
-
+                        @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

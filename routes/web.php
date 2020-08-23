@@ -42,14 +42,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
-    // 書籍検索
+    // 書籍検索（resourceよりも上に書かないと'404 Not found'になってしまう）
     Route::get('reviews/search_items', 'Api\SearchItemsController')->name('search_items');
+
+    // レビュー入力画面（resourceよりも上に書かないと'404 Not found'になってしまう）
+    Route::get('reviews/posts', 'ReviewController@posts')->name('reviews.posts');
 
     // レビュー新規投稿
     Route::resource('reviews', 'ReviewController');
-
-    // レビュー入力画面
-    Route::get('reviews/posts', 'ReviewController@posts')->name('reviews.posts');
 
     // コメント関連
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
