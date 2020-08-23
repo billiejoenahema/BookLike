@@ -59,13 +59,14 @@
                                 </div>
                             @endif
                             <li class="nav-item mr-5">
-                                <a href="{{ url('reviews/create') }}"
-                                type="button"
-                                data-toggle="tooltip"
-                                data-placement="bottom"
-                                title="レビューを投稿する"
-                                class="btn btn-lg btn-primary rounded-circle font-weight-bold shadow-sm"
-                                >+</a>
+                                <a href="{{ url('reviews/create') }}">
+                                    <button class="btn btn-primary rounded-circle font-weight-bold shadow-sm"
+                                    data-toggle="tooltip"
+                                    data-placement="bottom"
+                                    title="Tooltip on bottom">
+                                        <span class="h4">+</span>
+                                    </button>
+                                </a>
                             </li>
                             <li class="nav-item">
                             </li>
@@ -82,29 +83,25 @@
                                 @endif
                                 </a>
                             </li>
-                            <div class="dropdown p-1">
-                        <a class="btn dropdown-toggle"
-                        href="#" role="button"
-                        id="dropdownMenuLink"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                        </a>
+                        <div class="dropdown p-1">
+                            <a class="btn dropdown-toggle"
+                            href="#" role="button"
+                            id="dropdownMenuLink"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">
-                                マイページ
-                            </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                ログアウト
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                            </form>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">マイページ</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="logout()"
+                                    >ログアウト</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
-                    </div>
                         @endguest
                     </ul>
                 </div>

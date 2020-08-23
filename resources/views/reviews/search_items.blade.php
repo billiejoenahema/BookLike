@@ -44,9 +44,9 @@
                             value="">
                         <div class="mb-3">
                             <button
+                                class="btn btn-success disabled rounded-pill"
                                 id="confirmButton"
                                 type="submit"
-                                class="btn btn-success disabled"
                                 disabled
                                 >確定</button>
                         </div>
