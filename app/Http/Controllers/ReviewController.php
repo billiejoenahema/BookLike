@@ -142,7 +142,7 @@ class ReviewController extends Controller
     {
         $data = $request->all();
         $validator = Validator::make($data, [
-            'text' => ['required', 'string', 'max:200']
+            'text' => 'required | string | max:200'
         ]);
 
         $validator->validate();

@@ -39,8 +39,8 @@ class CommentsController extends Controller
         $user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
-            'review_id' =>['required', 'integer'],
-            'text'     => ['required', 'string', 'max:200']
+            'review_id' =>'required | integer',
+            'text'     => 'required | string | max:200'
         ]);
 
         $validator->validate();
