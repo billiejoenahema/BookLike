@@ -46,9 +46,9 @@
                                                 </span>
                                             @enderror
                                     </div>
-                                    <input type="text" name="asin" id="asin" value="{{ $get_item->ASIN }}">
-                                    <input type="text" name="title" id="title" value="{{ $get_item->ItemInfo->Title->DisplayValue }}">
-                                    <input type="text" name="image_url" id="image_url" value="{{ $get_item->Images->Primary->Large->URL }}">
+                                    <input type="hidden" name="asin" id="asin" value="{{ $get_item->ASIN }}">
+                                    <input type="hidden" name="title" id="title" value="{{ $get_item->ItemInfo->Title->DisplayValue }}">
+                                    <input type="hidden" name="image_url" id="image_url" value="{{ $get_item->Images->Primary->Large->URL }}">
                                     <div class="form-group row mb-0">
                                         <div class="col-12 text-right">
                                             <p class="mb-3 text-danger">400文字以内</p>

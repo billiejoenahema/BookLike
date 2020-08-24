@@ -69,6 +69,9 @@ class review extends Model
     public function reviewStore(Int $user_id, Array $data)
     {
         $this->user_id = $user_id;
+        $this->asin = $data['asin'];
+        $this->title = $data['title'];
+        $this->image_url = $data['image_url'];
         $this->text = $data['text'];
         $this->save();
 

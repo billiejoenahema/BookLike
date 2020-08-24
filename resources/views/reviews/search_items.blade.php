@@ -37,6 +37,7 @@
                     <!-- 検索結果一覧表示 -->
                     <!-- 決定ボタン -->
                     <form method="GET" action="{{ route('reviews.posts') }}">
+                    @csrf
                         <input
                             id="asin"
                             type="hidden"

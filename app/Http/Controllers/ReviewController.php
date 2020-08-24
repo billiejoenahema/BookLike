@@ -76,7 +76,10 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
-            'text' => ['required', 'string', 'max:400']
+            'asin' => 'required',
+            'title' => 'required',
+            'image_url' => 'required',
+            'text' => 'required | string | max:400'
         ]);
 
         $validator->validate();

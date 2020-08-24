@@ -95,17 +95,18 @@
                                 </form>
                             </div>
                         </div>
-
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
+        @auth
         @if($login_user->id == 1)
             <div class="bg-success text-center text-white col-12">
                 {{ __('ゲストユーザーとしてログインしています') }}
             </div>
         @endif
+        @endauth
         <main class="py-4">
             @yield('content')
         </main>
