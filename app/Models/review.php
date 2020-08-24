@@ -48,7 +48,7 @@ class Review extends Model
         return $this->where('user_id', $user_id)->count();
     }
 
-    // 一覧画面
+    // 一覧表示(自身とフォローユーザーのみ)
     public function getTimeLines(Int $user_id, Array $follow_ids)
     {
         // 自身とフォローしているユーザIDを結合する
