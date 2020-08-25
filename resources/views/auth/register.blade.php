@@ -43,7 +43,7 @@
                                         name="name"
                                         value="{{ old('name') }}"
                                         required autocomplete="name"
-                                        placeholder="山田　太郎"
+                                        placeholder="山田 太郎"
                                         autofocus>
 
                                 @error('name')

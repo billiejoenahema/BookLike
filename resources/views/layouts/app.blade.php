@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ '/js/flashMessage.js' }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-light bg-white shadow-sm sticky-top">
+        <nav class="navbar navbar-expand navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
 
                 <!-- ロゴ -->
@@ -34,7 +35,7 @@
 
                 <div>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav d-flex flex-row justify-content-end">
+                    <ul class="navbar-nav">
                         <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
@@ -48,14 +49,13 @@
                     @else
 
                         <!-- 新規投稿ボタン -->
-                        <li class="nav-item mr-2">
-                            <a href="{{ url('reviews/create') }}">
-                                <button class="btn btn-primary rounded-circle font-weight-bold shadow-sm"
+                        <li class="nav-item">
+                            <a class="btn-lg btn-primary rounded-circle"
+                                href="{{ url('reviews/create') }}"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
-                                title="Tooltip on bottom">
-                                    <span>+</span>
-                                </button>
+                                title="新規投稿">
+                                <i class="fas fa-plus"></i>
                             </a>
                         </li>
 
@@ -75,15 +75,16 @@
                         </li>
 
                         <!-- ドロップダウンメニュー -->
-                        <div class="dropdown p-1">
-                            <a class="btn dropdown-toggle"
-                            href="#" role="button"
-                            id="dropdownMenuLink"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">マイページ</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -94,19 +95,17 @@
                                     @csrf
                                 </form>
                             </div>
-                        </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-        @auth
-        @if($login_user->id == 1)
-            <div class="bg-success text-center text-white col-12">
-                {{ __('ゲストユーザーとしてログインしています') }}
+        @if (session('flash_message'))
+            <div class="flash_message" id="flashMessage">
+                {{ session('flash_message') }}
             </div>
         @endif
-        @endauth
         <main class="py-4">
             @yield('content')
         </main>
