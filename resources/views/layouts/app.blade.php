@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/selected.css') }}">
+    <link href="{{ asset('/css/floating_button.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
@@ -47,17 +47,6 @@
                             </li>
                         @endif
                     @else
-
-                        <!-- 新規投稿ボタン -->
-                        <li class="nav-item">
-                            <a class="btn-lg btn-primary rounded-circle"
-                                href="{{ url('reviews/create') }}"
-                                data-toggle="tooltip"
-                                data-placement="bottom"
-                                title="新規投稿">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </li>
 
                         <!-- ユーザーアイコン -->
                         <li class="nav-item">
@@ -109,6 +98,16 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <!-- 新規投稿ボタン -->
+        <div class="btn-primary floating-button rounded-circle shadow">
+            <a class="text-white"
+                href="{{ url('reviews/create') }}"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="新規投稿">
+                <i class="fas fa-plus"></i>
+            </a>
+        </div>
     </div>
 </body>
 </html>

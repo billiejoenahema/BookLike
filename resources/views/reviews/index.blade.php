@@ -16,6 +16,8 @@
             @foreach ($timelines as $timeline)
                 <div class="col-md-8 mb-3">
                     <div class="card shadow-sm">
+
+                        <!-- ユーザー情報 -->
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image', ['user' => $timeline->user])
                             <div class="ml-2 d-flex flex-column">
@@ -28,9 +30,25 @@
                                 <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <a href="{{ url('reviews/' .$timeline->id) }}" class="text-reset">{!! nl2br(e($timeline->text)) !!}</a>
+
+                        <!-- 書籍情報 -->
+                        <div class="card-body border-top border-bottom">
+                            <div class="d-sm-flex p-2">
+                                <div class="d-flex flex-column mb-3 p-2">
+                                    <img src="{{ $timeline->image_url }}" width="100" class="shadow-sm">
+                                </div>
+                                <div class="d-flex flex-column text-left p-2" >
+                                    <p class="h5">{{ $timeline->title }}</p>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- おすすめの理由 -->
+                        <div class="card-body">
+                            <a href="{{ url('reviews/' .$timeline->id) }}" class="d-block text-reset">{{ \Illuminate\Support\Str::limit($timeline->text, 200, '・・・') }}</a>
+                        </div>
+
+                        <!-- 編集＆削除・コメント・いいね -->
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
                             @if ($timeline->user->id === Auth::user()->id)
                                 <div class="dropdown mr-3 d-flex align-items-center">

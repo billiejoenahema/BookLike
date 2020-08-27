@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @include('components.cross_button')
+
             <div class="card shadow-sm">
                 <div class="card-header">新規投稿</div>
                 <div class="card-body">

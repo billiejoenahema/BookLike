@@ -120,6 +120,7 @@ class ReviewController extends Controller
     {
         $login_user = auth()->user();
         $reviews = $review->getEditReview($login_user->id, $review->id);
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         if (!isset($review)) {
             return redirect('reviews');
@@ -127,7 +128,8 @@ class ReviewController extends Controller
 
         return view('reviews.edit', compact(
             'login_user',
-            'reviews'
+            'reviews',
+            'default_image'
         ));
     }
 
@@ -142,7 +144,7 @@ class ReviewController extends Controller
     {
         $data = $request->all();
         $validator = Validator::make($data, [
-            'text' => 'required | string | max:200'
+            'text' => 'required | string | max:400'
         ]);
 
         $validator->validate();
