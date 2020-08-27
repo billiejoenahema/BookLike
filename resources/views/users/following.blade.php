@@ -25,20 +25,22 @@
                                     <div class="d-flex flex-column">
                                         @if ($following->isFollowed($user->id))
                                             <div class="px-2 mb-3">
-                                                <span class="px-1 bg-secondary text-light">フォローされています</span>
+                                                <span class="px-1 bg-secondary text-light rounded">フォローされています</span>
                                             </div>
                                         @endif
-                                        <div class="px-2">
-                                            <p>{{ $following->description }}</p>
-                                        </div>
                                     </div>
 
                                     <div class="d-flex justify-content-end ml-auto">
                                         <form action="{{ route('unfollow', $following->id) }}" method="POST">
                                             @csrf
                                             {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
+                                            <button type="submit" class="btn-sm btn-primary shadow-sm rounded-pill">フォロー中</button>
                                         </form>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="px-2">
+                                        <p>{{ $following->description }}</p>
                                     </div>
                                 </div>
                             </div>

@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center mb-5">
         <div class="col-md-8 mb-3">
+            <button type="button" onclick="history.back()" class="btn">
+                <i class="fas fa-chevron-left"></i> 戻る
+            </button>
             <div class="card shadow-sm">
                 <div class="card-haeder p-3 w-100 d-flex">
                     @include('components.user_image', ['user' => $review->user])
@@ -15,8 +18,24 @@
                         <p class="mb-0 text-secondary">{{ $review->created_at->format('Y-m-d H:i') }}</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    {!! nl2br(e($review->text)) !!}
+                <div class="card-body border-top">
+                        <div class="d-sm-flex p-2 border-bottom">
+                            <div class="d-flex flex-column mb-3 p-2">
+                                <a href="{{ $item_url }}">
+                                    <img src="{{ $review->image_url }}" width="160">
+                                </a>
+                            </div>
+                            <div class="d-flex flex-column text-left p-2" >
+                                <h5>{{ $review->title }}</h5>
+                                <ul class="list-unstyled">
+                                    <li class="list-item">著者名</li>
+                                    <li class="list-item">{{ $review->asin }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    <div>
+                        {!! nl2br(e($review->text)) !!}
+                    </div>
                 </div>
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
                     @if ($review->user->id === Auth::user()->id)

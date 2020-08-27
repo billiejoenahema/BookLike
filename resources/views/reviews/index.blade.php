@@ -33,19 +33,19 @@
 
                         <!-- 書籍情報 -->
                         <div class="card-body border-top border-bottom">
-                            <div class="d-sm-flex p-2">
+                            <div class="d-flex p-2">
                                 <div class="d-flex flex-column mb-3 p-2">
-                                    <img src="{{ $timeline->image_url }}" width="100" class="shadow-sm">
+                                    <img src="{{ $timeline->image_url }}" width="80" class="shadow-sm">
                                 </div>
                                 <div class="d-flex flex-column text-left p-2" >
-                                    <p class="h5">{{ $timeline->title }}</p>
+                                    <a href="{{ url('reviews/' .$timeline->id) }}" class="h5 text-reset">{{ $timeline->title }}</a>
                                 </div>
                             </div>
                         </div>
 
                         <!-- おすすめの理由 -->
                         <div class="card-body">
-                            <a href="{{ url('reviews/' .$timeline->id) }}" class="d-block text-reset">{{ \Illuminate\Support\Str::limit($timeline->text, 200, '・・・') }}</a>
+                            <a href="{{ url('reviews/' .$timeline->id) }}" class="d-block text-reset">{{ \Illuminate\Support\Str::limit($timeline->text, 200, '・・・続きを読む') }}</a>
                         </div>
 
                         <!-- 編集＆削除・コメント・いいね -->

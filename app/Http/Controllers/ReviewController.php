@@ -94,19 +94,21 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review, Comment $comment)
+    public function show(Review $review, Comment $comment, GetItem $get_item)
     {
         $login_user = auth()->user();
         $review = $review->getReview($review->id);
         $comments = $comment->getComments($review->id);
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
-
+        $item = $get_item->getItem($review->asin);
+        $item_url = $item->DetailPageURL;
 
         return view('reviews.show', compact(
             'review',
             'comments',
             'login_user',
-            'default_image'
+            'default_image',
+            'item_url'
         ));
     }
 

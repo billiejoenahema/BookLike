@@ -36,7 +36,7 @@
 
                                 @if ($login_user->isFollowed($user->id))
                                 <div class="px-2">
-                                    <span class="px-1 bg-secondary text-light">フォローされています</span>
+                                    <span class="px-1 bg-secondary text-light rounded">フォローされています</span>
                                 </div>
                                 @endif
 
@@ -47,13 +47,13 @@
                                         <form action="{{ route('unfollow', $user->id) }}" method="POST">
                                             @csrf
                                             {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
+                                            <button type="submit" class="btn-sm btn-primary shadow-sm rounded-pill">フォロー中</button>
                                         </form>
                                     @else
                                         <form action="{{ route('follow', $user->id) }}" method="POST">
                                             @csrf
 
-                                            <button type="submit" class="btn btn-primary shadow-sm">フォローする</button>
+                                            <button type="submit" class="btn-sm btn-outline-primary shadow-sm rounded-pill">フォローする</button>
                                         </form>
                                     @endif
                                 </div>

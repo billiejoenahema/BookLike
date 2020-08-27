@@ -21,22 +21,24 @@
                                         <p class="mb-0">{{ $follower->name }}</p>
                                         <span class="text-secondary">{{ $follower->screen_name }}</span>
                                     </div>
-                                    <div class="d-flex">
-                                        <p>{{ $follower->description }}</p>
-                                    </div>
                                     <div class="d-flex justify-content-end ml-auto">
                                         @if ($login_user->isFollowing($follower->id))
                                             <form action="{{ route('unfollow', $follower->id) }}" method="POST">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
+                                                <button type="submit" class="btn-sm btn-primary rounded-pill shadow-sm">フォロー中</button>
                                             </form>
                                         @else
                                             <form action="{{ route('follow', $follower->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn btn-primary shadow-sm">フォローする</button>
+                                                <button type="submit" class="btn-sm btn-outline-primary rounded-pill shadow-sm">フォローする</button>
                                             </form>
                                         @endif
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex ml-2">
+                                        <p>{{ $follower->description }}</p>
                                     </div>
                                 </div>
                             </div>

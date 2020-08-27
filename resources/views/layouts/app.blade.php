@@ -99,15 +99,13 @@
             @yield('content')
         </main>
         <!-- 新規投稿ボタン -->
-        <div class="btn-primary floating-button rounded-circle shadow">
-            <a class="text-white"
+            <a class="text-whited-block btn-primary floating-button rounded-circle shadow"
                 href="{{ url('reviews/create') }}"
                 data-toggle="tooltip"
-                data-placement="bottom"
+                data-placement="top"
                 title="新規投稿">
                 <i class="fas fa-plus"></i>
             </a>
-        </div>
     </div>
 </body>
 </html>
