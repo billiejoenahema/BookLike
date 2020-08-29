@@ -26,7 +26,7 @@
                     <div class="card mb-3 shadow-sm">
                         <div class="card-haeder p-3 w-100 d-flex flex-column">
                             @if ($login_user->isFollowed($user->id))
-                            <div class="ml-2 w-100">
+                            <div class="ml-2 p-1 w-100">
                                 <span class="px-1 bg-secondary text-light rounded">フォローされています</span>
                             </div>
                             @endif
@@ -39,7 +39,6 @@
                                             <span class="text-secondary">{{ $user->screen_name }}</span>
                                         </a>
                                     </div>
-
                                     <!-- フォローボタン -->
                                     <div class="ml-auto">
                                         @if ($login_user->isFollowing($user->id))
@@ -51,27 +50,17 @@
                                         @else
                                             <form action="{{ route('follow', $user->id) }}" method="POST">
                                                 @csrf
-
                                                 <button type="submit" class="btn-sm btn-outline-primary shadow-sm rounded-pill">フォローする</button>
                                             </form>
                                         @endif
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                         <!-- 自己紹介文 -->
                         <div class="card-body d-flex">
                             <p>{{ \Illuminate\Support\Str::limit($user->description, 200, '・・・') }}</p>
                         </div>
-                        <!-- フォロワー数 -->
-                        <div class="card-footer d-flex flex-row">
-                            <div class="px-2">レビュー数&nbsp;{{ $review_count }}</div>
-                            <div class="px-2">フォロー&nbsp;{{ $follow_count }}</div>
-                            <div class="px-2">フォロワー&nbsp;{{ $follower_count }}</div>
-                        </div>
-
                     </div>
                 @endforeach
             </div>

@@ -18,7 +18,7 @@
                             <div class="col-8 p-0">
                                 <form method="GET" action="{{ route('search_items') }}" class="form-inline">
                                     @csrf
-                                    <input class="form-control col-9 @error('keyword') is-invalid @enderror"
+                                    <input class="form-control shadow-sm col-9 @error('keyword') is-invalid @enderror"
                                     name="keyword"
                                     type="search"
                                     value="{{ $keyword }}"
@@ -27,7 +27,7 @@
                                     @error('searchItems')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <button class="btn btn-outline-success ml-2" type="submit">
+                                    <button class="btn btn-outline-success ml-2 shadow-sm" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </form>
@@ -45,7 +45,7 @@
                             value="">
                         <div class="mb-3">
                             <button
-                                class="btn btn-success disabled rounded-pill col-3"
+                                class="btn btn-primary disabled rounded-pill col-3 shadow-sm"
                                 id="confirmButton"
                                 type="submit"
                                 disabled
@@ -60,7 +60,7 @@
                         <div class="overflow-auto" style="height: 70vw; max-height: 400px;">
                         @foreach ($search_items as $search_item)
                         <!-- 検索結果をforeachでまわす -->
-                            <div class="card flex-row p-2 mb-2 search-item btn text-left" onClick="selectItem(this)" id="{{ $search_item->ASIN }}">
+                            <div class="card flex-row p-2 mb-2 search-item btn text-left shadow-sm" onClick="selectItem(this)" id="{{ $search_item->ASIN }}">
                                 <div class="d-flex">
                                     <img class="m-auto" src="{{ $search_item->Images->Primary->Large->URL ?? asset('storage/images/NoImage.png') }}" width="80">
                                 </div>

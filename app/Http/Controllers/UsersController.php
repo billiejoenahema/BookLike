@@ -21,23 +21,13 @@ class UsersController extends Controller
 
     public function index(Request $request, User $user, Review $review, Follower $follower)
     {
-        $login_user = auth()->user();
-        $user_id = $user->id;
-        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
         $search = $request->input('search');
-        $review_count = $review->getReviewCount($login_user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($login_user->id);
+        $login_user = auth()->user();
+        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-        // 検索ワードが入力されていたら
         if($search !== null) {
-
-            // 検索ワードに部分一致するユーザーをすべて取得
             $users = $user->getSearchUsers($user_id, $search);
-
         } else {
-
-            // すべてのユーザーを取得
             $users = $user->getAllUsers(auth()->user()->id);
         }
 
@@ -45,10 +35,7 @@ class UsersController extends Controller
             'users',
             'default_image',
             'login_user',
-            'search',
-            'review_count',
-            'follow_count',
-            'follower_count'
+            'search'
         ));
     }
 

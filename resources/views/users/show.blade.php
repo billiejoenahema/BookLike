@@ -90,6 +90,9 @@
             @endforeach
         @endif
     </div>
+    @if(empty($review))
+    <div class="text-center">投稿はまだありません</div>
+    @endif
     <div class="my-4 d-flex justify-content-center">
         {{ $timelines->links() }}
     </div>

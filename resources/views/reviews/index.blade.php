@@ -12,11 +12,10 @@
         <div class="col-md-8 mb-3 text-right">
             <a href="{{ url('users') }}">ユーザ一覧</a>
         </div>
-        @if (isset($timelines))
+        <div class="col-md-8">
+            @if (isset($timelines))
             @foreach ($timelines as $timeline)
-                <div class="col-md-8 mb-3">
-                    <div class="card shadow-sm">
-
+                    <div class="card shadow-sm mb-3">
                         <!-- ユーザー情報 -->
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image', ['user' => $timeline->user])
@@ -30,7 +29,6 @@
                                 <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                             </div>
                         </div>
-
                         <!-- 書籍情報 -->
                         <div class="card-body border-top border-bottom">
                             <div class="d-flex p-2">
@@ -42,12 +40,10 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- おすすめの理由 -->
                         <div class="card-body">
                             <a href="{{ url('reviews/' .$timeline->id) }}" class="d-block text-reset">{{ \Illuminate\Support\Str::limit($timeline->text, 200, '・・・続きを読む') }}</a>
                         </div>
-
                         <!-- 編集＆削除・コメント・いいね -->
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
                             @if ($timeline->user->id === Auth::user()->id)
@@ -70,32 +66,30 @@
                                 <a href="{{ url('reviews/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
                                 <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
                             </div>
+                            <!-- いいねボタン -->
                             <div class="mr-3 d-flex align-items-center">
                             @if (!in_array($login_user->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
-                                    <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
-                                        @csrf
-                                        <input type="hidden" name="review_id" value="{{ $timeline->id }}">
-                                        <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                                    </form>
-                                @else
-                                    <form method="POST" action="{{ url('favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}" class="mb-0">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
-                                    </form>
-                                @endif
+                                <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
+                                    @csrf
+                                    <input type="hidden" name="review_id" value="{{ $timeline->id }}">
+                                    <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
+                                </form>
+                            @else
+                                <form method="POST"
+                                    action="{{ url('favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}"
+                                    class="mb-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
+                                </form>
+                            @endif
                                 <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
                             </div>
                         </div>
-
                     </div>
-
-                </div>
             @endforeach
-        @endif
-    </div>
-    <div class="my-4 d-flex justify-content-center">
-
+            @endif
+        </div>
     </div>
 </div>
 @endsection
