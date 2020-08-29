@@ -87,7 +87,9 @@
                                 <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             @endforeach
         @endif

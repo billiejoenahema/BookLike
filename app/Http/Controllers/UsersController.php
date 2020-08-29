@@ -19,12 +19,15 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request, User $user)
+    public function index(Request $request, User $user, Review $review, Follower $follower)
     {
         $login_user = auth()->user();
         $user_id = $user->id;
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
         $search = $request->input('search');
+        $review_count = $review->getReviewCount($login_user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($login_user->id);
 
         // 検索ワードが入力されていたら
         if($search !== null) {
@@ -42,7 +45,10 @@ class UsersController extends Controller
             'users',
             'default_image',
             'login_user',
-            'search'
+            'search',
+            'review_count',
+            'follow_count',
+            'follower_count'
         ));
     }
 

@@ -13,25 +13,28 @@
                 </div>
             </div>
             <div class="p-3 d-flex flex-column justify-content-between">
-                <div class="d-flex">
-                    <div class="d-flex">
-                            @if ($is_following)
-                            <form action="{{ route('unfollow', $user->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-danger shadow-sm">フォロー中</button>
-                            </form>
-                            @else
-                            <form action="{{ route('follow', $user->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-primary shadow-sm">フォローする</button>
-                            </form>
-                            @endif
-
-                            @if ($is_followed)
-                            <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
-                            @endif
+                <!-- フォロー関係 -->
+                <div class="d-flex flex-wrap">
+                    <div class="d-flex flex-sm-column">
+                        @if ($login_user->isFollowed($user->id))
+                            <div class="px-2 mb-3">
+                                <span class="px-1 bg-secondary text-light rounded">フォローされています</span>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="d-flex justify-content-end ml-auto">
+                        @if ($is_following)
+                        <form action="{{ route('unfollow', $user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-sm btn-primary shadow-sm rounded-pill">フォロー中</button>
+                        </form>
+                        @else
+                        <form action="{{ route('follow', $user->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-sm btn-outline-primary shadow-sm rounded-pill">フォローする</button>
+                        </form>
+                        @endif
                     </div>
                 </div>
 
@@ -39,7 +42,7 @@
                     <p>{{ $user->description }}</p>
                 </div>
 
-                <div class="d-flex justify-content-end">
+                <div class="d-flex flex-wrap">
                     <div class="p-2 d-flex flex-column align-items-center">
                         <p class="font-weight-bold">レビュー</p>
                         <a class="btn bg-light" href="{{ url('users/' .$user->id) }}">{{ $review_count }}</a>

@@ -13,6 +13,7 @@
                     <div class="m-auto">
                         <div class="d-flex flex-column col-12 p-0">
                             <!-- 選択した書籍情報 -->
+                            <h5>選択した書籍</h5>
                             <div class="card mb-5">
                                 <div class="d-sm-flex p-2">
                                     <div class="d-flex flex-column mb-3 p-2">
