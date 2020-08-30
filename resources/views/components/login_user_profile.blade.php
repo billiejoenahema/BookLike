@@ -1,8 +1,8 @@
-<div class="col-md-8 mb-3">
+<div class="col-md-8 mb-5">
     <div class="card shadow-sm">
         <div class="d-sm-flex">
             <div class="p-3 d-flex flex-column">
-                @if($login_user->profile_image === null)
+                @if(empty($login_user->profile_image))
                     <img src="{{ $default_image }}" class="rounded-circle shadow-sm img-fluid" width=100 height="100">
                 @else
                     <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle shadow-sm img-fluid" width="100" height="100">
@@ -39,9 +39,7 @@
                                     href="#"
                                     data-id="{{ $login_user->id }}"
                                     onclick="deletePost(this);"
-                                >
-                                    アカウントを削除
-                                </a>
+                                >アカウントを削除</a>
                             </form>
                         </div>
                     </div>
@@ -50,28 +48,33 @@
                 <div class="d-flex">
                     <p>{{ $login_user->description }}</p>
                 </div>
-
-                <div class="d-flex justify-content-end">
-                    <div class="p-2 d-flex flex-column align-items-center">
-                        <p class="font-weight-bold">レビュー</p>
-                        <a class="btn bg-light" href="{{ url('users/' .$user->id) }}">{{ $review_count }}</a>
-                    </div>
-                    <div class="p-2 d-flex flex-column align-items-center">
-                        <p class="font-weight-bold">フォロー</p>
-                        <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/following') }}">{{ $follow_count }}</a>
-                    </div>
-                    <div class="p-2 d-flex flex-column align-items-center">
-                        <p class="font-weight-bold">フォロワー</p>
-                        <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/followers') }}">{{ $follower_count }}</a>
-                    </div>
-                    <div class="p-2 d-flex flex-column align-items-center">
-                        <p class="font-weight-bold">いいねしたレビュー</p>
-                        <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/favorite') }}">{{ $favorite_reviews_count }}</a>
-                    </div>
-                </div>
-
             </div>
         </div>
+
+        <div class="card-footer d-flex flex-wrap">
+            <div class="d-flex">
+                <div class="pr-2 d-flex flex-column align-items-center">
+                    <span class="font-weight-bold">投稿</span>
+                    <a class="btn bg-light" href="{{ url('users/' .$user->id) }}">{{ $review_count }}</a>
+                </div>
+                <div class="pr-2 d-flex flex-column align-items-center">
+                    <span class="font-weight-bold">フォロー</span>
+                    <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/following') }}">{{ $follow_count }}</a>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="pr-2 d-flex flex-column align-items-center">
+                    <span class="font-weight-bold">フォロワー</span>
+                    <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/followers') }}">{{ $follower_count }}</a>
+                </div>
+                <div class="pr-2 d-flex flex-column align-items-center">
+                    <span class="font-weight-bold">いいねしたレビュー</span>
+                    <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/favorite') }}">{{ $favorite_reviews_count }}</a>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 <script src="{{ asset('/js/deletePost.js') }}"></script>

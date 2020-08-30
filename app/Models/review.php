@@ -67,6 +67,11 @@ class Review extends Model
                     ->first();
     }
 
+    public function postedAsin($asin, Int $user_id)
+    {
+        return $this->where('user_id', $user_id)->where('asin', $asin)->first('asin');
+    }
+
     public function reviewStore(Int $user_id, Array $data)
     {
         $this->user_id = $user_id;

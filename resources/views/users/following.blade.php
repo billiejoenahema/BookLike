@@ -11,10 +11,10 @@
             @endif
 
             @if (isset($following_users))
-                @foreach ($following_users as $following)
-                    @if($following->id != $login_user->id && $following->id != $user->id)
-                        <div class="col-md-8">
-                            <div class="card mb-1 shadow-sm">
+                <div class="col-md-8">
+                    @foreach ($following_users as $following)
+                        @if($following->id != $login_user->id && $following->id != $user->id)
+                            <div class="card mb-3 shadow-sm">
                                 <div class="card-haeder p-3 w-100 d-flex">
                                     @include('components.user_image', ['user' => $following])
                                     <div class="ml-2 d-flex flex-column">
@@ -44,9 +44,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                @endforeach
+                        @endif
+                    @endforeach
+                </div>
             @endif
         </div>
     </div>

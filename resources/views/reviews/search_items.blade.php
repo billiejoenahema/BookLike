@@ -34,6 +34,11 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        @if (session('error'))
+                        <p class="text-danger">{{ session('error') }}</p>
+                        @endif
+                    </div>
                     <!-- 検索結果一覧表示 -->
                     <!-- 決定ボタン -->
                     <form method="GET" action="{{ route('reviews.posts') }}">
@@ -54,7 +59,7 @@
                     </form>
                     <div>
                     <h5>投稿する本を選んでください</h5>
-                    @if ($search_items == null)
+                    @if (empty($search_items))
                         <div>「キーワード」に該当する書籍は見つかりませんでした</div>
                     @else
                         <div class="overflow-auto" style="height: 70vw; max-height: 400px;">

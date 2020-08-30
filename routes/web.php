@@ -57,5 +57,4 @@ Route::group(['middleware' => 'auth'], function() {
     // いいね関連
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
 
-
 });

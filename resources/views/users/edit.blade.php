@@ -13,15 +13,13 @@
 
                         <div class="form-group row align-items-center">
                             <label for="profile_image" class="col-md-4 col-form-label text-md-right">{{ __('プロフィール写真') }}</label>
-
                             <div class="col-md-6 d-flex align-items-center">
-                            @if($login_user->profile_image == null)
-                                <img src="{{ $default_image }}" class="rounded-circle" width="50" height="50">
+                            @if(empty($login_user->profile_image))
+                                <img src="{{ $default_image }}" class="rounded-circle mr-3" width="48" height="48">
                             @else
-                                <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle mr-3" width="50" height="50">
                             @endif
                             <input type="file" name="profile_image" class="@error('profile_image') is-invalid @enderror" autocomplete="profile_image">
-
                                 @error('profile_image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

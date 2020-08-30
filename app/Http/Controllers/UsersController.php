@@ -78,8 +78,6 @@ class UsersController extends Controller
         $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-
-
         return view('users.show', compact(
             'user',
             'login_user',
@@ -108,7 +106,6 @@ class UsersController extends Controller
         return view('users.edit', compact(
             'login_user',
             'default_image'
-
         ));
     }
 
@@ -144,14 +141,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $login_user = auth()->user();
-
-        // ログアウトは不要？
-        // Auth::logout();
         $login_user->delete();
 
-        // ホーム画面へリダイレクト
         return redirect('/');
-
     }
 
     // フォローする

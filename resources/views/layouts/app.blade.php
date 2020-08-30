@@ -32,7 +32,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-
+                <a href="/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
                 <div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav">
@@ -74,6 +74,7 @@
                                 aria-expanded="false">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ url('reviews/create') }}">新規投稿</a>
                                 <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">マイページ</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

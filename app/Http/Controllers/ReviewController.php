@@ -50,13 +50,19 @@ class ReviewController extends Controller
     }
 
     // Post review text form
-    public function posts(Request $request, GetItem $get_item)
+    public function posts(Request $request, GetItem $get_item, Review $review)
     {
         $login_user = auth()->user();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
-
+        $user_id = $login_user->id;
         $asin = $request->asin;
+        $posted_review = $review->postedAsin($asin, $user_id);
+        $posted_asin = $posted_review['asin'];
+        if(isset($posted_asin)) {
+            return back()->with('error', 'この本はすでに投稿済みです');
+        }
         $get_item = $get_item->getItem($asin);
+
 
         return view('reviews.posts', compact(
             'login_user',
@@ -75,6 +81,7 @@ class ReviewController extends Controller
     {
         $login_user = auth()->user();
         $data = $request->all();
+
         $validator = Validator::make($data, [
             'asin' => 'required',
             'title' => 'required',

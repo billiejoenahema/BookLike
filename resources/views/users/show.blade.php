@@ -3,9 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 mb-3 text-right">
-            <a href="{{ url('users') }}">ユーザ一覧</a>
-        </div>
         @if($user == $login_user)
             @include('components.login_user_profile')
         @else
@@ -13,9 +10,9 @@
         @endif
 
         @if (isset($timelines))
-            @foreach ($timelines as $timeline)
-                <div class="col-md-8 mb-3">
-                    <div class="card shadow-sm">
+            <div class="col-md-8">
+                @foreach ($timelines as $timeline)
+                    <div class="card shadow-sm mb-3">
                         <!-- ユーザー情報 -->
                         <div class="card-haeder p-3 w-100 d-flex">
                             @include('components.user_image')
@@ -27,7 +24,6 @@
                                 <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
                             </div>
                         </div>
-
                         <!-- 書籍情報 -->
                         <div class="card-body border-top border-bottom">
                             <div class="d-flex p-2">
@@ -84,10 +80,9 @@
                                 <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
                             </div>
                         </div>
-
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         @endif
     </div>
     @if(empty($review))

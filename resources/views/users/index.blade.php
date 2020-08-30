@@ -11,7 +11,7 @@
                 </form>
             </div>
 
-            @if($search !== null)
+            @if(isset($search))
             <div class="mb-3">
                 <h2 class="text-center">検索結果 "{{ $search }}"</span></h2>
             </div>
