@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand navbar-light bg-white shadow-sm sticky-top">
+        <nav class="navbar navbar-expand navbar-light bg-info shadow-sm sticky-top">
             <div class="container">
 
                 <!-- ロゴ -->
@@ -46,9 +46,14 @@
                     @else
 
                         <!-- ユーザーアイコン -->
-                        <li class="nav-item">
-                            <a href="{{ url('users/' .$login_user->id) }}">
-                            @if($login_user->profile_image === null)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            @if(empty($login_user->profile_image))
                                 <img src="{{ $default_image }}"
                                     class="rounded-circle shadow-sm img-fluid"
                                     width="40" height="40">
@@ -58,18 +63,7 @@
                                     width="40" height="40">
                             @endif
                             </a>
-                        </li>
-
-                        <!-- ドロップダウンメニュー -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle"
-                                href="#"
-                                id="navbarDropdown"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                            </a>
+                            <!-- ドロップダウンメニュー -->
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ url('reviews/create') }}">新規投稿</a>
                                 <a class="dropdown-item" href="{{ url('users') }}">ユーザーを探す</a>
@@ -106,7 +100,7 @@
             </a>
     </div>
     <!-- Footer -->
-    <footer class="page-footer font-small bg-white shadow-sm">
+    <footer class="page-footer font-small bg-info shadow-sm">
 
     <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2020 Copyright:
