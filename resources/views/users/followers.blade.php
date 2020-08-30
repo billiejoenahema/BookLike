@@ -48,6 +48,9 @@
             @endif
         </div>
     </div>
+    @if($follower_count == 0)
+    <div class="text-center">フォロワーはまだいません</div>
+    @endif
     <div class="my-4 d-flex justify-content-center">
         {{ $followers->links() }}
     </div>

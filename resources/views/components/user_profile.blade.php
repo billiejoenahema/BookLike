@@ -44,26 +44,27 @@
             </div>
         </div>
 
-        <div class="card-footer d-flex flex-wrap">
+        <div class="card-footer d-flex flex-wrap pb-0">
             <div class="d-flex">
-                <div class="pr-2 d-flex flex-column align-items-center">
+                <div class="mr-3 d-flex flex-column align-items-center">
                     <span class="font-weight-bold">投稿</span>
                     <a class="btn bg-light" href="{{ url('users/' .$user->id) }}">{{ $review_count }}</a>
                 </div>
-                <div class="pr-2 d-flex flex-column align-items-center">
-                    <span class="font-weight-bold">フォロー</span>
-                    <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/following') }}">{{ $follow_count }}</a>
+                <div class="mr-3 d-flex flex-column align-items-center">
+                    <span class="font-weight-bold">いいねした投稿</span>
+                    <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/favorite') }}">{{ $favorite_reviews_count }}</a>
                 </div>
             </div>
             <div class="d-flex">
-                <div class="pr-2 d-flex flex-column align-items-center">
+                <div class="mr-3 d-flex flex-column align-items-center">
+                    <span class="font-weight-bold">フォロー</span>
+                    <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/following') }}">{{ $follow_count }}</a>
+                </div>
+                <div class="mr-3 d-flex flex-column align-items-center">
                     <span class="font-weight-bold">フォロワー</span>
                     <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/followers') }}">{{ $follower_count }}</a>
                 </div>
-                <div class="pr-2 d-flex flex-column align-items-center">
-                    <span class="font-weight-bold">いいねしたレビュー</span>
-                    <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/favorite') }}">{{ $favorite_reviews_count }}</a>
-                </div>
+
             </div>
         </div>
     </div>

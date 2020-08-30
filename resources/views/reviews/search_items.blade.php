@@ -15,7 +15,7 @@
                         <span>キーワードを変えて再検索</span>
                         <!-- 書籍検索フォーム -->
                         <div class="d-flex flex-row justify-content-between col-12 mb-5 p-0">
-                            <div class="col-8 p-0">
+                            <div class="col-sm-8 p-0">
                                 <form method="GET" action="{{ route('search_items') }}" class="form-inline">
                                     @csrf
                                     <input class="form-control shadow-sm col-9 @error('keyword') is-invalid @enderror"

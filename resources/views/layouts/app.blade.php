@@ -11,7 +11,6 @@
 
     <!-- Scripts -->
     <script src="{{ mix('/js/app.js') }}"></script>
-    <script src="{{ '/js/flashMessage.js' }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -32,8 +31,6 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <a href="/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
-                <div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav">
                         <!-- Authentication Links -->
@@ -75,6 +72,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="{{ url('reviews/create') }}">新規投稿</a>
+                                <a class="dropdown-item" href="{{ url('users') }}">ユーザーを探す</a>
                                 <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">マイページ</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -88,7 +86,6 @@
                         </li>
                         @endguest
                     </ul>
-                </div>
             </div>
         </nav>
         @if (session('flash_message'))
@@ -108,5 +105,15 @@
                 <i class="fas fa-plus"></i>
             </a>
     </div>
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-white shadow-sm">
+
+    <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="{{ url('/') }}"> BookLike</a>
+        </div>
+    <!-- Copyright -->
+
+    </footer>
 </body>
 </html>

@@ -50,6 +50,9 @@
             @endif
         </div>
     </div>
+    @if($follow_count == 0)
+    <div class="text-center">フォローしているユーザーはまだいません</div>
+    @endif
     <div class="my-4 d-flex justify-content-center">
         {{ $following_users->links() }}
     </div>
