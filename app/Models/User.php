@@ -114,7 +114,7 @@ class User extends Authenticatable
     // フォローしているユーザーを取得
     public function getFollowingUsers(Int $user_id)
     {
-      return $this->follows()->where('following_id', $user_id)->paginate(6);
+        return $this->follows()->where('following_id', $user_id)->paginate(6);
     }
 
     // フォロワーを取得

@@ -31,11 +31,13 @@
                                     </div>
 
                                     <div class="d-flex justify-content-end ml-auto">
+                                        @if ($user->id == $login_user->id)
                                         <form action="{{ route('unfollow', $following->id) }}" method="POST">
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <button type="submit" class="btn-sm btn-primary shadow-sm rounded-pill">フォロー中</button>
                                         </form>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="card-body">

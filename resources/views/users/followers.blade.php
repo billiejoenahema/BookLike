@@ -22,17 +22,19 @@
                                         <span class="text-secondary">{{ $follower->screen_name }}</span>
                                     </div>
                                     <div class="d-flex justify-content-end ml-auto">
-                                        @if ($login_user->isFollowing($follower->id))
-                                            <form action="{{ route('unfollow', $follower->id) }}" method="POST">
-                                                @csrf
-                                                {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn-sm btn-primary rounded-pill shadow-sm">フォロー中</button>
-                                            </form>
-                                        @else
-                                            <form action="{{ route('follow', $follower->id) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="btn-sm btn-outline-primary rounded-pill shadow-sm">フォローする</button>
-                                            </form>
+                                        @if ($user->id == $login_user->id)
+                                            @if ($login_user->isFollowing($follower->id))
+                                                <form action="{{ route('unfollow', $follower->id) }}" method="POST">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                    <button type="submit" class="btn-sm btn-primary rounded-pill shadow-sm">フォロー中</button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('follow', $follower->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn-sm btn-outline-primary rounded-pill shadow-sm">フォローする</button>
+                                                </form>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>

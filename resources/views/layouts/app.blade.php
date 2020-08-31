@@ -23,88 +23,86 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand navbar-light bg-info shadow-sm sticky-top">
-            <div class="container">
+    <nav class="navbar navbar-expand navbar-light bg-info shadow-sm sticky-top">
+        <div class="container">
 
-                <!-- ロゴ -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
-                        <!-- Authentication Links -->
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
-                            </li>
-                        @endif
-                    @else
-
-                        <!-- ユーザーアイコン -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link"
-                                href="#"
-                                id="navbarDropdownMenuLink"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                            @if(empty($login_user->profile_image))
-                                <img src="{{ $default_image }}"
-                                    class="rounded-circle shadow-sm img-fluid"
-                                    width="40" height="40">
-                            @else
-                                <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
-                                    class="rounded-circle shadow-sm img-fluid"
-                                    width="40" height="40">
-                            @endif
-                            </a>
-                            <!-- ドロップダウンメニュー -->
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{ url('reviews/create') }}">新規投稿</a>
-                                <a class="dropdown-item" href="{{ url('users') }}">ユーザーを探す</a>
-                                <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">マイページ</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    ログアウト
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @endguest
-                    </ul>
-            </div>
-        </nav>
-        @if (session('flash_message'))
-            <div class="flash_message" id="flashMessage">
-                {{ session('flash_message') }}
-            </div>
-        @endif
-        <main class="py-4">
-            @yield('content')
-        </main>
-        <!-- 新規投稿ボタン -->
-            <a class="text-whited-block btn-primary floating-button rounded-circle shadow"
-                href="{{ url('reviews/create') }}"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="新規投稿">
-                <i class="fas fa-plus"></i>
+            <!-- ロゴ -->
+            <a class="navbar-brand" href="{{ url('/') }}">
+                {{ config('app.name', 'Laravel') }}
             </a>
-    </div>
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav">
+                    <!-- Authentication Links -->
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
+                        </li>
+                    @endif
+                @else
+
+                    <!-- ユーザーアイコン -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        @if(empty($login_user->profile_image))
+                            <img src="{{ $default_image }}"
+                                class="rounded-circle shadow-sm img-fluid"
+                                width="40" height="40">
+                        @else
+                            <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
+                                class="rounded-circle shadow-sm img-fluid"
+                                width="40" height="40">
+                        @endif
+                        </a>
+                        <!-- ドロップダウンメニュー -->
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('reviews/create') }}">新規投稿</a>
+                            <a class="dropdown-item" href="{{ url('users') }}">ユーザーを探す</a>
+                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">マイページ</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                ログアウト
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
+                </ul>
+        </div>
+    </nav>
+    @if (session('flash_message'))
+        <div class="flash_message" id="flashMessage">
+            {{ session('flash_message') }}
+        </div>
+    @endif
+    <main class="py-4">
+        @yield('content')
+    </main>
+    <!-- 新規投稿ボタン -->
+        <a class="text-whited-block btn-primary floating-button rounded-circle shadow"
+            href="{{ url('reviews/create') }}"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="新規投稿">
+            <i class="fas fa-plus"></i>
+        </a>
     <!-- Footer -->
-    <footer class="page-footer font-small bg-info shadow-sm">
+    <footer class="page-footer font-small bg-info shadow-sm mt-5">
 
     <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="{{ url('/') }}"> BookLike</a>
+            <a class="text-reset" href="{{ url('/') }}"> BookLike</a>
         </div>
     <!-- Copyright -->
 

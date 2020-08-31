@@ -23,9 +23,10 @@ class UsersController extends Controller
     {
         $search = $request->input('search');
         $login_user = auth()->user();
+        $user_id = $login_user->id;
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-        if($search !== null) {
+        if(isset($search)) {
             $users = $user->getSearchUsers($user_id, $search);
         } else {
             $users = $user->getAllUsers(auth()->user()->id);
