@@ -12,4 +12,5 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components');
+require('./components/ReviewsTab');
+require('./components/Example');

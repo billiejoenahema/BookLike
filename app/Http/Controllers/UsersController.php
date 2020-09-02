@@ -19,14 +19,14 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request, User $user, Review $review, Follower $follower)
+    public function index(Request $request, User $user, Review $review, Follower $follower, Str $string)
     {
         $search = $request->input('search');
         $login_user = auth()->user();
         $user_id = $login_user->id;
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-        if(isset($search)) {
+        if (isset($search)) {
             $users = $user->getSearchUsers($user_id, $search);
         } else {
             $users = $user->getAllUsers(auth()->user()->id);

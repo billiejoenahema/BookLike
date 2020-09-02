@@ -13,6 +13,7 @@
             <a href="{{ url('users') }}">ユーザ一覧</a>
         </div>
         <div class="col-md-8">
+            <div id="reviewsTab"></div>
             @if (isset($timelines))
             @foreach ($timelines as $timeline)
                     <div class="card shadow-sm mb-3">

@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <div class="col-md-8 justify-content-center m-auto">
+            <!-- ユーザー検索フォーム -->
             <div class="mb-3">
                 <form method="GET" action="{{ route('users.index') }}" class="form-inline my-2 my-lg-0">
                     @csrf
@@ -10,7 +11,6 @@
                     <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
-
             @if(isset($search))
             <div class="mb-3">
                 <h2 class="text-center">検索結果 "{{ $search }}"</span></h2>
@@ -20,6 +20,7 @@
             </div>
             @endif
         </div>
+
         <div class="row justify-content-center m-auto">
             <div class="col-md-8">
                 @foreach ($users as $user)
