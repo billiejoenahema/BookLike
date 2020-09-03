@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import './Timeline'
-import './Popular'
+
+import Timeline from './Timeline'
+import Popular from './Popular'
 import 'react-tabs/style/react-tabs.css';
 
 const ReviewsTab = () => {
     return (
         <Fragment>
-            <h2>ReviewsTab</h2>
             <Tabs>
                 <TabList>
                     <Tab>タイムライン</Tab>
@@ -23,7 +23,9 @@ const ReviewsTab = () => {
             </Tabs>
         </Fragment>
     )
+
 }
+
 
 export default ReviewsTab
 

@@ -13,6 +13,7 @@
             <a href="{{ url('users') }}">ユーザ一覧</a>
         </div>
         <div class="col-md-8">
+            <!-- React-tabs -->
             <div id="reviewsTab"></div>
             @if (isset($timelines))
             @foreach ($timelines as $timeline)
