@@ -50,14 +50,14 @@ class Review extends Model
     }
 
     // 一覧表示(自身とフォローユーザーのみ)
-    public function getTimeLines(Int $user_id, Array $follow_ids)
-    {
+    // public function getTimeLines(Int $user_id, Array $follow_ids)
+    // {
         // 自身とフォローしているユーザIDを結合する
-        $follow_ids[] = $user_id;
-        return $this->whereIn('user_id', $follow_ids)
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate(50);
-    }
+    //     $follow_ids[] = $user_id;
+    //     return $this->whereIn('user_id', $follow_ids)
+    //                 ->orderBy('created_at', 'DESC')
+    //                 ->paginate(50);
+    // }
 
     // 詳細画面
     public function getReview(Int $review_id)

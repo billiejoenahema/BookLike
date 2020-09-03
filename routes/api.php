@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Review;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/tasks', 'Api\TaskController@index');
+Route::group(['middleware' => 'auth'], function() {
 
-Route::get('/user',function (Request $request) {
-    $users = App\User::all();
-    return response()->json(['users' => $users]);
-  });
+    Route::get('/reviews',function (Request $request, Review $review) {
+        $timelines = Review::orderBy('created_at', 'DESC')->get();
+        // $populars = Review::withCount('favorite')->orderBy('favorite_count', 'DESC')->get();
+        return response()->json(['timelines' => $timelines]);
+    });
+});
