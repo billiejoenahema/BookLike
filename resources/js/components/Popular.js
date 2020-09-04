@@ -1,10 +1,23 @@
-import React, { Fragment } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
-const Popular = () => {
+function Popular() {
+
+    const [populars, setPopulars] = useState([]);
+
+    useEffect(() => {
+        getPopulars()
+    }, [])
+
+    const getPopulars = async () => {
+        const response = await axios.get('/api/reviews');
+        setPopulars(response.data.populars)
+    }
+
     return (
-        <Fragment>
-            <h3>人気のユーザー一覧</h3>
-        </Fragment>
+        <div>
+            {populars.map((popular) => <div className="card shadow-sm mb-3" key="{popular.id}">{popular.title}</div>)}
+        </div>
     )
 }
 

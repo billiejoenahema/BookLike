@@ -24,7 +24,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/reviews',function (Request $request, Review $review) {
         $timelines = Review::orderBy('created_at', 'DESC')->get();
-        // $populars = Review::withCount('favorite')->orderBy('favorite_count', 'DESC')->get();
-        return response()->json(['timelines' => $timelines]);
+        // $populars = Review::orderBy('created_at', 'ASC')->get();
+        $populars = Review::withCount('favorites')->orderBy('favorites_count', 'DESC')->get();
+        return response()->json(['timelines' => $timelines, 'populars' => $populars]);
     });
 });
