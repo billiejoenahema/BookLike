@@ -82,11 +82,11 @@
                     </ul>
             </div>
         </nav>
-        @if (session('flash_message'))
-            <div class="flash_message" id="flashMessage">
+            <div class="flash_message container text-center" id="flashMessage">
+            @if (session('flash_message'))
                 {{ session('flash_message') }}
+            @endif
             </div>
-        @endif
         <main class="py-4">
             @yield('content')
         </main>

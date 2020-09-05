@@ -3,12 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <!-- フラッシュメッセージ -->
-        @if (session('login_message'))
-            <div class="login_message col-md-8 mb-3 text-center text-dark rounded">
-                {{ session('login_message') }}
-            </div>
-        @endif
         <div class="col-md-8 mb-3 text-right">
             <a href="{{ url('users') }}">ユーザ一覧</a>
         </div>
@@ -48,9 +42,14 @@
                         </div>
                         <!-- 編集＆削除・コメント・いいね -->
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
-                            @if ($timeline->user->id === Auth::user()->id)
+                            @if ($timeline->user->id === $login_user->id)
                                 <div class="dropdown mr-3 d-flex align-items-center">
-                                    <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a href="#"
+                                        role="button"
+                                        id="dropdownMenuLink"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-fw"></i>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

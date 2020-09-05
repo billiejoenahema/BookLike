@@ -28,7 +28,7 @@ class LoginController extends Controller
      * @var string
      */
     protected function redirectTo() {
-        session()->flash('login_message', 'ログインしました');
+        session()->flash('flash_message', 'ログインしました');
         return '/reviews';
     }
 

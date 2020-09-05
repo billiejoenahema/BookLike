@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\Follower;
 use App\Http\Controllers\Api\GetItem;
 
+
 class ReviewController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class ReviewController extends Controller
         return view('reviews.index', compact(
             'login_user',
             'timelines',
-            'default_image'
+            'default_image',
         ));
     }
 
@@ -54,6 +55,7 @@ class ReviewController extends Controller
     {
         $login_user = auth()->user();
         $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+
         $user_id = $login_user->id;
         $asin = $request->asin;
         $posted_review = $review->postedAsin($asin, $user_id);
@@ -171,7 +173,9 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         $login_user = auth()->user();
+        dd($id);
         $review->reviewDestroy($login_user->id, $review->id);
+        session()->flash('flash_message', 'ログインしました');
 
         return back();
     }

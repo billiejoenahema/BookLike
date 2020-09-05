@@ -22,10 +22,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('/reviews',function (Request $request, Review $review) {
-        $timelines = Review::orderBy('created_at', 'DESC')->get();
-        // $populars = Review::orderBy('created_at', 'ASC')->get();
+    Route::get('/reviews',function (Request $request, Review $review, User $user) {
+
+        $timelines = Review::with('user')->orderBy('created_at', 'DESC')->get();
         $populars = Review::withCount('favorites')->orderBy('favorites_count', 'DESC')->get();
-        return response()->json(['timelines' => $timelines, 'populars' => $populars]);
+        $loginUser = auth()->user();
+
+        return response()->json(
+            [
+            'timelines' => $timelines,
+            'populars' => $populars,
+            'loginUser' => $loginUser
+            ]);
     });
+
+    Route::post('reviews/destroy/{id}', 'reviewController@destroy');
 });
