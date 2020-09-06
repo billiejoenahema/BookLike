@@ -57,16 +57,25 @@ function Timeline() {
                         <a href={`reviews/${timeline.id}`} className="d-block text-reset">{timeline.text}</a>
                     </div>
                     <div className="card-footer py-1 d-flex justify-content-end bg-white">
-                        {/* 投稿の編集削除アイコン */}
-                        {(() => {
-                            if (timeline.user.id === loginUser.id) {
-                                return (
-                                    <div className="mr-3 d-flex align-items-center">
+                        {/* 投稿編集ボタン */}
+                        <div className="mr-3 d-flex align-items-center">
+                            {(() => {
+                                if (timeline.user.id === loginUser.id) {
+                                    return (
                                         <a href={`reviews/${timeline.id}/edit`} ><i className="fas fa-edit"></i></a>
-                                    </div>
-                                )
-                            }
-                        })()}
+                                    )
+                                }
+                            })()}
+                        </div>
+                        {/* コメントボタン */}
+                        <div className="mr-3 d-flex align-items-center">
+                            <a href={`reviews/${timeline.id}`}><i className="far fa-comment fa-fw"></i></a>
+                            <p className="mb-0 text-secondary">{timeline.comments.length}</p>
+                        </div>
+                        {/* いいねボタン */}
+                        <div className="mr-3 d-flex align-items-center">
+                            <p className="mb-0 text-secondary">{timeline.favorites.length}</p>
+                        </div>
                     </div>
                 </div>
             )

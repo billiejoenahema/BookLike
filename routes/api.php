@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/reviews',function (Request $request, Review $review, User $user) {
 
-        $timelines = Review::with('user')->orderBy('created_at', 'DESC')->get();
+        $timelines = Review::with('user')->with('comments')->with('favorites')->orderBy('created_at', 'DESC')->get();
         $populars = Review::withCount('favorites')->orderBy('favorites_count', 'DESC')->get();
         $loginUser = auth()->user();
 

@@ -44,20 +44,21 @@
                         </div>
                         <!-- 編集＆削除・コメント・いいね -->
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
-                            @if ($timeline->user->id === $login_user->id)
-                                <div class="mr-3 d-flex align-items-center">
-                                    <form method="POST" action="{{ url('reviews/' .$timeline->id) }}" class="mb-0">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href="{{ url('reviews/' .$timeline->id .'/edit') }}"><i class="fas fa-ellipsis-v fa-fw"></i></a>
-                                    </form>
-                                </div>
-                            @endif
+                        @if ($timeline->user->id === $login_user->id)
+                            <div class="mr-3 d-flex align-items-center">
+                                <form method="POST" action="{{ url('reviews/' .$timeline->id) }}" class="mb-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="{{ url('reviews/' .$timeline->id .'/edit') }}"><i class="fas fa-ellipsis-v fa-fw"></i></a>
+                                </form>
+                            </div>
+                        @endif
+                        <!-- コメントボタン -->
                             <div class="mr-3 d-flex align-items-center">
                                 <a href="{{ url('reviews/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
                                 <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
                             </div>
-                            <!-- いいねボタン -->
+                        <!-- いいねボタン -->
                             <div class="mr-3 d-flex align-items-center">
                             @if (!in_array($login_user->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
                                 <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
