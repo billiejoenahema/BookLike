@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ asset('/js/deletePost.js') }}" defer></script>
+    <script src="{{ asset('/js/selectItem.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -109,6 +112,5 @@
 
         </footer>
     </div>
-    <script src="{{ asset('/js/deletePost.js') }}"></script>
 </body>
 </html>

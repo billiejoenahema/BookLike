@@ -2,11 +2,10 @@
     <div class="card shadow-sm">
         <div class="d-sm-flex">
             <div class="p-3 d-flex flex-column">
-                @if(empty($login_user->profile_image))
-                    <img src="{{ $default_image }}" class="rounded-circle shadow-sm img-fluid" width=100 height="100">
-                @else
-                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle shadow-sm img-fluid" width="100" height="100">
-                @endif
+                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
+                    class="rounded-circle shadow-sm img-fluid"
+                    width="100"
+                    height="100">
                 <div class="mt-3 d-flex flex-column">
                     <h4 class="mb-0 font-weight-bold">{{ $login_user->name }}</h4>
                     <span class="text-secondary">{{ $login_user->screen_name }}</span>
