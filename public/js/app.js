@@ -72570,8 +72570,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Timeline() {
-  var _this = this;
-
   // 投稿を取得
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -72645,16 +72643,10 @@ function Timeline() {
     };
   }();
 
-  deleteReview(function (id) {
-    axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("review/".concat(id)).then(function (response) {
-      console.log(response);
-      console.log(response.data);
-    });
-  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, timelines.map(function (timeline) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "card shadow-sm mb-3",
-      key: "{timeline.id}"
+      key: timeline.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "card-haeder p-3 w-100 d-flex"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
@@ -72664,16 +72656,19 @@ function Timeline() {
       height: "50"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "ml-2 d-flex flex-column"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+      href: "users/".concat(timeline.user.id),
+      className: "text-reset"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "mb-0"
     }, timeline.user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
       className: "text-secondary"
-    }, timeline.user.screen_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, timeline.user.screen_name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "d-flex justify-content-end flex-grow-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "mb-0 text-secondary"
-    }, timeline.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "card-body border-top border-bottom"
+    }, timeline.created_at.slice(0, -8)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "card-body border-top border-bottom py-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "d-flex p-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -72686,40 +72681,20 @@ function Timeline() {
       className: "d-flex flex-column text-left p-2"
     }, timeline.title))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "card-body"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+      href: "reviews/".concat(timeline.id),
       className: "d-block text-reset"
     }, timeline.text)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "card-footer py-1 d-flex justify-content-end bg-white"
     }, function () {
       if (timeline.user.id === loginUser.id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          className: "dropdown mr-3 d-flex align-items-center"
+          className: "mr-3 d-flex align-items-center"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-          href: "#",
-          role: "button",
-          id: "dropdownMenuLink",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false"
+          href: "reviews/".concat(timeline.id, "/edit")
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-          className: "fas fa-ellipsis-v fa-fw"
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          className: "dropdown-menu",
-          "aria-labelledby": "dropdownMenuLink"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-          method: "POST",
-          action: "",
-          className: "mb-0"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-          href: "reviews/".concat(timeline.id, "/edit"),
-          className: "dropdown-item"
-        }, "\u7DE8\u96C6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-          type: "submit",
-          onClick: function onClick() {
-            return _this.deleteReview(timeline.id);
-          },
-          className: "dropdown-item del-btn"
-        }, "\u524A\u9664"))));
+          className: "fas fa-edit"
+        })));
       }
     }()));
   }));

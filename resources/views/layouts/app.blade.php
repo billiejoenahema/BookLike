@@ -109,5 +109,6 @@
 
         </footer>
     </div>
+    <script src="{{ asset('/js/deletePost.js') }}"></script>
 </body>
 </html>

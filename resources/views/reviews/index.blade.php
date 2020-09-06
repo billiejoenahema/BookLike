@@ -9,6 +9,8 @@
         <div class="col-md-8">
             <!-- React-tabs -->
             <div id="reviewsTab"></div>
+
+            <h2 class="my-5">--------ここからBlade--------</h2>
             @if (isset($timelines))
             @foreach ($timelines as $timeline)
                     <div class="card shadow-sm mb-3">
@@ -22,7 +24,7 @@
                                 </a>
                             </div>
                             <div class="d-flex justify-content-end flex-grow-1">
-                                <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
+                                <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d') }}</p>
                             </div>
                         </div>
                         <!-- 書籍情報 -->
@@ -43,24 +45,12 @@
                         <!-- 編集＆削除・コメント・いいね -->
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
                             @if ($timeline->user->id === $login_user->id)
-                                <div class="dropdown mr-3 d-flex align-items-center">
-                                    <a href="#"
-                                        role="button"
-                                        id="dropdownMenuLink"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-fw"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <form method="POST" action="{{ url('reviews/' .$timeline->id) }}" class="mb-0">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <a href="{{ url('reviews/' .$timeline->id .'/edit') }}" class="dropdown-item">編集</a>
-                                            <button type="submit" class="dropdown-item del-btn">削除</button>
-                                        </form>
-                                    </div>
+                                <div class="mr-3 d-flex align-items-center">
+                                    <form method="POST" action="{{ url('reviews/' .$timeline->id) }}" class="mb-0">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="{{ url('reviews/' .$timeline->id .'/edit') }}"><i class="fas fa-ellipsis-v fa-fw"></i></a>
+                                    </form>
                                 </div>
                             @endif
                             <div class="mr-3 d-flex align-items-center">

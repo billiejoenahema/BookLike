@@ -36,14 +36,14 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
-    Route::delete('reviews/{id}',function($id){
+    // Route::delete('reviews/{id}',function(Review $review){
 
-        $review = App\Review::find($id);
-        dd($review);
-        $review->delete();
+    //     $review = App\Review::find($review->id);
+    //     dd($review);
+    //     $review->delete();
 
-        return response()->json([
-            'success' => '投稿を削除しました'
-        ]);
-    });
+    //     return response()->json([
+    //         'success' => '投稿を削除しました'
+    //     ]);
+    // });
 });

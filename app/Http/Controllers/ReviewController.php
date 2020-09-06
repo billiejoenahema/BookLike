@@ -127,11 +127,13 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit(Review $review, GetItem $get_item)
     {
         $login_user = auth()->user();
-        $reviews = $review->getEditReview($login_user->id, $review->id);
-        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+        $review = $review->getEditReview($login_user->id, $review->id);
+        // $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
+        $item = $get_item->getItem($review->asin);
+        $item_url = $item->DetailPageURL;
 
         if (!isset($review)) {
             return redirect('reviews');
@@ -139,8 +141,8 @@ class ReviewController extends Controller
 
         return view('reviews.edit', compact(
             'login_user',
-            'reviews',
-            'default_image'
+            'review',
+            'item_url'
         ));
     }
 
@@ -173,10 +175,9 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         $login_user = auth()->user();
-        dd($id);
         $review->reviewDestroy($login_user->id, $review->id);
         session()->flash('flash_message', '投稿を削除しました');
 
-        return back();
+        return redirect('reviews');
     }
 }

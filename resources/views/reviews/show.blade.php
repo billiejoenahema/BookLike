@@ -15,7 +15,7 @@
                         <span class="text-secondary">{{ $review->user->screen_name }}</span>
                     </div>
                     <div class="d-flex justify-content-end flex-grow-1">
-                        <p class="mb-0 text-secondary">{{ $review->created_at->format('Y-m-d H:i') }}</p>
+                        <p class="mb-0 text-secondary">{{ $review->created_at->format('Y-m-d') }}</p>
                     </div>
                 </div>
                 <div class="card-body border-top">

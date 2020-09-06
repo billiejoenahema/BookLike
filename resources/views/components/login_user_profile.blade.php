@@ -77,4 +77,4 @@
 
     </div>
 </div>
-<script src="{{ asset('/js/deletePost.js') }}"></script>
+
