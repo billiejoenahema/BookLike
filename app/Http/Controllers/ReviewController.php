@@ -175,7 +175,7 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         dd($id);
         $review->reviewDestroy($login_user->id, $review->id);
-        session()->flash('flash_message', 'ログインしました');
+        session()->flash('flash_message', '投稿を削除しました');
 
         return back();
     }

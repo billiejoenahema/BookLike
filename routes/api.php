@@ -36,5 +36,14 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
-    Route::post('reviews/destroy/{id}', 'reviewController@destroy');
+    Route::delete('reviews/{id}',function($id){
+
+        $review = App\Review::find($id);
+        dd($review);
+        $review->delete();
+
+        return response()->json([
+            'success' => '投稿を削除しました'
+        ]);
+    });
 });

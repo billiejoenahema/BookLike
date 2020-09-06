@@ -27,6 +27,14 @@ function Timeline() {
         setLoginUser(response.data.loginUser)
     }
 
+    deleteReview((id) => {
+        axios.delete(`reviews/${id}`)
+            .then(response => {
+                console.log(response);
+                console.log(response.data);
+            })
+    })
+
     return (
         <Fragment>
             {timelines.map((timeline) =>
@@ -67,7 +75,7 @@ function Timeline() {
                                             <form method="POST" action="" className="mb-0">
                                                 <a href={`reviews/${timeline.id}/edit`}
                                                     className="dropdown-item">編集</a>
-                                                <button type="submit" className="dropdown-item del-btn">削除</button>
+                                                <button type="submit" onClick={() => this.deleteReview(timeline.id)} className="dropdown-item del-btn">削除</button>
                                             </form>
                                         </div>
                                     </div>

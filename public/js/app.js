@@ -72570,6 +72570,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Timeline() {
+  var _this = this;
+
   // 投稿を取得
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -72643,6 +72645,12 @@ function Timeline() {
     };
   }();
 
+  deleteReview(function (id) {
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("review/".concat(id)).then(function (response) {
+      console.log(response);
+      console.log(response.data);
+    });
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, timelines.map(function (timeline) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "card shadow-sm mb-3",
@@ -72707,6 +72715,9 @@ function Timeline() {
           className: "dropdown-item"
         }, "\u7DE8\u96C6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
           type: "submit",
+          onClick: function onClick() {
+            return _this.deleteReview(timeline.id);
+          },
           className: "dropdown-item del-btn"
         }, "\u524A\u9664"))));
       }
