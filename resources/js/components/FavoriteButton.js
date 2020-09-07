@@ -1,39 +1,21 @@
-import React from "react";
-import ReactDom from "react-dom";
+import React, { useState, useEffect, useCallback } from "react"
+import ReactTooltip from 'react-tooltip'
 
-class FavoriteButton extends React.Component {
-    render() {
-        return (
-            <span>いいねボタン予定地</span>
-        );
-    }
+const FavoriteButton = () => {
+
+    const [isFavo, setFavo] = useState(false);
+    const toggleFavo = useCallback(() => setFavo((prev) => !prev), [setFavo])
+
+    return (
+        <button onClick={toggleFavo} className="btn p-0 border-0">
+            {
+                isFavo ? <i class="fas fa-heart text-danger"></i>
+                    : <i class="far fa-heart text-primary"></i>
+            }
+        </button>
+    )
 }
+
+
 
 export default FavoriteButton
-
-// いいねがついた状態
-function FavoriteButton(props) {
-    return (
-        <button onClick={props.onClick}>
-            <i class="fas fa-heart fa-fw"></i>
-        </button>
-    );
-}
-
-// いいねがついていない状態
-function NotFavoriteButton(props) {
-    return (
-        <button onClick={props.onClick}>
-            <i class="far fa-heart fa-fw"></i>
-        </button>
-    );
-}
-
-// 表示の切り替え
-function Likeing(props) {
-    const isFavorite = props.isFavorite;
-    if (isFavorite) {
-        return <Favorite />;
-    }
-    return <NotFavorite />;
-}

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
+use App\Models\Favorite;
 
 
 /*
@@ -35,6 +36,9 @@ Route::group(['middleware' => 'auth'], function() {
             'loginUser' => $loginUser
             ]);
     });
+
+    Route::resource('favorites', 'Api/FavoritesController', ['only' => ['store', 'destroy']]);
+
 
     // Route::delete('reviews/{id}',function(Review $review){
 

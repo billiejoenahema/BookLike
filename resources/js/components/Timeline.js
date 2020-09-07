@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import ReactTooltip from 'react-tooltip'
+import FavoriteButton from './FavoriteButton'
 import axios from 'axios'
 
 function Timeline() {
@@ -25,6 +26,12 @@ function Timeline() {
     const getLoginUser = async () => {
         const response = await axios.get('/api/reviews')
         setLoginUser(response.data.loginUser)
+    }
+
+    function isFavorite(timeline, loginUser) {
+        const favoritesArray = Array.from(timeline.favorites)
+        const userIds = favoritesArray.map(v => v.user_id)
+        return userIds.includes(loginUser.id)
     }
 
     return (
@@ -62,18 +69,28 @@ function Timeline() {
                             {(() => {
                                 if (timeline.user.id === loginUser.id) {
                                     return (
-                                        <a href={`reviews/${timeline.id}/edit`} ><i className="fas fa-edit"></i></a>
+                                        <a href={`reviews/${timeline.id}/edit`}
+                                            data-tip="投稿を編集"><i className="fas fa-edit"></i>
+                                            <ReactTooltip effect="float" type="info" place="top" /></a>
                                     )
                                 }
                             })()}
                         </div>
                         {/* コメントボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <a href={`reviews/${timeline.id}`}><i className="far fa-comment fa-fw"></i></a>
+                            <a href={`reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw"></i>
+                                <ReactTooltip effect="float" type="info" place="top" /></a>
                             <p className="mb-0 text-secondary">{timeline.comments.length}</p>
                         </div>
                         {/* いいねボタン */}
                         <div className="mr-3 d-flex align-items-center">
+                            {/* <FavoriteButton /> */}
+                            {
+                                isFavorite(timeline, loginUser) ? <i className="fas fa-heart fa-fw text-danger"></i>
+                                    : <i className="far fa-heart fa-fw text-primary"></i>
+                            }
+                            {/* <a href="#" data-tip="いいね"><i className="far fa-heart fa-fw"></i>
+                                <ReactTooltip effect="float" type="info" place="top" /></a> */}
                             <p className="mb-0 text-secondary">{timeline.favorites.length}</p>
                         </div>
                     </div>
