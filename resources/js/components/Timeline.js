@@ -7,21 +7,17 @@ function Timeline() {
 
     // 投稿を取得
     const [timelines, setTimelines] = useState([])
+    const [loginUser, setLoginUser] = useState([])
 
     useEffect(() => {
         getTimelines()
+        getLoginUser()
     }, [])
 
     const getTimelines = async () => {
         const response = await axios.get('/api/reviews')
         setTimelines(response.data.timelines)
     }
-
-    const [loginUser, setLoginUser] = useState([])
-
-    useEffect(() => {
-        getLoginUser()
-    }, [])
 
     const getLoginUser = async () => {
         const response = await axios.get('/api/reviews')
@@ -39,7 +35,7 @@ function Timeline() {
             {timelines.map((timeline) =>
                 <div className="card shadow-sm mb-3" key={timeline.id} >
                     <div className="card-haeder p-3 w-100 d-flex">
-                        <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="50" height="50" />
+                        <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                         <div className="ml-2 d-flex flex-column">
                             <a href={`users/${timeline.user.id}`} className="text-reset">
                                 <p className="mb-0">{timeline.user.name}</p>

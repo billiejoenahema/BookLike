@@ -7,11 +7,9 @@ function Popular() {
 
     // 投稿を取得
     const [populars, setPopulars] = useState([])
-    const [loginUser, setLoginUser] = useState([])
 
     useEffect(() => {
         getPopulars()
-        getLoginUser()
     }, [])
 
     const getPopulars = async () => {
@@ -19,13 +17,19 @@ function Popular() {
         setPopulars(response.data.populars)
     }
 
+    const [loginUser, setLoginUser] = useState([])
+
+    useEffect(() => {
+        getLoginUser()
+    }, [])
+
     const getLoginUser = async () => {
         const response = await axios.get('/api/reviews')
         setLoginUser(response.data.loginUser)
     }
 
-    function isFavorite(timeline, loginUser) {
-        const favoritesArray = Array.from(timeline.favorites)
+    function isFavorite(popular, loginUser) {
+        const favoritesArray = Array.from(popular.favorites)
         const userIds = favoritesArray.map(v => v.user_id)
         return userIds.includes(loginUser.id)
     }
@@ -35,7 +39,7 @@ function Popular() {
             {populars.map((popular) =>
                 <div className="card shadow-sm mb-3" key={popular.id} >
                     <div className="card-haeder p-3 w-100 d-flex">
-                        <img src={`/storage/profile_image/${popular.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
+                        <img src={`/storage/profile_image/${popular.user.profile_image}`} className="rounded-circle shadow-sm" width="50" height="50" />
                         <div className="ml-2 d-flex flex-column">
                             <a href={`users/${popular.user.id}`} className="text-reset">
                                 <p className="mb-0">{popular.user.name}</p>
