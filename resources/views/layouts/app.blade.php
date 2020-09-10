@@ -50,21 +50,15 @@
 
                         <!-- ユーザーアイコン -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link"
+                            <a class="nav-link dropdown-toggle"
                                 href="#"
                                 id="navbarDropdownMenuLink"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false">
-                            @if(empty($login_user->profile_image))
-                                <img src="{{ $default_image }}"
-                                    class="rounded-circle shadow-sm img-fluid"
-                                    width="40" height="40">
-                            @else
                                 <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
                                     class="rounded-circle shadow-sm img-fluid"
                                     width="40" height="40">
-                            @endif
                             </a>
                             <!-- ドロップダウンメニュー -->
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">

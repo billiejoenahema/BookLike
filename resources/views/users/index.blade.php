@@ -14,6 +14,9 @@
             @if(isset($search))
             <div class="mb-3">
                 <h2 class="text-center">検索結果 "{{ $search }}"</span></h2>
+                @if (count($users) == 0)
+                <div class="text-center">キーワードにマッチするユーザーは見つかりませんでした</div>
+                @endif
             </div>
             <div class="mb-3 text-right">
                 <a href="{{ url('users') }}">ユーザ一覧</a>
