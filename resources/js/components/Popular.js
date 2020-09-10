@@ -5,7 +5,6 @@ import axios from 'axios'
 
 function Popular() {
 
-    // 投稿を取得
     const [populars, setPopulars] = useState([])
     const [loginUser, setLoginUser] = useState([])
 
@@ -22,12 +21,6 @@ function Popular() {
     const getLoginUser = async () => {
         const response = await axios.get('/api/reviews')
         setLoginUser(response.data.loginUser)
-    }
-
-    function isFavorite(timeline, loginUser) {
-        const favoritesArray = Array.from(timeline.favorites)
-        const userIds = favoritesArray.map(v => v.user_id)
-        return userIds.includes(loginUser.id)
     }
 
     return (
@@ -80,13 +73,7 @@ function Popular() {
                         </div>
                         {/* いいねボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            {/* <FavoriteButton /> */}
-                            {
-                                isFavorite(popular, loginUser) ? <i className="fas fa-heart fa-fw text-danger"></i>
-                                    : <i className="far fa-heart fa-fw text-primary"></i>
-                            }
-                            {/* <a href="#" data-tip="いいね"><i className="far fa-heart fa-fw"></i>
-                                <ReactTooltip effect="float" type="info" place="top" /></a> */}
+                            <FavoriteButton popular={popular} loginUser={loginUser} />
                             <p className="mb-0 text-secondary">{popular.favorites.length}</p>
                         </div>
                     </div>

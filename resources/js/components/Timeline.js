@@ -5,7 +5,6 @@ import axios from 'axios'
 
 function Timeline() {
 
-    // 投稿を取得
     const [timelines, setTimelines] = useState([])
     const [loginUser, setLoginUser] = useState([])
 

@@ -71697,39 +71697,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-var FavoriteButton = function FavoriteButton() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isFavo = _useState2[0],
-      setFavo = _useState2[1];
-
-  var toggleFavo = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
-    return setFavo(function (prev) {
-      return !prev;
+var FavoriteButton = function FavoriteButton(props) {
+  // const [isFavo, setFavo] = useState(false);
+  // const toggleFavo = useCallback(() => setFavo((prev) => !prev), [setFavo])
+  function isFavorite(popular, loginUser) {
+    var favoritesArray = Array.from(popular.favorites);
+    var userIds = favoritesArray.map(function (v) {
+      return v.user_id;
     });
-  }, [setFavo]);
+    return userIds.includes(loginUser.id);
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: toggleFavo,
     className: "btn p-0 border-0"
-  }, isFavo ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    "class": "fas fa-heart text-danger"
+  }, isFavorite(props.popular, props.loginUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-heart fa-fw text-danger"
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    "class": "far fa-heart text-primary"
+    className: "far fa-heart fa-fw text-primary"
   }));
 };
 
@@ -71778,7 +71765,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Popular() {
-  // 投稿を取得
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       populars = _useState2[0],
@@ -71847,14 +71833,6 @@ function Popular() {
       return _ref2.apply(this, arguments);
     };
   }();
-
-  function isFavorite(timeline, loginUser) {
-    var favoritesArray = Array.from(timeline.favorites);
-    var userIds = favoritesArray.map(function (v) {
-      return v.user_id;
-    });
-    return userIds.includes(loginUser.id);
-  }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, populars.map(function (popular) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -71929,10 +71907,9 @@ function Popular() {
       className: "mb-0 text-secondary"
     }, popular.comments.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "mr-3 d-flex align-items-center"
-    }, isFavorite(popular, loginUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-      className: "fas fa-heart fa-fw text-danger"
-    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-      className: "far fa-heart fa-fw text-primary"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      popular: popular,
+      loginUser: loginUser
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "mb-0 text-secondary"
     }, popular.favorites.length))));
@@ -72021,7 +71998,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Timeline() {
-  // 投稿を取得
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       timelines = _useState2[0],

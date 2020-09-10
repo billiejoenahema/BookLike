@@ -13,7 +13,7 @@
             </div>
             @if(isset($search))
             <div class="mb-3">
-                <h2 class="text-center">検索結果 "{{ $search }}"</span></h2>
+                <h3 class="text-center">検索結果 "{{ $search }}"</h3>
                 @if (count($users) == 0)
                 <div class="text-center">キーワードにマッチするユーザーは見つかりませんでした</div>
                 @endif
