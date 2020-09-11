@@ -10,12 +10,12 @@
                 @csrf
                 @method('DELETE')
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <div>編集</div>
+                        <div class="h5 mb-0">編集</div>
                         <a href="#"
                             data-id="{{ $review->id }}"
-                            onclick="deletePost(this);"
-                            class="btn btn-danger shadow-sm"
-                            >投稿を削除する</a>
+                            onclick="deletePost(this)"
+                            class="text-secondary h5 mb-0 d-block"
+                            ><i class="fas fa-trash"></i></a>
                     </div>
                 </form>
                 <div class="card-body">

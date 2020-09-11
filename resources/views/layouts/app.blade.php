@@ -88,7 +88,7 @@
             @yield('content')
         </main>
         <!-- 新規投稿ボタン -->
-            <a class="text-whited-block btn-primary floating-button rounded-circle shadow"
+            <a class="text-white btn-primary floating-button rounded-circle shadow h5 mb-0"
                 href="{{ url('reviews/create') }}"
                 data-toggle="tooltip"
                 data-placement="top"
