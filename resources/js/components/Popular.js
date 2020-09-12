@@ -73,7 +73,7 @@ function Popular() {
                         </div>
                         {/* いいねボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <FavoriteButton popular={popular} loginUser={loginUser} />
+                            <FavoriteButton timeline={popular} loginUser={loginUser} />
                             <p className="mb-0 text-secondary">{popular.favorites.length}</p>
                         </div>
                     </div>

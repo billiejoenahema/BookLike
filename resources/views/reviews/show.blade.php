@@ -7,6 +7,7 @@
             <button type="button" onclick="history.back()" class="btn">
                 <i class="fas fa-chevron-left"></i> 戻る
             </button>
+
             <div class="card shadow-sm">
                 <div class="card-haeder p-3 w-100 d-flex">
                     @include('components.user_image', ['user' => $review->user])
@@ -39,7 +40,7 @@
                 </div>
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
                     @if ($review->user->id === $login_user->id)
-                        <div class="dropdown mr-3 d-flex align-items-center">
+                    <div class="dropdown mr-3 d-flex align-items-center">
                             <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-ellipsis-v fa-fw"></i>
                             </a>
@@ -66,15 +67,15 @@
                                 <input type="hidden" name="review_id" value="{{ $review->id }}">
                                 <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
                             </form>
-                        @else
-                            <form method="POST" action="{{ url('favorites/' .array_column($review->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}" class="mb-0">
-                                @csrf
-                                @method('DELETE')
+                    @else
+                        <form method="POST" action="{{ url('favorites/' .array_column($review->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}" class="mb-0">
+                            @csrf
+                            @method('DELETE')
 
-                                <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
-                            </form>
-                        @endif
-                        <p class="mb-0 text-secondary">{{ count($review->favorites) }}</p>
+                            <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
+                        </form>
+                    @endif
+                    <p class="mb-0 text-secondary">{{ count($review->favorites) }}</p>
                     </div>
                 </div>
             </div>

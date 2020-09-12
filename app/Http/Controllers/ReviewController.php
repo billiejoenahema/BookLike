@@ -20,12 +20,7 @@ class ReviewController extends Controller
     public function index(Review $reviews, Follower $follower)
     {
         $login_user = auth()->user();
-        // $follow_ids = $follower->followingIds($login_user->id);
-        // followed_idだけ抜き出す
-        // $following_ids = $follow_ids->pluck('followed_id')->toArray();
-        // $timelines = $review->getTimelines($login_user->id, $following_ids);
         $timelines = Review::orderBy('created_at', 'DESC')->get();
-        // $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('reviews.index', compact(
             'login_user',

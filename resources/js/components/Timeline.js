@@ -23,12 +23,6 @@ function Timeline() {
         setLoginUser(response.data.loginUser)
     }
 
-    function isFavorite(timeline, loginUser) {
-        const favoritesArray = Array.from(timeline.favorites)
-        const userIds = favoritesArray.map(v => v.user_id)
-        return userIds.includes(loginUser.id)
-    }
-
     return (
         <Fragment>
             {timelines.map((timeline) =>
@@ -79,13 +73,7 @@ function Timeline() {
                         </div>
                         {/* いいねボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            {/* <FavoriteButton /> */}
-                            {
-                                isFavorite(timeline, loginUser) ? <i className="fas fa-heart fa-fw text-danger"></i>
-                                    : <i className="far fa-heart fa-fw text-primary"></i>
-                            }
-                            {/* <a href="#" data-tip="いいね"><i className="far fa-heart fa-fw"></i>
-                                <ReactTooltip effect="float" type="info" place="top" /></a> */}
+                            <FavoriteButton timeline={timeline} loginUser={loginUser} />
                             <p className="mb-0 text-secondary">{timeline.favorites.length}</p>
                         </div>
                     </div>

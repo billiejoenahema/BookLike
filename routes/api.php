@@ -37,7 +37,12 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
-    Route::resource('favorites', 'Api/FavoritesController', ['only' => ['store', 'destroy']]);
+    Route::post('favorites', 'FavoritesController@store');
+    Route::delete('favorites/{id}', 'FavoritesController@destroy');
+    // Route::delete('favorites', function (Request $requeat, Favorite $favorite) {
+    //     $favorite_id = $request->favorite_id;
+    //     $favorite->find($favorite_id)->delete();
+    // });
 
 
     // Route::delete('reviews/{id}',function(Review $review){

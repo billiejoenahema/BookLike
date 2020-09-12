@@ -14,17 +14,16 @@ class FavoritesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Favorite $favorite)
+    public function store(Request $request, Favorite $favorite, $loginUser)
     {
-        $user = auth()->user();
+        $user = $loginUser;
         $review_id = $request->review_id;
-        $is_favorite = $favorite->isFavorite($user->id, $review_id);
+        $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
 
         if(!$is_favorite) {
             $favorite->storeFavorite($user->id, $review_id);
-            return back();
         }
-        return back();
+        return;
     }
 
     /**

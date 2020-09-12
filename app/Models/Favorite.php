@@ -25,9 +25,9 @@ class Favorite extends Model
         return;
     }
 
-    public function destroyFavorite(Int $favorite_id)
+    public function destroyFavorite(Int $id)
     {
-        return $this->where('id', $favorite_id)->delete();
+        return $this->where('id', $id)->delete();
     }
 
 

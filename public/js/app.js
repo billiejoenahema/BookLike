@@ -71697,27 +71697,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 var FavoriteButton = function FavoriteButton(props) {
-  // const [isFavo, setFavo] = useState(false);
-  // const toggleFavo = useCallback(() => setFavo((prev) => !prev), [setFavo])
-  function isFavorite(popular, loginUser) {
-    var favoritesArray = Array.from(popular.favorites);
+  function isFavorite(timeline, loginUser) {
+    var favoritesArray = Array.from(timeline.favorites);
     var userIds = favoritesArray.map(function (v) {
       return v.user_id;
     });
     return userIds.includes(loginUser.id);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn p-0 border-0"
-  }, isFavorite(props.popular, props.loginUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+  var InitialState = isFavorite(props.timeline, props.loginUser);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialState),
+      _useState2 = _slicedToArray(_useState, 2),
+      favorited = _useState2[0],
+      setFavorite = _useState2[1];
+
+  var ToggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+    return setFavorite(function (prev) {
+      return !prev;
+    });
+  }, [setFavorite]);
+
+  var PostFavoriteButton = function PostFavoriteButton(e) {
+    e.preventDefault();
+    ToggleFavorite;
+    var review_id = props.timeline.id;
+    return axios.post('api/favorites', {
+      review_id: review_id
+    }).then(function (res) {
+      console.log(res);
+    })["catch"](function (err) {
+      console.log('失敗！');
+    });
+  };
+
+  var DeleteFavoriteButton = function DeleteFavoriteButton(e) {
+    e.preventDefault();
+    ToggleFavorite;
+    var favoritesArray = Array.from(props.timeline.favorites);
+    var favoritesIds = favoritesArray.map(function (v) {
+      return v.id;
+    });
+    var id = favoritesIds[0];
+    console.log(id);
+    return axios["delete"]("api/favorites/".concat(id)).then(function (res) {
+      console.log(res);
+    })["catch"](function (err) {
+      console.log('失敗！');
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorited ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: DeleteFavoriteButton,
+    className: "btn p-0 border-0",
+    "data-tip": "\u3044\u3044\u306D\u30DC\u30BF\u30F3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    effect: "float",
+    type: "info",
+    place: "top"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-heart fa-fw text-danger"
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: PostFavoriteButton,
+    className: "btn p-0 border-0",
+    "data-tip": "\u3044\u3044\u306D\u30DC\u30BF\u30F3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    effect: "float",
+    type: "info",
+    place: "top"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "far fa-heart fa-fw text-primary"
-  }));
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FavoriteButton);
@@ -71908,7 +71974,7 @@ function Popular() {
     }, popular.comments.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "mr-3 d-flex align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      popular: popular,
+      timeline: popular,
       loginUser: loginUser
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "mb-0 text-secondary"
@@ -72067,14 +72133,6 @@ function Timeline() {
     };
   }();
 
-  function isFavorite(timeline, loginUser) {
-    var favoritesArray = Array.from(timeline.favorites);
-    var userIds = favoritesArray.map(function (v) {
-      return v.user_id;
-    });
-    return userIds.includes(loginUser.id);
-  }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, timelines.map(function (timeline) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "card shadow-sm mb-3",
@@ -72148,10 +72206,9 @@ function Timeline() {
       className: "mb-0 text-secondary"
     }, timeline.comments.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "mr-3 d-flex align-items-center"
-    }, isFavorite(timeline, loginUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-      className: "fas fa-heart fa-fw text-danger"
-    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-      className: "far fa-heart fa-fw text-primary"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      timeline: timeline,
+      loginUser: loginUser
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "mb-0 text-secondary"
     }, timeline.favorites.length))));
