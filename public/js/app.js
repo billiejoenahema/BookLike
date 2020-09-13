@@ -71717,16 +71717,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var FavoriteButton = function FavoriteButton(props) {
   var InitialState = Favorited(props.timeline, props.loginUser);
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    isFavorite: InitialState,
-    count: props.timeline.favorites.length
-  }),
-      _useState2 = _slicedToArray(_useState, 2),
-      favorite = _useState2[0],
-      setFavorite = _useState2[1];
-
-  console.log(favorite.isFavorite);
+  var InitialCount = props.timeline.favorites.length;
 
   function Favorited(timeline, loginUser) {
     var favoritesArray = Array.from(timeline.favorites);
@@ -71734,46 +71725,61 @@ var FavoriteButton = function FavoriteButton(props) {
       return v.user_id;
     });
     return userIds.includes(loginUser.id);
-  }
+  } // const [favorite, setFavorite] = useState({
+  //     isFavorite: InitialState,
+  //     count: InitialCount
+  // })
 
-  var toggleFavorite = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(function () {
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialState),
+      _useState2 = _slicedToArray(_useState, 2),
+      favorite = _useState2[0],
+      setFavorite = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialCount),
+      _useState4 = _slicedToArray(_useState3, 2),
+      count = _useState4[0],
+      setCount = _useState4[1];
+
+  var toggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return setFavorite(function (prev) {
       return !prev;
     });
   }, [setFavorite]);
 
-  var PostFavoriteButton = function PostFavoriteButton(e) {
-    e.preventDefault();
+  var PostFavoriteButton = function PostFavoriteButton() {
+    toggleFavorite;
+    console.log(toggleFavorite);
     console.log('PostButton Clicked!');
     var review_id = props.timeline.id;
-    console.log(review_id);
     return axios.post('api/favorites', {
       review_id: review_id
     }).then(function (res) {
       console.log('Success!');
+      console.log(review_id);
     })["catch"](function (err) {
       console.log('失敗！');
     });
   };
 
-  var DeleteFavoriteButton = function DeleteFavoriteButton(e) {
-    e.preventDefault();
+  var DeleteFavoriteButton = function DeleteFavoriteButton() {
+    toggleFavorite;
     console.log('DeleteButton Clicked!');
     var favoritesArray = Array.from(props.timeline.favorites);
-    console.log(props.timeline.favorites);
     var favoritesIds = favoritesArray.map(function (v) {
       return v.id;
     });
     var id = favoritesIds[0];
     return axios["delete"]("api/favorites/".concat(id)).then(function (res) {
       console.log('Success!');
+      console.log(id);
     })["catch"](function (err) {
       console.log('失敗！');
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorite.isFavorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: DeleteFavoriteButton,
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: favorite ? DeleteFavoriteButton : PostFavoriteButton,
     className: "btn p-0 border-0",
     "data-tip": "\u3044\u3044\u306D\u30DC\u30BF\u30F3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -71781,20 +71787,10 @@ var FavoriteButton = function FavoriteButton(props) {
     type: "info",
     place: "top"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-heart fa-fw text-danger"
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: PostFavoriteButton,
-    className: "btn p-0 border-0",
-    "data-tip": "\u3044\u3044\u306D\u30DC\u30BF\u30F3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    effect: "float",
-    type: "info",
-    place: "top"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "far fa-heart fa-fw text-primary"
+    className: favorite ? "fas fa-heart fa-fw text-danger" : "far fa-heart fa-fw text-primary"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0 text-secondary"
-  }, props.timeline.favorites.length));
+  }, count));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FavoriteButton);
