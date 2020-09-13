@@ -1,31 +1,12 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
-import axios from 'axios'
 
-function Timeline() {
-
-    const [timelines, setTimelines] = useState([])
-    const [loginUser, setLoginUser] = useState([])
-
-    useEffect(() => {
-        getTimelines()
-        getLoginUser()
-    }, [])
-
-    const getTimelines = async () => {
-        const response = await axios.get('/api/reviews')
-        setTimelines(response.data.timelines)
-    }
-
-    const getLoginUser = async () => {
-        const response = await axios.get('/api/reviews')
-        setLoginUser(response.data.loginUser)
-    }
+function Timeline(props) {
 
     return (
         <Fragment>
-            {timelines.map((timeline) =>
+            {props.timelines.map((timeline) =>
                 <div className="card shadow-sm mb-3" key={timeline.id} >
                     <div className="card-haeder p-3 w-100 d-flex">
                         <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
@@ -56,7 +37,7 @@ function Timeline() {
                         {/* 投稿編集ボタン */}
                         <div className="mr-3 d-flex align-items-center">
                             {(() => {
-                                if (timeline.user.id === loginUser.id) {
+                                if (timeline.user.id === props.loginUser.id) {
                                     return (
                                         <a href={`reviews/${timeline.id}/edit`}
                                             data-tip="投稿を編集"><i className="fas fa-edit"></i>
@@ -73,7 +54,9 @@ function Timeline() {
                         </div>
                         {/* いいねボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <FavoriteButton timeline={timeline} loginUser={loginUser} />
+                            <FavoriteButton
+                                timeline={timeline}
+                                loginUser={props.loginUser} />
                             <p className="mb-0 text-secondary">{timeline.favorites.length}</p>
                         </div>
                     </div>
