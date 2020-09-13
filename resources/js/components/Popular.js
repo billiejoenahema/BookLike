@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 
@@ -54,8 +54,9 @@ function Popular(props) {
                         </div>
                         {/* いいねボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <FavoriteButton timeline={timeline} loginUser={props.loginUser} />
-                            <p className="mb-0 text-secondary">{timeline.favorites.length}</p>
+                            <FavoriteButton
+                                timeline={timeline}
+                                loginUser={props.loginUser} />
                         </div>
                     </div>
                 </div>

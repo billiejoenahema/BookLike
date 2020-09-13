@@ -7,29 +7,20 @@ import Timeline from './Timeline'
 import Popular from './Popular'
 
 const ReviewsTab = () => {
+
+    const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
     const [populars, setPopulars] = useState([])
-    const [loginUser, setLoginUser] = useState([])
 
     useEffect(() => {
-        getTimelines()
-        getPopulars()
-        getLoginUser()
+        getData()
     }, [])
 
-    const getTimelines = async () => {
-        const response = await axios.get('/api/reviews')
-        setTimelines(response.data.timelines)
-    }
-
-    const getPopulars = async () => {
-        const response = await axios.get('/api/reviews')
-        setPopulars(response.data.populars)
-    }
-
-    const getLoginUser = async () => {
+    const getData = async () => {
         const response = await axios.get('/api/reviews')
         setLoginUser(response.data.loginUser)
+        setTimelines(response.data.timelines)
+        setPopulars(response.data.populars)
     }
 
     return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 
@@ -57,7 +57,6 @@ function Timeline(props) {
                             <FavoriteButton
                                 timeline={timeline}
                                 loginUser={props.loginUser} />
-                            <p className="mb-0 text-secondary">{timeline.favorites.length}</p>
                         </div>
                     </div>
                 </div>

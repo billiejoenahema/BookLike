@@ -71697,53 +71697,82 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
 var FavoriteButton = function FavoriteButton(props) {
-  // function isFavorite(timeline, loginUser) {
-  //     const favoritesArray = Array.from(timeline.favorites)
-  //     const userIds = favoritesArray.map(v => v.user_id)
-  //     console.log(loginUser.id)
-  //     return userIds.includes(loginUser.id)
-  // }
-  var timeline = props.timeline;
-  var loginUser = props.loginUser;
+  var InitialState = Favorited(props.timeline, props.loginUser);
 
-  var favorited = function favorited(timeline, loginUser) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    isFavorite: InitialState,
+    count: props.timeline.favorites.length
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      favorite = _useState2[0],
+      setFavorite = _useState2[1];
+
+  console.log(favorite.isFavorite);
+
+  function Favorited(timeline, loginUser) {
     var favoritesArray = Array.from(timeline.favorites);
     var userIds = favoritesArray.map(function (v) {
       return v.user_id;
     });
     return userIds.includes(loginUser.id);
-  }; // const [favorited, setFavorite] = useState(InitialState)
-  // const ToggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
+  }
 
+  var toggleFavorite = react__WEBPACK_IMPORTED_MODULE_0___default.a.useCallback(function () {
+    return setFavorite(function (prev) {
+      return !prev;
+    });
+  }, [setFavorite]);
 
   var PostFavoriteButton = function PostFavoriteButton(e) {
     e.preventDefault();
+    console.log('PostButton Clicked!');
     var review_id = props.timeline.id;
+    console.log(review_id);
     return axios.post('api/favorites', {
       review_id: review_id
-    }).then(function (res) {})["catch"](function (err) {
+    }).then(function (res) {
+      console.log('Success!');
+    })["catch"](function (err) {
       console.log('失敗！');
     });
   };
 
   var DeleteFavoriteButton = function DeleteFavoriteButton(e) {
     e.preventDefault();
-    ToggleFavorite;
+    console.log('DeleteButton Clicked!');
     var favoritesArray = Array.from(props.timeline.favorites);
+    console.log(props.timeline.favorites);
     var favoritesIds = favoritesArray.map(function (v) {
       return v.id;
     });
     var id = favoritesIds[0];
-    return axios["delete"]("api/favorites/".concat(id)).then(function (res) {})["catch"](function (err) {
+    return axios["delete"]("api/favorites/".concat(id)).then(function (res) {
+      console.log('Success!');
+    })["catch"](function (err) {
       console.log('失敗！');
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorited(timeline, loginUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorite.isFavorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: DeleteFavoriteButton,
     className: "btn p-0 border-0",
     "data-tip": "\u3044\u3044\u306D\u30DC\u30BF\u30F3"
@@ -71763,7 +71792,9 @@ var FavoriteButton = function FavoriteButton(props) {
     place: "top"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "far fa-heart fa-fw text-primary"
-  })));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "mb-0 text-secondary"
+  }, props.timeline.favorites.length));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FavoriteButton);
@@ -71864,9 +71895,7 @@ function Popular(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       timeline: timeline,
       loginUser: props.loginUser
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "mb-0 text-secondary"
-    }, timeline.favorites.length))));
+    }))));
   }));
 }
 
@@ -71920,28 +71949,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewsTab = function ReviewsTab() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
-      timelines = _useState2[0],
-      setTimelines = _useState2[1];
+      loginUser = _useState2[0],
+      setLoginUser = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      populars = _useState4[0],
-      setPopulars = _useState4[1];
+      timelines = _useState4[0],
+      setTimelines = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      loginUser = _useState6[0],
-      setLoginUser = _useState6[1];
+      populars = _useState6[0],
+      setPopulars = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    getTimelines();
-    getPopulars();
-    getLoginUser();
+    getData();
   }, []);
 
-  var getTimelines = /*#__PURE__*/function () {
+  var getData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -71953,9 +71980,11 @@ var ReviewsTab = function ReviewsTab() {
 
             case 2:
               response = _context.sent;
+              setLoginUser(response.data.loginUser);
               setTimelines(response.data.timelines);
+              setPopulars(response.data.populars);
 
-            case 4:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -71963,62 +71992,8 @@ var ReviewsTab = function ReviewsTab() {
       }, _callee);
     }));
 
-    return function getTimelines() {
+    return function getData() {
       return _ref.apply(this, arguments);
-    };
-  }();
-
-  var getPopulars = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return axios.get('/api/reviews');
-
-            case 2:
-              response = _context2.sent;
-              setPopulars(response.data.populars);
-
-            case 4:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function getPopulars() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  var getLoginUser = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return axios.get('/api/reviews');
-
-            case 2:
-              response = _context3.sent;
-              setLoginUser(response.data.loginUser);
-
-            case 4:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function getLoginUser() {
-      return _ref3.apply(this, arguments);
     };
   }();
 
@@ -72133,9 +72108,7 @@ function Timeline(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       timeline: timeline,
       loginUser: props.loginUser
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "mb-0 text-secondary"
-    }, timeline.favorites.length))));
+    }))));
   }));
 }
 

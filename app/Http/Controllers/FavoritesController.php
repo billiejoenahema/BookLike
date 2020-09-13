@@ -51,12 +51,13 @@ class FavoritesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Favorite $favorite, Request $request, Int $id)
+    public function destroy(Favorite $favorite, $id)
     {
         $favorite->find($id)->delete();
         return;
 
     }
+
     // public function destroy(Favorite $favorite)
     // {
     //     $user_id = $favorite->user_id;
