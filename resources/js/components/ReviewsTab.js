@@ -4,7 +4,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css';
 
 import Timeline from './Timeline'
-import Popular from './Popular'
 
 const ReviewsTab = () => {
 
@@ -34,7 +33,7 @@ const ReviewsTab = () => {
                     <Timeline timelines={timelines} loginUser={loginUser} />
                 </TabPanel>
                 <TabPanel>
-                    <Popular populars={populars} loginUser={loginUser} />
+                    <Timeline timelines={populars} loginUser={loginUser} />
                 </TabPanel>
             </Tabs>
         </Fragment>

@@ -1,37 +1,41 @@
-import React, { useState, useEffect, useCallback } from "react"
-import ReactTooltip from 'react-tooltip'
-import { set } from 'lodash'
+import React, { useState, useCallback } from 'react'
 
 const FavoriteButton = (props) => {
 
-    const InitialState = Favorited(props.timeline, props.loginUser)
+    const InitialState = favorited(props.timeline, props.loginUser)
     const InitialCount = props.timeline.favorites.length
 
-    function Favorited(timeline, loginUser) {
+    function favorited(timeline, loginUser) {
         const favoritesArray = Array.from(timeline.favorites)
         const userIds = favoritesArray.map(v => v.user_id)
         return userIds.includes(loginUser.id)
     }
 
-    // const [favorite, setFavorite] = useState({
-    //     isFavorite: InitialState,
-    //     count: InitialCount
-    // })
-
     const [favorite, setFavorite] = useState(InitialState)
     const [count, setCount] = useState(InitialCount)
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
+
+    function countUp() {
+        setCount(count + 1)
+    }
+
+    function countDown() {
+        setCount(count - 1)
+    }
+
     const PostFavoriteButton = () => {
-        toggleFavorite
-        console.log(toggleFavorite)
+        toggleFavorite()
+        countUp()
         console.log('PostButton Clicked!')
         const review_id = props.timeline.id
+
 
         return axios.post('api/favorites', { review_id: review_id })
             .then(res => {
                 console.log('Success!')
                 console.log(review_id)
+
             })
             .catch(err => {
                 console.log('失敗！')
@@ -39,7 +43,8 @@ const FavoriteButton = (props) => {
     }
 
     const DeleteFavoriteButton = () => {
-        toggleFavorite
+        toggleFavorite()
+        countDown()
         console.log('DeleteButton Clicked!')
         const favoritesArray = Array.from(props.timeline.favorites)
         const favoritesIds = favoritesArray.map(v => v.id)
@@ -48,7 +53,7 @@ const FavoriteButton = (props) => {
         return axios.delete(`api/favorites/${id}`)
             .then(res => {
                 console.log('Success!')
-                console.log(id)
+                console.log(res.data)
             })
             .catch(err => {
                 console.log('失敗！')
@@ -58,7 +63,6 @@ const FavoriteButton = (props) => {
     return (
         <>
             <button onClick={favorite ? DeleteFavoriteButton : PostFavoriteButton} className="btn p-0 border-0" data-tip="いいねボタン" >
-                <ReactTooltip effect="float" type="info" place="top" />
                 <i className={favorite ? "fas fa-heart fa-fw text-danger" : "far fa-heart fa-fw text-primary"}></i></button >
             <p className="mb-0 text-secondary">{count}</p>
         </>

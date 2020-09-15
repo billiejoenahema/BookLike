@@ -4,9 +4,20 @@ import FavoriteButton from './FavoriteButton'
 
 function Popular(props) {
 
+    const [populars, setPopulars] = useState([])
+
+    useEffect(() => {
+        getPopulars()
+    }, [])
+
+    const getPopulars = async () => {
+        const response = await axios.get('/api/reviews')
+        setPopulars(response.data.populars)
+    }
+
     return (
         <Fragment>
-            {props.populars.map((timeline) =>
+            {populars.map((timeline) =>
                 <div className="card shadow-sm mb-3" key={timeline.id} >
                     <div className="card-haeder p-3 w-100 d-flex">
                         <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />

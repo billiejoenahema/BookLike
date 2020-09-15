@@ -37,22 +37,7 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
-    Route::post('favorites', 'FavoritesController@store');
-    Route::delete('favorites/{id}', 'FavoritesController@destroy');
-    // Route::delete('favorites', function (Request $requeat, Favorite $favorite) {
-    //     $favorite_id = $request->favorite_id;
-    //     $favorite->find($favorite_id)->delete();
-    // });
+    Route::post('favorites', 'Api\FavoriteController@store');
+    Route::delete('favorites/{id}', 'Api\FavoriteController@destroy');
 
-
-    // Route::delete('reviews/{id}',function(Review $review){
-
-    //     $review = App\Review::find($review->id);
-    //     dd($review);
-    //     $review->delete();
-
-    //     return response()->json([
-    //         'success' => '投稿を削除しました'
-    //     ]);
-    // });
 });

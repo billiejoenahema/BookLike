@@ -13,4 +13,3 @@ require('./bootstrap');
  */
 
 require('./components/ReviewsTab');
-require('./components/Example');
