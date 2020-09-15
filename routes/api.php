@@ -37,6 +37,19 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
+    Route::get('/users',function (Request $request, Review $review) {
+
+        $loginUser = auth()->user();
+        $myReviews = Review::where('user_id', $loginUser->id)->with('user')->with('comments')->with('favorites')->orderBy('created_at', 'DESC')->get();
+        // $populars = Review::withCount('favorites')->with('comments')->with('favorites')->with('user')->orderBy('favorites_count', 'DESC')->get();
+
+        return response()->json(
+            [
+                'loginUser' => $loginUser,
+                'myReviews' => $myReviews
+            ]);
+    });
+
     Route::post('favorites', 'Api\FavoriteController@store');
     Route::delete('favorites/{id}', 'Api\FavoriteController@destroy');
 

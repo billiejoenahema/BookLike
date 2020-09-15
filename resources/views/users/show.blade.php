@@ -8,7 +8,8 @@
         @else
             @include('components.user_profile')
         @endif
-
+        <!-- React-tabs -->
+        <div id="mypageTab"></div>
         @if (isset($timelines))
             <div class="col-md-8">
                 @foreach ($timelines as $timeline)
