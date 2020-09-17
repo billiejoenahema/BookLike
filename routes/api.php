@@ -17,10 +17,6 @@ use App\Models\Favorite;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/reviews',function (Request $request, Review $review, User $user) {
@@ -37,16 +33,24 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
-    Route::get('/users',function (Request $request, Review $review) {
+    Route::get('/users/{id}',function (Request $request, Review $review, $id) {
 
+        $user_id = $id;
+        // $query = Favorite::where('user_id', $user_id);
         $loginUser = auth()->user();
-        $myReviews = Review::where('user_id', $loginUser->id)->with('user')->with('comments')->with('favorites')->orderBy('created_at', 'DESC')->get();
-        // $populars = Review::withCount('favorites')->with('comments')->with('favorites')->with('user')->orderBy('favorites_count', 'DESC')->get();
+        $myReviews = Review::where('user_id', $user_id)
+            ->with('user')
+            ->with('comments')
+            ->with('favorites')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        $favoriteReviews = $review->getFavoriteReviews($user_id);
 
         return response()->json(
             [
                 'loginUser' => $loginUser,
-                'myReviews' => $myReviews
+                'myReviews' => $myReviews,
+                'favoriteReviews' => $favoriteReviews
             ]);
     });
 

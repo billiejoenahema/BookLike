@@ -9,22 +9,25 @@ const MyPageTab = () => {
 
     const [loginUser, setLoginUser] = useState()
     const [myReviews, setMyReviews] = useState([])
+    const [favoriteReviews, setFavoriteReviews] = useState([])
+    const url = window.location.pathname
 
     useEffect(() => {
         getData()
     }, [])
 
     const getData = async () => {
-        const response = await axios.get('/api/users')
+        const response = await axios.get(`/api${url}`)
         setLoginUser(response.data.loginUser)
         setMyReviews(response.data.myReviews)
+        setFavoriteReviews(response.data.favoriteReviews)
     }
 
     return (
         <Fragment>
             <Tabs>
                 <TabList>
-                    <Tab>自分の投稿</Tab>
+                    <Tab><div className="text-center">投稿</div></Tab>
                     <Tab>いいねした投稿</Tab>
                     <Tab>フォロー</Tab>
                     <Tab>フォロワー</Tab>
@@ -33,7 +36,7 @@ const MyPageTab = () => {
                     <Timeline timelines={myReviews} loginUser={loginUser} />
                 </TabPanel>
                 <TabPanel>
-                    <Timeline timelines={myReviews} loginUser={loginUser} />
+                    <Timeline timelines={favoriteReviews} loginUser={loginUser} />
                 </TabPanel>
                 <TabPanel>
                     <Timeline timelines={myReviews} loginUser={loginUser} />

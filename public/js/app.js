@@ -71689,8 +71689,8 @@ var FavoriteButton = function FavoriteButton(props) {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialCount),
       _useState4 = _slicedToArray(_useState3, 2),
-      count = _useState4[0],
-      setCount = _useState4[1];
+      favoriteCount = _useState4[0],
+      setFavoriteCount = _useState4[1];
 
   var toggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return setFavorite(function (prev) {
@@ -71699,11 +71699,11 @@ var FavoriteButton = function FavoriteButton(props) {
   }, [setFavorite]);
 
   function countUp() {
-    setCount(count + 1);
+    setFavoriteCount(favoriteCount + 1);
   }
 
   function countDown() {
-    setCount(count - 1);
+    setFavoriteCount(favoriteCount - 1);
   }
 
   var PostFavoriteButton = function PostFavoriteButton() {
@@ -71711,7 +71711,7 @@ var FavoriteButton = function FavoriteButton(props) {
     countUp();
     console.log('PostButton Clicked!');
     var review_id = props.timeline.id;
-    return axios.post('api/favorites', {
+    return axios.post('http://127.0.0.1:8000/api/favorites', {
       review_id: review_id
     }).then(function (res) {
       console.log('Success!');
@@ -71730,7 +71730,7 @@ var FavoriteButton = function FavoriteButton(props) {
       return v.id;
     });
     var id = favoritesIds[0];
-    return axios["delete"]("api/favorites/".concat(id)).then(function (res) {
+    return axios["delete"]("http://127.0.0.1:8000/api/favorites/".concat(id)).then(function (res) {
       console.log('Success!');
       console.log(res.data);
     })["catch"](function (err) {
@@ -71745,7 +71745,7 @@ var FavoriteButton = function FavoriteButton(props) {
     className: favorite ? "fas fa-heart fa-fw text-danger" : "far fa-heart fa-fw text-primary"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0 text-secondary"
-  }, count));
+  }, favoriteCount));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FavoriteButton);
@@ -71806,6 +71806,12 @@ var MyPageTab = function MyPageTab() {
       myReviews = _useState4[0],
       setMyReviews = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      favoriteReviews = _useState6[0],
+      setFavoriteReviews = _useState6[1];
+
+  var url = window.location.pathname;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     getData();
   }, []);
@@ -71818,13 +71824,13 @@ var MyPageTab = function MyPageTab() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios.get('/api/users');
+              return axios.get("/api".concat(url));
 
             case 2:
               response = _context.sent;
               setLoginUser(response.data.loginUser);
               setMyReviews(response.data.myReviews);
-              console.log(response.data.myReviews);
+              setFavoriteReviews(response.data.favoriteReviews);
 
             case 6:
             case "end":
@@ -71839,11 +71845,13 @@ var MyPageTab = function MyPageTab() {
     };
   }();
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u81EA\u5206\u306E\u6295\u7A3F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u30D5\u30A9\u30ED\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u30D5\u30A9\u30ED\u30EF\u30FC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-center"
+  }, "\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u30D5\u30A9\u30ED\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u30D5\u30A9\u30ED\u30EF\u30FC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
     timelines: myReviews,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    timelines: myReviews,
+    timelines: favoriteReviews,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
     timelines: myReviews,
@@ -71993,7 +72001,7 @@ function Timeline(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card shadow-sm mb-3",
       key: timeline.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, console.log(timeline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-haeder p-3 w-100 d-flex"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: "/storage/profile_image/".concat(timeline.user.profile_image),
@@ -72003,7 +72011,7 @@ function Timeline(props) {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-2 d-flex flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "users/".concat(timeline.user.id),
+      href: "http://127.0.0.1:8000/users/".concat(timeline.user.id),
       className: "text-reset"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-0"
@@ -72037,7 +72045,7 @@ function Timeline(props) {
     }, function () {
       if (timeline.user.id === props.loginUser.id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "reviews/".concat(timeline.id, "/edit"),
+          href: "http://127.0.0.1:8000/reviews/".concat(timeline.id, "/edit"),
           "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-edit"
@@ -72050,7 +72058,7 @@ function Timeline(props) {
     }()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mr-3 d-flex align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "reviews/".concat(timeline.id),
+      href: "http://127.0.0.1:8000/reviews/".concat(timeline.id),
       "data-tip": "\u30B3\u30E1\u30F3\u30C8\u3092\u6295\u7A3F"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "far fa-comment fa-fw"

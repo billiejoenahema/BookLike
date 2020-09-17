@@ -8,10 +8,11 @@ function Timeline(props) {
         <Fragment>
             {props.timelines.map((timeline) =>
                 <div className="card shadow-sm mb-3" key={timeline.id} >
+                    {console.log(timeline)}
                     <div className="card-haeder p-3 w-100 d-flex">
                         <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                         <div className="ml-2 d-flex flex-column">
-                            <a href={`users/${timeline.user.id}`} className="text-reset">
+                            <a href={`http://127.0.0.1:8000/users/${timeline.user.id}`} className="text-reset">
                                 <p className="mb-0">{timeline.user.name}</p>
                                 <span className="text-secondary">{timeline.user.screen_name}</span>
                             </a>
@@ -39,7 +40,7 @@ function Timeline(props) {
                             {(() => {
                                 if (timeline.user.id === props.loginUser.id) {
                                     return (
-                                        <a href={`reviews/${timeline.id}/edit`}
+                                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}/edit`}
                                             data-tip="投稿を編集"><i className="fas fa-edit"></i>
                                             <ReactTooltip effect="float" type="info" place="top" /></a>
                                     )
@@ -48,7 +49,7 @@ function Timeline(props) {
                         </div>
                         {/* コメントボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <a href={`reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw"></i>
+                            <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw"></i>
                                 <ReactTooltip effect="float" type="info" place="top" /></a>
                             <p className="mb-0 text-secondary">{timeline.comments.length}</p>
                         </div>

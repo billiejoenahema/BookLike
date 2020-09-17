@@ -12,16 +12,16 @@ const FavoriteButton = (props) => {
     }
 
     const [favorite, setFavorite] = useState(InitialState)
-    const [count, setCount] = useState(InitialCount)
+    const [favoriteCount, setFavoriteCount] = useState(InitialCount)
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
 
     function countUp() {
-        setCount(count + 1)
+        setFavoriteCount(favoriteCount + 1)
     }
 
     function countDown() {
-        setCount(count - 1)
+        setFavoriteCount(favoriteCount - 1)
     }
 
     const PostFavoriteButton = () => {
@@ -31,7 +31,7 @@ const FavoriteButton = (props) => {
         const review_id = props.timeline.id
 
 
-        return axios.post('api/favorites', { review_id: review_id })
+        return axios.post('http://127.0.0.1:8000/api/favorites', { review_id: review_id })
             .then(res => {
                 console.log('Success!')
                 console.log(review_id)
@@ -50,7 +50,7 @@ const FavoriteButton = (props) => {
         const favoritesIds = favoritesArray.map(v => v.id)
         const id = favoritesIds[0]
 
-        return axios.delete(`api/favorites/${id}`)
+        return axios.delete(`http://127.0.0.1:8000/api/favorites/${id}`)
             .then(res => {
                 console.log('Success!')
                 console.log(res.data)
@@ -64,7 +64,7 @@ const FavoriteButton = (props) => {
         <>
             <button onClick={favorite ? DeleteFavoriteButton : PostFavoriteButton} className="btn p-0 border-0" >
                 <i className={favorite ? "fas fa-heart fa-fw text-danger" : "far fa-heart fa-fw text-primary"}></i></button >
-            <p className="mb-0 text-secondary">{count}</p>
+            <p className="mb-0 text-secondary">{favoriteCount}</p>
         </>
     )
 }
