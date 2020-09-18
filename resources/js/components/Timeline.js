@@ -10,9 +10,7 @@ function Timeline(props) {
                 <div className="card shadow-sm mb-3" key={timeline.id} >
                     {console.log(timeline)}
                     <div className="card-haeder p-3 w-100 d-flex">
-                        <a href={`http://127.0.0.1:8000/users/${timeline.user.id}`}>
-                            <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
-                        </a>
+                        <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                         <div className="ml-2 d-flex flex-column">
                             <a href={`http://127.0.0.1:8000/users/${timeline.user.id}`} className="text-reset">
                                 <p className="mb-0">{timeline.user.name}</p>
@@ -34,7 +32,7 @@ function Timeline(props) {
                         </div>
                     </div>
                     <div className="card-body">
-                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset">{timeline.text}</a>
+                        <a href={`reviews/${timeline.id}`} className="d-block text-reset">{timeline.text}</a>
                     </div>
                     <div className="card-footer py-1 d-flex justify-content-end bg-white">
                         {/* 投稿編集ボタン */}
