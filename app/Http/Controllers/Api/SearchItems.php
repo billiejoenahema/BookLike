@@ -13,7 +13,7 @@ class SearchItems {
 
     public function getSearchItems($keyword) {
 
-        $partner_tag = config('pa-api.partner_tag');
+        $partner_tag=config('pa-api.partner_tag');
         $accessKey=config('pa-api.access_key');
         $secretKey=config('pa-api.secret_key');
         $serviceName="ProductAdvertisingAPI";

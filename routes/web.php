@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 // ログイン状態
 Route::group(['middleware' => 'auth'], function() {
 

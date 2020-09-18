@@ -27,10 +27,10 @@ const MyPageTab = () => {
         <Fragment>
             <Tabs>
                 <TabList>
-                    <Tab><div className="text-center">投稿</div></Tab>
-                    <Tab>いいねした投稿</Tab>
-                    <Tab>フォロー</Tab>
-                    <Tab>フォロワー</Tab>
+                    <Tab><div className="text-center small">投稿</div></Tab>
+                    <Tab><div className="text-center small">いいねした投稿</div></Tab>
+                    <Tab><div className="text-center small">フォロー</div></Tab>
+                    <Tab><div className="text-center small">フォロワー</div></Tab>
                 </TabList>
                 <TabPanel>
                     <Timeline timelines={myReviews} loginUser={loginUser} />
