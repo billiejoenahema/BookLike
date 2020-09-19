@@ -28,7 +28,7 @@ const MyPageTab = () => {
             <Tabs>
                 <TabList>
                     <Tab><div className="text-center">投稿</div></Tab>
-                    <Tab>いいねした投稿</Tab>
+                    <Tab><div className="text-center">いいねした投稿</div></Tab>
                     <Tab>フォロー</Tab>
                     <Tab>フォロワー</Tab>
                 </TabList>

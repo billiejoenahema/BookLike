@@ -32,7 +32,7 @@ function Timeline(props) {
                         </div>
                     </div>
                     <div className="card-body">
-                        <a href={`reviews/${timeline.id}`} className="d-block text-reset">{timeline.text}</a>
+                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset">{timeline.text}</a>
                     </div>
                     <div className="card-footer py-1 d-flex justify-content-end bg-white">
                         {/* 投稿編集ボタン */}

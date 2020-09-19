@@ -9,7 +9,9 @@
             @include('components.user_profile')
         @endif
         <!-- React-tabs -->
-        <div id="mypageTab"></div>
+        <div class="col-md-8">
+            <div id="mypageTab"></div>
+        </div>
     </div>
 </div>
 @endsection

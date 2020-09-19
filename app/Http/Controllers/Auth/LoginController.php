@@ -40,5 +40,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $guest_password = 'gestuser+password';
+        return view('auth.login',compact('guest_password'));
     }
 }
