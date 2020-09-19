@@ -10,7 +10,7 @@
         @endif
         <!-- React-tabs -->
         <div class="col-md-8">
-            <div id="mypageTab"></div>
+            <div id="userPageTab"></div>
         </div>
     </div>
 </div>

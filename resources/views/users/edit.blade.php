@@ -6,6 +6,11 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header">プロフィールを編集</div>
+            @if($login_user->id == 1)
+                <div class="disabled m-3">
+                    {{ __('ゲストユーザーはプロフィールを編集できません') }}
+                </div>
+            @else
                 <div class="card-body">
                     <form method="POST" action="{{ url('users/' .$login_user->id) }}" enctype="multipart/form-data">
                         @csrf
@@ -85,6 +90,7 @@
                         </div>
                     </form>
                 </div>
+            @endif
             </div>
         </div>
     </div>

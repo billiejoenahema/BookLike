@@ -74,8 +74,8 @@
                     <div class="w-100 mt-5 text-white">
                         <form action="{{ route('login') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="email" value="{{ config('guest_email') }}">
-                            <input type="hidden" name="password" value="{{ config('guest_password') }}">
+                            <input type="hidden" name="email" value="guestuser@example.com">
+                            <input type="hidden" name="password" value="gestuser+password">
                             <button type="submit" class="btn w-100 bg-success text-reset">{{ __('お試しログイン') }}</button>
                         </form>
                     </div>

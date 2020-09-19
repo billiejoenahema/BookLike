@@ -5,7 +5,7 @@ import 'react-tabs/style/react-tabs.css';
 
 import Timeline from './Timeline'
 
-const MyPageTab = () => {
+const UserPageTab = () => {
 
     const [loginUser, setLoginUser] = useState()
     const [myReviews, setMyReviews] = useState([])
@@ -50,8 +50,8 @@ const MyPageTab = () => {
 
 }
 
-export default MyPageTab
+export default UserPageTab
 
-if (document.getElementById('mypageTab')) {
-    ReactDOM.render(<MyPageTab />, document.getElementById('mypageTab'))
+if (document.getElementById('userPageTab')) {
+    ReactDOM.render(<UserPageTab />, document.getElementById('userPageTab'))
 }
