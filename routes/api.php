@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
         $user_id = $id;
         // $query = Favorite::where('user_id', $user_id);
         $loginUser = auth()->user();
-        $myReviews = Review::where('user_id', $user_id)
+        $userReviews = Review::where('user_id', $user_id)
             ->with('user')
             ->with('comments')
             ->with('favorites')
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function() {
         return response()->json(
             [
                 'loginUser' => $loginUser,
-                'myReviews' => $myReviews,
+                'userReviews' => $userReviews,
                 'favoriteReviews' => $favoriteReviews
             ]);
     });

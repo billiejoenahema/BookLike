@@ -8,7 +8,7 @@ import Timeline from './Timeline'
 const UserPageTab = () => {
 
     const [loginUser, setLoginUser] = useState()
-    const [myReviews, setMyReviews] = useState([])
+    const [userReviews, setUserReviews] = useState([])
     const [favoriteReviews, setFavoriteReviews] = useState([])
     const url = window.location.pathname
 
@@ -19,7 +19,7 @@ const UserPageTab = () => {
     const getData = async () => {
         const response = await axios.get(`/api${url}`)
         setLoginUser(response.data.loginUser)
-        setMyReviews(response.data.myReviews)
+        setUserReviews(response.data.userReviews)
         setFavoriteReviews(response.data.favoriteReviews)
     }
 
@@ -33,16 +33,16 @@ const UserPageTab = () => {
                     <Tab>フォロワー</Tab>
                 </TabList>
                 <TabPanel>
-                    <Timeline timelines={myReviews} loginUser={loginUser} />
+                    <Timeline timelines={userReviews} loginUser={loginUser} />
                 </TabPanel>
                 <TabPanel>
                     <Timeline timelines={favoriteReviews} loginUser={loginUser} />
                 </TabPanel>
                 <TabPanel>
-                    <Timeline timelines={myReviews} loginUser={loginUser} />
+                    <Timeline timelines={userReviews} loginUser={loginUser} />
                 </TabPanel>
                 <TabPanel>
-                    <Timeline timelines={myReviews} loginUser={loginUser} />
+                    <Timeline timelines={userReviews} loginUser={loginUser} />
                 </TabPanel>
             </Tabs>
         </Fragment>

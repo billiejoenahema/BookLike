@@ -8,7 +8,6 @@ function Timeline(props) {
         <Fragment>
             {props.timelines.map((timeline) =>
                 <div className="card shadow-sm mb-3" key={timeline.id} >
-                    {console.log(timeline)}
                     <div className="card-haeder p-3 w-100 d-flex">
                         <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                         <div className="ml-2 d-flex flex-column">

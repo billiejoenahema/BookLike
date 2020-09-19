@@ -71883,7 +71883,7 @@ function Timeline(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card shadow-sm mb-3",
       key: timeline.id
-    }, console.log(timeline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-haeder p-3 w-100 d-flex"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: "/storage/profile_image/".concat(timeline.user.profile_image),
@@ -72014,8 +72014,8 @@ var UserPageTab = function UserPageTab() {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      myReviews = _useState4[0],
-      setMyReviews = _useState4[1];
+      userReviews = _useState4[0],
+      setUserReviews = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -72040,7 +72040,7 @@ var UserPageTab = function UserPageTab() {
             case 2:
               response = _context.sent;
               setLoginUser(response.data.loginUser);
-              setMyReviews(response.data.myReviews);
+              setUserReviews(response.data.userReviews);
               setFavoriteReviews(response.data.favoriteReviews);
 
             case 6:
@@ -72061,16 +72061,16 @@ var UserPageTab = function UserPageTab() {
   }, "\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
   }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u30D5\u30A9\u30ED\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, "\u30D5\u30A9\u30ED\u30EF\u30FC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    timelines: myReviews,
+    timelines: userReviews,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
     timelines: favoriteReviews,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    timelines: myReviews,
+    timelines: userReviews,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    timelines: myReviews,
+    timelines: userReviews,
     loginUser: loginUser
   }))));
 };
