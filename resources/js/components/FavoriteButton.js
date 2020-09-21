@@ -63,7 +63,8 @@ const FavoriteButton = (props) => {
     return (
         <>
             <button onClick={favorite ? DeleteFavoriteButton : PostFavoriteButton} className="btn p-0 border-0" >
-                <i className={favorite ? "fas fa-heart fa-fw text-danger" : "far fa-heart fa-fw text-primary"}></i></button >
+                <i className={favorite ? "fas fa-heart fa-fw text-danger" : "far fa-heart fa-fw text-primary"}></i>
+            </button >
             <p className="mb-0 text-secondary">{favoriteCount}</p>
         </>
     )

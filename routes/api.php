@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
-use App\Models\Favorite;
 
 
 /*
@@ -33,28 +32,34 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
-    Route::get('/users/{id}',function (Request $request, Review $review, $id) {
+    Route::get('/users/{id}',function (Request $request, Review $review, User $user, Int $id) {
 
-        $user_id = $id;
-        // $query = Favorite::where('user_id', $user_id);
         $loginUser = auth()->user();
-        $userReviews = Review::where('user_id', $user_id)
-            ->with('user')
-            ->with('comments')
-            ->with('favorites')
+        $userReviews = $review->where('user_id', $id)
+            ->with(['user', 'comments', 'favorites'])
             ->orderBy('created_at', 'DESC')
             ->get();
-        $favoriteReviews = $review->getFavoriteReviews($user_id);
 
+        $favoriteReviews = $review->getFavoriteReviews($id);
+        $followingUsers = $user->belongsToMany('App\Models\User', 'followers', 'following_id', 'followed_id')
+            ->where('following_id', $id)
+            ->with('followers')
+            ->get();
+        // $followingUsers = $user->getFollowingUsers($id);
         return response()->json(
             [
                 'loginUser' => $loginUser,
                 'userReviews' => $userReviews,
-                'favoriteReviews' => $favoriteReviews
+                'favoriteReviews' => $favoriteReviews,
+                'followingUsers' => $followingUsers
             ]);
     });
 
     Route::post('favorites', 'Api\FavoriteController@store');
     Route::delete('favorites/{id}', 'Api\FavoriteController@destroy');
+
+    // フォロー/フォロー解除
+    Route::post('users/{id}/follow', 'Api\UsersController@follow');
+    Route::delete('users/{id}/unfollow', 'Api\UsersController@unfollow');
 
 });

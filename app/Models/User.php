@@ -42,14 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function followers()
-    {
-        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
-    }
-
     public function follows()
     {
         return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
     }
 
     public function getAllUsers(Int $user_id)
@@ -112,9 +112,9 @@ class User extends Authenticatable
     }
 
     // フォローしているユーザーを取得
-    public function getFollowingUsers(Int $user_id)
+    public function getFollowingUsers(Int $id)
     {
-        return $this->follows()->where('following_id', $user_id)->paginate(6);
+        return $this->follows()->where('following_id', $id)->get();
     }
 
     // フォロワーを取得

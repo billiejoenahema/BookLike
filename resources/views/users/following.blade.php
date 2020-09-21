@@ -23,7 +23,7 @@
                                     </div>
 
                                     <div class="d-flex flex-column">
-                                        @if ($following->isFollowed($user->id))
+                                        @if ($following->isFollowed($login_user->id))
                                             <div class="px-2 mb-3">
                                                 <span class="px-1 bg-secondary text-light rounded">フォローされています</span>
                                             </div>
@@ -55,7 +55,4 @@
     @if($follow_count == 0)
     <div class="text-center">フォローしているユーザーはまだいません</div>
     @endif
-    <div class="my-4 d-flex justify-content-center">
-        {{ $following_users->links() }}
-    </div>
 @endsection

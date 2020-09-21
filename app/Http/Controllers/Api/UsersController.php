@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Follower;
@@ -24,7 +24,6 @@ class UsersController extends Controller
         $search = $request->input('search');
         $login_user = auth()->user();
         $user_id = $login_user->id;
-        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         if (isset($search)) {
             $users = $user->getSearchUsers($user_id, $search);
@@ -34,31 +33,9 @@ class UsersController extends Controller
 
         return view('users.index', compact(
             'users',
-            'default_image',
             'login_user',
             'search'
         ));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -100,11 +77,9 @@ class UsersController extends Controller
         public function edit(User $user)
         {
             $login_user = auth()->user();
-            $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('users.edit', compact(
             'login_user',
-            'default_image'
         ));
     }
 
@@ -146,54 +121,47 @@ class UsersController extends Controller
     }
 
     // フォローする
-    public function follow(User $user)
+    public function follow(User $user, $id)
     {
-        $follower = auth()->user();
+        $login_user = auth()->user();
         // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
+        $is_following = $login_user->isFollowing($id);
         if(!$is_following) {
             // フォローしていなければフォローする
-            $follower->follow($user->id);
+            $login_user->follow($id);
             return back();
         }
     }
 
     // フォロー解除
-    public function unfollow(User $user)
+    public function unfollow(User $user, $id)
     {
-        $follower = auth()->user();
+        $login_user = auth()->user();
         // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
+        $is_following = $login_user->isFollowing($id);
         if($is_following) {
             // フォローしていればフォローを解除する
-            $follower->unfollow($user->id);
+            $login_user->unfollow($id);
             return back();
         }
     }
 
     // フォローしている全ユーザー
-    public function following(User $user, Review $review, Follower $follower)
+    public function following(User $user, Review $review, Follower $follower, $id)
     {
-        $following_users = $user->getFollowingUsers($user->id);
+        $followingUsers = $user->getFollowingUsers($id);
         $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
-        $review_count = $review->getReviewCount($user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($user->id);
-        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
+        $is_following = $login_user->isFollowing($id);
+        $is_followed = $login_user->isFollowed($id);
+        $review_count = $review->getReviewCount($id);
+        $follow_count = $follower->getFollowCount($id);
+        $follower_count = $follower->getFollowerCount($id);
+        $favorite_reviews_count = $review->getFavoriteReviews($id)->count();
 
-        return view('users.following', compact(
-            'following_users',
-            'user',
-            'login_user',
-            'is_following',
-            'is_followed',
-            'review_count',
-            'follow_count',
-            'follower_count',
-            'favorite_reviews_count',
-        ));
+        return response()->json(
+            [
+                'followingUsers' => $followingUsers
+            ]);
     }
 
     // 全フォロワー
@@ -214,31 +182,6 @@ class UsersController extends Controller
             'login_user',
             'is_following',
             'is_followed',
-            'review_count',
-            'follow_count',
-            'follower_count',
-            'favorite_reviews_count',
-        ));
-    }
-
-    // いいねした投稿
-    public function favorite(User $user, Review $review, Follower $follower)
-    {
-        $timelines = $review->getFavoriteReviews($user->id);
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
-        $review_count = $review->getReviewCount($user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($user->id);
-        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
-
-        return view('users.favorite', compact(
-            'user',
-            'login_user',
-            'is_following',
-            'is_followed',
-            'timelines',
             'review_count',
             'follow_count',
             'follower_count',
