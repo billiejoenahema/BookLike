@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
-
+use App\Models\Follower;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,26 +32,51 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
-    Route::get('/users/{id}',function (Request $request, Review $review, User $user, Int $id) {
+    Route::get('/users', function (Request $request, User $user, Follower $follower) {
 
-        $loginUser = auth()->user();
+        $loginUserId = auth()->user()->id;
+        $loginUser = $user->with('followers')->find($loginUserId);
+        $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
+
+        return response()->json(
+            [
+                'loginUser' => $loginUser,
+                'allUsers' => $allUsers
+            ]);
+    });
+
+    Route::get('/users/{id}',function (Request $request, Review $review, User $user, Follower $follower, Int $id) {
+
+        $loginUserId = auth()->user()->id;
+        $loginUser = $user->with('followers')->find($loginUserId);
+
+        // ユーザーの投稿
         $userReviews = $review->where('user_id', $id)
             ->with(['user', 'comments', 'favorites'])
             ->orderBy('created_at', 'DESC')
             ->get();
 
+        // いいねした投稿
         $favoriteReviews = $review->getFavoriteReviews($id);
-        $followingUsers = $user->belongsToMany('App\Models\User', 'followers', 'following_id', 'followed_id')
-            ->where('following_id', $id)
-            ->with('followers')
+
+        // フォローしているユーザー
+        // $followingUsers = $user->belongsToMany('App\Models\User', 'followers', 'following_id', 'followed_id')
+        //     ->where('following_id', $id)
+        //     ->get();
+        $followingUsers = $follower->where('following_id', $id)->select('followers.followed_id')->get();
+
+        // フォロワー
+        $followers = $user->belongsToMany('App\Models\User', 'followers', 'followed_id', 'following_id')
+            ->where('followed_id', $id)
             ->get();
-        // $followingUsers = $user->getFollowingUsers($id);
+
         return response()->json(
             [
                 'loginUser' => $loginUser,
                 'userReviews' => $userReviews,
                 'favoriteReviews' => $favoriteReviews,
-                'followingUsers' => $followingUsers
+                'followingUsers' => $followingUsers,
+                'followers' => $followers
             ]);
     });
 

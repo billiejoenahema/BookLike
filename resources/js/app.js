@@ -14,3 +14,4 @@ require('./bootstrap');
 
 require('./components/ReviewsTab');
 require('./components/userPageTab');
+require('./components/userIndex');

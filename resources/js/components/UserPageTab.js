@@ -2,7 +2,6 @@ import React, { useEffect, useState, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css';
-import axios from 'axios';
 
 
 import Timeline from './Timeline'
@@ -11,9 +10,10 @@ import Users from './Users'
 const UserPageTab = () => {
 
     const [loginUser, setLoginUser] = useState()
+    const [followingUsers, setFollowingUsers] = useState([])
+    const [followers, setFollowers] = useState([])
     const [userReviews, setUserReviews] = useState([])
     const [favoriteReviews, setFavoriteReviews] = useState([])
-    const [followingUsers, setFollowingUsers] = useState([])
     const url = window.location.pathname
 
     useEffect(() => {
@@ -23,11 +23,11 @@ const UserPageTab = () => {
     const getData = async () => {
         const response = await axios.get(`/api${url}`)
         setLoginUser(response.data.loginUser)
+        setFollowingUsers(response.data.followingUsers)
+        setFollowers(response.data.followers)
         setUserReviews(response.data.userReviews)
         setFavoriteReviews(response.data.favoriteReviews)
-        setFollowingUsers(response.data.followingUsers)
     }
-
 
     return (
         <Fragment>
@@ -48,12 +48,11 @@ const UserPageTab = () => {
                     <Users users={followingUsers} loginUser={loginUser} />
                 </TabPanel>
                 <TabPanel>
-                    <Users users={followingUsers} loginUser={loginUser} />
+                    <Users users={followers} loginUser={loginUser} />
                 </TabPanel>
             </Tabs>
         </Fragment>
     )
-
 }
 
 export default UserPageTab

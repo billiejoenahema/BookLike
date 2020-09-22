@@ -20,12 +20,12 @@ function Popular(props) {
             {populars.map((timeline) =>
                 <div className="card shadow-sm mb-3" key={timeline.id} >
                     <div className="card-haeder p-3 w-100 d-flex">
-                        <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
+                        <a href={`http://127.0.0.1:8000/users/${timeline.user.id}`}>
+                            <img src={`/storage/profile_image/${timeline.user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
+                        </a>
                         <div className="ml-2 d-flex flex-column">
-                            <a href={`users/${timeline.user.id}`} className="text-reset">
-                                <p className="mb-0">{timeline.user.name}</p>
-                                <span className="text-secondary">{timeline.user.screen_name}</span>
-                            </a>
+                            <p className="mb-0">{timeline.user.name}</p>
+                            <span className="text-secondary">{timeline.user.screen_name}</span>
                         </div>
                         <div className="d-flex justify-content-end flex-grow-1">
                             <p className="mb-0 text-secondary">{timeline.created_at.slice(0, -8)}</p>
