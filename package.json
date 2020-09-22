@@ -25,6 +25,7 @@
         "sass-loader": "^7.1.0"
     },
     "dependencies": {
+        "react-infinite-scroll-hook": "^3.0.0",
         "react-router-dom": "^5.2.0",
         "react-tabs": "^3.1.1",
         "react-tooltip": "^4.2.9"

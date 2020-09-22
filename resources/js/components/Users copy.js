@@ -1,21 +1,20 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import isFollowed from './isFollowed'
-import FollowButton from './FollowButton'
 
 
 const Users = (props) => {
 
-    const users = props.users
+    const AllUsers = props.users
     const loginUser = props.loginUser
 
     return (
         <Fragment>
-            {users.map((user) =>
+            {AllUsers.map((user) =>
                 <div className="card mb-3 shadow-sm" key={user.id}>
                     <div className="card-haeder p-3 w-100 d-flex flex-column">
                         {
                             isFollowed(user, loginUser) ?
-                                <div className="mb-1 ml-5"><span className="text-secondary"><i className="far fa-laugh"></i>フォローされています</span></div>
+                                <div className="mb-1 ml-5"><span className="text-secondary"><i class="far fa-laugh"></i>フォローされています</span></div>
                                 : ''
                         }
                         <div className="d-flex w-100">

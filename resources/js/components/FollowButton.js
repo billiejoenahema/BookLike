@@ -1,36 +1,35 @@
-import { useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
+import isFollowed from './isFollowed'
 
 const FollowButton = (props) => {
 
-    const InitialState = props.isFollowing
-    const user_id = props.id
+    const InitialFollowState = isFollowed(props.user, props.loginUser)
+    const userId = props.user.id
 
-
-    const [following, setFollowing] = useState(InitialState)
+    const [following, setFollowing] = useState(InitialFollowState)
     const toggleFollow = useCallback(() => setFollowing((prev) => !prev), [setFollowing])
 
-    const FollowButton = () => {
+    const follow = () => {
         toggleFollow()
         console.log('FollowButton Clicked!')
 
-        return axios.post(`http://127.0.0.1:8000/api/${user_id}/unfollow`)
+        return axios.post(`http://127.0.0.1:8000/api/users/${userId}/follow`)
             .then(res => {
                 console.log('Success!')
-                console.log(user_id)
+                console.log(userId)
             })
             .catch(err => {
                 console.log('Failure!')
             })
     }
 
-    const UnFollowButton = () => {
+    const unFollow = () => {
         toggleFollow()
         console.log('UnFollowButton Clicked!')
 
-        return axios.delete(`http://127.0.0.1:8000/api/${user_id}/follow`)
+        return axios.delete(`http://127.0.0.1:8000/api/users/${userId}/unfollow`)
             .then(res => {
                 console.log('Success!')
-                console.log(res.data)
             })
             .catch(err => {
                 console.log('Failure!')
@@ -39,9 +38,11 @@ const FollowButton = (props) => {
 
     return (
         <>
-            <button onClick={following ? UnFollowButton() : FollowButton()} className="btn-sm btn-primary shadow-sm rounded-pill" >
-                <i className={following ? "btn-sm btn-primary shadow-sm rounded-pill" : "btn-sm btn-outline-primary shadow-sm rounded-pill"}></i>
-            </button >
+            {
+                following ?
+                    <button onClick={unFollow} className="btn-sm btn-primary shadow-sm rounded-pill">フォロー中</button>
+                    : <button onClick={follow} className="btn-sm btn-outline-primaryshadow-sm rounded-pill">フォローする</button>
+            }
         </>
     )
 }

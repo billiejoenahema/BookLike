@@ -36,6 +36,9 @@ Route::group(['middleware' => 'auth'], function() {
 
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
+
+        // ログインユーザー以外のすべてのユーザー
+        // $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
         $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
 
         return response()->json(
@@ -58,6 +61,9 @@ Route::group(['middleware' => 'auth'], function() {
 
         // いいねした投稿
         $favoriteReviews = $review->getFavoriteReviews($id);
+
+        // ログインユーザー以外のすべてのユーザー
+        $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
 
         // フォローしているユーザー
         // $followingUsers = $user->belongsToMany('App\Models\User', 'followers', 'following_id', 'followed_id')

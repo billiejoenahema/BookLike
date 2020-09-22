@@ -1,8 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import 'react-tabs/style/react-tabs.css';
-
+import 'react-tabs/style/react-tabs.css'
+import isFollowed from './isFollowed'
 
 import Timeline from './Timeline'
 import Users from './Users'

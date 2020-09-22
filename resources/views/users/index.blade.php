@@ -25,9 +25,7 @@
         </div>
 
         <div class="row justify-content-center m-auto">
-            <div class="col-md-8">
-                <div id="userIndex"></div>
-            </div>
+            <div id="userIndex" class="col-md-8"></div>
         </div>
     </div>
 @endsection
