@@ -27,7 +27,10 @@ const UserPageTab = () => {
         setFavoriteReviews(response.data.favoriteReviews)
         setFollowingUsers(response.data.followingUsers)
         setFollowers(response.data.followers)
-        console.log(response.data.followingUsers.length)
+    }
+
+    function existsData(array) {
+        return array.length !== 0
     }
 
 
@@ -42,22 +45,22 @@ const UserPageTab = () => {
                 </TabList>
                 <TabPanel>
                     {
-                        userReviews.length !== 0 ? < Timeline timelines={userReviews} loginUser={loginUser} /> : <span>投稿はまだありません</span>
+                        existsData(userReviews) ? <Timeline timelines={userReviews} loginUser={loginUser} /> : <div className="pb-5 mb-5">投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        favoriteReviews.length !== 0 ? < Timeline timelines={favoriteReviews} loginUser={loginUser} /> : <span>いいねした投稿はまだありません</span>
+                        existsData(favoriteReviews) ? <Timeline timelines={favoriteReviews} loginUser={loginUser} /> : <div className="pb-5 mb-5">いいねした投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        followingUsers.length !== 0 ? < Users users={followingUsers} loginUser={loginUser} /> : <span>フォローしているユーザーはまだいません</span>
+                        existsData(followingUsers) ? <Users users={followingUsers} loginUser={loginUser} /> : <div className="pb-5 mb-5">フォローしているユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        followers.length !== 0 ? < Users users={followers} loginUser={loginUser} /> : <span>フォロワーはまだいません</span>
+                        existsData(followers) ? <Users users={followers} loginUser={loginUser} /> : <div className="pb-5 mb-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>
             </Tabs>
