@@ -27,7 +27,7 @@ const UserPageTab = () => {
         setFavoriteReviews(response.data.favoriteReviews)
         setFollowingUsers(response.data.followingUsers)
         setFollowers(response.data.followers)
-        console.log(response.data.followingUsers)
+        console.log(response.data.followingUsers.length)
     }
 
 
@@ -37,20 +37,28 @@ const UserPageTab = () => {
                 <TabList>
                     <Tab><div className="text-center small">投稿</div></Tab>
                     <Tab><div className="text-center small">いいねした投稿</div></Tab>
-                    {/* <Tab><div className="text-center small">フォロー</div></Tab> */}
+                    <Tab><div className="text-center small">フォロー</div></Tab>
                     <Tab><div className="text-center small">フォロワー</div></Tab>
                 </TabList>
                 <TabPanel>
-                    <Timeline timelines={userReviews} loginUser={loginUser} />
+                    {
+                        userReviews.length !== 0 ? < Timeline timelines={userReviews} loginUser={loginUser} /> : <span>投稿はまだありません</span>
+                    }
                 </TabPanel>
                 <TabPanel>
-                    <Timeline timelines={favoriteReviews} loginUser={loginUser} />
+                    {
+                        favoriteReviews.length !== 0 ? < Timeline timelines={favoriteReviews} loginUser={loginUser} /> : <span>いいねした投稿はまだありません</span>
+                    }
                 </TabPanel>
-                {/* <TabPanel>
-                    <Users users={followingUsers} loginUser={loginUser} />
-                </TabPanel> */}
                 <TabPanel>
-                    <Users users={followers} loginUser={loginUser} />
+                    {
+                        followingUsers.length !== 0 ? < Users users={followingUsers} loginUser={loginUser} /> : <span>フォローしているユーザーはまだいません</span>
+                    }
+                </TabPanel>
+                <TabPanel>
+                    {
+                        followers.length !== 0 ? < Users users={followers} loginUser={loginUser} /> : <span>フォロワーはまだいません</span>
+                    }
                 </TabPanel>
             </Tabs>
         </Fragment>
