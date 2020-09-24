@@ -28,9 +28,9 @@ const Users = (props) => {
                                     <span className="text-secondary small">{user.screen_name}</span>
                                 </div>
                                 {/* フォローボタン */}
-                                <div className="ml-auto">
-                                    <FollowButton user={user} loginUser={loginUser} />
-                                </div>
+                                {
+                                    user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} /></div> : <div className="ml-auto"></div>
+                                }
                             </div>
                         </div>
                     </div>

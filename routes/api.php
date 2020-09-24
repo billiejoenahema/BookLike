@@ -32,49 +32,25 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
     });
 
-    Route::get('/users', function (Request $request, User $user, Follower $follower) {
-
-        $loginUserId = auth()->user()->id;
-        $loginUser = $user->with('followers')->find($loginUserId);
-
-        // ログインユーザー以外のすべてのユーザー
-        // $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
-        $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
-
-        return response()->json(
-            [
-                'loginUser' => $loginUser,
-                'allUsers' => $allUsers
-            ]);
-    });
-
-    Route::get('/users/{id}',function (Request $request, Review $review, User $user, Follower $follower, Int $id) {
+    Route::get('/users/{user}',function (Request $request, Review $review, User $user, Follower $follower) {
 
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
 
         // ユーザーの投稿
-        $userReviews = $review->where('user_id', $id)
+        $userReviews = $review->where('user_id', $user->id)
             ->with(['user', 'comments', 'favorites'])
             ->orderBy('created_at', 'DESC')
             ->get();
 
         // いいねした投稿
-        $favoriteReviews = $review->getFavoriteReviews($id);
+        $favoriteReviews = $review->getFavoriteReviews($user->id);
 
-        // ログインユーザー以外のすべてのユーザー
-        $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
-
-        // フォローしているユーザー
-        // $followingUsers = $user->belongsToMany('App\Models\User', 'followers', 'following_id', 'followed_id')
-        //     ->where('following_id', $id)
-        //     ->get();
-        $followingUsers = $follower->where('following_id', $id)->select('followers.followed_id')->get();
+        //フォローしているユーザー
+        $followingUsers = $user->getFollowingUsers($user->id);
 
         // フォロワー
-        $followers = $user->belongsToMany('App\Models\User', 'followers', 'followed_id', 'following_id')
-            ->where('followed_id', $id)
-            ->get();
+        $followers = $user->getFollowers($user->id);
 
         return response()->json(
             [
@@ -83,6 +59,21 @@ Route::group(['middleware' => 'auth'], function() {
                 'favoriteReviews' => $favoriteReviews,
                 'followingUsers' => $followingUsers,
                 'followers' => $followers
+            ]);
+    });
+
+    Route::get('/users', function (Request $request, User $user, Follower $follower) {
+
+        $loginUserId = auth()->user()->id;
+        $loginUser = $user->with('followers')->find($loginUserId);
+
+        // ログインユーザー以外のすべてのユーザー
+        $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
+
+        return response()->json(
+            [
+                'loginUser' => $loginUser,
+                'allUsers' => $allUsers
             ]);
     });
 

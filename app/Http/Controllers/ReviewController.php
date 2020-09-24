@@ -102,7 +102,6 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         $review = $review->getReview($review->id);
         $comments = $comment->getComments($review->id);
-        // $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
         $item = $get_item->getItem($review->asin);
         $item_url = $item->DetailPageURL;
 
@@ -110,7 +109,6 @@ class ReviewController extends Controller
             'review',
             'comments',
             'login_user',
-            // 'default_image',
             'item_url'
         ));
     }

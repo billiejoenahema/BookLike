@@ -39,9 +39,7 @@ const FollowButton = (props) => {
     return (
         <>
             {
-                following ?
-                    <button onClick={unFollow} className="btn-sm btn-primary shadow-sm rounded-pill">フォロー中</button>
-                    : <button onClick={follow} className="btn-sm btn-outline-primaryshadow-sm rounded-pill">フォローする</button>
+                following ? <button onClick={unFollow} className="btn-sm btn-primary shadow-sm rounded-pill">フォロー中</button> : <button onClick={follow} className="btn-sm btn-outline-primaryshadow-sm rounded-pill">フォローする</button>
             }
         </>
     )

@@ -71594,9 +71594,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/ReviewsTab */ "./resources/js/components/ReviewsTab.js");
-
 __webpack_require__(/*! ./components/userPageTab */ "./resources/js/components/userPageTab.js");
+
+__webpack_require__(/*! ./components/ReviewsTab */ "./resources/js/components/ReviewsTab.js");
 
 __webpack_require__(/*! ./components/userIndex */ "./resources/js/components/userIndex.js");
 
@@ -72090,12 +72090,14 @@ var Users = function Users(props) {
       className: "mb-0"
     }, user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "text-secondary small"
-    }, user.screen_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, user.screen_name)), user.id !== loginUser.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-auto"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       user: user,
       loginUser: loginUser
-    }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "ml-auto"
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body d-flex"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.description)));
   }));
@@ -72116,7 +72118,17 @@ var Users = function Users(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFollowed; });
 function isFollowed(user, loginUser) {
-  var followedArray = Array.from(user.followers);
+  if (user.followers) {
+    var _followedArray = Array.from(user.followers);
+
+    var _userIds = _followedArray.map(function (v) {
+      return v.id;
+    });
+
+    return _userIds.includes(loginUser.id);
+  }
+
+  var followedArray = Array.from(user.pivot);
   var userIds = followedArray.map(function (v) {
     return v.id;
   });
@@ -72236,9 +72248,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js");
-/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-tabs/style/react-tabs.css */ "./node_modules/react-tabs/style/react-tabs.css");
-/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _isFollowed__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./isFollowed */ "./resources/js/components/isFollowed.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-tabs/style/react-tabs.css */ "./node_modules/react-tabs/style/react-tabs.css");
+/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _Timeline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Timeline */ "./resources/js/components/Timeline.js");
 /* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Users */ "./resources/js/components/Users.js");
 
@@ -72275,23 +72288,23 @@ var UserPageTab = function UserPageTab() {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      followingUsers = _useState4[0],
-      setFollowingUsers = _useState4[1];
+      userReviews = _useState4[0],
+      setUserReviews = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      followers = _useState6[0],
-      setFollowers = _useState6[1];
+      favoriteReviews = _useState6[0],
+      setFavoriteReviews = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState8 = _slicedToArray(_useState7, 2),
-      userReviews = _useState8[0],
-      setUserReviews = _useState8[1];
+      followingUsers = _useState8[0],
+      setFollowingUsers = _useState8[1];
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState10 = _slicedToArray(_useState9, 2),
-      favoriteReviews = _useState10[0],
-      setFavoriteReviews = _useState10[1];
+      followers = _useState10[0],
+      setFollowers = _useState10[1];
 
   var url = window.location.pathname;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
@@ -72306,17 +72319,18 @@ var UserPageTab = function UserPageTab() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios.get("/api".concat(url));
+              return axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("/api".concat(url));
 
             case 2:
               response = _context.sent;
               setLoginUser(response.data.loginUser);
-              setFollowingUsers(response.data.followingUsers);
-              setFollowers(response.data.followers);
               setUserReviews(response.data.userReviews);
               setFavoriteReviews(response.data.favoriteReviews);
+              setFollowingUsers(response.data.followingUsers);
+              setFollowers(response.data.followers);
+              console.log(response.data.followingUsers);
 
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -72335,16 +72349,11 @@ var UserPageTab = function UserPageTab() {
     className: "text-center small"
   }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center small"
-  }, "\u30D5\u30A9\u30ED\u30FC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small"
   }, "\u30D5\u30A9\u30ED\u30EF\u30FC"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_6__["default"], {
     timelines: userReviews,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_6__["default"], {
     timelines: favoriteReviews,
-    loginUser: loginUser
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    users: followingUsers,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_7__["default"], {
     users: followers,

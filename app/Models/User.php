@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -120,7 +119,7 @@ class User extends Authenticatable
     // フォロワーを取得
     public function getFollowers(Int $user_id)
     {
-        return $this->followers()->where('followed_id', $user_id)->paginate(6);
+        return $this->followers()->where('followed_id', $user_id)->get();
     }
 
     // 検索ワードに部分一致するユーザーを取得
