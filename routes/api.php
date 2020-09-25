@@ -24,12 +24,12 @@ Route::group(['middleware' => 'auth'], function() {
         $populars = Review::withCount('favorites')->with('comments')->with('favorites')->with('user')->orderBy('favorites_count', 'DESC')->get();
         $loginUser = auth()->user();
 
-        return response()->json(
+        return
             [
             'timelines' => $timelines,
             'populars' => $populars,
             'loginUser' => $loginUser
-            ]);
+            ];
     });
 
     Route::get('/users/{user}',function (Request $request, Review $review, User $user, Follower $follower) {
@@ -50,16 +50,16 @@ Route::group(['middleware' => 'auth'], function() {
         $followingUsers = $user->getFollowingUsers($user->id);
 
         // フォロワー
-        $followers = $user->getFollowers($user->id);
+        $followedUsers = $user->getFollowers($user->id);
 
-        return response()->json(
+        return
             [
                 'loginUser' => $loginUser,
                 'userReviews' => $userReviews,
                 'favoriteReviews' => $favoriteReviews,
                 'followingUsers' => $followingUsers,
-                'followers' => $followers
-            ]);
+                'followedUsers' => $followedUsers
+            ];
     });
 
     Route::get('/users', function (Request $request, User $user, Follower $follower) {
@@ -70,11 +70,11 @@ Route::group(['middleware' => 'auth'], function() {
         // ログインユーザー以外のすべてのユーザー
         $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
 
-        return response()->json(
+        return
             [
                 'loginUser' => $loginUser,
                 'allUsers' => $allUsers
-            ]);
+            ];
     });
 
     Route::post('favorites', 'Api\FavoriteController@store');

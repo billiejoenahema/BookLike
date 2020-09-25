@@ -13,12 +13,12 @@
                 <div class="d-flex flex-wrap">
                     <div class="d-flex flex-sm-column">
                         @if ($login_user->isFollowed($user->id))
-                            <div class="px-2 mb-3">
-                                <span class="px-1 bg-secondary text-light rounded">フォローされています</span>
-                            </div>
+                        <div class="mb-1 mr-3">
+                            <span class="text-secondary"><i class="far fa-laugh"></i>フォローされています</span>
+                        </div>
                         @endif
                     </div>
-                    <div class="d-flex justify-content-end ml-auto">
+                    <div class="d-flex">
                         @if ($is_following)
                         <form action="{{ route('unfollow', $user->id) }}" method="POST">
                             @csrf

@@ -13,7 +13,7 @@ const UserPageTab = () => {
     const [userReviews, setUserReviews] = useState([])
     const [favoriteReviews, setFavoriteReviews] = useState([])
     const [followingUsers, setFollowingUsers] = useState([])
-    const [followers, setFollowers] = useState([])
+    const [followedUsers, setFollowedUsers] = useState([])
     const url = window.location.pathname
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const UserPageTab = () => {
         setUserReviews(response.data.userReviews)
         setFavoriteReviews(response.data.favoriteReviews)
         setFollowingUsers(response.data.followingUsers)
-        setFollowers(response.data.followers)
+        setFollowedUsers(response.data.followedUsers)
     }
 
     function existsData(array) {
@@ -60,7 +60,7 @@ const UserPageTab = () => {
                 </TabPanel>
                 <TabPanel>
                     {
-                        existsData(followers) ? <Users users={followers} loginUser={loginUser} /> : <div className="pb-5 mb-5">フォロワーはまだいません</div>
+                        existsData(followedUsers) ? <Users users={followedUsers} loginUser={loginUser} /> : <div className="pb-5 mb-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>
             </Tabs>

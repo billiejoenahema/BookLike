@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
-import isFollowed from './isFollowed'
 import FollowButton from './FollowButton'
+import isFollowed from './isFollowed'
+import omittedText from './omittedText'
 
 
 const Users = (props) => {
@@ -29,14 +30,14 @@ const Users = (props) => {
                                 </div>
                                 {/* フォローボタン */}
                                 {
-                                    user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} /></div> : <div className="ml-auto"></div>
+                                    user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} /></div> : ''
                                 }
                             </div>
                         </div>
                     </div>
                     <div className="card-body d-flex">
                         {/* 自己紹介文 */}
-                        <p>{user.description}</p>
+                        <p>{omittedText(user.description, 100)}</p>
                     </div>
                 </div>
             )

@@ -72052,8 +72052,10 @@ function Timeline(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _isFollowed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isFollowed */ "./resources/js/components/isFollowed.js");
-/* harmony import */ var _FollowButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FollowButton */ "./resources/js/components/FollowButton.js");
+/* harmony import */ var _FollowButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FollowButton */ "./resources/js/components/FollowButton.js");
+/* harmony import */ var _isFollowed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isFollowed */ "./resources/js/components/isFollowed.js");
+/* harmony import */ var _omittedText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./omittedText */ "./resources/js/components/omittedText.js");
+
 
 
 
@@ -72067,7 +72069,7 @@ var Users = function Users(props) {
       key: user.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-haeder p-3 w-100 d-flex flex-column"
-    }, Object(_isFollowed__WEBPACK_IMPORTED_MODULE_1__["default"])(user, loginUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, Object(_isFollowed__WEBPACK_IMPORTED_MODULE_2__["default"])(user, loginUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mb-1 ml-5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "text-secondary"
@@ -72092,14 +72094,12 @@ var Users = function Users(props) {
       className: "text-secondary small"
     }, user.screen_name)), user.id !== loginUser.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-auto"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
       user: user,
       loginUser: loginUser
-    })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "ml-auto"
-    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    })) : ''))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body d-flex"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.description)));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_omittedText__WEBPACK_IMPORTED_MODULE_3__["default"])(user.description, 100))));
   }));
 };
 
@@ -72118,21 +72118,33 @@ var Users = function Users(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFollowed; });
 function isFollowed(user, loginUser) {
-  if (user.followers) {
-    var _followedArray = Array.from(user.followers);
-
-    var _userIds = _followedArray.map(function (v) {
-      return v.id;
-    });
-
-    return _userIds.includes(loginUser.id);
-  }
-
-  var followedArray = Array.from(user.pivot);
+  var followedArray = Array.from(user.followers);
   var userIds = followedArray.map(function (v) {
     return v.id;
   });
   return userIds.includes(loginUser.id);
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/omittedText.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/omittedText.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return omittedText; });
+function omittedText(description, _int) {
+  // ユーザー一覧で文字数を制限して自己紹介文を表示
+  // const MAX_LENGTH = 100;
+  if (description !== null && description.length > _int) {
+    return "".concat(description.substr(0, _int), "...");
+  }
+
+  return description;
 }
 
 /***/ }),
@@ -72303,8 +72315,8 @@ var UserPageTab = function UserPageTab() {
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState10 = _slicedToArray(_useState9, 2),
-      followers = _useState10[0],
-      setFollowers = _useState10[1];
+      followedUsers = _useState10[0],
+      setFollowedUsers = _useState10[1];
 
   var url = window.location.pathname;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
@@ -72327,7 +72339,7 @@ var UserPageTab = function UserPageTab() {
               setUserReviews(response.data.userReviews);
               setFavoriteReviews(response.data.favoriteReviews);
               setFollowingUsers(response.data.followingUsers);
-              setFollowers(response.data.followers);
+              setFollowedUsers(response.data.followedUsers);
 
             case 8:
             case "end":
@@ -72369,8 +72381,8 @@ var UserPageTab = function UserPageTab() {
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 mb-5"
-  }, "\u30D5\u30A9\u30ED\u30FC\u3057\u3066\u3044\u308B\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, existsData(followers) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    users: followers,
+  }, "\u30D5\u30A9\u30ED\u30FC\u3057\u3066\u3044\u308B\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_3__["TabPanel"], null, existsData(followedUsers) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    users: followedUsers,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 mb-5"

@@ -113,13 +113,13 @@ class User extends Authenticatable
     // フォローしているユーザーを取得
     public function getFollowingUsers(Int $id)
     {
-        return $this->follows()->where('following_id', $id)->get();
+        return $this->follows()->with('followers')->where('following_id', $id)->get();
     }
 
     // フォロワーを取得
     public function getFollowers(Int $user_id)
     {
-        return $this->followers()->where('followed_id', $user_id)->get();
+        return $this->followers()->with('followers')->where('followed_id', $user_id)->get();
     }
 
     // 検索ワードに部分一致するユーザーを取得
