@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
-use App\Models\Follower;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +17,10 @@ use App\Models\Follower;
 
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('/reviews',function (Request $request, Review $review, User $user) {
+    Route::get('/reviews',function (Review $review, User $user) {
 
-        $timelines = Review::with('user')->with('comments')->with('favorites')->orderBy('created_at', 'DESC')->get();
-        $populars = Review::withCount('favorites')->with('comments')->with('favorites')->with('user')->orderBy('favorites_count', 'DESC')->get();
+        $timelines = $review->with('user')->with('comments')->with('favorites')->orderBy('created_at', 'DESC')->get();
+        $populars = $review->withCount('favorites')->with('comments')->with('favorites')->with('user')->orderBy('favorites_count', 'DESC')->get();
         $loginUser = auth()->user();
 
         return
@@ -32,23 +31,19 @@ Route::group(['middleware' => 'auth'], function() {
             ];
     });
 
-    Route::get('/users/{user}',function (Request $request, Review $review, User $user, Follower $follower) {
+    Route::get('/users/{user}',function (Review $review, User $user) {
 
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
-
-        // ユーザーの投稿
+        // 投稿
         $userReviews = $review->where('user_id', $user->id)
             ->with(['user', 'comments', 'favorites'])
             ->orderBy('created_at', 'DESC')
             ->get();
-
         // いいねした投稿
         $favoriteReviews = $review->getFavoriteReviews($user->id);
-
-        //フォローしているユーザー
+        // フォローしているユーザー
         $followingUsers = $user->getFollowingUsers($user->id);
-
         // フォロワー
         $followedUsers = $user->getFollowers($user->id);
 
@@ -62,11 +57,10 @@ Route::group(['middleware' => 'auth'], function() {
             ];
     });
 
-    Route::get('/users', function (Request $request, User $user, Follower $follower) {
+    Route::get('/users', function (User $user) {
 
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
-
         // ログインユーザー以外のすべてのユーザー
         $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
 
