@@ -1,4 +1,4 @@
-export default function selectItem(e) {
+function selectItem(e) {
     const elements = document.querySelectorAll('.search-item')
     elements.forEach((element) => {
         element.style.border = "solid 1px rgba(0, 0, 0, 0.125)"

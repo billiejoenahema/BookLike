@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 
 function Timeline(props) {
 
     return (
-        <Fragment>
+        <>
             {props.timelines.map((timeline) =>
                 <div className="card shadow-sm mb-3" key={timeline.id} >
                     <div className="card-haeder p-3 w-100 d-flex">
@@ -62,7 +62,7 @@ function Timeline(props) {
                 </div>
             )
             }
-        </Fragment >
+        </>
     )
 }
 

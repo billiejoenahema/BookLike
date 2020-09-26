@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css';
@@ -33,20 +33,18 @@ const ReviewsTab = () => {
     // }
 
     return (
-        <Fragment>
-            <Tabs>
-                <TabList>
-                    <Tab>タイムライン</Tab>
-                    <Tab>人気の投稿</Tab>
-                </TabList>
-                <TabPanel>
-                    <Timeline timelines={timelines} loginUser={loginUser} />
-                </TabPanel>
-                <TabPanel>
-                    <Timeline timelines={populars} loginUser={loginUser} />
-                </TabPanel>
-            </Tabs>
-        </Fragment>
+        <Tabs>
+            <TabList>
+                <Tab>タイムライン</Tab>
+                <Tab>人気の投稿</Tab>
+            </TabList>
+            <TabPanel>
+                <Timeline timelines={timelines} loginUser={loginUser} />
+            </TabPanel>
+            <TabPanel>
+                <Timeline timelines={populars} loginUser={loginUser} />
+            </TabPanel>
+        </Tabs>
     )
 
 }

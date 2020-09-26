@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import axios from 'axios'
@@ -47,7 +47,7 @@ const UserPageTab = () => {
 
 
     return (
-        <Fragment>
+        <>
             <Tabs>
                 <TabList>
                     <Tab><div className="text-center small">投稿</div></Tab>
@@ -57,26 +57,34 @@ const UserPageTab = () => {
                 </TabList>
                 <TabPanel>
                     {
-                        existsData(userReviews) ? <Timeline timelines={userReviews} loginUser={loginUser} /> : <div className="pb-5 mb-5">投稿はまだありません</div>
+                        existsData(userReviews) ?
+                            <Timeline timelines={userReviews} loginUser={loginUser} />
+                            : <div className="pb-5 mb-5">投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        existsData(favoriteReviews) ? <Timeline timelines={favoriteReviews} loginUser={loginUser} /> : <div className="pb-5 mb-5">いいねした投稿はまだありません</div>
+                        existsData(favoriteReviews) ?
+                            <Timeline timelines={favoriteReviews} loginUser={loginUser} />
+                            : <div className="pb-5 mb-5">いいねした投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        existsData(followingUsers) ? <Users users={followingUsers} loginUser={loginUser} /> : <div className="pb-5 mb-5">フォローしているユーザーはまだいません</div>
+                        existsData(followingUsers) ?
+                            <Users users={followingUsers} loginUser={loginUser} />
+                            : <div className="pb-5 mb-5">フォローしているユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        existsData(followedUsers) ? <Users users={followedUsers} loginUser={loginUser} /> : <div className="pb-5 mb-5">フォロワーはまだいません</div>
+                        existsData(followedUsers) ?
+                            <Users users={followedUsers} loginUser={loginUser} />
+                            : <div className="pb-5 mb-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>
             </Tabs>
-        </Fragment>
+        </>
     )
 }
 

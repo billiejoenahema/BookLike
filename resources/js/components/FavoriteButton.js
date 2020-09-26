@@ -1,31 +1,18 @@
 import React, { useState, userEffect, useCallback } from 'react'
+import isFavorited from '../functions/isFavorited'
 
 const FavoriteButton = (props) => {
 
-    const InitialState = favorited(props.timeline, props.loginUser)
+    const InitialState = isFavorited(props.timeline, props.loginUser)
     const InitialCount = props.timeline.favorites.length
-
-    function favorited(timeline, loginUser) {
-        const favoritesArray = Array.from(timeline.favorites)
-        const userIds = favoritesArray.map(v => v.user_id)
-        return userIds.includes(loginUser.id)
-    }
 
     const [favorite, setFavorite] = useState(InitialState)
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
-    function countUp() {
-        setFavoriteCount(favoriteCount + 1)
-    }
-
-    function countDown() {
-        setFavoriteCount(favoriteCount - 1)
-    }
-
     const PostFavoriteButton = () => {
         toggleFavorite()
-        countUp()
+        setFavoriteCount(favoriteCount + 1)
         console.log('PostButton Clicked!')
         const review_id = props.timeline.id
 
@@ -42,7 +29,7 @@ const FavoriteButton = (props) => {
 
     const DeleteFavoriteButton = () => {
         toggleFavorite()
-        countDown()
+        setFavoriteCount(favoriteCount - 1)
         console.log('DeleteButton Clicked!')
         const favoritesArray = Array.from(props.timeline.favorites)
         const favoritesIds = favoritesArray.map(v => v.id)
@@ -60,9 +47,12 @@ const FavoriteButton = (props) => {
 
     return (
         <>
-            <button onClick={favorite ? DeleteFavoriteButton : PostFavoriteButton} className="btn p-0 border-0" >
-                <i className={favorite ? "fas fa-heart fa-fw text-danger" : "far fa-heart fa-fw text-primary"}></i>
-            </button >
+            {
+                favorite ?
+                    <button onClick={DeleteFavoriteButton} className="btn p-0 border-0" ><i className="fas fa-heart fa-fw text-danger"></i></button >
+                    : <button onClick={PostFavoriteButton} className="btn p-0 border-0" ><i className="far fa-heart fa-fw text-primary"></i></button >
+            }
+
             <p className="mb-0 text-secondary">{favoriteCount}</p>
         </>
     )

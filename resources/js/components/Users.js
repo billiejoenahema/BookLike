@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import FollowButton from './FollowButton'
-import isFollowed from './isFollowed'
-import omittedText from './omittedText'
+import isFollowed from '../functions/isFollowed'
+import omittedText from '../functions/omittedText'
 
 
 const Users = (props) => {
@@ -10,7 +10,7 @@ const Users = (props) => {
     const loginUser = props.loginUser
 
     return (
-        <Fragment>
+        <>
             {users.map((user) =>
                 <div className="card mb-3 shadow-sm" key={user.id}>
                     <div className="card-haeder p-3 w-100 d-flex flex-column">
@@ -42,7 +42,7 @@ const Users = (props) => {
                 </div>
             )
             }
-        </Fragment>
+        </>
     )
 }
 

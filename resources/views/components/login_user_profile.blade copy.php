@@ -19,7 +19,7 @@
                     {{ __('ゲストユーザーはプロフィールを編集できません') }}
                 </div>
                 @else
-                <div class="d-flex">
+                <div class="d-flex justify-content-between">
                     <div class="p-1">
                         <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
                     </div>
@@ -32,14 +32,8 @@
                         aria-expanded="false">
                         </a>
 
-                        <div class="dropdown-menu mb-3 text-center" aria-labelledby="dropdownMenuLink">
-                            <a href="#"
-                                class="text-reset text-danger"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter"
-                                role="button">アカウントを削除</a>
-
-                            <!-- <form method="POST" action="{{ route('users.destroy', $login_user->id) }}" id="delete_{{ $login_user->id }}">
+                        <div class="dropdown-menu mb-3" aria-labelledby="dropdownMenuLink">
+                            <form method="POST" action="{{ route('users.destroy', $login_user->id) }}" id="delete_{{ $login_user->id }}">
                                 @csrf
                                 @method('DELETE')
                                 <a class="dropdown-item text-danger"
@@ -47,7 +41,7 @@
                                     data-id="{{ $login_user->id }}"
                                     onclick="deletePost(this);"
                                 >アカウントを削除</a>
-                            </form> -->
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -78,27 +72,5 @@
         </div>
 
     </div>
-    <!-- Confirm Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header border-bottom-0">
-        <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">本当にアカウントを削除しますか？</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">「削除する」を押すとあなたのアカウント情報はすべて失われます</div>
-      <div class="modal-footer border-top-0">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-        <form method="POST" action="{{ route('users.destroy', $login_user->id) }}" id="delete_{{ $login_user->id }}">
-        @csrf
-        @method('DELETE')
-            <button type="submit" class="btn btn-danger">削除する</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
 

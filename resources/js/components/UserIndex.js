@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import ReactDOM from 'react-dom'
 import Users from './Users'
@@ -20,9 +20,9 @@ const UserIndex = () => {
     }
 
     return (
-        <Fragment>
+        <>
             <Users users={allUsers} loginUser={loginUser} />
-        </Fragment>
+        </>
     )
 }
 
