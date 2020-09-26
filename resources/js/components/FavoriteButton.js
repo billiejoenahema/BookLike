@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, userEffect, useCallback } from 'react'
 
 const FavoriteButton = (props) => {
 
@@ -15,7 +15,6 @@ const FavoriteButton = (props) => {
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
-
     function countUp() {
         setFavoriteCount(favoriteCount + 1)
     }
@@ -29,7 +28,6 @@ const FavoriteButton = (props) => {
         countUp()
         console.log('PostButton Clicked!')
         const review_id = props.timeline.id
-
 
         return axios.post('http://127.0.0.1:8000/api/favorites', { review_id: review_id })
             .then(res => {

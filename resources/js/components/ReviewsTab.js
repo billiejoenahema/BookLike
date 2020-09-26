@@ -12,15 +12,25 @@ const ReviewsTab = () => {
     const [populars, setPopulars] = useState([])
 
     useEffect(() => {
-        getData()
+        axios
+            .get('/api/reviews')
+            .then(res => {
+                console.log(res)
+                setLoginUser(res.data.loginUser)
+                setTimelines(res.data.timelines)
+                setPopulars(res.data.populars)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
 
-    const getData = async () => {
-        const response = await axios.get('/api/reviews')
-        setLoginUser(response.data.loginUser)
-        setTimelines(response.data.timelines)
-        setPopulars(response.data.populars)
-    }
+    // const getData = async () => {
+    //     const response = await axios.get('/api/reviews')
+    //     setLoginUser(response.data.loginUser)
+    //     setTimelines(response.data.timelines)
+    //     setPopulars(response.data.populars)
+    // }
 
     return (
         <Fragment>

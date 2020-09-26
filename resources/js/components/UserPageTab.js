@@ -17,17 +17,29 @@ const UserPageTab = () => {
     const url = window.location.pathname
 
     useEffect(() => {
-        getData()
+        axios
+            .get(`/api${url}`)
+            .then(res => {
+                console.log(res)
+                setLoginUser(res.data.loginUser)
+                setUserReviews(res.data.userReviews)
+                setFavoriteReviews(res.data.favoriteReviews)
+                setFollowingUsers(res.data.followingUsers)
+                setFollowedUsers(res.data.followedUsers)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
 
-    const getData = async () => {
-        const response = await axios.get(`/api${url}`)
-        setLoginUser(response.data.loginUser)
-        setUserReviews(response.data.userReviews)
-        setFavoriteReviews(response.data.favoriteReviews)
-        setFollowingUsers(response.data.followingUsers)
-        setFollowedUsers(response.data.followedUsers)
-    }
+    // const getData = async () => {
+    //     const response = await axios.get(`/api${url}`)
+    //     setLoginUser(response.data.loginUser)
+    //     setUserReviews(response.data.userReviews)
+    //     setFavoriteReviews(response.data.favoriteReviews)
+    //     setFollowingUsers(response.data.followingUsers)
+    //     setFollowedUsers(response.data.followedUsers)
+    // }
 
     function existsData(array) {
         return array.length !== 0

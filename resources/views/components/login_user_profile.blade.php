@@ -2,10 +2,12 @@
     <div class="card shadow-sm">
         <div class="d-sm-flex">
             <div class="p-3 d-flex flex-column">
+                <a href="{{ url('users/' .$login_user->id) }}">
                     <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
                     class="rounded-circle shadow-sm img-fluid"
                     width="100"
                     height="100">
+                </a>
                 <div class="mt-3 d-flex flex-column">
                     <h4 class="mb-0 font-weight-bold">{{ $login_user->name }}</h4>
                     <span class="text-secondary">{{ $login_user->screen_name }}</span>
@@ -50,25 +52,24 @@
             </div>
         </div>
 
-        <div class="card-footer d-flex flex-row pb-0">
-            <div class="mr-3 w-25 align-items-center d-flex flex-column">
+        <div class="card-footer d-flex flex-row pb-0 px-0">
+            <div class="w-25 align-items-center d-flex flex-column">
                 <span class="font-weight-bold small">投稿</span>
-                <a class="btn bg-light" href="{{ url('users/' .$user->id) }}">{{ $review_count }}</a>
+                <span>{{ $review_count }}</span>
             </div>
-            <div class="mr-3 w-25 align-items-center d-flex flex-column">
+            <div class="w-25 align-items-center d-flex flex-column">
                 <span class="font-weight-bold small">いいねした投稿</span>
-                <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/favorite') }}">{{ $favorite_reviews_count }}</a>
+                <span>{{ $favorite_reviews_count }}</span>
             </div>
-            <div class="mr-3 w-25 align-items-center d-flex flex-column">
+            <div class="w-25 align-items-center d-flex flex-column">
                 <span class="font-weight-bold small">フォロー</span>
-                <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/following') }}">{{ $follow_count }}</a>
+                <span>{{ $follow_count }}</span>
             </div>
-            <div class="mr-3 w-25 align-items-center d-flex flex-column">
+            <div class="w-25 align-items-center d-flex flex-column">
                 <span class="font-weight-bold small">フォロワー</span>
-                <a class="btn bg-light" href="{{ url('/users/' .$user->id .'/followers') }}">{{ $follower_count }}</a>
+                <span>{{ $follower_count }}</span>
             </div>
         </div>
-
 
     </div>
 </div>

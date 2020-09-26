@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
 
@@ -19,9 +19,15 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/reviews',function (Review $review, User $user) {
 
-        $timelines = $review->with('user')->with('comments')->with('favorites')->orderBy('created_at', 'DESC')->get();
-        $populars = $review->withCount('favorites')->with('comments')->with('favorites')->with('user')->orderBy('favorites_count', 'DESC')->get();
         $loginUser = auth()->user();
+        $timelines = $review->with('user')
+            ->with(['comments','favorites'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        $populars = $review->withCount('favorites')
+            ->with(['comments','favorites','user'])
+            ->orderBy('favorites_count', 'DESC')
+            ->get();
 
         return
             [
@@ -62,7 +68,10 @@ Route::group(['middleware' => 'auth'], function() {
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
         // ログインユーザー以外のすべてのユーザー
-        $allUsers = $user->getAllUsers($loginUserId)->with('followers')->orderBy('created_at', 'DESC')->get();
+        $allUsers = $user->getAllUsers($loginUserId)
+            ->with('followers')
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
         return
             [

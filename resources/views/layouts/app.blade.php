@@ -96,7 +96,7 @@
                 <i class="fas fa-plus"></i>
             </a>
         <!-- Footer -->
-        <footer class="page-footer font-small bg-info shadow-sm mt-5">
+        <footer class="page-footer font-small shadow-sm mt-5">
 
         <!-- Copyright -->
             <div class="footer-copyright text-center py-3">© 2020 Copyright:
