@@ -84,6 +84,7 @@
         @endif
         </div>
     <main class="py-4">
+
         @yield('content')
     </main>
     <!-- 新規投稿ボタン -->

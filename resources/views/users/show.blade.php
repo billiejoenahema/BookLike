@@ -6,7 +6,6 @@
         <div class="mb-3 text-right">
             <a href="{{ url('users') }}">ユーザ一覧</a>
         </div>
-    <!-- <div class="row justify-content-center"> -->
         @if($user == $login_user)
             @include('components.login_user_profile')
         @else
@@ -14,7 +13,6 @@
         @endif
         <!-- React-tabs -->
         <div id="userPageTab"></div>
-    <!-- </div> -->
     </div>
 </div>
 @endsection

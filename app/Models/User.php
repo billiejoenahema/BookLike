@@ -56,6 +56,13 @@ class User extends Authenticatable
         return $this->where('id', '<>', $user_id);
     }
 
+    // 検索ワードに部分一致するユーザーを取得
+    public function getSearchUsers($user_id, $search)
+    {
+        return $this->where('id', '<>', $user_id)
+            ->where('name', 'like', '%'.$search.'%');
+    }
+
     // フォローする
     public function follow(Int $user_id)
     {
@@ -113,19 +120,21 @@ class User extends Authenticatable
     // フォローしているユーザーを取得
     public function getFollowingUsers(Int $id)
     {
-        return $this->follows()->with('followers')->where('following_id', $id)->get();
+        return $this->follows()
+            ->with('followers')
+            ->where('following_id', $id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 
     // フォロワーを取得
     public function getFollowers(Int $user_id)
     {
-        return $this->followers()->with('followers')->where('followed_id', $user_id)->get();
-    }
-
-    // 検索ワードに部分一致するユーザーを取得
-    public function getSearchUsers($user_id, $search)
-    {
-        return User::where('id', '<>', $user_id)->where('name', 'like', '%'.$search.'%')->paginate(10);
+        return $this->followers()
+            ->with('followers')
+            ->where('followed_id', $user_id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 
 }

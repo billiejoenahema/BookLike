@@ -71050,9 +71050,7 @@ var FollowButton = function FollowButton(props) {
   var DeleteFollow = function DeleteFollow() {
     toggleFollow();
     console.log('UnFollowButton Clicked!');
-    return axios["delete"]("http://127.0.0.1:8000/api/users/".concat(userId, "/unfollow"), {
-      user: user
-    }).then(function (res) {
+    return axios["delete"]("http://127.0.0.1:8000/api/users/".concat(userId, "/unfollow")).then(function (res) {
       console.log('Success!');
       console.log(userId);
     })["catch"](function (err) {
@@ -71368,16 +71366,47 @@ var UserIndex = function UserIndex() {
       allUsers = _useState4[0],
       setAllUsers = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      searchWord = _useState6[0],
+      setSearchWord = _useState6[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    axios.get('/api/users').then(function (res) {
+    axios.get('/api/users', {
+      data: searchWord
+    }).then(function (res) {
       console.log(res);
       setLoginUser(res.data.loginUser);
-      setAllUsers(res.data.allUsers);
+
+      if (searchWord == null) {
+        setAllUsers(res.data.allUsers);
+      } else {
+        var searchResults = res.data.allUsers.filter(function (item) {
+          return item.name.indexOf(searchWord) > -1;
+        });
+        setAllUsers(searchResults);
+      }
     })["catch"](function (err) {
       console.log(err);
     });
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, [searchWord]);
+
+  var handleChange = function handleChange(e) {
+    setSearchWord(e.target.value);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-control col-10 col-md-6",
+    onChange: handleChange,
+    type: "search",
+    value: searchWord,
+    placeholder: "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22...",
+    "aria-label": "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22",
+    required: true,
+    autoComplete: "on"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_2__["default"], {
     users: allUsers,
     loginUser: loginUser
   }));

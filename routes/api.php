@@ -1,6 +1,6 @@
 <?php
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
 
@@ -63,11 +63,11 @@ Route::group(['middleware' => 'auth'], function() {
             ];
     });
 
-    Route::get('/users', function (User $user) {
+    Route::get('/users', function (Request $request, User $user) {
 
+        $search = $request->input('search');
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
-        // ログインユーザー以外のすべてのユーザー
         $allUsers = $user->getAllUsers($loginUserId)
             ->with('followers')
             ->orderBy('created_at', 'DESC')
@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function() {
         return
             [
                 'loginUser' => $loginUser,
-                'allUsers' => $allUsers
+                'allUsers' => $allUsers,
             ];
     });
 

@@ -28,7 +28,7 @@ const FollowButton = (props) => {
         toggleFollow()
         console.log('UnFollowButton Clicked!')
 
-        return axios.delete(`http://127.0.0.1:8000/api/users/${userId}/unfollow`, { user: user })
+        return axios.delete(`http://127.0.0.1:8000/api/users/${userId}/unfollow`)
             .then(res => {
                 console.log('Success!')
                 console.log(userId)
