@@ -10,14 +10,17 @@ const UserIndex = () => {
     const [allUsers, setAllUsers] = useState([])
 
     useEffect(() => {
-        getData()
+        axios
+            .get('/api/users')
+            .then(res => {
+                console.log(res)
+                setLoginUser(res.data.loginUser)
+                setAllUsers(res.data.allUsers)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [])
-
-    const getData = async () => {
-        const response = await axios.get('/api/users')
-        setLoginUser(response.data.loginUser)
-        setAllUsers(response.data.allUsers)
-    }
 
     return (
         <>

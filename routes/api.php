@@ -80,11 +80,12 @@ Route::group(['middleware' => 'auth'], function() {
             ];
     });
 
+    // いいね
     Route::post('favorites', 'Api\FavoriteController@store');
     Route::delete('favorites/{id}', 'Api\FavoriteController@destroy');
 
     // フォロー/フォロー解除
-    Route::post('users/{id}/follow', 'Api\UsersController@follow');
+    Route::post('users/{user}/follow', 'Api\UsersController@follow');
     Route::delete('users/{id}/unfollow', 'Api\UsersController@unfollow');
 
 });

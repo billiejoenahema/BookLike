@@ -10,7 +10,7 @@ const FavoriteButton = (props) => {
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
-    const PostFavoriteButton = () => {
+    const PostFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount + 1)
         console.log('PostButton Clicked!')
@@ -27,7 +27,7 @@ const FavoriteButton = (props) => {
             })
     }
 
-    const DeleteFavoriteButton = () => {
+    const DeleteFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
         console.log('DeleteButton Clicked!')
@@ -49,8 +49,8 @@ const FavoriteButton = (props) => {
         <>
             {
                 favorite ?
-                    <button onClick={DeleteFavoriteButton} className="btn p-0 border-0" ><i className="fas fa-heart fa-fw text-danger"></i></button >
-                    : <button onClick={PostFavoriteButton} className="btn p-0 border-0" ><i className="far fa-heart fa-fw text-primary"></i></button >
+                    <button onClick={DeleteFavorite} className="btn p-0 border-0" ><i className="fas fa-heart fa-fw text-danger"></i></button >
+                    : <button onClick={PostFavorite} className="btn p-0 border-0" ><i className="far fa-heart fa-fw text-primary"></i></button >
             }
 
             <p className="mb-0 text-secondary">{favoriteCount}</p>

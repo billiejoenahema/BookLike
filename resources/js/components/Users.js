@@ -3,7 +3,6 @@ import FollowButton from './FollowButton'
 import isFollowed from '../functions/isFollowed'
 import omittedText from '../functions/omittedText'
 
-
 const Users = (props) => {
 
     const users = props.users

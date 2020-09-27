@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container px-0">
         <div class="col-md-8 justify-content-center m-auto">
             <!-- ユーザー検索フォーム -->
             <div class="mb-3">
-                <form method="GET" action="{{ route('users.index') }}" class="form-inline my-2 my-lg-0">
+                <form method="GET" action="{{ route('users.index') }}" class="form-inline">
                     @csrf
-                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="ユーザー検索" required autocomplete="on">
-                    <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    <input class="form-control col-10 col-md-6" name="search" type="search" placeholder="Search" aria-label="ユーザー検索" required autocomplete="on">
+                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
             @if(isset($search))

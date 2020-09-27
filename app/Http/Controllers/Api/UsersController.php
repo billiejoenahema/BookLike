@@ -121,20 +121,21 @@ class UsersController extends Controller
     }
 
     // フォローする
-    public function follow(User $user, $id)
+    public function follow(User $user)
     {
         $login_user = auth()->user();
         // フォローしているか
-        $is_following = $login_user->isFollowing($id);
+        $is_following = $login_user->isFollowing($user->id);
         if(!$is_following) {
             // フォローしていなければフォローする
-            $login_user->follow($id);
+            $login_user->follow($user->id);
             return back();
         }
+        return;
     }
 
     // フォロー解除
-    public function unfollow(User $user, $id)
+    public function unfollow(Int $id, User $user)
     {
         $login_user = auth()->user();
         // フォローしているか
@@ -144,6 +145,7 @@ class UsersController extends Controller
             $login_user->unfollow($id);
             return back();
         }
+        return;
     }
 
     // フォローしている全ユーザー
