@@ -26,7 +26,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand navbar-light bg-info shadow-sm sticky-top py-0">
+    <nav class="navbar navbar-expand navbar-light bg-info shadow-sm sticky-top py-1">
         <div class="container">
 
             <!-- ロゴ -->

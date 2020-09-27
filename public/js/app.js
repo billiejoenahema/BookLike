@@ -71287,7 +71287,7 @@ var Users = function Users(props) {
       key: user.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-haeder p-3 w-100 d-flex flex-column"
-    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_2__["default"])(user, loginUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_2__["default"])(loginUser, user) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mb-1 ml-5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "text-secondary"

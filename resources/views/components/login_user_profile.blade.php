@@ -14,9 +14,7 @@
         </div>
         <div class="p-3 flex-column">
             @if($login_user->id == 1)
-            <div class="btn btn-secondary disabled mb-3">
-                {{ __('ゲストユーザーはプロフィールを編集できません') }}
-            </div>
+            <div class="btn btn-secondary disabled mb-3">ゲストユーザーはプロフィールを編集できません</div>
             @else
             <div class="d-flex">
                 <div class="p-1">

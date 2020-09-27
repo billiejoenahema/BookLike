@@ -14,7 +14,7 @@ const Users = (props) => {
                 <div className="card mb-3 shadow-sm" key={user.id}>
                     <div className="card-haeder p-3 w-100 d-flex flex-column">
                         {
-                            isFollowed(user, loginUser) ?
+                            isFollowed(loginUser, user) ?
                                 <div className="mb-1 ml-5"><span className="text-secondary"><i className="far fa-laugh"></i>フォローされています</span></div>
                                 : ''
                         }
