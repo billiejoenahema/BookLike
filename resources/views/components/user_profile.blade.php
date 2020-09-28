@@ -41,22 +41,23 @@
         </div>
     </div>
 
-    <div class="card-footer d-flex flex-row pb-0 px-0">
-        <div class="w-25 align-items-center d-flex flex-column">
-            <span class="font-weight-bold small">投稿</span>
-            <span>{{ $review_count }}</span>
+    <div class="card-footer border-top-0 d-flex flex-row justify-content-around">
+        <div class="d-flex flex-column align-items-center p-1">
+            <span class="font-weight-bold small mb-1">投稿</span>
+            {{ $review_count }}
         </div>
-        <div class="w-25 align-items-center d-flex flex-column">
-            <span class="font-weight-bold small">いいねした投稿</span>
-            <span>{{ $favorite_reviews_count }}</span>
+        <div class="d-flex flex-column align-items-center p-1">
+            <span class="font-weight-bold small mb-1">いいねした投稿</span>
+            {{ $favorite_reviews_count }}
         </div>
-        <div class="w-25 align-items-center d-flex flex-column">
-            <span class="font-weight-bold small">フォロー</span>
-            <span>{{ $follow_count }}</span>
+        <div class="d-flex flex-column align-items-center p-1">
+            <span class="font-weight-bold small mb-1">フォロー</span>
+            {{ $follow_count }}
         </div>
-        <div class="w-25 align-items-center d-flex flex-column">
-            <span class="font-weight-bold small">フォロワー</span>
-            <span>{{ $follower_count }}</span>
+        <div class="d-flex flex-column align-items-center p-1">
+            <span class="font-weight-bold small mb-1">フォロワー</span>
+            {{ $follower_count }}
         </div>
     </div>
+
 </div>

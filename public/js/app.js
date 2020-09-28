@@ -71509,14 +71509,7 @@ var UserPageTab = function UserPageTab() {
     })["catch"](function (err) {
       console.log(err);
     });
-  }, []); // const getData = async () => {
-  //     const response = await axios.get(`/api${url}`)
-  //     setLoginUser(response.data.loginUser)
-  //     setUserReviews(response.data.userReviews)
-  //     setFavoriteReviews(response.data.favoriteReviews)
-  //     setFollowingUsers(response.data.followingUsers)
-  //     setFollowedUsers(response.data.followedUsers)
-  // }
+  }, []);
 
   function existsData(array) {
     return array.length !== 0;
