@@ -30,7 +30,7 @@
                                 <h5>{{ $review->title }}</h5>
                                 <ul class="list-unstyled">
                                     <li class="list-item">著者名</li>
-                                    <li class="list-item">Amazon-link</li>
+                                    <li class="list-item"><a href="#"><i class="fab fa-amazon"></i> Amazon link</a></li>
                                     <li class="list-item">{{ $review->asin }}</li>
                                 </ul>
                             </div>

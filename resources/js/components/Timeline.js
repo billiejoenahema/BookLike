@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
+import omittedText from '../functions/omittedText'
+
 
 function Timeline(props) {
 
@@ -21,17 +23,25 @@ function Timeline(props) {
                         </div>
                     </div>
                     <div className="card-body border-top border-bottom py-0">
-                        <div className="d-flex p-2">
-                            <div className="d-flex flex-column mb-3 p-2">
-                                <img src={timeline.image_url} width="80" className="shadow-sm" />
+                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset">
+                            <div className="d-flex flex-row p-2">
+                                <div className="mb-3 p-2">
+                                    <img src={timeline.image_url} width="80" className="shadow-sm" />
+                                </div>
+                                <div className="d-flex flex-column p-2">
+                                    <h5>{timeline.title}</h5>
+                                    <ul className="list-unstyled">
+                                        <li className="">著者名</li>
+                                        <li className="">{timeline.asin}</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div className="d-flex flex-column text-left p-2" >
-                                {timeline.title}
-                            </div>
-                        </div>
+                        </a>
                     </div>
                     <div className="card-body">
-                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset">{timeline.text}</a>
+                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset">
+                            {omittedText(timeline.text, 100)}
+                        </a>
                     </div>
                     <div className="card-footer py-1 d-flex justify-content-end bg-white">
                         {/* 投稿編集ボタン */}
