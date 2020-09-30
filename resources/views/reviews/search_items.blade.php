@@ -27,7 +27,7 @@
                                     @error('searchItems')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <button class="btn btn-outline-success ml-2 shadow-sm" type="submit">
+                                    <button class="btn btn-outline-teal ml-2 shadow-sm" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </form>

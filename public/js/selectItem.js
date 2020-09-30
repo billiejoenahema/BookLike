@@ -6,7 +6,7 @@ function selectItem(e) {
     })
 
     e.classList.add('selected')
-    e.style.border = "solid 3px blue"
+    e.style.border = "solid 3px #7092be"
     document.getElementById('asin').value = e.id
 
     const confirmButton = document.getElementById('confirmButton')

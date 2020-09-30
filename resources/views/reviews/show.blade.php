@@ -39,29 +39,32 @@
                         {!! nl2br(e($review->text)) !!}
                     </div>
                 </div>
-                <div class="card-footer py-1 d-flex justify-content-end bg-white">
-                    @if ($review->user->id === $login_user->id)
-                    <div class="dropdown mr-3 d-flex align-items-center">
-                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-fw"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form method="POST" action="{{ url('reviews/' .$review->id) }}" class="mb-0">
-                                    @csrf
-                                    @method('DELETE')
 
-                                    <a href="{{ url('reviews/' .$review->id .'/edit') }}" class="dropdown-item">編集</a>
-                                    <button type="submit" class="dropdown-item del-btn">削除</button>
-                                </form>
-                            </div>
-                        </div>
+                <div class="card-footer d-flex bg-white">
+                    <div class="btn flex-grow-1 text-left">
+                    @if ($review->user->id === $login_user->id)
+                        <form method="POST" action="{{ route('reviews.destroy', $review) }}" id="delete_{{ $review->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <a href="#"
+                                data-id="{{ $review->id }}"
+                                onclick="deletePost(this)"
+                                class="text-secondary mb-0 d-block h5">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </form>
                     @endif
-                    <div class="mr-3 d-flex align-items-center">
+                    </div>
+                    <div class="btn">
+                    @if ($review->user->id === $login_user->id)
+                        <a href="{{ url('reviews/' .$review->id .'/edit') }}"><i class="fas fa-edit"></i></a>
+                    @endif
+                    </div>
+                    <div class="d-flex align-items-center ml-3">
                         <a href="{{ url('reviews/' .$review->id) }}"><i class="far fa-comment fa-fw"></i></a>
                         <p class="mb-0 text-secondary">{{ count($review->comments) }}</p>
                     </div>
-
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center ml-4">
                     @if (!in_array($login_user->id, array_column($review->favorites->toArray(), 'user_id'), TRUE))
                             <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
                                 @csrf
@@ -79,6 +82,7 @@
                     <p class="mb-0 text-secondary">{{ count($review->favorites) }}</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

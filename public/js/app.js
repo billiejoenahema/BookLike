@@ -71062,10 +71062,10 @@ var FollowButton = function FollowButton(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: DeleteFollow,
-    className: "btn-sm btn-primary shadow-sm rounded-pill"
+    className: "btn-sm btn-primary rounded-pill shadow-sm border-0"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: PostFollow,
-    className: "btn-sm btn-outline-primary shadow-sm rounded-pill"
+    className: "btn-sm btn-outline-primary rounded-pill shadow-sm border-0"
   }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
 };
 
@@ -71409,7 +71409,7 @@ var UserIndex = function UserIndex() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-control col-10 col-md-6",
+    className: "form-control col-10 col-md-6 shadow-sm",
     onChange: handleChange,
     type: "search",
     value: searchWord,

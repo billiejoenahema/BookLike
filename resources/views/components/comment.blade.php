@@ -2,20 +2,41 @@
     <div class="col-md-8 mb-3">
         <ul class="list-group">
             @forelse ($comments as $comment)
-                <li class="list-group-item">
-                    <div class="py-3 w-100">
-                        @include('components.user_image', ['user' => $comment->user])
-                        <div class="ml-2 d-flex flex-column">
-                            <p class="mb-0">{{ $comment->user->name }}</p>
-                            <span class="text-secondary">{{ $comment->user->screen_name }}</span>
+                <li class="list-group-item p-0">
+                @if ($comment->deleted_at !== null)
+                    <div class="mx-3 my-5 text-secondary">このコメントは削除されました</div>
+                @else
+                    <div class="card-header border-bottom-0 bg-white d-flex flex-row justify-content-between">
+                        <div class="d-flex flex-row">
+                            @include('components.user_image', ['user' => $comment->user])
+                            <div class="ml-2 d-flex flex-column justify-content-between">
+                                <p class="mb-0">{{ $comment->user->name }}</p>
+                                <span class="text-secondary">{{ $comment->user->screen_name }}</span>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-end flex-grow-1">
-                            <p class="mb-0 text-secondary">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
+                        <div class="d-flex flex-column">
+                            <span class="text-right lead" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-angle-down"></i>
+                            </span>
+                            <div class="dropdown-menu dropdown-menu-right p-2">
+                                <form method="POST" action="{{ route('comments.destroy', $comment->id) }}" id="delete_{{ $comment->id }}">
+                                @csrf
+                                @method('DELETE')
+                                    <a href="#"
+                                        data-id="{{ $comment->id }}"
+                                        onclick="deletePost(this)"
+                                        class="dropdown-item text-danger d-block">
+                                        <i class="fas fa-trash mr-1"></i><span>コメントを削除</span>
+                                    </a>
+                                </form>
+                            </div>
+                            <span class="text-secondary">{{ $comment->created_at->format('Y-m-d') }}</span>
                         </div>
                     </div>
-                    <div class="py-3">
+                    <div class="card-body mb-3">
                         {!! nl2br(e($comment->text)) !!}
                     </div>
+                @endif
                 </li>
             @empty
                 <li class="list-group-item">

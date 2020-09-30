@@ -37,7 +37,7 @@ const UserIndex = () => {
         <>
             <div className="mb-3">
                 <input
-                    className="form-control col-10 col-md-6"
+                    className="form-control col-10 col-md-6 shadow-sm"
                     onChange={handleChange}
                     type="search"
                     value={searchWord}

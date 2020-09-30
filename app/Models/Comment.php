@@ -26,6 +26,7 @@ class Comment extends Model
     public function getComments(Int $review_id)
     {
         return $this->with('user')
+                    ->withTrashed()
                     ->where('review_id', $review_id)
                     ->get();
     }
@@ -38,5 +39,11 @@ class Comment extends Model
         $this->save();
 
         return;
+    }
+
+    public function commentDestroy(Int $comment_id)
+    {
+        return $this->where('id', $comment_id)
+                    ->delete();
     }
 }

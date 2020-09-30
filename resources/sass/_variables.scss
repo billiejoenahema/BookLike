@@ -17,3 +17,21 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+$blog: #7092be;
+$blogLight: #a9c8f1;
+
+$theme-colors: (
+    "indigo": $indigo,
+    "purple": $purple,
+    "pink": $pink,
+    "orange": $orange,
+    "yellow": $yellow,
+    "green": $green,
+    "teal": $teal,
+    "cyan": $cyan,
+    "blog": $blog,
+    "blogLight": $blogLight
+);
+
+$yiq-contrasted-threshold: 160;
+$enable-gradients: true;

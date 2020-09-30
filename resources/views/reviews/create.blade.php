@@ -6,7 +6,7 @@
         <div class="col-md-8">
             @include('components.cross_button')
             <div class="card shadow-sm">
-                <div class="card-header">新規投稿</div>
+                <div class="card-header bg-cyan text-white">新規投稿</div>
                 <div class="card-body">
                     <div class="col-lg-10 m-auto">
                         <div class="form-group row mb-0">
@@ -25,7 +25,7 @@
                                         @error('searchItems')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
-                                        <button class="btn btn-outline-success ml-2" type="submit">
+                                        <button class="btn btn-outline-teal ml-2" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </form>

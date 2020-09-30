@@ -59,7 +59,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-sm-8 offset-sm-2">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary shadow-sm">
                                     {{ __('ログイン') }}
                                 </button>
 
@@ -76,7 +76,7 @@
                             @csrf
                             <input type="hidden" name="email" value="guestuser@example.com">
                             <input type="hidden" name="password" value="guestuser+password">
-                            <button type="submit" class="btn w-100 bg-success text-reset">{{ __('お試しログイン') }}</button>
+                            <button type="submit" class="btn w-100 bg-gradient-success text-reset shadow-sm">{{ __('お試しログイン') }}</button>
                         </form>
                     </div>
                 </div>

@@ -26,11 +26,11 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand navbar-light bg-info shadow-sm sticky-top py-1">
+    <nav class="navbar navbar-expand navbar-light bg-blog shadow-sm sticky-top py-1">
         <div class="container">
 
             <!-- ロゴ -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand d-block text-white" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
                 <!-- Right Side Of Navbar -->
@@ -61,13 +61,13 @@
                         </a>
                         <!-- ドロップダウンメニュー -->
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url('reviews/create') }}">新規投稿</a>
-                            <a class="dropdown-item" href="{{ url('users') }}">ユーザーを探す</a>
-                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}">マイページ</a>
+                            <a class="dropdown-item" href="{{ url('reviews/create') }}"><i class="fas fa-pen mr-1"></i>新規投稿</a>
+                            <a class="dropdown-item" href="{{ url('users') }}"><i class="fas fa-search mr-1"></i>ユーザーを探す</a>
+                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}"><i class="fas fa-user mr-1"></i>マイページ</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                ログアウト
+                                <i class="fas fa-sign-out-alt mr-1"></i>ログアウト
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -88,12 +88,14 @@
         @yield('content')
     </main>
     <!-- 新規投稿ボタン -->
-        <a class="text-white btn-primary floating-button rounded-circle shadow h5 mb-0"
+        <a class="d-block"
             href="{{ url('reviews/create') }}"
             data-toggle="tooltip"
             data-placement="top"
             title="新規投稿">
-            <i class="fas fa-plus"></i>
+            <button class="text-white btn-blog floating-button rounded-circle border-0 shadow">
+                <i class="fas fa-plus"></i>
+            </button>
         </a>
     <!-- Footer -->
     <footer class="page-footer font-small shadow-sm mt-5">
