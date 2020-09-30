@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-md-8 mb-3">
-        <ul class="list-group">
+        <ul class="list-group mb-3">
             @forelse ($comments as $comment)
                 <li class="list-group-item p-0">
                 @if ($comment->deleted_at !== null)

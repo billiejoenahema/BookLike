@@ -32,6 +32,7 @@ const Users = (props) => {
                                     user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} /></div> : ''
                                 }
                             </div>
+
                         </div>
                     </div>
                     <div className="card-body d-flex">

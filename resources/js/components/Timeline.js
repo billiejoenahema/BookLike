@@ -25,7 +25,7 @@ function Timeline(props) {
                         </div>
                     </div>
                     <div className="card-body border-top border-bottom py-0">
-                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset">
+                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
                             <div className="d-flex flex-row p-2">
                                 <div className="mb-3 p-2">
                                     <img src={timeline.image_url} width="80" className="shadow-sm" />
@@ -41,7 +41,7 @@ function Timeline(props) {
                         </a>
                     </div>
                     <div className="card-body">
-                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset">
+                        <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
                             {omittedText(timeline.text, 100)}
                         </a>
                     </div>

@@ -71205,7 +71205,7 @@ function Timeline(props) {
       className: "card-body border-top border-bottom py-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "http://127.0.0.1:8000/reviews/".concat(timeline.id),
-      className: "d-block text-reset"
+      className: "d-block text-reset text-decoration-none"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-flex flex-row p-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -71226,7 +71226,7 @@ function Timeline(props) {
       className: "card-body"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "http://127.0.0.1:8000/reviews/".concat(timeline.id),
-      className: "d-block text-reset"
+      className: "d-block text-reset text-decoration-none"
     }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_3__["default"])(timeline.text, 100))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-footer py-1 d-flex justify-content-end bg-white"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
