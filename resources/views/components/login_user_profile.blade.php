@@ -1,6 +1,6 @@
 <div class="card shadow-sm mb-5">
-    <div class="d-sm-flex">
-        <div class="p-3 d-flex flex-column">
+    <div class="card-body d-flex">
+        <div class="col-4 d-flex flex-column p-0">
             <a href="{{ url('users/' .$login_user->id) }}">
                 <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
                 class="rounded-circle shadow-sm img-fluid"
@@ -8,38 +8,32 @@
                 height="100">
             </a>
             <div class="mt-3 d-flex flex-column">
-                <h4 class="mb-0 font-weight-bold">{{ $login_user->name }}</h4>
+                <h5 class="mb-0 font-weight-bold">{{ $login_user->name }}</h5>
                 <span class="text-secondary">{{ $login_user->screen_name }}</span>
             </div>
         </div>
-        <div class="p-3 flex-column">
-            @if($login_user->id == 1)
-            <div class="btn btn-secondary disabled mb-3">ゲストユーザーはプロフィールを編集できません</div>
-            @else
-            <div class="d-flex">
-                <div class="p-1">
-                    <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
-                </div>
-                <div class="dropdown p-1">
-                    <a class="btn dropdown-toggle"
-                    href="#" role="button"
-                    id="dropdownMenuLink"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"></a>
-                    <div class="dropdown-menu mb-3 text-center" aria-labelledby="dropdownMenuLink">
-                        <a href="#"
-                            class="text-reset text-danger"
-                            data-toggle="modal"
-                            data-target="#exampleModalCenter"
-                            role="button">アカウントを削除</a>
-                    </div>
+        <div class="flex-column">
+            <div class="d-flex justify-content-end">
+                <a class="btn dropdown-toggle justify-content-end pt-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                @if($login_user->id == 1)
+                    <span class="dropdown-item disabled">プロフィール編集</span>
+                @else
+                    <a href="{{ url('users/' .$login_user->id .'/edit') }}"
+                        class="dropdown-item text-reset">
+                        プロフィール編集
+                    </a>
+                @endif
+                    <a href="#"
+                        class="dropdown-item text-decoration-none text-danger"
+                        data-toggle="modal"
+                        data-target="#exampleModalCenter"
+                        role="button">
+                        アカウントを削除
+                    </a>
                 </div>
             </div>
-            @endif
-            <div class="d-flex">
-                <p>{{ $login_user->description }}</p>
-            </div>
+            <p>{{ $login_user->description }}</p>
         </div>
     </div>
 

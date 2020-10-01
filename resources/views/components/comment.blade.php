@@ -1,55 +1,51 @@
-<div class="row justify-content-center">
-    <div class="col-md-8 mb-3">
-        <ul class="list-group mb-3">
-            @forelse ($comments as $comment)
-                <li class="list-group-item p-0">
-                @if ($comment->deleted_at !== null)
-                    <div class="mx-3 my-5 text-secondary">このコメントは削除されました</div>
-                @else
-                    <div class="card-header border-bottom-0 bg-white d-flex flex-row justify-content-between">
-                        <div class="d-flex flex-row">
-                            @include('components.user_image', ['user' => $comment->user])
-                            <div class="ml-2 d-flex flex-column justify-content-between">
-                                <p class="mb-0">{{ $comment->user->name }}</p>
-                                <span class="text-secondary">{{ $comment->user->screen_name }}</span>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column">
-                            <span class="text-right lead" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-angle-down"></i>
-                            </span>
-                            <div class="dropdown-menu dropdown-menu-right p-2">
-                                <form method="POST" action="{{ route('comments.destroy', $comment->id) }}" id="delete_{{ $comment->id }}">
-                                @csrf
-                                @method('DELETE')
-                                    <a href="#"
-                                        data-id="{{ $comment->id }}"
-                                        onclick="deletePost(this)"
-                                        class="dropdown-item text-danger d-block">
-                                        <i class="fas fa-trash mr-1"></i><span>コメントを削除</span>
-                                    </a>
-                                </form>
-                            </div>
-                            <span class="text-secondary">{{ $comment->created_at->format('Y-m-d') }}</span>
-                        </div>
+<ul class="list-group mb-3">
+    @forelse ($comments as $comment)
+        <li class="list-group-item p-0">
+        @if ($comment->deleted_at !== null)
+            <div class="mx-3 my-5 text-secondary">このコメントは削除されました</div>
+        @else
+            <div class="card-header border-bottom-0 bg-white d-flex flex-row justify-content-between">
+                <div class="d-flex flex-row">
+                    @include('components.user_image', ['user' => $comment->user])
+                    <div class="ml-2 d-flex flex-column justify-content-between">
+                        <p class="mb-0">{{ $comment->user->name }}</p>
+                        <span class="text-secondary">{{ $comment->user->screen_name }}</span>
                     </div>
-                    <div class="card-body mb-3">
-                        {!! nl2br(e($comment->text)) !!}
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="text-right lead" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-angle-down"></i>
+                    </span>
+                    <div class="dropdown-menu dropdown-menu-right p-2">
+                        <form method="POST" action="{{ route('comments.destroy', $comment->id) }}" id="delete_{{ $comment->id }}">
+                        @csrf
+                        @method('DELETE')
+                            <a href="#"
+                                data-id="{{ $comment->id }}"
+                                onclick="deletePost(this)"
+                                class="dropdown-item text-danger d-block">
+                                <i class="fas fa-trash mr-1"></i><span>コメントを削除</span>
+                            </a>
+                        </form>
                     </div>
-                @endif
-                </li>
-            @empty
-                <li class="list-group-item">
-                    <p class="mb-0 text-secondary">コメントはまだありません</p>
-                </li>
-            @endforelse
-        </ul>
-        <div class="text-right">
-            <button type="button" class="btn btn-primary mt-3 justify-content-end" data-toggle="modal" data-target="#exampleModalCenter">
-                コメントを投稿する
-            </button>
-        </div>
-    </div>
+                    <span class="text-secondary">{{ $comment->created_at->format('Y-m-d') }}</span>
+                </div>
+            </div>
+            <div class="card-body mb-3">
+                {!! nl2br(e($comment->text)) !!}
+            </div>
+        @endif
+        </li>
+    @empty
+        <li class="list-group-item">
+            <p class="mb-0 text-secondary">コメントはまだありません</p>
+        </li>
+    @endforelse
+</ul>
+<div class="text-right">
+    <button type="button" class="btn btn-primary mt-3 justify-content-end" data-toggle="modal" data-target="#exampleModalCenter">
+        コメントを投稿する
+    </button>
 </div>
 
 <!-- Comment Post Modal -->

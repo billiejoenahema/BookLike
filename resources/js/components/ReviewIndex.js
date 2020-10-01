@@ -38,8 +38,8 @@ const ReviewIndex = () => {
                     onChange={handleChange}
                     type="search"
                     value={searchWord}
-                    placeholder="ユーザー検索..."
-                    aria-label="ユーザー検索"
+                    placeholder="タイトル検索..."
+                    aria-label="タイトル検索"
                     required autoComplete="on"
                 />
             </div>

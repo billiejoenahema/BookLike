@@ -70906,7 +70906,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions_isFavorited__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/isFavorited */ "./resources/js/functions/isFavorited.js");
+/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
+/* harmony import */ var _functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../functions/isFavorited */ "./resources/js/functions/isFavorited.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -70922,8 +70923,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var FavoriteButton = function FavoriteButton(props) {
-  var InitialState = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_1__["default"])(props.timeline, props.loginUser);
+  var InitialState = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["default"])(props.timeline, props.loginUser);
   var InitialCount = props.timeline.favorites.length;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialState),
@@ -70976,14 +70978,24 @@ var FavoriteButton = function FavoriteButton(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: DeleteFavorite,
-    className: "btn p-0 border-0"
+    className: "btn p-0 border-0",
+    "data-tip": "\u3044\u3044\u306D"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-heart fa-fw text-danger"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    effect: "float",
+    type: "info",
+    place: "top"
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: PostFavorite,
-    className: "btn p-0 border-0"
+    className: "btn p-0 border-0",
+    "data-tip": "\u3044\u3044\u306D"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "far fa-heart fa-fw text-primary"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    effect: "float",
+    type: "info",
+    place: "top"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0 text-secondary"
   }, favoriteCount));
@@ -71143,8 +71155,8 @@ var ReviewIndex = function ReviewIndex() {
     onChange: handleChange,
     type: "search",
     value: searchWord,
-    placeholder: "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22...",
-    "aria-label": "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB\u691C\u7D22...",
+    "aria-label": "\u30BF\u30A4\u30C8\u30EB\u691C\u7D22",
     required: true,
     autoComplete: "on"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_2__["default"], {
