@@ -70844,7 +70844,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/userPageTab */ "./resources/js/components/userPageTab.js");
 
-__webpack_require__(/*! ./components/ReviewsTab */ "./resources/js/components/ReviewsTab.js");
+__webpack_require__(/*! ./components/ReviewIndex */ "./resources/js/components/ReviewIndex.js");
 
 __webpack_require__(/*! ./components/userIndex */ "./resources/js/components/userIndex.js");
 
@@ -71073,10 +71073,10 @@ var FollowButton = function FollowButton(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/ReviewsTab.js":
-/*!***********************************************!*\
-  !*** ./resources/js/components/ReviewsTab.js ***!
-  \***********************************************/
+/***/ "./resources/js/components/ReviewIndex.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/ReviewIndex.js ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -71086,10 +71086,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js");
-/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-tabs/style/react-tabs.css */ "./node_modules/react-tabs/style/react-tabs.css");
-/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Timeline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Timeline */ "./resources/js/components/Timeline.js");
+/* harmony import */ var _Timeline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Timeline */ "./resources/js/components/Timeline.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71106,9 +71103,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-var ReviewsTab = function ReviewsTab() {
+var ReviewIndex = function ReviewIndex() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       loginUser = _useState2[0],
@@ -71119,40 +71114,49 @@ var ReviewsTab = function ReviewsTab() {
       timelines = _useState4[0],
       setTimelines = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      populars = _useState6[0],
-      setPopulars = _useState6[1];
+      searchWord = _useState6[0],
+      setSearchWord = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios.get('/api/reviews').then(function (res) {
       console.log(res);
       setLoginUser(res.data.loginUser);
       setTimelines(res.data.timelines);
-      setPopulars(res.data.populars);
     })["catch"](function (err) {
       console.log(err);
     });
-  }, []); // const getData = async () => {
-  //     const response = await axios.get('/api/reviews')
-  //     setLoginUser(response.data.loginUser)
-  //     setTimelines(response.data.timelines)
-  //     setPopulars(response.data.populars)
-  // }
+  }, []);
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, "\u30BF\u30A4\u30E0\u30E9\u30A4\u30F3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], null, "\u4EBA\u6C17\u306E\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    timelines: timelines,
+  var handleChange = function handleChange(e) {
+    setSearchWord(e.target.value);
+  };
+
+  var searchResults = timelines.filter(function (item) {
+    return item.title.indexOf(searchWord) > -1;
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-control col-10 col-md-6 shadow-sm",
+    onChange: handleChange,
+    type: "search",
+    value: searchWord,
+    placeholder: "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22...",
+    "aria-label": "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22",
+    required: true,
+    autoComplete: "on"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    timelines: searchResults,
     loginUser: loginUser
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    timelines: populars,
-    loginUser: loginUser
-  })));
+  }));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (ReviewsTab);
+/* harmony default export */ __webpack_exports__["default"] = (ReviewIndex);
 
-if (document.getElementById('reviewsTab')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReviewsTab, null), document.getElementById('reviewsTab'));
+if (document.getElementById('reviewIndex')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReviewIndex, null), document.getElementById('reviewIndex'));
 }
 
 /***/ }),
@@ -71388,24 +71392,19 @@ var UserIndex = function UserIndex() {
     }).then(function (res) {
       console.log(res);
       setLoginUser(res.data.loginUser);
-
-      if (searchWord == null) {
-        setAllUsers(res.data.allUsers);
-      } else {
-        var searchResults = res.data.allUsers.filter(function (item) {
-          return item.name.indexOf(searchWord) > -1;
-        });
-        setAllUsers(searchResults);
-      }
+      setAllUsers(res.data.allUsers);
     })["catch"](function (err) {
       console.log(err);
     });
-  }, [searchWord]);
+  }, []);
 
   var handleChange = function handleChange(e) {
     setSearchWord(e.target.value);
   };
 
+  var searchResults = allUsers.filter(function (item) {
+    return item.name.indexOf(searchWord) > -1;
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -71418,7 +71417,7 @@ var UserIndex = function UserIndex() {
     required: true,
     autoComplete: "on"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    users: allUsers,
+    users: searchResults,
     loginUser: loginUser
   }));
 };

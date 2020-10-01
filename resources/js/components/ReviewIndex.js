@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react'
-
 import ReactDOM from 'react-dom'
-import Users from './Users'
 
-const UserIndex = () => {
+import Timeline from './Timeline'
+
+const ReviewIndex = () => {
 
     const [loginUser, setLoginUser] = useState()
-    const [allUsers, setAllUsers] = useState([])
+    const [timelines, setTimelines] = useState([])
     const [searchWord, setSearchWord] = useState("")
 
     useEffect(() => {
         axios
-            .get('/api/users', { data: searchWord })
+            .get('/api/reviews')
             .then(res => {
                 console.log(res)
                 setLoginUser(res.data.loginUser)
-                setAllUsers(res.data.allUsers)
+                setTimelines(res.data.timelines)
             })
             .catch(err => {
                 console.log(err)
@@ -26,8 +26,8 @@ const UserIndex = () => {
         setSearchWord(e.target.value)
     }
 
-    const searchResults = allUsers.filter((item) => {
-        return item.name.indexOf(searchWord) > -1
+    const searchResults = timelines.filter((item) => {
+        return item.title.indexOf(searchWord) > -1
     })
 
     return (
@@ -43,13 +43,15 @@ const UserIndex = () => {
                     required autoComplete="on"
                 />
             </div>
-            <Users users={searchResults} loginUser={loginUser} />
+            <Timeline timelines={searchResults} loginUser={loginUser} />
         </>
     )
+
 }
 
-export default UserIndex
 
-if (document.getElementById('userIndex')) {
-    ReactDOM.render(<UserIndex />, document.getElementById('userIndex'))
+export default ReviewIndex
+
+if (document.getElementById('reviewIndex')) {
+    ReactDOM.render(<ReviewIndex />, document.getElementById('reviewIndex'))
 }

@@ -13,5 +13,5 @@ require('./bootstrap');
  */
 
 require('./components/userPageTab');
-require('./components/ReviewsTab');
+require('./components/ReviewIndex');
 require('./components/userIndex');

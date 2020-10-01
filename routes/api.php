@@ -24,15 +24,14 @@ Route::group(['middleware' => 'auth'], function() {
             ->with(['comments','favorites'])
             ->orderBy('created_at', 'DESC')
             ->get();
-        $populars = $review->withCount('favorites')
-            ->with(['comments','favorites','user'])
-            ->orderBy('favorites_count', 'DESC')
-            ->get();
+        // $populars = $review->withCount('favorites')
+        //     ->with(['comments','favorites','user'])
+        //     ->orderBy('favorites_count', 'DESC')
+        //     ->get();
 
         return
             [
             'timelines' => $timelines,
-            'populars' => $populars,
             'loginUser' => $loginUser
             ];
     });
