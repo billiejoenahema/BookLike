@@ -26,9 +26,16 @@ const UserIndex = () => {
         setSearchWord(e.target.value)
     }
 
-    const searchResults = allUsers.filter((item) => {
-        return item.name.indexOf(searchWord) > -1
-    })
+    const userList = (searchWord) => {
+
+        if (searchWord === null) {
+            return allUsers
+        } else {
+            return allUsers.filter((item) => {
+                return item.name.indexOf(searchWord) > -1
+            })
+        }
+    }
 
     return (
         <>
@@ -43,7 +50,7 @@ const UserIndex = () => {
                     required autoComplete="on"
                 />
             </div>
-            <Users users={searchResults} loginUser={loginUser} />
+            <Users users={userList(searchWord)} loginUser={loginUser} />
         </>
     )
 }

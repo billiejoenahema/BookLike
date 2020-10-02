@@ -128,11 +128,11 @@ class User extends Authenticatable
     }
 
     // フォロワーを取得
-    public function getFollowers(Int $user_id)
+    public function getFollowers(Int $id)
     {
         return $this->followers()
             ->with('followers')
-            ->where('followed_id', $user_id)
+            ->where('followed_id', $id)
             ->orderBy('created_at', 'DESC')
             ->get();
     }

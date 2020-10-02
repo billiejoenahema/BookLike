@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="col-md-8 mb-3 m-auto">
+<div class="container px-0">
+    <div class="col-md-10 col-lg-8 mb-3 m-auto">
         <div class="card shadow-sm mb-5">
             <div class="card-haeder p-3 w-100 d-flex">
                 @include('components.user_image', ['user' => $review->user])

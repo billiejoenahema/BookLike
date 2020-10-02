@@ -1,7 +1,7 @@
 <div class="card shadow-sm mb-5">
     <div class="d-inline-flex">
         <div class="col-4 p-3 d-flex flex-column">
-            <a href="{{ url('users/' .$login_user->id) }}">
+            <a href="{{ url('users/' .$user->id) }}">
                 <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle shadow-sm" width="100" height="100">
             </a>
             <div class="mt-3 d-flex flex-column">
@@ -24,12 +24,12 @@
                     <form action="{{ route('unfollow', $user->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn-sm btn-primary shadow-sm rounded-pill">フォロー中</button>
+                        <button type="submit" class="btn-sm btn-primary rounded-pill shadow-sm border-0">フォロー中</button>
                     </form>
                     @else
                     <form action="{{ route('follow', $user->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn-sm btn-outline-primary shadow-sm rounded-pill">フォローする</button>
+                        <button type="submit" class="btn-sm btn-outline-primary rounded-pill shadow-sm border-0">フォローする</button>
                     </form>
                     @endif
                 </div>

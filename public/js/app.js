@@ -71414,9 +71414,16 @@ var UserIndex = function UserIndex() {
     setSearchWord(e.target.value);
   };
 
-  var searchResults = allUsers.filter(function (item) {
-    return item.name.indexOf(searchWord) > -1;
-  });
+  var userList = function userList(searchWord) {
+    if (searchWord === null) {
+      return allUsers;
+    } else {
+      return allUsers.filter(function (item) {
+        return item.name.indexOf(searchWord) > -1;
+      });
+    }
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -71429,7 +71436,7 @@ var UserIndex = function UserIndex() {
     required: true,
     autoComplete: "on"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    users: searchResults,
+    users: userList(searchWord),
     loginUser: loginUser
   }));
 };

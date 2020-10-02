@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="col-md-8 m-auto">
+    <div class="col-md-10 col-lg-8 m-auto">
         <button type="button" onclick="history.back()" class="btn">
             <i class="fas fa-chevron-left"></i> 戻る
         </button>

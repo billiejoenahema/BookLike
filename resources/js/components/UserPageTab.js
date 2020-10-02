@@ -26,6 +26,7 @@ const UserPageTab = () => {
                 setFavoriteReviews(res.data.favoriteReviews)
                 setFollowingUsers(res.data.followingUsers)
                 setFollowedUsers(res.data.followedUsers)
+
             })
             .catch(err => {
                 console.log(err)

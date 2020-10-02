@@ -72,18 +72,17 @@ class UsersController extends Controller
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($user->id);
         $is_followed = $login_user->isFollowed($user->id);
-        $timelines = $review->getUserTimeLine($user->id);
         $review_count = $review->getReviewCount($user->id);
         $follow_count = $follower->getFollowCount($user->id);
         $follower_count = $follower->getFollowerCount($user->id);
         $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
+        $followers = $user->getFollowers($user->id);
 
         return view('users.show', compact(
             'user',
             'login_user',
             'is_following',
             'is_followed',
-            'timelines',
             'review_count',
             'follow_count',
             'follower_count',
@@ -159,7 +158,7 @@ class UsersController extends Controller
     }
 
     // フォロー解除
-    public function unfollow(Reqest $request, User $user)
+    public function unfollow(User $user)
     {
         $follower = auth()->user();
         // フォローしているか

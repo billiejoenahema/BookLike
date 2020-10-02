@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container justify-content-center px-0">
-    <div class="col-md-8 m-auto">
+<div class="container px-0">
+    <div class="col-md-10 col-lg-8 m-auto">
         <div class="mb-3 text-right">
-            <a href="{{ url('users') }}">ユーザ一覧</a>
+            <a href="{{ url('users') }}">ユーザ一検索</a>
         </div>
         @if($user == $login_user)
             @include('components.login_user_profile')
