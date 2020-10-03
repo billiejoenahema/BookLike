@@ -28,7 +28,6 @@
 <body>
     <nav class="navbar navbar-expand navbar-light bg-blog shadow-sm sticky-top py-1">
         <div class="container">
-
             <!-- ロゴ -->
             <a class="navbar-brand d-block text-white" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -83,8 +82,7 @@
             {{ session('flash_message') }}
         @endif
         </div>
-    <main class="py-4">
-
+    <main class="py-5">
         @yield('content')
     </main>
     <!-- 新規投稿ボタン -->
@@ -98,11 +96,11 @@
             </button>
         </a>
     <!-- Footer -->
-    <footer class="page-footer font-small shadow-sm mt-5">
+    <footer class="page-footer font-small mt-5 pt-5">
 
     <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a class="text-reset" href="{{ url('/') }}"> BookLike</a>
+        <div class="footer-copyright text-center text-blog py-3" style="box-shadow: 0 -2px 4px #eee;">© 2020 Copyright:
+            <a class="text-reset" href="{{ url('/') }}">BookLike</a>
         </div>
     <!-- Copyright -->
 

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="col-md-6">
+<div class="container p-0">
+    <div class="col-md-8 col-lg-6 m-auto">
         <div class="card">
             <div class="card-header">{{ __('ログイン') }}</div>
             <div class="card-body m-auto">
@@ -62,11 +62,11 @@
                         @endif
                     </div>
                 </form>
-                <form class="form-group row" action="{{ route('login') }}" method="POST">
+                <form class="form-group row mb-0" action="{{ route('login') }}" method="POST">
                     @csrf
                     <input type="hidden" name="email" value="guestuser@example.com">
                     <input type="hidden" name="password" value="guestuser+password">
-                    <button type="submit" class="btn bg-gradient-success text-white shadow-sm w-100">
+                    <button type="submit" class="btn bg-gradient-success text-white shadow-sm w-100 mt-5">
                         {{ __('お試しログイン') }}
                     </button>
                 </form>
