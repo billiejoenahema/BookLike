@@ -14,14 +14,14 @@
                     <h6>選択した書籍</h6>
                     <div class="card mb-4">
                         <div class="d-flex flex-wrap p-2">
-                            <div class="d-flex flex-column p-2">
+                            <div class="d-flex flex-column p-2 mr-2">
                                 <img src="{{ $get_item->Images->Primary->Large->URL }}" width="100">
                             </div>
-                            <div class="d-flex flex-column text-left p-2" >
+                            <div class="col-md-8 d-flex flex-column text-left p-2" >
                                 <h5>{{ $get_item->ItemInfo->Title->DisplayValue }}</h5>
                                 <ul class="list-unstyled">
                                     <li class="list-item">{{ $get_item->ItemInfo->ByLineInfo->Contributors[0]->Name }}</li>
-                                    <li class="list-item">{{ $get_item->ASIN }}</li>
+                                    <li class="list-item">{{ $get_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -46,7 +46,10 @@
                                     @enderror
                             </div>
                             <input type="hidden" name="asin" id="asin" value="{{ $get_item->ASIN }}">
+                            <input type="hidden" name="page_url" id="page_url" value="{{ $get_item->DetailPageURL }}">
                             <input type="hidden" name="title" id="title" value="{{ $get_item->ItemInfo->Title->DisplayValue }}">
+                            <input type="hidden" name="author" id="author" value="{{ $get_item->ItemInfo->ByLineInfo->Contributors[0]->Name }}">
+                            <input type="hidden" name="manufacturer" id="manufacturer" value="{{ $get_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue }}">
                             <input type="hidden" name="image_url" id="image_url" value="{{ $get_item->Images->Primary->Large->URL }}">
                             <div class="form-group row mb-0">
                                 <div class="col-12 text-right">

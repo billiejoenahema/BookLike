@@ -80,7 +80,10 @@ class ReviewController extends Controller
 
         $validator = Validator::make($data, [
             'asin' => 'required',
+            'page_url' => 'string',
             'title' => 'required',
+            'author' => 'string',
+            'manufacturer' => 'string',
             'image_url' => 'required',
             'text' => 'required | string | max:400'
         ]);

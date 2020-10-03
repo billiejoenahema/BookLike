@@ -19,13 +19,11 @@ class SearchItems {
         $serviceName="ProductAdvertisingAPI";
         $region="us-west-2";
         $payload="{"
-            ." \"Keywords\": \"$keyword\","
+            ." \"Keywords\": \"factfulness\","
             ." \"Resources\": ["
             ."  \"Images.Primary.Large\","
             ."  \"ItemInfo.ByLineInfo\","
-            ."  \"ItemInfo.ManufactureInfo\","
-            ."  \"ItemInfo.Title\","
-            ."  \"Offers.Listings.Price\""
+            ."  \"ItemInfo.Title\""
             ." ],"
             ." \"SearchIndex\": \"Books\","
             ." \"PartnerTag\": \"$partner_tag\","

@@ -69,7 +69,7 @@
                                 <h5>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h5>
                                 <ul class="list-unstyled">
                                     <li class="list-item">{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}</li>
-                                    <li class="list-item">{{ $search_item->ASIN }}</li>
+                                    <li class="list-item">{{ $search_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue }}</li>
                                 </ul>
                             </div>
                         </div>

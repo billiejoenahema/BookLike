@@ -66,7 +66,10 @@ class Review extends Model
     {
         $this->user_id = $user_id;
         $this->asin = $data['asin'];
+        $this->page_url = $data['page_url'];
         $this->title = $data['title'];
+        $this->author = $data['author'];
+        $this->manufacturer = $data['manufacturer'];
         $this->image_url = $data['image_url'];
         $this->text = $data['text'];
         $this->save();
