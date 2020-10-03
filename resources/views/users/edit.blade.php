@@ -14,6 +14,15 @@
             </div>
         @else
             <div class="card-body">
+            @if ($errors->any())
+                <div class="alert alert-danger mb-3">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <form method="POST" action="{{ url('users/' .$login_user->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

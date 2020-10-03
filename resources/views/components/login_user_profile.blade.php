@@ -12,7 +12,7 @@
                 <span class="text-secondary">{{ $login_user->screen_name }}</span>
             </div>
         </div>
-        <div class="flex-column">
+        <div class="flex-column w-100">
             <div class="d-flex justify-content-end">
                 <a class="btn dropdown-toggle justify-content-end pt-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
@@ -33,7 +33,7 @@
                     </a>
                 </div>
             </div>
-            <p>{{ $login_user->description }}</p>
+            <div>{{ $login_user->description }}</div>
         </div>
     </div>
 
