@@ -83,18 +83,22 @@
         @endif
         </div>
     <main class="py-5">
-        @yield('content')
+        <div class="container px-0">
+            <div class="col-md-10 col-lg-8 mb-3 m-auto">
+            @yield('content')
+            <!-- 新規投稿ボタン -->
+            <a class="d-block"
+                href="{{ url('reviews/create') }}"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="新規投稿">
+                <button class="text-white btn-blog floating-button rounded-circle border-0 shadow">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </a>
+            </div>
+        </div>
     </main>
-    <!-- 新規投稿ボタン -->
-        <a class="d-block"
-            href="{{ url('reviews/create') }}"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="新規投稿">
-            <button class="text-white btn-blog floating-button rounded-circle border-0 shadow">
-                <i class="fas fa-plus"></i>
-            </button>
-        </a>
     <!-- Footer -->
     <footer class="page-footer font-small mt-5 pt-5">
 

@@ -36,20 +36,14 @@ class ReviewController extends Controller
     public function create()
     {
         $login_user = auth()->user();
-        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
-        return view('reviews.create', compact(
-            'login_user',
-            'default_image'
-        ));
+        return view('reviews.create', compact('login_user'));
     }
 
     // Post review text form
     public function posts(Request $request, GetItem $get_item, Review $review)
     {
         $login_user = auth()->user();
-        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
-
         $user_id = $login_user->id;
         $asin = $request->asin;
         $posted_review = $review->postedAsin($asin, $user_id);
@@ -59,10 +53,8 @@ class ReviewController extends Controller
         }
         $get_item = $get_item->getItem($asin);
 
-
         return view('reviews.posts', compact(
             'login_user',
-            'default_image',
             'get_item'
         ));
     }
@@ -77,7 +69,6 @@ class ReviewController extends Controller
     {
         $login_user = auth()->user();
         $data = $request->all();
-
         $validator = Validator::make($data, [
             'asin' => 'required',
             'page_url' => 'string',
@@ -126,7 +117,6 @@ class ReviewController extends Controller
     {
         $login_user = auth()->user();
         $review = $review->getEditReview($login_user->id, $review->id);
-        // $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
         $item = $get_item->getItem($review->asin);
         $item_url = $item->DetailPageURL;
 
@@ -154,7 +144,6 @@ class ReviewController extends Controller
         $validator = Validator::make($data, [
             'text' => 'required | string | max:400'
         ]);
-
         $validator->validate();
         $review->reviewUpdate($review->id, $data);
 

@@ -25,7 +25,7 @@
                     </a>
                 @endif
                     <a href="#"
-                        class="dropdown-item text-decoration-none text-danger"
+                        class="dropdown-item text-decoration-none disabled"
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
                         role="button">

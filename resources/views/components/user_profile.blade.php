@@ -11,7 +11,7 @@
         </div>
         <div class="col-8 p-3 d-flex flex-column justify-content-between">
             <!-- フォロー関係 -->
-            <div class="d-flex flex-wrap justify-content-lg-between">
+            <div class="d-flex flex-wrap justify-content-lg-between mb-3">
                 <div class="d-flex flex-sm-column">
                     @if ($login_user->isFollowed($user->id))
                     <div class="mb-1 mr-3">

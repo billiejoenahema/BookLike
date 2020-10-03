@@ -19,7 +19,7 @@ class SearchItems {
         $serviceName="ProductAdvertisingAPI";
         $region="us-west-2";
         $payload="{"
-            ." \"Keywords\": \"factfulness\","
+            ." \"Keywords\": \"$keyword\","
             ." \"Resources\": ["
             ."  \"Images.Primary.Large\","
             ."  \"ItemInfo.ByLineInfo\","

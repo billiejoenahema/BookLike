@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container px-0">
-    <div class="col-md-10 col-lg-8 mb-3 m-auto">
         <div class="card shadow-sm mb-5">
             <div class="card-haeder p-3 w-100 d-flex">
                 @include('components.user_image', ['user' => $review->user])
@@ -25,7 +23,7 @@
                             <h5>{{ $review->title }}</h5>
                             <ul class="list-unstyled">
                                 <li class="list-item">著者名</li>
-                                <li class="list-item"><a href="#"><i class="fab fa-amazon"></i> Amazon link</a></li>
+                                <li class="list-item"><a href="{{ $review->page_url }} " target="_blank" rel="noopener"><i class="fab fa-amazon"></i> Amazon link</a></li>
                                 <li class="list-item">{{ $review->asin }}</li>
                             </ul>
                         </div>
@@ -106,7 +104,4 @@
                 </div>
             </div>
         </div>
-    </div>
-
-</div>
 @endsection
