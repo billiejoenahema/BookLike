@@ -35,12 +35,13 @@
                                 name="text"
                                 required
                                 autocomplete="text"
-                                rows="6"
+                                rows="8"
                                 autofocus
-                                ></textarea>
+                                onkeyup="checkTextLength(value)"
+                                >{{ old('text') ? : '' }}</textarea>
                                 @error('text')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ '400文字以内' }}</strong>
                                     </span>
                                 @enderror
                         </div>
@@ -52,7 +53,7 @@
                         <input type="hidden" name="image_url" id="image_url" value="{{ $get_item->Images->Primary->Large->URL }}">
                         <div class="form-group row mb-0">
                             <div class="col-12 text-right">
-                                <p class="mb-3 text-danger">400文字以内</p>
+                                <p id="textLength">0 / 400文字</p>
                                 <button type="submit" class="btn btn-primary shadow-sm">投稿する</button>
                             </div>
                         </div>

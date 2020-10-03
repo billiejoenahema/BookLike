@@ -49,7 +49,8 @@
                         name="text"
                         required
                         autocomplete="text"
-                        rows="4"
+                        rows="6"
+                        onkeyup="checkTextLength(value)"
                         >{{ old('text') ? : $review->text }}</textarea>
                         @error('text')
                             <span class="invalid-feedback" role="alert">
@@ -61,7 +62,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-12 text-right">
-                        <p class="mb-4 text-danger">400文字以内</p>
+                        <p id="textLength">0 / 400文字</p>
                         <button type="submit" class="btn btn-primary shadow-sm">投稿を編集する</button>
                     </div>
                 </div>

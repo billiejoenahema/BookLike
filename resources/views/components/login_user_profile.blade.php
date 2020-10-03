@@ -18,19 +18,20 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                 @if($login_user->id == 1)
                     <span class="dropdown-item disabled">プロフィール編集</span>
+                    <span class="dropdown-item disabled">アカウントを削除</span>
                 @else
                     <a href="{{ url('users/' .$login_user->id .'/edit') }}"
                         class="dropdown-item text-reset">
                         プロフィール編集
                     </a>
-                @endif
                     <a href="#"
-                        class="dropdown-item text-decoration-none disabled"
+                        class="dropdown-item text-decoration-none text-danger"
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
                         role="button">
                         アカウントを削除
                     </a>
+                @endif
                 </div>
             </div>
             <div>{{ $login_user->description }}</div>
