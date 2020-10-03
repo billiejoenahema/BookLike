@@ -77,14 +77,22 @@
                 </ul>
         </div>
     </nav>
-        <div class="flash_message container text-center" id="flashMessage">
+    <main class="pt-2 pb-5">
+        <div class="container px-0">
+            <div class="col-md-10 col-lg-8 mb-3 m-auto">
+            <div class="flash_message text-center" id="flashMessage">
         @if (session('flash_message'))
             {{ session('flash_message') }}
         @endif
         </div>
-    <main class="py-5">
-        <div class="container px-0">
-            <div class="col-md-10 col-lg-8 mb-3 m-auto">
+        <div class="d-flex justify-content-between mb-3">
+            <button type="button" onclick="history.back()" class="btn">
+                <i class="fas fa-chevron-left"></i> 戻る
+            </button>
+            <div class="btn">
+                <a href="{{ url('users') }}" class="text-reset">ユーザ一を探す</a>
+            </div>
+        </div>
             @yield('content')
             <!-- 新規投稿ボタン -->
             <a class="d-block"

@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <button type="button" onclick="history.back()" class="btn">
-        <i class="fas fa-chevron-left"></i> 戻る
-    </button>
     <div class="card shadow-sm">
         <div class="card-header">検索結果一覧</div>
         <div class="card-body">

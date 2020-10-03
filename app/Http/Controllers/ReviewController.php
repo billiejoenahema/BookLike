@@ -73,8 +73,8 @@ class ReviewController extends Controller
             'asin' => 'required',
             'page_url' => 'string',
             'title' => 'required',
-            'author' => 'string',
-            'manufacturer' => 'string',
+            'author' => 'string | nullable',
+            'manufacturer' => 'string | nullable',
             'image_url' => 'required',
             'text' => 'required | string | max:400'
         ]);
