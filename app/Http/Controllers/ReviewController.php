@@ -97,13 +97,11 @@ class ReviewController extends Controller
         $review = $review->getReview($review->id);
         $comments = $comment->getComments($review->id);
         $item = $get_item->getItem($review->asin);
-        $item_url = $item->DetailPageURL;
 
         return view('reviews.show', compact(
             'review',
             'comments',
-            'login_user',
-            'item_url'
+            'login_user'
         ));
     }
 

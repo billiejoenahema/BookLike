@@ -8,15 +8,15 @@
                 <!-- 選択した書籍情報 -->
                 <h6>選択した書籍</h6>
                 <div class="card mb-4">
-                    <div class="d-flex flex-wrap p-2">
+                    <div class="d-flex p-2">
                         <div class="d-flex flex-column p-2 mr-2">
                             <img src="{{ $get_item->Images->Primary->Large->URL }}" width="100">
                         </div>
                         <div class="col-md-8 d-flex flex-column text-left p-2" >
                             <h5>{{ $get_item->ItemInfo->Title->DisplayValue }}</h5>
                             <ul class="list-unstyled">
-                                <li class="list-item">{{ $get_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}</li>
-                                <li class="list-item">{{ $get_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}</li>
+                                <li class="list-item">著者：{{ $get_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}</li>
+                                <li class="list-item">出版社：{{ $get_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}</li>
                             </ul>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                                 name="text"
                                 required
                                 autocomplete="text"
-                                rows="8"
+                                rows="10"
                                 autofocus
                                 onkeyup="checkTextLength(value)"
                                 >{{ old('text') ? : '' }}</textarea>

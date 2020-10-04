@@ -10,7 +10,7 @@ function Timeline(props) {
         <>
             {props.timelines.map((timeline) =>
                 <div className="card shadow-sm mb-3" key={timeline.id} >
-                    <div className="card-haeder p-3 w-100 d-flex">
+                    <div className="card-haeder p-3 d-flex">
                         <a href={`http://127.0.0.1:8000/users/${timeline.user.id}`} className="text-reset">
                             <img src={`/storage/profile_image/${timeline.user.profile_image}`}
                                 className="rounded-circle shadow-sm"
@@ -26,15 +26,16 @@ function Timeline(props) {
                     </div>
                     <div className="card-body border-top border-bottom py-0">
                         <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
-                            <div className="d-flex flex-row p-2">
-                                <div className="mb-3 p-2">
-                                    <img src={timeline.image_url} width="80" className="shadow-sm" />
+                            <div className="d-flex flex-row py-2">
+                                <div className="py-2 pr-4">
+                                    <img src={timeline.image_url} width="100" className="shadow-sm" />
                                 </div>
-                                <div className="d-flex flex-column p-2">
-                                    <h5>{timeline.title}</h5>
+                                <div className="col-md-8 d-flex flex-column text-left py-2 px-0">
+                                    <h5 className="mb-3">{timeline.title}</h5>
                                     <ul className="list-unstyled">
-                                        <li className="">著者名</li>
-                                        <li className="">{timeline.asin}</li>
+                                        <li><span>著者：</span>{timeline.author}</li>
+                                        <li><span>出版社：</span>{timeline.manufacturer}</li>
+                                        <li><a href={timeline.page_url} target="_blank" rel="noopener"><i className="fab fa-amazon"></i> Amazon link</a></li>
                                     </ul>
                                 </div>
                             </div>

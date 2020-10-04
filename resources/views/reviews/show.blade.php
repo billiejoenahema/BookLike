@@ -13,22 +13,20 @@
                 </div>
             </div>
             <div class="card-body border-top">
-                    <div class="d-sm-flex p-2 border-bottom">
-                        <div class="d-flex flex-column mb-3 p-2">
-                            <a href="{{ $item_url }}">
-                                <img src="{{ $review->image_url }}" width="160">
-                            </a>
+                    <div class="d-flex border-bottom">
+                        <div class="mb-3 py-2 pr-4">
+                            <img src="{{ $review->image_url }}" width="100">
                         </div>
-                        <div class="d-flex flex-column text-left p-2" >
-                            <h5>{{ $review->title }}</h5>
+                        <div class="col-md-8 d-flex flex-column text-left py-2 px-0" >
+                            <h5 class="mb-3">{{ $review->title }}</h5>
                             <ul class="list-unstyled">
-                                <li class="list-item">著者名</li>
-                                <li class="list-item"><a href="{{ $review->page_url }} " target="_blank" rel="noopener"><i class="fab fa-amazon"></i> Amazon link</a></li>
-                                <li class="list-item">{{ $review->asin }}</li>
+                                <li>著者：{{ $review->author }}</li>
+                                <li>出版社：{{ $review->manufacturer }}</li>
+                                <li><a href="{{ $review->page_url }} " target="_blank" rel="noopener"><i class="fab fa-amazon"></i> Amazon link</a></li>
                             </ul>
                         </div>
                     </div>
-                <div>
+                <div class="mt-3">
                     {!! nl2br(e($review->text)) !!}
                 </div>
             </div>
