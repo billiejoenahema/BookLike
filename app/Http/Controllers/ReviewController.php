@@ -76,7 +76,7 @@ class ReviewController extends Controller
             'author' => 'string | nullable',
             'manufacturer' => 'string | nullable',
             'image_url' => 'required',
-            'text' => 'required | string | max:400'
+            'text' => 'required | string | max:800'
         ]);
 
         $validator->validate();

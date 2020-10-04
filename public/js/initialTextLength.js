@@ -4,7 +4,7 @@ window.onload = () => {
     if (inputtedText) {
         const inputtedLength = inputtedText.value.length
         const textLength = document.getElementById('textLength')
-        textLength.textContent = `${inputtedLength} / 400文字`
+        textLength.textContent = `${inputtedLength} / 800文字`
     }
     return
 }

@@ -38,7 +38,7 @@
                                 >{{ old('text') ? : '' }}</textarea>
                                 @error('text')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ '400文字以内' }}</strong>
+                                        <strong>{{ '800文字まで投稿可能です' }}</strong>
                                     </span>
                                 @enderror
                         </div>
@@ -50,7 +50,7 @@
                         <input type="hidden" name="image_url" id="image_url" value="{{ $get_item->Images->Primary->Large->URL }}">
                         <div class="form-group row mb-0">
                             <div class="col-12 text-right">
-                                <p id="textLength">0 / 400文字</p>
+                                <p id="textLength">0 / 800文字</p>
                                 <button type="submit" class="btn btn-primary shadow-sm">投稿する</button>
                             </div>
                         </div>
