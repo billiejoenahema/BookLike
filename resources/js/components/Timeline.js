@@ -34,7 +34,7 @@ function Timeline(props) {
                                     <ul className="list-unstyled">
                                         <li><span>著者：</span>{timeline.author}</li>
                                         <li><span>出版社：</span>{timeline.manufacturer}</li>
-                                        <li><object><a href={timeline.page_url} target="_blank" rel="noopener"><i className="fab fa-amazon"></i> Amazon link</a></object></li>
+                                        <li><object><a href={timeline.page_url} target="_blank" rel="noopener" data-tip="外部リンク"><i className="fab fa-amazon"></i> Amazon link<ReactTooltip effect="float" type="info" place="top" /></a></object></li>
                                     </ul>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@ function Timeline(props) {
                                 if (timeline.user.id === props.loginUser.id) {
                                     return (
                                         <a href={`http://127.0.0.1:8000/reviews/${timeline.id}/edit`}
-                                            data-tip="投稿を編集"><i className="fas fa-edit"></i>
+                                            data-tip="投稿を編集"><i className="fas fa-edit text-blog"></i>
                                             <ReactTooltip effect="float" type="info" place="top" /></a>
                                     )
                                 }
@@ -60,7 +60,7 @@ function Timeline(props) {
                         </div>
                         {/* コメントボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw"></i>
+                            <a href={`http://127.0.0.1:8000/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw text-blog"></i>
                                 <ReactTooltip effect="float" type="info" place="top" /></a>
                             <p className="mb-0 text-secondary">{timeline.comments.length}</p>
                         </div>

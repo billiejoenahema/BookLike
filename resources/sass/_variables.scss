@@ -12,25 +12,34 @@ $indigo: #6574cd;
 $purple: #9561e2;
 $pink: #f66d9b;
 $red: #e3342f;
+$crimson: #DC143C;
 $orange: #f6993f;
 $yellow: #ffed4a;
 $green: #38c172;
+$seaGreen: #2E8B57;
+$darkGreen: #006400;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 $blog: #7092be;
 $blogLight: #a9c8f1;
 
 $theme-colors: (
+    "blue": $blue,
     "indigo": $indigo,
     "purple": $purple,
     "pink": $pink,
+    "red": $red,
+    "crimson": $crimson,
     "orange": $orange,
     "yellow": $yellow,
     "green": $green,
+    "seaGreen": $seaGreen,
+    "darkGreen": $darkGreen,
     "teal": $teal,
     "cyan": $cyan,
     "blog": $blog,
     "blogLight": $blogLight
+
 );
 
 $yiq-contrasted-threshold: 300;

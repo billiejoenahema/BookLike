@@ -70981,7 +70981,7 @@ var FavoriteButton = function FavoriteButton(props) {
     className: "btn p-0 border-0",
     "data-tip": "\u3044\u3044\u306D"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-heart fa-fw text-danger"
+    className: "fas fa-heart fa-fw text-red"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
     effect: "float",
     type: "info",
@@ -70991,7 +70991,7 @@ var FavoriteButton = function FavoriteButton(props) {
     className: "btn p-0 border-0",
     "data-tip": "\u3044\u3044\u306D"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "far fa-heart fa-fw text-primary"
+    className: "far fa-heart fa-fw text-blog"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
     effect: "float",
     type: "info",
@@ -71074,10 +71074,10 @@ var FollowButton = function FollowButton(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: DeleteFollow,
-    className: "btn-sm btn-primary rounded-pill shadow-sm border-0"
+    className: "btn-sm btn-blog rounded-pill shadow-sm border-0"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: PostFollow,
-    className: "btn-sm btn-outline-primary rounded-pill shadow-sm border-0"
+    className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0"
   }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
 };
 
@@ -71239,10 +71239,15 @@ function Timeline(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), timeline.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), timeline.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: timeline.page_url,
       target: "_blank",
-      rel: "noopener"
+      rel: "noopener",
+      "data-tip": "\u5916\u90E8\u30EA\u30F3\u30AF"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fab fa-amazon"
-    }), " Amazon link")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }), " Amazon link", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      effect: "float",
+      type: "info",
+      place: "top"
+    }))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "http://127.0.0.1:8000/reviews/".concat(timeline.id),
@@ -71257,7 +71262,7 @@ function Timeline(props) {
           href: "http://127.0.0.1:8000/reviews/".concat(timeline.id, "/edit"),
           "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "fas fa-edit"
+          className: "fas fa-edit text-blog"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
           effect: "float",
           type: "info",
@@ -71270,7 +71275,7 @@ function Timeline(props) {
       href: "http://127.0.0.1:8000/reviews/".concat(timeline.id),
       "data-tip": "\u30B3\u30E1\u30F3\u30C8\u3092\u6295\u7A3F"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "far fa-comment fa-fw"
+      className: "far fa-comment fa-fw text-blog"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
       effect: "float",
       type: "info",

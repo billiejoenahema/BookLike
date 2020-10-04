@@ -19,8 +19,6 @@
                             data-toggle="modal"
                             data-target="#deleteComment"
                             class="text-secondary mb-0 d-block"
-                            data-toggle="tooltip"
-                            data-placement="top"
                             title="コメント削除">
                             <i class="fas fa-trash"></i>
                         </a>
@@ -48,7 +46,7 @@
                         <form method="POST" action="{{ route('comments.destroy', $comment) }}">
                         @csrf
                         @method('DELETE')
-                            <button type="submit" class="btn btn-danger">削除する</button>
+                            <button type="submit" class="btn btn-crimson">削除する</button>
                         </form>
                     </div>
                 </div>

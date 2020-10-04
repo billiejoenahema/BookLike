@@ -64,7 +64,7 @@
                 @csrf
                 <input type="hidden" name="email" value="guestuser@example.com">
                 <input type="hidden" name="password" value="guestuser+password">
-                <button type="submit" class="btn bg-gradient-success text-white shadow-sm w-100 mt-5">
+                <button type="submit" class="btn btn-seaGreen text-white shadow-sm w-100 mt-5">
                     {{ __('お試しログイン') }}
                 </button>
             </form>

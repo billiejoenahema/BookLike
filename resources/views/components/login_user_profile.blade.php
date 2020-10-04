@@ -74,7 +74,7 @@
                     <form method="POST" action="{{ route('users.destroy', $login_user->id) }}" id="delete_{{ $login_user->id }}">
                     @csrf
                     @method('DELETE')
-                        <button type="submit" class="btn btn-danger">削除する</button>
+                        <button type="submit" class="btn btn-crimson">削除する</button>
                     </form>
             </div>
         </div>

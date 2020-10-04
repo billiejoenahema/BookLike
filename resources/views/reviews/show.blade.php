@@ -22,7 +22,13 @@
                             <ul class="list-unstyled">
                                 <li>著者：{{ $review->author }}</li>
                                 <li>出版社：{{ $review->manufacturer }}</li>
-                                <li><a href="{{ $review->page_url }} " target="_blank" rel="noopener"><i class="fab fa-amazon"></i> Amazon link</a></li>
+                                <li><a href="{{ $review->page_url }} "
+                                    target="_blank"
+                                    rel="noopener"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="外部リンク"
+                                    ><i class="fab fa-amazon"></i> Amazon link</a></li>
                             </ul>
                         </div>
                     </div>
@@ -50,22 +56,15 @@
                 <div class="btn">
                 @if ($review->user->id === $login_user->id)
                     <a href="{{ url('reviews/' .$review->id .'/edit') }}"
-                        data-toggle="modal"
-                        data-target="#deleteReview"
                         title="投稿を編集">
-                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-edit text-blog"></i>
                     </a>
                 @endif
                 </div>
 
                 <!-- コメントボタン -->
                 <div class="d-flex align-items-center ml-3">
-                    <a href="{{ url('reviews/' .$review->id) }}"
-                        data-toggle="modal"
-                        data-target="#deleteReview"
-                        title="コメントを投稿">
-                        <i class="far fa-comment fa-fw"></i>
-                    </a>
+                    <a href="{{ url('reviews/' .$review->id) }}" title="コメントを投稿"><i class="far fa-comment fa-fw text-blog"></i></a>
                     <p class="mb-0 text-secondary">{{ count($review->comments) }}</p>
                 </div>
 
@@ -75,24 +74,14 @@
                         <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
                             @csrf
                             <input type="hidden" name="review_id" value="{{ $review->id }}">
-                            <button type="submit" class="btn p-0 border-0 text-primary"
-                                data-toggle="modal"
-                                data-target="#deleteReview"
-                                title="いいね">
-                                <i class="far fa-heart fa-fw"></i>
-                            </button>
+                            <button type="submit" class="btn p-0 border-0 text-blog" title="いいね"><i class="far fa-heart fa-fw"></i></button>
                         </form>
                 @else
                     <form method="POST" action="{{ url('favorites/' .array_column($review->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}" class="mb-0">
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="btn p-0 border-0 text-danger"
-                            data-toggle="modal"
-                            data-target="#deleteReview"
-                            title="いいね">
-                            <i class="fas fa-heart fa-fw"></i>
-                        </button>
+                        <button type="submit" class="btn p-0 border-0 text-red" title="いいね"><i class="fas fa-heart fa-fw"></i></button>
                     </form>
                 @endif
                     <p class="mb-0 text-secondary">{{ count($review->favorites) }}</p>
@@ -118,7 +107,7 @@
                     <form method="POST" action="{{ route('reviews.destroy', $review) }}">
                     @csrf
                     @method('DELETE')
-                        <button type="submit" class="btn btn-danger">削除する</button>
+                        <button type="submit" class="btn btn-crimson">削除する</button>
                     </form>
                 </div>
             </div>
