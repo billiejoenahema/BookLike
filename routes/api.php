@@ -85,6 +85,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     // フォロー/フォロー解除
     Route::post('users/{user}/follow', 'Api\UsersController@follow');
-    Route::delete('users/{id}/unfollow', 'Api\UsersController@unfollow');
+    Route::post('users/{id}/unfollow', 'Api\UsersController@unfollow');
 
 });

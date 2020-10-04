@@ -3,13 +3,12 @@ import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 import omittedText from '../functions/omittedText'
 
-
 function Timeline(props) {
 
     return (
         <>
-            {props.timelines.map((timeline) =>
-                <div className="card shadow-sm mb-3" key={timeline.id} >
+            {props.timelines.map((timeline) => (
+                <div className="card shadow-sm mb-3" key={timeline.id}>
                     <div className="card-haeder p-3 d-flex">
                         <a href={`http://127.0.0.1:8000/users/${timeline.user.id}`} className="text-reset">
                             <img src={`/storage/profile_image/${timeline.user.profile_image}`}
@@ -35,7 +34,7 @@ function Timeline(props) {
                                     <ul className="list-unstyled">
                                         <li><span>著者：</span>{timeline.author}</li>
                                         <li><span>出版社：</span>{timeline.manufacturer}</li>
-                                        <li><a href={timeline.page_url} target="_blank" rel="noopener"><i className="fab fa-amazon"></i> Amazon link</a></li>
+                                        <li><object><a href={timeline.page_url} target="_blank" rel="noopener"><i className="fab fa-amazon"></i> Amazon link</a></object></li>
                                     </ul>
                                 </div>
                             </div>
@@ -73,8 +72,7 @@ function Timeline(props) {
                         </div>
                     </div>
                 </div>
-            )
-            }
+            ))}
         </>
     )
 }

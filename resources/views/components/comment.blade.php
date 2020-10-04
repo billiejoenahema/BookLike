@@ -18,7 +18,10 @@
                             role="button"
                             data-toggle="modal"
                             data-target="#deleteComment"
-                            class="text-secondary mb-0 d-block">
+                            class="text-secondary mb-0 d-block"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="コメント削除">
                             <i class="fas fa-trash"></i>
                         </a>
                     @endif

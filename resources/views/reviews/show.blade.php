@@ -39,6 +39,7 @@
                         role="button"
                         data-toggle="modal"
                         data-target="#deleteReview"
+                        title="投稿を削除"
                         class="text-secondary mb-0 d-block h5">
                         <i class="fas fa-trash"></i>
                     </a>
@@ -48,13 +49,23 @@
                 <!-- 編集ボタン -->
                 <div class="btn">
                 @if ($review->user->id === $login_user->id)
-                    <a href="{{ url('reviews/' .$review->id .'/edit') }}"><i class="fas fa-edit"></i></a>
+                    <a href="{{ url('reviews/' .$review->id .'/edit') }}"
+                        data-toggle="modal"
+                        data-target="#deleteReview"
+                        title="投稿を編集">
+                        <i class="fas fa-edit"></i>
+                    </a>
                 @endif
                 </div>
 
                 <!-- コメントボタン -->
                 <div class="d-flex align-items-center ml-3">
-                    <a href="{{ url('reviews/' .$review->id) }}"><i class="far fa-comment fa-fw"></i></a>
+                    <a href="{{ url('reviews/' .$review->id) }}"
+                        data-toggle="modal"
+                        data-target="#deleteReview"
+                        title="コメントを投稿">
+                        <i class="far fa-comment fa-fw"></i>
+                    </a>
                     <p class="mb-0 text-secondary">{{ count($review->comments) }}</p>
                 </div>
 
@@ -64,14 +75,24 @@
                         <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
                             @csrf
                             <input type="hidden" name="review_id" value="{{ $review->id }}">
-                            <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
+                            <button type="submit" class="btn p-0 border-0 text-primary"
+                                data-toggle="modal"
+                                data-target="#deleteReview"
+                                title="いいね">
+                                <i class="far fa-heart fa-fw"></i>
+                            </button>
                         </form>
                 @else
                     <form method="POST" action="{{ url('favorites/' .array_column($review->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}" class="mb-0">
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
+                        <button type="submit" class="btn p-0 border-0 text-danger"
+                            data-toggle="modal"
+                            data-target="#deleteReview"
+                            title="いいね">
+                            <i class="fas fa-heart fa-fw"></i>
+                        </button>
                     </form>
                 @endif
                     <p class="mb-0 text-secondary">{{ count($review->favorites) }}</p>
