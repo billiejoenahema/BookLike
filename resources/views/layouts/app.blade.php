@@ -12,7 +12,9 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('/js/checkTextLength.js') }}" defer></script>
+    <script src="{{ asset('/js/checkCommentLength.js') }}" defer></script>
     <script src="{{ asset('/js/initialTextLength.js') }}" defer></script>
+    <script src="{{ asset('/js/commentValidate.js') }}" defer></script>
     <script src="{{ asset('/js/selectItem.js') }}" defer></script>
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <div class="card shadow-sm mb-5">
+        <div class="card shadow-sm">
             <div class="card-haeder p-3 w-100 d-flex">
                 @include('components.user_image', ['user' => $review->user])
                 <div class="ml-2 d-flex flex-column">
@@ -33,7 +33,7 @@
 
             <div class="card-footer d-flex bg-white">
                 <!-- 投稿削除ボタン -->
-                <div class="btn flex-grow-1 text-left">
+                <div class="btn flex-grow-1 text-left px-0">
                 @if ($review->user->id === $login_user->id)
                     <a href="#"
                         role="button"
