@@ -92,8 +92,9 @@
             <button type="button" onclick="history.back()" class="btn">
                 <i class="fas fa-chevron-left"></i> 戻る
             </button>
-            <div class="btn">
-                <a href="{{ url('users') }}" class="text-reset">ユーザ一を探す</a>
+            <div class="pr-0">
+                <a href="{{ url('reviews') }}" class="text-reset btn">投稿一覧</a>
+                <a href="{{ url('users') }}" class="text-reset btn">ユーザー一覧</a>
             </div>
         </div>
             @yield('content')
