@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('components.cross_button')
     <div class="card shadow-sm">
         <form method="POST" action="{{ route('reviews.destroy', $review) }}" id="delete_{{ $review->id }}">
         @csrf
@@ -47,6 +46,7 @@
                         <textarea class="form-control
                         @error('text') is-invalid @enderror"
                         name="text"
+                        id="inputtedText"
                         required
                         autocomplete="text"
                         rows="6"
