@@ -45,7 +45,8 @@ const UserIndex = () => {
     body.onscroll = () => {
         const scrollTop = window.scrollY
         const clientHeight = document.getElementById('usersComponent').clientHeight
-        if (hasMore && clientHeight - scrollTop < 500) {
+        console.log(clientHeight - scrollTop)
+        if (hasMore && clientHeight - scrollTop < 550) {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
@@ -53,23 +54,23 @@ const UserIndex = () => {
     }
 
     return (
-        <div>
-            <div className="mb-3">
-                <input
-                    className="form-control col-10 col-md-6 shadow-sm"
-                    type="search"
-                    value={searchWord}
-                    onChange={handleSearch}
-                    placeholder="ユーザー検索..."
-                    aria-label="ユーザー検索"
-                    required autoComplete="on"
-                />
-            </div>
+        <>
+            <input
+                className="form-control col-4 search-form pl-1 pr-0"
+                type="search"
+                value={searchWord}
+                onChange={handleSearch}
+                placeholder="ユーザー検索..."
+                aria-label="ユーザー検索"
+                required autoComplete="on"
+            />
             <div id="usersComponent">
                 <Users users={userList} loginUser={loginUser} />
             </div>
-            {loading && '読み込み中...'}
-        </div>
+            <div className="text-center">
+                {loading && '読み込み中...'}
+            </div>
+        </>
     )
 }
 

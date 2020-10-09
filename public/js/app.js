@@ -71900,10 +71900,8 @@ var ReviewIndex = function ReviewIndex() {
     setSearchWord(e.target.value);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-control col-10 col-md-6 shadow-sm",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-control col-4 search-form pl-1 pr-0",
     onChange: handleSearch,
     type: "search",
     value: searchWord,
@@ -71911,7 +71909,7 @@ var ReviewIndex = function ReviewIndex() {
     "aria-label": "\u30BF\u30A4\u30C8\u30EB\u691C\u7D22",
     required: true,
     autoComplete: "on"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_2__["default"], {
     timelines: searchResults,
     loginUser: loginUser
   }));
@@ -72247,8 +72245,9 @@ var UserIndex = function UserIndex() {
   body.onscroll = function () {
     var scrollTop = window.scrollY;
     var clientHeight = document.getElementById('usersComponent').clientHeight;
+    console.log(clientHeight - scrollTop);
 
-    if (hasMore && clientHeight - scrollTop < 500) {
+    if (hasMore && clientHeight - scrollTop < 550) {
       setPage(function (prev) {
         return prev + 1;
       });
@@ -72258,10 +72257,8 @@ var UserIndex = function UserIndex() {
     return;
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "form-control col-10 col-md-6 shadow-sm",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control col-4 search-form pl-1 pr-0",
     type: "search",
     value: searchWord,
     onChange: handleSearch,
@@ -72269,12 +72266,14 @@ var UserIndex = function UserIndex() {
     "aria-label": "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22",
     required: true,
     autoComplete: "on"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "usersComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_3__["default"], {
     users: userList,
     loginUser: loginUser
-  })), loading && '読み込み中...');
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-center"
+  }, loading && '読み込み中...'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserIndex);

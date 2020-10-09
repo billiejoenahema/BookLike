@@ -31,17 +31,15 @@ const ReviewIndex = () => {
 
     return (
         <>
-            <div className="mb-3">
-                <input
-                    className="form-control col-10 col-md-6 shadow-sm"
-                    onChange={handleSearch}
-                    type="search"
-                    value={searchWord}
-                    placeholder="タイトル検索..."
-                    aria-label="タイトル検索"
-                    required autoComplete="on"
-                />
-            </div>
+            <input
+                className="form-control col-4 search-form pl-1 pr-0"
+                onChange={handleSearch}
+                type="search"
+                value={searchWord}
+                placeholder="タイトル検索..."
+                aria-label="タイトル検索"
+                required autoComplete="on"
+            />
             <Timeline timelines={searchResults} loginUser={loginUser} />
         </>
     )

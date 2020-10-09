@@ -25,11 +25,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/floating_button.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/search_form.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body id="body">
-    <nav class="navbar navbar-expand navbar-light bg-blog shadow-sm sticky-top py-1">
+    <nav class="navbar navbar-expand navbar-light sticky-top bg-blog shadow-sm py-1 mb-1">
         <div class="container">
             <!-- ロゴ -->
             <a class="navbar-brand d-block text-white" href="{{ url('/') }}">
@@ -59,13 +60,14 @@
                             aria-expanded="false">
                             <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
                                 class="rounded-circle shadow-sm img-fluid"
-                                width="40" height="40">
+                                width="36" height="36">
                         </a>
                         <!-- ドロップダウンメニュー -->
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url('reviews/create') }}"><i class="fas fa-pen mr-1"></i>新規投稿</a>
-                            <a class="dropdown-item" href="{{ url('users') }}"><i class="fas fa-search mr-1"></i>ユーザーを探す</a>
-                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}"><i class="fas fa-user mr-1"></i>マイページ</a>
+                            <a class="dropdown-item" href="{{ url('reviews/create') }}"><i class="fas fa-pen mr-1"></i> 新規投稿</a>
+                            <a class="dropdown-item" href="{{ url('reviews') }}"><i class="fas fa-book-open"></i> 投稿を探す</a>
+                            <a class="dropdown-item" href="{{ url('users') }}"><i class="fas fa-user mr-1"></i> ユーザーを探す</a>
+                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}"><i class="fas fa-cog"></i> マイページ</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -87,19 +89,6 @@
                 @if (session('flash_message'))
                     {{ session('flash_message') }}
                 @endif
-                </div>
-                <div>
-                    @auth
-                    <div class="d-flex justify-content-between mb-3">
-                        <button type="button" onclick="history.back()" class="btn">
-                            <i class="fas fa-chevron-left"></i> 戻る
-                        </button>
-                        <div class="pr-0">
-                            <a href="{{ url('reviews') }}" class="text-reset btn">投稿一覧</a>
-                            <a href="{{ url('users') }}" class="text-reset btn">ユーザー一覧</a>
-                        </div>
-                    </div>
-                    @endauth
                 </div>
 
                 @yield('content')
