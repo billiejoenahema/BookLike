@@ -11,7 +11,7 @@ const FavoriteButton = (props) => {
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
-    const PostFavorite = () => {
+    const postFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount + 1)
         console.log('PostButton Clicked!')
@@ -28,7 +28,7 @@ const FavoriteButton = (props) => {
             })
     }
 
-    const DeleteFavorite = () => {
+    const deleteFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
         console.log('DeleteButton Clicked!')
@@ -50,8 +50,8 @@ const FavoriteButton = (props) => {
         <>
             {
                 favorite ?
-                    <button onClick={DeleteFavorite} className="btn p-0 border-0" data-tip="いいね"><i className="fas fa-heart fa-fw text-red"></i><ReactTooltip effect="float" type="info" place="top" /></button >
-                    : <button onClick={PostFavorite} className="btn p-0 border-0" data-tip="いいね"><i className="far fa-heart fa-fw text-blog"></i><ReactTooltip effect="float" type="info" place="top" /></button >
+                    <button onClick={deleteFavorite} className="btn p-0 border-0" data-tip="いいね"><i className="fas fa-heart fa-fw text-red"></i><ReactTooltip effect="float" type="info" place="top" /></button >
+                    : <button onClick={postFavorite} className="btn p-0 border-0" data-tip="いいね"><i className="far fa-heart fa-fw text-blog"></i><ReactTooltip effect="float" type="info" place="top" /></button >
             }
 
             <p className="mb-0 text-secondary">{favoriteCount}</p>

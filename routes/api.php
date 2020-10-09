@@ -67,15 +67,15 @@ Route::group(['middleware' => 'auth'], function() {
         $search = $request->input('search');
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
-        $allUsers = $user->getAllUsers($loginUserId)
+        $users = $user->getAllUsers($loginUserId)
             ->with('followers')
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate(10);
 
         return
             [
                 'loginUser' => $loginUser,
-                'allUsers' => $allUsers,
+                'users' => $users,
             ];
     });
 

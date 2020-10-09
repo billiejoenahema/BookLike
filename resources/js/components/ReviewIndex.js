@@ -21,20 +21,20 @@ const ReviewIndex = () => {
             })
     }, [])
 
-    const handleChange = e => {
-        setSearchWord(e.target.value)
-    }
-
     const searchResults = timelines.filter((item) => {
         return item.title.indexOf(searchWord) > -1
     })
+
+    const handleSearch = (e) => {
+        setSearchWord(e.target.value)
+    }
 
     return (
         <>
             <div className="mb-3">
                 <input
                     className="form-control col-10 col-md-6 shadow-sm"
-                    onChange={handleChange}
+                    onChange={handleSearch}
                     type="search"
                     value={searchWord}
                     placeholder="タイトル検索..."
