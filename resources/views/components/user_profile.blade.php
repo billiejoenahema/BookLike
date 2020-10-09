@@ -11,30 +11,16 @@
         </div>
         <div class="col-8 p-3 d-flex flex-column justify-content-between">
             <!-- フォロー関係 -->
-            <div class="d-flex flex-wrap justify-content-between mb-3">
+            <div class="d-flex flex-wrap justify-content-sm-between justify-content-end mb-3">
                 <div class="d-flex flex-sm-column">
                     @if ($login_user->isFollowed($user->id))
-                    <div class="mb-1 mr-3">
+                    <div class="mb-1">
                         <span class="text-secondary"><i class="far fa-laugh"></i>フォローされています</span>
                     </div>
                     @endif
                 </div>
-                <div>
-                    @if ($is_following)
-                    <form action="{{ route('unfollow', $user->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn-sm btn-blog rounded-pill shadow-sm border-0">フォロー中</button>
-                    </form>
-                    @else
-                    <form action="{{ route('follow', $user->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn-sm btn-outline-blog rounded-pill shadow-sm border-0">フォローする</button>
-                    </form>
-                    @endif
-                </div>
+                @include('components.follow_button')
             </div>
-
             <div class="d-flex">
                 <p>{{ $user->description }}</p>
             </div>

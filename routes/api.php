@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
         $loginUser = $user->with('followers')->find($loginUserId);
         $users = $user->getAllUsers($loginUserId)
             ->with('followers')
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('id', 'ASC')
             ->paginate(10);
 
         return
