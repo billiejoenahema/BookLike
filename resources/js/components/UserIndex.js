@@ -10,19 +10,7 @@ const UserIndex = () => {
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
     const [searchWord, setSearchWord] = useState('')
-
-    const handleScroll = event => {
-        console.log('Scrolling!')
-        if (hasMore) {
-            const { scrollTop, clientHeight, scrollHeight } = event.currentTarget
-            console.log(clientHeight)
-
-            if (scrollHeight - scrollTop === clientHeight) {
-                setPage(prev => prev + 1)
-            }
-            return
-        }
-    }
+    const body = document.getElementById('body')
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -54,8 +42,18 @@ const UserIndex = () => {
         setSearchWord(e.target.value)
     }
 
+    body.onscroll = () => {
+        const scrollTop = window.scrollY
+        const clientHeight = document.getElementById('usersComponent').clientHeight
+        if (hasMore && clientHeight - scrollTop < 500) {
+            setPage(prev => prev + 1)
+            setHasMore(false)
+        }
+        return
+    }
+
     return (
-        <div onScroll={handleScroll} >
+        <div>
             <div className="mb-3">
                 <input
                     className="form-control col-10 col-md-6 shadow-sm"
@@ -67,7 +65,9 @@ const UserIndex = () => {
                     required autoComplete="on"
                 />
             </div>
-            <Users users={userList} loginUser={loginUser} />
+            <div id="usersComponent">
+                <Users users={userList} loginUser={loginUser} />
+            </div>
             {loading && '読み込み中...'}
         </div>
     )

@@ -28,7 +28,7 @@
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
-<body>
+<body id="body">
     <nav class="navbar navbar-expand navbar-light bg-blog shadow-sm sticky-top py-1">
         <div class="container">
             <!-- ロゴ -->
@@ -88,18 +88,19 @@
                     {{ session('flash_message') }}
                 @endif
                 </div>
-
-                @auth
-                <div class="d-flex justify-content-between mb-3">
-                    <button type="button" onclick="history.back()" class="btn">
-                        <i class="fas fa-chevron-left"></i> 戻る
-                    </button>
-                    <div class="pr-0">
-                        <a href="{{ url('reviews') }}" class="text-reset btn">投稿一覧</a>
-                        <a href="{{ url('users') }}" class="text-reset btn">ユーザー一覧</a>
+                <div>
+                    @auth
+                    <div class="d-flex justify-content-between mb-3">
+                        <button type="button" onclick="history.back()" class="btn">
+                            <i class="fas fa-chevron-left"></i> 戻る
+                        </button>
+                        <div class="pr-0">
+                            <a href="{{ url('reviews') }}" class="text-reset btn">投稿一覧</a>
+                            <a href="{{ url('users') }}" class="text-reset btn">ユーザー一覧</a>
+                        </div>
                     </div>
+                    @endauth
                 </div>
-                @endauth
 
                 @yield('content')
                 <!-- 新規投稿ボタン -->

@@ -72190,26 +72190,7 @@ var UserIndex = function UserIndex() {
       searchWord = _useState12[0],
       setSearchWord = _useState12[1];
 
-  var handleScroll = function handleScroll(event) {
-    console.log('Scrolling!');
-
-    if (hasMore) {
-      var _event$currentTarget = event.currentTarget,
-          scrollTop = _event$currentTarget.scrollTop,
-          clientHeight = _event$currentTarget.clientHeight,
-          scrollHeight = _event$currentTarget.scrollHeight;
-      console.log(clientHeight);
-
-      if (scrollHeight - scrollTop === clientHeight) {
-        setPage(function (prev) {
-          return prev + 1;
-        });
-      }
-
-      return;
-    }
-  };
-
+  var body = document.getElementById('body');
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadUsers = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72263,9 +72244,21 @@ var UserIndex = function UserIndex() {
     setSearchWord(e.target.value);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    onScroll: handleScroll
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  body.onscroll = function () {
+    var scrollTop = window.scrollY;
+    var clientHeight = document.getElementById('usersComponent').clientHeight;
+
+    if (hasMore && clientHeight - scrollTop < 500) {
+      setPage(function (prev) {
+        return prev + 1;
+      });
+      setHasMore(false);
+    }
+
+    return;
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     className: "form-control col-10 col-md-6 shadow-sm",
@@ -72276,10 +72269,12 @@ var UserIndex = function UserIndex() {
     "aria-label": "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22",
     required: true,
     autoComplete: "on"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "usersComponent"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_3__["default"], {
     users: userList,
     loginUser: loginUser
-  }), loading && '読み込み中...');
+  })), loading && '読み込み中...');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserIndex);
