@@ -46,7 +46,6 @@ const ReviewIndex = () => {
 
 }
 
-
 export default ReviewIndex
 
 if (document.getElementById('reviewIndex')) {

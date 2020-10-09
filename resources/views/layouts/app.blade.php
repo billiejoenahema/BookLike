@@ -11,12 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="{{ asset('/js/checkTextLength.js') }}" defer></script>
-    <script src="{{ asset('/js/checkCommentLength.js') }}" defer></script>
-    <script src="{{ asset('/js/initialTextLength.js') }}" defer></script>
-    <script src="{{ asset('/js/commentValidate.js') }}" defer></script>
-    <script src="{{ asset('/js/selectItem.js') }}" defer></script>
-
+    <script src="{{ asset('js/all.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,8 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/floating_button.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/search_form.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/customize.css') }}" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
@@ -82,7 +77,7 @@
                 </ul>
         </div>
     </nav>
-    <main class="pt-2 pb-5">
+    <main class="pt-2 pb-5 main-min-height">
         <div class="container px-0">
             <div class="col-md-10 col-lg-8 mb-3 m-auto">
                 <div class="flash_message text-center" id="flashMessage">

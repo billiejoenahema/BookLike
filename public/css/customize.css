@@ -1,0 +1,20 @@
+/* 新規投稿ボタン */
+.floating-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem 1.4rem;
+}
+
+/* main要素の高さを調整 */
+.main-min-height {
+    min-height: 600px;
+}
+
+/* ユーザー＆投稿検索フォームをnavbarへ */
+.search-form {
+  position: fixed;
+  top: 0.7rem;
+  left: 30%;
+  z-index:1020;
+}

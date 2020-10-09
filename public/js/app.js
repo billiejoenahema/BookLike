@@ -72245,7 +72245,6 @@ var UserIndex = function UserIndex() {
   body.onscroll = function () {
     var scrollTop = window.scrollY;
     var clientHeight = document.getElementById('usersComponent').clientHeight;
-    console.log(clientHeight - scrollTop);
 
     if (hasMore && clientHeight - scrollTop < 550) {
       setPage(function (prev) {

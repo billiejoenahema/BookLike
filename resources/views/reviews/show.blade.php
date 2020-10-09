@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('components.back_button')
         <div class="card shadow-sm">
             <div class="card-haeder p-3 w-100 d-flex">
                 @include('components.user_image', ['user' => $review->user])

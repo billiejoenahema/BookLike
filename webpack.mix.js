@@ -12,5 +12,12 @@ const mix = require("laravel-mix");
  */
 
 mix.react("resources/js/app.js", "public/js")
-    .sass("resources/sass/app.scss", "public/css");
+    .sass("resources/sass/app.scss", "public/css")
 
+mix.scripts([
+    'public/js/checkCommentLength.js',
+    'public/js/checkTextLength.js',
+    'public/js/commentValidate.js',
+    'public/js/initialTextLength.js',
+    'public/js/selectItem.js'
+], 'public/js/all.js')

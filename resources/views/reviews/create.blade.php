@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('components.back_button')
     <div class="card shadow-sm">
         <div class="card-header bg-cyan text-white">新規投稿</div>
             <div class="card-body form-group col-md-10 m-auto">
