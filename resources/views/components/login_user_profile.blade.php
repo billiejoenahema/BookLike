@@ -70,11 +70,11 @@
             </div>
             <div class="modal-body">「削除する」を押すとあなたのアカウント情報はすべて失われます</div>
                 <div class="modal-footer border-top-0">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">キャンセル</button>
                     <form method="POST" action="{{ route('users.destroy', $login_user->id) }}" id="delete_{{ $login_user->id }}">
                     @csrf
                     @method('DELETE')
-                        <button type="submit" class="btn btn-crimson">削除する</button>
+                        <button type="submit" class="btn btn-crimson rounded-pill">削除する</button>
                     </form>
             </div>
         </div>

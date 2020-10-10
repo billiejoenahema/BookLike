@@ -9,10 +9,13 @@
             <div class="card-header d-flex align-items-center justify-content-between">
                 <div class="h5 mb-0">編集</div>
                 <a href="#"
-                    data-id="{{ $review->id }}"
-                    onclick="deletePost(this)"
-                    class="text-secondary h5 mb-0 d-block"
-                    ><i class="fas fa-trash"></i></a>
+                    role="button"
+                    data-toggle="modal"
+                    data-target="#deleteReview"
+                    title="投稿を削除"
+                    class="text-secondary mb-0 d-block h5">
+                    <i class="fas fa-trash"></i>
+                </a>
             </div>
         </form>
         <div class="card-body">
@@ -60,10 +63,11 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-12 text-right">
                         <p id="textLength"></p>
-                        <button type="submit" class="btn btn-primary shadow-sm">投稿を編集する</button>
+                        <button type="submit" class="btn btn-primary rounded-pill shadow-sm">投稿を編集する</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    @include('components.review_delete_confirm')
 @endsection

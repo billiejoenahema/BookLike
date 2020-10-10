@@ -20,7 +20,7 @@
                             data-target="#deleteComment"
                             class="text-secondary mb-0 d-block"
                             title="コメント削除">
-                            <i class="fas fa-trash"></i>
+                            <h5><i class="fas fa-trash"></i></h5>
                         </a>
                     @endif
                     <span class="text-secondary">{{ $comment->created_at->format('Y-m-d') }}</span>
@@ -89,7 +89,7 @@
                             </div>
                     </div>
                     <div class="modal-footer border-top-0">
-                        <button type="button" onclick="commentValidate()" id="postButton" class="btn btn-primary shadow-sm">
+                        <button type="button" onclick="commentValidate()" id="postButton" class="btn btn-primary rounded-pill shadow-sm">
                             投稿する
                         </button>
                     </div>
@@ -99,7 +99,7 @@
     </div>
 </ul>
 <div class="text-right">
-    <button type="button" class="btn btn-primary mt-3 justify-content-end" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" class="btn btn-primary rounded-pill mt-3 justify-content-end" data-toggle="modal" data-target="#exampleModalCenter">
         コメントを投稿する
     </button>
 </div>

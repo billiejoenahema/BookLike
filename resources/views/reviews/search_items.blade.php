@@ -12,7 +12,7 @@
                     <div class="col-sm-8 p-0">
                         <form method="GET" action="{{ route('search_items') }}" class="form-inline">
                             @csrf
-                            <input class="form-control shadow-sm col-9 @error('keyword') is-invalid @enderror"
+                            <input class="form-control rounded-pill col-9 @error('keyword') is-invalid @enderror"
                             name="keyword"
                             type="search"
                             value="{{ $keyword }}"
@@ -21,7 +21,7 @@
                             @error('searchItems')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                            <button class="btn btn-outline-teal ml-2 shadow-sm" type="submit">
+                            <button class="btn btn-outline-teal rounded-circle ml-2 shadow-sm" type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>

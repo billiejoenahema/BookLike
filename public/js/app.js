@@ -71901,7 +71901,7 @@ var ReviewIndex = function ReviewIndex() {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-control col-4 search-form pl-1 pr-0",
+    className: "form-control col-4 search-form rounded-pill pr-0",
     onChange: handleSearch,
     type: "search",
     value: searchWord,
@@ -72012,7 +72012,7 @@ function Timeline(props) {
           href: "http://127.0.0.1:8000/reviews/".concat(timeline.id, "/edit"),
           "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "fas fa-edit text-blog"
+          className: "fas fa-pen text-blog"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
           effect: "float",
           type: "info",
@@ -72257,7 +72257,7 @@ var UserIndex = function UserIndex() {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "form-control col-4 search-form pl-1 pr-0",
+    className: "form-control col-4 search-form rounded-pill pr-0",
     type: "search",
     value: searchWord,
     onChange: handleSearch,

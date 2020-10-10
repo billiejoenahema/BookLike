@@ -60,9 +60,9 @@
                         <!-- ドロップダウンメニュー -->
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="{{ url('reviews/create') }}"><i class="fas fa-pen mr-1"></i> 新規投稿</a>
-                            <a class="dropdown-item" href="{{ url('reviews') }}"><i class="fas fa-book-open"></i> 投稿を探す</a>
-                            <a class="dropdown-item" href="{{ url('users') }}"><i class="fas fa-user mr-1"></i> ユーザーを探す</a>
-                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}"><i class="fas fa-cog"></i> マイページ</a>
+                            <a class="dropdown-item" href="{{ url('reviews') }}"><i class="fas fa-book-open"></i> タイムライン</a>
+                            <a class="dropdown-item" href="{{ url('users') }}"><i class="fas fa-users"></i> ユーザーを探す</a>
+                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}"><i class="fas fa-user-cog"></i> マイページ</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

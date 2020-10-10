@@ -52,7 +52,7 @@ function Timeline(props) {
                                 if (timeline.user.id === props.loginUser.id) {
                                     return (
                                         <a href={`http://127.0.0.1:8000/reviews/${timeline.id}/edit`}
-                                            data-tip="投稿を編集"><i className="fas fa-edit text-blog"></i>
+                                            data-tip="投稿を編集"><i className="fas fa-pen text-blog"></i>
                                             <ReactTooltip effect="float" type="info" place="top" /></a>
                                     )
                                 }

@@ -52,7 +52,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-12 text-right">
                                 <p id="textLength">0 / 800文字</p>
-                                <button type="submit" class="btn btn-primary shadow-sm">投稿する</button>
+                                <button type="submit" class="btn btn-primary rounded-pill shadow-sm">投稿する</button>
                             </div>
                         </div>
                     </form>

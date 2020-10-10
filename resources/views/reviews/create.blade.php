@@ -10,7 +10,7 @@
                     <label>投稿したい本のタイトルを検索してください</label>
                     <form method="GET" action="{{ route('search_items') }}" class="form-inline">
                         @csrf
-                        <input class="form-control col-9 @error('keyword') is-invalid @enderror"
+                        <input class="form-control col-9 rounded-pill @error('keyword') is-invalid @enderror"
                         name="keyword"
                         type="search"
                         placeholder="キーワードを入力"
@@ -20,7 +20,7 @@
                         @error('searchItems')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <button class="btn btn-outline-teal ml-2" type="submit">
+                        <button class="btn btn-outline-teal rounded-circle ml-2" type="submit">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
