@@ -12,7 +12,7 @@ Route::group(['middleware' => 'auth'], function() {
         $timelines = $review->with('user')
             ->with(['comments','favorites'])
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate();
 
         return
             [

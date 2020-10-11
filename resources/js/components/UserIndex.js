@@ -13,8 +13,6 @@ const UserIndex = () => {
     const [searchWord, setSearchWord] = useState('')
 
     useEffect(() => {
-        console.log(isPopular)
-
         const loadUsers = async () => {
             setLoading(true)
             const newUsers = await axios
@@ -62,7 +60,7 @@ const UserIndex = () => {
     body.onscroll = () => {
         const scrollTop = window.scrollY
         const clientHeight = document.getElementById('usersComponent').clientHeight
-        if (hasMore && clientHeight - scrollTop < 480) {
+        if (hasMore && clientHeight - scrollTop < 700) {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
