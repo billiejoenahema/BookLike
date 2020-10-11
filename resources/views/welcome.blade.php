@@ -10,18 +10,26 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/customize.css') }}" rel="stylesheet">
         <style>
             html, body {
-                background-color: #fff;
+                /* background-color: #fff; */
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
                 margin: 0;
             }
 
             .full-height {
                 height: 100vh;
+            }
+
+            .flex-1 {
+                flex: 1;
             }
 
             .flex-center {
@@ -63,28 +71,34 @@
             }
         </style>
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/reviews') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">ログイン</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">新規登録</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
+    <body class="bg-imageColor">
+        <div class="flex-1 d-flex align-items-center">
+            <div class="container m-auto flex-column text-center">
+                <div class="title m-b-md text-center">
                     BookLike
                 </div>
-                <div id="example"></div>
+                <div class="d-inline-flex col-6 justify-content-between">
+                    <a class="" href="{{ route('login') }}">
+                        <button class="btn btn-primary rounded-pill">
+                            {{ __('ログイン') }}
+                        </button>
+                    </a>
+                @if (Route::has('register'))
+                    <a class="" href="{{ route('register') }}">
+                        <button class="btn btn-orange rounded-pill">
+                            {{ __('新規登録') }}
+                        </button>
+                    </a>
+                @endif
+                </div>
             </div>
         </div>
+        <footer class="page-footer font-small">
+            <!-- Copyright -->
+                <div class="footer-copyright text-center text-blog py-3">
+                    © 2020 Copyright:BookLike
+                </div>
+            <!-- Copyright -->
+            </footer>
     </body>
 </html>

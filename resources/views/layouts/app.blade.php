@@ -25,22 +25,22 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body id="body">
-    <nav class="navbar navbar-expand navbar-light sticky-top bg-blog shadow-sm py-1 mb-1" style="background-image: linear-gradient(170deg, #9386ef , #b1f4cf 70%, #ffeaa5);">
+    <nav class="navbar navbar-expand navbar-light sticky-top bg-imageColor shadow-sm py-1 mb-1">
         <div class="container">
             <!-- ロゴ -->
             <a class="navbar-brand d-block text-white" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav">
+                <ul class="navbar-nav text-blog">
                     <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('register') }}">{{ __('新規登録') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
                         </li>
                     @endif
                 @else
@@ -91,14 +91,6 @@
         </div>
     </main>
     <!-- Footer -->
-    <footer class="page-footer font-small mt-5 pt-5">
-
-    <!-- Copyright -->
-        <div class="footer-copyright text-center text-blog py-3" style="box-shadow: 0 -2px 4px #eee;">© 2020 Copyright:
-            <a class="text-reset" href="{{ url('/') }}">BookLike</a>
-        </div>
-    <!-- Copyright -->
-
-    </footer>
+    @include('layouts.footer')
 </body>
 </html>
