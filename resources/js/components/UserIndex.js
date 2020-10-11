@@ -6,7 +6,7 @@ const UserIndex = () => {
 
     const [loginUser, setLoginUser] = useState()
     const [allUsers, setAllUsers] = useState([])
-    const [isPopular, setIsPopular] = useState(false)
+    const [selectedPopular, setSelectedPopular] = useState(false)
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -23,7 +23,7 @@ const UserIndex = () => {
                     if (page < res.data.users.last_page) {
                         setHasMore(true)
                     }
-                    if (isPopular) {
+                    if (selectedPopular) {
                         return res.data.populars.data
                     }
                     return res.data.users.data
@@ -35,7 +35,7 @@ const UserIndex = () => {
             setLoading(false)
         }
         loadUsers()
-    }, [page, isPopular])
+    }, [page, selectedPopular])
 
     const userList = allUsers.filter((item) => {
         return item.name.indexOf(searchWord) > -1
@@ -47,12 +47,12 @@ const UserIndex = () => {
 
     const handleChange = (e) => {
         if (e.target.value === 'follower') {
-            setIsPopular(true)
+            setSelectedPopular(true)
             setAllUsers([])
             setPage(1)
             setHasMore(false)
         } else {
-            setIsPopular(false)
+            setSelectedPopular(false)
         }
     }
 
@@ -80,7 +80,7 @@ const UserIndex = () => {
             />
             <div className="form-group d-flex justify-content-end">
                 <div className="d-flex flex-row col-8">
-                    <label htmlFor="selectSort" className="w-100 text-right mr-1">並び替え</label>
+                    <label htmlFor="selectSort" className="w-100 text-right py-1 mr-1">並び替え</label>
                     <select onChange={handleChange} className="form-control-sm" id="selectSort">
                         <option value="default">登録順</option>
                         <option value="follower">フォロワー数</option>

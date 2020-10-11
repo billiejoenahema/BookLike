@@ -12,12 +12,18 @@ Route::group(['middleware' => 'auth'], function() {
         $timelines = $review->with('user')
             ->with(['comments','favorites'])
             ->orderBy('created_at', 'DESC')
-            ->paginate();
+            ->paginate(10);
+        $favoritest = $review->with('user')
+            ->with(['comments', 'favorites'])
+            ->withCount('favorites')
+            ->orderBy('favorites_count', 'DESC')
+            ->paginate(10);
 
         return
             [
             'timelines' => $timelines,
-            'loginUser' => $loginUser
+            'loginUser' => $loginUser,
+            'favoritest' => $favoritest
             ];
     });
 

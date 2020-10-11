@@ -71894,25 +71894,30 @@ var ReviewIndex = function ReviewIndex() {
       timelines = _useState4[0],
       setTimelines = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      page = _useState6[0],
-      setPage = _useState6[1];
+      selectedFavo = _useState6[0],
+      setSelectedFavo = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
       _useState8 = _slicedToArray(_useState7, 2),
-      hasMore = _useState8[0],
-      setHasMore = _useState8[1];
+      page = _useState8[0],
+      setPage = _useState8[1];
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      loading = _useState10[0],
-      setLoading = _useState10[1];
+      hasMore = _useState10[0],
+      setHasMore = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      searchWord = _useState12[0],
-      setSearchWord = _useState12[1];
+      loading = _useState12[0],
+      setLoading = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      searchWord = _useState14[0],
+      setSearchWord = _useState14[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTimeline = /*#__PURE__*/function () {
@@ -71930,6 +71935,10 @@ var ReviewIndex = function ReviewIndex() {
 
                   if (page < res.data.timelines.last_page) {
                     setHasMore(true);
+                  }
+
+                  if (selectedFavo) {
+                    return res.data.favoritest.data;
                   }
 
                   return res.data.timelines.data;
@@ -71958,8 +71967,8 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-  }, [page]);
-  var searchResults = timelines.filter(function (item) {
+  }, [page, selectedFavo]);
+  var reviewList = timelines.filter(function (item) {
     return item.title.indexOf(searchWord) > -1;
   });
 
@@ -71967,12 +71976,22 @@ var ReviewIndex = function ReviewIndex() {
     setSearchWord(e.target.value);
   };
 
+  var handleChange = function handleChange(e) {
+    if (e.target.value === 'favorite') {
+      setSelectedFavo(true);
+      setTimelines([]);
+      setPage(1);
+      setHasMore(false);
+    } else {
+      setSelectedFavo(false);
+    }
+  };
+
   var body = document.getElementById('body');
 
   body.onscroll = function () {
     var scrollTop = window.scrollY;
     var clientHeight = document.getElementById('timelinesComponent').clientHeight;
-    console.log(clientHeight - scrollTop);
 
     if (hasMore && clientHeight - scrollTop < 800) {
       setPage(function (prev) {
@@ -71994,9 +72013,24 @@ var ReviewIndex = function ReviewIndex() {
     required: true,
     autoComplete: "on"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group d-flex justify-content-end"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex flex-row col-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "selectSort",
+    className: "w-100 text-right py-1 mr-1"
+  }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    onChange: handleChange,
+    className: "form-control-sm",
+    id: "selectSort"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "default"
+  }, "\u65B0\u7740\u9806"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "favorite"
+  }, "\u3044\u3044\u306D\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "timelinesComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    timelines: searchResults,
+    timelines: reviewList,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
@@ -72262,8 +72296,8 @@ var UserIndex = function UserIndex() {
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      isPopular = _useState6[0],
-      setIsPopular = _useState6[1];
+      selectedPopular = _useState6[0],
+      setSelectedPopular = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -72303,7 +72337,7 @@ var UserIndex = function UserIndex() {
                     setHasMore(true);
                   }
 
-                  if (isPopular) {
+                  if (selectedPopular) {
                     return res.data.populars.data;
                   }
 
@@ -72333,7 +72367,7 @@ var UserIndex = function UserIndex() {
     }();
 
     loadUsers();
-  }, [page, isPopular]);
+  }, [page, selectedPopular]);
   var userList = allUsers.filter(function (item) {
     return item.name.indexOf(searchWord) > -1;
   });
@@ -72344,12 +72378,12 @@ var UserIndex = function UserIndex() {
 
   var handleChange = function handleChange(e) {
     if (e.target.value === 'follower') {
-      setIsPopular(true);
+      setSelectedPopular(true);
       setAllUsers([]);
       setPage(1);
       setHasMore(false);
     } else {
-      setIsPopular(false);
+      setSelectedPopular(false);
     }
   };
 
@@ -72384,7 +72418,7 @@ var UserIndex = function UserIndex() {
     className: "d-flex flex-row col-8"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "selectSort",
-    className: "w-100 text-right mr-1"
+    className: "w-100 text-right py-1 mr-1"
   }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: handleChange,
     className: "form-control-sm",
