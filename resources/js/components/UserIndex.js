@@ -6,13 +6,15 @@ const UserIndex = () => {
 
     const [loginUser, setLoginUser] = useState()
     const [allUsers, setAllUsers] = useState([])
+    const [isPopular, setIsPopular] = useState(false)
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
     const [searchWord, setSearchWord] = useState('')
-    const body = document.getElementById('body')
 
     useEffect(() => {
+        console.log(isPopular)
+
         const loadUsers = async () => {
             setLoading(true)
             const newUsers = await axios
@@ -23,16 +25,19 @@ const UserIndex = () => {
                     if (page < res.data.users.last_page) {
                         setHasMore(true)
                     }
-                    return res.data.users
+                    if (isPopular) {
+                        return res.data.populars.data
+                    }
+                    return res.data.users.data
                 })
                 .catch(err => {
                     console.log(err)
                 })
-            setAllUsers(prev => [...prev, ...newUsers.data])
+            setAllUsers(prev => [...prev, ...newUsers])
             setLoading(false)
         }
         loadUsers()
-    }, [page])
+    }, [page, isPopular])
 
     const userList = allUsers.filter((item) => {
         return item.name.indexOf(searchWord) > -1
@@ -42,10 +47,22 @@ const UserIndex = () => {
         setSearchWord(e.target.value)
     }
 
+    const handleChange = (e) => {
+        if (e.target.value === 'follower') {
+            setIsPopular(true)
+            setAllUsers([])
+            setPage(1)
+            setHasMore(false)
+        } else {
+            setIsPopular(false)
+        }
+    }
+
+    const body = document.getElementById('body')
     body.onscroll = () => {
         const scrollTop = window.scrollY
         const clientHeight = document.getElementById('usersComponent').clientHeight
-        if (hasMore && clientHeight - scrollTop < 550) {
+        if (hasMore && clientHeight - scrollTop < 480) {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
@@ -63,6 +80,15 @@ const UserIndex = () => {
                 aria-label="ユーザー検索"
                 required autoComplete="on"
             />
+            <div className="form-group d-flex justify-content-end">
+                <div className="d-flex flex-row col-8">
+                    <label htmlFor="selectSort" className="w-100 text-right mr-1">並び替え</label>
+                    <select onChange={handleChange} className="form-control-sm" id="selectSort">
+                        <option value="default">登録順</option>
+                        <option value="follower">フォロワー数</option>
+                    </select>
+                </div>
+            </div>
             <div id="usersComponent">
                 <Users users={userList} loginUser={loginUser} />
             </div>

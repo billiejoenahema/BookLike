@@ -25,7 +25,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body id="body">
-    <nav class="navbar navbar-expand navbar-light sticky-top bg-blog shadow-sm py-1 mb-1">
+    <nav class="navbar navbar-expand navbar-light sticky-top bg-blog shadow-sm py-1 mb-1" style="background-image: linear-gradient(170deg, #9386ef , #b1f4cf 70%, #ffeaa5);">
         <div class="container">
             <!-- ロゴ -->
             <a class="navbar-brand d-block text-white" href="{{ url('/') }}">
@@ -58,15 +58,15 @@
                                 width="36" height="36">
                         </a>
                         <!-- ドロップダウンメニュー -->
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url('reviews/create') }}"><i class="fas fa-pen mr-1"></i> 新規投稿</a>
-                            <a class="dropdown-item" href="{{ url('reviews') }}"><i class="fas fa-book-open"></i> タイムライン</a>
-                            <a class="dropdown-item" href="{{ url('users') }}"><i class="fas fa-users"></i> ユーザーを探す</a>
-                            <a class="dropdown-item" href="{{ url('users/' .$login_user->id) }}"><i class="fas fa-user-cog"></i> マイページ</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                        <div class="dropdown-menu dropdown-menu-right pb-0" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{ url('reviews/create') }}"><i class="fas fa-pen mr-2"></i>新規投稿</a>
+                            <a class="dropdown-item py-1" href="{{ url('reviews') }}"><i class="fas fa-book-open mr-2"></i>みんなの投稿</a>
+                            <a class="dropdown-item py-1" href="{{ url('users') }}"><i class="fas fa-users mr-2"></i>ユーザーを探す</a>
+                            <a class="dropdown-item pt-1 pb-2" href="{{ url('users/' .$login_user->id) }}"><i class="fas fa-user-cog mr-2"></i>マイページ</a>
+                            <a class="dropdown-item border-top py-2" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                <i class="fas fa-sign-out-alt mr-1"></i>ログアウト
+                                <i class="fas fa-sign-out-alt mr-2"></i>ログアウト
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf

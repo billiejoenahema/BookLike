@@ -15,7 +15,7 @@
                     <div class="col-md-8">
                         <input  id="screen_name"
                                 type="text"
-                                class="form-control @error('screen_name') is-invalid @enderror"
+                                class="form-control rounded-pill @error('screen_name') is-invalid @enderror"
                                 name="screen_name"
                                 value="{{ old('screen_name') }}"
                                 required autocomplete="screen_name"
@@ -38,7 +38,7 @@
                     <div class="col-md-8">
                         <input  id="name"
                                 type="text"
-                                class="form-control @error('name') is-invalid @enderror"
+                                class="form-control rounded-pill @error('name') is-invalid @enderror"
                                 name="name"
                                 value="{{ old('name') }}"
                                 required autocomplete="name"
@@ -59,7 +59,7 @@
                     <div class="col-md-8">
                         <input  id="email"
                                 type="email"
-                                class="form-control @error('email') is-invalid @enderror"
+                                class="form-control rounded-pill @error('email') is-invalid @enderror"
                                 name="email"
                                 value="{{ old('email') }}"
                                 required autocomplete="email"
@@ -79,7 +79,7 @@
                     <div class="col-md-8">
                         <input  id="password"
                                 type="password"
-                                class="form-control @error('password') is-invalid @enderror"
+                                class="form-control rounded-pill @error('password') is-invalid @enderror"
                                 name="password"
                                 required autocomplete="new-password"
                                 placeholder="8文字以上の半角英数字で入力してください">
@@ -98,7 +98,7 @@
                     <div class="col-md-8">
                         <input  id="password-confirm"
                         type="password"
-                        class="form-control"
+                        class="form-control rounded-pill"
                         name="password_confirmation"
                         required autocomplete="new-password"
                         placeholder="もう一度パスワードを入力してください">
@@ -107,7 +107,7 @@
 
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary rounded-pill">
                             {{ __('登録する') }}
                         </button>
                     </div>

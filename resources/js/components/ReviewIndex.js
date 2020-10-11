@@ -7,18 +7,25 @@ const ReviewIndex = () => {
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
     const [searchWord, setSearchWord] = useState("")
+    const [loading, setLoading] = useState(false)
+
 
     useEffect(() => {
-        axios
-            .get('/api/reviews')
-            .then(res => {
-                console.log(res)
-                setLoginUser(res.data.loginUser)
-                setTimelines(res.data.timelines)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        const loadTimeline = async () => {
+            setLoading(true)
+            await axios
+                .get('/api/reviews')
+                .then(res => {
+                    console.log(res)
+                    setLoginUser(res.data.loginUser)
+                    setTimelines(res.data.timelines)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+        loadTimeline()
+        setLoading(false)
     }, [])
 
     const searchResults = timelines.filter((item) => {
@@ -41,6 +48,9 @@ const ReviewIndex = () => {
                 required autoComplete="on"
             />
             <Timeline timelines={searchResults} loginUser={loginUser} />
+            <div className="text-center">
+                {loading && '読み込み中...'}
+            </div>
         </>
     )
 

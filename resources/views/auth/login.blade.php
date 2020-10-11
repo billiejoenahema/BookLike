@@ -10,7 +10,7 @@
                 <div class="form-group row">
                     <input  id="email"
                             type="email"
-                            class="form-control @error('email') is-invalid @enderror"
+                            class="form-control rounded-pill @error('email') is-invalid @enderror"
                             name="email"
                             placeholder="メールアドレス"
                             value="{{ old('email') }}"
@@ -26,7 +26,7 @@
                 <div class="form-group row">
                     <input  id="password"
                             type="password"
-                            class="form-control @error('password') is-invalid @enderror"
+                            class="form-control rounded-pill @error('password') is-invalid @enderror"
                             name="password"
                             placeholder="パスワード"
                             required autocomplete="current-password">

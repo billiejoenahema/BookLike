@@ -4,17 +4,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/reviews',function (Review $review, User $user) {
@@ -24,10 +13,6 @@ Route::group(['middleware' => 'auth'], function() {
             ->with(['comments','favorites'])
             ->orderBy('created_at', 'DESC')
             ->get();
-        // $populars = $review->withCount('favorites')
-        //     ->with(['comments','favorites','user'])
-        //     ->orderBy('favorites_count', 'DESC')
-        //     ->get();
 
         return
             [
@@ -62,24 +47,30 @@ Route::group(['middleware' => 'auth'], function() {
             ];
     });
 
-    Route::get('/users', function (Request $request, User $user) {
+    Route::get('/users', function (Request $request, User $user, Review $review) {
 
         $search = $request->input('search');
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
         $users = $user->getAllUsers($loginUserId)
             ->with('followers')
-            ->orderBy('id', 'ASC')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+        $populars = $user->getAllUsers($loginUserId)
+            ->with('followers')
+            ->withCount('followers')
+            ->orderBy('followers_count', 'DESC')
             ->paginate(10);
 
         return
             [
                 'loginUser' => $loginUser,
                 'users' => $users,
+                'populars' => $populars
             ];
     });
 
-    // いいね
+    // いいね機能
     Route::post('favorites', 'Api\FavoriteController@store');
     Route::delete('favorites/{id}', 'Api\FavoriteController@destroy');
 

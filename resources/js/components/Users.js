@@ -26,6 +26,7 @@ const Users = (props) => {
                                 <div className="ml-2 d-flex flex-column">
                                     <p className="mb-0">{user.name}</p>
                                     <span className="text-secondary small">{user.screen_name}</span>
+                                    <p className="small">フォロワー<span className="badge badge-blog badge-pill text-white ml-1">{user.followers.length}</span></p>
                                 </div>
                                 {/* フォローボタン */}
                                 {
