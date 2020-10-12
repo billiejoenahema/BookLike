@@ -71894,30 +71894,35 @@ var ReviewIndex = function ReviewIndex() {
       timelines = _useState4[0],
       setTimelines = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState6 = _slicedToArray(_useState5, 2),
-      selectedFavo = _useState6[0],
-      setSelectedFavo = _useState6[1];
+      category = _useState6[0],
+      setCategory = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      page = _useState8[0],
-      setPage = _useState8[1];
+      selectedFavo = _useState8[0],
+      setSelectedFavo = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
       _useState10 = _slicedToArray(_useState9, 2),
-      hasMore = _useState10[0],
-      setHasMore = _useState10[1];
+      page = _useState10[0],
+      setPage = _useState10[1];
 
   var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      loading = _useState12[0],
-      setLoading = _useState12[1];
+      hasMore = _useState12[0],
+      setHasMore = _useState12[1];
 
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      searchWord = _useState14[0],
-      setSearchWord = _useState14[1];
+      loading = _useState14[0],
+      setLoading = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      searchWord = _useState16[0],
+      setSearchWord = _useState16[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTimeline = /*#__PURE__*/function () {
@@ -71967,7 +71972,7 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-  }, [page, selectedFavo]);
+  }, [page, category, selectedFavo]);
   var reviewList = timelines.filter(function (item) {
     return item.title.indexOf(searchWord) > -1;
   });
@@ -71976,7 +71981,14 @@ var ReviewIndex = function ReviewIndex() {
     setSearchWord(e.target.value);
   };
 
-  var handleChange = function handleChange(e) {
+  var categoryChange = function categoryChange(e) {
+    setCategory(e.target.value);
+    setTimelines([]);
+    setPage(1);
+    setHasMore(false);
+  };
+
+  var sortChange = function sortChange(e) {
     if (e.target.value === 'favorite') {
       setSelectedFavo(true);
       setTimelines([]);
@@ -72013,14 +72025,37 @@ var ReviewIndex = function ReviewIndex() {
     required: true,
     autoComplete: "on"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "form-group d-flex justify-content-end"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex flex-row col-8"
+    className: "form-group d-flex justify-content-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    onChange: categoryChange,
+    className: "form-control-sm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "default"
+  }, "\u5168\u30AB\u30C6\u30B4\u30EA\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "mistery"
+  }, "\u30DF\u30B9\u30C6\u30EA\u30FC\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "SF"
+  }, "SF\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "literature"
+  }, "\u6587\u5B66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "romance"
+  }, "\u604B\u611B\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "historical"
+  }, "\u6642\u4EE3\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "horror"
+  }, "\u30DB\u30E9\u30FC\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "business"
+  }, "\u30D3\u30B8\u30CD\u30B9\u30FB\u7D4C\u6E08"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "IT"
+  }, "\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FBIT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "comic"
+  }, "\u30B3\u30DF\u30C3\u30AF")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex flex-row col-8 p-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "selectSort",
     className: "w-100 text-right py-1 mr-1"
   }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-    onChange: handleChange,
+    onChange: sortChange,
     className: "form-control-sm",
     id: "selectSort"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
@@ -72376,7 +72411,7 @@ var UserIndex = function UserIndex() {
     setSearchWord(e.target.value);
   };
 
-  var handleChange = function handleChange(e) {
+  var sortChange = function sortChange(e) {
     if (e.target.value === 'follower') {
       setSelectedPopular(true);
       setAllUsers([]);
@@ -72415,12 +72450,12 @@ var UserIndex = function UserIndex() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex justify-content-end"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex flex-row col-8"
+    className: "d-flex flex-row col-8 p-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "selectSort",
     className: "w-100 text-right py-1 mr-1"
   }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-    onChange: handleChange,
+    onChange: sortChange,
     className: "form-control-sm",
     id: "selectSort"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {

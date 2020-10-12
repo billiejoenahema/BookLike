@@ -7,9 +7,9 @@
 }
 
 /* main要素の高さを調整 */
-.main-min-height {
+/* .main-min-height {
     min-height: 715px;
-}
+} */
 
 /* ユーザー＆投稿検索フォームをnavbarへ */
 .search-form {
@@ -17,6 +17,20 @@
   top: 0.7rem;
   left: 30%;
   z-index:1020;
+}
+
+.min-100vh {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.full-height {
+    height: 100vh;
 }
 
 .bg-imageColor {

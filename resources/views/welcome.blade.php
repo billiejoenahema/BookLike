@@ -14,7 +14,6 @@
         <link href="{{ asset('/css/customize.css') }}" rel="stylesheet">
         <style>
             html, body {
-                /* background-color: #fff; */
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -22,14 +21,6 @@
                 flex-direction: column;
                 min-height: 100vh;
                 margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-1 {
-                flex: 1;
             }
 
             .flex-center {

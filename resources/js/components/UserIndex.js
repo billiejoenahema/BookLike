@@ -45,7 +45,7 @@ const UserIndex = () => {
         setSearchWord(e.target.value)
     }
 
-    const handleChange = (e) => {
+    const sortChange = (e) => {
         if (e.target.value === 'follower') {
             setSelectedPopular(true)
             setAllUsers([])
@@ -79,9 +79,9 @@ const UserIndex = () => {
                 required autoComplete="on"
             />
             <div className="form-group d-flex justify-content-end">
-                <div className="d-flex flex-row col-8">
+                <div className="d-flex flex-row col-8 p-0">
                     <label htmlFor="selectSort" className="w-100 text-right py-1 mr-1">並び替え</label>
-                    <select onChange={handleChange} className="form-control-sm" id="selectSort">
+                    <select onChange={sortChange} className="form-control-sm" id="selectSort">
                         <option value="default">登録順</option>
                         <option value="follower">フォロワー数</option>
                     </select>
