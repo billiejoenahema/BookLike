@@ -71894,7 +71894,7 @@ var ReviewIndex = function ReviewIndex() {
       timelines = _useState4[0],
       setTimelines = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState6 = _slicedToArray(_useState5, 2),
       category = _useState6[0],
       setCategory = _useState6[1];
@@ -71919,10 +71919,15 @@ var ReviewIndex = function ReviewIndex() {
       loading = _useState14[0],
       setLoading = _useState14[1];
 
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('title'),
       _useState16 = _slicedToArray(_useState15, 2),
-      searchWord = _useState16[0],
-      setSearchWord = _useState16[1];
+      selectedValue = _useState16[0],
+      setSelectedValue = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState18 = _slicedToArray(_useState17, 2),
+      searchWord = _useState18[0],
+      setSearchWord = _useState18[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTimeline = /*#__PURE__*/function () {
@@ -71973,13 +71978,6 @@ var ReviewIndex = function ReviewIndex() {
 
     loadTimeline();
   }, [page, category, selectedFavo]);
-  var reviewList = timelines.filter(function (item) {
-    return item.title.indexOf(searchWord) > -1;
-  });
-
-  var handleSearch = function handleSearch(e) {
-    setSearchWord(e.target.value);
-  };
 
   var categoryChange = function categoryChange(e) {
     setCategory(e.target.value);
@@ -72015,17 +72013,50 @@ var ReviewIndex = function ReviewIndex() {
     return;
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "form-control col-4 search-form rounded-pill pr-0",
+  var itemChange = function itemChange(e) {
+    setSearchWord('');
+    var selectedIndex = e.target.selectedIndex;
+    var item = e.target.options[selectedIndex].label;
+    document.getElementById('searchBooks').placeholder = "".concat(item, "\u3067\u691C\u7D22...");
+    setSelectedValue(e.target.options[selectedIndex].value);
+  };
+
+  var handleSearch = function handleSearch(e) {
+    setSearchWord(e.target.value); // setPage(1)
+  };
+
+  var reviewList = function reviewList(selectedValue) {
+    return timelines.filter(function (item) {
+      if (item[selectedValue]) {
+        return item[selectedValue].indexOf(searchWord) > -1;
+      }
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "search-form d-inline-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    onChange: itemChange,
+    id: "bookSearch",
+    className: "text-right bg-transparent border-0 mr-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "title"
+  }, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "author"
+  }, "\u8457\u8005"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "manufacturer"
+  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control rounded-pill pr-0",
+    id: "searchBooks",
     onChange: handleSearch,
     type: "search",
     value: searchWord,
-    placeholder: "\u30BF\u30A4\u30C8\u30EB\u691C\u7D22...",
-    "aria-label": "\u30BF\u30A4\u30C8\u30EB\u691C\u7D22",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
+    "aria-label": "\u66F8\u7C4D\u691C\u7D22",
     required: true,
     autoComplete: "on"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "form-group d-flex justify-content-between"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group d-flex justify-content-between mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: categoryChange,
     className: "form-control-sm"
@@ -72050,7 +72081,7 @@ var ReviewIndex = function ReviewIndex() {
   }, "\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FBIT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "comic"
   }, "\u30B3\u30DF\u30C3\u30AF")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex flex-row col-8 p-0"
+    className: "d-flex flex-row p-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "selectSort",
     className: "w-100 text-right py-1 mr-1"
@@ -72065,7 +72096,7 @@ var ReviewIndex = function ReviewIndex() {
   }, "\u3044\u3044\u306D\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "timelinesComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    timelines: reviewList,
+    timelines: reviewList(selectedValue),
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"

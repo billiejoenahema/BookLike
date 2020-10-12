@@ -1,9 +1,9 @@
 /* 新規投稿ボタン */
 .floating-button {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  padding: 1rem 1.4rem;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 1.4rem;
 }
 
 /* main要素の高さを調整 */
@@ -12,12 +12,16 @@
 } */
 
 /* ユーザー＆投稿検索フォームをnavbarへ */
-.search-form {
-  position: fixed;
-  top: 0.7rem;
-  left: 30%;
-  z-index:1020;
+
+@media screen and (min-width: 460px) {
+    .search-form {
+        position: fixed;
+        top: 0.7rem;
+        left: 25%;
+        z-index:1020;
+    }
 }
+
 
 .min-100vh {
     display: flex;
@@ -34,9 +38,10 @@
 }
 
 .bg-imageColor {
-  /* background-image: linear-gradient(170deg, #9386ef , #b1f4cf 70%, #ffeaa5); */
-  /* background-image: linear-gradient(160deg, #a286ef , #b1f4cf 75%, #ffeaa5); */
-  background-image: linear-gradient(160deg,#7092be , #b1f4cf 55%, #ffeaa5);
-  /* background-image: linear-gradient(170deg, #9386ef , #b1f4cf 70%, #ffe7a5); */
-  /* background-image: linear-gradient(150deg, #8886ef , #84f7b8 75%, #ffeaa5); */
+    background-image: linear-gradient(160deg,#7092be , #b1f4cf 55%, #ffeaa5);
 }
+
+/* background-image: linear-gradient(170deg, #9386ef , #b1f4cf 70%, #ffeaa5); */
+/* background-image: linear-gradient(160deg, #a286ef , #b1f4cf 75%, #ffeaa5); */
+/* background-image: linear-gradient(170deg, #9386ef , #b1f4cf 70%, #ffe7a5); */
+/* background-image: linear-gradient(150deg, #8886ef , #84f7b8 75%, #ffeaa5); */
