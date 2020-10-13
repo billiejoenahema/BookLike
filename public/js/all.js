@@ -32,6 +32,7 @@ function commentValidate() {
     const commentPost = document.getElementById('commentPost')
     if (commentLength < 1 || 200 < commentLength) {
         window.alert('200文字以内で入力してください')
+        return
     }
     commentPost.submit()
 }
@@ -62,4 +63,30 @@ function selectItem(e) {
     confirmButton.classList.remove('disabled')
     confirmButton.disabled = false
     confirmButton.classList.add('active')
+}
+
+window.onload = () => {
+    const select = document.getElementById('editCategory')
+    if (select) {
+        const options = select.options
+        const category = document.getElementById('editCategory').dataset.category
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value === category) {
+                options[i].selected = true;
+                break;
+            }
+        }
+    }
+}
+
+function categorySelectValidate() {
+    'use strict'
+    const selectedCategory = document.getElementById('category').value
+    const reviewPost = document.getElementById('reviewPost')
+    if (selectedCategory === 'default') {
+        window.alert('カテゴリーを選択してください')
+        return
+    }
+    reviewPost.submit()
 }

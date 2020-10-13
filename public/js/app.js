@@ -71896,33 +71896,33 @@ var ReviewIndex = function ReviewIndex() {
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      category = _useState6[0],
-      setCategory = _useState6[1];
+      selectedCategory = _useState6[0],
+      setSelectedCategory = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('title'),
       _useState8 = _slicedToArray(_useState7, 2),
-      selectedFavo = _useState8[0],
-      setSelectedFavo = _useState8[1];
+      selectedValue = _useState8[0],
+      setSelectedValue = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      page = _useState10[0],
-      setPage = _useState10[1];
+      selectedFavo = _useState10[0],
+      setSelectedFavo = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
       _useState12 = _slicedToArray(_useState11, 2),
-      hasMore = _useState12[0],
-      setHasMore = _useState12[1];
+      page = _useState12[0],
+      setPage = _useState12[1];
 
   var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      loading = _useState14[0],
-      setLoading = _useState14[1];
+      hasMore = _useState14[0],
+      setHasMore = _useState14[1];
 
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('title'),
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      selectedValue = _useState16[0],
-      setSelectedValue = _useState16[1];
+      loading = _useState16[0],
+      setLoading = _useState16[1];
 
   var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState18 = _slicedToArray(_useState17, 2),
@@ -71977,24 +71977,34 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-  }, [page, category, selectedFavo]);
+  }, [page, selectedFavo]);
 
   var categoryChange = function categoryChange(e) {
-    setCategory(e.target.value);
+    var selected = e.target.value;
+    console.log(selected);
+
+    if (selected === 'default') {
+      setTimelines([]);
+      setPage(1);
+      setHasMore(false);
+    }
+
+    setSelectedCategory(selected);
     setTimelines([]);
     setPage(1);
     setHasMore(false);
   };
 
   var sortChange = function sortChange(e) {
-    if (e.target.value === 'favorite') {
-      setSelectedFavo(true);
-      setTimelines([]);
-      setPage(1);
-      setHasMore(false);
-    } else {
-      setSelectedFavo(false);
-    }
+    selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true); // if (selectedFavo) {
+    //     setSelectedFavo(false)
+    // } else {
+    //     setSelectedFavo(true)
+    // }
+
+    setTimelines([]);
+    setPage(1);
+    setHasMore(false);
   };
 
   var body = document.getElementById('body');
@@ -72022,7 +72032,8 @@ var ReviewIndex = function ReviewIndex() {
   };
 
   var handleSearch = function handleSearch(e) {
-    setSearchWord(e.target.value); // setPage(1)
+    setSearchWord(e.target.value);
+    setPage(1);
   };
 
   var reviewList = function reviewList(selectedValue) {
@@ -72030,6 +72041,12 @@ var ReviewIndex = function ReviewIndex() {
       if (item[selectedValue]) {
         return item[selectedValue].indexOf(searchWord) > -1;
       }
+
+      if (selectedCategory) {
+        return item.category.indexOf(selectedCategory) > -1;
+      }
+
+      return;
     });
   };
 
@@ -72059,28 +72076,39 @@ var ReviewIndex = function ReviewIndex() {
     className: "form-group d-flex justify-content-between mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: categoryChange,
-    className: "form-control-sm"
+    className: "form-control-sm",
+    placeholder: "\u30AB\u30C6\u30B4\u30EA\u30FC\u3067\u7D5E\u308A\u8FBC\u307F"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "default"
-  }, "\u5168\u30AB\u30C6\u30B4\u30EA\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "mistery"
-  }, "\u30DF\u30B9\u30C6\u30EA\u30FC\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "SF"
-  }, "SF\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "literature"
+  }, "\u30AB\u30C6\u30B4\u30EA\u30FC\u3067\u7D5E\u308A\u8FBC\u307F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u6587\u5B66"
   }, "\u6587\u5B66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "romance"
-  }, "\u604B\u611B\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "historical"
-  }, "\u6642\u4EE3\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "horror"
-  }, "\u30DB\u30E9\u30FC\u5C0F\u8AAC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "business"
+    value: "\u30A8\u30F3\u30BF\u30FC\u30C6\u30A4\u30F3\u30E1\u30F3\u30C8"
+  }, "\u30A8\u30F3\u30BF\u30FC\u30C6\u30A4\u30F3\u30E1\u30F3\u30C8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u30DF\u30B9\u30C6\u30EA\u30FC"
+  }, "\u30DF\u30B9\u30C6\u30EA\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "SF"
+  }, "SF"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u30DB\u30E9\u30FC"
+  }, "\u30DB\u30E9\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u30D5\u30A1\u30F3\u30BF\u30B8\u30FC"
+  }, "\u30D5\u30A1\u30F3\u30BF\u30B8\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u9752\u6625\u30FB\u604B\u611B"
+  }, "\u9752\u6625\u30FB\u604B\u611B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u6B74\u53F2\u30FB\u6642\u4EE3"
+  }, "\u6B74\u53F2\u30FB\u6642\u4EE3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u30CE\u30F3\u30D5\u30A3\u30AF\u30B7\u30E7\u30F3"
+  }, "\u30CE\u30F3\u30D5\u30A3\u30AF\u30B7\u30E7\u30F3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u30D3\u30B8\u30CD\u30B9\u30FB\u7D4C\u6E08"
   }, "\u30D3\u30B8\u30CD\u30B9\u30FB\u7D4C\u6E08"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "IT"
+    value: "\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FBIT"
   }, "\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30FBIT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "comic"
-  }, "\u30B3\u30DF\u30C3\u30AF")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    value: "\u30B3\u30DF\u30C3\u30AF"
+  }, "\u30B3\u30DF\u30C3\u30AF"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u30E9\u30A4\u30C8\u30CE\u30D9\u30EB"
+  }, "\u30E9\u30A4\u30C8\u30CE\u30D9\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "\u305D\u306E\u4ED6"
+  }, "\u305D\u306E\u4ED6")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex flex-row p-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "selectSort",
@@ -72174,11 +72202,11 @@ function Timeline(props) {
       className: "mb-3"
     }, timeline.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
       className: "list-unstyled"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), timeline.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), timeline.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), timeline.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), timeline.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), timeline.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: timeline.page_url,
       target: "_blank",
       rel: "noopener",
-      "data-tip": "\u5916\u90E8\u30EA\u30F3\u30AF"
+      "data-tip": "Amazon\u30B5\u30A4\u30C8\u3078\u79FB\u52D5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fab fa-amazon"
     }), " Amazon link", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {

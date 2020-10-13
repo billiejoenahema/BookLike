@@ -6,12 +6,12 @@ const ReviewIndex = () => {
 
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
-    const [category, setCategory] = useState('')
+    const [selectedCategory, setSelectedCategory] = useState('')
+    const [selectedValue, setSelectedValue] = useState('title')
     const [selectedFavo, setSelectedFavo] = useState(false)
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [selectedValue, setSelectedValue] = useState('title')
     const [searchWord, setSearchWord] = useState('')
 
     useEffect(() => {
@@ -37,24 +37,32 @@ const ReviewIndex = () => {
             setLoading(false)
         }
         loadTimeline()
-    }, [page, category, selectedFavo])
+    }, [page, selectedFavo])
 
     const categoryChange = (e) => {
-        setCategory(e.target.value)
+        const selected = e.target.value
+        console.log(selected)
+        if (selected === 'default') {
+            setTimelines([])
+            setPage(1)
+            setHasMore(false)
+        }
+        setSelectedCategory(selected)
         setTimelines([])
         setPage(1)
         setHasMore(false)
     }
 
     const sortChange = (e) => {
-        if (e.target.value === 'favorite') {
-            setSelectedFavo(true)
-            setTimelines([])
-            setPage(1)
-            setHasMore(false)
-        } else {
-            setSelectedFavo(false)
-        }
+        selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true)
+        // if (selectedFavo) {
+        //     setSelectedFavo(false)
+        // } else {
+        //     setSelectedFavo(true)
+        // }
+        setTimelines([])
+        setPage(1)
+        setHasMore(false)
     }
 
     const body = document.getElementById('body')
@@ -78,7 +86,8 @@ const ReviewIndex = () => {
 
     const handleSearch = (e) => {
         setSearchWord(e.target.value)
-        // setPage(1)
+        setPage(1)
+
     }
 
     const reviewList = (selectedValue) => {
@@ -86,6 +95,10 @@ const ReviewIndex = () => {
             if (item[selectedValue]) {
                 return item[selectedValue].indexOf(searchWord) > -1
             }
+            if (selectedCategory) {
+                return item.category.indexOf(selectedCategory) > -1
+            }
+            return
         })
     }
 
@@ -109,17 +122,22 @@ const ReviewIndex = () => {
                 />
             </div>
             <div className="form-group d-flex justify-content-between mt-2">
-                <select onChange={categoryChange} className="form-control-sm">
-                    <option value="default">全カテゴリー</option>
-                    <option value="mistery">ミステリー小説</option>
-                    <option value="SF">SF小説</option>
-                    <option value="literature">文学</option>
-                    <option value="romance">恋愛小説</option>
-                    <option value="historical">時代小説</option>
-                    <option value="horror">ホラー小説</option>
-                    <option value="business">ビジネス・経済</option>
-                    <option value="IT">コンピュータ・IT</option>
-                    <option value="comic">コミック</option>
+                <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
+                    <option value="default">カテゴリーで絞り込み</option>
+                    <option value="文学">文学</option>
+                    <option value="エンターテインメント">エンターテインメント</option>
+                    <option value="ミステリー">ミステリー</option>
+                    <option value="SF">SF</option>
+                    <option value="ホラー">ホラー</option>
+                    <option value="ファンタジー">ファンタジー</option>
+                    <option value="青春・恋愛">青春・恋愛</option>
+                    <option value="歴史・時代">歴史・時代</option>
+                    <option value="ノンフィクション">ノンフィクション</option>
+                    <option value="ビジネス・経済">ビジネス・経済</option>
+                    <option value="コンピュータ・IT">コンピュータ・IT</option>
+                    <option value="コミック">コミック</option>
+                    <option value="ライトノベル">ライトノベル</option>
+                    <option value="その他">その他</option>
                 </select>
                 <div className="d-flex flex-row p-0">
                     <label htmlFor="selectSort" className="w-100 text-right py-1 mr-1">並び替え</label>

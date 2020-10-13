@@ -4,6 +4,7 @@ function commentValidate() {
     const commentPost = document.getElementById('commentPost')
     if (commentLength < 1 || 200 < commentLength) {
         window.alert('200文字以内で入力してください')
+        return
     }
     commentPost.submit()
 }

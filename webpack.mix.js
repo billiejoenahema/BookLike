@@ -19,5 +19,7 @@ mix.scripts([
     'public/js/checkTextLength.js',
     'public/js/commentValidate.js',
     'public/js/initialTextLength.js',
-    'public/js/selectItem.js'
+    'public/js/selectItem.js',
+    'public/js/editCategory.js',
+    'public/js/categorySelectValidate.js'
 ], 'public/js/all.js')

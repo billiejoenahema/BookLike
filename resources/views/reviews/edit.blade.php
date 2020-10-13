@@ -35,12 +35,31 @@
                     <ul class="list-unstyled">
                         <li class="list-item">著者：{{ $review->author }}</li>
                         <li class="list-item">出版社：{{ $review->manufacturer }}</li>
+                        <li class="list-item">カテゴリー：{{ $review->category }}</li>
                     </ul>
                 </div>
             </div>
             <form method="POST" action="{{ route('reviews.update', $review) }}">
                 @csrf
                 @method('PUT')
+                <div class="mb-3">
+                    <select name="category" id="editCategory" data-category={{ $review->category }}>
+                        <option value="文学">文学</option>
+                        <option value="エンターテインメント">エンターテインメント</option>
+                        <option value="ミステリー">ミステリー</option>
+                        <option value="SF">SF</option>
+                        <option value="ホラー">ホラー</option>
+                        <option value="ファンタジー">ファンタジー</option>
+                        <option value="青春・恋愛">青春・恋愛</option>
+                        <option value="歴史・時代">歴史・時代</option>
+                        <option value="ノンフィクション">ノンフィクション</option>
+                        <option value="ビジネス・経済">ビジネス・経済</option>
+                        <option value="コンピュータ・IT">コンピュータ・IT</option>
+                        <option value="コミック">コミック</option>
+                        <option value="ライトノベル">ライトノベル</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
                 <div class="form-group row mb-0">
                     <div class="col-md-12">
                         <textarea class="form-control

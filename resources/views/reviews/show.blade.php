@@ -23,12 +23,13 @@
                             <ul class="list-unstyled">
                                 <li>著者：{{ $review->author }}</li>
                                 <li>出版社：{{ $review->manufacturer }}</li>
+                                <li>カテゴリー：{{ $review->category }}</li>
                                 <li><a href="{{ $review->page_url }} "
                                     target="_blank"
                                     rel="noopener"
                                     data-toggle="tooltip"
                                     data-placement="top"
-                                    title="外部リンク"
+                                    title="Amazonサイトへ移動"
                                     ><i class="fab fa-amazon"></i> Amazon link</a></li>
                             </ul>
                         </div>

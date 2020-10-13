@@ -78,7 +78,6 @@ class ReviewController extends Controller
             'image_url' => 'required',
             'text' => 'required | string | max:800'
         ]);
-
         $validator->validate();
         $review->reviewStore($login_user->id, $data);
 
@@ -140,9 +139,9 @@ class ReviewController extends Controller
     {
         $data = $request->all();
         $validator = Validator::make($data, [
+            'category' => 'required',
             'text' => 'required | string | max:400'
         ]);
-        $validator->validate();
         $review->reviewUpdate($review->id, $data);
 
         return redirect('reviews');

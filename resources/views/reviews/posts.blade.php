@@ -25,8 +25,27 @@
 
                 <!-- レビュー投稿テキストエリア -->
                 <div class="form-group">
-                    <form method="POST" action="{{ route('reviews.store') }}">
+                    <form method="POST" action="{{ route('reviews.store') }}" id="reviewPost">
                         @csrf
+                        <div class="mb-3">
+                            <select name="category" id="category">
+                                <option value="default" hidden>カテゴリーを選択してください</option>
+                                <option value="文学">文学</option>
+                                <option value="エンターテインメント">エンターテインメント</option>
+                                <option value="ミステリー">ミステリー</option>
+                                <option value="SF">SF</option>
+                                <option value="ホラー">ホラー</option>
+                                <option value="ファンタジー">ファンタジー</option>
+                                <option value="青春・恋愛">青春・恋愛</option>
+                                <option value="歴史・時代">歴史・時代</option>
+                                <option value="ノンフィクション">ノンフィクション</option>
+                                <option value="ビジネス・経済">ビジネス・経済</option>
+                                <option value="コンピュータ・IT">コンピュータ・IT</option>
+                                <option value="コミック">コミック</option>
+                                <option value="ライトノベル">ライトノベル</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </div>
                         <div class="col-12 p-0">
                             <label>おすすめの理由を教えてください</label>
                                 <textarea class="form-control @error('text') is-invalid @enderror"
@@ -39,7 +58,7 @@
                                 >{{ old('text') ? : '' }}</textarea>
                                 @error('text')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ '800文字まで投稿可能です' }}</strong>
+                                        <strong>{{ '800文字以内で入力してください' }}</strong>
                                     </span>
                                 @enderror
                         </div>
@@ -52,7 +71,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-12 text-right">
                                 <p id="textLength">0 / 800文字</p>
-                                <button type="submit" class="btn btn-primary rounded-pill shadow-sm">投稿する</button>
+                                <button type="button" onclick="categorySelectValidate()" class="btn btn-primary rounded-pill shadow-sm">投稿する</button>
                             </div>
                         </div>
                     </form>
