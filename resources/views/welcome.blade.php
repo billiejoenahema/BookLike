@@ -11,7 +11,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('/css/customize.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/customize.css') }}" rel="stylesheet">
         <style>
             html, body {
                 color: #636b6f;
