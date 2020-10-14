@@ -72510,6 +72510,16 @@ var UserIndex = function UserIndex() {
     return;
   };
 
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    if (userList < 10 && hasMore) {
+      setPage(function (prev) {
+        return prev + 1;
+      });
+      setHasMore(false);
+    }
+
+    return;
+  }, [userList]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     className: "form-control col-4 search-form rounded-pill pr-0",
     type: "search",

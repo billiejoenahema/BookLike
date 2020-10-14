@@ -67,6 +67,14 @@ const UserIndex = () => {
         return
     }
 
+    useEffect(() => {
+        if (userList < 10 && hasMore) {
+            setPage(prev => prev + 1)
+            setHasMore(false)
+        }
+        return
+    }, [userList])
+
     return (
         <>
             <input
