@@ -53,9 +53,8 @@ Route::group(['middleware' => 'auth'], function() {
             ];
     });
 
-    Route::get('/users', function (Request $request, User $user, Review $review) {
+    Route::get('/users', function (User $user, Review $review) {
 
-        $search = $request->input('search');
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
         $users = $user->getAllUsers($loginUserId)

@@ -18,7 +18,7 @@
 
 /* ユーザー＆投稿検索フォームをnavbarへ */
 
-@media screen and (min-width: 460px) {
+@media screen and (min-width: 500px) {
     .search-form {
         position: fixed;
         top: 0.7rem;

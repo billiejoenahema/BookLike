@@ -65,9 +65,9 @@
                         <input type="hidden" name="asin" id="asin" value="{{ $get_item->ASIN }}">
                         <input type="hidden" name="page_url" id="page_url" value="{{ $get_item->DetailPageURL }}">
                         <input type="hidden" name="title" id="title" value="{{ $get_item->ItemInfo->Title->DisplayValue }}">
-                        <input type="hidden" name="author" id="author" value="{{ $get_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}">
-                        <input type="hidden" name="manufacturer" id="manufacturer" value="{{ $get_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}">
-                        <input type="hidden" name="image_url" id="image_url" value="{{ $get_item->Images->Primary->Large->URL }}">
+                        <input type="hidden" name="author" id="author" value="{{ $get_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '不明' }}">
+                        <input type="hidden" name="manufacturer" id="manufacturer" value="{{ $get_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '不明' }}">
+                        <input type="hidden" name="image_url" id="image_url" value="{{ $get_item->Images->Primary->Large->URL ?? '' }}">
                         <div class="form-group row mb-0">
                             <div class="col-12 text-right">
                                 <p id="textLength">0 / 800文字</p>

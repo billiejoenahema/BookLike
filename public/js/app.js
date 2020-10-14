@@ -71894,45 +71894,50 @@ var ReviewIndex = function ReviewIndex() {
       timelines = _useState4[0],
       setTimelines = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      selectedCategory = _useState6[0],
-      setSelectedCategory = _useState6[1];
+      timelinesLength = _useState6[0],
+      setTimelinesLength = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('title'),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState8 = _slicedToArray(_useState7, 2),
-      selectedValue = _useState8[0],
-      setSelectedValue = _useState8[1];
+      selectedCategory = _useState8[0],
+      setSelectedCategory = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('title'),
       _useState10 = _slicedToArray(_useState9, 2),
-      selectedFavo = _useState10[0],
-      setSelectedFavo = _useState10[1];
+      selectedValue = _useState10[0],
+      setSelectedValue = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      page = _useState12[0],
-      setPage = _useState12[1];
+      selectedFavo = _useState12[0],
+      setSelectedFavo = _useState12[1];
 
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
       _useState14 = _slicedToArray(_useState13, 2),
-      hasMore = _useState14[0],
-      setHasMore = _useState14[1];
+      page = _useState14[0],
+      setPage = _useState14[1];
 
   var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      loading = _useState16[0],
-      setLoading = _useState16[1];
+      hasMore = _useState16[0],
+      setHasMore = _useState16[1];
 
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState18 = _slicedToArray(_useState17, 2),
-      searchWord = _useState18[0],
-      setSearchWord = _useState18[1];
+      loading = _useState18[0],
+      setLoading = _useState18[1];
+
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState20 = _slicedToArray(_useState19, 2),
+      searchWord = _useState20[0],
+      setSearchWord = _useState20[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTimeline = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var newTimelines;
+        var newTimelines, addTimelines;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -71944,6 +71949,7 @@ var ReviewIndex = function ReviewIndex() {
                   setLoginUser(res.data.loginUser);
 
                   if (page < res.data.timelines.last_page) {
+                    console.log('hasMore: true');
                     setHasMore(true);
                   }
 
@@ -71958,12 +71964,19 @@ var ReviewIndex = function ReviewIndex() {
 
               case 3:
                 newTimelines = _context.sent;
+                console.log("newTimelines: ".concat(newTimelines.map(function (timeline) {
+                  return timeline.manufacturer;
+                })));
+                addTimelines = newTimelines.filter(function (item) {
+                  return item[selectedValue].indexOf(searchWord) > -1;
+                });
+                setTimelinesLength(addTimelines.length);
                 setTimelines(function (prev) {
-                  return [].concat(_toConsumableArray(prev), _toConsumableArray(newTimelines));
+                  return [].concat(_toConsumableArray(prev), _toConsumableArray(addTimelines));
                 });
                 setLoading(false);
 
-              case 6:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -71977,34 +71990,47 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-  }, [page, selectedFavo]);
+  }, [page, selectedFavo, selectedCategory, searchWord]);
 
-  var categoryChange = function categoryChange(e) {
-    var selected = e.target.value;
-    console.log(selected);
-
-    if (selected === 'default') {
-      setTimelines([]);
-      setPage(1);
-      setHasMore(false);
-    }
-
-    setSelectedCategory(selected);
-    setTimelines([]);
-    setPage(1);
+  var selectItem = function selectItem(e) {
+    var selectedIndex = e.target.selectedIndex;
+    var item = e.target.options[selectedIndex].label;
+    console.log("select item: ".concat(item));
+    document.getElementById('searchBooks').placeholder = "".concat(item, "\u3067\u691C\u7D22...");
+    setSelectedValue(e.target.options[selectedIndex].value);
     setHasMore(false);
   };
 
-  var sortChange = function sortChange(e) {
-    selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true); // if (selectedFavo) {
-    //     setSelectedFavo(false)
-    // } else {
-    //     setSelectedFavo(true)
-    // }
+  var searchClick = function searchClick(e) {
+    console.log('search button clicked!');
+    console.log("search word: ".concat(document.getElementById('searchBooks').value));
+    setTimelines([]);
+    setPage(1);
+    setSearchWord(document.getElementById('searchBooks').value);
+    setHasMore(false);
+  };
 
+  var categoryChange = function categoryChange(e) {
+    var selected = e.target.value;
+    console.log("selected: ".concat(selected));
+
+    if (selected === 'default') {
+      setSelectedCategory('');
+      setSearchWord('');
+      return;
+    }
+
+    setSelectedCategory(selected);
+    setSearchWord('');
+  };
+
+  var sortChange = function sortChange(e) {
+    console.log('sort changed!');
+    selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true);
     setTimelines([]);
     setPage(1);
     setHasMore(false);
+    setSearchWord('');
   };
 
   var body = document.getElementById('body');
@@ -72023,37 +72049,20 @@ var ReviewIndex = function ReviewIndex() {
     return;
   };
 
-  var itemChange = function itemChange(e) {
-    setSearchWord('');
-    var selectedIndex = e.target.selectedIndex;
-    var item = e.target.options[selectedIndex].label;
-    document.getElementById('searchBooks').placeholder = "".concat(item, "\u3067\u691C\u7D22...");
-    setSelectedValue(e.target.options[selectedIndex].value);
-  };
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    if (timelinesLength < 10 && hasMore) {
+      setPage(function (prev) {
+        return prev + 1;
+      });
+      setHasMore(false);
+    }
 
-  var handleSearch = function handleSearch(e) {
-    setSearchWord(e.target.value);
-    setPage(1);
-  };
-
-  var reviewList = function reviewList(selectedValue) {
-    return timelines.filter(function (item) {
-      if (item[selectedValue]) {
-        return item[selectedValue].indexOf(searchWord) > -1;
-      }
-
-      if (selectedCategory) {
-        return item.category.indexOf(selectedCategory) > -1;
-      }
-
-      return;
-    });
-  };
-
+    return;
+  }, [timelines]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "search-form d-inline-flex"
+    className: "search-form d-flex flex-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-    onChange: itemChange,
+    onChange: selectItem,
     id: "bookSearch",
     className: "text-right bg-transparent border-0 mr-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
@@ -72065,14 +72074,18 @@ var ReviewIndex = function ReviewIndex() {
   }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     className: "form-control rounded-pill pr-0",
     id: "searchBooks",
-    onChange: handleSearch,
     type: "search",
-    value: searchWord,
+    name: "search",
     placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
     "aria-label": "\u66F8\u7C4D\u691C\u7D22",
     required: true,
     autoComplete: "on"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    onClick: searchClick,
+    className: "btn search-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-search text-teal lead"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex justify-content-between mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: categoryChange,
@@ -72124,7 +72137,7 @@ var ReviewIndex = function ReviewIndex() {
   }, "\u3044\u3044\u306D\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "timelinesComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    timelines: reviewList(selectedValue),
+    timelines: timelines,
     loginUser: loginUser
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"

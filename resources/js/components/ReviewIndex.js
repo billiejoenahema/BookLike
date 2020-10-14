@@ -6,6 +6,7 @@ const ReviewIndex = () => {
 
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
+    const [timelinesLength, setTimelinesLength] = useState(0)
     const [selectedCategory, setSelectedCategory] = useState('')
     const [selectedValue, setSelectedValue] = useState('title')
     const [selectedFavo, setSelectedFavo] = useState(false)
@@ -23,6 +24,7 @@ const ReviewIndex = () => {
                     console.log(res)
                     setLoginUser(res.data.loginUser)
                     if (page < res.data.timelines.last_page) {
+                        console.log('hasMore: true')
                         setHasMore(true)
                     }
                     if (selectedFavo) {
@@ -33,36 +35,55 @@ const ReviewIndex = () => {
                 .catch(err => {
                     console.log(err)
                 })
-            setTimelines(prev => [...prev, ...newTimelines])
+            console.log(`newTimelines: ${newTimelines.map(timeline => timeline.manufacturer)}`)
+            const addTimelines = newTimelines.filter((item) => {
+
+                return item[selectedValue].indexOf(searchWord) > -1
+            })
+            setTimelinesLength(addTimelines.length)
+            setTimelines(prev => [...prev, ...addTimelines])
             setLoading(false)
         }
         loadTimeline()
-    }, [page, selectedFavo])
+    }, [page, selectedFavo, selectedCategory, searchWord])
 
-    const categoryChange = (e) => {
-        const selected = e.target.value
-        console.log(selected)
-        if (selected === 'default') {
-            setTimelines([])
-            setPage(1)
-            setHasMore(false)
-        }
-        setSelectedCategory(selected)
-        setTimelines([])
-        setPage(1)
+    const selectItem = (e) => {
+        const selectedIndex = e.target.selectedIndex
+        const item = e.target.options[selectedIndex].label
+        console.log(`select item: ${item}`)
+        document.getElementById('searchBooks').placeholder = `${item}で検索...`
+        setSelectedValue(e.target.options[selectedIndex].value)
         setHasMore(false)
     }
 
+    const searchClick = (e) => {
+        console.log('search button clicked!')
+        console.log(`search word: ${document.getElementById('searchBooks').value}`)
+        setTimelines([])
+        setPage(1)
+        setSearchWord(document.getElementById('searchBooks').value)
+        setHasMore(false)
+    }
+
+    const categoryChange = (e) => {
+        const selected = e.target.value
+        console.log(`selected: ${selected}`)
+        if (selected === 'default') {
+            setSelectedCategory('')
+            setSearchWord('')
+            return
+        }
+        setSelectedCategory(selected)
+        setSearchWord('')
+    }
+
     const sortChange = (e) => {
+        console.log('sort changed!')
         selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true)
-        // if (selectedFavo) {
-        //     setSelectedFavo(false)
-        // } else {
-        //     setSelectedFavo(true)
-        // }
         setTimelines([])
         setPage(1)
         setHasMore(false)
+        setSearchWord('')
     }
 
     const body = document.getElementById('body')
@@ -76,36 +97,18 @@ const ReviewIndex = () => {
         return
     }
 
-    const itemChange = (e) => {
-        setSearchWord('')
-        const selectedIndex = e.target.selectedIndex
-        const item = e.target.options[selectedIndex].label
-        document.getElementById('searchBooks').placeholder = `${item}で検索...`
-        setSelectedValue(e.target.options[selectedIndex].value)
-    }
-
-    const handleSearch = (e) => {
-        setSearchWord(e.target.value)
-        setPage(1)
-
-    }
-
-    const reviewList = (selectedValue) => {
-        return timelines.filter((item) => {
-            if (item[selectedValue]) {
-                return item[selectedValue].indexOf(searchWord) > -1
-            }
-            if (selectedCategory) {
-                return item.category.indexOf(selectedCategory) > -1
-            }
-            return
-        })
-    }
+    useEffect(() => {
+        if (timelinesLength < 10 && hasMore) {
+            setPage(prev => prev + 1)
+            setHasMore(false)
+        }
+        return
+    }, [timelines])
 
     return (
         <>
-            <div className="search-form d-inline-flex">
-                <select onChange={itemChange} id="bookSearch" className="text-right bg-transparent border-0 mr-1">
+            <div className="search-form d-flex flex-row">
+                <select onChange={selectItem} id="bookSearch" className="text-right bg-transparent border-0 mr-1">
                     <option value="title">タイトル</option>
                     <option value="author">著者</option>
                     <option value="manufacturer">出版社</option>
@@ -113,13 +116,15 @@ const ReviewIndex = () => {
                 <input
                     className="form-control rounded-pill pr-0"
                     id="searchBooks"
-                    onChange={handleSearch}
                     type="search"
-                    value={searchWord}
+                    name="search"
                     placeholder="タイトルで検索..."
                     aria-label="書籍検索"
                     required autoComplete="on"
                 />
+                <button onClick={searchClick} className="btn search-button">
+                    <i className="fas fa-search text-teal lead"></i>
+                </button>
             </div>
             <div className="form-group d-flex justify-content-between mt-2">
                 <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
@@ -148,7 +153,7 @@ const ReviewIndex = () => {
                 </div>
             </div>
             <div id="timelinesComponent">
-                <Timeline timelines={reviewList(selectedValue)} loginUser={loginUser} />
+                <Timeline timelines={timelines} loginUser={loginUser} />
             </div>
             <div className="text-center">
                 {loading && '読み込み中...'}
@@ -163,3 +168,5 @@ export default ReviewIndex
 if (document.getElementById('reviewIndex')) {
     ReactDOM.render(<ReviewIndex />, document.getElementById('reviewIndex'))
 }
+
+
