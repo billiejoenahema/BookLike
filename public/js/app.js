@@ -71963,6 +71963,14 @@ var ReviewIndex = function ReviewIndex() {
               case 3:
                 newTimelines = _context.sent;
                 addTimelines = newTimelines.filter(function (item) {
+                  if (selectedCategory) {
+                    if (item.category) {
+                      return item[selectedValue].indexOf(searchWord) > -1 && item.category.indexOf(selectedCategory) > -1;
+                    }
+
+                    return;
+                  }
+
                   return item[selectedValue].indexOf(searchWord) > -1;
                 });
                 setTimelinesLength(addTimelines.length);
@@ -71990,9 +71998,10 @@ var ReviewIndex = function ReviewIndex() {
   var selectItem = function selectItem(e) {
     var selectedIndex = e.target.selectedIndex;
     var item = e.target.options[selectedIndex].label;
+    console.log("selected: ".concat(item));
     searchBooks.placeholder = "".concat(item, "\u3067\u691C\u7D22...");
-    setSelectedValue(e.target.options[selectedIndex].value);
     setHasMore(false);
+    setSelectedValue(e.target.options[selectedIndex].value);
   };
 
   var searchClick = function searchClick(e) {
@@ -72001,8 +72010,8 @@ var ReviewIndex = function ReviewIndex() {
     console.log("search word: ".concat(searchBooks.value));
     setTimelines([]);
     setPage(1);
-    setSearchWord(searchBooks.value);
     setHasMore(false);
+    setSearchWord(searchBooks.value);
   };
 
   var modalSearchClick = function modalSearchClick(e) {
@@ -72010,22 +72019,24 @@ var ReviewIndex = function ReviewIndex() {
     console.log("search word: ".concat(modalSearchBooks.value));
     setTimelines([]);
     setPage(1);
-    setSearchWord(modalSearchBooks.value);
     setHasMore(false);
+    setSearchWord(modalSearchBooks.value);
   };
 
   var categoryChange = function categoryChange(e) {
     var selected = e.target.value;
     console.log("selected: ".concat(selected));
+    setSearchWord('');
+    setTimelines([]);
+    setPage(1);
+    setHasMore(false);
 
     if (selected === 'default') {
       setSelectedCategory('');
-      setSearchWord('');
       return;
     }
 
     setSelectedCategory(selected);
-    setSearchWord('');
   };
 
   var sortChange = function sortChange(e) {
@@ -72145,7 +72156,7 @@ var ReviewIndex = function ReviewIndex() {
     placeholder: "\u30AB\u30C6\u30B4\u30EA\u30FC\u3067\u7D5E\u308A\u8FBC\u307F"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "default"
-  }, "\u30AB\u30C6\u30B4\u30EA\u30FC\u3067\u7D5E\u308A\u8FBC\u307F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+  }, "\u3059\u3079\u3066\u306E\u30AB\u30C6\u30B4\u30EA\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "\u6587\u5B66"
   }, "\u6587\u5B66"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "\u30A8\u30F3\u30BF\u30FC\u30C6\u30A4\u30F3\u30E1\u30F3\u30C8"

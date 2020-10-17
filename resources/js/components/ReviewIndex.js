@@ -34,7 +34,13 @@ const ReviewIndex = () => {
                 .catch(err => {
                     console.log(err)
                 })
-            const addTimelines = newTimelines.filter((item) => {
+            const addTimelines = newTimelines.filter(item => {
+                if (selectedCategory) {
+                    if (item.category) {
+                        return item[selectedValue].indexOf(searchWord) > -1 && item.category.indexOf(selectedCategory) > -1
+                    }
+                    return
+                }
                 return item[selectedValue].indexOf(searchWord) > -1
             })
             setTimelinesLength(addTimelines.length)
@@ -47,9 +53,10 @@ const ReviewIndex = () => {
     const selectItem = (e) => {
         const selectedIndex = e.target.selectedIndex
         const item = e.target.options[selectedIndex].label
+        console.log(`selected: ${item}`)
         searchBooks.placeholder = `${item}で検索...`
-        setSelectedValue(e.target.options[selectedIndex].value)
         setHasMore(false)
+        setSelectedValue(e.target.options[selectedIndex].value)
     }
 
     const searchClick = (e) => {
@@ -58,8 +65,8 @@ const ReviewIndex = () => {
         console.log(`search word: ${searchBooks.value}`)
         setTimelines([])
         setPage(1)
-        setSearchWord(searchBooks.value)
         setHasMore(false)
+        setSearchWord(searchBooks.value)
     }
 
     const modalSearchClick = (e) => {
@@ -67,20 +74,22 @@ const ReviewIndex = () => {
         console.log(`search word: ${modalSearchBooks.value}`)
         setTimelines([])
         setPage(1)
-        setSearchWord(modalSearchBooks.value)
         setHasMore(false)
+        setSearchWord(modalSearchBooks.value)
     }
 
     const categoryChange = (e) => {
         const selected = e.target.value
         console.log(`selected: ${selected}`)
+        setSearchWord('')
+        setTimelines([])
+        setPage(1)
+        setHasMore(false)
         if (selected === 'default') {
             setSelectedCategory('')
-            setSearchWord('')
             return
         }
         setSelectedCategory(selected)
-        setSearchWord('')
     }
 
     const sortChange = (e) => {
@@ -169,7 +178,7 @@ const ReviewIndex = () => {
             {/* カテゴリー選択 */}
             <div className="form-group d-flex justify-content-between mt-2">
                 <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
-                    <option value="default">カテゴリーで絞り込み</option>
+                    <option value="default">すべてのカテゴリー</option>
                     <option value="文学">文学</option>
                     <option value="エンターテインメント">エンターテインメント</option>
                     <option value="ミステリー">ミステリー</option>
