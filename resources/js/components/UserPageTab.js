@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import axios from 'axios'
-import 'react-tabs/style/react-tabs.css'
-
 import Timeline from './Timeline'
 import Users from './Users'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import 'react-tabs/style/react-tabs.css'
 
 const UserPageTab = () => {
 
-    const [loginUser, setLoginUser] = useState()
+    const [loginUser, setLoginUser] = useState({})
     const [userReviews, setUserReviews] = useState([])
     const [favoriteReviews, setFavoriteReviews] = useState([])
     const [followingUsers, setFollowingUsers] = useState([])

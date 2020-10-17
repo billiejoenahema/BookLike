@@ -20,9 +20,7 @@ const UserIndex = () => {
                 .then(res => {
                     console.log(res)
                     setLoginUser(res.data.loginUser)
-                    if (page < res.data.users.last_page) {
-                        setHasMore(true)
-                    }
+                    page < res.data.users.last_page && setHasMore(true)
                     if (selectedPopular) {
                         return res.data.populars.data
                     }
@@ -47,13 +45,13 @@ const UserIndex = () => {
 
     const sortChange = (e) => {
         if (e.target.value === 'follower') {
-            setSelectedPopular(true)
             setAllUsers([])
+            setSelectedPopular(true)
             setPage(1)
             setHasMore(false)
-        } else {
-            setSelectedPopular(false)
+            setSearchWord('')
         }
+        setSelectedPopular(false)
     }
 
     const body = document.getElementById('body')

@@ -23,10 +23,7 @@ const ReviewIndex = () => {
                 .then(res => {
                     console.log(res)
                     setLoginUser(res.data.loginUser)
-                    if (page < res.data.timelines.last_page) {
-                        console.log('hasMore: true')
-                        setHasMore(true)
-                    }
+                    page < res.data.timelines.last_page && setHasMore(true)
                     if (selectedFavo) {
                         return res.data.favoritest.data
                     }
@@ -35,9 +32,7 @@ const ReviewIndex = () => {
                 .catch(err => {
                     console.log(err)
                 })
-            console.log(`newTimelines: ${newTimelines.map(timeline => timeline.manufacturer)}`)
             const addTimelines = newTimelines.filter((item) => {
-
                 return item[selectedValue].indexOf(searchWord) > -1
             })
             setTimelinesLength(addTimelines.length)
