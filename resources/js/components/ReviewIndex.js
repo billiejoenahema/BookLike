@@ -14,6 +14,8 @@ const ReviewIndex = () => {
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
     const [searchWord, setSearchWord] = useState('')
+    const searchBooks = document.getElementById('searchBooks')
+    const modalSearchBooks = document.getElementById('modalSearchBooks')
 
     useEffect(() => {
         const loadTimeline = async () => {
@@ -45,18 +47,27 @@ const ReviewIndex = () => {
     const selectItem = (e) => {
         const selectedIndex = e.target.selectedIndex
         const item = e.target.options[selectedIndex].label
-        console.log(`select item: ${item}`)
-        document.getElementById('searchBooks').placeholder = `${item}で検索...`
+        document.searchBooks.placeholder = `${item}で検索...`
         setSelectedValue(e.target.options[selectedIndex].value)
         setHasMore(false)
     }
 
     const searchClick = (e) => {
+        e.preventDefault()
         console.log('search button clicked!')
-        console.log(`search word: ${document.getElementById('searchBooks').value}`)
+        console.log(`search word: ${searchBooks.value}`)
         setTimelines([])
         setPage(1)
-        setSearchWord(document.getElementById('searchBooks').value)
+        setSearchWord(searchBooks.value)
+        setHasMore(false)
+    }
+
+    const modalSearchClick = (e) => {
+        console.log('search button clicked!')
+        console.log(`search word: ${modalSearchBooks.value}`)
+        setTimelines([])
+        setPage(1)
+        setSearchWord(modalSearchBooks.value)
         setHasMore(false)
     }
 
@@ -102,25 +113,60 @@ const ReviewIndex = () => {
 
     return (
         <>
-            <div className="search-form d-flex flex-row">
-                <select onChange={selectItem} id="bookSearch" className="text-right bg-transparent border-0 mr-1">
-                    <option value="title">タイトル</option>
-                    <option value="author">著者</option>
-                    <option value="manufacturer">出版社</option>
-                </select>
-                <input
-                    className="form-control rounded-pill pr-0"
-                    id="searchBooks"
-                    type="search"
-                    name="search"
-                    placeholder="タイトルで検索..."
-                    aria-label="書籍検索"
-                    required autoComplete="on"
-                />
-                <button onClick={searchClick} className="btn search-button">
-                    <i className="fas fa-search text-teal lead"></i>
-                </button>
+            <div className="search-form">
+                <div className="d-flex flex-row">
+                    <select onChange={selectItem} className="text-right bg-transparent border-0 mr-1">
+                        <option value="title">タイトル</option>
+                        <option value="author">著者</option>
+                        <option value="manufacturer">出版社</option>
+                    </select>
+                    <input
+                        className="form-control rounded-pill pr-0"
+                        id="searchBooks"
+                        type="search"
+                        name="search"
+                        placeholder="タイトルで検索..."
+                        aria-label="書籍検索"
+                        required autoComplete="on"
+                    />
+                    <button onClick={searchClick} className="btn search-button">
+                        <i className="fas fa-search text-teal lead"></i>
+                    </button>
+                </div>
             </div>
+            {/* Button trigger modal */}
+            <button type="button" className="btn search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
+                <i className="fas fa-search text-teal lead"></i>
+            </button>
+            {/* Search Modal */}
+            <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-body">
+                            <div className="d-flex flex-row">
+                                <select onChange={selectItem} className="text-right bg-transparent border-0 mr-1">
+                                    <option value="title">タイトル</option>
+                                    <option value="author">著者</option>
+                                    <option value="manufacturer">出版社</option>
+                                </select>
+                                <input
+                                    className="form-control rounded-pill pr-0"
+                                    id="modalSearchBooks"
+                                    type="search"
+                                    name="search"
+                                    placeholder="タイトルで検索..."
+                                    aria-label="書籍検索"
+                                    required autoComplete="on"
+                                />
+                                <button onClick={modalSearchClick} className="btn search-button" data-dismiss="modal">
+                                    <i className="fas fa-search text-teal lead"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div className="form-group d-flex justify-content-between mt-2">
                 <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
                     <option value="default">カテゴリーで絞り込み</option>

@@ -11,6 +11,10 @@
     line-height: 0.2rem;
 }
 
+.search-button, .search-modal-button {
+    line-height: 0.8rem;
+}
+
 .search-button:hover {
     transform:scale(1.2,1.2);
     transition:0.2s all;
@@ -21,7 +25,7 @@
     min-height: 715px;
 } */
 
-/* ユーザー＆投稿検索フォームをnavbarへ */
+/* ユーザー＆投稿検索フォーム */
 
 @media screen and (min-width: 500px) {
     .search-form {
@@ -29,6 +33,32 @@
         top: 0.7rem;
         left: 25%;
         z-index:1020;
+    }
+
+    .search-modal {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 499px) {
+    .search-form {
+        display: none;
+    }
+
+    .search-modal {
+        position: fixed;
+        top:3.2rem;
+    }
+
+    .search-modal-button {
+        position: fixed;
+        top: 0.7rem;
+        left: 30%;
+        z-index:1020;
+    }
+
+    .search-modal-button > i {
+        font-size: 1.5rem;
     }
 }
 

@@ -71934,6 +71934,8 @@ var ReviewIndex = function ReviewIndex() {
       searchWord = _useState20[0],
       setSearchWord = _useState20[1];
 
+  var searchBooks = document.getElementById('searchBooks');
+  var modalSearchBooks = document.getElementById('modalSearchBooks');
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTimeline = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -71988,18 +71990,27 @@ var ReviewIndex = function ReviewIndex() {
   var selectItem = function selectItem(e) {
     var selectedIndex = e.target.selectedIndex;
     var item = e.target.options[selectedIndex].label;
-    console.log("select item: ".concat(item));
-    document.getElementById('searchBooks').placeholder = "".concat(item, "\u3067\u691C\u7D22...");
+    document.searchBooks.placeholder = "".concat(item, "\u3067\u691C\u7D22...");
     setSelectedValue(e.target.options[selectedIndex].value);
     setHasMore(false);
   };
 
   var searchClick = function searchClick(e) {
+    e.preventDefault();
     console.log('search button clicked!');
-    console.log("search word: ".concat(document.getElementById('searchBooks').value));
+    console.log("search word: ".concat(searchBooks.value));
     setTimelines([]);
     setPage(1);
-    setSearchWord(document.getElementById('searchBooks').value);
+    setSearchWord(searchBooks.value);
+    setHasMore(false);
+  };
+
+  var modalSearchClick = function modalSearchClick(e) {
+    console.log('search button clicked!');
+    console.log("search word: ".concat(modalSearchBooks.value));
+    setTimelines([]);
+    setPage(1);
+    setSearchWord(modalSearchBooks.value);
     setHasMore(false);
   };
 
@@ -72053,10 +72064,11 @@ var ReviewIndex = function ReviewIndex() {
     return;
   }, [timelines]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "search-form d-flex flex-row"
+    className: "search-form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex flex-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: selectItem,
-    id: "bookSearch",
     className: "text-right bg-transparent border-0 mr-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "title"
@@ -72078,7 +72090,54 @@ var ReviewIndex = function ReviewIndex() {
     className: "btn search-button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "fas fa-search text-teal lead"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "btn search-modal-button search-modal",
+    "data-toggle": "modal",
+    "data-target": "#searchModal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-search text-teal lead"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal fade search-modal",
+    id: "searchModal",
+    tabIndex: "-1",
+    role: "dialog",
+    "aria-labelledby": "exampleModalLabel",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-dialog",
+    role: "document"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex flex-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    onChange: selectItem,
+    className: "text-right bg-transparent border-0 mr-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "title"
+  }, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "author"
+  }, "\u8457\u8005"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "manufacturer"
+  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control rounded-pill pr-0",
+    id: "modalSearchBooks",
+    type: "search",
+    name: "search",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
+    "aria-label": "\u66F8\u7C4D\u691C\u7D22",
+    required: true,
+    autoComplete: "on"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    onClick: modalSearchClick,
+    className: "btn search-button",
+    "data-dismiss": "modal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-search text-teal lead"
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex justify-content-between mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: categoryChange,
