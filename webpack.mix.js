@@ -21,5 +21,6 @@ mix.scripts([
     'public/js/initialTextLength.js',
     'public/js/selectItem.js',
     'public/js/editCategory.js',
-    'public/js/categorySelectValidate.js'
+    'public/js/categorySelectValidate.js',
+    'public/js/scrollTop.js'
 ], 'public/js/all.js')

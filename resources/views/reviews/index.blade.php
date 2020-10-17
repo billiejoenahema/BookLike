@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('components.new_post_button')
-    <div id="reviewIndex"></div>
+<div id="reviewIndex"></div>
+@include('components.scroll_top_button')
+@include('components.new_post_button')
 @endsection

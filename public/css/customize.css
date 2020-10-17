@@ -6,6 +6,11 @@
     padding: 0.87rem 1.2rem;
 }
 
+/* ページトップへ戻るボタン */
+.scroll-top {
+    line-height: 0.2rem;
+}
+
 .search-button:hover {
     transform:scale(1.2,1.2);
     transition:0.2s all;
