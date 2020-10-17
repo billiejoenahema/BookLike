@@ -72215,7 +72215,7 @@ function Timeline(props) {
       "data-tip": "Amazon\u30B5\u30A4\u30C8\u3078\u79FB\u52D5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fab fa-amazon"
-    }), " Amazon link", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), " Amazon", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
       effect: "float",
       type: "info",
       place: "top"

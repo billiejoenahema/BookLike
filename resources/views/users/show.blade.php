@@ -9,4 +9,5 @@
 @endif
 <!-- React-tabs -->
 <div id="userPageTab"></div>
+@include('components.new_post_button')
 @endsection
