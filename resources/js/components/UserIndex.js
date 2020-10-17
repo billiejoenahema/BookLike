@@ -44,14 +44,11 @@ const UserIndex = () => {
     }
 
     const sortChange = (e) => {
-        if (e.target.value === 'follower') {
-            setAllUsers([])
-            setSelectedPopular(true)
-            setPage(1)
-            setHasMore(false)
-            setSearchWord('')
-        }
-        setSelectedPopular(false)
+        e.target.value === 'follower' ? setSelectedPopular(true) : setSelectedPopular(false)
+        setAllUsers([])
+        setPage(1)
+        setHasMore(false)
+        setSearchWord('')
     }
 
     const body = document.getElementById('body')

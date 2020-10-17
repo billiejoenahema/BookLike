@@ -72474,15 +72474,11 @@ var UserIndex = function UserIndex() {
   };
 
   var sortChange = function sortChange(e) {
-    if (e.target.value === 'follower') {
-      setAllUsers([]);
-      setSelectedPopular(true);
-      setPage(1);
-      setHasMore(false);
-      setSearchWord('');
-    }
-
-    setSelectedPopular(false);
+    e.target.value === 'follower' ? setSelectedPopular(true) : setSelectedPopular(false);
+    setAllUsers([]);
+    setPage(1);
+    setHasMore(false);
+    setSearchWord('');
   };
 
   var body = document.getElementById('body');
