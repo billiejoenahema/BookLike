@@ -21,9 +21,9 @@
 }
 
 /* main要素の高さを調整 */
-/* .main-min-height {
-    min-height: 715px;
-} */
+.main-min-height {
+    min-height: 710px;
+}
 
 /* ユーザー＆投稿検索フォーム */
 
@@ -58,7 +58,7 @@
     }
 
     .search-modal-button > i {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 }
 

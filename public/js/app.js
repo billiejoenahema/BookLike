@@ -71990,7 +71990,7 @@ var ReviewIndex = function ReviewIndex() {
   var selectItem = function selectItem(e) {
     var selectedIndex = e.target.selectedIndex;
     var item = e.target.options[selectedIndex].label;
-    document.searchBooks.placeholder = "".concat(item, "\u3067\u691C\u7D22...");
+    searchBooks.placeholder = "".concat(item, "\u3067\u691C\u7D22...");
     setSelectedValue(e.target.options[selectedIndex].value);
     setHasMore(false);
   };

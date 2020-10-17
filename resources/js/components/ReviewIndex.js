@@ -47,7 +47,7 @@ const ReviewIndex = () => {
     const selectItem = (e) => {
         const selectedIndex = e.target.selectedIndex
         const item = e.target.options[selectedIndex].label
-        document.searchBooks.placeholder = `${item}で検索...`
+        searchBooks.placeholder = `${item}で検索...`
         setSelectedValue(e.target.options[selectedIndex].value)
         setHasMore(false)
     }
@@ -166,7 +166,7 @@ const ReviewIndex = () => {
                     </div>
                 </div>
             </div>
-
+            {/* カテゴリー選択 */}
             <div className="form-group d-flex justify-content-between mt-2">
                 <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
                     <option value="default">カテゴリーで絞り込み</option>
