@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Timeline from './Timeline'
+import Loading from './Loading'
+import ScrollTop from './ScrollTop'
 
 const ReviewIndex = () => {
 
@@ -55,6 +57,7 @@ const ReviewIndex = () => {
         const item = e.target.options[selectedIndex].label
         console.log(`selected: ${item}`)
         searchBooks.placeholder = `${item}で検索...`
+        modalSearchBooks.placeholder = `${item}で検索...`
         setHasMore(false)
         setSelectedValue(e.target.options[selectedIndex].value)
     }
@@ -81,6 +84,7 @@ const ReviewIndex = () => {
     const categoryChange = (e) => {
         const selected = e.target.value
         console.log(`selected: ${selected}`)
+        searchBooks.placeholder = `${selectedValue}で検索...`
         setSearchWord('')
         setTimelines([])
         setPage(1)
@@ -99,6 +103,7 @@ const ReviewIndex = () => {
         setPage(1)
         setHasMore(false)
         setSearchWord('')
+        searchBooks.placeholder = `${selectedValue}で検索...`
     }
 
     const body = document.getElementById('body')
@@ -206,7 +211,7 @@ const ReviewIndex = () => {
                 <Timeline timelines={timelines} loginUser={loginUser} />
             </div>
             <div className="text-center">
-                {loading && '読み込み中...'}
+                {loading ? < Loading /> : <ScrollTop />}
             </div>
         </>
     )

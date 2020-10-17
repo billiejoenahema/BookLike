@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Users from './Users'
+import Loading from './Loading'
+import ScrollTop from './ScrollTop'
 
 const UserIndex = () => {
 
@@ -94,8 +96,9 @@ const UserIndex = () => {
                 <Users users={userList} loginUser={loginUser} />
             </div>
             <div className="text-center">
-                {loading && '読み込み中...'}
+                {loading ? < Loading /> : <ScrollTop />}
             </div>
+
         </>
     )
 }
