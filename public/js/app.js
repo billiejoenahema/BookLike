@@ -72001,13 +72001,12 @@ var ReviewIndex = function ReviewIndex() {
 
                   return item[selectedValue].indexOf(searchWord) > -1;
                 });
-                setTimelinesLength(addTimelines.length);
                 setTimelines(function (prev) {
                   return [].concat(_toConsumableArray(prev), _toConsumableArray(addTimelines));
                 });
                 setLoading(false);
 
-              case 8:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -72054,9 +72053,8 @@ var ReviewIndex = function ReviewIndex() {
 
   var categoryChange = function categoryChange(e) {
     var selected = e.target.value;
-    console.log("selected: ".concat(selected));
-    searchBooks.placeholder = "".concat(selectedValue, "\u3067\u691C\u7D22...");
-    setSearchWord('');
+    console.log("selected: ".concat(selected)); // setSearchWord('')
+
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -72071,12 +72069,12 @@ var ReviewIndex = function ReviewIndex() {
 
   var sortChange = function sortChange(e) {
     console.log('sort changed!');
-    selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true);
+    selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true); // setSearchWord('')
+
+    console.log(searchBooks.placeholder);
     setTimelines([]);
     setPage(1);
     setHasMore(false);
-    setSearchWord('');
-    searchBooks.placeholder = "".concat(selectedValue, "\u3067\u691C\u7D22...");
   };
 
   var body = document.getElementById('body');
@@ -72096,6 +72094,8 @@ var ReviewIndex = function ReviewIndex() {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    console.log("timelinesLength: ".concat(timelinesLength));
+
     if (timelinesLength < 10 && hasMore) {
       setPage(function (prev) {
         return prev + 1;
@@ -72103,6 +72103,8 @@ var ReviewIndex = function ReviewIndex() {
       setHasMore(false);
     }
 
+    console.log("page: ".concat(page));
+    setTimelinesLength(timelines.length);
     return;
   }, [timelines]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -72273,7 +72275,7 @@ function ScrollTop() {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-center text-blog scroll-top d-flex justify-content-center"
+    className: "text-center text-blog scroll-top d-flex justify-content-center m-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
     onClick: scrollTop,
@@ -72702,17 +72704,27 @@ if (document.getElementById('userIndex')) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Timeline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Timeline */ "./resources/js/components/Timeline.js");
-/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Users */ "./resources/js/components/Users.js");
-/* harmony import */ var react_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js");
-/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-tabs/style/react-tabs.css */ "./node_modules/react-tabs/style/react-tabs.css");
-/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Timeline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Timeline */ "./resources/js/components/Timeline.js");
+/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Users */ "./resources/js/components/Users.js");
+/* harmony import */ var _ScrollTop__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ScrollTop */ "./resources/js/components/ScrollTop.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var react_tabs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js");
+/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-tabs/style/react-tabs.css */ "./node_modules/react-tabs/style/react-tabs.css");
+/* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_9__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -72733,85 +72745,111 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var UserPageTab = function UserPageTab() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState2 = _slicedToArray(_useState, 2),
       loginUser = _useState2[0],
       setLoginUser = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
       userReviews = _useState4[0],
       setUserReviews = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
       favoriteReviews = _useState6[0],
       setFavoriteReviews = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState8 = _slicedToArray(_useState7, 2),
       followingUsers = _useState8[0],
       setFollowingUsers = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState10 = _slicedToArray(_useState9, 2),
       followedUsers = _useState10[0],
       setFollowedUsers = _useState10[1];
 
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      loading = _useState12[0],
+      setLoading = _useState12[1];
+
   var url = window.location.pathname;
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api".concat(url)).then(function (res) {
-      console.log(res);
-      setLoginUser(res.data.loginUser);
-      setUserReviews(res.data.userReviews);
-      setFavoriteReviews(res.data.favoriteReviews);
-      setFollowingUsers(res.data.followingUsers);
-      setFollowedUsers(res.data.followedUsers);
-    })["catch"](function (err) {
-      console.log(err);
-    });
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var loadTab = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                setLoading(true);
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api".concat(url)).then(function (res) {
+                  console.log(res);
+                  setLoginUser(res.data.loginUser);
+                  setUserReviews(res.data.userReviews);
+                  setFavoriteReviews(res.data.favoriteReviews);
+                  setFollowingUsers(res.data.followingUsers);
+                  setFollowedUsers(res.data.followedUsers);
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function loadTab() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    loadTab();
+    setLoading(false);
   }, []);
-
-  function existsData(array) {
-    return array.length !== 0;
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-center small"
-  }, "\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-center small"
-  }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-center small"
-  }, "\u30D5\u30A9\u30ED\u30FC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-center small"
-  }, "\u30D5\u30A9\u30ED\u30EF\u30FC"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["TabPanel"], null, existsData(userReviews) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-center small px-0"
+  }, "\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-center small px-0"
+  }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-center small px-0"
+  }, "\u30D5\u30A9\u30ED\u30FC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "text-center small px-0"
+  }, "\u30D5\u30A9\u30ED\u30EF\u30FC"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["TabPanel"], null, userReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
     timelines: userReviews,
     loginUser: loginUser
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pb-5 mb-5"
-  }, "\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["TabPanel"], null, existsData(favoriteReviews) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "pb-5 my-5"
+  }, "\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["TabPanel"], null, favoriteReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
     timelines: favoriteReviews,
     loginUser: loginUser
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pb-5 mb-5"
-  }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["TabPanel"], null, existsData(followingUsers) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "pb-5 my-5"
+  }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["TabPanel"], null, followingUsers.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
     users: followingUsers,
     loginUser: loginUser
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pb-5 mb-5"
-  }, "\u30D5\u30A9\u30ED\u30FC\u3057\u3066\u3044\u308B\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_5__["TabPanel"], null, existsData(followedUsers) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "pb-5 my-5"
+  }, "\u30D5\u30A9\u30ED\u30FC\u3057\u3066\u3044\u308B\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["TabPanel"], null, followedUsers.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
     users: followedUsers,
     loginUser: loginUser
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pb-5 mb-5"
-  }, "\u30D5\u30A9\u30ED\u30EF\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093"))));
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "pb-5 my-5"
+  }, "\u30D5\u30A9\u30ED\u30EF\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_7__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ScrollTop__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserPageTab);
 
 if (document.getElementById('userPageTab')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(UserPageTab, null), document.getElementById('userPageTab'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(UserPageTab, null), document.getElementById('userPageTab'));
 }
 
 /***/ }),

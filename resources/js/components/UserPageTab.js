@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Timeline from './Timeline'
 import Users from './Users'
+import ScrollTop from './ScrollTop'
+import Loading from './Loading'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 
@@ -13,66 +15,70 @@ const UserPageTab = () => {
     const [favoriteReviews, setFavoriteReviews] = useState([])
     const [followingUsers, setFollowingUsers] = useState([])
     const [followedUsers, setFollowedUsers] = useState([])
+    const [loading, setLoading] = useState(false)
+
     const url = window.location.pathname
 
     useEffect(() => {
-        axios
-            .get(`/api${url}`)
-            .then(res => {
-                console.log(res)
-                setLoginUser(res.data.loginUser)
-                setUserReviews(res.data.userReviews)
-                setFavoriteReviews(res.data.favoriteReviews)
-                setFollowingUsers(res.data.followingUsers)
-                setFollowedUsers(res.data.followedUsers)
+        const loadTab = async () => {
+            setLoading(true)
+            await axios
+                .get(`/api${url}`)
+                .then(res => {
+                    console.log(res)
+                    setLoginUser(res.data.loginUser)
+                    setUserReviews(res.data.userReviews)
+                    setFavoriteReviews(res.data.favoriteReviews)
+                    setFollowingUsers(res.data.followingUsers)
+                    setFollowedUsers(res.data.followedUsers)
 
-            })
-            .catch(err => {
-                console.log(err)
-            })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+        loadTab()
+        setLoading(false)
     }, [])
-
-    function existsData(array) {
-        return array.length !== 0
-    }
 
     return (
         <>
             <Tabs>
                 <TabList>
-                    <Tab><div className="text-center small">投稿</div></Tab>
-                    <Tab><div className="text-center small">いいねした投稿</div></Tab>
-                    <Tab><div className="text-center small">フォロー</div></Tab>
-                    <Tab><div className="text-center small">フォロワー</div></Tab>
+                    <Tab><div className="text-center small px-0">投稿</div></Tab>
+                    <Tab><div className="text-center small px-0">いいねした投稿</div></Tab>
+                    <Tab><div className="text-center small px-0">フォロー</div></Tab>
+                    <Tab><div className="text-center small px-0">フォロワー</div></Tab>
                 </TabList>
                 <TabPanel>
                     {
-                        existsData(userReviews) ?
+                        userReviews.length !== 0 ?
                             <Timeline timelines={userReviews} loginUser={loginUser} />
-                            : <div className="pb-5 mb-5">投稿はまだありません</div>
+                            : <div className="pb-5 my-5">投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        existsData(favoriteReviews) ?
+                        favoriteReviews.length !== 0 ?
                             <Timeline timelines={favoriteReviews} loginUser={loginUser} />
-                            : <div className="pb-5 mb-5">いいねした投稿はまだありません</div>
+                            : <div className="pb-5 my-5">いいねした投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        existsData(followingUsers) ?
+                        followingUsers.length !== 0 ?
                             <Users users={followingUsers} loginUser={loginUser} />
-                            : <div className="pb-5 mb-5">フォローしているユーザーはまだいません</div>
+                            : <div className="pb-5 my-5">フォローしているユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
-                        existsData(followedUsers) ?
+                        followedUsers.length !== 0 ?
                             <Users users={followedUsers} loginUser={loginUser} />
-                            : <div className="pb-5 mb-5">フォロワーはまだいません</div>
+                            : <div className="pb-5 my-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>
+                {loading ? <Loading /> : <ScrollTop />}
             </Tabs>
         </>
     )

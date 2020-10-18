@@ -10,7 +10,7 @@ export default function ScrollTop() {
         return
     }
     return (
-        <div className="text-center text-blog scroll-top d-flex justify-content-center">
+        <div className="text-center text-blog scroll-top d-flex justify-content-center m-5">
             <a href="#" onClick={scrollTop} className="text-blog mb-0">
                 <i className="fas fa-angle-up h1"></i>
                 <br />

@@ -45,11 +45,11 @@ const ReviewIndex = () => {
                 }
                 return item[selectedValue].indexOf(searchWord) > -1
             })
-            setTimelinesLength(addTimelines.length)
             setTimelines(prev => [...prev, ...addTimelines])
             setLoading(false)
         }
         loadTimeline()
+
     }, [page, selectedFavo, selectedCategory, searchWord])
 
     const selectItem = (e) => {
@@ -84,8 +84,7 @@ const ReviewIndex = () => {
     const categoryChange = (e) => {
         const selected = e.target.value
         console.log(`selected: ${selected}`)
-        searchBooks.placeholder = `${selectedValue}で検索...`
-        setSearchWord('')
+        // setSearchWord('')
         setTimelines([])
         setPage(1)
         setHasMore(false)
@@ -99,11 +98,11 @@ const ReviewIndex = () => {
     const sortChange = (e) => {
         console.log('sort changed!')
         selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true)
+        // setSearchWord('')
+        console.log(searchBooks.placeholder)
         setTimelines([])
         setPage(1)
         setHasMore(false)
-        setSearchWord('')
-        searchBooks.placeholder = `${selectedValue}で検索...`
     }
 
     const body = document.getElementById('body')
@@ -118,15 +117,19 @@ const ReviewIndex = () => {
     }
 
     useEffect(() => {
+        console.log(`timelinesLength: ${timelinesLength}`)
         if (timelinesLength < 10 && hasMore) {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
+        console.log(`page: ${page}`)
+        setTimelinesLength(timelines.length)
         return
     }, [timelines])
 
     return (
         <>
+            {/* 投稿検索フォーム */}
             <div className="search-form">
                 <div className="d-flex flex-row">
                     <select onChange={selectItem} className="text-right bg-transparent border-0 mr-1">
@@ -148,11 +151,12 @@ const ReviewIndex = () => {
                     </button>
                 </div>
             </div>
-            {/* Button trigger modal */}
+
+            {/* スマホ用検索ボタン */}
             <button type="button" className="btn search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
                 <i className="fas fa-search text-teal lead"></i>
             </button>
-            {/* Search Modal */}
+            {/* スマホ用検索モーダル */}
             <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -180,6 +184,7 @@ const ReviewIndex = () => {
                     </div>
                 </div>
             </div>
+
             {/* カテゴリー選択 */}
             <div className="form-group d-flex justify-content-between mt-2">
                 <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
@@ -207,15 +212,18 @@ const ReviewIndex = () => {
                     </select>
                 </div>
             </div>
+
+            {/* 投稿一覧 */}
             <div id="timelinesComponent">
                 <Timeline timelines={timelines} loginUser={loginUser} />
             </div>
+
+            {/* ローディング中＆ページトップへ戻るボタン */}
             <div className="text-center">
                 {loading ? < Loading /> : <ScrollTop />}
             </div>
         </>
     )
-
 }
 
 export default ReviewIndex

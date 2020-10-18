@@ -38,6 +38,12 @@
     .search-modal {
         display: none;
     }
+
+    .react-tabs>ul>li {
+        padding-left: 1.9rem;
+        padding-right: 1.9rem;
+    }
+
 }
 
 @media screen and (max-width: 499px) {
@@ -59,6 +65,11 @@
 
     .search-modal-button > i {
         font-size: 1.4rem;
+    }
+
+    .react-tabs>ul>li {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 }
 
