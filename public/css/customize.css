@@ -1,9 +1,9 @@
 /* 新規投稿ボタン */
 .floating-button {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    padding: 0.87rem 1.2rem;
+    bottom: 1.6rem;
+    right: 10%;
+    padding: 0.676rem 1rem;
 }
 
 /* ページトップへ戻るボタン */

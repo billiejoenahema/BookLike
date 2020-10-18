@@ -62,7 +62,7 @@ const ReviewIndex = () => {
         setSelectedValue(e.target.options[selectedIndex].value)
     }
 
-    const searchSubmit = (e) => {
+    const searchClick = (e) => {
         e.preventDefault()
         console.log('search button clicked!')
         console.log(`search word: ${searchBooks.value}`)
@@ -72,8 +72,7 @@ const ReviewIndex = () => {
         setSearchWord(searchBooks.value)
     }
 
-    const modalSearchSubmit = (e) => {
-        e.preventDefault()
+    const modalSearchClick = (e) => {
         console.log('search button clicked!')
         console.log(`search word: ${modalSearchBooks.value}`)
         setTimelines([])
@@ -138,20 +137,18 @@ const ReviewIndex = () => {
                         <option value="author">著者</option>
                         <option value="manufacturer">出版社</option>
                     </select>
-                    <form onSubmit={searchSubmit}>
-                        <input
-                            className="form-control rounded-pill pr-0"
-                            id="searchBooks"
-                            type="search"
-                            name="search"
-                            placeholder="タイトルで検索..."
-                            aria-label="書籍検索"
-                            required autoComplete="on"
-                        />
-                    </form>
-                    {/* <button onClick={searchClick} className="btn search-button">
+                    <input
+                        className="form-control rounded-pill pr-0"
+                        id="searchBooks"
+                        type="search"
+                        name="search"
+                        placeholder="タイトルで検索..."
+                        aria-label="書籍検索"
+                        required autoComplete="on"
+                    />
+                    <button onClick={searchClick} className="btn search-button">
                         <i className="fas fa-search text-teal lead"></i>
-                    </button> */}
+                    </button>
                 </div>
             </div>
 
@@ -170,31 +167,26 @@ const ReviewIndex = () => {
                                     <option value="author">著者</option>
                                     <option value="manufacturer">出版社</option>
                                 </select>
-                                <form onSubmit={modalSearchSubmit}>
-                                    <input
-                                        className="form-control rounded-pill pr-0"
-                                        id="modalSearchBooks"
-                                        type="search"
-                                        name="search"
-                                        placeholder="タイトルで検索..."
-                                        aria-label="書籍検索"
-                                        required autoComplete="on"
-                                    />
-                                </form>
-                                {/* <button onClick={modalSearchClick} className="btn search-button" data-dismiss="modal">
+                                <input
+                                    className="form-control rounded-pill pr-0"
+                                    id="modalSearchBooks"
+                                    type="search"
+                                    name="search"
+                                    placeholder="タイトルで検索..."
+                                    aria-label="書籍検索"
+                                    required autoComplete="on"
+                                />
+                                <button onClick={modalSearchClick} className="btn search-button" data-dismiss="modal">
                                     <i className="fas fa-search text-teal lead"></i>
-                                </button> */}
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* 検索ワード */}
-            <div className="text-center">
-                {searchWord && `"${searchWord}"で検索`}
-            </div>
-            <div className="form-group d-flex justify-content-between mt-2 flex-wrap mb-2">
-                {/* カテゴリー選択 */}
+
+            {/* カテゴリー選択 */}
+            <div className="form-group d-flex justify-content-between mt-2">
                 <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
                     <option value="default">すべてのカテゴリー</option>
                     <option value="文学">文学</option>
@@ -212,9 +204,8 @@ const ReviewIndex = () => {
                     <option value="ライトノベル">ライトノベル</option>
                     <option value="その他">その他</option>
                 </select>
-                {/* 並び替え */}
-                <div className="d-flex flex-row p-0 mt-2 mt-sm-0">
-                    <label htmlFor="selectSort" className="text-right py-1 mr-1">並び替え</label>
+                <div className="d-flex flex-row p-0">
+                    <label htmlFor="selectSort" className="w-100 text-right py-1 mr-1">並び替え</label>
                     <select onChange={sortChange} className="form-control-sm" id="selectSort">
                         <option value="default">新着順</option>
                         <option value="favorite">いいね数</option>

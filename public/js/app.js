@@ -72032,7 +72032,7 @@ var ReviewIndex = function ReviewIndex() {
     setSelectedValue(e.target.options[selectedIndex].value);
   };
 
-  var searchClick = function searchClick(e) {
+  var searchSubmit = function searchSubmit(e) {
     e.preventDefault();
     console.log('search button clicked!');
     console.log("search word: ".concat(searchBooks.value));
@@ -72042,7 +72042,8 @@ var ReviewIndex = function ReviewIndex() {
     setSearchWord(searchBooks.value);
   };
 
-  var modalSearchClick = function modalSearchClick(e) {
+  var modalSearchSubmit = function modalSearchSubmit(e) {
+    e.preventDefault();
     console.log('search button clicked!');
     console.log("search word: ".concat(modalSearchBooks.value));
     setTimelines([]);
@@ -72120,7 +72121,9 @@ var ReviewIndex = function ReviewIndex() {
     value: "author"
   }, "\u8457\u8005"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "manufacturer"
-  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+    onSubmit: searchSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     className: "form-control rounded-pill pr-0",
     id: "searchBooks",
     type: "search",
@@ -72129,11 +72132,6 @@ var ReviewIndex = function ReviewIndex() {
     "aria-label": "\u66F8\u7C4D\u691C\u7D22",
     required: true,
     autoComplete: "on"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    onClick: searchClick,
-    className: "btn search-button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-search text-teal lead"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
     className: "btn search-modal-button search-modal",
@@ -72166,7 +72164,9 @@ var ReviewIndex = function ReviewIndex() {
     value: "author"
   }, "\u8457\u8005"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "manufacturer"
-  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+    onSubmit: modalSearchSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     className: "form-control rounded-pill pr-0",
     id: "modalSearchBooks",
     type: "search",
@@ -72175,14 +72175,10 @@ var ReviewIndex = function ReviewIndex() {
     "aria-label": "\u66F8\u7C4D\u691C\u7D22",
     required: true,
     autoComplete: "on"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    onClick: modalSearchClick,
-    className: "btn search-button",
-    "data-dismiss": "modal"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-search text-teal lead"
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "form-group d-flex justify-content-between mt-2"
+    className: "text-center"
+  }, searchWord && "\"".concat(searchWord, "\"\u3067\u691C\u7D22")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group d-flex justify-content-between mt-2 flex-wrap mb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: categoryChange,
     className: "form-control-sm",
@@ -72218,10 +72214,10 @@ var ReviewIndex = function ReviewIndex() {
   }, "\u30E9\u30A4\u30C8\u30CE\u30D9\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "\u305D\u306E\u4ED6"
   }, "\u305D\u306E\u4ED6")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex flex-row p-0"
+    className: "d-flex flex-row p-0 mt-2 mt-sm-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "selectSort",
-    className: "w-100 text-right py-1 mr-1"
+    className: "text-right py-1 mr-1"
   }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: sortChange,
     className: "form-control-sm",
