@@ -1,9 +1,6 @@
-/* 新規投稿ボタン */
-.floating-button {
-    position: fixed;
-    bottom: 1.6rem;
-    right: 10%;
-    padding: 0.676rem 1rem;
+/* main要素の高さを調整 */
+.main-min-height {
+    min-height: 723px;
 }
 
 /* ページトップへ戻るボタン */
@@ -11,8 +8,15 @@
     line-height: 0.2rem;
 }
 
-.search-button, .search-modal-button {
-    line-height: 0.8rem;
+.user-search-form {
+    position: fixed;
+    top: 0.47rem;
+    left: 30%;
+    z-index:1020;
+}
+
+.search-modal-button {
+    line-height: 1rem;
 }
 
 .search-button:hover {
@@ -20,17 +24,12 @@
     transition:0.2s all;
 }
 
-/* main要素の高さを調整 */
-.main-min-height {
-    min-height: 710px;
-}
-
 /* ユーザー＆投稿検索フォーム */
 
 @media screen and (min-width: 500px) {
     .search-form {
         position: fixed;
-        top: 0.7rem;
+        top: 0.47rem;
         left: 25%;
         z-index:1020;
     }
@@ -43,6 +42,19 @@
         padding-left: 1.9rem;
         padding-right: 1.9rem;
     }
+
+    #footer-menu {
+        display: none !important;
+    }
+
+    /* 新規投稿ボタン */
+    .floating-button {
+    display: block;
+    position: fixed;
+    bottom: 1.6rem;
+    right: 10%;
+    padding: 0.676rem 1rem;
+}
 
 }
 
@@ -57,8 +69,9 @@
     }
 
     .search-modal-button {
+        font-size: 0.8rem;
         position: fixed;
-        top: 0.7rem;
+        top: 0.47rem;
         left: 30%;
         z-index:1020;
     }
@@ -67,9 +80,35 @@
         font-size: 1.4rem;
     }
 
-    .react-tabs>ul>li {
+    .react-tabs > ul > li {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
+    }
+
+    footer {
+        margin-bottom: 2.8rem;
+    }
+
+    #footer-menu {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.9rem;
+        z-index: 1020;
+        line-height: 1rem;
+        padding-top: 0.5rem;
+    }
+    #footer-menu a {
+        width: 20%;
+    }
+    #footer-menu a span {
+        font-size: 0.5rem;
+    }
+
+    .floating-button {
+        display: none;
     }
 }
 

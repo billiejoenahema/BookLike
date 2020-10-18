@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="card-footer border-top-0 d-flex flex-row justify-content-around py-1">
+    <div class="card-footer border-top-0 d-flex flex-row justify-content-around pt-1 pb-0">
         <div class="d-flex flex-column align-items-center p-1">
             <span class="font-weight-bold small mb-1">投稿</span>
             {{ $review_count }}

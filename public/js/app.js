@@ -72138,7 +72138,7 @@ var ReviewIndex = function ReviewIndex() {
     "data-toggle": "modal",
     "data-target": "#searchModal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-search text-teal lead"
+    className: "fas fa-search text-teal"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal fade search-modal",
     id: "searchModal",
@@ -72650,7 +72650,7 @@ var UserIndex = function UserIndex() {
     return;
   }, [userList]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "form-control col-4 search-form rounded-pill pr-0",
+    className: "form-control col-5 col-sm-4 col-md-3 col-lg-2 user-search-form rounded-pill pr-0",
     type: "search",
     value: searchWord,
     onChange: handleSearch,

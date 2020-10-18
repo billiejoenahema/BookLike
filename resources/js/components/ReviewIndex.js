@@ -157,7 +157,7 @@ const ReviewIndex = () => {
 
             {/* スマホ用検索ボタン */}
             <button type="button" className="btn search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
-                <i className="fas fa-search text-teal lead"></i>
+                <i className="fas fa-search text-teal"></i>
             </button>
             {/* スマホ用検索モーダル */}
             <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

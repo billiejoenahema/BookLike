@@ -75,7 +75,7 @@ const UserIndex = () => {
     return (
         <>
             <input
-                className="form-control col-4 search-form rounded-pill pr-0"
+                className="form-control col-5 col-sm-4 col-md-3 col-lg-2 user-search-form rounded-pill pr-0"
                 type="search"
                 value={searchWord}
                 onChange={handleSearch}
