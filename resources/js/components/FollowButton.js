@@ -5,14 +5,14 @@ const FollowButton = (props) => {
 
     const InitialFollowState = isFollowed(props.user, props.loginUser)
     const userId = props.user.id
-    const user = props.user
 
     const [following, setFollowing] = useState(InitialFollowState)
     const toggleFollow = useCallback(() => setFollowing((prev) => !prev), [setFollowing])
 
-    const PostFollow = () => {
-        toggleFollow()
+    const PostFollow = (e) => {
         console.log('FollowButton Clicked!')
+        e.preventDefault()
+        toggleFollow()
 
         return axios.post(`http://127.0.0.1:8000/api/users/${userId}/follow`)
             .then(res => {
@@ -24,9 +24,10 @@ const FollowButton = (props) => {
             })
     }
 
-    const DeleteFollow = () => {
-        toggleFollow()
+    const DeleteFollow = (e) => {
         console.log('UnFollowButton Clicked!')
+        e.preventDefault()
+        toggleFollow()
 
         return axios.post(`http://127.0.0.1:8000/api/users/${userId}/unfollow`)
             .then(res => {
@@ -45,8 +46,8 @@ const FollowButton = (props) => {
         <>
             {
                 following ?
-                    <button onClick={DeleteFollow} className="btn-sm btn-blog rounded-pill shadow-sm border-0">フォロー中</button>
-                    : <button onClick={PostFollow} className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0">フォローする</button>
+                    <div onClick={DeleteFollow} className="btn-sm btn-blog rounded-pill shadow-sm border-0">フォロー中</div>
+                    : <div onClick={PostFollow} className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0">フォローする</div>
             }
         </>
     )

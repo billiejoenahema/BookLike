@@ -20,7 +20,8 @@
                     </div>
                     @endif
                 </div>
-                @include('components.follow_button')
+                {{-- @include('components.follow_button') --}}
+                <div id="userProfileFollowButton"></div>
             </div>
             <div class="d-flex">
                 <p>{{ $user->description }}</p>

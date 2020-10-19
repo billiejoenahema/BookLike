@@ -1,4 +1,4 @@
-import React, { useState, userEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import ReactTooltip from 'react-tooltip'
 import isFavorited from '../functions/isFavorited'
 

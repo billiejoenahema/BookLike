@@ -27,8 +27,10 @@ Route::group(['middleware' => 'auth'], function() {
             ];
     });
 
-    Route::get('/users/{user}',function (Review $review, User $user) {
+    Route::get('/users/{user}',function (Request $request, Review $review, User $user) {
 
+        $profileUserId = $request->user->id;
+        $profileUser = $user->with('followers')->find($profileUserId);
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
         // 投稿
@@ -45,6 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
 
         return
             [
+                'profileUser' => $profileUser,
                 'loginUser' => $loginUser,
                 'userReviews' => $userReviews,
                 'favoriteReviews' => $favoriteReviews,
