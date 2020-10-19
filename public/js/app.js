@@ -72179,8 +72179,6 @@ var ReviewIndex = function ReviewIndex() {
     required: true,
     autoComplete: "on"
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center"
-  }, searchWord && "\"".concat(searchWord, "\"\u3067\u691C\u7D22")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex justify-content-between mt-2 flex-wrap mb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: categoryChange,

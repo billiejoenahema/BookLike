@@ -53,8 +53,12 @@
     position: fixed;
     bottom: 1.6rem;
     right: 10%;
-    padding: 0.676rem 1rem;
-}
+    padding: 0.6rem 0.8rem;
+    }
+    .floating-button:hover {
+    transform: translateY(2px);
+    transition: 0.2s;
+    }
 
 }
 

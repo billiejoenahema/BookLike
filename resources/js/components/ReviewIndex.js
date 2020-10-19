@@ -189,10 +189,6 @@ const ReviewIndex = () => {
                     </div>
                 </div>
             </div>
-            {/* 検索ワード */}
-            <div className="text-center">
-                {searchWord && `"${searchWord}"で検索`}
-            </div>
             <div className="form-group d-flex justify-content-between mt-2 flex-wrap mb-2">
                 {/* カテゴリー選択 */}
                 <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
