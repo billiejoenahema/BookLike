@@ -1,11 +1,14 @@
 <?php
 
+use App\Models\User;
+
 Route::get('/', function () {
     if (Auth::check()) {
         return Redirect::to('/reviews');
     }
     return view('welcome');
 });
+
 
 Auth::routes();
 
@@ -44,4 +47,17 @@ Route::group(['middleware' => 'auth'], function() {
     // いいね関連
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
 
+    Route::get('terms', function(User $user) {
+
+        $login_user = auth()->user();
+
+        return view('/terms', compact('login_user'));
+    });
+
+    Route::get('privacy', function(User $user) {
+
+        $login_user = auth()->user();
+
+        return view('/privacy', compact('login_user'));
+    });
 });
