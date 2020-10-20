@@ -2,7 +2,7 @@
 
 @section('content')
 @include('components.back_button')
-<div class="card shadow-sm">
+<div class="card shadow-sm mb-3">
     <div class="card-header">新規投稿</div>
     <div class="card-body">
         <div class="d-flex flex-column p-0">
@@ -51,7 +51,7 @@
                     <div class="col-12 p-0">
                         <label>おすすめの理由を教えてください</label>
                         <textarea class="form-control @error('text') is-invalid @enderror" name="text" required
-                            autocomplete="text" rows="10" autofocus
+                            autocomplete="text" rows="8" autofocus
                             onkeyup="checkTextLength(value)">{{ old('text') ? : '' }}</textarea>
                         @error('text')
                         <span class="invalid-feedback" role="alert">

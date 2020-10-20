@@ -45,10 +45,10 @@ const UserPageTab = () => {
         <>
             <Tabs>
                 <TabList>
-                    <Tab><div className="text-center small px-0">投稿</div></Tab>
-                    <Tab><div className="text-center small px-0">いいねした投稿</div></Tab>
-                    <Tab><div className="text-center small px-0">フォロー</div></Tab>
-                    <Tab><div className="text-center small px-0">フォロワー</div></Tab>
+                    <Tab><div className="text-center small px-0">投稿<br />{userReviews.length}</div></Tab>
+                    <Tab><div className="text-center small px-0">いいね<br />{favoriteReviews.length}</div></Tab>
+                    <Tab><div className="text-center small px-0">フォロー<br />{followingUsers.length}</div></Tab>
+                    <Tab><div className="text-center small px-0">フォロワー<br />{followedUsers.length}</div></Tab>
                 </TabList>
                 <TabPanel>
                     {

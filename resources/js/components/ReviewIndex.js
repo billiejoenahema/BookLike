@@ -146,7 +146,7 @@ const ReviewIndex = () => {
                             name="search"
                             placeholder="タイトルで検索..."
                             aria-label="書籍検索"
-                            required autoComplete="on"
+                            autoComplete="on"
                         />
                     </form>
                     {/* <button onClick={searchClick} className="btn search-button">
@@ -178,7 +178,7 @@ const ReviewIndex = () => {
                                         name="search"
                                         placeholder="タイトルで検索..."
                                         aria-label="書籍検索"
-                                        required autoComplete="on"
+                                        autoComplete="on"
                                     />
                                 </form>
                                 {/* <button onClick={modalSearchClick} className="btn search-button" data-dismiss="modal">
@@ -189,9 +189,15 @@ const ReviewIndex = () => {
                     </div>
                 </div>
             </div>
+
+            <div id="search-word-mobile">
+                {searchWord ? `${selectedValue}で検索: ${searchWord}` : ''}
+            </div>
+
+
             <div className="form-group d-flex justify-content-between mt-2 flex-wrap mb-2">
                 {/* カテゴリー選択 */}
-                <select onChange={categoryChange} className="form-control-sm" placeholder="カテゴリーで絞り込み">
+                <select onChange={categoryChange} className="form-control-sm mt-1 mt-sm-0" placeholder="カテゴリーで絞り込み">
                     <option value="default">すべてのカテゴリー</option>
                     <option value="文学">文学</option>
                     <option value="エンターテインメント">エンターテインメント</option>
@@ -209,7 +215,7 @@ const ReviewIndex = () => {
                     <option value="その他">その他</option>
                 </select>
                 {/* 並び替え */}
-                <div className="d-flex flex-row p-0 mt-2 mt-sm-0">
+                <div className="d-flex flex-row p-0 mt-1 mt-sm-0">
                     <label htmlFor="selectSort" className="text-right py-1 mr-1">並び替え</label>
                     <select onChange={sortChange} className="form-control-sm" id="selectSort">
                         <option value="default">新着順</option>
