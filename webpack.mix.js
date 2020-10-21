@@ -22,5 +22,6 @@ mix.scripts([
     'public/js/selectItem.js',
     'public/js/editCategory.js',
     'public/js/categorySelectValidate.js',
-    'public/js/scrollTop.js'
+    'public/js/scrollTop.js',
+    'public/js/flashMessageFadeout.js'
 ], 'public/js/all.js')

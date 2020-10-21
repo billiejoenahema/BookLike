@@ -81,11 +81,11 @@
         <main class="pt-2 main-min-height">
             <div class="container px-0">
                 <div class="col-md-10 col-lg-8 mb-3 m-auto">
-                    <div class="flash_message text-center" id="flashMessage">
-                        @if (session('flash_message'))
+                    @if (session('flash_message'))
+                    <div class="flash_message" id="flashMessage">
                         {{ session('flash_message') }}
-                        @endif
                     </div>
+                    @endif
 
                     @yield('content')
                 </div>
