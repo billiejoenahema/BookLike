@@ -72057,8 +72057,7 @@ var ReviewIndex = function ReviewIndex() {
 
   var categoryChange = function categoryChange(e) {
     var selected = e.target.value;
-    console.log("selected: ".concat(selected)); // setSearchWord('')
-
+    console.log("selected: ".concat(selected));
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -72073,8 +72072,7 @@ var ReviewIndex = function ReviewIndex() {
 
   var sortChange = function sortChange(e) {
     console.log('sort changed!');
-    selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true); // setSearchWord('')
-
+    selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true);
     console.log(searchBooks.placeholder);
     setTimelines([]);
     setPage(1);
@@ -72178,7 +72176,7 @@ var ReviewIndex = function ReviewIndex() {
     autoComplete: "on"
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "search-word-mobile"
-  }, searchWord ? "".concat(selectedValue, "\u3067\u691C\u7D22: ").concat(searchWord) : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \"".concat(searchWord, "\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex justify-content-between mt-2 flex-wrap mb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: categoryChange,

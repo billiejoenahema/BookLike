@@ -43,6 +43,10 @@
         display: none;
     }
 
+    #search-word-mobile {
+        display: none;
+    }
+
     #footer-menu {
         display: none !important;
     }

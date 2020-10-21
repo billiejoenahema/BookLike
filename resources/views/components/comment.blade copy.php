@@ -1,4 +1,4 @@
-<ul class="list-group mt-3">
+<ul class="list-group my-3">
     @forelse ($comments as $comment)
     <li class="list-group-item p-0">
         @if ($comment->deleted_at !== null)
@@ -14,15 +14,11 @@
             </div>
             <div class="d-flex flex-column text-right">
                 @if ($comment->user->id === $login_user->id)
-                <form method="POST" name="{{ 'form'.$comment->id }}"
-                    action="{{ route('comments.destroy', $comment->id) }}">
-                    @csrf
-                    @method('DELETE')
-                    <a href="javascript:{{ 'form'.$comment->id }}.submit()" role="submit"
-                        class="text-secondary mb-0 d-block" title="コメント削除">
-                        <h5><i class="fas fa-trash"></i></h5>
-                    </a>
-                </form>
+                <a href="#" role="button" data-toggle="modal" data-target="#deleteComment" data-id="{{ $comment->id }}"
+                    class="text-secondary mb-0 d-block" title="コメント削除">
+                    <h5><i class="fas fa-trash"></i></h5>
+                </a>
+                {{ $comment->id }}
                 @endif
                 <span class="text-secondary">{{ $comment->created_at->format('Y-m-d') }}</span>
             </div>
@@ -32,6 +28,28 @@
         </div>
         @endif
     </li>
+    <!-- Confirm Modal -->
+    <div class="modal fade" id="deleteComment" tabindex="-1" role="dialog" aria-labelledby="deleteCommentTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title font-weight-bold">コメントを削除しますか？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <form method="POST" action="{{ route('comments.destroy', $comment->id) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-crimson">削除する</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     @empty
     <li class="list-group-item">
         <p class="mb-0 text-secondary">コメントはまだありません</p>
@@ -76,7 +94,7 @@
         </div>
     </div>
 </ul>
-<div class="text-right mb-5">
+<div class="text-right">
     <button type="button" class="btn btn-primary rounded-pill mt-3 justify-content-end" data-toggle="modal"
         data-target="#exampleModalCenter">
         コメントを投稿する

@@ -48,16 +48,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
 
     Route::get('terms', function(User $user) {
-
         $login_user = auth()->user();
-
         return view('/terms', compact('login_user'));
     });
 
     Route::get('privacy', function(User $user) {
-
         $login_user = auth()->user();
-
         return view('/privacy', compact('login_user'));
     });
 });

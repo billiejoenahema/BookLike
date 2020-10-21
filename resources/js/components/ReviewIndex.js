@@ -85,7 +85,6 @@ const ReviewIndex = () => {
     const categoryChange = (e) => {
         const selected = e.target.value
         console.log(`selected: ${selected}`)
-        // setSearchWord('')
         setTimelines([])
         setPage(1)
         setHasMore(false)
@@ -99,7 +98,6 @@ const ReviewIndex = () => {
     const sortChange = (e) => {
         console.log('sort changed!')
         selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true)
-        // setSearchWord('')
         console.log(searchBooks.placeholder)
         setTimelines([])
         setPage(1)
@@ -191,7 +189,7 @@ const ReviewIndex = () => {
             </div>
 
             <div id="search-word-mobile">
-                {searchWord ? `${selectedValue}で検索: ${searchWord}` : ''}
+                {searchWord && `検索ワード: \"${searchWord}\"`}
             </div>
 
 
