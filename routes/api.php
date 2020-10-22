@@ -6,6 +6,22 @@ use App\Models\Review;
 
 Route::group(['middleware' => 'auth'], function() {
 
+    Route::get('/reviews/{review}', function (Review $review, User $user) {
+
+        $loginUser = auth()->user();
+        $review = $review
+            ->with('favorites')
+            ->where('id', $review->id)
+            ->first();
+
+        return
+            [
+                'loginUser' => $loginUser,
+                'review' => $review
+            ];
+
+    });
+
     Route::get('/reviews',function (Review $review, User $user) {
 
         $loginUser = auth()->user();

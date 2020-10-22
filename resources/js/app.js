@@ -12,7 +12,8 @@ require('./bootstrap')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/userPageTab')
+require('./components/UserPageTab')
 require('./components/ReviewIndex')
-require('./components/userIndex')
-require('./components/userProfileFollowButton')
+require('./components/UserIndex')
+require('./components/UserProfileFollowButton')
+require('./components/ReviewShowFavoriteButton')

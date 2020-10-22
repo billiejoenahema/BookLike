@@ -25,7 +25,6 @@ const ReviewIndex = () => {
             const newTimelines = await axios
                 .get(`/api/reviews?page=${page}`)
                 .then(res => {
-                    console.log(res)
                     setLoginUser(res.data.loginUser)
                     page < res.data.timelines.last_page && setHasMore(true)
                     if (selectedFavo) {
@@ -55,7 +54,6 @@ const ReviewIndex = () => {
     const selectItem = (e) => {
         const selectedIndex = e.target.selectedIndex
         const item = e.target.options[selectedIndex].label
-        console.log(`selected: ${item}`)
         searchBooks.placeholder = `${item}で検索...`
         modalSearchBooks.placeholder = `${item}で検索...`
         setHasMore(false)
@@ -64,8 +62,6 @@ const ReviewIndex = () => {
 
     const searchSubmit = (e) => {
         e.preventDefault()
-        console.log('search button clicked!')
-        console.log(`search word: ${searchBooks.value}`)
         setTimelines([])
         setPage(1)
         setHasMore(false)
@@ -74,8 +70,6 @@ const ReviewIndex = () => {
 
     const modalSearchSubmit = (e) => {
         e.preventDefault()
-        console.log('search button clicked!')
-        console.log(`search word: ${modalSearchBooks.value}`)
         setTimelines([])
         setPage(1)
         setHasMore(false)
@@ -84,7 +78,6 @@ const ReviewIndex = () => {
 
     const categoryChange = (e) => {
         const selected = e.target.value
-        console.log(`selected: ${selected}`)
         setTimelines([])
         setPage(1)
         setHasMore(false)
@@ -96,9 +89,7 @@ const ReviewIndex = () => {
     }
 
     const sortChange = (e) => {
-        console.log('sort changed!')
         selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true)
-        console.log(searchBooks.placeholder)
         setTimelines([])
         setPage(1)
         setHasMore(false)
@@ -116,12 +107,10 @@ const ReviewIndex = () => {
     }
 
     useEffect(() => {
-        console.log(`timelinesLength: ${timelinesLength}`)
         if (timelinesLength < 10 && hasMore) {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
-        console.log(`page: ${page}`)
         setTimelinesLength(timelines.length)
         return
     }, [timelines])

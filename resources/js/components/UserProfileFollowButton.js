@@ -24,7 +24,7 @@ const UserProfileFollowButton = () => {
                 })
         }
         loadIsFollowed()
-    }, [following])
+    }, [])
 
     const PostFollow = () => {
         console.log('FollowButton Clicked!')

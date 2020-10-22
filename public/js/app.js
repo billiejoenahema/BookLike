@@ -71594,13 +71594,15 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/userPageTab */ "./resources/js/components/userPageTab.js");
+__webpack_require__(/*! ./components/UserPageTab */ "./resources/js/components/UserPageTab.js");
 
 __webpack_require__(/*! ./components/ReviewIndex */ "./resources/js/components/ReviewIndex.js");
 
-__webpack_require__(/*! ./components/userIndex */ "./resources/js/components/userIndex.js");
+__webpack_require__(/*! ./components/UserIndex */ "./resources/js/components/UserIndex.js");
 
-__webpack_require__(/*! ./components/userProfileFollowButton */ "./resources/js/components/userProfileFollowButton.js");
+__webpack_require__(/*! ./components/UserProfileFollowButton */ "./resources/js/components/UserProfileFollowButton.js");
+
+__webpack_require__(/*! ./components/ReviewShowFavoriteButton */ "./resources/js/components/ReviewShowFavoriteButton.js");
 
 /***/ }),
 
@@ -71679,10 +71681,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var FavoriteButton = function FavoriteButton(props) {
-  var InitialState = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["default"])(props.timeline, props.loginUser);
+  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["default"])(props.timeline, props.loginUser);
   var InitialCount = props.timeline.favorites.length;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialState),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFavorite),
       _useState2 = _slicedToArray(_useState, 2),
       favorite = _useState2[0],
       setFavorite = _useState2[1];
@@ -71978,7 +71980,6 @@ var ReviewIndex = function ReviewIndex() {
                 setLoading(true);
                 _context.next = 3;
                 return axios.get("/api/reviews?page=".concat(page)).then(function (res) {
-                  console.log(res);
                   setLoginUser(res.data.loginUser);
                   page < res.data.timelines.last_page && setHasMore(true);
 
@@ -72028,7 +72029,6 @@ var ReviewIndex = function ReviewIndex() {
   var selectItem = function selectItem(e) {
     var selectedIndex = e.target.selectedIndex;
     var item = e.target.options[selectedIndex].label;
-    console.log("selected: ".concat(item));
     searchBooks.placeholder = "".concat(item, "\u3067\u691C\u7D22...");
     modalSearchBooks.placeholder = "".concat(item, "\u3067\u691C\u7D22...");
     setHasMore(false);
@@ -72037,8 +72037,6 @@ var ReviewIndex = function ReviewIndex() {
 
   var searchSubmit = function searchSubmit(e) {
     e.preventDefault();
-    console.log('search button clicked!');
-    console.log("search word: ".concat(searchBooks.value));
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -72047,8 +72045,6 @@ var ReviewIndex = function ReviewIndex() {
 
   var modalSearchSubmit = function modalSearchSubmit(e) {
     e.preventDefault();
-    console.log('search button clicked!');
-    console.log("search word: ".concat(modalSearchBooks.value));
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -72057,7 +72053,6 @@ var ReviewIndex = function ReviewIndex() {
 
   var categoryChange = function categoryChange(e) {
     var selected = e.target.value;
-    console.log("selected: ".concat(selected));
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -72071,9 +72066,7 @@ var ReviewIndex = function ReviewIndex() {
   };
 
   var sortChange = function sortChange(e) {
-    console.log('sort changed!');
     selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true);
-    console.log(searchBooks.placeholder);
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -72096,8 +72089,6 @@ var ReviewIndex = function ReviewIndex() {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    console.log("timelinesLength: ".concat(timelinesLength));
-
     if (timelinesLength < 10 && hasMore) {
       setPage(function (prev) {
         return prev + 1;
@@ -72105,7 +72096,6 @@ var ReviewIndex = function ReviewIndex() {
       setHasMore(false);
     }
 
-    console.log("page: ".concat(page));
     setTimelinesLength(timelines.length);
     return;
   }, [timelines]);
@@ -72239,6 +72229,168 @@ var ReviewIndex = function ReviewIndex() {
 
 if (document.getElementById('reviewIndex')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ReviewIndex, null), document.getElementById('reviewIndex'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/ReviewShowFavoriteButton.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/ReviewShowFavoriteButton.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
+/* harmony import */ var _functions_isFavorited__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/isFavorited */ "./resources/js/functions/isFavorited.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+      _useState2 = _slicedToArray(_useState, 2),
+      review = _useState2[0],
+      setReview = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      favorite = _useState4[0],
+      setFavorite = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      favoriteCount = _useState6[0],
+      setFavoriteCount = _useState6[1];
+
+  var toggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(function () {
+    return setFavorite(function (prev) {
+      return !prev;
+    });
+  }, [setFavorite]);
+  var url = window.location.pathname;
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var loadIsFavorited = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/api".concat(url)).then(function (res) {
+                  console.log(res);
+                  var initialCount = res.data.review.favorites.length;
+                  var initialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_4__["default"])(res.data.review, res.data.loginUser);
+                  setReview(res.data.review);
+                  setFavoriteCount(initialCount);
+                  setFavorite(initialFavorite);
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function loadIsFavorited() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    loadIsFavorited();
+  }, []);
+
+  var postFavorite = function postFavorite() {
+    toggleFavorite();
+    setFavoriteCount(favoriteCount + 1);
+    console.log('PostButton Clicked!');
+    var review_id = review.id;
+    return axios.post('http://127.0.0.1:8000/api/favorites', {
+      review_id: review_id
+    }).then(function (res) {
+      console.log('Success!');
+      console.log(review_id);
+    })["catch"](function (err) {
+      console.log('失敗！');
+    });
+  };
+
+  var deleteFavorite = function deleteFavorite() {
+    toggleFavorite();
+    setFavoriteCount(favoriteCount - 1);
+    console.log('DeleteButton Clicked!');
+    var favoritesArray = Array.from(review.favorites);
+    var favoritesIds = favoritesArray.map(function (v) {
+      return v.id;
+    });
+    var id = favoritesIds[0];
+    return axios["delete"]("http://127.0.0.1:8000/api/favorites/".concat(id)).then(function (res) {
+      console.log('Success!');
+      console.log(res.data);
+    })["catch"](function (err) {
+      console.log('失敗！');
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, favorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    onClick: deleteFavorite,
+    className: "btn p-0 border-0",
+    "data-tip": "\u3044\u3044\u306D"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-heart fa-fw text-red"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    effect: "float",
+    type: "info",
+    place: "top"
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    onClick: postFavorite,
+    className: "btn p-0 border-0",
+    "data-tip": "\u3044\u3044\u306D"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "far fa-heart fa-fw text-blog"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    effect: "float",
+    type: "info",
+    place: "top"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    className: "mb-0 text-secondary"
+  }, favoriteCount));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ReviewShowFavoriteButton);
+
+if (document.getElementById('reviewShowFavoriteButton')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ReviewShowFavoriteButton, null), document.getElementById('reviewShowFavoriteButton'));
 }
 
 /***/ }),
@@ -72404,79 +72556,9 @@ function Timeline(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Users.js":
-/*!******************************************!*\
-  !*** ./resources/js/components/Users.js ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _FollowButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FollowButton */ "./resources/js/components/FollowButton.js");
-/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
-/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/omittedText */ "./resources/js/functions/omittedText.js");
-
-
-
-
-
-var Users = function Users(props) {
-  var users = props.users;
-  var loginUser = props.loginUser;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, users.map(function (user) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card mb-3 shadow-sm",
-      key: user.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-haeder p-3 w-100 d-flex flex-column"
-    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_2__["default"])(loginUser, user) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "mb-1 ml-5"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "text-secondary"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "far fa-laugh"
-    }), "\u30D5\u30A9\u30ED\u30FC\u3055\u308C\u3066\u3044\u307E\u3059")) : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex w-100"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "http://127.0.0.1:8000/users/".concat(user.id)
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "/storage/profile_image/".concat(user.profile_image),
-      className: "rounded-circle shadow-sm",
-      width: "48",
-      height: "48"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex flex-wrap w-100"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "ml-2 d-flex flex-column"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "mb-0"
-    }, user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "text-secondary small"
-    }, user.screen_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "small"
-    }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "badge badge-blog badge-pill text-white ml-1"
-    }, user.followers.length))), user.id !== loginUser.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "ml-auto"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      user: user,
-      loginUser: loginUser
-    })) : ''))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-body d-flex"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_3__["default"])(user.description, 100))));
-  }));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Users);
-
-/***/ }),
-
-/***/ "./resources/js/components/userIndex.js":
+/***/ "./resources/js/components/UserIndex.js":
 /*!**********************************************!*\
-  !*** ./resources/js/components/userIndex.js ***!
+  !*** ./resources/js/components/UserIndex.js ***!
   \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -72571,7 +72653,6 @@ var UserIndex = function UserIndex() {
                 setLoading(true);
                 _context.next = 3;
                 return axios.get("/api/users?page=".concat(page)).then(function (res) {
-                  console.log(res);
                   setLoginUser(res.data.loginUser);
                   page < res.data.users.last_page && setHasMore(true);
 
@@ -72690,9 +72771,9 @@ if (document.getElementById('userIndex')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/userPageTab.js":
+/***/ "./resources/js/components/UserPageTab.js":
 /*!************************************************!*\
-  !*** ./resources/js/components/userPageTab.js ***!
+  !*** ./resources/js/components/UserPageTab.js ***!
   \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -72768,7 +72849,7 @@ var UserPageTab = function UserPageTab() {
       followedUsers = _useState10[0],
       setFollowedUsers = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
       _useState12 = _slicedToArray(_useState11, 2),
       loading = _useState12[0],
       setLoading = _useState12[1];
@@ -72849,9 +72930,9 @@ if (document.getElementById('userPageTab')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/userProfileFollowButton.js":
+/***/ "./resources/js/components/UserProfileFollowButton.js":
 /*!************************************************************!*\
-  !*** ./resources/js/components/userProfileFollowButton.js ***!
+  !*** ./resources/js/components/UserProfileFollowButton.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -72935,7 +73016,7 @@ var UserProfileFollowButton = function UserProfileFollowButton() {
     }();
 
     loadIsFollowed();
-  }, [following]);
+  }, []);
 
   var PostFollow = function PostFollow() {
     console.log('FollowButton Clicked!');
@@ -72975,6 +73056,76 @@ var UserProfileFollowButton = function UserProfileFollowButton() {
 if (document.getElementById('userProfileFollowButton')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(UserProfileFollowButton, null), document.getElementById('userProfileFollowButton'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Users.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Users.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _FollowButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FollowButton */ "./resources/js/components/FollowButton.js");
+/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
+/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/omittedText */ "./resources/js/functions/omittedText.js");
+
+
+
+
+
+var Users = function Users(props) {
+  var users = props.users;
+  var loginUser = props.loginUser;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, users.map(function (user) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card mb-3 shadow-sm",
+      key: user.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-haeder p-3 w-100 d-flex flex-column"
+    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_2__["default"])(loginUser, user) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "mb-1 ml-5"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "text-secondary"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "far fa-laugh"
+    }), "\u30D5\u30A9\u30ED\u30FC\u3055\u308C\u3066\u3044\u307E\u3059")) : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-flex w-100"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "http://127.0.0.1:8000/users/".concat(user.id)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: "/storage/profile_image/".concat(user.profile_image),
+      className: "rounded-circle shadow-sm",
+      width: "48",
+      height: "48"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-flex flex-wrap w-100"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "ml-2 d-flex flex-column"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "mb-0"
+    }, user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "text-secondary small"
+    }, user.screen_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "small"
+    }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "badge badge-blog badge-pill text-white ml-1"
+    }, user.followers.length))), user.id !== loginUser.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "ml-auto"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      user: user,
+      loginUser: loginUser
+    })) : ''))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-body d-flex"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_3__["default"])(user.description, 100))));
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Users);
 
 /***/ }),
 

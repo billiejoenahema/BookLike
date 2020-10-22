@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div class="card-footer d-flex bg-white align-items-center">
+    <div class="card-footer d-flex bg-white">
         <!-- 投稿削除ボタン -->
         <div class="btn flex-grow-1 text-left px-0">
             @if ($review->user->id === $login_user->id)
@@ -46,23 +46,43 @@
         </div>
 
         <!-- 編集ボタン -->
-        <div class="btn mr-2">
+        <div class="btn">
             @if ($review->user->id === $login_user->id)
             <a href="{{ url('reviews/' .$review->id .'/edit') }}" title="投稿を編集">
-                <i class="fas fa-pen fa-fw text-blog"></i>
+                <i class="fas fa-pen text-blog"></i>
             </a>
             @endif
         </div>
 
         <!-- コメントボタン -->
-        <div class="d-inline-flex align-items-center mr-3">
+        <div class="d-flex align-items-center ml-3">
             <a href="{{ url('reviews/' .$review->id) }}" title="コメントを投稿"><i
                     class="far fa-comment fa-fw text-blog"></i></a>
             <p class="mb-0 text-secondary">{{ count($review->comments) }}</p>
         </div>
 
         <!-- いいねボタン -->
-        <div id="reviewShowFavoriteButton" class="d-inline-flex align-items-center mr-3"></div>
+        <div class="d-flex align-items-center ml-4">
+            @if (!in_array($login_user->id, array_column($review->favorites->toArray(), 'user_id'), TRUE))
+            <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
+                @csrf
+                <input type="hidden" name="review_id" value="{{ $review->id }}">
+                <button type="submit" class="btn p-0 border-0 text-blog" title="いいね"><i
+                        class="far fa-heart fa-fw"></i></button>
+            </form>
+            @else
+            <form method="POST"
+                action="{{ url('favorites/' .array_column($review->favorites->toArray(), 'id', 'user_id')[$login_user->id]) }}"
+                class="mb-0">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn p-0 border-0 text-red" title="いいね"><i
+                        class="fas fa-heart fa-fw"></i></button>
+            </form>
+            @endif
+            <p class="mb-0 text-secondary">{{ count($review->favorites) }}</p>
+        </div>
     </div>
 </div>
 <!-- コメント -->

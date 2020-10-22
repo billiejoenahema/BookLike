@@ -15,7 +15,7 @@ const UserPageTab = () => {
     const [favoriteReviews, setFavoriteReviews] = useState([])
     const [followingUsers, setFollowingUsers] = useState([])
     const [followedUsers, setFollowedUsers] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const url = window.location.pathname
 
@@ -31,7 +31,6 @@ const UserPageTab = () => {
                     setFavoriteReviews(res.data.favoriteReviews)
                     setFollowingUsers(res.data.followingUsers)
                     setFollowedUsers(res.data.followedUsers)
-
                 })
                 .catch(err => {
                     console.log(err)

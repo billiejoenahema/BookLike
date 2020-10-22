@@ -20,7 +20,6 @@ const UserIndex = () => {
             const newUsers = await axios
                 .get(`/api/users?page=${page}`)
                 .then(res => {
-                    console.log(res)
                     setLoginUser(res.data.loginUser)
                     page < res.data.users.last_page && setHasMore(true)
                     if (selectedPopular) {

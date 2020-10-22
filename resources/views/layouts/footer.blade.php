@@ -1,8 +1,11 @@
 <footer class="page-footer bg-imageColor font-small">
-    <div class="footer-copyright text-center text-dark py-3" style="box-shadow: 0 -2px 4px #eee;">© 2020 Copyright:
-        <a class="text-reset" href="{{ url('/') }}">BookLike</a>
-        <a class="text-reset" href="{{ url('/terms') }}">利用規約</a>
-        <a class="text-reset" href="{{ url('/privacy') }}">プライバシーポリシー</a>
+    <div class="footer-copyright d-flex flex-wrap flex-row justify-content-center text-dark py-3"
+        style="box-shadow: 0 -2px 4px #eee;">
+        <a class="text-reset px-2" href="{{ url('/') }}">© 2020 Copyright: BookLike</a>
+        <div class="px-2">
+            <a class="text-reset px-2" href="{{ url('/terms') }}">利用規約</a>
+            <a class="text-reset px-2" href="{{ url('/privacy') }}">プライバシーポリシー</a>
+        </div>
 
     </div>
 </footer>
