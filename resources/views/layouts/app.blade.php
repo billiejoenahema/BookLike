@@ -30,13 +30,11 @@
     <div class="flex-1">
         <nav class="navbar navbar-expand navbar-light sticky-top bg-imageColor shadow-sm py-0 mb-1">
             <div class="container">
-                <!-- ロゴ -->
+                <!-- Brand Logo -->
                 <a class="navbar-brand d-block text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav text-blog">
-                    <!-- Authentication Links -->
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
@@ -47,15 +45,14 @@
                     </li>
                     @endif
                     @else
-
-                    <!-- ユーザーアイコン -->
+                    <!-- User Icon -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
                                 class="rounded-circle shadow-sm img-fluid" width="36" height="36">
                         </a>
-                        <!-- ドロップダウンメニュー -->
+                        <!-- Dropdown Menu -->
                         <div class="dropdown-menu dropdown-menu-right pb-0" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="{{ url('reviews/create') }}"><i
                                     class="fas fa-pen fa-fw mr-2"></i>新規投稿</a>
@@ -66,10 +63,10 @@
                             <a class="dropdown-item pt-1 pb-2" href="{{ url('users/' .$login_user->id) }}"><i
                                     class="fas fa-user-cog fa-fw mr-2"></i>マイページ</a>
                             <a class="dropdown-item border-top py-2" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt fa-fw mr-2"></i>ログアウト
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
                         </div>
@@ -81,12 +78,13 @@
         <main class="pt-2 main-min-height">
             <div class="container px-0">
                 <div class="col-md-10 col-lg-8 mb-3 m-auto">
+                    {{-- Flash Message --}}
                     @if (session('flash_message'))
                     <div class="flash_message" id="flashMessage">
                         {{ session('flash_message') }}
                     </div>
                     @endif
-
+                    {{-- Main Content --}}
                     @yield('content')
                 </div>
             </div>

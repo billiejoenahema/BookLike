@@ -71,7 +71,8 @@
             <div class="title m-b-md text-center">
                 BookLike
             </div>
-            <div class="d-flex justify-content-between">
+            <p>読みたい本が必ず見つかる</p>
+            <div class="d-flex justify-content-between mt-5">
                 <a class="" href="{{ route('login') }}">
                     <button class="btn btn-primary rounded-pill">
                         {{ __('ログイン') }}

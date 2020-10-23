@@ -80,6 +80,7 @@ class ReviewController extends Controller
         ]);
         $validator->validate();
         $review->reviewStore($login_user->id, $data);
+        session()->flash('flash_message', '投稿しました');
 
         return redirect('reviews');
     }
@@ -143,6 +144,7 @@ class ReviewController extends Controller
             'text' => 'required | string | max:400'
         ]);
         $review->reviewUpdate($review->id, $data);
+        session()->flash('flash_message', '投稿を編集しました');
 
         return redirect('reviews');
     }

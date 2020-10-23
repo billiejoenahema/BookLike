@@ -38,6 +38,8 @@ class CommentsController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->commentDestroy($comment->id);
+        session()->flash('flash_message', 'コメントを削除しました');
+
 
         return back();
     }

@@ -5,29 +5,29 @@
 
 .flash_message {
     position: fixed;
-    top: 3rem;
+    top: 3.4rem;
     left: 0;
     right: 0;
     margin: auto;
     z-index: 1500;
     text-align: center;
     background: white;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 10px;
-
+    opacity: 0.8;
 }
 
 .fadeout {
-    opacity: 1;
+    opacity: 0.8;
     animation-name: fadeout-keyframes;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
     animation-delay: 3s;
 }
 
 @keyframes fadeout-keyframes {
     from {
-        opacity: 1;
+        opacity: 0.8;
     }
 
     to {

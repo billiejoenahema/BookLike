@@ -1,3 +1,14 @@
+function categorySelectValidate() {
+    'use strict'
+    const selectedCategory = document.getElementById('category').value
+    const reviewPost = document.getElementById('reviewPost')
+    if (selectedCategory === 'default') {
+        window.alert('カテゴリーを選択してください')
+        return
+    }
+    reviewPost.submit()
+}
+
 function checkCommentLength(value) {
     'use strict'
     const inputtedLength = value.length
@@ -38,12 +49,40 @@ function commentValidate() {
 }
 
 window.onload = () => {
+    const select = document.getElementById('editCategory')
+    if (select) {
+        const options = select.options
+        const category = document.getElementById('editCategory').dataset.category
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value === category) {
+                options[i].selected = true;
+                break;
+            }
+        }
+    }
+}
+
+const flashMessage = document.getElementById('flashMessage')
+flashMessage && flashMessage.classList.add('fadeout')
+
+window.onload = () => {
     'use strict'
     const inputtedText = document.getElementById('inputtedText')
     if (inputtedText) {
         const inputtedLength = inputtedText.value.length
         const textLength = document.getElementById('textLength')
         textLength.textContent = `${inputtedLength} / 800文字`
+    }
+    return
+}
+
+const scrollTop = (e) => {
+    'use strict'
+    e.preventDefault()
+    const y = document.body.scrollTop || document.documentElement.scrollTop
+    if (y) {
+        scrollTo(0, y /= 1.06)
     }
     return
 }
@@ -63,47 +102,4 @@ function selectItem(e) {
     confirmButton.classList.remove('disabled')
     confirmButton.disabled = false
     confirmButton.classList.add('active')
-}
-
-window.onload = () => {
-    const select = document.getElementById('editCategory')
-    if (select) {
-        const options = select.options
-        const category = document.getElementById('editCategory').dataset.category
-
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].value === category) {
-                options[i].selected = true;
-                break;
-            }
-        }
-    }
-}
-
-function categorySelectValidate() {
-    'use strict'
-    const selectedCategory = document.getElementById('category').value
-    const reviewPost = document.getElementById('reviewPost')
-    if (selectedCategory === 'default') {
-        window.alert('カテゴリーを選択してください')
-        return
-    }
-    reviewPost.submit()
-}
-
-const scrollTop = (e) => {
-    'use strict'
-    e.preventDefault()
-    const y = document.body.scrollTop || document.documentElement.scrollTop
-    if (y) {
-        scrollTo(0, y /= 1.06)
-    }
-    return
-}
-
-const flashMessage = document.getElementById('flashMessage')
-if (flashMessage) {
-    window.onload = () => {
-        flashMessage.classList.add('fadeout')
-    }
 }

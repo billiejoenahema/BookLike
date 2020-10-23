@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Follower;
@@ -105,6 +104,7 @@ class UsersController extends Controller
         ]);
         $validator->validate();
         $user->updateProfile($data);
+        session()->flash('flash_message', 'プロフィールを編集しました');
 
         return redirect('users/'.$user->id);
     }
