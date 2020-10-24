@@ -152,7 +152,6 @@
     }
 }
 
-
 .min-100vh {
     display: flex;
     flex-direction: column;
@@ -171,7 +170,12 @@
     background-image: linear-gradient(160deg,#7092be , #b1f4cf 55%, #ffeaa5);
 }
 
-/* background-image: linear-gradient(170deg, #9386ef , #b1f4cf 70%, #ffeaa5); */
-/* background-image: linear-gradient(160deg, #a286ef , #b1f4cf 75%, #ffeaa5); */
-/* background-image: linear-gradient(170deg, #9386ef , #b1f4cf 70%, #ffe7a5); */
-/* background-image: linear-gradient(150deg, #8886ef , #84f7b8 75%, #ffeaa5); */
+.home-body {
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}

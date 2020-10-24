@@ -13,62 +13,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customize.css') }}" rel="stylesheet">
-    <style>
-        html,
-        body {
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 4rem;
-        }
-
-        .links>a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
 </head>
 
-<body class="bg-imageColor">
+<body class="home-body bg-imageColor">
     <div class="flex-1 d-flex align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-5 col-8 m-auto flex-column text-center">
-            <div class="title m-b-md text-center">
+            <div class="h1 mb-4 text-center">
                 BookLike
             </div>
             <p>読みたい本が必ず見つかる</p>
@@ -89,11 +39,9 @@
         </div>
     </div>
     <footer class="page-footer font-small">
-        <!-- Copyright -->
         <div class="footer-copyright text-center text-blog py-3">
-            © 2020 Copyright:BookLike
+            © 2020 Copyright: BookLike
         </div>
-        <!-- Copyright -->
     </footer>
 </body>
 
