@@ -19,11 +19,9 @@ class ReviewController extends Controller
     public function index(Review $reviews, Follower $follower)
     {
         $login_user = auth()->user();
-        $timelines = Review::orderBy('created_at', 'DESC')->get();
 
         return view('reviews.index', compact(
-            'login_user',
-            'timelines'
+            'login_user'
         ));
     }
 
@@ -36,7 +34,9 @@ class ReviewController extends Controller
     {
         $login_user = auth()->user();
 
-        return view('reviews.create', compact('login_user'));
+        return view('reviews.create', compact(
+            'login_user'
+        ));
     }
 
     // Post review text form
@@ -95,7 +95,6 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         $review = $review->getReview($review->id);
         $comments = $comment->getComments($review->id);
-        $item = $get_item->getItem($review->asin);
 
         return view('reviews.show', compact(
             'review',

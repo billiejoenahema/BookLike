@@ -40,7 +40,6 @@ class CommentsController extends Controller
         $comment->commentDestroy($comment->id);
         session()->flash('flash_message', 'コメントを削除しました');
 
-
         return back();
     }
 }
