@@ -88,7 +88,6 @@ class Review extends Model
     public function reviewUpdate(Int $review_id, Array $data)
     {
         $this->id = $review_id;
-        $this->category = $data['category'];
         $this->text = $data['text'];
         $this->update();
 

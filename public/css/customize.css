@@ -61,6 +61,11 @@
     padding: 0.2rem 0;
 }
 
+.follow-btn {
+    user-select: none;
+    cursor: pointer;
+}
+
 /* ユーザー＆投稿検索フォーム */
 
 @media screen and (min-width: 500px) {

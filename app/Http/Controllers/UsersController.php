@@ -6,9 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Models\User;
-use App\Models\Review;
-use App\Models\Follower;
-use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -18,24 +15,12 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request, User $user, Review $review, Follower $follower, Str $string)
+    public function index(User $user)
     {
-        $search = $request->input('search');
         $login_user = auth()->user();
-        $user_id = $login_user->id;
-        $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
-
-        if (isset($search)) {
-            $users = $user->getSearchUsers($user_id, $search);
-        } else {
-            $users = $user->getAllUsers(auth()->user()->id);
-        }
 
         return view('users.index', compact(
-            'users',
-            'default_image',
-            'login_user',
-            'search'
+            'login_user'
         ));
     }
 
@@ -45,26 +30,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, Review $review, Follower $follower)
+    public function show(User $user)
     {
         $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
-        $review_count = $review->getReviewCount($user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($user->id);
-        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
-        $followers = $user->getFollowers($user->id);
 
         return view('users.show', compact(
             'user',
-            'login_user',
-            'is_following',
-            'is_followed',
-            'review_count',
-            'follow_count',
-            'follower_count',
-            'favorite_reviews_count',
+            'login_user'
         ));
         }
 
@@ -77,11 +49,9 @@ class UsersController extends Controller
         public function edit(User $user)
         {
             $login_user = auth()->user();
-            $default_image = asset('storage/profile_image/Default_User_Icon.jpeg');
 
         return view('users.edit', compact(
-            'login_user',
-            'default_image'
+            'login_user'
         ));
     }
 
@@ -121,107 +91,6 @@ class UsersController extends Controller
         $login_user->delete();
 
         return redirect('/');
-    }
-
-    // フォローする
-    public function follow(User $user)
-    {
-        $follower = auth()->user();
-        // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
-        if(!$is_following) {
-            // フォローしていなければフォローする
-            $follower->follow($user->id);
-            return back();
-        }
-    }
-
-    // フォロー解除
-    public function unfollow(User $user)
-    {
-        $follower = auth()->user();
-        // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
-        if($is_following) {
-            // フォローしていればフォローを解除する
-            $follower->unfollow($user->id);
-            return back();
-        }
-    }
-
-    // フォローしている全ユーザー
-    public function following(User $user, Review $review, Follower $follower)
-    {
-        $following_users = $user->getFollowingUsers($user->id);
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
-        $review_count = $review->getReviewCount($user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($user->id);
-        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
-
-        return view('users.following', compact(
-            'following_users',
-            'user',
-            'login_user',
-            'is_following',
-            'is_followed',
-            'review_count',
-            'follow_count',
-            'follower_count',
-            'favorite_reviews_count',
-        ));
-    }
-
-    // 全フォロワー
-    public function followers(User $user, Review $review, Follower $follower)
-    {
-        $followers = $user->getFollowers($user->id);
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
-        $review_count = $review->getReviewCount($user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($user->id);
-        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
-
-        return view('users.followers', compact(
-            'followers',
-            'user',
-            'login_user',
-            'is_following',
-            'is_followed',
-            'review_count',
-            'follow_count',
-            'follower_count',
-            'favorite_reviews_count',
-        ));
-    }
-
-    // いいねした投稿
-    public function favorite(User $user, Review $review, Follower $follower)
-    {
-        $timelines = $review->getFavoriteReviews($user->id);
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
-        $review_count = $review->getReviewCount($user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($user->id);
-        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
-
-        return view('users.favorite', compact(
-            'user',
-            'login_user',
-            'is_following',
-            'is_followed',
-            'timelines',
-            'review_count',
-            'follow_count',
-            'follower_count',
-            'favorite_reviews_count',
-        ));
     }
 
 }

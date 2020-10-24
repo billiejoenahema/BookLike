@@ -71703,32 +71703,24 @@ var FavoriteButton = function FavoriteButton(props) {
   var postFavorite = function postFavorite() {
     toggleFavorite();
     setFavoriteCount(favoriteCount + 1);
-    console.log('PostButton Clicked!');
     var review_id = props.timeline.id;
     return axios.post('http://127.0.0.1:8000/api/favorites', {
       review_id: review_id
-    }).then(function (res) {
-      console.log('Success!');
-      console.log(review_id);
-    })["catch"](function (err) {
-      console.log('失敗！');
+    }).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
     });
   };
 
   var deleteFavorite = function deleteFavorite() {
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
-    console.log('DeleteButton Clicked!');
     var favoritesArray = Array.from(props.timeline.favorites);
     var favoritesIds = favoritesArray.map(function (v) {
       return v.id;
     });
     var id = favoritesIds[0];
-    return axios["delete"]("http://127.0.0.1:8000/api/favorites/".concat(id)).then(function (res) {
-      console.log('Success!');
-      console.log(res.data);
-    })["catch"](function (err) {
-      console.log('失敗！');
+    return axios["delete"]("http://127.0.0.1:8000/api/favorites/".concat(id)).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
     });
   };
 
@@ -71804,37 +71796,27 @@ var FollowButton = function FollowButton(props) {
   }, [setFollowing]);
 
   var PostFollow = function PostFollow(e) {
-    console.log('FollowButton Clicked!');
     e.preventDefault();
     toggleFollow();
-    return axios.post("http://127.0.0.1:8000/api/users/".concat(userId, "/follow")).then(function (res) {
-      console.log('Success!');
-      console.log(userId);
-    })["catch"](function (err) {
-      console.log('Failure!');
+    return axios.post("http://127.0.0.1:8000/api/users/".concat(userId, "/follow")).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
     });
   };
 
   var DeleteFollow = function DeleteFollow(e) {
-    console.log('UnFollowButton Clicked!');
     e.preventDefault();
     toggleFollow();
-    return axios.post("http://127.0.0.1:8000/api/users/".concat(userId, "/unfollow")).then(function (res) {
-      console.log('Success!');
-      console.log(userId);
-    })["catch"](function (err) {
-      console.log('Failure!');
+    return axios.post("http://127.0.0.1:8000/api/users/".concat(userId, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
-      console.log(userId);
     });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: DeleteFollow,
-    className: "btn-sm btn-blog rounded-pill shadow-sm border-0"
+    className: "btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: PostFollow,
-    className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0"
+    className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
 };
 
@@ -72304,7 +72286,6 @@ var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
               case 0:
                 _context.next = 2;
                 return axios.get("/api".concat(url)).then(function (res) {
-                  console.log(res);
                   var initialCount = res.data.review.favorites.length;
                   var initialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_4__["default"])(res.data.review, res.data.loginUser);
                   setReview(res.data.review);
@@ -72333,32 +72314,24 @@ var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
   var postFavorite = function postFavorite() {
     toggleFavorite();
     setFavoriteCount(favoriteCount + 1);
-    console.log('PostButton Clicked!');
     var review_id = review.id;
     return axios.post('http://127.0.0.1:8000/api/favorites', {
       review_id: review_id
-    }).then(function (res) {
-      console.log('Success!');
-      console.log(review_id);
-    })["catch"](function (err) {
-      console.log('失敗！');
+    }).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
     });
   };
 
   var deleteFavorite = function deleteFavorite() {
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
-    console.log('DeleteButton Clicked!');
     var favoritesArray = Array.from(review.favorites);
     var favoritesIds = favoritesArray.map(function (v) {
       return v.id;
     });
     var id = favoritesIds[0];
-    return axios["delete"]("http://127.0.0.1:8000/api/favorites/".concat(id)).then(function (res) {
-      console.log('Success!');
-      console.log(res.data);
-    })["catch"](function (err) {
-      console.log('失敗！');
+    return axios["delete"]("http://127.0.0.1:8000/api/favorites/".concat(id)).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
     });
   };
 
@@ -72865,7 +72838,6 @@ var UserPageTab = function UserPageTab() {
                 setLoading(true);
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api".concat(url)).then(function (res) {
-                  console.log(res);
                   setLoginUser(res.data.loginUser);
                   setUserReviews(res.data.userReviews);
                   setFavoriteReviews(res.data.favoriteReviews);
@@ -72994,7 +72966,6 @@ var UserProfileFollowButton = function UserProfileFollowButton() {
               case 0:
                 _context.next = 2;
                 return axios.get("/api".concat(url)).then(function (res) {
-                  console.log(res);
                   setUser(res.data.profileUser);
                   var initialState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_3__["default"])(res.data.profileUser, res.data.loginUser);
                   setFollowing(initialState);
@@ -73019,35 +72990,25 @@ var UserProfileFollowButton = function UserProfileFollowButton() {
   }, []);
 
   var PostFollow = function PostFollow() {
-    console.log('FollowButton Clicked!');
     toggleFollow();
-    return axios.post("http://127.0.0.1:8000/api/users/".concat(user.id, "/follow")).then(function (res) {
-      console.log('Success!');
-      console.log(user.id);
-    })["catch"](function (err) {
-      console.log('Failure!');
+    return axios.post("http://127.0.0.1:8000/api/users/".concat(user.id, "/follow")).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
     });
   };
 
   var DeleteFollow = function DeleteFollow() {
-    console.log('UnFollowButton Clicked!');
     toggleFollow();
-    return axios.post("http://127.0.0.1:8000/api/users/".concat(user.id, "/unfollow")).then(function (res) {
-      console.log('Success!');
-      console.log(user.id);
-    })["catch"](function (err) {
-      console.log('Failure!');
+    return axios.post("http://127.0.0.1:8000/api/users/".concat(user.id, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
-      console.log(user.id);
     });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     onClick: DeleteFollow,
-    className: "btn-sm btn-blog rounded-pill shadow-sm border-0"
+    className: "btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     onClick: PostFollow,
-    className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0"
+    className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
 };
 

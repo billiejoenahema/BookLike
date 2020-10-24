@@ -21,7 +21,7 @@
             <div class="h1 mb-4 text-center">
                 BookLike
             </div>
-            <p>読みたい本が必ず見つかる</p>
+            <p>読みたい本がきっと見つかる</p>
             <div class="d-flex justify-content-between mt-5">
                 <a class="" href="{{ route('login') }}">
                     <button class="btn btn-primary rounded-pill">

@@ -14,35 +14,30 @@ const FavoriteButton = (props) => {
     const postFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount + 1)
-        console.log('PostButton Clicked!')
         const review_id = props.timeline.id
 
         return axios.post('http://127.0.0.1:8000/api/favorites', { review_id: review_id })
-            .then(res => {
-                console.log('Success!')
-                console.log(review_id)
-
-            })
+            .then(
+                console.log('success!')
+            )
             .catch(err => {
-                console.log('失敗！')
+                console.log(err)
             })
     }
 
     const deleteFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
-        console.log('DeleteButton Clicked!')
         const favoritesArray = Array.from(props.timeline.favorites)
         const favoritesIds = favoritesArray.map(v => v.id)
         const id = favoritesIds[0]
 
         return axios.delete(`http://127.0.0.1:8000/api/favorites/${id}`)
-            .then(res => {
-                console.log('Success!')
-                console.log(res.data)
-            })
+            .then(
+                console.log('success!')
+            )
             .catch(err => {
-                console.log('失敗！')
+                console.log(err)
             })
     }
 

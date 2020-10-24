@@ -25,7 +25,6 @@ const UserPageTab = () => {
             await axios
                 .get(`/api${url}`)
                 .then(res => {
-                    console.log(res)
                     setLoginUser(res.data.loginUser)
                     setUserReviews(res.data.userReviews)
                     setFavoriteReviews(res.data.favoriteReviews)

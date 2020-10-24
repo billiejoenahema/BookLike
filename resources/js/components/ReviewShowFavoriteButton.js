@@ -16,7 +16,6 @@ const ReviewShowFavoriteButton = () => {
             await axios
                 .get(`/api${url}`)
                 .then(res => {
-                    console.log(res)
                     const initialCount = res.data.review.favorites.length
                     const initialFavorite = isFavorited(res.data.review, res.data.loginUser)
                     setReview(res.data.review)
@@ -33,35 +32,30 @@ const ReviewShowFavoriteButton = () => {
     const postFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount + 1)
-        console.log('PostButton Clicked!')
         const review_id = review.id
 
         return axios.post('http://127.0.0.1:8000/api/favorites', { review_id: review_id })
-            .then(res => {
-                console.log('Success!')
-                console.log(review_id)
-
-            })
+            .then(
+                console.log('success!')
+            )
             .catch(err => {
-                console.log('失敗！')
+                console.log(err)
             })
     }
 
     const deleteFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
-        console.log('DeleteButton Clicked!')
         const favoritesArray = Array.from(review.favorites)
         const favoritesIds = favoritesArray.map(v => v.id)
         const id = favoritesIds[0]
 
         return axios.delete(`http://127.0.0.1:8000/api/favorites/${id}`)
-            .then(res => {
-                console.log('Success!')
-                console.log(res.data)
-            })
+            .then(
+                console.log('success!')
+            )
             .catch(err => {
-                console.log('失敗！')
+                console.log(err)
             })
     }
 

@@ -10,34 +10,28 @@ const FollowButton = (props) => {
     const toggleFollow = useCallback(() => setFollowing((prev) => !prev), [setFollowing])
 
     const PostFollow = (e) => {
-        console.log('FollowButton Clicked!')
         e.preventDefault()
         toggleFollow()
 
         return axios.post(`http://127.0.0.1:8000/api/users/${userId}/follow`)
-            .then(res => {
-                console.log('Success!')
-                console.log(userId)
-            })
+            .then(
+                console.log('success!')
+            )
             .catch(err => {
-                console.log('Failure!')
+                console.log(err)
             })
     }
 
     const DeleteFollow = (e) => {
-        console.log('UnFollowButton Clicked!')
         e.preventDefault()
         toggleFollow()
 
         return axios.post(`http://127.0.0.1:8000/api/users/${userId}/unfollow`)
-            .then(res => {
-                console.log('Success!')
-                console.log(userId)
-            })
+            .then(
+                console.log('success!')
+            )
             .catch(err => {
-                console.log('Failure!')
                 console.log(err)
-                console.log(userId)
 
             })
     }
@@ -46,8 +40,8 @@ const FollowButton = (props) => {
         <>
             {
                 following ?
-                    <div onClick={DeleteFollow} className="btn-sm btn-blog rounded-pill shadow-sm border-0">フォロー中</div>
-                    : <div onClick={PostFollow} className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0">フォローする</div>
+                    <div onClick={DeleteFollow} className="btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn">フォロー中</div>
+                    : <div onClick={PostFollow} className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn">フォローする</div>
             }
         </>
     )

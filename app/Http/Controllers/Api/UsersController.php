@@ -9,7 +9,6 @@ use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Follower;
-use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -19,22 +18,14 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request, User $user, Review $review, Follower $follower, Str $string)
+    public function index(Request $request, User $user, Review $review, Follower $follower)
     {
-        $search = $request->input('search');
         $login_user = auth()->user();
         $user_id = $login_user->id;
 
-        if (isset($search)) {
-            $users = $user->getSearchUsers($user_id, $search);
-        } else {
-            $users = $user->getAllUsers(auth()->user()->id);
-        }
-
         return view('users.index', compact(
             'users',
-            'login_user',
-            'search'
+            'login_user'
         ));
     }
 
@@ -47,23 +38,10 @@ class UsersController extends Controller
     public function show(User $user, Review $review, Follower $follower)
     {
         $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
-
-        $review_count = $review->getReviewCount($user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($user->id);
-        $favorite_reviews_count = $review->getFavoriteReviews($user->id)->count();
 
         return view('users.show', compact(
             'user',
             'login_user',
-            'is_following',
-            'is_followed',
-            'review_count',
-            'follow_count',
-            'follower_count',
-            'favorite_reviews_count',
         ));
         }
 

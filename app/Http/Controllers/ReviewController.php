@@ -9,7 +9,6 @@ use App\Models\Comment;
 use App\Models\Follower;
 use App\Http\Controllers\Api\GetItem;
 
-
 class ReviewController extends Controller
 {
     /**
@@ -140,7 +139,6 @@ class ReviewController extends Controller
     {
         $data = $request->all();
         $validator = Validator::make($data, [
-            'category' => 'required',
             'text' => 'required | string | max:400'
         ]);
         $review->reviewUpdate($review->id, $data);

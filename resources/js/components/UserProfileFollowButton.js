@@ -14,7 +14,6 @@ const UserProfileFollowButton = () => {
             await axios
                 .get(`/api${url}`)
                 .then(res => {
-                    console.log(res)
                     setUser(res.data.profileUser)
                     const initialState = isFollowed(res.data.profileUser, res.data.loginUser)
                     setFollowing(initialState)
@@ -27,33 +26,26 @@ const UserProfileFollowButton = () => {
     }, [])
 
     const PostFollow = () => {
-        console.log('FollowButton Clicked!')
         toggleFollow()
 
         return axios.post(`http://127.0.0.1:8000/api/users/${user.id}/follow`)
-            .then(res => {
-                console.log('Success!')
-                console.log(user.id)
-            })
+            .then(
+                console.log('success!')
+            )
             .catch(err => {
-                console.log('Failure!')
+                console.log(err)
             })
     }
 
     const DeleteFollow = () => {
-        console.log('UnFollowButton Clicked!')
         toggleFollow()
 
         return axios.post(`http://127.0.0.1:8000/api/users/${user.id}/unfollow`)
-            .then(res => {
-                console.log('Success!')
-                console.log(user.id)
-            })
+            .then(
+                console.log('success!')
+            )
             .catch(err => {
-                console.log('Failure!')
                 console.log(err)
-                console.log(user.id)
-
             })
     }
 
@@ -61,8 +53,8 @@ const UserProfileFollowButton = () => {
         <>
             {
                 following ?
-                    <div onClick={DeleteFollow} className="btn-sm btn-blog rounded-pill shadow-sm border-0">フォロー中</div>
-                    : <div onClick={PostFollow} className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0">フォローする</div>
+                    <div onClick={DeleteFollow} className="btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn">フォロー中</div>
+                    : <div onClick={PostFollow} className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn">フォローする</div>
             }
         </>
     )
