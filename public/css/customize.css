@@ -184,3 +184,22 @@
     min-height: 100vh;
     margin: 0;
 }
+
+#index-toggle {
+    line-height: 26px;
+    width: 220px;
+    margin-right: auto;
+    user-select: none;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.switch-index-disabled {
+    height: 26px;
+    width: 110px;
+    opacity: 0.6;
+}
+.switch-index {
+    height: 26px;
+    width: 110px;
+}
