@@ -25,6 +25,9 @@ $teal: #4dc0b5;
 $cyan: #6cb2eb;
 $blog: #7092be;
 $blogLight: #a9c8f1;
+$silver: #c0c0c0;
+$gainsboro: #dcdcdc;
+$wisper: #eeeeee;
 
 $theme-colors: (
     "bodyColor": $bodyColor,
@@ -42,8 +45,10 @@ $theme-colors: (
     "teal": $teal,
     "cyan": $cyan,
     "blog": $blog,
-    "blogLight": $blogLight
-
+    "blogLight": $blogLight,
+    "silver": $silver,
+    "gainsboro": $gainsboro,
+    "wisper": $wisper
 );
 
 $yiq-contrasted-threshold: 300;

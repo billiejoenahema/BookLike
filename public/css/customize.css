@@ -194,11 +194,6 @@
     border-radius: 3px;
 }
 
-.switch-index-disabled {
-    height: 26px;
-    width: 110px;
-    opacity: 0.6;
-}
 .switch-index {
     height: 26px;
     width: 110px;

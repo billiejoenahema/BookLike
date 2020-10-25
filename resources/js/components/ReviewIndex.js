@@ -136,9 +136,6 @@ const ReviewIndex = () => {
                             autoComplete="on"
                         />
                     </form>
-                    {/* <button onClick={searchClick} className="btn search-button">
-                        <i className="fas fa-search text-teal lead"></i>
-                    </button> */}
                 </div>
             </div>
 
@@ -168,9 +165,6 @@ const ReviewIndex = () => {
                                         autoComplete="on"
                                     />
                                 </form>
-                                {/* <button onClick={modalSearchClick} className="btn search-button" data-dismiss="modal">
-                                    <i className="fas fa-search text-teal lead"></i>
-                                </button> */}
                             </div>
                         </div>
                     </div>
