@@ -73142,7 +73142,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return omittedText; });
 function omittedText(description, _int) {
   // ユーザー一覧で文字数を制限して自己紹介文を表示
-  // const MAX_LENGTH = 100;
   if (description.length > _int) {
     return "".concat(description.substr(0, _int), "...");
   }
