@@ -72869,7 +72869,7 @@ var UserPageTab = function UserPageTab() {
     className: "text-center small px-0"
   }, "\u3044\u3044\u306D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), favoriteReviews.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center small px-0"
-  }, "\u30D5\u30A9\u30ED\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followingUsers.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "\u30D5\u30A9\u30ED\u30FC\u4E2D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followingUsers.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center small px-0"
   }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followedUsers.length))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_8__["TabPanel"], null, userReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
     timelines: userReviews,
@@ -73141,7 +73141,7 @@ function isFollowed(user, loginUser) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return omittedText; });
 function omittedText(description, _int) {
-  // ユーザー一覧で文字数を制限して自己紹介文を表示
+  // 文字数を制限して自己紹介文を表示
   if (description.length > _int) {
     return "".concat(description.substr(0, _int), "...");
   }
