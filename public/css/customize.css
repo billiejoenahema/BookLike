@@ -4,15 +4,16 @@
 }
 
 .flash_message {
-    position: fixed;
-    top: 3.4rem;
-    left: 0;
-    right: 0;
+    /* position: fixed; */
+    /* top: 3.4rem; */
+    /* left: 0; */
+    /* right: 0; */
     margin: auto;
-    z-index: 1500;
+    /* z-index: 1500; */
+    width: 80%;
     text-align: center;
     background: white;
-    padding: 1.2rem;
+    padding: 0.2rem;
     border-radius: 10px;
     opacity: 0.8;
 }
