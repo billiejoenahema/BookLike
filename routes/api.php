@@ -1,98 +1,14 @@
 <?php
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Review;
-
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('/reviews/{review}', function (Review $review, User $user) {
+    Route::get('/reviews/{review}', 'Api\ReviewController@show');
 
-        $loginUser = auth()->user();
-        $review = $review
-            ->with('favorites')
-            ->where('id', $review->id)
-            ->first();
+    Route::get('/reviews', 'Api\ReviewController@index');
 
-        return
-            [
-                'loginUser' => $loginUser,
-                'review' => $review
-            ];
+    Route::get('/users/{user}', 'Api\UsersController@show');
 
-    });
-
-    Route::get('/reviews',function (Review $review, User $user) {
-
-        $loginUser = auth()->user();
-        $timelines = $review->with('user')
-            ->with(['comments','favorites'])
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
-        $favoritest = $review->with('user')
-            ->with(['comments', 'favorites'])
-            ->withCount('favorites')
-            ->orderBy('favorites_count', 'DESC')
-            ->paginate(10);
-
-        return
-            [
-            'timelines' => $timelines,
-            'loginUser' => $loginUser,
-            'favoritest' => $favoritest
-            ];
-    });
-
-    Route::get('/users/{user}',function (Request $request, Review $review, User $user) {
-
-        $profileUserId = $request->user->id;
-        $profileUser = $user->with('followers')->find($profileUserId);
-        $loginUserId = auth()->user()->id;
-        $loginUser = $user->with('followers')->find($loginUserId);
-        // 投稿
-        $userReviews = $review->where('user_id', $user->id)
-            ->with(['user', 'comments', 'favorites'])
-            ->orderBy('created_at', 'DESC')
-            ->get();
-        // いいねした投稿
-        $favoriteReviews = $review->getFavoriteReviews($user->id);
-        // フォローしているユーザー
-        $followingUsers = $user->getFollowingUsers($user->id);
-        // フォロワー
-        $followedUsers = $user->getFollowers($user->id);
-
-        return
-            [
-                'profileUser' => $profileUser,
-                'loginUser' => $loginUser,
-                'userReviews' => $userReviews,
-                'favoriteReviews' => $favoriteReviews,
-                'followingUsers' => $followingUsers,
-                'followedUsers' => $followedUsers
-            ];
-    });
-
-    Route::get('/users', function (User $user, Review $review) {
-
-        $loginUserId = auth()->user()->id;
-        $loginUser = $user->with('followers')->find($loginUserId);
-        $users = $user->getAllUsers($loginUserId)
-            ->with('followers')
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
-        $populars = $user->getAllUsers($loginUserId)
-            ->with('followers')
-            ->withCount('followers')
-            ->orderBy('followers_count', 'DESC')
-            ->paginate(10);
-
-        return
-            [
-                'loginUser' => $loginUser,
-                'users' => $users,
-                'populars' => $populars
-            ];
-    });
+    Route::get('/users', 'Api\UsersController@index');
 
     // いいね機能
     Route::post('favorites', 'Api\FavoriteController@store');

@@ -18,15 +18,26 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request, User $user, Review $review, Follower $follower)
+    public function index(User $user, Review $review)
     {
-        $login_user = auth()->user();
-        $user_id = $login_user->id;
+        $loginUserId = auth()->user()->id;
+        $loginUser = $user->with('followers')->find($loginUserId);
+        $users = $user->getAllUsers($loginUserId)
+            ->with('followers')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+        $populars = $user->getAllUsers($loginUserId)
+            ->with('followers')
+            ->withCount('followers')
+            ->orderBy('followers_count', 'DESC')
+            ->paginate(10);
 
-        return view('users.index', compact(
-            'users',
-            'login_user'
-        ));
+        return
+            [
+                'loginUser' => $loginUser,
+                'users' => $users,
+                'populars' => $populars
+            ];
     }
 
     /**
@@ -35,15 +46,34 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, Review $review, Follower $follower)
+    public function show(Request $request, Review $review, User $user)
     {
-        $login_user = auth()->user();
+        $profileUserId = $request->user->id;
+        $profileUser = $user->with('followers')->find($profileUserId);
+        $loginUserId = auth()->user()->id;
+        $loginUser = $user->with('followers')->find($loginUserId);
+        // 投稿
+        $userReviews = $review->where('user_id', $user->id)
+            ->with(['user', 'comments', 'favorites'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        // いいねした投稿
+        $favoriteReviews = $review->getFavoriteReviews($user->id);
+        // フォローしているユーザー
+        $followingUsers = $user->getFollowingUsers($user->id);
+        // フォロワー
+        $followedUsers = $user->getFollowers($user->id);
 
-        return view('users.show', compact(
-            'user',
-            'login_user',
-        ));
-        }
+        return
+            [
+                'profileUser' => $profileUser,
+                'loginUser' => $loginUser,
+                'userReviews' => $userReviews,
+                'favoriteReviews' => $favoriteReviews,
+                'followingUsers' => $followingUsers,
+                'followedUsers' => $followedUsers
+            ];
+    }
 
         /**
          * Show the form for editing the specified resource.
@@ -51,9 +81,9 @@ class UsersController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function edit(User $user)
-        {
-            $login_user = auth()->user();
+    public function edit(User $user)
+    {
+        $login_user = auth()->user();
 
         return view('users.edit', compact(
             'login_user',
