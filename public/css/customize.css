@@ -4,12 +4,7 @@
 }
 
 .flash_message {
-    /* position: fixed; */
-    /* top: 3.4rem; */
-    /* left: 0; */
-    /* right: 0; */
     margin: auto;
-    /* z-index: 1500; */
     width: 80%;
     text-align: center;
     background: white;
@@ -98,7 +93,7 @@
     padding: 0.6rem 0.8rem;
     }
     .floating-button:hover {
-    transform: translateY(2px);
+    transform: scale(1.1, 1.1);
     transition: 0.2s;
     }
 
