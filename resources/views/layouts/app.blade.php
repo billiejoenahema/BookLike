@@ -12,15 +12,15 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="js/all.js" defer></script>
+    <script src="http://booklikeapp.com/js/all.js" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="css/app.css" rel="stylesheet">
-    <link href="css/customize.css" rel="stylesheet">
+    <link href="http://booklikeapp.com/css/app.css" rel="stylesheet">
+    <link href="http://booklikeapp.com/css/customize.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
