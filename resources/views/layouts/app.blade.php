@@ -12,15 +12,15 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="http://booklikeapp.com/js/all.js" defer></script>
+    <script src="{{ secure_asset('js/all.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="http://booklikeapp.com/css/app.css" rel="stylesheet">
-    <link href="http://booklikeapp.com/css/customize.css" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/customize.css') }}" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -49,7 +49,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
+                            <img src="{{ secure_asset('storage/profile_image/'.$login_user->profile_image) }}"
                                 class="rounded-circle shadow-sm img-fluid nav-icon" width="36" height="36">
                         </a>
                         <!-- Dropdown Menu -->
