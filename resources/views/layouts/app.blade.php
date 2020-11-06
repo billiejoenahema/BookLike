@@ -49,7 +49,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ secure_asset('storage/profile_image/'.$login_user->profile_image) }}"
+                            <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
                                 class="rounded-circle shadow-sm img-fluid nav-icon" width="36" height="36">
                         </a>
                         <!-- Dropdown Menu -->
