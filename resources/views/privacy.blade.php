@@ -101,6 +101,6 @@
     <li>本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。</li>
 </ol>
 
-<img class="w-50 h-50" src="{{ asset('storage/images/booklike_mail.png') }}" alt="mail">
+<img class="w-50 h-50" src="{{ asset('images/booklike_mail.png') }}" alt="mail">
 <p>以上</p>
 @endsection

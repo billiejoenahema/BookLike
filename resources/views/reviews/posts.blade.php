@@ -11,7 +11,8 @@
             <div class="card mb-4">
                 <div class="d-flex p-2">
                     <div class="d-flex flex-column p-2 mr-2">
-                        <img src="{{ $get_item->Images->Primary->Large->URL }}" width="100">
+                        <img src="{{ $get_item->Images->Primary->Large->URL ?? asset('images/NoImage.png') }}"
+                            width="100">
                     </div>
                     <div class="col-md-8 d-flex flex-column text-left p-2">
                         <h5>{{ $get_item->ItemInfo->Title->DisplayValue }}</h5>
@@ -67,7 +68,7 @@
                     <input type="hidden" name="manufacturer" id="manufacturer"
                         value="{{ $get_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '不明' }}">
                     <input type="hidden" name="image_url" id="image_url"
-                        value="{{ $get_item->Images->Primary->Large->URL ?? asset('storage/images/NoImage.png') }}">
+                        value="{{ $get_item->Images->Primary->Large->URL ?? asset('images/NoImage.png') }}">
                     <div class="form-group row mb-0">
                         <div class="col-12 text-right">
                             <p id="textLength">0 / 800文字</p>
