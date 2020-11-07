@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -94,8 +96,10 @@ class User extends Authenticatable
     public function updateProfile(Array $params)
     {
         if (isset($params['profile_image'])) {
-            $file_name = $params['profile_image']->store('public/profile_image/');
-
+            Storage::disk('s3')->put('/', $params['profile_image'], 'public');
+            // $file_name = $params['profile_image']->store('public/profile_image/');
+            $file_name = $params['profile_image'];
+            dd($file_name);
             $this::where('id', $this->id)
             ->update([
                 'screen_name'   => $params['screen_name'],
