@@ -16,6 +16,7 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->string('category')->comment('カテゴリー');
             $table->char('asin', 10)->comment('ASIN');
             $table->string('page_url')->nullable()->comment('商品ページ');
             $table->string('title')->comment('タイトル');
