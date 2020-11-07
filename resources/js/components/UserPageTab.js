@@ -17,13 +17,13 @@ const UserPageTab = () => {
     const [followedUsers, setFollowedUsers] = useState([])
     const [loading, setLoading] = useState(true)
 
-    const url = window.location.pathname
+    const currentUrl = window.location.pathname
 
     useEffect(() => {
         const loadTab = async () => {
             setLoading(true)
             await axios
-                .get(`/api${url}`)
+                .get(`/api${currentUrl}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
                     setUserReviews(res.data.userReviews)

@@ -7,6 +7,7 @@ const Users = (props) => {
 
     const users = props.users
     const loginUser = props.loginUser
+    const url = 'http://booklikeapp.com'
 
     return (
         <>
@@ -19,7 +20,7 @@ const Users = (props) => {
                                 : ''
                         }
                         <div className="d-flex w-100">
-                            <a href={`http://127.0.0.1:8000/users/${user.id}`}>
+                            <a href={`${url}/users/${user.id}`}>
                                 <img src={`/storage/profile_image/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                             </a>
                             <div className="d-flex flex-wrap w-100">
