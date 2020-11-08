@@ -3,7 +3,7 @@
         <div class="col-4 d-flex flex-column p-0">
             <a href="{{ url('users/' .$login_user->id) }}">
                 <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}"
-                    class="rounded-circle shadow-sm img-fluid" width="100" height="100">
+                    class="rounded-circle shadow-sm" width="100" height="100">
             </a>
             <div class="mt-3 d-flex flex-column">
                 <h5 class="mb-0 font-weight-bold">{{ $login_user->name }}</h5>

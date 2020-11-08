@@ -99,7 +99,6 @@ class User extends Authenticatable
             Storage::disk('s3')->put('/', $params['profile_image'], 'public');
             // $file_name = $params['profile_image']->store('public/profile_image/');
             $file_name = $params['profile_image'];
-            dd($file_name);
             $this::where('id', $this->id)
             ->update([
                 'screen_name'   => $params['screen_name'],
