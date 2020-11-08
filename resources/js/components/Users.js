@@ -5,9 +5,7 @@ import omittedText from '../functions/omittedText'
 
 const Users = (props) => {
 
-    const users = props.users
-    const loginUser = props.loginUser
-    const url = 'http://booklikeapp.com'
+    const { users, loginUser, root, storage } = props
 
     return (
         <>
@@ -20,8 +18,8 @@ const Users = (props) => {
                                 : ''
                         }
                         <div className="d-flex w-100">
-                            <a href={`${url}/users/${user.id}`}>
-                                <img src={`/storage/profile_image/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
+                            <a href={`${root}/users/${user.id}`}>
+                                <img src={`${storage}/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                             </a>
                             <div className="d-flex flex-wrap w-100">
                                 <div className="ml-2 d-flex flex-column">
@@ -31,7 +29,7 @@ const Users = (props) => {
                                 </div>
                                 {/* フォローボタン */}
                                 {
-                                    user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} /></div> : ''
+                                    user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} root={root} /></div> : ''
                                 }
                             </div>
                         </div>

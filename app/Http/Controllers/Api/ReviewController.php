@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Review;
 
@@ -15,11 +16,13 @@ class ReviewController extends Controller
             ->with('favorites')
             ->where('id', $review->id)
             ->first();
+        $storage = Storage::disk('s3');
 
         return
             [
                 'loginUser' => $loginUser,
-                'review' => $review
+                'review' => $review,
+                'storage' => $storage
             ];
     }
 
@@ -35,12 +38,14 @@ class ReviewController extends Controller
             ->withCount('favorites')
             ->orderBy('favorites_count', 'DESC')
             ->paginate(10);
+        $storage = Storage::disk('s3');
 
         return
             [
             'timelines' => $timelines,
             'loginUser' => $loginUser,
-            'favoritest' => $favoritest
+            'favoritest' => $favoritest,
+            'storage' => $storage
             ];
     }
 }

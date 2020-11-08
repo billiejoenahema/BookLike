@@ -9,12 +9,13 @@ const ReviewShowFavoriteButton = () => {
     const [favorite, setFavorite] = useState(false)
     const [favoriteCount, setFavoriteCount] = useState()
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
-    const url = window.location.pathname
+    const currentUrl = window.location.pathname
+    const root = 'http://booklikeapp.com'
 
     useEffect(() => {
         const loadIsFavorited = async () => {
             await axios
-                .get(`/api${url}`)
+                .get(`/api${currentUrl}`)
                 .then(res => {
                     const initialCount = res.data.review.favorites.length
                     const initialFavorite = isFavorited(res.data.review, res.data.loginUser)
@@ -34,7 +35,7 @@ const ReviewShowFavoriteButton = () => {
         setFavoriteCount(favoriteCount + 1)
         const review_id = review.id
 
-        return axios.post('http://127.0.0.1:8000/api/favorites', { review_id: review_id })
+        return axios.post(`${root}/api/favorites`, { review_id: review_id })
             .then(
                 console.log('success!')
             )
@@ -50,7 +51,7 @@ const ReviewShowFavoriteButton = () => {
         const favoritesIds = favoritesArray.map(v => v.id)
         const id = favoritesIds[0]
 
-        return axios.delete(`http://127.0.0.1:8000/api/favorites/${id}`)
+        return axios.delete(`${root}/api/favorites/${id}`)
             .then(
                 console.log('success!')
             )

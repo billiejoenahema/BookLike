@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Models\User;
@@ -31,12 +32,14 @@ class UsersController extends Controller
             ->withCount('followers')
             ->orderBy('followers_count', 'DESC')
             ->paginate(10);
+        $storage = Storage::disk('s3');
 
         return
             [
                 'loginUser' => $loginUser,
                 'users' => $users,
-                'populars' => $populars
+                'populars' => $populars,
+                'storage' => $storage
             ];
     }
 
@@ -63,6 +66,7 @@ class UsersController extends Controller
         $followingUsers = $user->getFollowingUsers($user->id);
         // フォロワー
         $followedUsers = $user->getFollowers($user->id);
+        $storage = Storage::disk('s3');
 
         return
             [
@@ -71,7 +75,8 @@ class UsersController extends Controller
                 'userReviews' => $userReviews,
                 'favoriteReviews' => $favoriteReviews,
                 'followingUsers' => $followingUsers,
-                'followedUsers' => $followedUsers
+                'followedUsers' => $followedUsers,
+                'storage' => $storage
             ];
     }
 

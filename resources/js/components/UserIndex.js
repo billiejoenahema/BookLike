@@ -13,6 +13,8 @@ const UserIndex = () => {
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
     const [searchWord, setSearchWord] = useState('')
+    const storage = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com'
+    const root = 'http://booklikeapp.com'
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -92,7 +94,7 @@ const UserIndex = () => {
                 </div>
             </div>
             <div id="usersComponent">
-                <Users users={userList} loginUser={loginUser} />
+                <Users users={userList} loginUser={loginUser} storage={storage} root={root} />
             </div>
             <div className="text-center">
                 {loading ? < Loading /> : <ScrollTop />}

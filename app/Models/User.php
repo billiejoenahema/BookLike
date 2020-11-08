@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable

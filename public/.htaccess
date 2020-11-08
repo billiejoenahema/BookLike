@@ -19,3 +19,9 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<Directory "/MAMP/htdocs/BookLike/public/">
+    AllowOverride All
+    # Allow open access:
+    Require all granted
+</Directory>

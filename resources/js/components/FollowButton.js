@@ -5,7 +5,7 @@ const FollowButton = (props) => {
 
     const InitialFollowState = isFollowed(props.user, props.loginUser)
     const userId = props.user.id
-    const url = 'http://booklikeapp.com'
+    const root = props.root
 
     const [following, setFollowing] = useState(InitialFollowState)
     const toggleFollow = useCallback(() => setFollowing((prev) => !prev), [setFollowing])
@@ -14,7 +14,7 @@ const FollowButton = (props) => {
         e.preventDefault()
         toggleFollow()
 
-        return axios.post(`${url}/api/users/${userId}/follow`)
+        return axios.post(`${root}/api/users/${userId}/follow`)
             .then(
                 console.log('success!')
             )
@@ -27,7 +27,7 @@ const FollowButton = (props) => {
         e.preventDefault()
         toggleFollow()
 
-        return axios.post(`${url}/api/users/${userId}/unfollow`)
+        return axios.post(`${root}/api/users/${userId}/unfollow`)
             .then(
                 console.log('success!')
             )

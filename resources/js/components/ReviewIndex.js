@@ -18,6 +18,8 @@ const ReviewIndex = () => {
     const [searchWord, setSearchWord] = useState('')
     const searchBooks = document.getElementById('searchBooks')
     const modalSearchBooks = document.getElementById('modalSearchBooks')
+    const storage = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com'
+    const root = 'http://booklikeapp.com'
 
     useEffect(() => {
         const loadTimeline = async () => {
@@ -207,7 +209,7 @@ const ReviewIndex = () => {
 
             {/* 投稿一覧 */}
             <div id="timelinesComponent">
-                <Timeline timelines={timelines} loginUser={loginUser} />
+                <Timeline timelines={timelines} loginUser={loginUser} storage={storage} root={root} />
             </div>
 
             {/* ローディング中＆ページトップへ戻るボタン */}

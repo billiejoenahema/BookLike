@@ -16,8 +16,9 @@ const UserPageTab = () => {
     const [followingUsers, setFollowingUsers] = useState([])
     const [followedUsers, setFollowedUsers] = useState([])
     const [loading, setLoading] = useState(true)
-
     const currentUrl = window.location.pathname
+    const storage = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com'
+    const root = 'http://booklikeapp.com'
 
     useEffect(() => {
         const loadTab = async () => {
@@ -51,28 +52,28 @@ const UserPageTab = () => {
                 <TabPanel>
                     {
                         userReviews.length !== 0 ?
-                            <Timeline timelines={userReviews} loginUser={loginUser} />
+                            <Timeline timelines={userReviews} loginUser={loginUser} storage={storage} root={root} />
                             : <div className="pb-5 my-5">投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         favoriteReviews.length !== 0 ?
-                            <Timeline timelines={favoriteReviews} loginUser={loginUser} />
+                            <Timeline timelines={favoriteReviews} loginUser={loginUser} storage={storage} root={root} />
                             : <div className="pb-5 my-5">いいねした投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followingUsers.length !== 0 ?
-                            <Users users={followingUsers} loginUser={loginUser} />
+                            <Users users={followingUsers} loginUser={loginUser} storage={storage} root={root} />
                             : <div className="pb-5 my-5">フォローしているユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followedUsers.length !== 0 ?
-                            <Users users={followedUsers} loginUser={loginUser} />
+                            <Users users={followedUsers} loginUser={loginUser} storage={storage} root={root} />
                             : <div className="pb-5 my-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Api\SearchItems;
 use App\Http\Controllers\Controller;
 
@@ -19,11 +20,13 @@ class SearchItemsController extends Controller
         $login_user = auth()->user();
         $keyword = $request->input('keyword');
         $search_items = $searchitems->getSearchItems($keyword);
+        $storage = Storage::disk('s3');
 
         return view('reviews.search_items', compact(
             'search_items',
             'login_user',
-            'keyword'
+            'keyword',
+            'storage'
         ));
     }
 }

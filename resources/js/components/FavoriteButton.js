@@ -6,7 +6,7 @@ const FavoriteButton = (props) => {
 
     const InitialFavorite = isFavorited(props.timeline, props.loginUser)
     const InitialCount = props.timeline.favorites.length
-    const url = 'http://booklikeapp.com'
+    const root = props.root
 
     const [favorite, setFavorite] = useState(InitialFavorite)
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
@@ -17,7 +17,7 @@ const FavoriteButton = (props) => {
         setFavoriteCount(favoriteCount + 1)
         const review_id = props.timeline.id
 
-        return axios.post(`${url}/api/favorites`, { review_id: review_id })
+        return axios.post(`${root}/api/favorites`, { review_id: review_id })
             .then(
                 console.log('success!')
             )
@@ -33,7 +33,7 @@ const FavoriteButton = (props) => {
         const favoritesIds = favoritesArray.map(v => v.id)
         const id = favoritesIds[0]
 
-        return axios.delete(`${url}/api/favorites/${id}`)
+        return axios.delete(`${root}/api/favorites/${id}`)
             .then(
                 console.log('success!')
             )

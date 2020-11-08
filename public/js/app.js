@@ -71953,6 +71953,7 @@ var ReviewIndex = function ReviewIndex() {
 
   var searchBooks = document.getElementById('searchBooks');
   var modalSearchBooks = document.getElementById('modalSearchBooks');
+  var storage = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com';
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTimeline = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72203,7 +72204,8 @@ var ReviewIndex = function ReviewIndex() {
     id: "timelinesComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
     timelines: timelines,
-    loginUser: loginUser
+    loginUser: loginUser,
+    storage: storage
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
   }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ScrollTop__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
@@ -72440,7 +72442,7 @@ function Timeline(props) {
       href: "".concat(url, "/users/").concat(timeline.user.id),
       className: "text-reset"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "/storage/profile_image/".concat(timeline.user.profile_image),
+      src: "".concat(props.storage, "/").concat(timeline.user.profile_image),
       className: "rounded-circle shadow-sm",
       width: "48",
       height: "48"
@@ -72618,6 +72620,7 @@ var UserIndex = function UserIndex() {
       searchWord = _useState14[0],
       setSearchWord = _useState14[1];
 
+  var storage = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com';
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadUsers = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72733,7 +72736,8 @@ var UserIndex = function UserIndex() {
     id: "usersComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_3__["default"], {
     users: userList,
-    loginUser: loginUser
+    loginUser: loginUser,
+    storage: storage
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
   }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ScrollTop__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
@@ -73064,7 +73068,7 @@ var Users = function Users(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "".concat(url, "/users/").concat(user.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "/storage/profile_image/".concat(user.profile_image),
+      src: "".concat(props.storage, "/").concat(user.profile_image),
       className: "rounded-circle shadow-sm",
       width: "48",
       height: "48"
