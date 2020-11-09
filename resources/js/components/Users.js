@@ -5,9 +5,7 @@ import omittedText from '../functions/omittedText'
 
 const Users = (props) => {
 
-    const users = props.users
-    const loginUser = props.loginUser
-    const url = 'http://booklikeapp.com'
+    const { users, loginUser, host } = props
 
     return (
         <>
@@ -20,7 +18,7 @@ const Users = (props) => {
                                 : ''
                         }
                         <div className="d-flex w-100">
-                            <a href={`${url}/users/${user.id}`}>
+                            <a href={`${host}/users/${user.id}`}>
                                 <img src={`/storage/profile_image/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                             </a>
                             <div className="d-flex flex-wrap w-100">

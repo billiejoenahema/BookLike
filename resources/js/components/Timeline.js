@@ -5,11 +5,11 @@ import omittedText from '../functions/omittedText'
 
 function Timeline(props) {
 
-    const url = 'http://booklikeapp.com'
+    const { timelines, loginUser, host } = props
 
     return (
         <>
-            {props.timelines.map((timeline) => (
+            {timelines.map((timeline) => (
                 <div className="card shadow-sm mb-3" key={timeline.id}>
                     <div className="card-haeder p-3 d-flex">
                         <a href={`${url}/users/${timeline.user.id}`} className="text-reset">
@@ -44,7 +44,7 @@ function Timeline(props) {
                         </a>
                     </div>
                     <div className="card-body">
-                        <a href={`${url}/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
+                        <a href={`${host}/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
                             {omittedText(timeline.text, 100)}
                         </a>
                     </div>
@@ -52,9 +52,9 @@ function Timeline(props) {
                         {/* 投稿編集ボタン */}
                         <div className="mr-3 d-flex align-items-center">
                             {(() => {
-                                if (timeline.user.id === props.loginUser.id) {
+                                if (timeline.user.id === loginUser.id) {
                                     return (
-                                        <a href={`${url}/reviews/${timeline.id}/edit`}
+                                        <a href={`${host}/reviews/${timeline.id}/edit`}
                                             data-tip="投稿を編集"><i className="fas fa-pen text-blog"></i>
                                             <ReactTooltip effect="float" type="info" place="top" /></a>
                                     )
@@ -63,15 +63,13 @@ function Timeline(props) {
                         </div>
                         {/* コメントボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <a href={`${url}/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw text-blog"></i>
+                            <a href={`${host}/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw text-blog"></i>
                                 <ReactTooltip effect="float" type="info" place="top" /></a>
                             <p className="mb-0 text-secondary">{timeline.comments.length}</p>
                         </div>
                         {/* いいねボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <FavoriteButton
-                                timeline={timeline}
-                                loginUser={props.loginUser} />
+                            <FavoriteButton timeline={timeline} loginUser={loginUser} host={host} />
                         </div>
                     </div>
                 </div>

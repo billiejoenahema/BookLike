@@ -7,13 +7,13 @@ const UserProfileFollowButton = () => {
     const [user, setUser] = useState()
     const [following, setFollowing] = useState()
     const toggleFollow = useCallback(() => setFollowing((prev) => !prev), [setFollowing])
-    const currentUrl = window.location.pathname
-    const url = 'http://booklikeapp.com'
+    const host = window.location.hostname
+    const currentPath = window.location.pathname
 
     useEffect(() => {
         const loadIsFollowed = async () => {
             await axios
-                .get(`/api${currentUrl}`)
+                .get(`/api${currentPath}`)
                 .then(res => {
                     setUser(res.data.profileUser)
                     const initialState = isFollowed(res.data.profileUser, res.data.loginUser)
@@ -29,7 +29,7 @@ const UserProfileFollowButton = () => {
     const PostFollow = () => {
         toggleFollow()
 
-        return axios.post(`${url}/api/users/${user.id}/follow`)
+        return axios.post(`${host}/api/users/${user.id}/follow`)
             .then(
                 console.log('success!')
             )
@@ -41,7 +41,7 @@ const UserProfileFollowButton = () => {
     const DeleteFollow = () => {
         toggleFollow()
 
-        return axios.post(`${url}/api/users/${user.id}/unfollow`)
+        return axios.post(`${host}/api/users/${user.id}/unfollow`)
             .then(
                 console.log('success!')
             )

@@ -16,14 +16,14 @@ const UserPageTab = () => {
     const [followingUsers, setFollowingUsers] = useState([])
     const [followedUsers, setFollowedUsers] = useState([])
     const [loading, setLoading] = useState(true)
-
-    const currentUrl = window.location.pathname
+    const host = window.location.hostname
+    const currentPath = window.location.pathname
 
     useEffect(() => {
         const loadTab = async () => {
             setLoading(true)
             await axios
-                .get(`/api${currentUrl}`)
+                .get(`/api${currentPath}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
                     setUserReviews(res.data.userReviews)
@@ -51,28 +51,28 @@ const UserPageTab = () => {
                 <TabPanel>
                     {
                         userReviews.length !== 0 ?
-                            <Timeline timelines={userReviews} loginUser={loginUser} />
+                            <Timeline timelines={userReviews} loginUser={loginUser} host={host} />
                             : <div className="pb-5 my-5">投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         favoriteReviews.length !== 0 ?
-                            <Timeline timelines={favoriteReviews} loginUser={loginUser} />
+                            <Timeline timelines={favoriteReviews} loginUser={loginUser} host={host} />
                             : <div className="pb-5 my-5">いいねした投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followingUsers.length !== 0 ?
-                            <Users users={followingUsers} loginUser={loginUser} />
+                            <Users users={followingUsers} loginUser={loginUser} host={host} />
                             : <div className="pb-5 my-5">フォローしているユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followedUsers.length !== 0 ?
-                            <Users users={followedUsers} loginUser={loginUser} />
+                            <Users users={followedUsers} loginUser={loginUser} host={host} />
                             : <div className="pb-5 my-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>

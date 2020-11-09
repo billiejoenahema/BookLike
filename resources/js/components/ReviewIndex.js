@@ -18,6 +18,7 @@ const ReviewIndex = () => {
     const [searchWord, setSearchWord] = useState('')
     const searchBooks = document.getElementById('searchBooks')
     const modalSearchBooks = document.getElementById('modalSearchBooks')
+    const host = window.location.hostname
 
     useEffect(() => {
         const loadTimeline = async () => {
@@ -207,7 +208,7 @@ const ReviewIndex = () => {
 
             {/* 投稿一覧 */}
             <div id="timelinesComponent">
-                <Timeline timelines={timelines} loginUser={loginUser} />
+                <Timeline timelines={timelines} loginUser={loginUser} host={host} />
             </div>
 
             {/* ローディング中＆ページトップへ戻るボタン */}
