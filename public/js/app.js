@@ -71683,7 +71683,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var FavoriteButton = function FavoriteButton(props) {
   var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["default"])(props.timeline, props.loginUser);
   var InitialCount = props.timeline.favorites.length;
-  var url = 'http://booklikeapp.com';
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFavorite),
       _useState2 = _slicedToArray(_useState, 2),
@@ -71705,7 +71704,7 @@ var FavoriteButton = function FavoriteButton(props) {
     toggleFavorite();
     setFavoriteCount(favoriteCount + 1);
     var review_id = props.timeline.id;
-    return axios.post("".concat(url, "/api/favorites"), {
+    return axios.post("/api/favorites", {
       review_id: review_id
     }).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
@@ -71720,7 +71719,7 @@ var FavoriteButton = function FavoriteButton(props) {
       return v.id;
     });
     var id = favoritesIds[0];
-    return axios["delete"]("".concat(url, "/api/favorites/").concat(id)).then(console.log('success!'))["catch"](function (err) {
+    return axios["delete"]("/api/favorites/".concat(id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -71784,7 +71783,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var FollowButton = function FollowButton(props) {
   var InitialFollowState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__["default"])(props.user, props.loginUser);
   var userId = props.user.id;
-  var url = 'http://booklikeapp.com';
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFollowState),
       _useState2 = _slicedToArray(_useState, 2),
@@ -71800,7 +71798,7 @@ var FollowButton = function FollowButton(props) {
   var PostFollow = function PostFollow(e) {
     e.preventDefault();
     toggleFollow();
-    return axios.post("".concat(url, "/api/users/").concat(userId, "/follow")).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/users/".concat(userId, "/follow")).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -71808,7 +71806,7 @@ var FollowButton = function FollowButton(props) {
   var DeleteFollow = function DeleteFollow(e) {
     e.preventDefault();
     toggleFollow();
-    return axios.post("".concat(url, "/api/users/").concat(userId, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/users/".concat(userId, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -72278,7 +72276,7 @@ var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
       return !prev;
     });
   }, [setFavorite]);
-  var url = window.location.pathname;
+  var currentUrl = window.location.pathname;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadIsFavorited = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72287,7 +72285,7 @@ var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api".concat(url)).then(function (res) {
+                return axios.get("/api".concat(currentUrl)).then(function (res) {
                   var initialCount = res.data.review.favorites.length;
                   var initialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_4__["default"])(res.data.review, res.data.loginUser);
                   setReview(res.data.review);
@@ -72317,7 +72315,7 @@ var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
     toggleFavorite();
     setFavoriteCount(favoriteCount + 1);
     var review_id = review.id;
-    return axios.post('http://127.0.0.1:8000/api/favorites', {
+    return axios.post("/api/favorites", {
       review_id: review_id
     }).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
@@ -72332,7 +72330,7 @@ var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
       return v.id;
     });
     var id = favoritesIds[0];
-    return axios["delete"]("http://127.0.0.1:8000/api/favorites/".concat(id)).then(console.log('success!'))["catch"](function (err) {
+    return axios["delete"]("/api/favorites/".concat(id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -72429,15 +72427,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Timeline(props) {
-  var url = 'http://booklikeapp.com';
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.timelines.map(function (timeline) {
+  var timelines = props.timelines,
+      loginUser = props.loginUser;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, timelines.map(function (timeline) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card shadow-sm mb-3",
       key: timeline.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-haeder p-3 d-flex"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "".concat(url, "/users/").concat(timeline.user.id),
+      href: "/users/".concat(timeline.user.id),
       className: "text-reset"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: "/storage/profile_image/".concat(timeline.user.profile_image),
@@ -72457,7 +72456,7 @@ function Timeline(props) {
     }, timeline.created_at.slice(0, -8)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body border-top border-bottom py-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "".concat(url, "/reviews/").concat(timeline.id),
+      href: "/reviews/".concat(timeline.id),
       className: "d-block text-reset text-decoration-none"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-flex flex-row py-2"
@@ -72487,16 +72486,16 @@ function Timeline(props) {
     }))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "".concat(url, "/reviews/").concat(timeline.id),
+      href: "/reviews/".concat(timeline.id),
       className: "d-block text-reset text-decoration-none"
     }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_3__["default"])(timeline.text, 100))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-footer py-1 d-flex justify-content-end bg-white"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mr-3 d-flex align-items-center"
     }, function () {
-      if (timeline.user.id === props.loginUser.id) {
+      if (timeline.user.id === loginUser.id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "".concat(url, "/reviews/").concat(timeline.id, "/edit"),
+          href: "/reviews/".concat(timeline.id, "/edit"),
           "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-pen text-blog"
@@ -72509,7 +72508,7 @@ function Timeline(props) {
     }()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mr-3 d-flex align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "".concat(url, "/reviews/").concat(timeline.id),
+      href: "/reviews/".concat(timeline.id),
       "data-tip": "\u30B3\u30E1\u30F3\u30C8\u3092\u6295\u7A3F"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "far fa-comment fa-fw text-blog"
@@ -72523,7 +72522,7 @@ function Timeline(props) {
       className: "mr-3 d-flex align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       timeline: timeline,
-      loginUser: props.loginUser
+      loginUser: loginUser
     }))));
   }));
 }
@@ -72830,7 +72829,7 @@ var UserPageTab = function UserPageTab() {
       loading = _useState12[0],
       setLoading = _useState12[1];
 
-  var currentUrl = window.location.pathname;
+  var currentPath = window.location.pathname;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTab = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72840,7 +72839,7 @@ var UserPageTab = function UserPageTab() {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api".concat(currentUrl)).then(function (res) {
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api".concat(currentPath)).then(function (res) {
                   setLoginUser(res.data.loginUser);
                   setUserReviews(res.data.userReviews);
                   setFavoriteReviews(res.data.favoriteReviews);
@@ -72959,8 +72958,7 @@ var UserProfileFollowButton = function UserProfileFollowButton() {
       return !prev;
     });
   }, [setFollowing]);
-  var currentUrl = window.location.pathname;
-  var url = 'http://booklikeapp.com';
+  var currentPath = window.location.pathname;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadIsFollowed = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72969,7 +72967,7 @@ var UserProfileFollowButton = function UserProfileFollowButton() {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api".concat(currentUrl)).then(function (res) {
+                return axios.get("/api".concat(currentPath)).then(function (res) {
                   setUser(res.data.profileUser);
                   var initialState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_3__["default"])(res.data.profileUser, res.data.loginUser);
                   setFollowing(initialState);
@@ -72995,14 +72993,14 @@ var UserProfileFollowButton = function UserProfileFollowButton() {
 
   var PostFollow = function PostFollow() {
     toggleFollow();
-    return axios.post("".concat(url, "/api/users/").concat(user.id, "/follow")).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/users/".concat(user.id, "/follow")).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
 
   var DeleteFollow = function DeleteFollow() {
     toggleFollow();
-    return axios.post("".concat(url, "/api/users/").concat(user.id, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/users/".concat(user.id, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -73044,9 +73042,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Users = function Users(props) {
-  var users = props.users;
-  var loginUser = props.loginUser;
-  var url = 'http://booklikeapp.com';
+  var users = props.users,
+      loginUser = props.loginUser,
+      host = props.host;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, users.map(function (user) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card mb-3 shadow-sm",
@@ -73062,7 +73060,7 @@ var Users = function Users(props) {
     }), "\u30D5\u30A9\u30ED\u30FC\u3055\u308C\u3066\u3044\u307E\u3059")) : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-flex w-100"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "".concat(url, "/users/").concat(user.id)
+      href: "/users/".concat(user.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: "/storage/profile_image/".concat(user.profile_image),
       className: "rounded-circle shadow-sm",

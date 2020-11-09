@@ -5,14 +5,14 @@ import omittedText from '../functions/omittedText'
 
 function Timeline(props) {
 
-    const { timelines, loginUser, host } = props
+    const { timelines, loginUser } = props
 
     return (
         <>
             {timelines.map((timeline) => (
                 <div className="card shadow-sm mb-3" key={timeline.id}>
                     <div className="card-haeder p-3 d-flex">
-                        <a href={`${url}/users/${timeline.user.id}`} className="text-reset">
+                        <a href={`/users/${timeline.user.id}`} className="text-reset">
                             <img src={`/storage/profile_image/${timeline.user.profile_image}`}
                                 className="rounded-circle shadow-sm"
                                 width="48" height="48" />
@@ -26,7 +26,7 @@ function Timeline(props) {
                         </div>
                     </div>
                     <div className="card-body border-top border-bottom py-0">
-                        <a href={`${url}/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
+                        <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
                             <div className="d-flex flex-row py-2">
                                 <div className="py-2 pr-4">
                                     <img src={timeline.image_url} width="100" className="shadow-sm" />
@@ -44,7 +44,7 @@ function Timeline(props) {
                         </a>
                     </div>
                     <div className="card-body">
-                        <a href={`${host}/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
+                        <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
                             {omittedText(timeline.text, 100)}
                         </a>
                     </div>
@@ -54,7 +54,7 @@ function Timeline(props) {
                             {(() => {
                                 if (timeline.user.id === loginUser.id) {
                                     return (
-                                        <a href={`${host}/reviews/${timeline.id}/edit`}
+                                        <a href={`/reviews/${timeline.id}/edit`}
                                             data-tip="投稿を編集"><i className="fas fa-pen text-blog"></i>
                                             <ReactTooltip effect="float" type="info" place="top" /></a>
                                     )
@@ -63,13 +63,13 @@ function Timeline(props) {
                         </div>
                         {/* コメントボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <a href={`${host}/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw text-blog"></i>
+                            <a href={`/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw text-blog"></i>
                                 <ReactTooltip effect="float" type="info" place="top" /></a>
                             <p className="mb-0 text-secondary">{timeline.comments.length}</p>
                         </div>
                         {/* いいねボタン */}
                         <div className="mr-3 d-flex align-items-center">
-                            <FavoriteButton timeline={timeline} loginUser={loginUser} host={host} />
+                            <FavoriteButton timeline={timeline} loginUser={loginUser} />
                         </div>
                     </div>
                 </div>

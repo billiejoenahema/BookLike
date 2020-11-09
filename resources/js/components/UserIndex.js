@@ -13,7 +13,6 @@ const UserIndex = () => {
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
     const [searchWord, setSearchWord] = useState('')
-    const host = window.location.hostname
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -93,7 +92,7 @@ const UserIndex = () => {
                 </div>
             </div>
             <div id="usersComponent">
-                <Users users={userList} loginUser={loginUser} host={host} />
+                <Users users={userList} loginUser={loginUser} />
             </div>
             <div className="text-center">
                 {loading ? < Loading /> : <ScrollTop />}

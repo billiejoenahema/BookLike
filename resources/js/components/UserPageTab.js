@@ -16,7 +16,6 @@ const UserPageTab = () => {
     const [followingUsers, setFollowingUsers] = useState([])
     const [followedUsers, setFollowedUsers] = useState([])
     const [loading, setLoading] = useState(true)
-    const host = window.location.hostname
     const currentPath = window.location.pathname
 
     useEffect(() => {
@@ -51,28 +50,28 @@ const UserPageTab = () => {
                 <TabPanel>
                     {
                         userReviews.length !== 0 ?
-                            <Timeline timelines={userReviews} loginUser={loginUser} host={host} />
+                            <Timeline timelines={userReviews} loginUser={loginUser} />
                             : <div className="pb-5 my-5">投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         favoriteReviews.length !== 0 ?
-                            <Timeline timelines={favoriteReviews} loginUser={loginUser} host={host} />
+                            <Timeline timelines={favoriteReviews} loginUser={loginUser} />
                             : <div className="pb-5 my-5">いいねした投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followingUsers.length !== 0 ?
-                            <Users users={followingUsers} loginUser={loginUser} host={host} />
+                            <Users users={followingUsers} loginUser={loginUser} />
                             : <div className="pb-5 my-5">フォローしているユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followedUsers.length !== 0 ?
-                            <Users users={followedUsers} loginUser={loginUser} host={host} />
+                            <Users users={followedUsers} loginUser={loginUser} />
                             : <div className="pb-5 my-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>

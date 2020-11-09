@@ -10,7 +10,6 @@ const ReviewShowFavoriteButton = () => {
     const [favoriteCount, setFavoriteCount] = useState()
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
     const currentUrl = window.location.pathname
-    const host = window.location.hostname
 
     useEffect(() => {
         const loadIsFavorited = async () => {
@@ -35,7 +34,7 @@ const ReviewShowFavoriteButton = () => {
         setFavoriteCount(favoriteCount + 1)
         const review_id = review.id
 
-        return axios.post(`${host}/api/favorites`, { review_id: review_id })
+        return axios.post(`/api/favorites`, { review_id: review_id })
             .then(
                 console.log('success!')
             )
@@ -51,7 +50,7 @@ const ReviewShowFavoriteButton = () => {
         const favoritesIds = favoritesArray.map(v => v.id)
         const id = favoritesIds[0]
 
-        return axios.delete(`${host}/api/favorites/${id}`)
+        return axios.delete(`/api/favorites/${id}`)
             .then(
                 console.log('success!')
             )

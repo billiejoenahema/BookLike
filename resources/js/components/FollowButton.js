@@ -5,7 +5,6 @@ const FollowButton = (props) => {
 
     const InitialFollowState = isFollowed(props.user, props.loginUser)
     const userId = props.user.id
-    const host = props.host
     const [following, setFollowing] = useState(InitialFollowState)
 
     const toggleFollow = useCallback(
@@ -16,7 +15,7 @@ const FollowButton = (props) => {
         e.preventDefault()
         toggleFollow()
 
-        return axios.post(`${host}/api/users/${userId}/follow`)
+        return axios.post(`/api/users/${userId}/follow`)
             .then(
                 console.log('success!')
             )
@@ -29,7 +28,7 @@ const FollowButton = (props) => {
         e.preventDefault()
         toggleFollow()
 
-        return axios.post(`${host}/api/users/${userId}/unfollow`)
+        return axios.post(`/api/users/${userId}/unfollow`)
             .then(
                 console.log('success!')
             )

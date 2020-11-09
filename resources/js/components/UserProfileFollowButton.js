@@ -7,7 +7,6 @@ const UserProfileFollowButton = () => {
     const [user, setUser] = useState()
     const [following, setFollowing] = useState()
     const toggleFollow = useCallback(() => setFollowing((prev) => !prev), [setFollowing])
-    const host = window.location.hostname
     const currentPath = window.location.pathname
 
     useEffect(() => {
@@ -29,7 +28,7 @@ const UserProfileFollowButton = () => {
     const PostFollow = () => {
         toggleFollow()
 
-        return axios.post(`${host}/api/users/${user.id}/follow`)
+        return axios.post(`/api/users/${user.id}/follow`)
             .then(
                 console.log('success!')
             )
@@ -41,7 +40,7 @@ const UserProfileFollowButton = () => {
     const DeleteFollow = () => {
         toggleFollow()
 
-        return axios.post(`${host}/api/users/${user.id}/unfollow`)
+        return axios.post(`/api/users/${user.id}/unfollow`)
             .then(
                 console.log('success!')
             )
