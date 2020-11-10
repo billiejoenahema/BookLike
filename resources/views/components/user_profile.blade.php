@@ -2,8 +2,8 @@
     <div class="d-inline-flex">
         <div class="col-4 p-3 d-flex flex-column">
             <a href="{{ url('users/' .$user->id) }}">
-                <img src="{{ asset('storage/profile_image/'.$user->profile_image) }}" class="rounded-circle shadow-sm"
-                    width="100" height="100">
+                <img src="{{ $storage->url($user->profile_image) }}" class="rounded-circle shadow-sm" width="100"
+                    height="100">
             </a>
             <div class="mt-3 d-flex flex-column">
                 <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>

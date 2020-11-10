@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 
@@ -18,9 +19,11 @@ class UsersController extends Controller
     public function index(User $user)
     {
         $login_user = auth()->user();
+        $storage = Storage::disk('s3');
 
         return view('users.index', compact(
-            'login_user'
+            'login_user',
+            'storage'
         ));
     }
 
@@ -33,10 +36,12 @@ class UsersController extends Controller
     public function show(User $user)
     {
         $login_user = auth()->user();
+        $storage = Storage::disk('s3');
 
         return view('users.show', compact(
             'user',
-            'login_user'
+            'login_user',
+            'storage'
         ));
         }
 
@@ -49,9 +54,11 @@ class UsersController extends Controller
         public function edit(User $user)
         {
             $login_user = auth()->user();
+            $storage = Storage::disk('s3');
 
         return view('users.edit', compact(
-            'login_user'
+            'login_user',
+            'storage'
         ));
     }
 
