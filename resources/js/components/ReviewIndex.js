@@ -16,8 +16,6 @@ const ReviewIndex = () => {
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
     const [searchWord, setSearchWord] = useState('')
-    const searchBooks = document.getElementById('searchBooks')
-    const modalSearchBooks = document.getElementById('modalSearchBooks')
 
     useEffect(() => {
         const loadTimeline = async () => {
@@ -62,6 +60,7 @@ const ReviewIndex = () => {
 
     const searchSubmit = (e) => {
         e.preventDefault()
+        const searchBooks = document.getElementById('searchBooks')
         setTimelines([])
         setPage(1)
         setHasMore(false)
@@ -70,6 +69,7 @@ const ReviewIndex = () => {
 
     const modalSearchSubmit = (e) => {
         e.preventDefault()
+        const modalSearchBooks = document.getElementById('modalSearchBooks')
         setTimelines([])
         setPage(1)
         setHasMore(false)

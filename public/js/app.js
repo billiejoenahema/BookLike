@@ -71949,8 +71949,6 @@ var ReviewIndex = function ReviewIndex() {
       searchWord = _useState20[0],
       setSearchWord = _useState20[1];
 
-  var searchBooks = document.getElementById('searchBooks');
-  var modalSearchBooks = document.getElementById('modalSearchBooks');
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTimeline = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72019,6 +72017,7 @@ var ReviewIndex = function ReviewIndex() {
 
   var searchSubmit = function searchSubmit(e) {
     e.preventDefault();
+    var searchBooks = document.getElementById('searchBooks');
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -72027,6 +72026,7 @@ var ReviewIndex = function ReviewIndex() {
 
   var modalSearchSubmit = function modalSearchSubmit(e) {
     e.preventDefault();
+    var modalSearchBooks = document.getElementById('modalSearchBooks');
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -73043,8 +73043,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Users = function Users(props) {
   var users = props.users,
-      loginUser = props.loginUser,
-      host = props.host;
+      loginUser = props.loginUser;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, users.map(function (user) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card mb-3 shadow-sm",

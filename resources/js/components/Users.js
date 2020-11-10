@@ -5,7 +5,7 @@ import omittedText from '../functions/omittedText'
 
 const Users = (props) => {
 
-    const { users, loginUser, host } = props
+    const { users, loginUser } = props
 
     return (
         <>
