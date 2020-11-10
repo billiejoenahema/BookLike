@@ -2,6 +2,7 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 import omittedText from '../functions/omittedText'
+import { STORAGE } from '../constants'
 
 function Timeline(props) {
 
@@ -13,7 +14,7 @@ function Timeline(props) {
                 <div className="card shadow-sm mb-3" key={timeline.id}>
                     <div className="card-haeder p-3 d-flex">
                         <a href={`/users/${timeline.user.id}`} className="text-reset">
-                            <img src={`/storage/profile_image/${timeline.user.profile_image}`}
+                            <img src={`${STORAGE}/${timeline.user.profile_image}`}
                                 className="rounded-circle shadow-sm"
                                 width="48" height="48" />
                         </a>

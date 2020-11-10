@@ -72421,6 +72421,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
 /* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/FavoriteButton.js");
 /* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/omittedText */ "./resources/js/functions/omittedText.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants */ "./resources/js/constants.js");
+
 
 
 
@@ -72439,7 +72441,7 @@ function Timeline(props) {
       href: "/users/".concat(timeline.user.id),
       className: "text-reset"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "/storage/profile_image/".concat(timeline.user.profile_image),
+      src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_4__["STORAGE"], "/").concat(timeline.user.profile_image),
       className: "rounded-circle shadow-sm",
       width: "48",
       height: "48"
@@ -73036,6 +73038,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FollowButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FollowButton */ "./resources/js/components/FollowButton.js");
 /* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
 /* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/omittedText */ "./resources/js/functions/omittedText.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants */ "./resources/js/constants.js");
+
 
 
 
@@ -73061,7 +73065,7 @@ var Users = function Users(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/users/".concat(user.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "/storage/profile_image/".concat(user.profile_image),
+      src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_4__["STORAGE"], "/").concat(user.profile_image),
       className: "rounded-circle shadow-sm",
       width: "48",
       height: "48"
@@ -73089,6 +73093,20 @@ var Users = function Users(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Users);
+
+/***/ }),
+
+/***/ "./resources/js/constants.js":
+/*!***********************************!*\
+  !*** ./resources/js/constants.js ***!
+  \***********************************/
+/*! exports provided: STORAGE */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "STORAGE", function() { return STORAGE; });
+var STORAGE = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com';
 
 /***/ }),
 
