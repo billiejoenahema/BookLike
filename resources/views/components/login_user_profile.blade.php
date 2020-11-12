@@ -1,7 +1,7 @@
 <div class="card shadow-sm mb-4">
     <div class="card-body d-flex">
         <div class="col-4 d-flex flex-column p-0">
-            <a href="{{ url('users/' .$login_user->id) }}">
+            <a href="{{ url('users/' .$login_user->id .'/edit') }}">
                 <img src="{{ $storage->url($login_user->profile_image) }}" class="rounded-circle shadow-sm" width="100"
                     height="100">
             </a>
@@ -16,15 +16,15 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                     @if($login_user->id == 1)
-                    <span class="dropdown-item disabled">プロフィール編集</span>
-                    <span class="dropdown-item disabled">アカウントを削除</span>
+                    <span class="dropdown-item disabled">プロフィールを編集</span>
+                    <span class="dropdown-item disabled">アカウントを完全に削除</span>
                     @else
                     <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="dropdown-item text-reset">
-                        プロフィール編集
+                        プロフィールを編集
                     </a>
                     <a href="#" class="dropdown-item text-decoration-none text-danger" data-toggle="modal"
                         data-target="#exampleModalCenter" role="button">
-                        アカウントを削除
+                        アカウントを完全に削除
                     </a>
                     @endif
                 </div>
