@@ -43,8 +43,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header border-bottom-0">
-                    <img src="{{ asset('storage/profile_image/'.$login_user->profile_image) }}" class="rounded-circle"
-                        width="50" height="50">
+                    <img src="{{ $storage->url($login_user->profile_image) }}" class="rounded-circle" width="50"
+                        height="50">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -11,7 +11,6 @@
             </div>
         </div>
         <div class="col-8 p-3 d-flex flex-column justify-content-between">
-            <!-- フォロー関係 -->
             <div class="d-flex flex-wrap justify-content-sm-between justify-content-end mb-3">
                 <div class="d-flex flex-sm-column">
                     @if ($login_user->isFollowed($user->id))
@@ -20,7 +19,6 @@
                     </div>
                     @endif
                 </div>
-                {{-- @include('components.follow_button') --}}
                 <div id="userProfileFollowButton"></div>
             </div>
             <div class="d-flex">

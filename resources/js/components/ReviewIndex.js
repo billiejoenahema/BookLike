@@ -207,7 +207,7 @@ const ReviewIndex = () => {
 
             {/* 投稿一覧 */}
             <div id="timelinesComponent">
-                <Timeline timelines={timelines} loginUser={loginUser} />
+                <Timeline timelines={timelines} loginUser={loginUser} storage={storage} root={root} />
             </div>
 
             {/* ローディング中＆ページトップへ戻るボタン */}

@@ -50,28 +50,28 @@ const UserPageTab = () => {
                 <TabPanel>
                     {
                         userReviews.length !== 0 ?
-                            <Timeline timelines={userReviews} loginUser={loginUser} />
+                            <Timeline timelines={userReviews} loginUser={loginUser} storage={storage} root={root} />
                             : <div className="pb-5 my-5">投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         favoriteReviews.length !== 0 ?
-                            <Timeline timelines={favoriteReviews} loginUser={loginUser} />
+                            <Timeline timelines={favoriteReviews} loginUser={loginUser} storage={storage} root={root} />
                             : <div className="pb-5 my-5">いいねした投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followingUsers.length !== 0 ?
-                            <Users users={followingUsers} loginUser={loginUser} />
+                            <Users users={followingUsers} loginUser={loginUser} storage={storage} root={root} />
                             : <div className="pb-5 my-5">フォローしているユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followedUsers.length !== 0 ?
-                            <Users users={followedUsers} loginUser={loginUser} />
+                            <Users users={followedUsers} loginUser={loginUser} storage={storage} root={root} />
                             : <div className="pb-5 my-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>

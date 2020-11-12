@@ -30,7 +30,7 @@ const Users = (props) => {
                                 </div>
                                 {/* フォローボタン */}
                                 {
-                                    user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} /></div> : ''
+                                    user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} root={root} /></div> : ''
                                 }
                             </div>
                         </div>
