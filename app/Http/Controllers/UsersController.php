@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-=======
->>>>>>> master
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -25,10 +20,6 @@ class UsersController extends Controller
     {
         $login_user = auth()->user();
         $storage = Storage::disk('s3');
-<<<<<<< HEAD
-
-=======
->>>>>>> master
         return view('users.index', compact(
             'login_user',
             'storage'
