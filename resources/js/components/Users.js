@@ -2,10 +2,11 @@ import React from 'react'
 import FollowButton from './FollowButton'
 import isFollowed from '../functions/isFollowed'
 import omittedText from '../functions/omittedText'
+import { STORAGE } from '../constants'
 
 const Users = (props) => {
 
-    const { users, loginUser, root, storage } = props
+    const { users, loginUser } = props
 
     return (
         <>
@@ -18,8 +19,8 @@ const Users = (props) => {
                                 : ''
                         }
                         <div className="d-flex w-100">
-                            <a href={`${root}/users/${user.id}`}>
-                                <img src={`${storage}/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
+                            <a href={`/users/${user.id}`}>
+                                <img src={`${STORAGE}/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                             </a>
                             <div className="d-flex flex-wrap w-100">
                                 <div className="ml-2 d-flex flex-column">

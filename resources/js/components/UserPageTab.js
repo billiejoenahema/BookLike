@@ -16,15 +16,13 @@ const UserPageTab = () => {
     const [followingUsers, setFollowingUsers] = useState([])
     const [followedUsers, setFollowedUsers] = useState([])
     const [loading, setLoading] = useState(true)
-    const currentUrl = window.location.pathname
-    const storage = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com'
-    const root = 'http://booklikeapp.com'
+    const currentPath = window.location.pathname
 
     useEffect(() => {
         const loadTab = async () => {
             setLoading(true)
             await axios
-                .get(`/api${currentUrl}`)
+                .get(`/api${currentPath}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
                     setUserReviews(res.data.userReviews)
