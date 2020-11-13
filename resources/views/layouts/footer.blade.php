@@ -1,4 +1,4 @@
-<div id="scroll-top-div" class="text-center text-blog m-5 d-none">
+<div id="scroll-top-div" class="text-center text-blog mb-3 d-none">
     <a href="#" onclick={scrollTop} class="text-blog mb-0 d-block">
         <i class="fas fa-angle-up h1"></i>
         <br />
