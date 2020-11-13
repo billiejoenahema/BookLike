@@ -1,6 +1,13 @@
-/* main要素の高さを調整 */
-.main-min-height {
-    min-height: 750px;
+/* footerの位置を調整 */
+.footer-fixed{
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+}
+footer{
+    position: absolute;
+    bottom: 0;
 }
 
 .flash_message {
@@ -91,6 +98,7 @@
     bottom: 1.6rem;
     right: 10%;
     padding: 0.6rem 0.8rem;
+    z-index: 1200;
     }
     .floating-button:hover {
     transform: scale(1.1, 1.1);
