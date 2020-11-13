@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Timeline from './Timeline'
 import Users from './Users'
-import ScrollTop from './ScrollTop'
 import Loading from './Loading'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
@@ -37,6 +36,17 @@ const UserPageTab = () => {
         loadTab()
         setLoading(false)
     }, [])
+
+    const body = document.getElementById('body')
+    body.onscroll = () => {
+        const scrollAmount = window.scrollY
+        const scrollTopDiv = document.getElementById('scroll-top-div')
+        if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
+            scrollTopDiv.classList.remove('d-none')
+            console.log('display scrollTopDiv')
+        }
+        return
+    }
 
     return (
         <>
@@ -75,7 +85,11 @@ const UserPageTab = () => {
                             : <div className="pb-5 my-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>
-                {loading ? <Loading /> : <ScrollTop />}
+
+                {/* ローディング中 */}
+                <div className="text-center">
+                    {loading && < Loading />}
+                </div>
             </Tabs>
         </>
     )

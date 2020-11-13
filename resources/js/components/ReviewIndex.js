@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Timeline from './Timeline'
 import Loading from './Loading'
-import ScrollTop from './ScrollTop'
 
 const ReviewIndex = () => {
 
@@ -97,11 +96,17 @@ const ReviewIndex = () => {
 
     const body = document.getElementById('body')
     body.onscroll = () => {
-        const scrollTop = window.scrollY
+        const scrollAmount = window.scrollY
         const clientHeight = document.getElementById('timelinesComponent').clientHeight
-        if (hasMore && clientHeight - scrollTop < 800) {
+        const scrollTopDiv = document.getElementById('scroll-top-div')
+
+        if (hasMore && clientHeight - scrollAmount < 800) {
             setPage(prev => prev + 1)
             setHasMore(false)
+        }
+        if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
+            scrollTopDiv.classList.remove('d-none')
+            console.log('display scrollTopDiv')
         }
         return
     }
@@ -210,9 +215,9 @@ const ReviewIndex = () => {
                 <Timeline timelines={timelines} loginUser={loginUser} />
             </div>
 
-            {/* ローディング中＆ページトップへ戻るボタン */}
+            {/* ローディング中 */}
             <div className="text-center">
-                {loading ? < Loading /> : <ScrollTop />}
+                {loading && < Loading />}
             </div>
         </>
     )

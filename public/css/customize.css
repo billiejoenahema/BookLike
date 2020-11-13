@@ -39,7 +39,7 @@ footer{
 }
 
 /* ページトップへ戻るボタン */
-.scroll-top {
+#scroll-top-div {
     line-height: 0.2rem;
 }
 

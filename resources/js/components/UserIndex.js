@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Users from './Users'
 import Loading from './Loading'
-import ScrollTop from './ScrollTop'
 
 const UserIndex = () => {
 
@@ -54,11 +53,17 @@ const UserIndex = () => {
 
     const body = document.getElementById('body')
     body.onscroll = () => {
-        const scrollTop = window.scrollY
+        const scrollAmount = window.scrollY
         const clientHeight = document.getElementById('usersComponent').clientHeight
-        if (hasMore && clientHeight - scrollTop < 700) {
+        const scrollTopDiv = document.getElementById('scroll-top-div')
+
+        if (hasMore && clientHeight - scrollAmount < 700) {
             setPage(prev => prev + 1)
             setHasMore(false)
+        }
+        if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
+            scrollTopDiv.classList.remove('d-none')
+            console.log('display scrollTopDiv')
         }
         return
     }
@@ -94,8 +99,10 @@ const UserIndex = () => {
             <div id="usersComponent">
                 <Users users={userList} loginUser={loginUser} />
             </div>
+
+            {/* ローディング中 */}
             <div className="text-center">
-                {loading ? < Loading /> : <ScrollTop />}
+                {loading && < Loading />}
             </div>
 
         </>
