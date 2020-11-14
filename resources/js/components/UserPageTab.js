@@ -43,7 +43,6 @@ const UserPageTab = () => {
         const scrollTopDiv = document.getElementById('scroll-top-div')
         if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
             scrollTopDiv.classList.remove('d-none')
-            console.log('display scrollTopDiv')
         }
         return
     }
@@ -75,7 +74,7 @@ const UserPageTab = () => {
                     {
                         followingUsers.length !== 0 ?
                             <Users users={followingUsers} loginUser={loginUser} />
-                            : <div className="pb-5 my-5">フォローしているユーザーはまだいません</div>
+                            : <div className="pb-5 my-5">フォロー中のユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
@@ -86,7 +85,7 @@ const UserPageTab = () => {
                     }
                 </TabPanel>
 
-                {/* ローディング中 */}
+                {/* Loading Spinner */}
                 <div className="text-center">
                     {loading && < Loading />}
                 </div>

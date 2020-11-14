@@ -106,7 +106,6 @@ const ReviewIndex = () => {
         }
         if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
             scrollTopDiv.classList.remove('d-none')
-            console.log('display scrollTopDiv')
         }
         return
     }
@@ -215,7 +214,7 @@ const ReviewIndex = () => {
                 <Timeline timelines={timelines} loginUser={loginUser} />
             </div>
 
-            {/* ローディング中 */}
+            {/* Loading Spinner */}
             <div className="text-center">
                 {loading && < Loading />}
             </div>

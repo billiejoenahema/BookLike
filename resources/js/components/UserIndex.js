@@ -63,7 +63,6 @@ const UserIndex = () => {
         }
         if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
             scrollTopDiv.classList.remove('d-none')
-            console.log('display scrollTopDiv')
         }
         return
     }
@@ -100,7 +99,7 @@ const UserIndex = () => {
                 <Users users={userList} loginUser={loginUser} />
             </div>
 
-            {/* ローディング中 */}
+            {/* Loading Spinner */}
             <div className="text-center">
                 {loading && < Loading />}
             </div>

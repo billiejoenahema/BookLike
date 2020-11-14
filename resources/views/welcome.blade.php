@@ -38,9 +38,9 @@
             </div>
         </div>
     </div>
-    <footer class="page-footer font-small">
-        <div class="footer-copyright text-center text-blog py-3">
-            © 2020 Copyright: BookLike
+    <footer class="page-footer font-small w-100 bg-transparent">
+        <div class="footer-copyright d-flex flex-wrap flex-row justify-content-center text-dark py-3">
+            <span class="px-2">© 2020 Copyright: BookLike</span>
         </div>
     </footer>
 </body>

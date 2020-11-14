@@ -38,7 +38,7 @@ footer{
     }
 }
 
-/* ページトップへ戻るボタン */
+/* ページトップへ戻る */
 #scroll-top-div {
     line-height: 0.2rem;
 }
@@ -59,6 +59,7 @@ footer{
     transition:0.2s all;
 }
 
+/* マイページのタブ */
 .react-tabs > ul > li {
     width: 25%;
     padding: 0.2rem 0;
@@ -69,45 +70,93 @@ footer{
     cursor: pointer;
 }
 
-/* ユーザー＆投稿検索フォーム */
+.search-form {
+    position: fixed;
+    top: 0.47rem;
+    left: 25%;
+    z-index:1020;
+}
 
-@media screen and (min-width: 500px) {
-    .search-form {
-        position: fixed;
-        top: 0.47rem;
-        left: 25%;
-        z-index:1020;
-    }
+.search-modal {
+    display: none;
+}
 
-    .search-modal {
-        display: none;
-    }
+#search-word-mobile {
+    display: none;
+}
 
-    #search-word-mobile {
-        display: none;
-    }
+#footer-menu {
+    display: none !important;
+}
 
-    #footer-menu {
-        display: none !important;
-    }
-
-    /* 新規投稿ボタン */
-    .floating-button {
+/* 新規投稿ボタン */
+.floating-button {
     display: block;
     position: fixed;
     bottom: 1.6rem;
     right: 10%;
     padding: 0.6rem 0.8rem;
     z-index: 1200;
-    }
-    .floating-button:hover {
+}
+.floating-button:hover {
     transform: scale(1.1, 1.1);
-    transition: 0.2s;
-    }
-
+transition: 0.2s;
 }
 
-@media screen and (max-width: 499px) {
+
+.min-100vh {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.bg-imageColor {
+    background-image: linear-gradient(160deg,#7092be , #b1f4cf 55%, #ffeaa5);
+}
+
+/* ウエルカムページのスタイル */
+.home-body {
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+#index-toggle {
+    line-height: 26px;
+    width: 220px;
+    margin-right: auto;
+    user-select: none;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.switch-index {
+    height: 26px;
+    width: 110px;
+}
+
+
+/* ワイドスクリーン用スタイル */
+@media screen and (max-width: 1300px) {
+    .search-form {
+        left: 40%;
+    }
+}
+
+/* スマホ用スタイル */
+@media screen and (width: 499px) {
     .search-form {
         display: none;
     }
@@ -156,49 +205,8 @@ footer{
         font-size: 0.5rem;
     }
 
+    /* スマホの時はフローティングボタンを非表示 */
     .floating-button {
         display: none;
     }
-}
-
-.min-100vh {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.flex-1 {
-    flex: 1;
-}
-
-.full-height {
-    height: 100vh;
-}
-
-.bg-imageColor {
-    background-image: linear-gradient(160deg,#7092be , #b1f4cf 55%, #ffeaa5);
-}
-
-.home-body {
-    color: #636b6f;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 200;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
-
-#index-toggle {
-    line-height: 26px;
-    width: 220px;
-    margin-right: auto;
-    user-select: none;
-    overflow: hidden;
-    border-radius: 3px;
-}
-
-.switch-index {
-    height: 26px;
-    width: 110px;
 }

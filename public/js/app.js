@@ -72068,7 +72068,6 @@ var ReviewIndex = function ReviewIndex() {
 
     if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
       scrollTopDiv.classList.remove('d-none');
-      console.log('display scrollTopDiv');
     }
 
     return;
@@ -72659,7 +72658,6 @@ var UserIndex = function UserIndex() {
 
     if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
       scrollTopDiv.classList.remove('d-none');
-      console.log('display scrollTopDiv');
     }
 
     return;
@@ -72842,7 +72840,6 @@ var UserPageTab = function UserPageTab() {
 
     if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
       scrollTopDiv.classList.remove('d-none');
-      console.log('display scrollTopDiv');
     }
 
     return;
@@ -72871,7 +72868,7 @@ var UserPageTab = function UserPageTab() {
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
-  }, "\u30D5\u30A9\u30ED\u30FC\u3057\u3066\u3044\u308B\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, followedUsers.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, followedUsers.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
     users: followedUsers,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
