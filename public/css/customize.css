@@ -149,14 +149,14 @@ transition: 0.2s;
 
 
 /* ワイドスクリーン用スタイル */
-@media screen and (max-width: 1300px) {
+@media screen and (min-width: 1300px) {
     .search-form {
         left: 40%;
     }
 }
 
 /* スマホ用スタイル */
-@media screen and (width: 499px) {
+@media screen and (max-width: 499px) {
     .search-form {
         display: none;
     }
@@ -172,6 +172,7 @@ transition: 0.2s;
         top: 0.47rem;
         left: 30%;
         z-index:1020;
+        display: block;
     }
 
     .search-modal-button > i {
