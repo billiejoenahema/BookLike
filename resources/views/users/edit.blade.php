@@ -84,8 +84,8 @@
                 <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('自己紹介') }}</label>
 
                 <div class="col-md-6">
-                    <input id="description" type="text" class="form-control" name="description"
-                        value="{{ $login_user->description }}">
+                    <textarea id="description" type="text" class="form-control" name="description"
+                        rows="4">{{ $login_user->description }}</textarea>
                 </div>
             </div>
 

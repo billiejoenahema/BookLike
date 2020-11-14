@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     if (Auth::check()) {
@@ -32,11 +33,15 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('terms', function(User $user) {
         $login_user = auth()->user();
-        return view('/terms', compact('login_user'));
+        $storage = Storage::disk('s3');
+
+        return view('/terms', compact('login_user', 'storage'));
     });
 
     Route::get('privacy', function(User $user) {
         $login_user = auth()->user();
-        return view('/privacy', compact('login_user'));
+        $storage = Storage::disk('s3');
+
+        return view('/privacy', compact('login_user', 'storage'));
     });
 });
