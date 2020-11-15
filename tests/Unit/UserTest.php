@@ -12,7 +12,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test()
+    public function testUser()
     {
         $this->assertTrue(true);
     }
