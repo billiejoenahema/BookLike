@@ -1,11 +1,11 @@
 /* footerの位置を調整 */
-.footer-fixed{
+.footer-fixed {
     min-height: 100vh;
     position: relative;
     padding-bottom: 60px;
     box-sizing: border-box;
 }
-footer{
+footer {
     position: absolute;
     bottom: 0;
 }
@@ -85,10 +85,6 @@ footer{
     display: none;
 }
 
-#footer-menu {
-    display: none !important;
-}
-
 /* 新規投稿ボタン */
 .floating-button {
     display: block;
@@ -151,12 +147,19 @@ transition: 0.2s;
 /* ワイドスクリーン用スタイル */
 @media screen and (min-width: 1300px) {
     .search-form {
-        left: 40%;
+        left: 35%;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    #footer-menu {
+        display: none !important;
     }
 }
 
 /* スマホ用スタイル */
 @media screen and (max-width: 499px) {
+
     .search-form {
         display: none;
     }
@@ -195,7 +198,7 @@ transition: 0.2s;
         left: 0;
         width: 100%;
         height: 2.9rem;
-        z-index: 1020;
+        z-index: 1200;
         line-height: 1rem;
         padding-top: 0.5rem;
     }
@@ -210,4 +213,14 @@ transition: 0.2s;
     .floating-button {
         display: none;
     }
+
+    /* スマホの時はページトップへ戻るを非表示 */
+    #scroll-top-div {
+        display: none;
+    }
+
+    #reviewIndex, #userIndex, #userPageTab {
+        margin-bottom: 100px;
+    }
+
 }
