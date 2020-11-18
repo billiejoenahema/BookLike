@@ -40,7 +40,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $guest_password = 'gestuser+password';
-        return view('auth.login',compact('guest_password'));
+        return view('auth.login');
+    }
+
+    public function guestUserLogin()
+    {
+        $email = 'guestuser@example.com';
+        $password = 'guestuser+password';
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            // 認証に成功
+            return redirect('/');
+        }
     }
 }

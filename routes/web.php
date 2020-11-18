@@ -10,6 +10,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// ゲストログイン用ルート
+Route::get('guest', 'Auth\LoginController@guestUserLogin')->name('login.guest');
+
 Auth::routes();
 
 // ログイン状態
