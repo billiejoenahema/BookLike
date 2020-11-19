@@ -2,11 +2,9 @@ function categorySelectValidate() {
     'use strict'
     const selectedCategory = document.getElementById('category').value
     const reviewPost = document.getElementById('reviewPost')
-    if (selectedCategory === 'default') {
-        window.alert('カテゴリーを選択してください')
-        return
-    }
-    reviewPost.submit()
+
+    // カテゴリーを選択せずに投稿ボタンを押すとアラートを出す
+    selectedCategory === 'default' ? window.alert('カテゴリーを選択してください') : reviewPost.submit()
 }
 
 function checkCommentLength(value) {
@@ -32,8 +30,8 @@ function checkTextLength(value) {
     const inputtedLength = value.length
     const textLength = document.getElementById('textLength')
 
+    // 800文字以上入力されたら入力文字数の表示を赤くする
     inputtedLength > 800 ? textLength.style.color = 'red' : textLength.style.color = '#495057'
-
     textLength.textContent = `${inputtedLength} / 800文字`
 }
 
@@ -41,11 +39,13 @@ function commentValidate() {
     'use strict'
     const commentLength = document.getElementById('comment').value.length
     const commentPost = document.getElementById('commentPost')
-    if (commentLength < 1 || 200 < commentLength) {
-        window.alert('200文字以内で入力してください')
-        return
+
+    // 入力されたコメントが200文字を超えていたらアラートを出す
+    {
+        commentLength < 1 || 200 < commentLength ?
+            window.alert('200文字以内で入力してください')
+            : commentPost.submit()
     }
-    commentPost.submit()
 }
 
 const flashMessage = document.getElementById('flashMessage')
