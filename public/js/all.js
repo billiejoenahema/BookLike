@@ -48,23 +48,32 @@ function commentValidate() {
     commentPost.submit()
 }
 
-window.onload = () => {
-    const select = document.getElementById('editCategory')
-    if (select) {
-        const options = select.options
-        const category = document.getElementById('editCategory').dataset.category
-
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].value === category) {
-                options[i].selected = true;
-                break;
-            }
-        }
-    }
-}
-
 const flashMessage = document.getElementById('flashMessage')
 flashMessage && flashMessage.classList.add('fadeout')
+
+const footerMenu = document.getElementById("footer-menu")
+const footerHeight = footerMenu.clientHeight
+let currentPosition = 0
+let lastPosition = 0
+
+const onScroll = () => {
+    // 下にスクロールしたらfooterMenuを非表示に
+    if (currentPosition > footerHeight && currentPosition > lastPosition) {
+        footerMenu.classList.add('footer-menu-hidden')
+    }
+    // 上にスクロールしたらfooterMenuを再表示
+    if (currentPosition < footerHeight || currentPosition < lastPosition) {
+        footerMenu.classList.remove('footer-menu-hidden')
+    }
+    // lastPositionを更新
+    lastPosition = currentPosition
+}
+
+window.addEventListener("scroll", () => {
+    // スクロールするごとにcurrentPositionを更新
+    currentPosition = window.scrollY
+    onScroll()
+})
 
 window.onload = () => {
     'use strict'
@@ -88,6 +97,7 @@ const scrollTop = (e) => {
 }
 
 function selectItem(e) {
+    // 投稿する書籍選択画面でクリックした書籍を選択状態にする
     const elements = document.querySelectorAll('.search-item')
     elements.forEach((element) => {
         element.style.border = "solid 1px rgba(0, 0, 0, 0.125)"

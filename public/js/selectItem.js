@@ -1,4 +1,5 @@
 function selectItem(e) {
+    // 投稿する書籍選択画面でクリックした書籍を選択状態にする
     const elements = document.querySelectorAll('.search-item')
     elements.forEach((element) => {
         element.style.border = "solid 1px rgba(0, 0, 0, 0.125)"

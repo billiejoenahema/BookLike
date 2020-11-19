@@ -21,6 +21,7 @@ mix.scripts([
     'public/js/commentValidate.js',
     'public/js/editCategory.js',
     'public/js/flashMessageFadeout.js',
+    'public/js/footerMenuShowHide.js',
     'public/js/initialTextLength.js',
     'public/js/scrollTop.js',
     'public/js/selectItem.js'
