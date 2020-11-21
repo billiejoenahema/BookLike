@@ -75,23 +75,14 @@ window.addEventListener("scroll", () => {
     onScroll()
 })
 
-window.onload = () => {
-    'use strict'
-    const inputtedText = document.getElementById('inputtedText')
-    if (inputtedText) {
-        const inputtedLength = inputtedText.value.length
-        const textLength = document.getElementById('textLength')
-        textLength.textContent = `${inputtedLength} / 800文字`
-    }
-    return
-}
-
 const scrollTop = (e) => {
     'use strict'
     e.preventDefault()
-    const y = document.body.scrollTop || document.documentElement.scrollTop
-    if (y) {
-        scrollTo(0, y /= 1.06)
+    // スクロール量を取得
+    const scrollAmount = document.body.scrollTop || document.documentElement.scrollTop
+
+    if (scrollAmount) {
+        scrollTo(0, scrollAmount /= 1.06)
     }
     return
 }
