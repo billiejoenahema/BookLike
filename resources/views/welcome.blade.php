@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/customize.css') }}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
 </head>
 
 <body class="home-body bg-imageColor">
