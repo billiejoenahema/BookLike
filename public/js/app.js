@@ -72150,7 +72150,7 @@ var ReviewIndex = function ReviewIndex() {
     "aria-label": "\u66F8\u7C4D\u691C\u7D22",
     autoComplete: "on"
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    id: "search-word-mobile"
+    id: "search-word-display"
   }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \"".concat(searchWord, "\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex justify-content-between mt-2 flex-wrap mb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {

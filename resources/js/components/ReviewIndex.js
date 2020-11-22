@@ -175,10 +175,9 @@ const ReviewIndex = () => {
                 </div>
             </div>
 
-            <div id="search-word-mobile">
+            <div id="search-word-display">
                 {searchWord && `検索ワード: \"${searchWord}\"`}
             </div>
-
 
             <div className="form-group d-flex justify-content-between mt-2 flex-wrap mb-2">
                 {/* カテゴリー選択 */}

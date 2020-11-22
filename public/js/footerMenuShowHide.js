@@ -1,9 +1,9 @@
-const footerMenu = document.getElementById("footer-menu")
-const footerHeight = footerMenu.clientHeight
-let currentPosition = 0
-let lastPosition = 0
-
 const onScroll = () => {
+    const footerMenu = document.getElementById("footer-menu")
+    const footerHeight = footerMenu.clientHeight
+    let currentPosition = 0
+    let lastPosition = 0
+
     // 下にスクロールしたらfooterMenuを非表示に
     if (currentPosition > footerHeight && currentPosition > lastPosition) {
         footerMenu.classList.add('footer-menu-hidden')
