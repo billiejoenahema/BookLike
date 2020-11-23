@@ -73101,6 +73101,7 @@ var STORAGE = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com';
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFavorited; });
 function isFavorited(timeline, loginUser) {
+  // 対象の投稿にログインユーザーがいいねしているかどうかを判定
   var favoritesArray = Array.from(timeline.favorites);
   var userIds = favoritesArray.map(function (v) {
     return v.user_id;
@@ -73121,6 +73122,7 @@ function isFavorited(timeline, loginUser) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFollowed; });
 function isFollowed(user, loginUser) {
+  // 対象のユーザーをログインユーザーがフォローしているかどうかを判定
   var followedArray = Array.from(user.followers);
   var userIds = followedArray.map(function (v) {
     return v.id;

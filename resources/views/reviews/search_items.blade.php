@@ -44,8 +44,8 @@
             <div>「キーワード」に該当する書籍は見つかりませんでした</div>
             @else
             <div class="overflow-auto" style="height: 70vw; max-height: 400px;">
-                @foreach ($search_items as $search_item)
                 <!-- 検索結果をforeachでまわす -->
+                @foreach ($search_items as $search_item)
                 <div class="card flex-row p-2 mb-2 search-item btn text-left shadow-sm" onClick="selectItem(this)"
                     id="{{ $search_item->ASIN }}">
                     <div class="d-flex">
@@ -56,10 +56,16 @@
                     <div class="d-flex flex-column pl-2">
                         <h5>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h5>
                         <ul class="list-unstyled">
-                            <li class="list-item">{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}
+                            <li class="list-item">
+                                {{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}
                             </li>
                             <li class="list-item">
-                                {{ $search_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}</li>
+                                {{ $search_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}
+                            </li>
+                            <li class="list-item">
+                                <object><a href={{ $search_item->DetailPageURL }} target="_blank" rel="noopener"><i
+                                            class="fab fa-amazon"></i> Amazon</a></object>
+                            </li>
                         </ul>
                     </div>
                 </div>
