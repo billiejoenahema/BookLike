@@ -28,6 +28,7 @@ https://booklikeapp.com
 
 ## レスポンシブ対応
 モバイルファーストのためにCSSを細かくカスタマイズしました
+<a href="https://gyazo.com/09e584e0060864bc3334eda5b675af73"><img src="https://i.gyazo.com/09e584e0060864bc3334eda5b675af73.jpg" alt="Image from Gyazo" width="2282"/></a>
 
 ## 使用技術
 ### フロントエンド
