@@ -48,10 +48,10 @@
                 @foreach ($search_items as $search_item)
                 <div class="card flex-row p-2 mb-2 search-item btn text-left shadow-sm" onClick="selectItem(this)"
                     id="{{ $search_item->ASIN }}">
-                    <div class="d-flex">
-                        <img class="m-auto"
+                    <div>
+                        <img class="align-items-start"
                             src="{{ $search_item->Images->Primary->Large->URL ?? asset('images/NoImage.png') }}"
-                            width="72">
+                            width="80">
                     </div>
                     <div class="d-flex flex-column pl-2">
                         <h5>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h5>
