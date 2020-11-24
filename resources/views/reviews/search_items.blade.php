@@ -51,7 +51,7 @@
                     <div class="d-flex">
                         <img class="m-auto"
                             src="{{ $search_item->Images->Primary->Large->URL ?? asset('images/NoImage.png') }}"
-                            width="80">
+                            width="72">
                     </div>
                     <div class="d-flex flex-column pl-2">
                         <h5>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h5>
