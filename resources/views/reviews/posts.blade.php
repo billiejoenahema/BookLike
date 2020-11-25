@@ -50,7 +50,7 @@
                         </select>
                     </div>
                     <div class="col-12 p-0">
-                        <label>おすすめの理由を教えてください</label>
+                        <label>お気に入りの理由を教えてください</label>
                         <textarea class="form-control @error('text') is-invalid @enderror" name="text" required
                             autocomplete="text" rows="8" autofocus
                             onkeyup="checkTextLength(value)">{{ old('text') ? : '' }}</textarea>
