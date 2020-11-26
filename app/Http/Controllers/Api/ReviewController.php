@@ -11,10 +11,9 @@ class ReviewController extends Controller
     public function show(Review $review, User $user)
     {
         $loginUser = auth()->user();
-        $review = $review
-            ->with('favorites')
-            ->where('id', $review->id)
-            ->first();
+        $review = $review->with('favorites')
+                    ->where('id', $review->id)
+                    ->first();
 
         return
             [
@@ -27,14 +26,16 @@ class ReviewController extends Controller
     {
         $loginUser = auth()->user();
         $timelines = $review->with('user')
-            ->with(['comments','favorites'])
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
+                        ->with(['comments','favorites'])
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(10);
+
+        // いいねが多い順に投稿を取得
         $favoritest = $review->with('user')
-            ->with(['comments', 'favorites'])
-            ->withCount('favorites')
-            ->orderBy('favorites_count', 'DESC')
-            ->paginate(10);
+                        ->with(['comments', 'favorites'])
+                        ->withCount('favorites')
+                        ->orderBy('favorites_count', 'DESC')
+                        ->paginate(10);
 
         return
             [
