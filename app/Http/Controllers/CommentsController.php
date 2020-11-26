@@ -27,7 +27,6 @@ class CommentsController extends Controller
         $comment->commentStore($user->id, $data);
         session()->flash('flash_message', 'コメントを投稿しました');
 
-
         return back();
     }
 
