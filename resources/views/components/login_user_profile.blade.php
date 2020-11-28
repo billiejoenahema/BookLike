@@ -29,7 +29,14 @@
                     @endif
                 </div>
             </div>
-            <div>{{ $login_user->description }}</div>
+            <div class="flex-column">
+                <span class="font-weight-bold">好きなジャンル</span>
+                <p>{{ $login_user->category }}</p>
+            </div>
+            <div class="flex-column">
+                <span class="font-weight-bold">自己紹介</span>
+                <p>{{ $login_user->description }}</p>
+            </div>
         </div>
     </div>
 </div>

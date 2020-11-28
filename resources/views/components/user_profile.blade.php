@@ -21,7 +21,12 @@
                 {{-- @include('components.follow_button') --}}
                 <div id="userProfileFollowButton"></div>
             </div>
-            <div class="d-flex">
+            <div class="flex-column">
+                <span class="font-weight-bold">好きなジャンル</span>
+                <p>{{ $user->category }}</p>
+            </div>
+            <div class="flex-column">
+                <span class="font-weight-bold">自己紹介</span>
                 <p>{{ $user->description }}</p>
             </div>
         </div>

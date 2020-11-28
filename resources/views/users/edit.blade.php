@@ -67,11 +67,9 @@
 
             <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('メールアドレス') }}</label>
-
                 <div class="col-md-6">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                         name="email" value="{{ $login_user->email }}" required autocomplete="email">
-
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -81,8 +79,15 @@
             </div>
 
             <div class="form-group row">
-                <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('自己紹介') }}</label>
+                <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('すきなジャンル') }}</label>
+                <div class="col-md-6">
+                    <textarea id="category" type="text" class="form-control" name="category"
+                        rows="2">{{ $login_user->category }}</textarea>
+                </div>
+            </div>
 
+            <div class="form-group row">
+                <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('自己紹介') }}</label>
                 <div class="col-md-6">
                     <textarea id="description" type="text" class="form-control" name="description"
                         rows="4">{{ $login_user->description }}</textarea>
