@@ -21,7 +21,8 @@ class User extends Authenticatable
         'profile_iamge',
         'email',
         'password',
-        'description'
+        'description',
+        'category'
     ];
 
     /**
@@ -95,6 +96,7 @@ class User extends Authenticatable
                 'name'          => $params['name'],
                 'profile_image' => $profile_image,
                 'email'         => $params['email'],
+                'category'      => $params['category'],
                 'description'   => $params['description']
                 ]);
         } else {
@@ -103,11 +105,11 @@ class User extends Authenticatable
                 'screen_name'   => $params['screen_name'],
                 'name'          => $params['name'],
                 'email'         => $params['email'],
+                'category'      => $params['category'],
                 'description'   => $params['description']
             ]);
         }
-
-                return;
+        return;
     }
 
     // フォロー中のユーザーを取得

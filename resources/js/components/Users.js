@@ -35,9 +35,15 @@ const Users = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="card-body d-flex">
-                        {/* 自己紹介文 */}
-                        <p>{omittedText(user.description, 100)}</p>
+                    <div className="card-body flex-column">
+                        <div className="flex-column">
+                            <span className="font-weight-bold">好きなジャンル</span>
+                            <p>{omittedText(user.category, 50)}</p>
+                        </div>
+                        <div className="flex-column">
+                            <span className="font-weight-bold">自己紹介</span>
+                            <p>{omittedText(user.description, 50)}</p>
+                        </div>
                     </div>
                 </div>
             )
