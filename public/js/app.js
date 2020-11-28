@@ -72455,7 +72455,7 @@ function Timeline(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(timeline.id),
       className: "d-block text-reset text-decoration-none"
-    }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_3__["default"])(timeline.text, 100))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_3__["default"])(timeline.text, 80))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-footer py-1 d-flex justify-content-end bg-white"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mr-3 d-flex align-items-center"
