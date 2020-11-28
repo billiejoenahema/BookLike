@@ -88,6 +88,7 @@ const ReviewIndex = () => {
     }
 
     const sortChange = (e) => {
+        // 並び替えでいいね順を選んでいるかどうか
         selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true)
         setTimelines([])
         setPage(1)

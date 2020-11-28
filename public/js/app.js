@@ -72046,6 +72046,7 @@ var ReviewIndex = function ReviewIndex() {
   };
 
   var sortChange = function sortChange(e) {
+    // 並び替えでいいね順を選んでいるかどうか
     selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true);
     setTimelines([]);
     setPage(1);
@@ -72627,7 +72628,8 @@ var UserIndex = function UserIndex() {
     loadUsers();
   }, [page, selectedPopular]);
   var userList = allUsers.filter(function (item) {
-    return item.name.indexOf(searchWord) > -1;
+    // nameとscreen_nameのどちらかが部分一致するユーザーを探す
+    return item.name.toLowerCase().indexOf(searchWord) > -1 || item.screen_name.toLowerCase().indexOf(searchWord) > -1;
   });
 
   var handleSearch = function handleSearch(e) {
@@ -72654,7 +72656,8 @@ var UserIndex = function UserIndex() {
         return prev + 1;
       });
       setHasMore(false);
-    }
+    } // 一定量スクロールダウンしたらトップへ戻るを表示する
+
 
     if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
       scrollTopDiv.classList.remove('d-none');

@@ -36,7 +36,8 @@ const UserIndex = () => {
     }, [page, selectedPopular])
 
     const userList = allUsers.filter((item) => {
-        return item.name.indexOf(searchWord) > -1
+        // nameとscreen_nameのどちらかが部分一致するユーザーを探す
+        return item.name.toLowerCase().indexOf(searchWord) > -1 || item.screen_name.toLowerCase().indexOf(searchWord) > -1
     })
 
     const handleSearch = (e) => {
@@ -61,6 +62,7 @@ const UserIndex = () => {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
+        // 一定量スクロールダウンしたらトップへ戻るを表示する
         if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
             scrollTopDiv.classList.remove('d-none')
         }
