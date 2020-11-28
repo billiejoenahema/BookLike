@@ -23,6 +23,8 @@ class UsersController extends Controller
             ->with('followers')
             ->orderBy('id', 'DESC')
             ->paginate(10);
+
+        // フォロワーが多い順にユーザーを取得
         $populars = $user->getAllUsers($loginUserId)
             ->with('followers')
             ->withCount('followers')
