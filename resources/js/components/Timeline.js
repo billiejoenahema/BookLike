@@ -46,7 +46,7 @@ function Timeline(props) {
                     </div>
                     <div className="card-body">
                         <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
-                            {omittedText(timeline.text, 100)}
+                            {omittedText(timeline.text, 80)}
                         </a>
                     </div>
                     <div className="card-footer py-1 d-flex justify-content-end bg-white">
