@@ -51,11 +51,12 @@ function commentValidate() {
 const flashMessage = document.getElementById('flashMessage')
 flashMessage && flashMessage.classList.add('fadeout')
 
+let currentPosition = 0
+let lastPosition = 0
+
 const onScroll = () => {
     const footerMenu = document.getElementById("footer-menu")
     const footerHeight = footerMenu.clientHeight
-    let currentPosition = 0
-    let lastPosition = 0
 
     // 下にスクロールしたらfooterMenuを非表示に
     if (currentPosition > footerHeight && currentPosition > lastPosition) {
@@ -72,6 +73,7 @@ const onScroll = () => {
 window.addEventListener("scroll", () => {
     // スクロールするごとにcurrentPositionを更新
     currentPosition = window.scrollY
+
     onScroll()
 })
 
