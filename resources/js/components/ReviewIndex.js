@@ -109,7 +109,7 @@ const ReviewIndex = () => {
         const scrollAmount = window.scrollY
         const clientHeight = document.getElementById('timelinesComponent').clientHeight
 
-        if (hasMore && clientHeight - scrollAmount < 800) {
+        if (hasMore && clientHeight - scrollAmount < 1200) {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
