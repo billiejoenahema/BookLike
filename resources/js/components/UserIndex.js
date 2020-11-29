@@ -56,15 +56,10 @@ const UserIndex = () => {
     body.onscroll = () => {
         const scrollAmount = window.scrollY
         const clientHeight = document.getElementById('usersComponent').clientHeight
-        const scrollTopDiv = document.getElementById('scroll-top-div')
 
         if (hasMore && clientHeight - scrollAmount < 700) {
             setPage(prev => prev + 1)
             setHasMore(false)
-        }
-        // 一定量スクロールダウンしたらトップへ戻るを表示する
-        if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
-            scrollTopDiv.classList.remove('d-none')
         }
         return
     }

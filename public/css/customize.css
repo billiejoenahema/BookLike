@@ -37,11 +37,6 @@ footer {
     }
 }
 
-/* ページトップへ戻る */
-#scroll-top-div {
-    line-height: 0.2rem;
-}
-
 .user-search-form {
     position: fixed;
     top: 0.47rem;
@@ -90,12 +85,12 @@ footer {
     position: fixed;
     bottom: 1.6rem;
     right: 10%;
-    padding: 0.6rem 0.8rem;
+    padding: 0.2rem 0.79rem 0;
     z-index: 1200;
 }
 .floating-button:hover {
     transform: scale(1.1, 1.1);
-transition: 0.2s;
+    transition: 0.2s;
 }
 
 .min-100vh {
@@ -210,11 +205,6 @@ transition: 0.2s;
 
     /* スマホではフローティングボタンを非表示 */
     .floating-button {
-        display: none;
-    }
-
-    /* スマホではページトップへ戻るを非表示 */
-    #scroll-top-div {
         display: none;
     }
 

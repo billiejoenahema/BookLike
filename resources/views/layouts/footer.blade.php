@@ -1,10 +1,3 @@
-<div id="scroll-top-div" class="text-center text-blog mb-3 d-none">
-    <a href="#" onclick={scrollTop} class="text-blog mb-0 d-block">
-        <i class="fas fa-angle-up h1"></i>
-        <br />
-        <span>Page Top</span>
-    </a>
-</div>
 <footer class="page-footer bg-imageColor font-small w-100">
     <div class="footer-copyright d-flex flex-wrap flex-row justify-content-center text-dark py-3"
         style="box-shadow: 0 -2px 4px #eee;">

@@ -72067,17 +72067,12 @@ var ReviewIndex = function ReviewIndex() {
   body.onscroll = function () {
     var scrollAmount = window.scrollY;
     var clientHeight = document.getElementById('timelinesComponent').clientHeight;
-    var scrollTopDiv = document.getElementById('scroll-top-div');
 
     if (hasMore && clientHeight - scrollAmount < 800) {
       setPage(function (prev) {
         return prev + 1;
       });
       setHasMore(false);
-    }
-
-    if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
-      scrollTopDiv.classList.remove('d-none');
     }
 
     return;
@@ -72664,18 +72659,12 @@ var UserIndex = function UserIndex() {
   body.onscroll = function () {
     var scrollAmount = window.scrollY;
     var clientHeight = document.getElementById('usersComponent').clientHeight;
-    var scrollTopDiv = document.getElementById('scroll-top-div');
 
     if (hasMore && clientHeight - scrollAmount < 700) {
       setPage(function (prev) {
         return prev + 1;
       });
       setHasMore(false);
-    } // 一定量スクロールダウンしたらトップへ戻るを表示する
-
-
-    if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
-      scrollTopDiv.classList.remove('d-none');
     }
 
     return;
@@ -72850,19 +72839,6 @@ var UserPageTab = function UserPageTab() {
     loadTab();
     setLoading(false);
   }, []);
-  var body = document.getElementById('body');
-
-  body.onscroll = function () {
-    var scrollAmount = window.scrollY;
-    var scrollTopDiv = document.getElementById('scroll-top-div');
-
-    if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
-      scrollTopDiv.classList.remove('d-none');
-    }
-
-    return;
-  };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center small px-0"
   }, "\u6295\u7A3F", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), userReviews.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {

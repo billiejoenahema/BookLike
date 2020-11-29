@@ -37,16 +37,6 @@ const UserPageTab = () => {
         setLoading(false)
     }, [])
 
-    const body = document.getElementById('body')
-    body.onscroll = () => {
-        const scrollAmount = window.scrollY
-        const scrollTopDiv = document.getElementById('scroll-top-div')
-        if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
-            scrollTopDiv.classList.remove('d-none')
-        }
-        return
-    }
-
     return (
         <>
             <Tabs>
