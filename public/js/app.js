@@ -72068,7 +72068,7 @@ var ReviewIndex = function ReviewIndex() {
     var scrollAmount = window.scrollY;
     var clientHeight = document.getElementById('timelinesComponent').clientHeight;
 
-    if (hasMore && clientHeight - scrollAmount < 800) {
+    if (hasMore && clientHeight - scrollAmount < 1200) {
       setPage(function (prev) {
         return prev + 1;
       });
@@ -72660,7 +72660,7 @@ var UserIndex = function UserIndex() {
     var scrollAmount = window.scrollY;
     var clientHeight = document.getElementById('usersComponent').clientHeight;
 
-    if (hasMore && clientHeight - scrollAmount < 700) {
+    if (hasMore && clientHeight - scrollAmount < 1000) {
       setPage(function (prev) {
         return prev + 1;
       });

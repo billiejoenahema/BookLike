@@ -57,7 +57,7 @@ const UserIndex = () => {
         const scrollAmount = window.scrollY
         const clientHeight = document.getElementById('usersComponent').clientHeight
 
-        if (hasMore && clientHeight - scrollAmount < 700) {
+        if (hasMore && clientHeight - scrollAmount < 1000) {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
