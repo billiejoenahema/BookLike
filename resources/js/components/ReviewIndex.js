@@ -6,9 +6,11 @@ import Loading from './Loading'
 const ReviewIndex = () => {
 
     // パラメーターがあればsearhWordへ代入
-    const search = (new URL(document.location)).searchParams.get('search')
+    const params = (new URL(document.location)).searchParams
+    const search = params.get('search')
+    const value = params.get('value')
     const initialSearchWord = search || ''
-    const initialSelectedValue = search ? 'author' : 'title'
+    const initialSelectedValue = search ? value : 'title'
 
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
