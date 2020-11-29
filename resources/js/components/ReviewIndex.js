@@ -108,14 +108,10 @@ const ReviewIndex = () => {
     body.onscroll = () => {
         const scrollAmount = window.scrollY
         const clientHeight = document.getElementById('timelinesComponent').clientHeight
-        const scrollTopDiv = document.getElementById('scroll-top-div')
 
         if (hasMore && clientHeight - scrollAmount < 800) {
             setPage(prev => prev + 1)
             setHasMore(false)
-        }
-        if (scrollAmount > 400 && scrollTopDiv.classList.contains('d-none')) {
-            scrollTopDiv.classList.remove('d-none')
         }
         return
     }
