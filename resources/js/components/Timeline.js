@@ -37,7 +37,7 @@ function Timeline(props) {
                                     <ul className="list-unstyled">
                                         <li><span>著者：</span><object><a href={`/reviews?search=${timeline.author}&value=author`}>{timeline.author}</a></object></li>
                                         <li><span>出版社：</span><object><a href={`/reviews?search=${timeline.manufacturer}&value=manufacturer`}>{timeline.manufacturer}</a></object></li>
-                                        <li><span>カテゴリー：</span>{timeline.category}</li>
+                                        <li><span>カテゴリー：</span><object><a href={`/reviews?category=${timeline.category}`}>{timeline.category}</a></object></li>
                                         <li><object><a href={timeline.page_url} target="_blank" rel="noopener" data-tip="Amazonサイトへ移動"><i className="fab fa-amazon"></i> Amazon<ReactTooltip effect="float" type="info" place="top" /></a></object></li>
                                     </ul>
                                 </div>

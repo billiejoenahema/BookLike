@@ -25,7 +25,7 @@
                     <li>出版社：<a
                             href="/reviews?search={{ $review->manufacturer }}&value=manufacturer">{{ $review->manufacturer }}</a>
                     </li>
-                    <li>カテゴリー：{{ $review->category }}</li>
+                    <li>カテゴリー：<a href="/reviews?category={{ $review->category }}">{{ $review->category }}</a></li>
                     <li><a href="{{ $review->page_url }} " target="_blank" rel="noopener" data-toggle="tooltip"
                             data-placement="top" title="Amazonサイトへ移動"><i class="fab fa-amazon"></i> Amazon</a></li>
                 </ul>
