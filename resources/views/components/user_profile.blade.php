@@ -10,14 +10,14 @@
         </div>
         <div class="col-12 col-sm-8 p-4 d-flex flex-column justify-content-between">
             <!-- フォロー関係 -->
-            <div class="d-flex flex-wrap justify-content-between justify-content-end mb-3">
+            <div class="d-flex flex-wrap justify-content-between mb-3">
                 @if ($login_user->isFollowed($user->id))
                 <div class="">
                     <span class="text-secondary"><i class="far fa-laugh"></i>フォローされています</span>
                 </div>
                 @endif
                 {{-- @include('components.follow_button') --}}
-                <div id="userProfileFollowButton"></div>
+                <div class="justify-content-end" id="userProfileFollowButton"></div>
             </div>
             <div class="flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
