@@ -21,7 +21,7 @@
             <div class="col-md-8 d-flex flex-column text-left py-2 px-0">
                 <h5 class="mb-3">{{ $review->title }}</h5>
                 <ul class="list-unstyled">
-                    <li>著者：{{ $review->author }}</li>
+                    <li>著者：<a href="/reviews?search={{ $review->author }}">{{ $review->author }}</a></li>
                     <li>出版社：{{ $review->manufacturer }}</li>
                     <li>カテゴリー：{{ $review->category }}</li>
                     <li><a href="{{ $review->page_url }} " target="_blank" rel="noopener" data-toggle="tooltip"

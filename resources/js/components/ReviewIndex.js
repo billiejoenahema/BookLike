@@ -5,16 +5,21 @@ import Loading from './Loading'
 
 const ReviewIndex = () => {
 
+    // パラメーターがあればsearhWordへ代入
+    const search = (new URL(document.location)).searchParams.get('search')
+    const initialSearchWord = search || ''
+    const initialSelectedValue = search ? 'author' : 'title'
+
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
     const [timelinesLength, setTimelinesLength] = useState(0)
     const [selectedCategory, setSelectedCategory] = useState('')
-    const [selectedValue, setSelectedValue] = useState('title')
+    const [selectedValue, setSelectedValue] = useState(initialSelectedValue)
     const [selectedFavo, setSelectedFavo] = useState(false)
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [searchWord, setSearchWord] = useState('')
+    const [searchWord, setSearchWord] = useState(initialSearchWord)
 
     useEffect(() => {
         const loadTimeline = async () => {
