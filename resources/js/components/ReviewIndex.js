@@ -5,17 +5,19 @@ import Loading from './Loading'
 
 const ReviewIndex = () => {
 
-    // パラメーターがあればsearhWordへ代入
+    // パラメーター
     const params = (new URL(document.location)).searchParams
     const search = params.get('search')
     const value = params.get('value')
+    const category = params.get('category')
     const initialSearchWord = search || ''
-    const initialSelectedValue = search ? value : 'title'
+    const initialSelectedValue = value || 'title'
+    const initialSelectedCategory = category || ''
 
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
     const [timelinesLength, setTimelinesLength] = useState(0)
-    const [selectedCategory, setSelectedCategory] = useState('')
+    const [selectedCategory, setSelectedCategory] = useState(initialSelectedCategory)
     const [selectedValue, setSelectedValue] = useState(initialSelectedValue)
     const [selectedFavo, setSelectedFavo] = useState(false)
     const [page, setPage] = useState(1)

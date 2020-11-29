@@ -71897,12 +71897,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewIndex = function ReviewIndex() {
-  // パラメーターがあればsearhWordへ代入
+  // パラメーター
   var params = new URL(document.location).searchParams;
   var search = params.get('search');
   var value = params.get('value');
+  var category = params.get('category');
   var initialSearchWord = search || '';
-  var initialSelectedValue = search ? value : 'title';
+  var initialSelectedValue = value || 'title';
+  var initialSelectedCategory = category || '';
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -71919,7 +71921,7 @@ var ReviewIndex = function ReviewIndex() {
       timelinesLength = _useState6[0],
       setTimelinesLength = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSelectedCategory),
       _useState8 = _slicedToArray(_useState7, 2),
       selectedCategory = _useState8[0],
       setSelectedCategory = _useState8[1];
@@ -72450,7 +72452,9 @@ function Timeline(props) {
       href: "/reviews?search=".concat(timeline.author, "&value=author")
     }, timeline.author))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews?search=".concat(timeline.manufacturer, "&value=manufacturer")
-    }, timeline.manufacturer))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), timeline.category), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    }, timeline.manufacturer))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/reviews?category=".concat(timeline.category)
+    }, timeline.category))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: timeline.page_url,
       target: "_blank",
       rel: "noopener",
