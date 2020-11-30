@@ -18,6 +18,7 @@ mix.scripts([
     'public/js/categorySelectValidate.js',
     'public/js/checkCommentLength.js',
     'public/js/checkTextLength.js',
+    'public/js/checkForm.js',
     'public/js/commentValidate.js',
     'public/js/editCategory.js',
     'public/js/flashMessageFadeout.js',
