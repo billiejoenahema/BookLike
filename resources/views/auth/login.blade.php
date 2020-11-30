@@ -8,9 +8,9 @@
             @csrf
 
             <div class="form-group row">
-                <input id="email" type="email" class="form-control rounded-pill @error('email') is-invalid @enderror"
-                    name="email" placeholder="メールアドレス" value="{{ old('email') }}" required autocomplete="email"
-                    autofocus>
+                <input id="email" type="email" oninput="checkForm()"
+                    class="form-control rounded-pill @error('email') is-invalid @enderror" name="email"
+                    placeholder="メールアドレス" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @error('email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-group row">
-                <input id="password" type="password"
+                <input id="password" type="password" oninput="checkForm()"
                     class="form-control rounded-pill @error('password') is-invalid @enderror" name="password"
                     placeholder="パスワード" required autocomplete="current-password">
 
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group row">
-                <button type="submit" class="btn btn-primary rounded-pill shadow-sm">
+                <button id="login" type="submit" class="btn btn-primary rounded-pill shadow-sm disabled">
                     {{ __('ログイン') }}
                 </button>
 
