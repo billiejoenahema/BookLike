@@ -35,7 +35,7 @@ function checkTextLength(value) {
     textLength.textContent = `${inputtedLength} / 800文字`
 }
 
-function checkForm() {
+function checkInputLoginForm() {
     'use strict'
 
     const email = document.getElementById('email')
