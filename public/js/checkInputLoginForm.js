@@ -1,4 +1,4 @@
-function checkLoginForm() {
+function checkInputLoginForm() {
     'use strict'
 
     const email = document.getElementById('email')
