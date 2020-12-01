@@ -66,8 +66,12 @@
                         </div>
                     </div>
                     <div class="modal-footer border-top-0">
-                        <button type="submit" id="postButton" class="btn btn-primary rounded-pill shadow-sm disabled"
-                            disabled>
+                        <button type="button" data-dismiss="modal" aria-label="Close"
+                            class="btn btn-secondary rounded-pill">
+                            キャンセル
+                        </button>
+                        <button type="submit" id="postButton"
+                            class="btn btn-primary rounded-pill ml-4 shadow-sm disabled" disabled>
                             投稿する
                         </button>
                     </div>
