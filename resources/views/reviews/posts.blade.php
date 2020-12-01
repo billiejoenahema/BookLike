@@ -51,9 +51,9 @@
                     </div>
                     <div class="col-12 p-0">
                         <label>お気に入りの理由を教えてください</label>
-                        <textarea class="form-control @error('text') is-invalid @enderror" name="text" required
-                            autocomplete="text" rows="8" autofocus
-                            onkeyup="checkTextLength(value)">{{ old('text') ? : '' }}</textarea>
+                        <textarea id="textarea" class="form-control @error('text') is-invalid @enderror" name="text"
+                            required autocomplete="text" rows="8" autofocus
+                            onkeyup="checkTextLength()">{{ old('text') ? : '' }}</textarea>
                         @error('text')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ '800文字以内で入力してください' }}</strong>
@@ -71,9 +71,9 @@
                         value="{{ $get_item->Images->Primary->Large->URL ?? asset('images/NoImage.png') }}">
                     <div class="form-group row mb-0">
                         <div class="col-12 text-right">
-                            <p id="textLength">0 / 800文字</p>
-                            <button type="button" onclick="categorySelectValidate()"
-                                class="btn btn-primary rounded-pill shadow-sm">投稿する</button>
+                            <p id="currentLength">0 / 800文字</p>
+                            <button id="postButton" type="button" onclick="categorySelectValidate()" disabled
+                                class="btn btn-primary rounded-pill shadow-sm disabled">投稿する</button>
                         </div>
                     </div>
                 </form>
