@@ -95,7 +95,8 @@
             </div>
 
             <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
+                <div class="col-md-6 offset-md-4 d-flex justify-content-between">
+                    <button type="button" onclick="history.back()" class="btn btn-secondary rounded-pill">キャンセル</button>
                     <button type="submit" class="btn btn-primary rounded-pill shadow-sm">更新する</button>
                 </div>
             </div>
