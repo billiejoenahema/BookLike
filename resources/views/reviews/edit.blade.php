@@ -41,8 +41,9 @@
             <div class="form-group row mb-0">
                 <div class="col-md-12">
                     <textarea class="form-control
-                        @error('text') is-invalid @enderror" name="text" id="inputtedText" required autocomplete="text"
-                        rows="10" onkeyup="checkTextLength(value)">{{ old('text') ? : $review->text }}</textarea>
+                        @error('text') is-invalid @enderror" name="text" id="textarea" required autocomplete="text"
+                        rows="10" onkeyup="checkTextLength()"
+                        onfocus="checkTextLength()">{{ old('text') ? : $review->text }}</textarea>
                     @error('text')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ '800文字まで投稿可能です' }}</strong>
@@ -53,8 +54,13 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-12 text-right">
-                    <p id="textLength"></p>
-                    <button type="submit" class="btn btn-primary rounded-pill shadow-sm">投稿を編集する</button>
+                    <p id="currentLength">0 / 800文字</p>
+                    <div class="w-100 m-0 row justify-content-end">
+                        <button type="button" onclick="history.back()"
+                            class="btn btn-secondary rounded-pill">キャンセル</button>
+                        <button id="postButton" type="submit" disabled
+                            class="btn btn-primary rounded-pill shadow-sm ml-4 disabled">投稿を編集する</button>
+                    </div>
                 </div>
             </div>
         </form>
