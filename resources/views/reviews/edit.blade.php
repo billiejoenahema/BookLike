@@ -35,7 +35,7 @@
                 </ul>
             </div>
         </div>
-        <form method="POST" action="{{ route('reviews.update', $review) }}">
+        <form method="POST" action="{{ route('reviews.update', $review) }}" id="reviewEdit">
             @csrf
             @method('PUT')
             <div class="form-group row mb-0">

@@ -53,21 +53,21 @@
                     <div class="modal-body py-0">
                         @csrf
                         <input type="hidden" name="review_id" value="{{ $review->id }}">
-                        <textarea class="form-control @error('text') is-invalid @enderror" name="text" id="comment"
+                        <textarea class="form-control @error('text') is-invalid @enderror" name="text" id="textarea"
                             required autocomplete="text" rows="6" autofocus
-                            onkeyup="checkCommentLength(value)">{{ old('text') }}</textarea>
+                            onkeyup="checkTextLength()">{{ old('text') }}</textarea>
                         @error('text')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ 'コメントは200字まで投稿可能です' }}</strong>
                         </span>
                         @enderror
                         <div class="text-right">
-                            <p id="commentLength">0 / 200文字</p>
+                            <p id="currentLength">0 / 200文字</p>
                         </div>
                     </div>
                     <div class="modal-footer border-top-0">
-                        <button type="button" onclick="commentValidate()" id="postButton"
-                            class="btn btn-primary rounded-pill shadow-sm">
+                        <button type="submit" id="postButton" class="btn btn-primary rounded-pill shadow-sm disabled"
+                            disabled>
                             投稿する
                         </button>
                     </div>
