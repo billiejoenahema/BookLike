@@ -16,10 +16,8 @@ mix.react("resources/js/app.js", "public/js")
 
 mix.scripts([
     'public/js/categorySelectValidate.js',
-    'public/js/checkCommentLength.js',
     'public/js/checkTextLength.js',
     'public/js/checkInputLoginForm.js',
-    'public/js/commentValidate.js',
     'public/js/editCategory.js',
     'public/js/flashMessageFadeout.js',
     'public/js/footerMenuShowHide.js',
