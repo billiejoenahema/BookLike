@@ -3,28 +3,29 @@ function currentPageHighlight() {
     const path = window.location.pathname
     const reviewsIcon = document.getElementById('reviewsIcon')
     const usersIcon = document.getElementById('usersIcon')
-    const usersShowIcon = document.getElementById('usersShowIcon')
-    const reviewsCreateIcon = document.getElementById('reviewsCreateIcon')
+    const myPageIcon = document.getElementById('myPageIcon')
+    const newPostIcon = document.getElementById('newPostIcon')
     const footerMenuItems = document.querySelectorAll('footerMenuItem')
+    const loginUserId = document.getElementById('myPageIcon').dataset.id
     const addCurrentPage = (icon) => icon.classList.add('currentPage')
 
-    // footerMenuItemsを配列にしてからmapでcurrentPageを取り除く
+    // footerMenuItemsを配列に変換後、mapでcurrentPageを取り除く
     Array.from(footerMenuItems).map((item) => {
         item.classList.remove('currentPage')
     })
 
-    switch (true) {
-        case path === '/reviews':
+    switch (path) {
+        case '/reviews':
             addCurrentPage(reviewsIcon)
             break
-        case path === '/users':
+        case '/users':
             addCurrentPage(usersIcon)
             break
-        case path.includes('/users/'):
-            addCurrentPage(usersShowIcon)
+        case `/users/${loginUserId}`:
+            addCurrentPage(myPageIcon)
             break
-        case path === '/reviews/create':
-            addCurrentPage(reviewsCreateIcon)
+        case '/reviews/create':
+            addCurrentPage(newPostIcon)
             break
         default:
             return
