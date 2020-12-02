@@ -203,6 +203,11 @@ footer {
         transform: translateY(150%)!important;
     }
 
+    #footer-menu .currentPage i,
+    #footer-menu .currentPage span {
+        color: #f66d9b;
+    }
+
     /* スマホではフローティングボタンを非表示 */
     .floating-button {
         display: none;

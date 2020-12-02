@@ -7,6 +7,23 @@ function categorySelectValidate() {
     selectedCategory === 'default' ? window.alert('カテゴリーを選択してください') : reviewPost.submit()
 }
 
+function checkInputLoginForm() {
+    'use strict'
+
+    const email = document.getElementById('email')
+    const password = document.getElementById('password')
+    const login = document.getElementById('login')
+
+    // emailとpasswordが入力されたらログインボタンを有効化する
+    if ((email.value.indexOf('@') != -1) && password.value.length > 7) {
+        login.classList.remove('disabled')
+        login.disabled = false
+    } else if (login.classList.contains('disabled') && login.disabled === false) {
+        login.classList.add('disabled')
+        login.disabled = true
+    }
+}
+
 function checkTextLength() {
     'use strict'
     const inputtedLength = document.getElementById('textarea').value.length
@@ -32,22 +49,40 @@ function checkTextLength() {
     postButton.disabled = true
 }
 
-function checkInputLoginForm() {
+function currentPageMark() {
     'use strict'
+    const path = window.location.pathname
+    const reviewsIcon = document.getElementById('reviewsIcon')
+    const usersIcon = document.getElementById('usersIcon')
+    const usersShowIcon = document.getElementById('usersShowIcon')
+    const reviewsCreateIcon = document.getElementById('reviewsCreateIcon')
+    const footerMenuItems = document.querySelectorAll('footerMenuItem')
+    const addCurrentPage = (icon) => icon.classList.add('currentPage')
 
-    const email = document.getElementById('email')
-    const password = document.getElementById('password')
-    const login = document.getElementById('login')
+    // footerMenuItemsを配列にしてからmapでcurrentPageを取り除く
+    Array.from(footerMenuItems).map((item) => {
+        item.classList.remove('currentPage')
+    })
 
-    // emailとpasswordが入力されたらログインボタンを有効化する
-    if ((email.value.indexOf('@') != -1) && password.value.length > 7) {
-        login.classList.remove('disabled')
-        login.disabled = false
-    } else if (login.classList.contains('disabled') && login.disabled === false) {
-        login.classList.add('disabled')
-        login.disabled = true
+    switch (true) {
+        case path === '/reviews':
+            addCurrentPage(reviewsIcon)
+            break
+        case path === '/users':
+            addCurrentPage(usersIcon)
+            break
+        case path.includes('/users/'):
+            addCurrentPage(usersShowIcon)
+            break
+        case path === '/reviews/create':
+            addCurrentPage(reviewsCreateIcon)
+            break
+        default:
+            return
     }
 }
+
+window.onload = currentPageMark()
 
 const flashMessage = document.getElementById('flashMessage')
 flashMessage && flashMessage.classList.add('fadeout')
