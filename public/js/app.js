@@ -72418,7 +72418,7 @@ function Timeline(props) {
       className: "ml-2 d-flex flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-0"
-    }, timeline.user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    }, timeline.user.name || timeline.user.screen_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "text-secondary"
     }, timeline.user.screen_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-flex justify-content-end flex-grow-1"
@@ -72639,7 +72639,12 @@ var UserIndex = function UserIndex() {
   }, [page, selectedPopular]);
   var userList = allUsers.filter(function (item) {
     // nameとscreen_nameのどちらかが部分一致するユーザーを探す
-    return item.name.toLowerCase().indexOf(searchWord) > -1 || item.screen_name.toLowerCase().indexOf(searchWord) > -1;
+    if (item.name) {
+      return item.name.toLowerCase().indexOf(searchWord) > -1 || item.screen_name.toLowerCase().indexOf(searchWord) > -1;
+    } // nameがNULLの場合はscreen_nameのみで処理
+
+
+    return item.screen_name.toLowerCase().indexOf(searchWord) > -1;
   });
 
   var handleSearch = function handleSearch(e) {
@@ -73049,7 +73054,7 @@ var Users = function Users(props) {
       className: "ml-2 d-flex flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-0"
-    }, user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    }, user.name || user.screen_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "text-secondary small"
     }, user.screen_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "small"

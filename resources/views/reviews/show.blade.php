@@ -6,7 +6,7 @@
     <div class="card-haeder p-3 w-100 d-flex">
         @include('components.user_image', ['user' => $review->user])
         <div class="ml-2 d-flex flex-column">
-            <p class="mb-0">{{ $review->user->name }}</p>
+            <p class="mb-0">{{ $review->user->name ?? $review->user->screen_name }}</p>
             <span class="text-secondary">{{ $review->user->screen_name }}</span>
         </div>
         <div class="d-flex justify-content-end flex-grow-1">
