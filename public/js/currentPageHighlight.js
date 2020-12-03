@@ -6,7 +6,7 @@ function currentPageHighlight() {
     const myPageIcon = document.getElementById('myPageIcon')
     const newPostIcon = document.getElementById('newPostIcon')
     const footerMenuItems = document.querySelectorAll('footerMenuItem')
-    const loginUserId = document.getElementById('myPageIcon').dataset.id
+    const loginUserId = myPageIcon && document.getElementById('myPageIcon').dataset.id
     const addCurrentPage = (icon) => icon.classList.add('currentPage')
 
     // footerMenuItemsを配列に変換後、mapでcurrentPageを取り除く

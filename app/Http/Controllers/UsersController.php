@@ -74,7 +74,7 @@ class UsersController extends Controller
         $data = $request->all();
         $validator = Validator::make($data, [
             'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
-            'name'          => ['required', 'string', 'max:50'],
+            'name'          => ['nullable', 'string', 'max:50'],
             'category'      => ['string', 'max:255'],
             'description'   => ['string', 'max:255'],
             'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],

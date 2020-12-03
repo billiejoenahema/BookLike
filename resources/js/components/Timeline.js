@@ -19,7 +19,7 @@ function Timeline(props) {
                                 width="48" height="48" />
                         </a>
                         <div className="ml-2 d-flex flex-column">
-                            <p className="mb-0">{timeline.user.name}</p>
+                            <p className="mb-0">{timeline.user.name || timeline.user.screen_name}</p>
                             <span className="text-secondary">{timeline.user.screen_name}</span>
                         </div>
                         <div className="d-flex justify-content-end flex-grow-1">

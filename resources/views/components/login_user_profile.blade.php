@@ -6,7 +6,7 @@
                     height="100">
             </a>
             <div class="mt-3 pl-4 pl-sm-0 d-flex flex-column">
-                <h5 class="mb-0 font-weight-bold">{{ $login_user->name }}</h5>
+                <h5 class="mb-0 font-weight-bold">{{ $login_user->name ?? $login_user->screen_name}}</h5>
                 <span class="text-secondary">{{ $login_user->screen_name }}</span>
             </div>
         </div>

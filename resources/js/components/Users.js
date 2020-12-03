@@ -24,7 +24,7 @@ const Users = (props) => {
                             </a>
                             <div className="d-flex flex-wrap w-100">
                                 <div className="ml-2 d-flex flex-column">
-                                    <p className="mb-0">{user.name}</p>
+                                    <p className="mb-0">{user.name || user.screen_name}</p>
                                     <span className="text-secondary small">{user.screen_name}</span>
                                     <p className="small">フォロワー<span className="badge badge-blog badge-pill text-white ml-1">{user.followers.length}</span></p>
                                 </div>

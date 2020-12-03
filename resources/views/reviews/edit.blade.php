@@ -18,7 +18,7 @@
         <div class="px-3 pb-3 w-100 d-flex">
             @include('components.user_image', ['user' => $login_user])
             <div class="ml-2 d-flex flex-column">
-                <p class="mb-0">{{ $login_user->name }}</p>
+                <p class="mb-0">{{ $login_user->name ?? $login_user->screen_name }}</p>
                 <span class="text-secondary">{{ $login_user->screen_name }}</span>
             </div>
         </div>
