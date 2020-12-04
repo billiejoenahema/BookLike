@@ -3,6 +3,7 @@
 
 ## URL
 https://booklikeapp.com
+<br />
 お試しログインをご利用いただけます（ユーザー登録不要）
 
 ## 概要
@@ -38,6 +39,7 @@ https://booklikeapp.com
 
 ## モバイルファースト
 スマホ表示を優先してCSSをカスタマイズしました
+<br />
 左から、マイページ / 書籍検索画面 / 投稿一覧
 <a href="https://gyazo.com/314644882185aa0c181725a752f524c8"><img src="https://i.gyazo.com/314644882185aa0c181725a752f524c8.jpg" alt="Image from Gyazo" width="2282"/></a>
 

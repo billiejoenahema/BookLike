@@ -26,13 +26,13 @@ function Timeline(props) {
                             <p className="mb-0 text-secondary">{timeline.created_at.slice(0, -8)}</p>
                         </div>
                     </div>
-                    <div className="card-body border-top border-bottom py-0">
+                    <div className="card-body py-0 px-3">
                         <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
-                            <div className="d-flex flex-row py-2">
-                                <div className="py-2 pr-4">
+                            <div className="d-flex flex-row py-3 border-top border-bottom">
+                                <div>
                                     <img src={timeline.image_url} width="100" className="shadow-sm" />
                                 </div>
-                                <div className="col-md-8 d-flex flex-column text-left py-2 px-0">
+                                <div className="col-md-8 d-flex flex-column text-left pl-3 px-0">
                                     <h5 className="mb-3">{timeline.title}</h5>
                                     <ul className="list-unstyled">
                                         <li><span>著者：</span><object><a href={`/reviews?search=${timeline.author}&value=author`}>{timeline.author}</a></object></li>
@@ -44,32 +44,20 @@ function Timeline(props) {
                             </div>
                         </a>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body p-3">
                         <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
                             {omittedText(timeline.text, 80)}
                         </a>
                     </div>
-                    <div className="card-footer py-1 d-flex justify-content-end bg-white">
-                        {/* 投稿編集ボタン */}
-                        <div className="mr-3 d-flex align-items-center">
-                            {(() => {
-                                if (timeline.user.id === loginUser.id) {
-                                    return (
-                                        <a href={`/reviews/${timeline.id}/edit`}
-                                            data-tip="投稿を編集"><i className="fas fa-pen text-blog"></i>
-                                            <ReactTooltip effect="float" type="info" place="top" /></a>
-                                    )
-                                }
-                            })()}
-                        </div>
+                    <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
                         {/* コメントボタン */}
-                        <div className="mr-3 d-flex align-items-center">
+                        <div className="d-flex align-items-center">
                             <a href={`/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw text-blog"></i>
                                 <ReactTooltip effect="float" type="info" place="top" /></a>
                             <p className="mb-0 text-secondary">{timeline.comments.length}</p>
                         </div>
                         {/* いいねボタン */}
-                        <div className="mr-3 d-flex align-items-center">
+                        <div className="ml-4 mr-3 d-flex align-items-center">
                             <FavoriteButton timeline={timeline} loginUser={loginUser} />
                         </div>
                     </div>
