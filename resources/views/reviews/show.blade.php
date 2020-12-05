@@ -37,29 +37,30 @@
     </div>
 
     <div class="card-footer border-top-0 pt-0 px-3 d-flex bg-white align-items-center">
-        <!-- 投稿削除ボタン -->
-        <div class="btn flex-grow-1 text-left px-0">
-            @if ($review->user->id === $login_user->id)
-            <a href="#" role="button" data-toggle="modal" data-target="#deleteReview" title="投稿を削除"
-                class="text-secondary mb-0 d-block h5">
-                <i class="fas fa-trash"></i>
-            </a>
-            @endif
-        </div>
 
-        <!-- 編集ボタン -->
-        <div class="btn">
+        {{-- 投稿編集・削除ボタン --}}
+        <div class="flex-grow-1">
             @if ($review->user->id === $login_user->id)
-            <a href="{{ url('reviews/' .$review->id .'/edit') }}" data-toggle="tooltip" data-placement="top"
-                title="投稿を編集">
-                <i class="fas fa-edit fa-fw text-blog"></i>
+            <a class="text-secondary pt-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-fw fa-ellipsis-v"></i>
             </a>
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink">
+                <a href="{{ url('reviews/' .$review->id .'/edit') }}" class="dropdown-item text-reset">
+                    投稿を編集
+                </a>
+                <a href="#" class="dropdown-item text-decoration-none text-danger" data-toggle="modal"
+                    data-target="#deleteReview" role="button">
+                    投稿を削除
+                </a>
+            </div>
             @endif
         </div>
 
         <!-- コメントボタン -->
         <div class="d-inline-flex align-items-center ml-3">
-            <i data-toggle="tooltip" data-placement="top" title="コメント" class="far fa-comment fa-fw text-blog"></i>
+            <i data-toggle="modal" data-target="#exampleModalCenter" title="コメントと投稿"
+                class="far fa-comment fa-fw text-blog"></i>
             <p class="mb-0 text-secondary">{{ count($review->comments) }}</p>
         </div>
 
