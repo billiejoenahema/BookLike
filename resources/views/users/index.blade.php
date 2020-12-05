@@ -8,5 +8,5 @@
     <div class="switch-index bg-blogLight text-wisper text-center align-items-center">ユーザー一覧</div>
 </div>
 <div id="userIndex"></div>
-@include('components.new_post_button')
+@include('components.scroll_to_top_button')
 @endsection

@@ -9,5 +9,5 @@
 @endif
 <!-- React-tabs -->
 <div id="userPageTab"></div>
-@include('components.new_post_button')
+@include('components.scroll_to_top_button')
 @endsection
