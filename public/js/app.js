@@ -72498,10 +72498,10 @@ function Timeline(props) {
       type: "info",
       place: "top"
     }))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-body p-3"
+      className: "card-body p-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(timeline.id),
-      className: "d-block text-reset text-decoration-none"
+      className: "d-block p-3 text-reset text-decoration-none"
     }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_4__["default"])(timeline.text, 80))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
     }, loginUser.id === timeline.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_3__["default"], {

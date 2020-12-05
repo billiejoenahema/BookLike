@@ -45,8 +45,8 @@ function Timeline(props) {
                             </div>
                         </a>
                     </div>
-                    <div className="card-body p-3">
-                        <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
+                    <div className="card-body p-0">
+                        <a href={`/reviews/${timeline.id}`} className="d-block p-3 text-reset text-decoration-none">
                             {omittedText(timeline.text, 80)}
                         </a>
                     </div>
