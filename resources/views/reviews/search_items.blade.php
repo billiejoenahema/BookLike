@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('components.index_toggle')
 @include('components.back_button')
 <div class="card shadow-sm">
     <div class="card-header">検索結果一覧</div>

@@ -1,4 +1,5 @@
-<ul class="list-group mt-3">
+<h6 id="comment" class="mt-4">コメント</h6>
+<ul class="list-group">
     @forelse ($comments as $comment)
     <li class="list-group-item p-0">
         @if ($comment->deleted_at !== null)
