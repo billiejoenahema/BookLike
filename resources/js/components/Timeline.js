@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
+import EditReviewButton from './EditReviewButton'
 import omittedText from '../functions/omittedText'
 import { STORAGE } from '../constants'
 
@@ -50,6 +51,10 @@ function Timeline(props) {
                         </a>
                     </div>
                     <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
+
+                        {/* 投稿を編集 */}
+                        {loginUser.id === timeline.user.id && <EditReviewButton timeline={timeline} />}
+
                         {/* コメントボタン */}
                         <div className="d-flex align-items-center">
                             <a href={`/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw text-blog"></i>
