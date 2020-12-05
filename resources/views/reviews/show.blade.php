@@ -58,8 +58,8 @@
         </div>
 
         <!-- コメントボタン -->
-        <div class="d-inline-flex align-items-center ml-3">
-            <i data-toggle="modal" data-target="#exampleModalCenter" title="コメントと投稿"
+        <div class="btn d-inline-flex align-items-center ml-3">
+            <i data-toggle="modal" data-target="#postCommentModal" title="コメントと投稿"
                 class="far fa-comment fa-fw text-blog"></i>
             <p class="mb-0 text-secondary">{{ count($review->comments) }}</p>
         </div>
