@@ -39,8 +39,8 @@
     </li>
     @endforelse
     <!-- Comment Post Modal -->
-    <div class=" modal fade form-group row m-auto" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class=" modal fade form-group row m-auto" id="postCommentModal" tabindex="-1" role="dialog"
+        aria-labelledby="postCommentModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header border-bottom-0">
@@ -83,7 +83,7 @@
 </ul>
 <div class="text-right mb-5">
     <button type="button" class="btn btn-primary rounded-pill mt-3 justify-content-end" data-toggle="modal"
-        data-target="#exampleModalCenter">
+        data-target="#postCommentModal">
         コメントを投稿する
     </button>
 </div>
