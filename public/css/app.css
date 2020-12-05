@@ -44,7 +44,7 @@
   --teal: #4dc0b5;
   --cyan: #6cb2eb;
   --blog: #7092be;
-  --blogLight: #a9c8f1;
+  --blogLight: #93adce;
   --blogPale: #f0f4f8;
   --silver: #c0c0c0;
   --gainsboro: #dcdcdc;
@@ -2353,23 +2353,23 @@ pre code {
 .table-blogLight,
 .table-blogLight > th,
 .table-blogLight > td {
-  background-color: #e7f0fb;
+  background-color: #e1e8f1;
 }
 
 .table-blogLight th,
 .table-blogLight td,
 .table-blogLight thead th,
 .table-blogLight tbody + tbody {
-  border-color: #d2e2f8;
+  border-color: #c7d4e6;
 }
 
 .table-hover .table-blogLight:hover {
-  background-color: #d1e2f7;
+  background-color: #d0dbe9;
 }
 
 .table-hover .table-blogLight:hover > td,
 .table-hover .table-blogLight:hover > th {
-  background-color: #d1e2f7;
+  background-color: #d0dbe9;
 }
 
 .table-blogPale,
@@ -4121,29 +4121,29 @@ fieldset:disabled a.btn {
 
 .btn-blogLight {
   color: #fff;
-  background: #a9c8f1 linear-gradient(180deg, #b5d0f3, #a9c8f1) repeat-x;
-  border-color: #a9c8f1;
+  background: #93adce linear-gradient(180deg, #a2b9d5, #93adce) repeat-x;
+  border-color: #93adce;
 }
 
 .btn-blogLight:hover {
   color: #fff;
-  background: #88b3ec linear-gradient(180deg, #99beee, #88b3ec) repeat-x;
-  border-color: #7dacea;
+  background: #7999c2 linear-gradient(180deg, #8ca8cb, #7999c2) repeat-x;
+  border-color: #7092be;
 }
 
 .btn-blogLight:focus,
 .btn-blogLight.focus {
   color: #fff;
-  background: #88b3ec linear-gradient(180deg, #99beee, #88b3ec) repeat-x;
-  border-color: #7dacea;
-  box-shadow: 0 0 0 0.2rem rgba(182, 208, 243, 0.5);
+  background: #7999c2 linear-gradient(180deg, #8ca8cb, #7999c2) repeat-x;
+  border-color: #7092be;
+  box-shadow: 0 0 0 0.2rem rgba(163, 185, 213, 0.5);
 }
 
 .btn-blogLight.disabled,
 .btn-blogLight:disabled {
   color: #fff;
-  background-color: #a9c8f1;
-  border-color: #a9c8f1;
+  background-color: #93adce;
+  border-color: #93adce;
   background-image: none;
 }
 
@@ -4151,15 +4151,15 @@ fieldset:disabled a.btn {
 .btn-blogLight:not(:disabled):not(.disabled).active,
 .show > .btn-blogLight.dropdown-toggle {
   color: #fff;
-  background-color: #7dacea;
+  background-color: #7092be;
   background-image: none;
-  border-color: #72a5e8;
+  border-color: #678cba;
 }
 
 .btn-blogLight:not(:disabled):not(.disabled):active:focus,
 .btn-blogLight:not(:disabled):not(.disabled).active:focus,
 .show > .btn-blogLight.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(182, 208, 243, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(163, 185, 213, 0.5);
 }
 
 .btn-blogPale {
@@ -5163,24 +5163,24 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-blogLight {
-  color: #a9c8f1;
-  border-color: #a9c8f1;
+  color: #93adce;
+  border-color: #93adce;
 }
 
 .btn-outline-blogLight:hover {
   color: #fff;
-  background-color: #a9c8f1;
-  border-color: #a9c8f1;
+  background-color: #93adce;
+  border-color: #93adce;
 }
 
 .btn-outline-blogLight:focus,
 .btn-outline-blogLight.focus {
-  box-shadow: 0 0 0 0.2rem rgba(169, 200, 241, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(147, 173, 206, 0.5);
 }
 
 .btn-outline-blogLight.disabled,
 .btn-outline-blogLight:disabled {
-  color: #a9c8f1;
+  color: #93adce;
   background-color: transparent;
 }
 
@@ -5188,14 +5188,14 @@ fieldset:disabled a.btn {
 .btn-outline-blogLight:not(:disabled):not(.disabled).active,
 .show > .btn-outline-blogLight.dropdown-toggle {
   color: #fff;
-  background-color: #a9c8f1;
-  border-color: #a9c8f1;
+  background-color: #93adce;
+  border-color: #93adce;
 }
 
 .btn-outline-blogLight:not(:disabled):not(.disabled):active:focus,
 .btn-outline-blogLight:not(:disabled):not(.disabled).active:focus,
 .show > .btn-outline-blogLight.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(169, 200, 241, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(147, 173, 206, 0.5);
 }
 
 .btn-outline-blogPale {
@@ -7794,19 +7794,19 @@ a.badge-blog.focus {
 
 .badge-blogLight {
   color: #fff;
-  background-color: #a9c8f1;
+  background-color: #93adce;
 }
 
 a.badge-blogLight:hover,
 a.badge-blogLight:focus {
   color: #fff;
-  background-color: #7dacea;
+  background-color: #7092be;
 }
 
 a.badge-blogLight:focus,
 a.badge-blogLight.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(169, 200, 241, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(147, 173, 206, 0.5);
 }
 
 .badge-blogPale {
@@ -8247,17 +8247,17 @@ a.badge-wisper.focus {
 }
 
 .alert-blogLight {
-  color: #58687d;
-  background: #eef4fc linear-gradient(180deg, #f0f5fc, #eef4fc) repeat-x;
-  border-color: #e7f0fb;
+  color: #4c5a6b;
+  background: #e9eff5 linear-gradient(180deg, #ebf1f6, #e9eff5) repeat-x;
+  border-color: #e1e8f1;
 }
 
 .alert-blogLight hr {
-  border-top-color: #d1e2f7;
+  border-top-color: #d0dbe9;
 }
 
 .alert-blogLight .alert-link {
-  color: #434f5f;
+  color: #37414d;
 }
 
 .alert-blogPale {
@@ -9010,20 +9010,20 @@ a.badge-wisper.focus {
 }
 
 .list-group-item-blogLight {
-  color: #58687d;
-  background-color: #e7f0fb;
+  color: #4c5a6b;
+  background-color: #e1e8f1;
 }
 
 .list-group-item-blogLight.list-group-item-action:hover,
 .list-group-item-blogLight.list-group-item-action:focus {
-  color: #58687d;
-  background-color: #d1e2f7;
+  color: #4c5a6b;
+  background-color: #d0dbe9;
 }
 
 .list-group-item-blogLight.list-group-item-action.active {
   color: #fff;
-  background-color: #58687d;
-  border-color: #58687d;
+  background-color: #4c5a6b;
+  border-color: #4c5a6b;
 }
 
 .list-group-item-blogPale {
@@ -10228,14 +10228,14 @@ button.bg-blog:focus {
 }
 
 .bg-blogLight {
-  background-color: #a9c8f1 !important;
+  background-color: #93adce !important;
 }
 
 a.bg-blogLight:hover,
 a.bg-blogLight:focus,
 button.bg-blogLight:hover,
 button.bg-blogLight:focus {
-  background-color: #7dacea !important;
+  background-color: #7092be !important;
 }
 
 .bg-blogPale {
@@ -10375,7 +10375,7 @@ button.bg-wisper:focus {
 }
 
 .bg-gradient-blogLight {
-  background: #a9c8f1 linear-gradient(180deg, #b5d0f3, #a9c8f1) repeat-x !important;
+  background: #93adce linear-gradient(180deg, #a2b9d5, #93adce) repeat-x !important;
 }
 
 .bg-gradient-blogPale {
@@ -10535,7 +10535,7 @@ button.bg-wisper:focus {
 }
 
 .border-blogLight {
-  border-color: #a9c8f1 !important;
+  border-color: #93adce !important;
 }
 
 .border-blogPale {
@@ -14328,12 +14328,12 @@ a.text-blog:focus {
 }
 
 .text-blogLight {
-  color: #a9c8f1 !important;
+  color: #93adce !important;
 }
 
 a.text-blogLight:hover,
 a.text-blogLight:focus {
-  color: #679ee6 !important;
+  color: #5e85b6 !important;
 }
 
 .text-blogPale {
