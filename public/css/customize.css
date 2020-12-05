@@ -130,6 +130,10 @@ footer {
     overflow: hidden;
     border-radius: 3px;
 }
+#index-toggle .toggle-button:hover {
+    opacity: 0.8;
+    text-decoration: none;
+}
 
 .switch-index {
     height: 26px;

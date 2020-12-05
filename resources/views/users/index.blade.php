@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-flex flex-row align-items-center mb-1" id="index-toggle">
-    <a href="{{ url('reviews') }} " class="text-reset">
+    <a href="{{ url('reviews') }} " class="text-reset border-right toggle-button">
         <div class="switch-index bg-blog text-white text-center">投稿一覧</div>
     </a>
     <div class="switch-index bg-blogLight text-wisper text-center align-items-center">ユーザー一覧</div>

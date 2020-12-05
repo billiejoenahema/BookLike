@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('components.index_toggle')
 @include('components.back_button')
 <div class="card shadow-sm mb-3">
     <div class="card-header">新規投稿</div>
