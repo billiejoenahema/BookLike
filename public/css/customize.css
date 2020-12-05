@@ -1,15 +1,3 @@
-/* footerの位置を調整 */
-.footer-fixed {
-    min-height: 100vh;
-    position: relative;
-    padding-bottom: 60px;
-    box-sizing: border-box;
-}
-footer {
-    position: absolute;
-    bottom: 0;
-}
-
 .flash_message {
     margin: auto;
     width: 80%;
@@ -53,6 +41,24 @@ footer {
     transition:0.2s all;
 }
 
+/* 私の三冊 */
+summary {
+    display:inline-block; /*Firefox でデフォルトの summary マーカーを消す。*/
+    cursor:pointer;
+    padding:10px;
+}
+summary::-webkit-details-marker {
+    display: none; /*Firefox 以外でデフォルトの summary マーカーを消す。*/
+}
+
+details summary i {
+    transition: .3s;
+}
+
+details[open] summary i{
+    transform: rotate(90deg);
+}
+
 /* マイページのタブ */
 .react-tabs > ul > li {
     width: 25%;
@@ -93,18 +99,20 @@ footer {
     transition: 0.2s;
 }
 
-.min-100vh {
-    display: flex;
-    flex-direction: column;
+/* footerの位置を調整 */
+.footer-fixed {
     min-height: 100vh;
+    position: relative;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+}
+footer {
+    position: absolute;
+    bottom: 0;
 }
 
 .flex-1 {
     flex: 1;
-}
-
-.full-height {
-    height: 100vh;
 }
 
 .bg-imageColor {
