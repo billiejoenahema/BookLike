@@ -15,6 +15,7 @@ mix.react("resources/js/app.js", "public/js")
     .sass("resources/sass/app.scss", "public/css")
 
 mix.scripts([
+    'public/js/bookDescription.js',
     'public/js/categorySelectValidate.js',
     'public/js/checkInputLoginForm.js',
     'public/js/checkTextLength.js',
