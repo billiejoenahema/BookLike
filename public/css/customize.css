@@ -56,7 +56,7 @@ details summary i {
 }
 
 details[open] summary i{
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
 
 /* マイページのタブ */

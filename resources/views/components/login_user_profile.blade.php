@@ -1,32 +1,36 @@
 <div class="card shadow-sm mb-4">
     <div class="d-sm-inline-flex">
-        <div class="col-12 col-sm-4 pt-4 px-4 pb-0 p-sm-4 d-flex flex-row flex-sm-column">
+        <div class="col-12 col-sm-4 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
             <a href="{{ url('users/' .$login_user->id .'/edit') }}">
                 <img src="{{ $storage->url($login_user->profile_image) }}" class="rounded-circle shadow-sm" width="100"
                     height="100">
             </a>
-            <div class="mt-3 pl-4 pl-sm-0 d-flex flex-column">
+            <div class="mt-3 pl-3 pl-sm-0 d-flex flex-column">
                 <h5 class="mb-0 font-weight-bold">{{ $login_user->name ?? $login_user->screen_name}}</h5>
                 <span class="text-secondary">{{ $login_user->screen_name }}</span>
             </div>
         </div>
-        <div class="col-12 col-sm-8 p-4 d-flex flex-column">
-            <a class="text-secondary text-right pt-0" href="#" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                @if($login_user->id == 1)
-                <span class="dropdown-item disabled">プロフィールを編集</span>
-                <span class="dropdown-item disabled">アカウントを完全に削除</span>
-                @else
-                <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="dropdown-item text-reset">
-                    プロフィールを編集
-                </a>
-                <a href="#" class="dropdown-item text-decoration-none text-danger" data-toggle="modal"
-                    data-target="#exampleModalCenter" role="button">
-                    アカウントを完全に削除
-                </a>
-                @endif
+        <div class="col-12 col-sm-8 p-3 d-flex flex-column">
+            <div class="text-right">
+                <a class="btn text-secondary text-right pt-0" href="#" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                        class="fas fa-fx fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                    @if($login_user->id == 1)
+                    <span class="dropdown-item disabled">プロフィールを編集</span>
+                    <span class="dropdown-item disabled">アカウントを完全に削除</span>
+                    @else
+                    <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="dropdown-item text-reset">
+                        プロフィールを編集
+                    </a>
+                    <a href="#" class="dropdown-item text-decoration-none text-danger" data-toggle="modal"
+                        data-target="#exampleModalCenter" role="button">
+                        アカウントを完全に削除
+                    </a>
+                    @endif
+                </div>
             </div>
+
             <div class="flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
                 <p>{{ $login_user->category }}</p>
@@ -36,6 +40,22 @@
                 <p>{{ $login_user->description }}</p>
             </div>
         </div>
+    </div>
+    <div class="card mx-3 mb-3 pt-3 border-right-0 border-left-0 border-bottom-0">
+        <span class="user-select-none font-weight-bold">いまのわたしを構成する3冊</span>
+    </div>
+    <div class="d-flex justify-content-between mt-0 mx-3 mb-3">
+        <img src="https://m.media-amazon.com/images/I/410QuKHYY3L.jpg" id="book1" class="my-book shadow-sm" width="25%"
+            onclick="bookDescription(this)" alt="ファクトフルネス">
+        <img src="https://m.media-amazon.com/images/I/410QuKHYY3L.jpg" id="book2" class="my-book shadow-sm" width="25%"
+            onclick="bookDescription(this)" alt="ファクトフルネス">
+        <img src="https://m.media-amazon.com/images/I/410QuKHYY3L.jpg" id="book3" class="my-book shadow-sm" width="25%"
+            onclick="bookDescription(this)" alt="ファクトフルネス">
+    </div>
+    <div class="mx-3 flex-column">
+        <p id="description_book1" class="d-none description">ブック1の説明</p>
+        <p id="description_book2" class="d-none description">ブック2の説明</p>
+        <p id="description_book3" class="d-none description">ブック3の説明</p>
     </div>
 </div>
 
