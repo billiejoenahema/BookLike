@@ -80,7 +80,7 @@
         </nav>
         <main class="pt-2 main-min-height mb-5">
             <div class="container px-0">
-                <div class="col-md-10 col-lg-8 mb-3 m-auto">
+                <div class="col-md-10 col-lg-8 mb-3 m-auto p-2">
                     {{-- Flash Message --}}
                     @if (session('flash_message'))
                     <div class="flash_message" id="flashMessage">

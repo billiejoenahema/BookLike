@@ -4,8 +4,8 @@
 @include('components.index_toggle')
 @include('components.back_button')
 <div class="card shadow-sm">
-    <div class="card-header">検索結果一覧</div>
-    <div class="card-body">
+    <div class="card-header p-3">検索結果一覧</div>
+    <div class="card-body p-3">
         <div class="form-group mb-3">
             <span>キーワードを変えて再検索</span>
             <!-- 書籍検索フォーム -->
