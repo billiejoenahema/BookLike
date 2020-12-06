@@ -51,9 +51,7 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         $user_id = $login_user->id;
         $asin = $request->asin;
-        $posted_review = $review->postedAsin($asin, $user_id);
-        $posted_asin = $posted_review['asin'];
-        $get_item = $get_item->getItem($asin);
+        $item = $get_item->getItem($asin);
         $storage = Storage::disk('s3');
 
         // 同じ書籍を投稿させないようにする
@@ -63,7 +61,7 @@ class ReviewController extends Controller
 
         return view('reviews.posts', compact(
             'login_user',
-            'get_item',
+            'item',
             'storage'
         ));
     }
