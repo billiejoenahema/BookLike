@@ -34,13 +34,11 @@
         <form method="GET" action="{{ route('reviews.posts') }}">
             @csrf
             <input id="asin" type="hidden" name="asin" value="">
-            <div class="mb-3">
-                <button class="btn btn-primary disabled rounded-pill col-3 shadow-sm" id="confirmButton" type="submit"
-                    disabled>確定</button>
-            </div>
+            <button class="btn btn-primary disabled rounded-pill col-3 shadow-sm" id="confirmButton" type="submit"
+                disabled>確定</button>
         </form>
-        <div>
-            <h5>投稿する本を選んでください</h5>
+        <div class="mt-3">
+            <p class="mb-1">投稿する本を選んでください</p>
             @if (empty($search_items))
             <div>「キーワード」に該当する書籍は見つかりませんでした</div>
             @else
