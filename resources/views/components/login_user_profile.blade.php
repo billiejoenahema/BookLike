@@ -30,33 +30,32 @@
                     @endif
                 </div>
             </div>
-
-            <div class="flex-column">
+            <div class="d-flex flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
                 <p>{{ $login_user->category }}</p>
             </div>
-            <div class="flex-column">
+            <div class="d-flex flex-column">
                 <span class="font-weight-bold">自己紹介</span>
                 <p>{{ $login_user->description }}</p>
             </div>
         </div>
     </div>
-    <div class="card mx-3 mb-3 pt-3 border-right-0 border-left-0 border-bottom-0">
-        <span class="user-select-none font-weight-bold">いまのわたしを構成する3冊</span>
-    </div>
-    <div class="d-flex justify-content-between mt-0 mx-3 mb-3">
-        <img src="https://m.media-amazon.com/images/I/410QuKHYY3L.jpg" id="book1" class="my-book shadow-sm" width="25%"
-            onclick="bookDescription(this)" alt="ファクトフルネス">
-        <img src="https://m.media-amazon.com/images/I/410QuKHYY3L.jpg" id="book2" class="my-book shadow-sm" width="25%"
-            onclick="bookDescription(this)" alt="ファクトフルネス">
-        <img src="https://m.media-amazon.com/images/I/410QuKHYY3L.jpg" id="book3" class="my-book shadow-sm" width="25%"
-            onclick="bookDescription(this)" alt="ファクトフルネス">
-    </div>
-    <div class="mx-3 flex-column">
-        <p id="description_book1" class="d-none description">ブック1の説明</p>
-        <p id="description_book2" class="d-none description">ブック2の説明</p>
-        <p id="description_book3" class="d-none description">ブック3の説明</p>
-    </div>
+    <details class="card mx-3 mb-3 pt-3 border-right-0 border-left-0 border-bottom-0">
+        <summary class="user-select-none font-weight-bold bg-lightYellow"><i class="fas fa-fx fa-angle-down"></i>
+            人生を変えた一冊
+        </summary>
+        <div class="mt-3 mb-3">
+            <img src="https://m.media-amazon.com/images/I/410QuKHYY3L.jpg" class="float-left  mr-3 mb-3 shadow-sm"
+                width="25%" height="25%" alt="ファクトフルネス">
+            {{-- <img src="{{ $user->image_url }}" class="float-left mr-3 mb-3 shadow-sm" width="25%" height="25%"
+            alt=""> --}}
+            <p class="flex-wrap">
+                この本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリー
+            </p>
+            {{-- <p class="flex-wrap">{{ $user->story }}</p> --}}
+        </div>
+    </details>
+
 </div>
 
 <!-- Delete Account Confirm Modal -->
