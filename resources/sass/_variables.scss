@@ -17,7 +17,7 @@ $pink: #f66d9b;
 $red: #e3342f;
 $crimson: #DC143C;
 $orange: #f6993f;
-$yellow: #ffed4a;
+$yellow: #fcf7c9;
 $green: #38c172;
 $seaGreen: #2E8B57;
 $darkGreen: #006400;
@@ -29,6 +29,7 @@ $blogPale: #f0f4f8;
 $silver: #c0c0c0;
 $gainsboro: #dcdcdc;
 $wisper: #eeeeee;
+$lightYellow: #FFFFE0;
 
 $theme-colors: (
     "bodyColor": $bodyColor,
@@ -50,7 +51,8 @@ $theme-colors: (
     "blogPale": $blogPale,
     "silver": $silver,
     "gainsboro": $gainsboro,
-    "wisper": $wisper
+    "wisper": $wisper,
+    "lightYellow": $lightYellow
 );
 
 $yiq-contrasted-threshold: 300;
