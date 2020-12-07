@@ -16,10 +16,10 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                         class="fas fa-fx fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                    {{-- @if($login_user->id == 1)
+                    @if($login_user->id == 1)
                     <span class="dropdown-item disabled">プロフィールを編集</span>
                     <span class="dropdown-item disabled">アカウントを完全に削除</span>
-                    @else --}}
+                    @else
                     <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="dropdown-item text-reset pt-2 pb-3">
                         プロフィールを編集
                     </a>
@@ -27,7 +27,7 @@
                         data-target="#exampleModalCenter" role="button">
                         アカウントを完全に削除
                     </a>
-                    {{-- @endif --}}
+                    @endif
                 </div>
             </div>
             <div class="d-flex flex-column">
