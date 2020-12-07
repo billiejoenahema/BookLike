@@ -20,7 +20,7 @@
                     <span class="dropdown-item disabled">プロフィールを編集</span>
                     <span class="dropdown-item disabled">アカウントを完全に削除</span>
                     @else
-                    <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="dropdown-item text-reset">
+                    <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="dropdown-item text-reset pt-2 pb-3">
                         プロフィールを編集
                     </a>
                     <a href="#" class="dropdown-item text-decoration-none text-danger" data-toggle="modal"
@@ -45,17 +45,14 @@
             人生を変えた一冊
         </summary>
         <div class="mt-3 mb-3">
-            <img src="https://m.media-amazon.com/images/I/410QuKHYY3L.jpg" class="float-left  mr-3 mb-3 shadow-sm"
-                width="25%" height="25%" alt="ファクトフルネス">
-            {{-- <img src="{{ $user->image_url }}" class="float-left mr-3 mb-3 shadow-sm" width="25%" height="25%"
-            alt=""> --}}
-            <p class="flex-wrap">
-                この本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリーこの本にまつわるストーリー
-            </p>
-            {{-- <p class="flex-wrap">{{ $user->story }}</p> --}}
+            <div class="float-left mr-3 w-25 h-25 text-center">
+                <img src="{{ $book_image }}" class="shadow-sm w-100 h-100" alt="">
+                <a href="{{ $book_url }} " target="_blank" rel="noopener" data-toggle="tooltip" data-placement="top"
+                    title="Amazonサイトへ移動"><i class="fab fa-amazon"></i> Amazon</a>
+            </div>
+            <p class="flex-wrap">{{ $login_user->story ?? '未設定' }}</p>
         </div>
     </details>
-
 </div>
 
 <!-- Delete Account Confirm Modal -->

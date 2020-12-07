@@ -95,18 +95,22 @@ class User extends Authenticatable
                 'screen_name'   => $params['screen_name'],
                 'name'          => $params['name'],
                 'profile_image' => $profile_image,
-                'email'         => $params['email'],
                 'category'      => $params['category'],
-                'description'   => $params['description']
+                'description'   => $params['description'],
+                'asin'          => $params['asin'],
+                'story'         => $params['story'],
+                'email'         => $params['email'],
                 ]);
         } else {
             $this::where('id', $this->id)->update(
             [
                 'screen_name'   => $params['screen_name'],
                 'name'          => $params['name'],
-                'email'         => $params['email'],
                 'category'      => $params['category'],
-                'description'   => $params['description']
+                'description'   => $params['description'],
+                'asin'          => $params['asin'],
+                'story'         => $params['story'],
+                'email'         => $params['email'],
             ]);
         }
         return;

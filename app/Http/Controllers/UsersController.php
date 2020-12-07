@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use App\Models\Review;
+use App\Http\Controllers\Api\GetItem;
 
 class UsersController extends Controller
 {
@@ -33,14 +35,32 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user, GetItem $get_item)
     {
         $login_user = auth()->user();
         $storage = Storage::disk('s3');
 
+        if ($user === $login_user) {
+            $asin = $login_user->asin;
+        } else {
+            $asin = $user->asin;
+        }
+
+        if ($asin) {
+            $item = $get_item->getItem($asin);
+            $book_image = $item->Images->Primary->Large->URL;
+            $book_url = $item->DetailPageURL;
+        } else {
+            // default book_image&book_url
+            $book_image = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com/default_book_image.png';
+            $book_url = '#';
+        }
+
         return view('users.show', compact(
             'user',
             'login_user',
+            'book_image',
+            'book_url',
             'storage'
         ));
         }
@@ -51,14 +71,19 @@ class UsersController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function edit(User $user)
+        public function edit(User $user, Review $review)
         {
             $login_user = auth()->user();
             $storage = Storage::disk('s3');
+            $userReviews = $review->where('user_id', $user->id)
+            ->with('user')
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
         return view('users.edit', compact(
             'login_user',
-            'storage'
+            'storage',
+            'userReviews'
         ));
     }
 
@@ -75,10 +100,12 @@ class UsersController extends Controller
         $validator = Validator::make($data, [
             'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
             'name'          => ['nullable', 'string', 'max:50'],
-            'category'      => ['string', 'max:255'],
-            'description'   => ['string', 'max:255'],
             'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
+            'category'      => ['string', 'max:255'],
+            'asin'          => ['string', 'max:10'],
+            'story'         => ['string', 'max:800'],
+            'description'   => ['string', 'max:255'],
+            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
         ]);
         $validator->validate();
         $user->updateProfile($data);
