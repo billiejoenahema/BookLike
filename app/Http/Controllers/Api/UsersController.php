@@ -52,10 +52,7 @@ class UsersController extends Controller
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
         // 投稿
-        $userReviews = $review->where('user_id', $user->id)
-            ->with(['user', 'comments', 'favorites'])
-            ->orderBy('created_at', 'DESC')
-            ->get();
+        $userReviews = $review->getUserReviews($user->id);
         // いいねした投稿
         $favoriteReviews = $review->getFavoriteReviews($user->id);
         // フォローしているユーザー
@@ -68,6 +65,7 @@ class UsersController extends Controller
                 'profileUser' => $profileUser,
                 'loginUser' => $loginUser,
                 'userReviews' => $userReviews,
+                // 'favoritesCount' => $favoritesCount,
                 'favoriteReviews' => $favoriteReviews,
                 'followingUsers' => $followingUsers,
                 'followedUsers' => $followedUsers
