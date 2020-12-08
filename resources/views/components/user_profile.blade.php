@@ -6,6 +6,7 @@
             <div class="mt-3 pl-3 pl-sm-0 d-flex flex-column">
                 <h4 class="mb-0 font-weight-bold">{{ $user->name ?? $user->screen_name }}</h4>
                 <span class="text-secondary">{{ $user->screen_name }}</span>
+                <div id="totalFavoritesCount"></div>
             </div>
         </div>
         <div class="col-12 col-sm-8 p-4 d-flex flex-column justify-content-between">

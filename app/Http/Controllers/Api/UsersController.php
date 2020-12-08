@@ -65,7 +65,6 @@ class UsersController extends Controller
                 'profileUser' => $profileUser,
                 'loginUser' => $loginUser,
                 'userReviews' => $userReviews,
-                // 'favoritesCount' => $favoritesCount,
                 'favoriteReviews' => $favoriteReviews,
                 'followingUsers' => $followingUsers,
                 'followedUsers' => $followedUsers
