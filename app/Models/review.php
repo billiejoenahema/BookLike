@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class Review extends Model
 {
     use SoftDeletes;
@@ -89,7 +88,16 @@ class Review extends Model
                     ->delete();
     }
 
-    // いいねしたレビューを取得
+    // ユーザーの投稿をすべて取得
+    public function getUserReviews(Int $user_id)
+    {
+        return $this->where('user_id', $user_id)
+                    ->with(['user', 'comments', 'favorites'])
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
+    }
+
+    // いいねした投稿を取得
     public function getFavoriteReviews(Int $user_id)
     {
         $favorite_reviews = $this->whereHas(
