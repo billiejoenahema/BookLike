@@ -24,7 +24,7 @@ const TotalFavoritesCount = () => {
 
     return (
         <>
-            いいね獲得数：{totalFavoritesCount}
+            <span className="small">いいね獲得数</span><span className="font-weight-bold ml-1">{totalFavoritesCount}</span>
         </>
     )
 }

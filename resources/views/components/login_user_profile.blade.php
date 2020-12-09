@@ -43,7 +43,8 @@
         </div>
     </div>
     <details class="card mx-3 mb-3 pt-3 border-right-0 border-left-0 border-bottom-0">
-        <summary class="user-select-none font-weight-bold bg-lightYellow"><i class="fas fa-fx fa-angle-down"></i>
+        <summary class="btn text-left shadow-none user-select-none font-weight-bold bg-lightYellow"><i
+                class="fas fa-fx fa-angle-down"></i>
             人生を変えた一冊
         </summary>
         <div class="mt-3 mb-3">

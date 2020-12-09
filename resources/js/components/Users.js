@@ -1,5 +1,6 @@
 import React from 'react'
 import FollowButton from './FollowButton'
+import FollowerCount from './FollowerCount'
 import isFollowed from '../functions/isFollowed'
 import omittedText from '../functions/omittedText'
 import { STORAGE } from '../constants'
@@ -25,8 +26,8 @@ const Users = (props) => {
                             <div className="d-flex flex-wrap w-100">
                                 <div className="ml-2 d-flex flex-column">
                                     <p className="mb-0">{user.name || user.screen_name}</p>
-                                    <span className="text-secondary small">{user.screen_name}</span>
-                                    <p className="small">フォロワー<span className="badge badge-blog badge-pill text-white ml-1">{user.followers.length}</span></p>
+                                    <span className="text-secondary small font-weight-lighter">{user.screen_name}</span>
+                                    <FollowerCount followerCount={user.followers.length} />
                                 </div>
                                 {/* フォローボタン */}
                                 {
