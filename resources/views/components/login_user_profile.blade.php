@@ -1,4 +1,4 @@
-<div class="card shadow-sm mb-4">
+<div class="card shadow-sm mb-4" id="userProfileCard">
     <div class="d-sm-inline-flex">
         <div class="col-12 col-sm-4 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
             <a href="{{ url('users/' .$login_user->id .'/edit') }}">
@@ -13,24 +13,9 @@
             </div>
         </div>
         <div class="col-12 col-sm-8 p-3 d-flex flex-column">
-            <div class="text-right">
-                <a class="btn text-secondary text-right pt-0" href="#" role="button" id="dropdownMenuLink"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                        class="fas fa-fx fa-ellipsis-v"></i></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                    @if($login_user->id == 1)
-                    <span class="dropdown-item disabled">プロフィールを編集</span>
-                    <span class="dropdown-item disabled">アカウントを完全に削除</span>
-                    @else
-                    <a href="{{ url('users/' .$login_user->id .'/edit') }}" class="dropdown-item text-reset pt-2 pb-3">
-                        プロフィールを編集
-                    </a>
-                    <a href="#" class="dropdown-item text-decoration-none text-danger" data-toggle="modal"
-                        data-target="#exampleModalCenter" role="button">
-                        アカウントを完全に削除
-                    </a>
-                    @endif
-                </div>
+            <div>
+                <a class="btn float-right text-white p-0" href="{{ url('users/' .$login_user->id .'/edit') }}"
+                    role="button" id="editButton"><i class="fas fa-fx fa-lg fa-user-edit"></i></a>
             </div>
             <div class="d-flex flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
