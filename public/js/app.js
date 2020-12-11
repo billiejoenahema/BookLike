@@ -71675,10 +71675,10 @@ var EditReviewButton = function EditReviewButton(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/reviews/".concat(timelineId, "/edit"),
     role: "button",
-    className: "text-reset",
+    className: "text-reset btn py-0",
     "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-fw fa-ellipsis-v"
+    className: "fas fa-fw fa-edit text-secondary"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
     effect: "float",
     type: "info",
