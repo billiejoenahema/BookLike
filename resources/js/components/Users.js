@@ -13,30 +13,30 @@ const Users = (props) => {
         <>
             {users.map((user) =>
                 <div className="card mb-3 shadow-sm" key={user.id}>
-                    <div className="card-haeder p-3 w-100 d-flex flex-column">
+                    <div className="card-haeder pt-3 px-3 pb-0 d-flex flex-row justify-content-end">
                         {
                             isFollowed(loginUser, user) ?
-                                <div className="mb-1 ml-5"><span className="text-secondary"><i className="far fa-laugh"></i>フォローされています</span></div>
+                                <div className="text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4"><i className="far fa-laugh"></i>フォローされています</div>
                                 : ''
                         }
-                        <div className="d-flex w-100">
-                            <a href={`/users/${user.id}`}>
-                                <img src={`${STORAGE}/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
-                            </a>
-                            <div className="d-flex flex-wrap w-100">
-                                <div className="ml-2 d-flex flex-column">
-                                    <p className="mb-0">{user.name || user.screen_name}</p>
-                                    <span className="text-secondary small font-weight-lighter">{user.screen_name}</span>
-                                    <FollowerCount followerCount={user.followers.length} />
-                                </div>
-                                {/* フォローボタン */}
-                                {
-                                    user.id !== loginUser.id ? <div className="ml-auto"><FollowButton user={user} loginUser={loginUser} /></div> : ''
-                                }
+                        {/* フォローボタン */}
+                        {
+                            user.id !== loginUser.id ? <FollowButton user={user} loginUser={loginUser} /> : ''
+                        }
+                    </div>
+                    <div className="pt-3 px-3 pb-0 d-flex">
+                        <a href={`/users/${user.id}`}>
+                            <img src={`${STORAGE}/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
+                        </a>
+                        <div className="d-flex flex-wrap w-100">
+                            <div className="ml-2 d-flex flex-column">
+                                <p className="mb-0">{user.name || user.screen_name}</p>
+                                <span className="text-secondary small font-weight-lighter">{user.screen_name}</span>
+                                <FollowerCount followerCount={user.followers.length} />
                             </div>
                         </div>
                     </div>
-                    <div className="card-body flex-column">
+                    <div className="pt-3 px-3 pb-0 flex-column">
                         <div className="flex-column">
                             <span className="font-weight-bold">好きなジャンル</span>
                             <p>{omittedText(user.category, 50)}</p>

@@ -6,7 +6,7 @@
                 id="editButton" data-toggle="tooltip" data-placement="top" title="プロフィール編集"><i
                     class="fas fa-fx fa-lg fa-user-edit"></i></a>
         </div>
-        <div class="col-12 col-sm-4 mt-4 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
+        <div class="col-12 col-sm-4 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
             <a href="{{ url('users/' .$login_user->id .'/edit') }}">
                 <img src="{{ $storage->url($login_user->profile_image) }}" class="rounded-circle shadow-sm" width="100"
                     height="100" title="プロフィール編集">

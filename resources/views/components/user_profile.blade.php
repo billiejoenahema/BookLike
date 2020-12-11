@@ -3,8 +3,7 @@
         <!-- フォロー関係 -->
         <div id="profile-follow-button" class="d-flex flex-wrap mb-3">
             @if ($login_user->isFollowed($user->id))
-            <div class="text-secondary align-baseline mr-1 mr-sm-2 mr-md-3 mr-lg-4"><i
-                    class="far fa-laugh"></i>フォローされています
+            <div class="text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4"><i class="far fa-laugh"></i>フォローされています
             </div>
             @endif
             <div id="userProfileFollowButton"></div>
@@ -18,7 +17,7 @@
                 <div id="totalFavoritesCount" class="mt-2"></div>
             </div>
         </div>
-        <div class="col-12 col-sm-8 p-4 d-flex flex-column justify-content-around">
+        <div class="col-12 col-sm-8 mt-4 p-3 d-flex flex-column">
             <div class="d-flex flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
                 <p>{{ $user->category }}</p>
