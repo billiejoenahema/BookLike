@@ -20,6 +20,7 @@ mix.scripts([
     'public/js/checkInputLoginForm.js',
     'public/js/checkTextLength.js',
     'public/js/currentPageHighlight.js',
+    'public/js/deleteCheck.js',
     'public/js/editProfileButton.js',
     'public/js/flashMessageFadeout.js',
     'public/js/footerMenuShowHide.js',
