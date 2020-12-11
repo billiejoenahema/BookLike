@@ -1,6 +1,15 @@
 <div class="card shadow-sm mb-4">
     <div class="d-sm-inline-flex">
-        <div class="col-12 col-sm-4 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
+        <!-- フォロー関係 -->
+        <div id="profile-follow-button" class="d-flex flex-wrap mb-3">
+            @if ($login_user->isFollowed($user->id))
+            <div class="text-secondary align-baseline mr-1 mr-sm-2 mr-md-3 mr-lg-4"><i
+                    class="far fa-laugh"></i>フォローされています
+            </div>
+            @endif
+            <div id="userProfileFollowButton"></div>
+        </div>
+        <div class="col-12 col-sm-4 mt-4 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
             <img src="{{ $storage->url($user->profile_image) }}" class="rounded-circle shadow-sm" width="100"
                 height="100">
             <div class="mt-3 pl-3 pl-sm-0 d-flex flex-column">
@@ -9,16 +18,7 @@
                 <div id="totalFavoritesCount" class="mt-2"></div>
             </div>
         </div>
-        <div class="col-12 col-sm-8 p-4 d-flex flex-column justify-content-between">
-            <!-- フォロー関係 -->
-            <div class="d-flex flex-wrap justify-content-between mb-3">
-                @if ($login_user->isFollowed($user->id))
-                <div class="">
-                    <span class="text-secondary"><i class="far fa-laugh"></i>フォローされています</span>
-                </div>
-                @endif
-                <div class="justify-content-end" id="userProfileFollowButton"></div>
-            </div>
+        <div class="col-12 col-sm-8 p-4 d-flex flex-column justify-content-around">
             <div class="d-flex flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
                 <p>{{ $user->category }}</p>
