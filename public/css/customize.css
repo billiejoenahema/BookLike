@@ -28,6 +28,13 @@
     }
 }
 
+#profile-edit-button, #profile-follow-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
 .user-search-form {
     position: fixed;
     top: 0.47rem;
@@ -44,7 +51,7 @@
     transition:0.2s all;
 }
 
-/* 私の三冊 */
+/* My Best Book */
 summary {
     display:inline-block; /*Firefox でデフォルトの summary マーカーを消す。*/
     cursor:pointer;
@@ -166,6 +173,11 @@ footer {
 
 /* スマホ用スタイル */
 @media screen and (max-width: 499px) {
+
+    #editButton {
+        /* secondary */
+        color: #6C767D !important;
+    }
 
     .search-form {
         display: none;
