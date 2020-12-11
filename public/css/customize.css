@@ -1,6 +1,5 @@
 .flash_message {
     margin: auto;
-    width: 80%;
     text-align: center;
     background: white;
     padding: 0.2rem;
@@ -17,11 +16,15 @@
     animation-delay: 3s;
 }
 @keyframes fadeout-keyframes {
-    from {
+    0% {
         opacity: 0.8;
     }
-    to {
+    50% {
         opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        height: 0;
     }
 }
 

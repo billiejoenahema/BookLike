@@ -50,7 +50,8 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // 認証に成功
-            return redirect('/');
+            session()->flash('flash_message', 'ゲストユーザーでログインしました');
+            return view('reviews');
         }
     }
 }

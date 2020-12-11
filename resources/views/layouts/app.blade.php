@@ -83,7 +83,7 @@
                 <div class="col-md-10 col-lg-8 mb-3 m-auto p-2">
                     {{-- Flash Message --}}
                     @if (session('flash_message'))
-                    <div class="flash_message" id="flashMessage">
+                    <div class="flash_message col-10 col-sm-6 col-md-4" id="flashMessage">
                         {{ session('flash_message') }}
                     </div>
                     @endif
