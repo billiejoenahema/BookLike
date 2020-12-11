@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">キャンセル</button>
+                <button type="button" class="btn btn-secondary rounded-pill mr-3" data-dismiss="modal">キャンセル</button>
                 <form method="POST" action="{{ route('reviews.destroy', $review) }}">
                     @csrf
                     @method('DELETE')
