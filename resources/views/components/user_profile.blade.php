@@ -1,11 +1,12 @@
 <div class="card shadow-sm mb-4">
     <div class="d-sm-inline-flex">
-        <!-- フォロー関係 -->
         <div id="profile-follow-button" class="d-flex flex-wrap mb-3">
             @if ($login_user->isFollowed($user->id))
+            {{-- フォローされているかどうか --}}
             <div class="text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4"><i class="far fa-laugh"></i>フォローされています
             </div>
             @endif
+            {{-- フォローボタン --}}
             <div id="userProfileFollowButton"></div>
         </div>
         <div class="col-12 col-sm-4 mt-4 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
@@ -14,6 +15,7 @@
             <div class="mt-3 pl-3 pl-sm-0 d-flex flex-column">
                 <h4 class="mb-0 font-weight-bold">{{ $user->name ?? $user->screen_name }}</h4>
                 <span class="text-secondary">{{ $user->screen_name }}</span>
+                {{-- いいね獲得数 --}}
                 <div id="totalFavoritesCount" class="mt-2"></div>
             </div>
         </div>

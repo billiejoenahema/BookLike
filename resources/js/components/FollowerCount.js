@@ -1,10 +1,13 @@
 import React from 'react'
 
 const FollowerCount = (props) => {
+
+    const followerCount = props.user.followers.length
+
     return (
-        <div className="mt-2">
-            フォロワー<span className="badge badge-blog badge-pill text-white align-middle ml-1">{props.followerCount}</span>
-        </div>
+        <>
+            フォロワー<span className="badge-teal badge-pill text-white ml-1">{followerCount}</span>
+        </>
     )
 }
 export default FollowerCount

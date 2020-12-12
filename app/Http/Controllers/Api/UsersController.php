@@ -20,13 +20,17 @@ class UsersController extends Controller
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
         $users = $user->getAllUsers($loginUserId)
-            ->with('followers')
+            ->with(['followers', 'reviews'=> function($query) {
+                $query->with('favorites');
+                }])
             ->orderBy('id', 'DESC')
             ->paginate(10);
 
         // フォロワーが多い順にユーザーを取得
         $populars = $user->getAllUsers($loginUserId)
-            ->with('followers')
+            ->with(['followers', 'reviews'=> function($query) {
+                $query->with('favorites');
+                }])
             ->withCount('followers')
             ->orderBy('followers_count', 'DESC')
             ->paginate(10);
@@ -35,7 +39,7 @@ class UsersController extends Controller
             [
                 'loginUser' => $loginUser,
                 'users' => $users,
-                'populars' => $populars
+                'populars' => $populars,
             ];
     }
 
