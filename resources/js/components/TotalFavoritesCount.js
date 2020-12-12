@@ -1,34 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
 
-const TotalFavoritesCount = () => {
+const TotalFavoritesCount = (props) => {
 
-    const [totalFavoritesCount, setTotalFavoritesCount] = useState(0)
-    const currentPath = window.location.pathname
-
-    useEffect(() => {
-        const loadFavoritesCount = async () => {
-            await axios
-                .get(`/api${currentPath}`)
-                .then(res => {
-                    const userReviews = res.data.userReviews
-                    const total = userReviews.reduce((a, b) => a + b.favorites.length, 0)
-                    setTotalFavoritesCount(total)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        }
-        loadFavoritesCount()
-    }, [])
+    const user = props.user
+    const totalFavoritesCount = user.reviews.reduce((a, b) => a + b.favorites.length, 0)
 
     return (
         <>
-            <span className="small">いいね獲得数</span><span className="font-weight-bold ml-1">{totalFavoritesCount}</span>
+            <span>いいね獲得数</span><span className="badge-purple badge-pill text-white ml-1">{totalFavoritesCount}</span>
         </>
     )
 }
 export default TotalFavoritesCount
-if (document.getElementById('totalFavoritesCount')) {
-    ReactDOM.render(<TotalFavoritesCount />, document.getElementById('totalFavoritesCount'))
-}
+

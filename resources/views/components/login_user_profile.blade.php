@@ -14,7 +14,8 @@
             <div class="mt-3 pl-3 pl-sm-0 d-flex flex-column">
                 <h5 class="mb-0 font-weight-bold">{{ $login_user->name ?? $login_user->screen_name}}</h5>
                 <span class="text-secondary">{{ $login_user->screen_name }}</span>
-                <div id="totalFavoritesCount"></div>
+                {{-- いいね獲得数 --}}
+                <div id="totalFavoritesCount" class="mt-2"></div>
             </div>
         </div>
         <div class="col-12 col-sm-8 p-3 d-flex flex-column">

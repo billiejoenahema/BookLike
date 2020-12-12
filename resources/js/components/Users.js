@@ -1,6 +1,7 @@
 import React from 'react'
 import FollowButton from './FollowButton'
 import FollowerCount from './FollowerCount'
+import TotalFavoritesCount from './TotalFavoritesCount'
 import isFollowed from '../functions/isFollowed'
 import omittedText from '../functions/omittedText'
 import { STORAGE } from '../constants'
@@ -24,19 +25,22 @@ const Users = (props) => {
                             user.id !== loginUser.id ? <FollowButton user={user} loginUser={loginUser} /> : ''
                         }
                     </div>
-                    <div className="pt-3 px-3 pb-0 d-flex">
+                    <div className="mx-3 pt-2 pb-3 d-flex border-bottom">
                         <a href={`/users/${user.id}`}>
                             <img src={`${STORAGE}/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                         </a>
-                        <div className="d-flex flex-wrap w-100">
-                            <div className="ml-2 d-flex flex-column">
-                                <p className="mb-0">{user.name || user.screen_name}</p>
-                                <span className="text-secondary small font-weight-lighter">{user.screen_name}</span>
-                                <FollowerCount followerCount={user.followers.length} />
+                        <div className="ml-2 px-0 flex-column">
+                            <p className="mb-0">{user.name || user.screen_name}</p>
+                            <span className="text-secondary small font-weight-lighter">{user.screen_name}</span>
+                        </div>
+                        <div className="px-0 flex-comlumn ml-auto text-right">
+                            <FollowerCount user={user} />
+                            <div className="mt-2">
+                                <TotalFavoritesCount user={user} />
                             </div>
                         </div>
                     </div>
-                    <div className="pt-3 px-3 pb-0 flex-column">
+                    <div className="px-3 pt-3 flex-column">
                         <div className="flex-column">
                             <span className="font-weight-bold">好きなジャンル</span>
                             <p>{omittedText(user.category, 50)}</p>

@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function getAllUsers(Int $user_id)
     {
         return $this->where('id', '<>', $user_id);
@@ -120,7 +125,9 @@ class User extends Authenticatable
     public function getFollowingUsers(Int $id)
     {
         return $this->follows()
-            ->with('followers')
+            ->with(['followers', 'reviews'=> function($query) {
+                $query->with('favorites');
+                }])
             ->where('following_id', $id)
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -130,7 +137,9 @@ class User extends Authenticatable
     public function getFollowers(Int $id)
     {
         return $this->followers()
-            ->with('followers')
+            ->with(['followers', 'reviews'=> function($query) {
+                $query->with('favorites');
+                }])
             ->where('followed_id', $id)
             ->orderBy('created_at', 'DESC')
             ->get();
