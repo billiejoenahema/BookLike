@@ -71879,7 +71879,7 @@ __webpack_require__.r(__webpack_exports__);
 var FollowerCount = function FollowerCount(props) {
   var followerCount = props.user.followers.length;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "badge-teal badge-pill text-white ml-1"
+    className: "badge-teal badge-pill text-white ml-1 user-select-none"
   }, followerCount));
 };
 
@@ -72577,7 +72577,7 @@ var TotalFavoritesCount = function TotalFavoritesCount(props) {
     return a + b.favorites.length;
   }, 0);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u3044\u3044\u306D\u7372\u5F97\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "badge-purple badge-pill text-white ml-1"
+    className: "badge-purple badge-pill text-white ml-1 user-select-none"
   }, totalFavoritesCount));
 };
 
@@ -73042,7 +73042,7 @@ var UserProfileFavoritesCount = function UserProfileFavoritesCount() {
     loadFavoritesCount();
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u3044\u3044\u306D\u7372\u5F97\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "badge-purple badge-pill text-white ml-1"
+    className: "badge-purple badge-pill text-white ml-1 user-select-none"
   }, totalFavoritesCount));
 };
 
