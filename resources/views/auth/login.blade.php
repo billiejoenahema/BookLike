@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group row">
-                <button id="login" type="submit" class="btn btn-primary rounded-pill shadow-sm disabled">
+                <button id="login" type="submit" class="btn btn-primary rounded-pill shadow-sm disabled" disabled>
                     {{ __('ログイン') }}
                 </button>
 
