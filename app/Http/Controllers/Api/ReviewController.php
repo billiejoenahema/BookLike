@@ -24,18 +24,19 @@ class ReviewController extends Controller
 
     public function index(Review $review, User $user)
     {
+        $pagination = 5;
         $loginUser = auth()->user();
         $timelines = $review->with('user')
                         ->with(['comments','favorites'])
                         ->orderBy('created_at', 'DESC')
-                        ->paginate(10);
+                        ->paginate($pagination);
 
         // いいねが多い順に投稿を取得
         $favoritest = $review->with('user')
                         ->with(['comments', 'favorites'])
                         ->withCount('favorites')
                         ->orderBy('favorites_count', 'DESC')
-                        ->paginate(10);
+                        ->paginate($pagination);
 
         return
             [
