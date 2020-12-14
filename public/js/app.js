@@ -71960,7 +71960,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewIndex = function ReviewIndex() {
-  // パラメーター
+  var pagination = 5; // パラメーター
+
   var params = new URL(document.location).searchParams;
   var search = params.get('search');
   var value = params.get('value');
@@ -72142,7 +72143,7 @@ var ReviewIndex = function ReviewIndex() {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (timelinesLength < 10 && hasMore) {
+    if (timelinesLength < pagination && hasMore) {
       setPage(function (prev) {
         return prev + 1;
       });
@@ -72158,7 +72159,7 @@ var ReviewIndex = function ReviewIndex() {
     className: "d-flex flex-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: selectItem,
-    className: "text-right bg-transparent border-0 mr-1"
+    className: "text-right text-graphite bg-transparent border-0 mr-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "title"
   }, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {

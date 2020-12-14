@@ -5,6 +5,7 @@ import Loading from './Loading'
 
 const ReviewIndex = () => {
 
+    const pagination = 5
     // パラメーター
     const params = (new URL(document.location)).searchParams
     const search = params.get('search')
@@ -117,7 +118,7 @@ const ReviewIndex = () => {
     }
 
     useEffect(() => {
-        if (timelinesLength < 10 && hasMore) {
+        if (timelinesLength < pagination && hasMore) {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
@@ -130,7 +131,7 @@ const ReviewIndex = () => {
             {/* 投稿検索フォーム */}
             <div className="search-form">
                 <div className="d-flex flex-row">
-                    <select onChange={selectItem} className="text-right bg-transparent border-0 mr-1">
+                    <select onChange={selectItem} className="text-right text-graphite bg-transparent border-0 mr-1">
                         <option value="title">タイトル</option>
                         <option value="author">著者</option>
                         <option value="manufacturer">出版社</option>
