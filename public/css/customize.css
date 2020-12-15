@@ -1,3 +1,9 @@
+a:hover {
+    text-decoration: none;
+    color: #f66d9b;
+    transition:0.2s all;
+}
+
 .flash_message {
     margin: auto;
     text-align: center;
@@ -28,7 +34,14 @@
     }
 }
 
-#profile-edit-button, #profile-follow-button {
+#profile-edit-button {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    z-index: 1000;
+}
+
+#profile-follow-button {
     position: absolute;
     top: 1rem;
     right: 1rem;
