@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactTooltip from 'react-tooltip'
 import FollowButton from './FollowButton'
 import FollowerCount from './FollowerCount'
 import TotalFavoritesCount from './TotalFavoritesCount'
@@ -41,14 +42,16 @@ const Users = (props) => {
                         </div>
                     </div>
                     <div className="px-3 pt-3 flex-column">
-                        <div className="flex-column">
-                            <span className="font-weight-bold">好きなジャンル</span>
-                            <p>{omittedText(user.category, 50)}</p>
-                        </div>
-                        <div className="flex-column">
-                            <span className="font-weight-bold">自己紹介</span>
-                            <p>{omittedText(user.description, 50)}</p>
-                        </div>
+                        <a href={`/users/${user.id}`} className="text-reset">
+                            <div className="flex-column">
+                                <span className="font-weight-bold">好きなジャンル</span>
+                                <p>{omittedText(user.category, 50)}</p>
+                            </div>
+                            <div className="flex-column">
+                                <span className="font-weight-bold">自己紹介</span>
+                                <p>{omittedText(user.description, 50)}</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             )

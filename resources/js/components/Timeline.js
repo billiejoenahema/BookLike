@@ -14,10 +14,11 @@ function Timeline(props) {
             {timelines.map((timeline) => (
                 <div className="card shadow-sm mb-3" key={timeline.id}>
                     <div className="card-haeder p-3 d-flex">
-                        <a href={`/users/${timeline.user.id}`} className="text-reset">
+                        <a href={`/users/${timeline.user.id}`} className="text-reset" data-tip="プロフィールページへ">
                             <img src={`${STORAGE}/${timeline.user.profile_image}`}
                                 className="rounded-circle shadow-sm"
                                 width="48" height="48" />
+                            <ReactTooltip effect="float" type="info" place="top" />
                         </a>
                         <div className="ml-2 d-flex flex-column">
                             <p className="mb-0">{timeline.user.name || timeline.user.screen_name}</p>
