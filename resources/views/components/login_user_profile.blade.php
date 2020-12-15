@@ -19,6 +19,10 @@
             </div>
         </div>
         <div class="col-12 col-sm-8 p-3 d-flex flex-column">
+            <div class="d-inline-flex text-secondary">
+                <p>登録日: {{ substr($login_user->created_at, 0, -9) }}</p>
+                <p class="pl-3">更新日: {{ substr($login_user->updated_at, 0, -9) }}</p>
+            </div>
             <div class="d-flex flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
                 <p>{{ $login_user->category }}</p>

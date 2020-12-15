@@ -9,7 +9,7 @@
             {{-- フォローボタン --}}
             <div id="userProfileFollowButton"></div>
         </div>
-        <div class="col-12 col-sm-4 mt-4 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
+        <div class="col-12 col-sm-4 mt-5 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
             <img src="{{ $storage->url($user->profile_image) }}" class="rounded-circle shadow-sm" width="100"
                 height="100">
             <div class="mt-3 pl-3 pl-sm-0 d-flex flex-column">
@@ -19,7 +19,11 @@
                 <div id="totalFavoritesCount" class="mt-2"></div>
             </div>
         </div>
-        <div class="col-12 col-sm-8 mt-4 p-3 d-flex flex-column">
+        <div class="col-12 col-sm-8 mt-sm-5 p-3 d-flex flex-column">
+            <div class="d-inline-flex text-secondary">
+                <p>登録日: {{ substr($user->created_at, 0, -9) }}</p>
+                <p class="pl-3">更新日: {{ substr($user->updated_at, 0, -9) }}</p>
+            </div>
             <div class="d-flex flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
                 <p>{{ $user->category }}</p>
