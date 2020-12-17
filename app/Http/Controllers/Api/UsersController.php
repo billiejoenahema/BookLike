@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
+use App\Models\Favorite;
 
 class UsersController extends Controller
 {
@@ -15,31 +16,45 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(User $user, Review $review)
+    public function index(User $user, Review $review, Favorite $favorite)
     {
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
+
+        // updated_at順にユーザーを取得
         $users = $user->getAllUsers($loginUserId)
-            ->with(['followers', 'reviews'=> function($query) {
+            ->with(['followers', 'reviews' => function($query) {
                 $query->with('favorites');
                 }])
-            ->orderBy('id', 'DESC')
+            ->orderBy('updated_at', 'DESC')
             ->paginate(10);
 
         // フォロワーが多い順にユーザーを取得
         $populars = $user->getAllUsers($loginUserId)
-            ->with(['followers', 'reviews'=> function($query) {
+            ->with(['followers', 'reviews' => function($query) {
                 $query->with('favorites');
                 }])
             ->withCount('followers')
             ->orderBy('followers_count', 'DESC')
             ->paginate(10);
 
+        // いいね獲得数をカウントして追加
+        $ratings = $users->map(function($user, $key) {
+            $favorites_count = $user->reviews->count('favorites');
+            $user['favorites_count'] = $favorites_count;
+            return $user;
+        });
+
+
+        // いいね獲得数が多い順に並び替え
+        $sorted_ratings = $ratings->sortByDesc('favorites_count');
+
         return
             [
                 'loginUser' => $loginUser,
                 'users' => $users,
                 'populars' => $populars,
+                'sorted_ratings' => $sorted_ratings,
             ];
     }
 
