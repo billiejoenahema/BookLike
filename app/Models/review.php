@@ -110,5 +110,23 @@ class Review extends Model
         return $favorite_reviews;
     }
 
+    // 投稿一覧の並び替え
+    public function sortTimeline($sort, $pagination)
+    {
+        if ($sort === 'favorite') {
+            // いいねが多い順に投稿を並び替え
+            return $this->with('user')
+                            ->with(['comments', 'favorites'])
+                            ->withCount('favorites')
+                            ->orderBy('favorites_count', 'DESC')
+                            ->paginate($pagination);
+        } else {
+            // 登録順に投稿を並び替え（デフォルト）
+            return $this->with('user')
+                    ->with(['comments','favorites'])
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate($pagination);
+        }
+    }
 
 }

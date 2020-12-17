@@ -20,7 +20,7 @@ const ReviewIndex = () => {
     const [timelinesLength, setTimelinesLength] = useState(0)
     const [selectedCategory, setSelectedCategory] = useState(initialSelectedCategory)
     const [selectedValue, setSelectedValue] = useState(initialSelectedValue)
-    const [selectedFavo, setSelectedFavo] = useState(false)
+    const [sort, setSort] = useState('default')
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -30,13 +30,10 @@ const ReviewIndex = () => {
         const loadTimeline = async () => {
             setLoading(true)
             const newTimelines = await axios
-                .get(`/api/reviews?page=${page}`)
+                .get(`/api/reviews?sort=${sort}&page=${page}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
                     page < res.data.timelines.last_page && setHasMore(true)
-                    if (selectedFavo) {
-                        return res.data.favoritest.data
-                    }
                     return res.data.timelines.data
                 })
                 .catch(err => {
@@ -56,7 +53,7 @@ const ReviewIndex = () => {
         }
         loadTimeline()
 
-    }, [page, selectedFavo, selectedCategory, searchWord])
+    }, [page, sort, selectedCategory, searchWord])
 
     const selectItem = (e) => {
         const selectedIndex = e.target.selectedIndex
@@ -86,20 +83,20 @@ const ReviewIndex = () => {
     }
 
     const categoryChange = (e) => {
-        const selected = e.target.value
+        const selectedCategory = e.target.value
         setTimelines([])
         setPage(1)
         setHasMore(false)
-        if (selected === 'default') {
+        if (selectedCategory === 'default') {
             setSelectedCategory('')
             return
         }
-        setSelectedCategory(selected)
+        setSelectedCategory(selectedCategory)
     }
 
-    const sortChange = (e) => {
-        // 並び替えでいいね順を選んでいるかどうか
-        selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true)
+    const sortChange = () => {
+        const selectedSort = document.getElementById('selectSort').value
+        setSort(selectedSort)
         setTimelines([])
         setPage(1)
         setHasMore(false)
