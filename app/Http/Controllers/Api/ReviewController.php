@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
 
@@ -22,27 +23,19 @@ class ReviewController extends Controller
             ];
     }
 
-    public function index(Review $review, User $user)
+    public function index(Request $request, Review $review, User $user)
     {
-        $pagination = 5;
+        $sort = $request['sort'];
         $loginUser = auth()->user();
-        $timelines = $review->with('user')
-                        ->with(['comments','favorites'])
-                        ->orderBy('created_at', 'DESC')
-                        ->paginate($pagination);
+        $pagination = 5;
 
-        // いいねが多い順に投稿を取得
-        $favoritest = $review->with('user')
-                        ->with(['comments', 'favorites'])
-                        ->withCount('favorites')
-                        ->orderBy('favorites_count', 'DESC')
-                        ->paginate($pagination);
+        // 並び替えられた投稿一覧
+        $timelines = $review->sortTimeline($sort, $pagination);
 
         return
             [
             'timelines' => $timelines,
             'loginUser' => $loginUser,
-            'favoritest' => $favoritest
             ];
     }
 }

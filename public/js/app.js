@@ -71995,10 +71995,10 @@ var ReviewIndex = function ReviewIndex() {
       selectedValue = _useState10[0],
       setSelectedValue = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('default'),
       _useState12 = _slicedToArray(_useState11, 2),
-      selectedFavo = _useState12[0],
-      setSelectedFavo = _useState12[1];
+      sort = _useState12[0],
+      setSort = _useState12[1];
 
   var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
       _useState14 = _slicedToArray(_useState13, 2),
@@ -72030,14 +72030,9 @@ var ReviewIndex = function ReviewIndex() {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/reviews?page=".concat(page)).then(function (res) {
+                return axios.get("/api/reviews?sort=".concat(sort, "&page=").concat(page)).then(function (res) {
                   setLoginUser(res.data.loginUser);
                   page < res.data.timelines.last_page && setHasMore(true);
-
-                  if (selectedFavo) {
-                    return res.data.favoritest.data;
-                  }
-
                   return res.data.timelines.data;
                 })["catch"](function (err) {
                   console.log(err);
@@ -72075,7 +72070,7 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-  }, [page, selectedFavo, selectedCategory, searchWord]);
+  }, [page, sort, selectedCategory, searchWord]);
 
   var selectItem = function selectItem(e) {
     var selectedIndex = e.target.selectedIndex;
@@ -72105,22 +72100,22 @@ var ReviewIndex = function ReviewIndex() {
   };
 
   var categoryChange = function categoryChange(e) {
-    var selected = e.target.value;
+    var selectedCategory = e.target.value;
     setTimelines([]);
     setPage(1);
     setHasMore(false);
 
-    if (selected === 'default') {
+    if (selectedCategory === 'default') {
       setSelectedCategory('');
       return;
     }
 
-    setSelectedCategory(selected);
+    setSelectedCategory(selectedCategory);
   };
 
-  var sortChange = function sortChange(e) {
-    // 並び替えでいいね順を選んでいるかどうか
-    selectedFavo ? setSelectedFavo(false) : setSelectedFavo(true);
+  var sortChange = function sortChange() {
+    var selectedSort = document.getElementById('selectSort').value;
+    setSort(selectedSort);
     setTimelines([]);
     setPage(1);
     setHasMore(false);
@@ -72693,7 +72688,8 @@ var UserIndex = function UserIndex() {
                     return res.data.populars.data;
                   }
 
-                  return res.data.users.data;
+                  console.log(res.data.sorted_ratings);
+                  return res.data.sorted_ratings;
                 })["catch"](function (err) {
                   console.log(err);
                 });
