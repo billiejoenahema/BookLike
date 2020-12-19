@@ -6,7 +6,6 @@ import Loading from './Loading'
 const ReviewIndex = () => {
 
     const pagination = 5
-    // パラメーター
     const params = (new URL(document.location)).searchParams
     const search = params.get('search')
     const value = params.get('value')

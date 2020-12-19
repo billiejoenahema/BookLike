@@ -77,7 +77,6 @@ class Review extends Model
         $this->id = $review_id;
         $this->text = $data['text'];
         $this->update();
-
         return;
     }
 
@@ -116,16 +115,16 @@ class Review extends Model
         if ($sort === 'favorite') {
             // いいねが多い順に投稿を並び替え
             return $this->with('user')
-                            ->with(['comments', 'favorites'])
-                            ->withCount('favorites')
-                            ->orderBy('favorites_count', 'DESC')
-                            ->paginate($pagination);
+                        ->with(['comments', 'favorites'])
+                        ->withCount('favorites')
+                        ->orderBy('favorites_count', 'DESC')
+                        ->paginate($pagination);
         } else {
             // 登録順に投稿を並び替え（デフォルト）
             return $this->with('user')
-                    ->with(['comments','favorites'])
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate($pagination);
+                        ->with(['comments','favorites'])
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate($pagination);
         }
     }
 

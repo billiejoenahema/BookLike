@@ -71960,8 +71960,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewIndex = function ReviewIndex() {
-  var pagination = 5; // パラメーター
-
+  var pagination = 5;
   var params = new URL(document.location).searchParams;
   var search = params.get('search');
   var value = params.get('value');
