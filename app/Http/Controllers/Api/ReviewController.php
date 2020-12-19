@@ -13,8 +13,8 @@ class ReviewController extends Controller
     {
         $loginUser = auth()->user();
         $review = $review->with('favorites')
-                    ->where('id', $review->id)
-                    ->first();
+                        ->where('id', $review->id)
+                        ->first();
 
         return
             [
