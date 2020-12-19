@@ -12,7 +12,6 @@ const FollowButton = (props) => {
     )
 
     const PostFollow = (e) => {
-        e.preventDefault()
         toggleFollow()
 
         return axios.post(`/api/users/${userId}/follow`)
@@ -25,7 +24,6 @@ const FollowButton = (props) => {
     }
 
     const DeleteFollow = (e) => {
-        e.preventDefault()
         toggleFollow()
 
         return axios.post(`/api/users/${userId}/unfollow`)

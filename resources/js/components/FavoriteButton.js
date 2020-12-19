@@ -11,7 +11,8 @@ const FavoriteButton = (props) => {
 
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
-    const postFavorite = () => {
+    const postFavorite = (e) => {
+        e.preventDefault()
         toggleFavorite()
         setFavoriteCount(favoriteCount + 1)
         const review_id = props.timeline.id
@@ -25,7 +26,8 @@ const FavoriteButton = (props) => {
             })
     }
 
-    const deleteFavorite = () => {
+    const deleteFavorite = (e) => {
+        e.preventDefault()
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
         const favoritesArray = Array.from(props.timeline.favorites)
