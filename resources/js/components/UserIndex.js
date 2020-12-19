@@ -24,7 +24,8 @@ const UserIndex = () => {
                     if (selectedPopular) {
                         return res.data.populars.data
                     }
-                    return res.data.users.data
+                    console.log(res.data.sorted_ratings)
+                    return res.data.sorted_ratings
                 })
                 .catch(err => {
                     console.log(err)

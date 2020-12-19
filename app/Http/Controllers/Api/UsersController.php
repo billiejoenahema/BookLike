@@ -42,12 +42,11 @@ class UsersController extends Controller
         $ratings = $users->map(function($user, $key) {
             $favorites_count = $user->reviews->count('favorites');
             $user['favorites_count'] = $favorites_count;
-            return $user;
+            return $users;
         });
 
-
         // いいね獲得数が多い順に並び替え
-        $sorted_ratings = $ratings->sortByDesc('favorites_count');
+        $sorted_ratings = $ratings->sortByDesc('favorites_count')->values();
 
         return
             [
