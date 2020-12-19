@@ -16,44 +16,19 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(User $user, Review $review, Favorite $favorite)
+    public function index(Request $request, User $user, Review $review, Favorite $favorite)
     {
+        $sort = $request['sort'];
+        $pagination = 6;
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
-
-        // updated_at順にユーザーを取得
-        $users = $user->getAllUsers($loginUserId)
-            ->with(['followers', 'reviews' => function($query) {
-                $query->with('favorites');
-                }])
-            ->orderBy('updated_at', 'DESC')
-            ->paginate(10);
-
-        // フォロワーが多い順にユーザーを取得
-        $populars = $user->getAllUsers($loginUserId)
-            ->with(['followers', 'reviews' => function($query) {
-                $query->with('favorites');
-                }])
-            ->withCount('followers')
-            ->orderBy('followers_count', 'DESC')
-            ->paginate(10);
-
-        // いいね獲得数をカウントして追加
-        $ratings = $users->map(function($user, $key) {
-            $favorites_count = $user->reviews->count('favorites');
-            $user['favorites_count'] = $favorites_count;
-            return $users;
-        });
-
-        // いいね獲得数が多い順に並び替え
-        $sorted_ratings = $ratings->sortByDesc('favorites_count')->values();
+        // 並び替えられたユーザー一覧を取得
+        $users = $user->sortedUsers($sort, $pagination, $loginUserId);
 
         return
             [
                 'loginUser' => $loginUser,
                 'users' => $users,
-                'populars' => $populars,
-                'sorted_ratings' => $sorted_ratings,
             ];
     }
 
@@ -65,13 +40,14 @@ class UsersController extends Controller
      */
     public function show(Request $request, Review $review, User $user)
     {
-        $profileUserId = $request->user->id;
+        $profileUserId = $user->id;
         $profileUser = $user->with('followers')->find($profileUserId);
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
-        // 投稿
+
+        // 投稿一覧
         $userReviews = $review->getUserReviews($user->id);
-        // いいねした投稿
+        // いいねした投稿一覧
         $favoriteReviews = $review->getFavoriteReviews($user->id);
         // フォローしているユーザー
         $followingUsers = $user->getFollowingUsers($user->id);
@@ -85,7 +61,7 @@ class UsersController extends Controller
                 'userReviews' => $userReviews,
                 'favoriteReviews' => $favoriteReviews,
                 'followingUsers' => $followingUsers,
-                'followedUsers' => $followedUsers
+                'followedUsers' => $followedUsers,
             ];
     }
 

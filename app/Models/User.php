@@ -58,9 +58,14 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    // ログインユーザーを除くすべてのユーザーを取得
     public function getAllUsers(Int $user_id)
     {
-        return $this->where('id', '<>', $user_id);
+        return $this->where('id', '<>', $user_id)
+                    ->with(['followers', 'reviews' => function($query) {
+                        $query->with('favorites');
+                        }])
+                    ->withCount('followers');
     }
 
     // フォローする
@@ -143,6 +148,27 @@ class User extends Authenticatable
             ->where('followed_id', $id)
             ->orderBy('created_at', 'DESC')
             ->get();
+    }
+
+    // ユーザー一覧の並び替え
+    public function sortedUsers($sort, $pagination, $loginUserId)
+    {
+        switch ($sort) {
+            case 'follower':
+                // フォロワーが多い順にユーザーを取得
+                return $this->getAllUsers($loginUserId)
+                            ->orderBy('followers_count', 'DESC')
+                            ->paginate($pagination);
+                break;
+
+            case 'default':
+            default :
+                // updated_at順にユーザーを取得
+                return $this->getAllUsers($loginUserId)
+                ->orderBy('updated_at', 'DESC')
+                ->paginate($pagination);
+                break;
+        }
     }
 
 }
