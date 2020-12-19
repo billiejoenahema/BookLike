@@ -71739,7 +71739,8 @@ var FavoriteButton = function FavoriteButton(props) {
     });
   }, [setFavorite]);
 
-  var postFavorite = function postFavorite() {
+  var postFavorite = function postFavorite(e) {
+    e.preventDefault();
     toggleFavorite();
     setFavoriteCount(favoriteCount + 1);
     var review_id = props.timeline.id;
@@ -71750,7 +71751,8 @@ var FavoriteButton = function FavoriteButton(props) {
     });
   };
 
-  var deleteFavorite = function deleteFavorite() {
+  var deleteFavorite = function deleteFavorite(e) {
+    e.preventDefault();
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
     var favoritesArray = Array.from(props.timeline.favorites);
@@ -71835,7 +71837,6 @@ var FollowButton = function FollowButton(props) {
   }, [setFollowing]);
 
   var PostFollow = function PostFollow(e) {
-    e.preventDefault();
     toggleFollow();
     return axios.post("/api/users/".concat(userId, "/follow")).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
@@ -71843,7 +71844,6 @@ var FollowButton = function FollowButton(props) {
   };
 
   var DeleteFollow = function DeleteFollow(e) {
-    e.preventDefault();
     toggleFollow();
     return axios.post("/api/users/".concat(userId, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
@@ -72644,10 +72644,10 @@ var UserIndex = function UserIndex() {
       allUsers = _useState4[0],
       setAllUsers = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('default'),
       _useState6 = _slicedToArray(_useState5, 2),
-      selectedPopular = _useState6[0],
-      setSelectedPopular = _useState6[1];
+      sort = _useState6[0],
+      setSort = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -72679,16 +72679,10 @@ var UserIndex = function UserIndex() {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/users?page=".concat(page)).then(function (res) {
+                return axios.get("/api/users?sort=".concat(sort, "&page=").concat(page)).then(function (res) {
                   setLoginUser(res.data.loginUser);
                   page < res.data.users.last_page && setHasMore(true);
-
-                  if (selectedPopular) {
-                    return res.data.populars.data;
-                  }
-
-                  console.log(res.data.sorted_ratings);
-                  return res.data.sorted_ratings;
+                  return res.data.users.data || res.data.users;
                 })["catch"](function (err) {
                   console.log(err);
                 });
@@ -72714,7 +72708,7 @@ var UserIndex = function UserIndex() {
     }();
 
     loadUsers();
-  }, [page, selectedPopular]);
+  }, [page, sort]);
   var userList = allUsers.filter(function (item) {
     // nameとscreen_nameのどちらかが部分一致するユーザーを探す
     if (item.name) {
@@ -72730,7 +72724,8 @@ var UserIndex = function UserIndex() {
   };
 
   var sortChange = function sortChange(e) {
-    e.target.value === 'follower' ? setSelectedPopular(true) : setSelectedPopular(false);
+    var selectedSort = document.getElementById('selectSort').value;
+    setSort(selectedSort);
     setAllUsers([]);
     setPage(1);
     setHasMore(false);
@@ -72863,31 +72858,41 @@ var UserPageTab = function UserPageTab() {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      userReviews = _useState4[0],
-      setUserReviews = _useState4[1];
+      tabList = _useState4[0],
+      setTabList = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      favoriteReviews = _useState6[0],
-      setFavoriteReviews = _useState6[1];
+      userReviewsCount = _useState6[0],
+      setUserReviewsCount = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState8 = _slicedToArray(_useState7, 2),
-      followingUsers = _useState8[0],
-      setFollowingUsers = _useState8[1];
+      favoriteReviewsCount = _useState8[0],
+      setFavoriteReviewsCount = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState10 = _slicedToArray(_useState9, 2),
-      followedUsers = _useState10[0],
-      setFollowedUsers = _useState10[1];
+      followingUsersCount = _useState10[0],
+      setFollowingUsersCount = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState12 = _slicedToArray(_useState11, 2),
-      loading = _useState12[0],
-      setLoading = _useState12[1];
+      followedUsersCount = _useState12[0],
+      setFollowedUsersCount = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('userReviews'),
+      _useState14 = _slicedToArray(_useState13, 2),
+      tab = _useState14[0],
+      setTab = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
+      _useState16 = _slicedToArray(_useState15, 2),
+      loading = _useState16[0],
+      setLoading = _useState16[1];
 
   var currentPath = window.location.pathname;
-  var id = currentPath.replace(/[^0-9]/g, '');
+  var userId = currentPath.replace(/[^0-9]/g, '');
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTab = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72897,12 +72902,14 @@ var UserPageTab = function UserPageTab() {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/users/".concat(id)).then(function (res) {
+                return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/users/".concat(userId, "?tab=").concat(tab)).then(function (res) {
                   setLoginUser(res.data.loginUser);
-                  setUserReviews(res.data.userReviews);
-                  setFavoriteReviews(res.data.favoriteReviews);
-                  setFollowingUsers(res.data.followingUsers);
-                  setFollowedUsers(res.data.followedUsers);
+                  setTabList(res.data.tabList);
+                  setUserReviewsCount(res.data.userReviewsCount);
+                  setFavoriteReviewsCount(res.data.favoriteReviewsCount);
+                  setFollowingUsersCount(res.data.followingUsersCount);
+                  setFollowedUsersCount(res.data.followedUsersCount);
+                  console.log(res.data.tabList);
                 })["catch"](function (err) {
                   console.log(err);
                 });
@@ -72922,32 +72929,49 @@ var UserPageTab = function UserPageTab() {
 
     loadTab();
     setLoading(false);
-  }, []);
+  }, [tab]);
+
+  var selectTab = function selectTab(e) {
+    var selectTabId = e.target.id;
+    var selected = document.getElementsByClassName('react-tabs__tab--selected')[0].childNodes; // 表示中のタブをクリックしたときは何もしない
+
+    if (selectTabId === selected[0].id) return;
+    setTab(selectTabId);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small px-0"
-  }, "\u6295\u7A3F", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), userReviews.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small px-0"
-  }, "\u3044\u3044\u306D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), favoriteReviews.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small px-0"
-  }, "\u30D5\u30A9\u30ED\u30FC\u4E2D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followingUsers.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small px-0"
-  }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followedUsers.length))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, userReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    timelines: userReviews,
+    onClick: selectTab,
+    id: "userReviews",
+    className: "text-center small px-0 tabListItem"
+  }, "\u6295\u7A3F", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), userReviewsCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    onClick: selectTab,
+    id: "favoriteReviews",
+    className: "text-center small px-0 tabListItem"
+  }, "\u3044\u3044\u306D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), favoriteReviewsCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    onClick: selectTab,
+    id: "followingUsers",
+    className: "text-center small px-0 tabListItem"
+  }, "\u30D5\u30A9\u30ED\u30FC\u4E2D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followingUsersCount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    onClick: selectTab,
+    id: "followedUsers",
+    className: "text-center small px-0 tabListItem"
+  }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followedUsersCount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, tabList.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    timelines: tabList,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
-  }, "\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, favoriteReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    timelines: favoriteReviews,
+  }, "\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, tabList.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    timelines: tabList,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
-  }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, followingUsers.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    users: followingUsers,
+  }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, tabList.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    users: tabList,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
-  }, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, followedUsers.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    users: followedUsers,
+  }, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, tabList.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    users: tabList,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
@@ -73009,7 +73033,6 @@ var UserProfileFavoritesCount = function UserProfileFavoritesCount() {
   var currentPath = window.location.pathname;
   var id = currentPath.replace(/[^0-9]/g, '');
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    // ユーザー詳細ページ用の処理
     var loadFavoritesCount = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -73018,8 +73041,8 @@ var UserProfileFavoritesCount = function UserProfileFavoritesCount() {
               case 0:
                 _context.next = 2;
                 return axios.get("/api/users/".concat(id)).then(function (res) {
-                  var userReviews = res.data.userReviews;
-                  var total = userReviews.reduce(function (a, b) {
+                  var timeline = res.data.tabList;
+                  var total = timeline.reduce(function (a, b) {
                     return a + b.favorites.length;
                   }, 0);
                   setTotalFavoritesCount(total);
@@ -73223,8 +73246,13 @@ var Users = function Users(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_7__["STORAGE"], "/").concat(user.profile_image),
       className: "rounded-circle shadow-sm",
+      "data-tip": "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u30DA\u30FC\u30B8\u3078",
       width: "48",
       height: "48"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      effect: "float",
+      type: "info",
+      place: "top"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-2 px-0 flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {

@@ -7,7 +7,7 @@ const UserIndex = () => {
 
     const [loginUser, setLoginUser] = useState()
     const [allUsers, setAllUsers] = useState([])
-    const [selectedPopular, setSelectedPopular] = useState(false)
+    const [sort, setSort] = useState('default')
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -17,15 +17,11 @@ const UserIndex = () => {
         const loadUsers = async () => {
             setLoading(true)
             const newUsers = await axios
-                .get(`/api/users?page=${page}`)
+                .get(`/api/users?sort=${sort}&page=${page}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
                     page < res.data.users.last_page && setHasMore(true)
-                    if (selectedPopular) {
-                        return res.data.populars.data
-                    }
-                    console.log(res.data.sorted_ratings)
-                    return res.data.sorted_ratings
+                    return res.data.users.data || res.data.users
                 })
                 .catch(err => {
                     console.log(err)
@@ -34,7 +30,7 @@ const UserIndex = () => {
             setLoading(false)
         }
         loadUsers()
-    }, [page, selectedPopular])
+    }, [page, sort])
 
     const userList = allUsers.filter((item) => {
         // nameとscreen_nameのどちらかが部分一致するユーザーを探す
@@ -50,7 +46,8 @@ const UserIndex = () => {
     }
 
     const sortChange = (e) => {
-        e.target.value === 'follower' ? setSelectedPopular(true) : setSelectedPopular(false)
+        const selectedSort = document.getElementById('selectSort').value
+        setSort(selectedSort)
         setAllUsers([])
         setPage(1)
         setHasMore(false)
