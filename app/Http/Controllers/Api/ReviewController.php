@@ -27,7 +27,7 @@ class ReviewController extends Controller
     {
         $sort = $request['sort'];
         $loginUser = auth()->user();
-        $pagination = 5;
+        $pagination = 6;
 
         // 並び替えられた投稿一覧
         $timelines = $review->sortTimeline($sort, $pagination);
