@@ -95,12 +95,14 @@ const UserIndex = () => {
                 </div>
             </div>
             <div id="usersComponent">
-                <Users users={userList} loginUser={loginUser} />
+                <Users users={userList} loginUser={loginUser} loading={loading} />
             </div>
 
             {/* Loading Spinner */}
             <div className="text-center">
                 {loading && < Loading />}
+                {!loading && (userList.length === 0) && 'ユーザーは見つかりませんでした'}
+
             </div>
 
         </>
