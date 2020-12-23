@@ -29,22 +29,27 @@ function Timeline(props) {
                         </div>
                     </div>
                     <div className="card-body py-0 px-3">
-                        <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
-                            <div className="d-flex flex-row py-3 border-top border-bottom">
+                        <div className="d-flex flex-row py-3 border-top border-bottom">
+                            <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
                                 <div>
                                     <img src={timeline.image_url} width="100" className="shadow-sm" />
                                 </div>
-                                <div className="col-md-8 d-flex flex-column text-left pl-3 px-0">
-                                    <h5 className="mb-3">{timeline.title}</h5>
-                                    <ul className="list-unstyled">
-                                        <li><span>著者：</span><object><a href={`/reviews?search=${timeline.author}&value=author`}>{timeline.author}</a></object></li>
-                                        <li><span>出版社：</span><object><a href={`/reviews?search=${timeline.manufacturer}&value=manufacturer`}>{timeline.manufacturer}</a></object></li>
-                                        <li><span>カテゴリー：</span><object><a href={`/reviews?category=${timeline.category}`}>{timeline.category}</a></object></li>
-                                        <li><object><a href={timeline.page_url} target="_blank" rel="noopener" data-tip="Amazonサイトへ移動"><i className="fab fa-amazon"></i> Amazon<ReactTooltip effect="float" type="info" place="top" /></a></object></li>
-                                    </ul>
-                                </div>
+                            </a>
+                            <div className="col-md-8 d-flex flex-column text-left pl-3 px-0">
+                                <h5 className="mb-3">{timeline.title}</h5>
+                                <ul className="list-unstyled">
+                                    <li><span>著者：</span>{timeline.author}</li>
+                                    <li><span>出版社：</span>{timeline.manufacturer}</li>
+                                    <li><span>カテゴリー：</span><span className="btn p-0 text-blue anchor" onClick={props.changeCategory} data-category={timeline.category}>{timeline.category}</span></li>
+                                    <li>
+                                        <object><a href={timeline.page_url} target="_blank" rel="noopener" data-tip="Amazonサイトへ移動">
+                                            <i className="fab fa-amazon"></i> Amazon
+                                                <ReactTooltip effect="float" type="info" place="top" />
+                                        </a></object>
+                                    </li>
+                                </ul>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div className="card-body p-0">
                         <a href={`/reviews/${timeline.id}`} className="d-block p-3 text-reset text-decoration-none">

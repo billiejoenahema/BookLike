@@ -71930,6 +71930,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
 
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71960,14 +71962,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewIndex = function ReviewIndex() {
-  var pagination = 5;
   var params = new URL(document.location).searchParams;
   var search = params.get('search');
   var value = params.get('value');
-  var category = params.get('category');
   var initialSearchWord = search || '';
   var initialSelectedValue = value || 'title';
-  var initialSelectedCategory = category || '';
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -71979,47 +71978,44 @@ var ReviewIndex = function ReviewIndex() {
       timelines = _useState4[0],
       setTimelines = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('default'),
       _useState6 = _slicedToArray(_useState5, 2),
-      timelinesLength = _useState6[0],
-      setTimelinesLength = _useState6[1];
+      category = _useState6[0],
+      setCategory = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSelectedCategory),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSelectedValue),
       _useState8 = _slicedToArray(_useState7, 2),
-      selectedCategory = _useState8[0],
-      setSelectedCategory = _useState8[1];
+      selectedValue = _useState8[0],
+      setSelectedValue = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSelectedValue),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('default'),
       _useState10 = _slicedToArray(_useState9, 2),
-      selectedValue = _useState10[0],
-      setSelectedValue = _useState10[1];
+      sort = _useState10[0],
+      setSort = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('default'),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
       _useState12 = _slicedToArray(_useState11, 2),
-      sort = _useState12[0],
-      setSort = _useState12[1];
+      page = _useState12[0],
+      setPage = _useState12[1];
 
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      page = _useState14[0],
-      setPage = _useState14[1];
+      hasMore = _useState14[0],
+      setHasMore = _useState14[1];
 
   var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      hasMore = _useState16[0],
-      setHasMore = _useState16[1];
+      loading = _useState16[0],
+      setLoading = _useState16[1];
 
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSearchWord),
       _useState18 = _slicedToArray(_useState17, 2),
-      loading = _useState18[0],
-      setLoading = _useState18[1];
-
-  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSearchWord),
-      _useState20 = _slicedToArray(_useState19, 2),
-      searchWord = _useState20[0],
-      setSearchWord = _useState20[1];
+      searchWord = _useState18[0],
+      setSearchWord = _useState18[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    console.log('render!');
+
     var loadTimeline = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var newTimelines, addTimelines;
@@ -72029,8 +72025,9 @@ var ReviewIndex = function ReviewIndex() {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/reviews?sort=".concat(sort, "&page=").concat(page)).then(function (res) {
+                return axios.get("/api/reviews?category=".concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
                   setLoginUser(res.data.loginUser);
+                  console.log(res.data.timelines.data);
                   page < res.data.timelines.last_page && setHasMore(true);
                   return res.data.timelines.data;
                 })["catch"](function (err) {
@@ -72040,14 +72037,6 @@ var ReviewIndex = function ReviewIndex() {
               case 3:
                 newTimelines = _context.sent;
                 addTimelines = newTimelines.filter(function (item) {
-                  if (selectedCategory) {
-                    if (item.category) {
-                      return item[selectedValue].indexOf(searchWord) > -1 && item.category.indexOf(selectedCategory) > -1;
-                    }
-
-                    return;
-                  }
-
                   return item[selectedValue].indexOf(searchWord) > -1;
                 });
                 setTimelines(function (prev) {
@@ -72069,7 +72058,7 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-  }, [page, sort, selectedCategory, searchWord]);
+  }, [page, category, searchWord, sort]);
 
   var selectItem = function selectItem(e) {
     var selectedIndex = e.target.selectedIndex;
@@ -72098,21 +72087,37 @@ var ReviewIndex = function ReviewIndex() {
     setSearchWord(modalSearchBooks.value);
   };
 
-  var categoryChange = function categoryChange(e) {
-    var selectedCategory = e.target.value;
+  var changeCategory = function changeCategory(e) {
+    console.log('category changed!'); // セレクトボックスを操作または投稿中のカテゴリーをクリックしたときの処理
+
+    var selectedOption = document.getElementById('selectCategory').options;
+    var selectedCategory = e.target.value || e.target.dataset.category;
     setTimelines([]);
     setPage(1);
     setHasMore(false);
+    setCategory(selectedCategory); // セレクトボックスを操作
 
-    if (selectedCategory === 'default') {
-      setSelectedCategory('');
-      return;
+    var _iterator = _createForOfIteratorHelper(selectedOption),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var option = _step.value;
+        option.selected = false;
+
+        if (option.value === selectedCategory) {
+          option.selected = true;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
     }
-
-    setSelectedCategory(selectedCategory);
   };
 
   var sortChange = function sortChange() {
+    console.log('sort changed!');
     var selectedSort = document.getElementById('selectSort').value;
     setSort(selectedSort);
     setTimelines([]);
@@ -72136,17 +72141,6 @@ var ReviewIndex = function ReviewIndex() {
     return;
   };
 
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (timelinesLength < pagination && hasMore) {
-      setPage(function (prev) {
-        return prev + 1;
-      });
-      setHasMore(false);
-    }
-
-    setTimelinesLength(timelines.length);
-    return;
-  }, [timelines]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "search-form"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -72217,7 +72211,8 @@ var ReviewIndex = function ReviewIndex() {
   }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \"".concat(searchWord, "\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex justify-content-between mt-2 flex-wrap mb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-    onChange: categoryChange,
+    onChange: changeCategory,
+    id: "selectCategory",
     className: "form-control-sm mt-1 mt-sm-0",
     placeholder: "\u30AB\u30C6\u30B4\u30EA\u30FC\u3067\u7D5E\u308A\u8FBC\u307F"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
@@ -72267,10 +72262,11 @@ var ReviewIndex = function ReviewIndex() {
     id: "timelinesComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
     timelines: timelines,
-    loginUser: loginUser
+    loginUser: loginUser,
+    changeCategory: changeCategory
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
-  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null), !loading && timelines.length === 0 && '該当する投稿は見つかりませんでした'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewIndex);
@@ -72491,28 +72487,26 @@ function Timeline(props) {
       className: "mb-0 text-secondary"
     }, timeline.created_at.slice(0, -8)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body py-0 px-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-flex flex-row py-3 border-top border-bottom"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(timeline.id),
       className: "d-block text-reset text-decoration-none"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex flex-row py-3 border-top border-bottom"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: timeline.image_url,
       width: "100",
       className: "shadow-sm"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-md-8 d-flex flex-column text-left pl-3 px-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
       className: "mb-3"
     }, timeline.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
       className: "list-unstyled"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews?search=".concat(timeline.author, "&value=author")
-    }, timeline.author))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews?search=".concat(timeline.manufacturer, "&value=manufacturer")
-    }, timeline.manufacturer))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews?category=".concat(timeline.category)
-    }, timeline.category))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), timeline.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), timeline.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "btn p-0 text-blue anchor",
+      onClick: props.changeCategory,
+      "data-category": timeline.category
+    }, timeline.category)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: timeline.page_url,
       target: "_blank",
       rel: "noopener",
@@ -72523,7 +72517,7 @@ function Timeline(props) {
       effect: "float",
       type: "info",
       place: "top"
-    }))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body p-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(timeline.id),
@@ -72786,10 +72780,11 @@ var UserIndex = function UserIndex() {
     id: "usersComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_3__["default"], {
     users: userList,
-    loginUser: loginUser
+    loginUser: loginUser,
+    loading: loading
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
-  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null), !loading && userList.length === 0 && 'ユーザーは見つかりませんでした'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserIndex);
@@ -73197,7 +73192,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var Users = function Users(props) {
   var users = props.users,
-      loginUser = props.loginUser;
+      loginUser = props.loginUser,
+      loading = props.loading;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, users.map(function (user) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card mb-3 shadow-sm",

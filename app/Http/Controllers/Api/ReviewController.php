@@ -26,11 +26,13 @@ class ReviewController extends Controller
     public function index(Request $request, Review $review, User $user)
     {
         $sort = $request['sort'];
-        $loginUser = auth()->user();
+        $category = $request['category'];
         $pagination = 6;
+        $loginUser = auth()->user();
 
         // 並び替えられた投稿一覧
-        $timelines = $review->sortTimeline($sort, $pagination);
+        $timelines = $review->getTimeline($sort, $category, $pagination);
+        // dd($timelines);
 
         return
             [

@@ -62,10 +62,31 @@ class User extends Authenticatable
     public function getAllUsers(Int $user_id)
     {
         return $this->where('id', '<>', $user_id)
-                    ->with(['followers', 'reviews' => function($query) {
-                        $query->with('favorites');
+                    ->with(['followers:id', 'reviews' => function($query) {
+                        $query->select('user_id')->with('favorites');
                         }])
                     ->withCount('followers');
+    }
+
+    // ユーザー一覧の並び替え
+    public function sortedUsers($sort, $pagination, $loginUserId)
+    {
+        switch ($sort) {
+            case 'follower':
+                // フォロワーが多い順にユーザーを取得
+                return $this->getAllUsers($loginUserId)
+                            ->orderBy('followers_count', 'DESC')
+                            ->paginate($pagination);
+                break;
+
+            case 'default':
+            default :
+                // updated_at順にユーザーを取得
+                return $this->getAllUsers($loginUserId)
+                            ->orderBy('updated_at', 'DESC')
+                            ->paginate($pagination);
+                break;
+        }
     }
 
     // フォローする
@@ -130,45 +151,25 @@ class User extends Authenticatable
     public function getFollowingUsers(Int $id)
     {
         return $this->follows()
-            ->with(['followers', 'reviews'=> function($query) {
-                $query->with('favorites');
-                }])
-            ->where('following_id', $id)
-            ->orderBy('created_at', 'DESC')
-            ->get();
+                    ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
+                    ->with(['followers:id', 'reviews'=> function($query) {
+                        $query->select('user_id')->with('favorites');
+                        }])
+                    ->where('following_id', $id)
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
     }
 
     // フォロワーを取得
     public function getFollowers(Int $id)
     {
         return $this->followers()
-            ->with(['followers', 'reviews'=> function($query) {
-                $query->with('favorites');
-                }])
-            ->where('followed_id', $id)
-            ->orderBy('created_at', 'DESC')
-            ->get();
+                    ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
+                    ->with(['followers:id', 'reviews'=> function($query) {
+                        $query->select('user_id')->with('favorites');
+                        }])
+                    ->where('followed_id', $id)
+                    ->orderBy('created_at', 'DESC')
+                    ->get();
     }
-
-    // ユーザー一覧の並び替え
-    public function sortedUsers($sort, $pagination, $loginUserId)
-    {
-        switch ($sort) {
-            case 'follower':
-                // フォロワーが多い順にユーザーを取得
-                return $this->getAllUsers($loginUserId)
-                            ->orderBy('followers_count', 'DESC')
-                            ->paginate($pagination);
-                break;
-
-            case 'default':
-            default :
-                // updated_at順にユーザーを取得
-                return $this->getAllUsers($loginUserId)
-                ->orderBy('updated_at', 'DESC')
-                ->paginate($pagination);
-                break;
-        }
-    }
-
 }

@@ -91,7 +91,7 @@ class Review extends Model
     public function getUserReviews(Int $user_id)
     {
         return $this->where('user_id', $user_id)
-                    ->with(['user', 'comments', 'favorites'])
+                    ->with(['user:id,screen_name,name,profile_image', 'comments:id', 'favorites'])
                     ->orderBy('created_at', 'DESC')
                     ->get();
     }
@@ -99,30 +99,38 @@ class Review extends Model
     // いいねした投稿を取得
     public function getFavoriteReviews(Int $user_id)
     {
-        $favorite_reviews = $this->whereHas(
-            'favorites', function($query) use ($user_id)
-        {
-            $query->where('user_id', $user_id);
-        }
-        )->with('user')->with('comments')->with('favorites')->get();
+        $favorite_reviews = $this->whereHas('favorites', function($query) use ($user_id) {
+                                    $query->where('user_id', $user_id);
+                                })
+                                ->with(['user:id,screen_name,name,profile_image','comments:id','favorites'])
+                                ->get();
 
         return $favorite_reviews;
     }
 
     // 投稿一覧の並び替え
-    public function sortTimeline($sort, $pagination)
+    public function getTimeline($sort, $category, $pagination)
     {
+        // カテゴリーを選択しているだけwhere文を適用するための処理
+        if ($category === 'default') $category = false;
+
         if ($sort === 'favorite') {
             // いいねが多い順に投稿を並び替え
-            return $this->with('user')
-                        ->with(['comments', 'favorites'])
+            return $this->when($category, function ($query, $category) {
+                            return $query->where('category', $category);
+                        })
+                        ->with('user:id,screen_name,name,profile_image')
+                        ->with(['comments:id', 'favorites'])
                         ->withCount('favorites')
                         ->orderBy('favorites_count', 'DESC')
                         ->paginate($pagination);
         } else {
             // 登録順に投稿を並び替え（デフォルト）
-            return $this->with('user')
-                        ->with(['comments','favorites'])
+            return $this->when($category, function ($query, $category) {
+                            return $query->where('category', $category);
+                        })
+                        ->with('user:id,screen_name,name,profile_image')
+                        ->with(['comments:id','favorites'])
                         ->orderBy('created_at', 'DESC')
                         ->paginate($pagination);
         }
