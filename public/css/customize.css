@@ -4,6 +4,11 @@ a:hover {
     transition:0.2s all;
 }
 
+.anchor:hover {
+    color: #f66d9b !important;
+    transition:0.2s all;
+}
+
 .flash_message {
     margin: auto;
     text-align: center;

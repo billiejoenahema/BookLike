@@ -5,19 +5,15 @@ import Loading from './Loading'
 
 const ReviewIndex = () => {
 
-    const pagination = 5
     const params = (new URL(document.location)).searchParams
     const search = params.get('search')
     const value = params.get('value')
-    const category = params.get('category')
     const initialSearchWord = search || ''
     const initialSelectedValue = value || 'title'
-    const initialSelectedCategory = category || ''
 
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
-    const [timelinesLength, setTimelinesLength] = useState(0)
-    const [selectedCategory, setSelectedCategory] = useState(initialSelectedCategory)
+    const [category, setCategory] = useState('default')
     const [selectedValue, setSelectedValue] = useState(initialSelectedValue)
     const [sort, setSort] = useState('default')
     const [page, setPage] = useState(1)
@@ -26,12 +22,14 @@ const ReviewIndex = () => {
     const [searchWord, setSearchWord] = useState(initialSearchWord)
 
     useEffect(() => {
+        console.log('render!')
         const loadTimeline = async () => {
             setLoading(true)
             const newTimelines = await axios
-                .get(`/api/reviews?sort=${sort}&page=${page}`)
+                .get(`/api/reviews?category=${category}&sort=${sort}&page=${page}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
+                    console.log(res.data.timelines.data)
                     page < res.data.timelines.last_page && setHasMore(true)
                     return res.data.timelines.data
                 })
@@ -39,12 +37,6 @@ const ReviewIndex = () => {
                     console.log(err)
                 })
             const addTimelines = newTimelines.filter(item => {
-                if (selectedCategory) {
-                    if (item.category) {
-                        return item[selectedValue].indexOf(searchWord) > -1 && item.category.indexOf(selectedCategory) > -1
-                    }
-                    return
-                }
                 return item[selectedValue].indexOf(searchWord) > -1
             })
             setTimelines(prev => [...prev, ...addTimelines])
@@ -52,7 +44,7 @@ const ReviewIndex = () => {
         }
         loadTimeline()
 
-    }, [page, sort, selectedCategory, searchWord])
+    }, [page, category, searchWord, sort])
 
     const selectItem = (e) => {
         const selectedIndex = e.target.selectedIndex
@@ -81,19 +73,28 @@ const ReviewIndex = () => {
         setSearchWord(modalSearchBooks.value)
     }
 
-    const categoryChange = (e) => {
-        const selectedCategory = e.target.value
+    const changeCategory = (e) => {
+        console.log('category changed!')
+        // セレクトボックスを操作または投稿中のカテゴリーをクリックしたときの処理
+        const selectedOption = document.getElementById('selectCategory').options
+        const selectedCategory = e.target.value || e.target.dataset.category
+
         setTimelines([])
         setPage(1)
         setHasMore(false)
-        if (selectedCategory === 'default') {
-            setSelectedCategory('')
-            return
+        setCategory(selectedCategory)
+
+        // セレクトボックスを操作
+        for (const option of selectedOption) {
+            option.selected = false
+            if (option.value === selectedCategory) {
+                option.selected = true
+            }
         }
-        setSelectedCategory(selectedCategory)
     }
 
     const sortChange = () => {
+        console.log('sort changed!')
         const selectedSort = document.getElementById('selectSort').value
         setSort(selectedSort)
         setTimelines([])
@@ -112,15 +113,6 @@ const ReviewIndex = () => {
         }
         return
     }
-
-    useEffect(() => {
-        if (timelinesLength < pagination && hasMore) {
-            setPage(prev => prev + 1)
-            setHasMore(false)
-        }
-        setTimelinesLength(timelines.length)
-        return
-    }, [timelines])
 
     return (
         <>
@@ -184,7 +176,7 @@ const ReviewIndex = () => {
 
             <div className="form-group d-flex justify-content-between mt-2 flex-wrap mb-2">
                 {/* カテゴリー選択 */}
-                <select onChange={categoryChange} className="form-control-sm mt-1 mt-sm-0" placeholder="カテゴリーで絞り込み">
+                <select onChange={changeCategory} id="selectCategory" className="form-control-sm mt-1 mt-sm-0" placeholder="カテゴリーで絞り込み">
                     <option value="default">すべてのカテゴリー</option>
                     <option value="文学">文学</option>
                     <option value="エンターテインメント">エンターテインメント</option>
@@ -213,12 +205,13 @@ const ReviewIndex = () => {
 
             {/* 投稿一覧 */}
             <div id="timelinesComponent">
-                <Timeline timelines={timelines} loginUser={loginUser} />
+                <Timeline timelines={timelines} loginUser={loginUser} changeCategory={changeCategory} />
             </div>
 
             {/* Loading Spinner */}
             <div className="text-center">
                 {loading && < Loading />}
+                {!loading && (timelines.length === 0) && '該当する投稿は見つかりませんでした'}
             </div>
         </>
     )
