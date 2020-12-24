@@ -5,54 +5,48 @@ import Loading from './Loading'
 
 const ReviewIndex = () => {
 
-    const params = (new URL(document.location)).searchParams
-    const search = params.get('search')
-    const value = params.get('value')
-    const initialSearchWord = search || ''
-    const initialSelectedValue = value || 'title'
+    // const params = (new URL(document.location)).searchParams
 
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
     const [category, setCategory] = useState('default')
-    const [selectedValue, setSelectedValue] = useState(initialSelectedValue)
+    const [criteria, setCriteria] = useState('title')
     const [sort, setSort] = useState('default')
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [searchWord, setSearchWord] = useState(initialSearchWord)
+    const [searchWord, setSearchWord] = useState('')
 
     useEffect(() => {
-        console.log('render!')
         const loadTimeline = async () => {
             setLoading(true)
             const newTimelines = await axios
-                .get(`/api/reviews?category=${category}&sort=${sort}&page=${page}`)
+                .get(`/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
-                    console.log(res.data.timelines.data)
                     page < res.data.timelines.last_page && setHasMore(true)
                     return res.data.timelines.data
                 })
                 .catch(err => {
                     console.log(err)
                 })
-            const addTimelines = newTimelines.filter(item => {
-                return item[selectedValue].indexOf(searchWord) > -1
-            })
-            setTimelines(prev => [...prev, ...addTimelines])
+            // const addTimelines = newTimelines.filter(item => {
+            //     return item[criteria].indexOf(searchWord) > -1
+            // })
+            setTimelines(prev => [...prev, ...newTimelines])
             setLoading(false)
         }
         loadTimeline()
 
     }, [page, category, searchWord, sort])
 
-    const selectItem = (e) => {
+    const selectCriteria = (e) => {
         const selectedIndex = e.target.selectedIndex
-        const item = e.target.options[selectedIndex].label
-        searchBooks.placeholder = `${item}で検索...`
-        modalSearchBooks.placeholder = `${item}で検索...`
+        const selectedCriteria = e.target.options[selectedIndex].label
+        searchBooks.placeholder = `${selectedCriteria}で検索...`
+        modalSearchBooks.placeholder = `${selectedCriteria}で検索...`
         setHasMore(false)
-        setSelectedValue(e.target.options[selectedIndex].value)
+        setCriteria(e.target.options[selectedIndex].value)
     }
 
     const searchSubmit = (e) => {
@@ -67,30 +61,54 @@ const ReviewIndex = () => {
     const modalSearchSubmit = (e) => {
         e.preventDefault()
         const modalSearchBooks = document.getElementById('modalSearchBooks')
+        const modalMapDrop = document.getElementsByClassName('modal-backdrop')[0]
+        const searchModal = document.getElementById('searchModal')
+
+        searchModal.classList.remove('show')
+        modalMapDrop.classList.remove('show')
         setTimelines([])
         setPage(1)
         setHasMore(false)
         setSearchWord(modalSearchBooks.value)
     }
 
+    // セレクトボックスを操作またはアンカーテキストをクリックしたときの処理
     const changeCategory = (e) => {
         console.log('category changed!')
-        // セレクトボックスを操作または投稿中のカテゴリーをクリックしたときの処理
-        const selectedOption = document.getElementById('selectCategory').options
-        const selectedCategory = e.target.value || e.target.dataset.category
+        const selectedOption = document.getElementById('categorySelector').options
+        const selectedValue = document.getElementById('categorySelector').value
+        const clickedCategory = e.target.dataset.category
+        const selectedCategory = clickedCategory || selectedValue
+        const anchorTextList = document.querySelectorAll('.anchor')
 
-        setTimelines([])
-        setPage(1)
-        setHasMore(false)
-        setCategory(selectedCategory)
+        if (clickedCategory === selectedValue) return
+        console.log(`selectedCategory: ${selectedCategory}`)
 
         // セレクトボックスを操作
-        for (const option of selectedOption) {
-            option.selected = false
-            if (option.value === selectedCategory) {
-                option.selected = true
+        const changeSelectBox = () => {
+            for (const option of selectedOption) {
+                option.selected = false
+                if (option.value === selectedCategory) {
+                    option.selected = true
+                }
             }
         }
+
+        // 現在選択中のカテゴリーと同じアンカーテキストの色を変える
+        const changeTextColor = () => {
+            anchorTextList.forEach(anchorText => {
+                if (anchorText.dataset.category === selectedCategory) {
+                    anchorText.classList.replace('text-blue', 'current-category')
+                }
+            })
+        }
+
+        setTimelines([])
+        setCategory(selectedCategory)
+        setPage(1)
+        setHasMore(false)
+        changeSelectBox()
+        changeTextColor()
     }
 
     const sortChange = () => {
@@ -119,7 +137,7 @@ const ReviewIndex = () => {
             {/* 投稿検索フォーム */}
             <div className="search-form">
                 <div className="d-flex flex-row">
-                    <select onChange={selectItem} className="text-right text-graphite bg-transparent border-0 mr-1">
+                    <select onChange={selectCriteria} className="text-right text-graphite bg-transparent border-0 mr-1">
                         <option value="title">タイトル</option>
                         <option value="author">著者</option>
                         <option value="manufacturer">出版社</option>
@@ -143,12 +161,12 @@ const ReviewIndex = () => {
                 <i className="fas fa-search text-teal"></i>
             </button>
             {/* スマホ用検索モーダル */}
-            <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-body">
                             <div className="d-flex flex-row">
-                                <select onChange={selectItem} className="text-right bg-transparent border-0 mr-1">
+                                <select onChange={selectCriteria} className="text-right bg-transparent border-0 mr-1">
                                     <option value="title">タイトル</option>
                                     <option value="author">著者</option>
                                     <option value="manufacturer">出版社</option>
@@ -176,7 +194,7 @@ const ReviewIndex = () => {
 
             <div className="form-group d-flex justify-content-between mt-2 flex-wrap mb-2">
                 {/* カテゴリー選択 */}
-                <select onChange={changeCategory} id="selectCategory" className="form-control-sm mt-1 mt-sm-0" placeholder="カテゴリーで絞り込み">
+                <select onChange={changeCategory} id="categorySelector" className="form-control-sm mt-1 mt-sm-0" placeholder="カテゴリーで絞り込み">
                     <option value="default">すべてのカテゴリー</option>
                     <option value="文学">文学</option>
                     <option value="エンターテインメント">エンターテインメント</option>
