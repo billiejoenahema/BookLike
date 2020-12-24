@@ -71962,12 +71962,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewIndex = function ReviewIndex() {
-  var params = new URL(document.location).searchParams;
-  var search = params.get('search');
-  var value = params.get('value');
-  var initialSearchWord = search || '';
-  var initialSelectedValue = value || 'title';
-
+  // const params = (new URL(document.location)).searchParams
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       loginUser = _useState2[0],
@@ -71983,10 +71978,10 @@ var ReviewIndex = function ReviewIndex() {
       category = _useState6[0],
       setCategory = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSelectedValue),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('title'),
       _useState8 = _slicedToArray(_useState7, 2),
-      selectedValue = _useState8[0],
-      setSelectedValue = _useState8[1];
+      criteria = _useState8[0],
+      setCriteria = _useState8[1];
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('default'),
       _useState10 = _slicedToArray(_useState9, 2),
@@ -72008,26 +72003,23 @@ var ReviewIndex = function ReviewIndex() {
       loading = _useState16[0],
       setLoading = _useState16[1];
 
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSearchWord),
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState18 = _slicedToArray(_useState17, 2),
       searchWord = _useState18[0],
       setSearchWord = _useState18[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    console.log('render!');
-
     var loadTimeline = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var newTimelines, addTimelines;
+        var newTimelines;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/reviews?category=".concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
+                return axios.get("/api/reviews?criteria=".concat(criteria, "&search=").concat(searchWord, "&category=").concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
                   setLoginUser(res.data.loginUser);
-                  console.log(res.data.timelines.data);
                   page < res.data.timelines.last_page && setHasMore(true);
                   return res.data.timelines.data;
                 })["catch"](function (err) {
@@ -72036,15 +72028,15 @@ var ReviewIndex = function ReviewIndex() {
 
               case 3:
                 newTimelines = _context.sent;
-                addTimelines = newTimelines.filter(function (item) {
-                  return item[selectedValue].indexOf(searchWord) > -1;
-                });
+                // const addTimelines = newTimelines.filter(item => {
+                //     return item[criteria].indexOf(searchWord) > -1
+                // })
                 setTimelines(function (prev) {
-                  return [].concat(_toConsumableArray(prev), _toConsumableArray(addTimelines));
+                  return [].concat(_toConsumableArray(prev), _toConsumableArray(newTimelines));
                 });
                 setLoading(false);
 
-              case 7:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -72060,13 +72052,13 @@ var ReviewIndex = function ReviewIndex() {
     loadTimeline();
   }, [page, category, searchWord, sort]);
 
-  var selectItem = function selectItem(e) {
+  var selectCriteria = function selectCriteria(e) {
     var selectedIndex = e.target.selectedIndex;
-    var item = e.target.options[selectedIndex].label;
-    searchBooks.placeholder = "".concat(item, "\u3067\u691C\u7D22...");
-    modalSearchBooks.placeholder = "".concat(item, "\u3067\u691C\u7D22...");
+    var selectedCriteria = e.target.options[selectedIndex].label;
+    searchBooks.placeholder = "".concat(selectedCriteria, "\u3067\u691C\u7D22...");
+    modalSearchBooks.placeholder = "".concat(selectedCriteria, "\u3067\u691C\u7D22...");
     setHasMore(false);
-    setSelectedValue(e.target.options[selectedIndex].value);
+    setCriteria(e.target.options[selectedIndex].value);
   };
 
   var searchSubmit = function searchSubmit(e) {
@@ -72081,39 +72073,62 @@ var ReviewIndex = function ReviewIndex() {
   var modalSearchSubmit = function modalSearchSubmit(e) {
     e.preventDefault();
     var modalSearchBooks = document.getElementById('modalSearchBooks');
+    var modalMapDrop = document.getElementsByClassName('modal-backdrop')[0];
+    var searchModal = document.getElementById('searchModal');
+    searchModal.classList.remove('show');
+    modalMapDrop.classList.remove('show');
     setTimelines([]);
     setPage(1);
     setHasMore(false);
     setSearchWord(modalSearchBooks.value);
-  };
+  }; // セレクトボックスを操作またはアンカーテキストをクリックしたときの処理
+
 
   var changeCategory = function changeCategory(e) {
-    console.log('category changed!'); // セレクトボックスを操作または投稿中のカテゴリーをクリックしたときの処理
+    console.log('category changed!');
+    var selectedOption = document.getElementById('categorySelector').options;
+    var selectedValue = document.getElementById('categorySelector').value;
+    var clickedCategory = e.target.dataset.category;
+    var selectedCategory = clickedCategory || selectedValue;
+    var anchorTextList = document.querySelectorAll('.anchor');
+    if (clickedCategory === selectedValue) return;
+    console.log("selectedCategory: ".concat(selectedCategory)); // セレクトボックスを操作
 
-    var selectedOption = document.getElementById('selectCategory').options;
-    var selectedCategory = e.target.value || e.target.dataset.category;
+    var changeSelectBox = function changeSelectBox() {
+      var _iterator = _createForOfIteratorHelper(selectedOption),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var option = _step.value;
+          option.selected = false;
+
+          if (option.value === selectedCategory) {
+            option.selected = true;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }; // 現在選択中のカテゴリーと同じアンカーテキストの色を変える
+
+
+    var changeTextColor = function changeTextColor() {
+      anchorTextList.forEach(function (anchorText) {
+        if (anchorText.dataset.category === selectedCategory) {
+          anchorText.classList.replace('text-blue', 'current-category');
+        }
+      });
+    };
+
     setTimelines([]);
+    setCategory(selectedCategory);
     setPage(1);
     setHasMore(false);
-    setCategory(selectedCategory); // セレクトボックスを操作
-
-    var _iterator = _createForOfIteratorHelper(selectedOption),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var option = _step.value;
-        option.selected = false;
-
-        if (option.value === selectedCategory) {
-          option.selected = true;
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
+    changeSelectBox();
+    changeTextColor();
   };
 
   var sortChange = function sortChange() {
@@ -72146,7 +72161,7 @@ var ReviewIndex = function ReviewIndex() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex flex-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-    onChange: selectItem,
+    onChange: selectCriteria,
     className: "text-right text-graphite bg-transparent border-0 mr-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "title"
@@ -72176,7 +72191,7 @@ var ReviewIndex = function ReviewIndex() {
     id: "searchModal",
     tabIndex: "-1",
     role: "dialog",
-    "aria-labelledby": "exampleModalLabel",
+    "aria-labelledby": "searchModalLabel",
     "aria-hidden": "true"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-dialog",
@@ -72188,7 +72203,7 @@ var ReviewIndex = function ReviewIndex() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex flex-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-    onChange: selectItem,
+    onChange: selectCriteria,
     className: "text-right bg-transparent border-0 mr-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "title"
@@ -72212,7 +72227,7 @@ var ReviewIndex = function ReviewIndex() {
     className: "form-group d-flex justify-content-between mt-2 flex-wrap mb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: changeCategory,
-    id: "selectCategory",
+    id: "categorySelector",
     className: "form-control-sm mt-1 mt-sm-0",
     placeholder: "\u30AB\u30C6\u30B4\u30EA\u30FC\u3067\u7D5E\u308A\u8FBC\u307F"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
