@@ -5,17 +5,21 @@ import Loading from './Loading'
 
 const ReviewIndex = () => {
 
-    // const params = (new URL(document.location)).searchParams
+    // 投稿詳細ページのリンクをクリックしたときのためにparamsから初期値を取得
+    const params = (new URL(document.location)).searchParams
+    const initialSearchWord = params.get('search') || ''
+    const initialCriteria = params.get('value') || 'title'
+    const initialCategory = params.get('category') || 'default'
 
     const [loginUser, setLoginUser] = useState()
     const [timelines, setTimelines] = useState([])
-    const [category, setCategory] = useState('default')
-    const [criteria, setCriteria] = useState('title')
+    const [category, setCategory] = useState(initialCategory)
+    const [criteria, setCriteria] = useState(initialCriteria)
     const [sort, setSort] = useState('default')
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [searchWord, setSearchWord] = useState('')
+    const [searchWord, setSearchWord] = useState(initialSearchWord)
 
     useEffect(() => {
         const loadTimeline = async () => {
@@ -37,8 +41,19 @@ const ReviewIndex = () => {
             setLoading(false)
         }
         loadTimeline()
-
+        changeSelectBox(initialCategory)
     }, [page, category, searchWord, sort])
+
+    // セレクトボックスを操作
+    const changeSelectBox = (selectedCategory) => {
+        const selectedOption = document.getElementById('categorySelector').options
+        for (const option of selectedOption) {
+            option.selected = false
+            if (option.value === selectedCategory) {
+                option.selected = true
+            }
+        }
+    }
 
     const selectCriteria = (e) => {
         const selectedIndex = e.target.selectedIndex
@@ -75,24 +90,10 @@ const ReviewIndex = () => {
     // セレクトボックスを操作またはアンカーテキストをクリックしたときの処理
     const changeCategory = (e) => {
         console.log('category changed!')
-        const selectedOption = document.getElementById('categorySelector').options
         const selectedValue = document.getElementById('categorySelector').value
         const clickedCategory = e.target.dataset.category
         const selectedCategory = clickedCategory || selectedValue
         const anchorTextList = document.querySelectorAll('.anchor')
-
-        if (clickedCategory === selectedValue) return
-        console.log(`selectedCategory: ${selectedCategory}`)
-
-        // セレクトボックスを操作
-        const changeSelectBox = () => {
-            for (const option of selectedOption) {
-                option.selected = false
-                if (option.value === selectedCategory) {
-                    option.selected = true
-                }
-            }
-        }
 
         // 現在選択中のカテゴリーと同じアンカーテキストの色を変える
         const changeTextColor = () => {
@@ -103,11 +104,14 @@ const ReviewIndex = () => {
             })
         }
 
+        if (clickedCategory === selectedValue) return
+        console.log(`selectedCategory: ${selectedCategory}`)
+
         setTimelines([])
         setCategory(selectedCategory)
         setPage(1)
         setHasMore(false)
-        changeSelectBox()
+        changeSelectBox(selectedCategory)
         changeTextColor()
     }
 
