@@ -71962,7 +71962,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewIndex = function ReviewIndex() {
-  // const params = (new URL(document.location)).searchParams
+  // 投稿詳細ページのリンクをクリックしたときのためにparamsから初期値を取得
+  var params = new URL(document.location).searchParams;
+  var initialSearchWord = params.get('search') || '';
+  var initialCriteria = params.get('value') || 'title';
+  var initialCategory = params.get('category') || 'default';
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       loginUser = _useState2[0],
@@ -71973,12 +71978,12 @@ var ReviewIndex = function ReviewIndex() {
       timelines = _useState4[0],
       setTimelines = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('default'),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialCategory),
       _useState6 = _slicedToArray(_useState5, 2),
       category = _useState6[0],
       setCategory = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('title'),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialCriteria),
       _useState8 = _slicedToArray(_useState7, 2),
       criteria = _useState8[0],
       setCriteria = _useState8[1];
@@ -72003,7 +72008,7 @@ var ReviewIndex = function ReviewIndex() {
       loading = _useState16[0],
       setLoading = _useState16[1];
 
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSearchWord),
       _useState18 = _slicedToArray(_useState17, 2),
       searchWord = _useState18[0],
       setSearchWord = _useState18[1];
@@ -72050,7 +72055,30 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-  }, [page, category, searchWord, sort]);
+    changeSelectBox(initialCategory);
+  }, [page, category, searchWord, sort]); // セレクトボックスを操作
+
+  var changeSelectBox = function changeSelectBox(selectedCategory) {
+    var selectedOption = document.getElementById('categorySelector').options;
+
+    var _iterator = _createForOfIteratorHelper(selectedOption),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var option = _step.value;
+        option.selected = false;
+
+        if (option.value === selectedCategory) {
+          option.selected = true;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  };
 
   var selectCriteria = function selectCriteria(e) {
     var selectedIndex = e.target.selectedIndex;
@@ -72086,34 +72114,10 @@ var ReviewIndex = function ReviewIndex() {
 
   var changeCategory = function changeCategory(e) {
     console.log('category changed!');
-    var selectedOption = document.getElementById('categorySelector').options;
     var selectedValue = document.getElementById('categorySelector').value;
     var clickedCategory = e.target.dataset.category;
     var selectedCategory = clickedCategory || selectedValue;
-    var anchorTextList = document.querySelectorAll('.anchor');
-    if (clickedCategory === selectedValue) return;
-    console.log("selectedCategory: ".concat(selectedCategory)); // セレクトボックスを操作
-
-    var changeSelectBox = function changeSelectBox() {
-      var _iterator = _createForOfIteratorHelper(selectedOption),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var option = _step.value;
-          option.selected = false;
-
-          if (option.value === selectedCategory) {
-            option.selected = true;
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    }; // 現在選択中のカテゴリーと同じアンカーテキストの色を変える
-
+    var anchorTextList = document.querySelectorAll('.anchor'); // 現在選択中のカテゴリーと同じアンカーテキストの色を変える
 
     var changeTextColor = function changeTextColor() {
       anchorTextList.forEach(function (anchorText) {
@@ -72123,11 +72127,13 @@ var ReviewIndex = function ReviewIndex() {
       });
     };
 
+    if (clickedCategory === selectedValue) return;
+    console.log("selectedCategory: ".concat(selectedCategory));
     setTimelines([]);
     setCategory(selectedCategory);
     setPage(1);
     setHasMore(false);
-    changeSelectBox();
+    changeSelectBox(selectedCategory);
     changeTextColor();
   };
 
