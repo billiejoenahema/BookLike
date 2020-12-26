@@ -72055,10 +72055,10 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-    changeSelectBox(initialCategory);
   }, [page, category, searchWord, sort]); // セレクトボックスを操作
 
   var changeSelectBox = function changeSelectBox(selectedCategory) {
+    console.log('Change select box!');
     var selectedOption = document.getElementById('categorySelector').options;
 
     var _iterator = _createForOfIteratorHelper(selectedOption),
@@ -72113,28 +72113,16 @@ var ReviewIndex = function ReviewIndex() {
 
 
   var changeCategory = function changeCategory(e) {
-    console.log('category changed!');
+    console.log('Category changed!');
     var selectedValue = document.getElementById('categorySelector').value;
     var clickedCategory = e.target.dataset.category;
     var selectedCategory = clickedCategory || selectedValue;
-    var anchorTextList = document.querySelectorAll('.anchor'); // 現在選択中のカテゴリーと同じアンカーテキストの色を変える
-
-    var changeTextColor = function changeTextColor() {
-      anchorTextList.forEach(function (anchorText) {
-        if (anchorText.dataset.category === selectedCategory) {
-          anchorText.classList.replace('text-blue', 'current-category');
-        }
-      });
-    };
-
     if (clickedCategory === selectedValue) return;
-    console.log("selectedCategory: ".concat(selectedCategory));
+    changeSelectBox(selectedCategory);
     setTimelines([]);
     setCategory(selectedCategory);
     setPage(1);
     setHasMore(false);
-    changeSelectBox(selectedCategory);
-    changeTextColor();
   };
 
   var sortChange = function sortChange() {

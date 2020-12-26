@@ -41,11 +41,11 @@ const ReviewIndex = () => {
             setLoading(false)
         }
         loadTimeline()
-        changeSelectBox(initialCategory)
     }, [page, category, searchWord, sort])
 
     // セレクトボックスを操作
     const changeSelectBox = (selectedCategory) => {
+        console.log('Change select box!')
         const selectedOption = document.getElementById('categorySelector').options
         for (const option of selectedOption) {
             option.selected = false
@@ -89,30 +89,18 @@ const ReviewIndex = () => {
 
     // セレクトボックスを操作またはアンカーテキストをクリックしたときの処理
     const changeCategory = (e) => {
-        console.log('category changed!')
+        console.log('Category changed!')
         const selectedValue = document.getElementById('categorySelector').value
         const clickedCategory = e.target.dataset.category
         const selectedCategory = clickedCategory || selectedValue
-        const anchorTextList = document.querySelectorAll('.anchor')
-
-        // 現在選択中のカテゴリーと同じアンカーテキストの色を変える
-        const changeTextColor = () => {
-            anchorTextList.forEach(anchorText => {
-                if (anchorText.dataset.category === selectedCategory) {
-                    anchorText.classList.replace('text-blue', 'current-category')
-                }
-            })
-        }
 
         if (clickedCategory === selectedValue) return
-        console.log(`selectedCategory: ${selectedCategory}`)
 
+        changeSelectBox(selectedCategory)
         setTimelines([])
         setCategory(selectedCategory)
         setPage(1)
         setHasMore(false)
-        changeSelectBox(selectedCategory)
-        changeTextColor()
     }
 
     const sortChange = () => {
