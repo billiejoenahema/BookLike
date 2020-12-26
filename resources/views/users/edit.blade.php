@@ -153,7 +153,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <span>「削除する」を押すとあなたのアカウント情報はすべて失われます</span>
+                    <span>「削除する」ボタンを押すとあなたのアカウント情報はすべて消去されます</span>
                     <div class="form-group form-check mt-3 ml-2">
                         @if($login_user->id == 1)
                         <input type="checkbox" class="form-check-input" disabled>
