@@ -22,11 +22,9 @@
         <div class="d-flex flex-column text-left pl-3 px-0">
             <p class="mb-3">{{ $review->title }}</p>
             <ul class="list-unstyled">
-                <li>著者：<a href="/reviews?search={{ $review->author }}&value=author">{{ $review->author }}</a></li>
-                <li>出版社：<a
-                        href="/reviews?search={{ $review->manufacturer }}&value=manufacturer">{{ $review->manufacturer }}</a>
-                </li>
-                <li>カテゴリー：<a href="/reviews?category={{ $review->category }}">{{ $review->category }}</a></li>
+                <li>著者：{{ $review->author }}</li>
+                <li>出版社：{{ $review->manufacturer }}</li>
+                <li>カテゴリー：{{ $review->category }}</li>
                 <li><a href="{{ $review->page_url }} " target="_blank" rel="noopener" data-toggle="tooltip"
                         data-placement="top" title="Amazonサイトへ移動"><i class="fab fa-amazon"></i> Amazon</a></li>
             </ul>
