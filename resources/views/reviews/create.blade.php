@@ -4,7 +4,7 @@
 @include('components.index_toggle')
 @include('components.back_button')
 <div class="card shadow-sm">
-    <div class="card-header bg-cyan text-white">新規投稿</div>
+    <div class="card-header bg-gradient-seaGreen text-white">新規投稿</div>
     <div class="card-body form-group col-md-10 m-auto">
         <div class="py-3 d-flex-column m-0">
             <!-- 書籍検索フォーム -->
