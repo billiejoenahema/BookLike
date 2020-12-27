@@ -51,6 +51,8 @@ class ReviewController extends Controller
         $login_user = auth()->user();
         $user_id = $login_user->id;
         $asin = $request->asin;
+        $posted_review = $review->postedAsin($asin, $user_id);
+        $posted_asin = $posted_review['asin'];
         $item = $get_item->getItem($asin);
         $storage = Storage::disk('s3');
 
