@@ -32,7 +32,7 @@
     <div class="flex-1 footer-fixed">
         <nav class="navbar navbar-expand navbar-light sticky-top bg-imageColor shadow-sm py-0 mb-1">
             <div class="container">
-                <!-- Brand Logo -->
+                {{-- Brand Logo --}}
                 <a class="navbar-brand d-block text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -47,7 +47,11 @@
                     </li>
                     @endif
                     @else
-                    <!-- User Icon -->
+                    {{-- New Post Button --}}
+                    <li class="nav-item d-flex align-items-center"><a href="{{ url('reviews/create') }}"
+                            class="text-darkGreen" title="新規投稿"><i class="fas fa-fw fa-plus h3 m-0"></i></a>
+                    </li>
+                    {{-- User Icon --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -55,7 +59,7 @@
                                 class="rounded-circle shadow-sm nav-icon" width="36" height="36" data-toggle="tooltip"
                                 data-placement="bottom" title="{{ $login_user->name }}">
                         </a>
-                        <!-- Dropdown Menu -->
+                        {{-- Dropdown Menu --}}
                         <div class="dropdown-menu dropdown-menu-right pb-0" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item pt-2 pb-2" href="{{ url('users/' .$login_user->id) }}"><i
                                     class="fas fa-user-cog fa-fw mr-2"></i>マイページ</a>
@@ -92,7 +96,7 @@
                 </div>
             </div>
         </main>
-        <!-- Footer -->
+        {{-- Footer --}}
         @include('layouts.footer')
     </div>
 </body>
