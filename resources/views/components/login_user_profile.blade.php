@@ -19,9 +19,9 @@
             </div>
         </div>
         <div class="col-12 col-sm-8 p-3 d-flex flex-column">
-            <div class="d-inline-flex text-secondary">
-                <p>登録日: {{ $create_date }}</p>
-                <p class="pl-3">更新日: {{ $update_date }}</p>
+            <div class="d-flex flex-wrap text-secondary">
+                <span class="pr-4">登録日: {{ $create_date }}</span>
+                <span>更新日: {{ $update_date }}</span>
             </div>
             <div class="d-flex flex-column">
                 <span class="font-weight-bold">好きなジャンル</span>
