@@ -25,7 +25,7 @@ function Timeline(props) {
                             <span className="text-secondary">{timeline.user.screen_name}</span>
                         </div>
                         <div className="d-flex justify-content-end flex-grow-1">
-                            <p className="mb-0 text-secondary">{timeline.created_at.slice(0, -8)}</p>
+                            <p className="mb-0 text-secondary">{formatDate(timeline.created_at, 'yyyy-MM-dd')}</p>
                         </div>
                     </div>
                     <div className="card-body py-0 px-3">

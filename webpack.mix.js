@@ -24,6 +24,7 @@ mix.scripts([
     'public/js/editProfileButton.js',
     'public/js/flashMessageFadeout.js',
     'public/js/footerMenuShowHide.js',
+    'public/js/formatDate.js',
     'public/js/scrollTop.js',
     'public/js/selectItem.js'
 ], 'public/js/all.js')
