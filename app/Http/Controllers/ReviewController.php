@@ -56,7 +56,7 @@ class ReviewController extends Controller
         $item = $get_item->getItem($asin);
         $storage = Storage::disk('s3');
 
-        // 同じ書籍を投稿させないようにする
+        // 同じ書籍を投稿できないようにする
         if(isset($posted_asin)) {
             return back()->with('error', 'この本はすでに投稿済みです');
         }

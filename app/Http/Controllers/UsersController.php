@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Review;
 use App\Http\Controllers\Api\GetItem;
+use DateTime;
 
 class UsersController extends Controller
 {
@@ -39,6 +40,10 @@ class UsersController extends Controller
     {
         $login_user = auth()->user();
         $storage = Storage::disk('s3');
+        $created_at = new DateTime($user->created_at);
+        $updated_at = new DateTime($user->updated_at);
+        $create_date = $created_at->format('Y-m-d');
+        $update_date = $updated_at->format('Y-m-d');
 
         if ($user === $login_user) {
             $asin = $login_user->asin;
@@ -59,6 +64,8 @@ class UsersController extends Controller
         return view('users.show', compact(
             'user',
             'login_user',
+            'create_date',
+            'update_date',
             'book_image',
             'book_url',
             'storage'
