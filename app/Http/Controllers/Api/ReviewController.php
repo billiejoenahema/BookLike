@@ -28,13 +28,13 @@ class ReviewController extends Controller
     {
         $sort = $request['sort'];
         $category = $request['category'];
+        $criteria = $request['criteria'];
+        $search = $request['search'];
         $pagination = 6;
         $loginUser = auth()->user();
 
-
         // 並び替えられた投稿一覧
-        $timelines = $review->getTimeline($sort, $category, $pagination);
-        // dd($timelines);
+        $timelines = $review->getTimeline($sort, $category, $criteria, $search, $pagination);
 
         return
             [
