@@ -72023,7 +72023,7 @@ var ReviewIndex = function ReviewIndex() {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/reviews?criteria=".concat(criteria, "&search=").concat(searchWord, "&category=").concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
+                return axios.get("/api/reviews?\n                    criteria=".concat(criteria, "\n                    &search=").concat(searchWord, "\n                    &category=").concat(category, "\n                    &sort=").concat(sort, "\n                    &page=").concat(page)).then(function (res) {
                   setLoginUser(res.data.loginUser);
                   page < res.data.timelines.last_page && setHasMore(true);
                   return res.data.timelines.data;
@@ -72055,7 +72055,7 @@ var ReviewIndex = function ReviewIndex() {
     }();
 
     loadTimeline();
-  }, [page, category, searchWord, sort]); // セレクトボックスを操作
+  }, [page, category, searchWord, sort]); // カテゴリー選択時にセレクトボックスを操作する
 
   var changeSelectBox = function changeSelectBox(selectedCategory) {
     console.log('Change select box!');
@@ -72078,7 +72078,8 @@ var ReviewIndex = function ReviewIndex() {
     } finally {
       _iterator.f();
     }
-  };
+  }; // 検索条件を選択
+
 
   var selectCriteria = function selectCriteria(e) {
     var selectedIndex = e.target.selectedIndex;
@@ -72087,22 +72088,30 @@ var ReviewIndex = function ReviewIndex() {
     modalSearchBooks.placeholder = "".concat(selectedCriteria, "\u3067\u691C\u7D22...");
     setHasMore(false);
     setCriteria(e.target.options[selectedIndex].value);
-  };
+  }; // 検索ワード入力時の処理
+
 
   var searchSubmit = function searchSubmit(e) {
     e.preventDefault();
-    var searchBooks = document.getElementById('searchBooks');
+    var searchBooks = document.getElementById('searchBooks'); // フォーカスを外す
+
+    searchBooks.blur();
     setTimelines([]);
     setPage(1);
     setHasMore(false);
     setSearchWord(searchBooks.value);
-  };
+  }; // 検索ワード入力時の処理（スマホ用）
+
 
   var modalSearchSubmit = function modalSearchSubmit(e) {
     e.preventDefault();
     var modalSearchBooks = document.getElementById('modalSearchBooks');
     var modalMapDrop = document.getElementsByClassName('modal-backdrop')[0];
     var searchModal = document.getElementById('searchModal');
+    var modalSearchButton = document.getElementById('modalSearchButton'); // フォーカスを外す
+
+    modalSearchButton.blur(); // モーダルを閉じる
+
     searchModal.classList.remove('show');
     modalMapDrop.classList.remove('show');
     setTimelines([]);
@@ -72123,7 +72132,8 @@ var ReviewIndex = function ReviewIndex() {
     setCategory(selectedCategory);
     setPage(1);
     setHasMore(false);
-  };
+  }; // 一覧の並び替え
+
 
   var sortChange = function sortChange() {
     console.log('sort changed!');
@@ -72132,7 +72142,8 @@ var ReviewIndex = function ReviewIndex() {
     setTimelines([]);
     setPage(1);
     setHasMore(false);
-  };
+  }; // 一定量スクロールしたら投稿をさらに読み込み
+
 
   var body = document.getElementById('body');
 
@@ -72175,6 +72186,7 @@ var ReviewIndex = function ReviewIndex() {
     autoComplete: "on"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
+    id: "modalSearchButton",
     className: "btn search-modal-button search-modal",
     "data-toggle": "modal",
     "data-target": "#searchModal"

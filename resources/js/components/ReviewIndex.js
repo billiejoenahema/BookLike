@@ -25,7 +25,12 @@ const ReviewIndex = () => {
         const loadTimeline = async () => {
             setLoading(true)
             const newTimelines = await axios
-                .get(`/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`)
+                .get(`/api/reviews?
+                    criteria=${criteria}
+                    &search=${searchWord}
+                    &category=${category}
+                    &sort=${sort}
+                    &page=${page}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
                     page < res.data.timelines.last_page && setHasMore(true)
@@ -43,7 +48,7 @@ const ReviewIndex = () => {
         loadTimeline()
     }, [page, category, searchWord, sort])
 
-    // セレクトボックスを操作
+    // カテゴリー選択時にセレクトボックスを操作する
     const changeSelectBox = (selectedCategory) => {
         console.log('Change select box!')
         const selectedOption = document.getElementById('categorySelector').options
@@ -55,6 +60,7 @@ const ReviewIndex = () => {
         }
     }
 
+    // 検索条件を選択
     const selectCriteria = (e) => {
         const selectedIndex = e.target.selectedIndex
         const selectedCriteria = e.target.options[selectedIndex].label
@@ -64,21 +70,29 @@ const ReviewIndex = () => {
         setCriteria(e.target.options[selectedIndex].value)
     }
 
+    // 検索ワード入力時の処理
     const searchSubmit = (e) => {
         e.preventDefault()
         const searchBooks = document.getElementById('searchBooks')
+        // フォーカスを外す
+        searchBooks.blur()
         setTimelines([])
         setPage(1)
         setHasMore(false)
         setSearchWord(searchBooks.value)
     }
 
+    // 検索ワード入力時の処理（スマホ用）
     const modalSearchSubmit = (e) => {
         e.preventDefault()
         const modalSearchBooks = document.getElementById('modalSearchBooks')
         const modalMapDrop = document.getElementsByClassName('modal-backdrop')[0]
         const searchModal = document.getElementById('searchModal')
+        const modalSearchButton = document.getElementById('modalSearchButton')
 
+        // フォーカスを外す
+        modalSearchButton.blur()
+        // モーダルを閉じる
         searchModal.classList.remove('show')
         modalMapDrop.classList.remove('show')
         setTimelines([])
@@ -103,6 +117,7 @@ const ReviewIndex = () => {
         setHasMore(false)
     }
 
+    // 一覧の並び替え
     const sortChange = () => {
         console.log('sort changed!')
         const selectedSort = document.getElementById('selectSort').value
@@ -112,6 +127,7 @@ const ReviewIndex = () => {
         setHasMore(false)
     }
 
+    // 一定量スクロールしたら投稿をさらに読み込み
     const body = document.getElementById('body')
     body.onscroll = () => {
         const scrollAmount = window.scrollY
@@ -149,7 +165,7 @@ const ReviewIndex = () => {
             </div>
 
             {/* スマホ用検索ボタン */}
-            <button type="button" className="btn search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
+            <button type="button" id="modalSearchButton" className="btn search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
                 <i className="fas fa-search text-teal"></i>
             </button>
             {/* スマホ用検索モーダル */}

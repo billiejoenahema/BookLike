@@ -99,25 +99,32 @@ class Review extends Model
     // いいねした投稿を取得
     public function getFavoriteReviews(Int $user_id)
     {
-        $favorite_reviews = $this->whereHas('favorites', function($query) use ($user_id) {
-                                    $query->where('user_id', $user_id);
-                                })
-                                ->with(['user:id,screen_name,name,profile_image','comments:id','favorites'])
-                                ->get();
-
-        return $favorite_reviews;
+        return $this->whereHas('favorites', function($query) use ($user_id) {
+                        $query->where('user_id', $user_id);
+                    })
+                    ->with(['user:id,screen_name,name,profile_image','comments:id','favorites'])
+                    ->get();
     }
 
-    // 投稿一覧の並び替え
-    public function getTimeline($sort, $category, $pagination)
+    // 投稿一覧の取得
+    public function getTimeline($sort, $category, $criteria, $search, $pagination)
     {
-        // カテゴリーを選択しているだけwhere文を適用するための処理
+        // カテゴリーを選択していなければ該当するwhen文をスルー
         if ($category === 'default') $category = false;
+
+        // 検索ワードが入力されていなければ該当するwhen文をスルー
+        if ($search === NULL ) $search = false;
+        $searchs = ['criteria' => $criteria, 'search' => $search];
 
         if ($sort === 'favorite') {
             // いいねが多い順に投稿を並び替え
-            return $this->when($category, function ($query, $category) {
+            return $this->when($categroy, function ($query, $category) {
                             return $query->where('category', $category);
+                        })
+                        ->when($searchs, function ($query, $searchs) {
+                            $criteria = $searchs['criteria'];
+                            $search = $searchs['search'];
+                            return $query->where($criteria, 'LIKE', "%$search%");
                         })
                         ->with('user:id,screen_name,name,profile_image')
                         ->with(['comments:id', 'favorites'])
@@ -128,6 +135,11 @@ class Review extends Model
             // 登録順に投稿を並び替え（デフォルト）
             return $this->when($category, function ($query, $category) {
                             return $query->where('category', $category);
+                        })
+                        ->when($searchs, function ($query, $searchs) {
+                            $criteria = $searchs['criteria'];
+                            $search = $searchs['search'];
+                            return $query->where($criteria, 'LIKE', "%$search%");
                         })
                         ->with('user:id,screen_name,name,profile_image')
                         ->with(['comments:id','favorites'])
