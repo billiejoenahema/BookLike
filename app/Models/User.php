@@ -58,14 +58,30 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
+    public function favorites()
+    {
+        return $this->hasManyThrough(Favorite::class, Review::class, 'user_id', 'review_id');
+    }
+
+    /**
+     * total_favorites_count 属性を定義
+     * いいね獲得数を返却する
+     *
+     * @return number - total_favorites_count
+     */
+    public function getTotalFavoritesCountAttribute()
+    {
+        return $this->with(['reviews' => function($query) {
+            $query->withCount('favorites');
+        }])->get();
+    }
+
     // ログインユーザーを除くすべてのユーザーを取得
     public function getAllUsers(Int $user_id)
     {
         return $this->where('id', '<>', $user_id)
-                    ->with(['followers:id', 'reviews' => function($query) {
-                        $query->select('user_id')->with('favorites');
-                        }])
-                    ->withCount('followers');
+                    ->with('followers:id')
+                    ->withCount(['followers', 'favorites']);
     }
 
     // ユーザー一覧の並び替え
@@ -79,9 +95,16 @@ class User extends Authenticatable
                             ->paginate($pagination);
                 break;
 
+            case 'favorite':
+                // いいね獲得数順にユーザーを取得
+                return $this->getAllUsers($loginUserId)
+                            ->orderBy('favorites_count', 'DESC')
+                            ->paginate($pagination);
+                break;
+
             case 'default':
             default :
-                // updated_at順にユーザーを取得
+                // 登録順にユーザーを取得
                 return $this->getAllUsers($loginUserId)
                             ->orderBy('updated_at', 'DESC')
                             ->paginate($pagination);

@@ -25,12 +25,7 @@ const ReviewIndex = () => {
         const loadTimeline = async () => {
             setLoading(true)
             const newTimelines = await axios
-                .get(`/api/reviews?
-                    criteria=${criteria}
-                    &search=${searchWord}
-                    &category=${category}
-                    &sort=${sort}
-                    &page=${page}`)
+                .get(`/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
                     page < res.data.timelines.last_page && setHasMore(true)
