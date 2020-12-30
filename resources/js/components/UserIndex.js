@@ -90,6 +90,7 @@ const UserIndex = () => {
                     <label htmlFor="selectSort" className="w-100 text-right py-1 mr-1">並び替え</label>
                     <select onChange={sortChange} className="form-control-sm" id="selectSort">
                         <option value="default">登録順</option>
+                        <option value="review">投稿数</option>
                         <option value="follower">フォロワー数</option>
                         <option value="favorite">いいね獲得数</option>
                     </select>

@@ -194,6 +194,10 @@ footer {
 /* スマホ用スタイル */
 @media screen and (max-width: 499px) {
 
+    .count {
+        font-size: 0.8rem;
+    }
+
     #editButton {
         /* secondary */
         color: #6C767D !important;
