@@ -63,19 +63,6 @@ class User extends Authenticatable
         return $this->hasManyThrough(Favorite::class, Review::class, 'user_id', 'review_id');
     }
 
-    /**
-     * total_favorites_count 属性を定義
-     * いいね獲得数を返却する
-     *
-     * @return number - total_favorites_count
-     */
-    public function getTotalFavoritesCountAttribute()
-    {
-        return $this->with(['reviews' => function($query) {
-            $query->withCount('favorites');
-        }])->get();
-    }
-
     // ログインユーザーを除くすべてのユーザーを取得
     public function getAllUsers(Int $user_id)
     {
@@ -183,10 +170,8 @@ class User extends Authenticatable
     {
         return $this->follows()
                     ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
-                    ->with(['followers:id', 'reviews'=> function($query) {
-                        $query->select('user_id')->with('favorites');
-                        }])
-                    ->where('following_id', $id)
+                    ->with('followers:id')
+                    ->withCount(['reviews', 'followers', 'favorites'])
                     ->orderBy('created_at', 'DESC')
                     ->get();
     }
@@ -196,10 +181,8 @@ class User extends Authenticatable
     {
         return $this->followers()
                     ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
-                    ->with(['followers:id', 'reviews'=> function($query) {
-                        $query->select('user_id')->with('favorites');
-                        }])
-                    ->where('followed_id', $id)
+                    ->with('followers:id')
+                    ->withCount(['reviews', 'followers', 'favorites'])
                     ->orderBy('created_at', 'DESC')
                     ->get();
     }
