@@ -3,6 +3,7 @@ import ReactTooltip from 'react-tooltip'
 import FollowButton from './FollowButton'
 import FollowerCount from './FollowerCount'
 import TotalFavoritesCount from './TotalFavoritesCount'
+import ReviewsCount from './ReviewsCount'
 import isFollowed from '../functions/isFollowed'
 import omittedText from '../functions/omittedText'
 import { STORAGE } from '../constants'
@@ -36,9 +37,14 @@ const Users = (props) => {
                             <p className="mb-0">{user.name || user.screen_name}</p>
                             <span className="text-secondary small font-weight-lighter">{user.screen_name}</span>
                         </div>
-                        <div className="px-0 flex-comlumn ml-auto text-right">
-                            <FollowerCount user={user} />
-                            <div className="mt-2">
+                        <div className="px-0 d-sm-inline-flex ml-auto text-right">
+                            <div className="mt-1 count">
+                                <ReviewsCount user={user} />
+                            </div>
+                            <div className="mt-1 ml-sm-4 count">
+                                <FollowerCount user={user} />
+                            </div>
+                            <div className="mt-1 ml-sm-4 count">
                                 <TotalFavoritesCount user={user} />
                             </div>
                         </div>
