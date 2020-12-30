@@ -72023,7 +72023,7 @@ var ReviewIndex = function ReviewIndex() {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/reviews?\n                    criteria=".concat(criteria, "\n                    &search=").concat(searchWord, "\n                    &category=").concat(category, "\n                    &sort=").concat(sort, "\n                    &page=").concat(page)).then(function (res) {
+                return axios.get("/api/reviews?criteria=".concat(criteria, "&search=").concat(searchWord, "&category=").concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
                   setLoginUser(res.data.loginUser);
                   page < res.data.timelines.last_page && setHasMore(true);
                   return res.data.timelines.data;
@@ -72587,10 +72587,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var TotalFavoritesCount = function TotalFavoritesCount(props) {
-  var user = props.user;
-  var totalFavoritesCount = user.reviews.reduce(function (a, b) {
-    return a + b.favorites.length;
-  }, 0);
+  var totalFavoritesCount = props.user.favorites_count;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u3044\u3044\u306D\u7372\u5F97\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge-purple badge-pill text-white ml-1 user-select-none"
   }, totalFavoritesCount));
@@ -72797,7 +72794,9 @@ var UserIndex = function UserIndex() {
     value: "default"
   }, "\u767B\u9332\u9806"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "follower"
-  }, "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "\u30D5\u30A9\u30ED\u30EF\u30FC\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "favorite"
+  }, "\u3044\u3044\u306D\u7372\u5F97\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "usersComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_3__["default"], {
     users: userList,

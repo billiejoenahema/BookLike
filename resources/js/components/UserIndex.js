@@ -91,6 +91,7 @@ const UserIndex = () => {
                     <select onChange={sortChange} className="form-control-sm" id="selectSort">
                         <option value="default">登録順</option>
                         <option value="follower">フォロワー数</option>
+                        <option value="favorite">いいね獲得数</option>
                     </select>
                 </div>
             </div>

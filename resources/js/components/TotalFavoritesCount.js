@@ -2,8 +2,7 @@ import React from 'react'
 
 const TotalFavoritesCount = (props) => {
 
-    const user = props.user
-    const totalFavoritesCount = user.reviews.reduce((a, b) => a + b.favorites.length, 0)
+    const totalFavoritesCount = props.user.favorites_count
 
     return (
         <>
