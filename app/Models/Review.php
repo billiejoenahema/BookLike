@@ -118,7 +118,7 @@ class Review extends Model
 
         if ($sort === 'favorite') {
             // いいねが多い順に投稿を並び替え
-            return $this->when($categroy, function ($query, $category) {
+            return $this->when($category, function ($query, $category) {
                             return $query->where('category', $category);
                         })
                         ->when($searchs, function ($query, $searchs) {
