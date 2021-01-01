@@ -19,6 +19,10 @@ class SearchItemsController extends Controller
     {
         $login_user = auth()->user();
         $keyword = $request->input('keyword');
+
+        // 検索ワードが入力されているかどうかをチェック
+        if(!$keyword) return back();
+
         $search_items = $searchitems->getSearchItems($keyword);
         $storage = Storage::disk('s3');
 
