@@ -57,8 +57,10 @@ const ReviewIndex = () => {
 
     // 検索条件を選択
     const selectCriteria = (e) => {
+        const searchBooks = document.getElementById('searchBooks') || document.getElementById('modalSearchBooks')
         const selectedIndex = e.target.selectedIndex
         const selectedCriteria = e.target.options[selectedIndex].label
+        searchBooks.value = ''
         searchBooks.placeholder = `${selectedCriteria}で検索...`
         modalSearchBooks.placeholder = `${selectedCriteria}で検索...`
         setHasMore(false)
@@ -69,8 +71,14 @@ const ReviewIndex = () => {
     const searchSubmit = (e) => {
         e.preventDefault()
         const searchBooks = document.getElementById('searchBooks')
+
         // フォーカスを外す
         searchBooks.blur()
+
+        // 検索ワードに変化がなければ何もしない
+        if (searchBooks.value === searchWord) return
+
+        setSearchWord('')
         setTimelines([])
         setPage(1)
         setHasMore(false)
@@ -87,6 +95,10 @@ const ReviewIndex = () => {
 
         // フォーカスを外す
         modalSearchButton.blur()
+
+        // 検索ワードに変化がなければ何もしない
+        if (modalSearchBooks.value === searchWord) return
+
         // モーダルを閉じる
         searchModal.classList.remove('show')
         modalMapDrop.classList.remove('show')
