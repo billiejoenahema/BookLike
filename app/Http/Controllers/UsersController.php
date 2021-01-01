@@ -44,12 +44,7 @@ class UsersController extends Controller
         $updated_at = new DateTime($user->updated_at);
         $create_date = $created_at->format('Y-m-d');
         $update_date = $updated_at->format('Y-m-d');
-
-        if ($user === $login_user) {
-            $asin = $login_user->asin;
-        } else {
-            $asin = $user->asin;
-        }
+        $asin = $user->asin;
 
         if ($asin) {
             $item = $get_item->getItem($asin);
@@ -82,10 +77,7 @@ class UsersController extends Controller
         {
             $login_user = auth()->user();
             $storage = Storage::disk('s3');
-            $userReviews = $review->where('user_id', $user->id)
-            ->with('user')
-            ->orderBy('created_at', 'DESC')
-            ->get();
+            $userReviews = $review->getUserReviews($user->id);
 
         return view('users.edit', compact(
             'login_user',
