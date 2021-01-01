@@ -5,14 +5,18 @@
 <div class="card shadow-sm">
     <div class="card-header d-flex justify-content-between">
         <div>プロフィールを編集</div>
+        @if($login_user->id !== 1)
         <a href="#" class=" text-decoration-none text-danger" data-toggle="modal" data-target="#deleteComfirmModal"
             role="button" title="アカウント削除">
             <i class="fas fa-user-times"></i>
         </a>
+        @endif
     </div>
+    @if($login_user->id === 1)
     <div class="text-danger m-auto p-3">
         {{ __('ゲストユーザーはプロフィールを編集できません') }}
     </div>
+    @endif
     <div class="card-body">
         @if ($errors->any())
         <div class="alert alert-danger mb-3">
