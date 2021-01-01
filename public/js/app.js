@@ -73086,7 +73086,7 @@ var UserProfileFavoritesCount = function UserProfileFavoritesCount() {
     loadFavoritesCount();
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u3044\u3044\u306D\u7372\u5F97\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "badge-purple badge-pill text-white ml-1 user-select-none"
+    className: "badge-pink badge-pill text-white ml-1 user-select-none"
   }, totalFavoritesCount));
 };
 
