@@ -2,8 +2,13 @@
 <ul class="list-group">
     @forelse ($comments as $comment)
     <li class="list-group-item p-0">
-        @if ($comment->deleted_at !== null)
-        <div class="p-5 text-secondary">このコメントは削除されました</div>
+        @if ($comment->deleted_at)
+        <div class="card-header p-3 border-bottom-0 bg-white d-flex flex-column">
+            <div class="d-flex flex-column text-right">
+                <span class="text-secondary">{{ $comment->created_at->format('Y-m-d') }}</span>
+            </div>
+            <div class="text-secondary">このコメントは削除されました</div>
+        </div>
         @else
         <div class="card-header p-3 border-bottom-0 bg-white d-flex flex-row justify-content-between">
             <div class="d-flex flex-row">
@@ -66,6 +71,7 @@
                             <p id="currentLength">0 / 200文字</p>
                         </div>
                     </div>
+                    {{-- 投稿＆キャンセルボタン --}}
                     <div class="modal-footer border-top-0">
                         <button type="button" data-dismiss="modal" aria-label="Close"
                             class="btn btn-secondary rounded-pill">
