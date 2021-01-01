@@ -71,7 +71,7 @@ function checkTextLength() {
         ? 200 // コメント投稿は200文字まで
         : 800 // レビュー投稿は800文字まで
 
-    // 800文字以上入力されたら入力文字数の表示を赤くする
+    // 制限文字数以上入力されたら入力文字数の表示を赤くする
     inputtedLength === 0 || maxLength < inputtedLength ? currentLength.style.color = 'red' : currentLength.style.color = '#495057'
 
     // 入力された文字数を随時表示
