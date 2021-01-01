@@ -112,7 +112,7 @@
                     class="col-md-4 col-form-label text-md-right user-select-none">{{ __('人生を変えた一冊') }}</label>
                 <div class="col-md-7">
                     <select name="asin" id="asin" class="form-control">
-                        @if($userReviews === null)
+                        @if($userReviews)
                         <option value="" default>{{ $book_title ?? '未設定' }}</option>
                         @foreach($userReviews as $userReview)
                         <option value="{{ $userReview->asin }}">{{ $userReview->title }}</option>
