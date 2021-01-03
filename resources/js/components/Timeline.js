@@ -30,10 +30,11 @@ function Timeline(props) {
                     </div>
                     <div className="card-body py-0 px-3">
                         <div className="d-flex flex-row py-3 border-top border-bottom">
-                            <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none">
+                            <a href={`/reviews/${timeline.id}`} className="d-block text-reset text-decoration-none" data-tip="投稿の詳細ページへ">
                                 <div>
                                     <img src={timeline.image_url} width="100" className="shadow-sm" />
                                 </div>
+                                <ReactTooltip effect="float" type="info" place="top" />
                             </a>
                             <div className="col-md-8 d-flex flex-column text-left pl-3 px-0">
                                 <h5 className="mb-3">{timeline.title}</h5>
@@ -52,8 +53,9 @@ function Timeline(props) {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <a href={`/reviews/${timeline.id}`} className="d-block p-3 text-reset text-decoration-none">
+                        <a href={`/reviews/${timeline.id}`} className="d-block p-3 text-reset text-decoration-none" data-tip="投稿の詳細ページへ">
                             {omittedText(timeline.text, 80)}
+                            <ReactTooltip effect="float" type="info" place="top" />
                         </a>
                     </div>
                     <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
@@ -63,8 +65,7 @@ function Timeline(props) {
 
                         {/* コメントボタン */}
                         <div className="d-flex align-items-center">
-                            <a href={`/reviews/${timeline.id}`} data-tip="コメントを投稿"><i className="far fa-comment fa-fw text-blog"></i>
-                                <ReactTooltip effect="float" type="info" place="top" /></a>
+                            <a href={`/reviews/${timeline.id}`}><i className="far fa-comment fa-fw text-blog"></i></a>
                             <p className="mb-0 text-secondary">{timeline.comments.length}</p>
                         </div>
                         {/* いいねボタン */}
