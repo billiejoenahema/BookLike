@@ -49,17 +49,17 @@ class Review extends Model
         return $this->where('user_id', $user_id)->where('asin', $asin)->first('asin');
     }
 
-    public function reviewStore(Int $user_id, Array $data)
+    public function reviewStore(Int $user_id, $request)
     {
         $this->user_id = $user_id;
-        $this->category = $data['category'];
-        $this->asin = $data['asin'];
-        $this->page_url = $data['page_url'];
-        $this->title = $data['title'];
-        $this->author = $data['author'];
-        $this->manufacturer = $data['manufacturer'];
-        $this->image_url = $data['image_url'];
-        $this->text = $data['text'];
+        $this->category = $request->category;
+        $this->asin = $request->asin;
+        $this->page_url = $request->page_url;
+        $this->title = $request->title;
+        $this->author = $request->author;
+        $this->manufacturer = $request->manufacturer;
+        $this->image_url = $request->image_url;
+        $this->text = $request->text;
         $this->save();
 
         return;
