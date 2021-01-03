@@ -4,6 +4,10 @@ a:hover {
     transition:0.2s all;
 }
 
+.logout:hover {
+    color: #e3342f;
+}
+
 .anchor:hover {
     color: #f66d9b !important;
     transition:0.2s all;

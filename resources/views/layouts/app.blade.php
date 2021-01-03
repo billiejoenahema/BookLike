@@ -69,7 +69,8 @@
                                     class="fas fa-book-open fa-fw mr-2"></i>投稿一覧</a>
                             <a class="dropdown-item pt-2 pb-3" href="{{ url('users') }}"><i
                                     class="fas fa-users fa-fw mr-2"></i>ユーザー一覧</a>
-                            <a class="dropdown-item border-top py-3 bg-light" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="dropdown-item border-top py-3 bg-light logout" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt fa-fw mr-2"></i>ログアウト
                             </a>
