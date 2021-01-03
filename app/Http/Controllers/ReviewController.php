@@ -37,13 +37,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        $login_user = auth()->user();
-        $storage = Storage::disk('s3');
-
-        return view('reviews.create', compact(
-            'login_user',
-            'storage'
-        ));
+        // 書籍検索フォームをモーダル化したためこのページは不要に
     }
 
     // Post review text form
