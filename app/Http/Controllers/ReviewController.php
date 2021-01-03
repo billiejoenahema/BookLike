@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReview;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -69,26 +70,15 @@ class ReviewController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store new review.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreReview  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Review $review)
+    public function store(StoreReview $request, Review $review)
     {
         $login_user = auth()->user();
-        $data = $request->all();
-        $validator = Validator::make($data, [
-            'asin' => 'required',
-            'page_url' => 'string',
-            'title' => 'required',
-            'author' => 'string | nullable',
-            'manufacturer' => 'string | nullable',
-            'image_url' => 'required',
-            'text' => 'required | string | max:800'
-        ]);
-        $validator->validate();
-        $review->reviewStore($login_user->id, $data);
+        $review->reviewStore($login_user->id, $request);
         session()->flash('flash_message', '投稿しました');
 
         return redirect('reviews');
@@ -116,7 +106,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the review.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
