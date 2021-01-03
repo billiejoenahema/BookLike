@@ -4,7 +4,7 @@
 @include('components.index_toggle')
 @include('components.back_button')
 <div class="card shadow-sm mb-3">
-    <div class="card-header p-3">新規投稿</div>
+    <div class="card-header px-3">新規投稿</div>
     <div class="card-body p-3">
         <div class="d-flex flex-column p-0">
             <!-- 選択した書籍情報 -->
