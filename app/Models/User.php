@@ -135,31 +135,32 @@ class User extends Authenticatable
         ->first(['id']);
     }
 
-    public function updateProfile(Array $params)
+    // ユーザープロフィール編集
+    public function updateProfile($request)
     {
-        if (isset($params['profile_image'])) {
-            $profile_image = Storage::disk('s3')->put('/', $params['profile_image'], 'public');
+        if (isset($request->profile_image)) {
+            $profile_image = Storage::disk('s3')->put('/', $params->profile_image, 'public');
             $this::where('id', $this->id)->update(
-                [
-                'screen_name'   => $params['screen_name'],
-                'name'          => $params['name'],
+            [
+                'screen_name'   => $request->screen_name,
+                'name'          => $request->name,
                 'profile_image' => $profile_image,
-                'category'      => $params['category'],
-                'description'   => $params['description'],
-                'asin'          => $params['asin'],
-                'story'         => $params['story'],
-                'email'         => $params['email'],
-                ]);
+                'category'      => $request->category,
+                'description'   => $request->description,
+                'asin'          => $request->asin,
+                'story'         => $request->story,
+                'email'         => $request->email,
+            ]);
         } else {
             $this::where('id', $this->id)->update(
             [
-                'screen_name'   => $params['screen_name'],
-                'name'          => $params['name'],
-                'category'      => $params['category'],
-                'description'   => $params['description'],
-                'asin'          => $params['asin'],
-                'story'         => $params['story'],
-                'email'         => $params['email'],
+                'screen_name'   => $request->screen_name,
+                'name'          => $request->name,
+                'category'      => $request->category,
+                'description'   => $request->description,
+                'asin'          => $request->asin,
+                'story'         => $request->story,
+                'email'         => $request->email,
             ]);
         }
         return;

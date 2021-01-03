@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -73,16 +74,19 @@ class UsersController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function edit(User $user, Review $review)
+        public function edit(User $user, Review $review, GetItem $get_item)
         {
             $login_user = auth()->user();
             $storage = Storage::disk('s3');
             $userReviews = $review->getUserReviews($user->id);
+            $user_book = $get_item->getItem($user->asin);
+            $selected_book_title = $user_book->ItemInfo->Title->DisplayValue;
 
         return view('users.edit', compact(
             'login_user',
             'storage',
-            'userReviews'
+            'userReviews',
+            'selected_book_title',
         ));
     }
 
@@ -93,21 +97,21 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUser $request, User $user)
     {
-        $data = $request->all();
-        $validator = Validator::make($data, [
-            'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
-            'name'          => ['nullable', 'string', 'max:50'],
-            'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'category'      => ['string', 'max:255'],
-            'asin'          => ['string', 'max:10'],
-            'story'         => ['string', 'max:800'],
-            'description'   => ['string', 'max:255'],
-            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-        ]);
-        $validator->validate();
-        $user->updateProfile($data);
+        // $data = $request->all();
+        // $validator = Validator::make($data, [
+        //     'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
+        //     'name'          => ['nullable', 'string', 'max:50'],
+        //     'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+        //     'category'      => ['string', 'max:255'],
+        //     'asin'          => ['string', 'max:10'],
+        //     'story'         => ['string', 'max:800'],
+        //     'description'   => ['string', 'max:255'],
+        //     'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+        // ]);
+        // $validator->validate();
+        $user->updateProfile($request);
         session()->flash('flash_message', 'プロフィールを編集しました');
 
         return redirect('users/'.$user->id);
