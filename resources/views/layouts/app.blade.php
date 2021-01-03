@@ -50,7 +50,7 @@
                     {{-- New Post Button --}}
                     <li class="nav-item d-flex align-items-center"><a href="#" class="text-darkGreen"
                             data-toggle="modal" data-target="#newPostModal" role="button" title="新規投稿"><i
-                                class="fas fa-fw fa-plus h3 m-0"></i></a>
+                                class="fas fa-fw fa-plus h3 mr-1 mb-0 pt-1"></i></a>
                     </li>
                     {{-- User Icon --}}
                     <li class="nav-item dropdown">

@@ -2,28 +2,26 @@
 
 @section('content')
 @include('components.index_toggle')
-@include('components.back_button')
-<div class="card shadow-sm">
-    <div class="card-header p-3">検索結果一覧</div>
+<div class="card shadow-sm mt-3">
+    <div class="card-header px-3">検索結果</div>
     <div class="card-body p-3">
         <div class="form-group mb-3">
             <span>キーワードを変えて再検索</span>
             <!-- 書籍検索フォーム -->
-            <div class="d-flex flex-row p-0">
-                <div class="col-sm-8 p-0">
-                    <form method="GET" action="{{ route('search_items') }}" class="form-inline">
-                        @csrf
-                        <input class="form-control rounded-pill col-9 @error('keyword') is-invalid @enderror"
-                            name="keyword" type="search" value="{{ $keyword }}" aria-label="書籍を再検索" required
-                            autocomplete="on">
-                        @error('searchItems')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <button class="btn ml-2 search-button" type="submit">
-                            <i class="fas fa-search text-teal lead"></i>
-                        </button>
-                    </form>
-                </div>
+            <div class="d-flex flex-row p-0 mt-1">
+                <form method="GET" action="{{ route('search_items') }}"
+                    class="form-inline d-flex justify-content-between col-sm-8 px-0">
+                    @csrf
+                    <input class="form-control rounded-pill col-10 @error('keyword') is-invalid @enderror"
+                        name="keyword" type="search" value="{{ $keyword }}" aria-label="書籍を再検索" required
+                        autocomplete="on">
+                    @error('searchItems')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <button class="btn search-button" type="submit">
+                        <i class="fas fa-search text-teal lead"></i>
+                    </button>
+                </form>
             </div>
         </div>
         @if (session('error'))
@@ -34,15 +32,15 @@
         <form method="GET" action="{{ route('reviews.posts') }}">
             @csrf
             <input id="asin" type="hidden" name="asin" value="">
-            <button class="btn btn-primary disabled rounded-pill col-3 shadow-sm" id="confirmButton" type="submit"
-                disabled>確定</button>
+            <button class="btn btn-primary disabled rounded-pill col-sm-4 my-1 shadow-sm" id="confirmButton"
+                type="submit" disabled>確定</button>
         </form>
         <div class="mt-3">
-            <p class="mb-1">投稿する本を選んでください</p>
             @if (empty($search_items))
-            <div>「キーワード」に該当する書籍は見つかりませんでした</div>
+            <div class="py-3 text-danger">「キーワード」に該当する書籍は見つかりませんでした</div>
             @else
-            <div class="overflow-auto" style="height: 70vw; max-height: 400px;">
+            <p class="mb-1">投稿する本を選んでから確定を押してください</p>
+            <div class="overflow-auto search-results">
                 <!-- 検索結果をforeachでまわす -->
                 @foreach ($search_items as $search_item)
                 <div class="card flex-row p-2 mb-2 search-item btn text-left shadow-sm" onClick="selectItem(this)"
