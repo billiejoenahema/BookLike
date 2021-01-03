@@ -48,8 +48,9 @@
                     @endif
                     @else
                     {{-- New Post Button --}}
-                    <li class="nav-item d-flex align-items-center"><a href="{{ url('reviews/create') }}"
-                            class="text-darkGreen" title="新規投稿"><i class="fas fa-fw fa-plus h3 m-0"></i></a>
+                    <li class="nav-item d-flex align-items-center"><a href="#" class="text-darkGreen"
+                            data-toggle="modal" data-target="#newPostModal" role="button" title="新規投稿"><i
+                                class="fas fa-fw fa-plus h3 m-0"></i></a>
                     </li>
                     {{-- User Icon --}}
                     <li class="nav-item dropdown">
@@ -99,6 +100,7 @@
         </main>
         {{-- Footer --}}
         @include('layouts.footer')
+        @include('components.new_post_modal')
     </div>
 </body>
 
