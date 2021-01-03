@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react'
-import ReactTooltip from 'react-tooltip'
 import isFavorited from '../functions/isFavorited'
 
 const FavoriteButton = (props) => {
@@ -47,8 +46,8 @@ const FavoriteButton = (props) => {
         <>
             {
                 favorite ?
-                    <button onClick={deleteFavorite} className="btn p-0 border-0" data-tip="いいね"><i className="fas fa-heart fa-fw text-red"></i><ReactTooltip effect="float" type="info" place="top" /></button >
-                    : <button onClick={postFavorite} className="btn p-0 border-0" data-tip="いいね"><i className="far fa-heart fa-fw text-blog"></i><ReactTooltip effect="float" type="info" place="top" /></button >
+                    <button onClick={deleteFavorite} className="btn p-0 border-0"><i className="fas fa-heart fa-fw text-red"></i></button >
+                    : <button onClick={postFavorite} className="btn p-0 border-0"><i className="far fa-heart fa-fw text-blog"></i></button >
             }
 
             <p className="mb-0 text-secondary">{favoriteCount}</p>
