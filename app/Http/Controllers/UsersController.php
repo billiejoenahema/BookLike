@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Review;
 use App\Http\Controllers\Api\GetItem;
@@ -99,18 +97,6 @@ class UsersController extends Controller
      */
     public function update(UpdateUser $request, User $user)
     {
-        // $data = $request->all();
-        // $validator = Validator::make($data, [
-        //     'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
-        //     'name'          => ['nullable', 'string', 'max:50'],
-        //     'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-        //     'category'      => ['string', 'max:255'],
-        //     'asin'          => ['string', 'max:10'],
-        //     'story'         => ['string', 'max:800'],
-        //     'description'   => ['string', 'max:255'],
-        //     'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-        // ]);
-        // $validator->validate();
         $user->updateProfile($request);
         session()->flash('flash_message', 'プロフィールを編集しました');
 
