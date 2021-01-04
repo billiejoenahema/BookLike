@@ -77,8 +77,11 @@ class UsersController extends Controller
             $login_user = auth()->user();
             $storage = Storage::disk('s3');
             $userReviews = $review->getUserReviews($user->id);
-            $user_book = $get_item->getItem($user->asin);
-            $selected_book_title = $user_book->ItemInfo->Title->DisplayValue;
+            $selected_book_title = '未設定';
+            if($user->asin) {
+                $user_book = $get_item->getItem($user->asin);
+                $selected_book_title = $user_book->ItemInfo->Title->DisplayValue;
+            }
 
         return view('users.edit', compact(
             'login_user',
