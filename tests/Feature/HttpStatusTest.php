@@ -41,13 +41,6 @@ class HttpStatusTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testReviewsCreateStatus()
-    {
-        $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->get('/reviews/create');
-        $response->assertStatus(200);
-    }
-
     public function testUsersStatus()
     {
         $user = factory(User::class)->create();
