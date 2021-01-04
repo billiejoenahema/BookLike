@@ -113,7 +113,7 @@
                 <div class="col-md-7">
                     <select name="asin" id="asin" class="form-control">
                         @if($userReviews)
-                        <option value="" default>{{ $selected_book_title ?? '未設定' }}</option>
+                        <option value="" default>{{ $selected_book_title }}</option>
                         @foreach($userReviews as $userReview)
                         {{-- 選択済みのtitleはdefaultと重複するためoptionsから除外する --}}
                         @if($userReview->title === $selected_book_title)
