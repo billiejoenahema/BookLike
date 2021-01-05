@@ -9,6 +9,8 @@
 
     </div>
 </footer>
+
+{{-- Footer Menu for mobile --}}
 @auth
 <div id="footer-menu" class="d-flex flex-row justify-content-between text-reset text-center bg-bodyColor">
     <a href="{{ url('reviews') }}" id="reviewsIcon" class="text-blog footerMenuItem"><i
