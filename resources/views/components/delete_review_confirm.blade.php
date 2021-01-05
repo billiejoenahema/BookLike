@@ -1,4 +1,4 @@
-<!-- Review Delete Confirm Modal -->
+<!-- Delete Review Confirm Modal -->
 <div class="modal fade" id="deleteReview" tabindex="-1" role="dialog" aria-labelledby="deleteReviewTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

@@ -68,5 +68,5 @@
 </div>
 <!-- コメント -->
 @include('components.comment')
-@include('components.review_delete_confirm')
+@include('components.delete_review_confirm')
 @endsection

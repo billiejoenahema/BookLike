@@ -100,7 +100,7 @@
         </main>
         {{-- Footer --}}
         @include('layouts.footer')
-        @include('components.new_post_modal')
+        @include('layouts.new_post_modal')
     </div>
 </body>
 
