@@ -45,14 +45,14 @@ class UsersController extends Controller
         $update_date = $updated_at->format('Y-m-d');
         $asin = $user->asin;
 
+        // デフォルト値
+        $book_image = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com/default_book_image.png';
+        $book_url = '#';
+
         if ($asin) {
             $item = $get_item->getItem($asin);
             $book_image = $item->Images->Primary->Large->URL;
             $book_url = $item->DetailPageURL;
-        } else {
-            // default book_image&book_url
-            $book_image = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com/default_book_image.png';
-            $book_url = '#';
         }
 
         return view('users.show', compact(
