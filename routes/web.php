@@ -22,9 +22,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', 'UsersController', ['only'
     => ['index', 'show', 'edit', 'update', 'destroy']]);
 
-    // 書籍検索（resourceよりも上に書かないと'404 Not found'になってしまう）
-    Route::get('reviews/search_items', 'Api\SearchItemsController')->name('search_items');
-
     // レビュー入力画面（resourceよりも上に書かないと'404 Not found'になってしまう）
     Route::get('reviews/posts', 'ReviewController@posts')->name('reviews.posts');
 

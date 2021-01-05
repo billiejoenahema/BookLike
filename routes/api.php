@@ -2,6 +2,9 @@
 
 Route::group(['middleware' => 'auth'], function() {
 
+    // 書籍検索（resourceよりも上に書かないと'404 Not found'になってしまう）
+    Route::get('reviews/search_items', 'Api\SearchItemsController')->name('search_items');
+
     Route::get('/reviews/{review}', 'Api\ReviewController@show');
 
     Route::get('/reviews', 'Api\ReviewController@index');
