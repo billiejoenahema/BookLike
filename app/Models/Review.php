@@ -72,10 +72,10 @@ class Review extends Model
                     ->first();
     }
 
-    public function reviewUpdate(Int $review_id, Array $data)
+    public function reviewUpdate(Int $review_id, $request)
     {
         $this->id = $review_id;
-        $this->text = $data['text'];
+        $this->text = $request->text;
         $this->update();
         return;
     }
