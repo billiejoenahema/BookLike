@@ -114,16 +114,16 @@ class Review extends Model
 
         // 検索ワードが入力されていなければ該当するwhen文をスルー
         if ($search === NULL ) $search = false;
-        $searchs = ['criteria' => $criteria, 'search' => $search];
+        $searches = ['criteria' => $criteria, 'search' => $search];
 
         if ($sort === 'favorite') {
             // いいねが多い順に投稿を並び替え
             return $this->when($category, function ($query, $category) {
                             return $query->where('category', $category);
                         })
-                        ->when($searchs, function ($query, $searchs) {
-                            $criteria = $searchs['criteria'];
-                            $search = $searchs['search'];
+                        ->when($searches, function ($query, $searches) {
+                            $criteria = $searches['criteria'];
+                            $search = $searches['search'];
                             return $query->where($criteria, 'LIKE', "%$search%");
                         })
                         ->with('user:id,screen_name,name,profile_image')
@@ -136,9 +136,9 @@ class Review extends Model
             return $this->when($category, function ($query, $category) {
                             return $query->where('category', $category);
                         })
-                        ->when($searchs, function ($query, $searchs) {
-                            $criteria = $searchs['criteria'];
-                            $search = $searchs['search'];
+                        ->when($searches, function ($query, $searches) {
+                            $criteria = $searches['criteria'];
+                            $search = $searches['search'];
                             return $query->where($criteria, 'LIKE', "%$search%");
                         })
                         ->with('user:id,screen_name,name,profile_image')
