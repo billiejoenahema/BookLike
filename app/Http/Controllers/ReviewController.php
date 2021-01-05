@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReview;
+use App\Http\Requests\UpdateReview;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Review;
 use App\Models\Comment;
@@ -132,13 +132,9 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(UpdateReview $request, Review $review)
     {
-        $data = $request->all();
-        $validator = Validator::make($data, [
-            'text' => 'required | string | max:400'
-        ]);
-        $review->reviewUpdate($review->id, $data);
+        $review->reviewUpdate($review->id, $request);
         session()->flash('flash_message', '投稿を編集しました');
 
         return redirect('reviews');
