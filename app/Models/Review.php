@@ -109,8 +109,13 @@ class Review extends Model
     }
 
     // 投稿一覧の取得
-    public function getTimeline($sort, $category, $criteria, $search, $pagination)
+    public function getTimeline($request, $pagination)
     {
+        $sort = $request['sort'];
+        $category = $request['category'];
+        $criteria = $request['criteria'];
+        $search = $request['search'];
+
         // カテゴリーを選択していなければ該当するwhen文をスルー
         if ($category === 'default') $category = false;
 
