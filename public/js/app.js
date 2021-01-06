@@ -71826,14 +71826,14 @@ var FollowButton = function FollowButton(props) {
 
   var PostFollow = function PostFollow(e) {
     toggleFollow();
-    return axios.post("/api/users/".concat(userId, "/follow")).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/follow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
 
   var DeleteFollow = function DeleteFollow(e) {
     toggleFollow();
-    return axios.post("/api/users/".concat(userId, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/unfollow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -73180,14 +73180,14 @@ var UserProfileFollowButton = function UserProfileFollowButton() {
 
   var PostFollow = function PostFollow() {
     toggleFollow();
-    return axios.post("/api/users/".concat(user.id, "/follow")).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/follow/".concat(user.id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
 
   var DeleteFollow = function DeleteFollow() {
     toggleFollow();
-    return axios.post("/api/users/".concat(user.id, "/unfollow")).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/unfollow/".concat(user.id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };

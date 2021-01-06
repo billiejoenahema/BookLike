@@ -14,7 +14,7 @@ const FollowButton = (props) => {
     const PostFollow = (e) => {
         toggleFollow()
 
-        return axios.post(`/api/users/${userId}/follow`)
+        return axios.post(`/api/follow/${userId}`)
             .then(
                 console.log('success!')
             )
@@ -26,7 +26,7 @@ const FollowButton = (props) => {
     const DeleteFollow = (e) => {
         toggleFollow()
 
-        return axios.post(`/api/users/${userId}/unfollow`)
+        return axios.post(`/api/unfollow/${userId}`)
             .then(
                 console.log('success!')
             )

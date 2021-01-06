@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('favorites/{id}', 'Api\FavoriteController@destroy');
 
     // フォロー/フォロー解除
-    Route::post('users/{user}/follow', 'Api\UsersController@follow');
-    Route::post('users/{id}/unfollow', 'Api\UsersController@unfollow');
+    Route::post('follow/{id}', 'Api\FollowController@follow');
+    Route::post('unfollow/{id}', 'Api\FollowController@unfollow');
 
 });
