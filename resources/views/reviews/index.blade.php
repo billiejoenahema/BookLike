@@ -7,6 +7,9 @@
         <div class="switch-index bg-blog text-white text-center align-items-center">ユーザー一覧</div>
     </a>
 </div>
+
+{{-- React Components --}}
 <div id="reviewIndex"></div>
+
 @include('components.scroll_to_top_button')
 @endsection
