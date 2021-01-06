@@ -3,7 +3,7 @@
 @section('content')
 @include('components.back_button')
 <div class="card shadow-sm">
-    <form method="POST" action="{{ route('reviews.destroy', $review) }}" id="delete_{{ $review->id }}">
+    <form method="POST" action="{{ route('reviews.destroy', $review->id) }}" id="delete_{{ $review->id }}">
         @csrf
         @method('DELETE')
         <div class="card-header d-flex align-items-center justify-content-between">

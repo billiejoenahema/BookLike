@@ -41,25 +41,36 @@ class ReviewController extends Controller
     }
 
     // Post review text form
-    public function posts(Request $request, GetItem $get_item, Review $review)
+    public function post(Request $request, GetItem $get_item, Review $review)
     {
         $login_user = auth()->user();
         $user_id = $login_user->id;
-        $asin = $request->asin;
-        $posted_review = $review->postedAsin($asin, $user_id);
-        $posted_asin = $posted_review['asin'];
-        $item = $get_item->getItem($asin);
         $storage = Storage::disk('s3');
 
-        // 同じ書籍を投稿できないようにする
-        if(isset($posted_asin)) {
+        $asin = $request->asin;
+        $item = $get_item->getItem($asin);
+        $page_url = $item->DetailPageURL;
+        $title = $item->ItemInfo->Title->DisplayValue;
+        $author = $item->ItemInfo->ByLineInfo->Contributors[0]->Name;
+        $manufacturer = $item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue;
+        $image_url = $item->Images->Primary->Large->URL;
+
+        // 選択した書籍と同じ書籍が投稿済みかどうかをチェック
+        $isPosted = $review->isPosted($asin, $user_id);
+        // 投稿済みならエラーメッセージを表示
+        if($isPosted) {
             return back()->with('error', 'この本はすでに投稿済みです');
         }
 
-        return view('reviews.posts', compact(
+        return view('reviews.post', compact(
             'login_user',
-            'item',
-            'storage'
+            'storage',
+            'asin',
+            'page_url',
+            'title',
+            'author',
+            'manufacturer',
+            'image_url',
         ));
     }
 
@@ -105,23 +116,15 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review, GetItem $get_item)
+    public function edit(Review $review)
     {
         $login_user = auth()->user();
-        $review = $review->getEditReview($login_user->id, $review->id);
-        $item = $get_item->getItem($review->asin);
-        $item_url = $item->DetailPageURL;
         $storage = Storage::disk('s3');
-
-        if (!isset($review)) {
-            return redirect('reviews');
-        }
 
         return view('reviews.edit', compact(
             'login_user',
-            'review',
-            'item_url',
-            'storage'
+            'storage',
+            'review'
         ));
     }
 
@@ -146,7 +149,7 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Review $review, Request $request)
     {
         $login_user = auth()->user();
         $review->reviewDestroy($login_user->id, $review->id);

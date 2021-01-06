@@ -44,9 +44,11 @@ class Review extends Model
                     ->first();
     }
 
-    public function postedAsin($asin, Int $user_id)
+    public function isPosted($asin, Int $user_id)
     {
-        return $this->where('user_id', $user_id)->where('asin', $asin)->first('asin');
+        return (boolean) $this->where('user_id', $user_id)
+                              ->where('asin', $asin)
+                              ->first('asin');
     }
 
     public function reviewStore(Int $user_id, $request)
@@ -65,12 +67,12 @@ class Review extends Model
         return;
     }
 
-    public function getEditReview(Int $user_id, Int $review_id)
-    {
-        return $this->where('user_id', $user_id)
-                    ->where('id', $review_id)
-                    ->first();
-    }
+    // public function getEditReview(Int $user_id, Int $review_id)
+    // {
+    //     return $this->where('user_id', $user_id)
+    //                 ->where('id', $review_id)
+    //                 ->first();
+    // }
 
     public function reviewUpdate(Int $review_id, $request)
     {

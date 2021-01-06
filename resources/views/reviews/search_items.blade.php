@@ -29,7 +29,7 @@
         @endif
         <!-- 検索結果一覧表示 -->
         <!-- 決定ボタン -->
-        <form method="GET" action="{{ route('reviews.posts') }}">
+        <form method="GET" action="{{ route('reviews.post') }}">
             @csrf
             <input id="asin" type="hidden" name="asin" value="">
             <button class="btn btn-primary disabled rounded-pill col-sm-4 my-1 shadow-sm" id="confirmButton"

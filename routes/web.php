@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
     => ['index', 'show', 'edit', 'update', 'destroy']]);
 
     // レビュー入力画面（resourceよりも上に書かないと'404 Not found'になってしまう）
-    Route::get('reviews/posts', 'ReviewController@posts')->name('reviews.posts');
+    Route::get('reviews/post', 'ReviewController@post')->name('reviews.post');
 
     // レビュー関連
     Route::resource('reviews', 'ReviewController');
