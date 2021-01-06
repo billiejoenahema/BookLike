@@ -7,6 +7,9 @@
     </a>
     <div class="switch-index bg-blogLight text-wisper text-center align-items-center">ユーザー一覧</div>
 </div>
+
+{{-- React Components --}}
 <div id="userIndex"></div>
+
 @include('components.scroll_to_top_button')
 @endsection
