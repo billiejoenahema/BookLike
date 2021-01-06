@@ -28,7 +28,7 @@ const UserProfileFollowButton = () => {
     const PostFollow = () => {
         toggleFollow()
 
-        return axios.post(`/api/users/${user.id}/follow`)
+        return axios.post(`/api/follow/${user.id}`)
             .then(
                 console.log('success!')
             )
@@ -40,7 +40,7 @@ const UserProfileFollowButton = () => {
     const DeleteFollow = () => {
         toggleFollow()
 
-        return axios.post(`/api/users/${user.id}/unfollow`)
+        return axios.post(`/api/unfollow/${user.id}`)
             .then(
                 console.log('success!')
             )
