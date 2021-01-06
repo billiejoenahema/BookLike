@@ -100,6 +100,10 @@ class UsersController extends Controller
      */
     public function update(UpdateUser $request, User $user)
     {
+        if ($user->id === 1) {
+            return redirect('users/'.$user->id)
+                ->with('error', 'ゲストユーザー はプロフィールを編集できません');
+        }
         $user->updateProfile($request);
         session()->flash('flash_message', 'プロフィールを編集しました');
 
@@ -114,6 +118,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        if ($user->id === 1) {
+            return redirect('users/'.$user->id)
+                ->with('error', 'ゲストユーザー はアカウントを削除できません');
+        }
         $login_user = auth()->user();
         $login_user->delete();
 
