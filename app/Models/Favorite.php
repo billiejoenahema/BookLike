@@ -21,13 +21,12 @@ class Favorite extends Model
         $this->user_id = $user_id;
         $this->review_id = $review_id;
         $this->save();
-
         return;
     }
 
-    public function destroyFavorite(Int $id)
+    public function destroyFavorite(Int $favorite_id)
     {
-        return $this->where('id', $id)->delete();
+        return $this->where('id', $favorite_id)->delete();
     }
 
 

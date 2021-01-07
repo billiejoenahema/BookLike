@@ -15,16 +15,15 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Favorite $favorite)
+    public function addFavorite(Favorite $favorite, Int $review_id)
     {
-        $user = auth()->user();
-        $review_id = $request->review_id;
-        $is_favorite = $favorite->isFavorite($user->id, $review_id);
+        $loginUser = auth()->user();
+        $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
         if(!$is_favorite) {
-            $favorite->storeFavorite($user->id, $review_id);
-            return response()->json($favorite->id);
+            $favorite->storeFavorite($loginUser->id, $review_id);
+            return ['status' => 'success'];
         }
-        return;
+        return ['status' => 'error'];
     }
 
     /**
@@ -33,13 +32,17 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Favorite $favorite, $id)
+    public function removeFavorite(Favorite $favorite, Int $review_id)
     {
-        $favorite_id = $favorite->find($id);
-        if($favorite_id) {
-            $favorite_id->delete();
+        $loginUser = auth()->user();
+        $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
+        $favorite_id = $favorite->where('user_id', $loginUser->id)->where('review_id', $review_id)->value('id');
+
+        if($is_favorite) {
+            $favorite->destroyFavorite($favorite_id);
+            return ['status' => 'success'];
         }
-        return;
+        return ['status' => 'error'];
 
     }
 }

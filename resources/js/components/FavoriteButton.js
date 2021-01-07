@@ -7,6 +7,7 @@ const FavoriteButton = (props) => {
     const InitialCount = props.timeline.favorites.length
     const [favorite, setFavorite] = useState(InitialFavorite)
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
+    const id = props.timeline.id
 
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
@@ -14,9 +15,8 @@ const FavoriteButton = (props) => {
         e.preventDefault()
         toggleFavorite()
         setFavoriteCount(favoriteCount + 1)
-        const review_id = props.timeline.id
 
-        return axios.post(`/api/favorites`, { review_id: review_id })
+        return axios.post(`/api/add_favorite/${id}`)
             .then(
                 console.log('success!')
             )
@@ -29,11 +29,8 @@ const FavoriteButton = (props) => {
         e.preventDefault()
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
-        const favoritesArray = Array.from(props.timeline.favorites)
-        const favoritesIds = favoritesArray.map(v => v.id)
-        const id = favoritesIds[0]
 
-        return axios.delete(`/api/favorites/${id}`)
+        return axios.post(`/api/remove_favorite/${id}`)
             .then(
                 console.log('success!')
             )

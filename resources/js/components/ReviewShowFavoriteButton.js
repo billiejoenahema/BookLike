@@ -29,12 +29,12 @@ const ReviewShowFavoriteButton = () => {
         loadIsFavorited()
     }, [])
 
-    const postFavorite = () => {
+    const postFavorite = (e) => {
+        e.preventDefault()
         toggleFavorite()
         setFavoriteCount(favoriteCount + 1)
-        const review_id = review.id
 
-        return axios.post(`/api/favorites`, { review_id: review_id })
+        return axios.post(`/api/add_favorite/${review.id}`)
             .then(
                 console.log('success!')
             )
@@ -43,14 +43,12 @@ const ReviewShowFavoriteButton = () => {
             })
     }
 
-    const deleteFavorite = () => {
+    const deleteFavorite = (e) => {
+        e.preventDefault()
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
-        const favoritesArray = Array.from(review.favorites)
-        const favoritesIds = favoritesArray.map(v => v.id)
-        const id = favoritesIds[0]
 
-        return axios.delete(`/api/favorites/${id}`)
+        return axios.post(`/api/remove_favorite/${review.id}`)
             .then(
                 console.log('success!')
             )
