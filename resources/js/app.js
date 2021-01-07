@@ -12,9 +12,9 @@ require('./bootstrap')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/UserPageTab')
+require('./components/FavoriteButtonWrapper')
 require('./components/ReviewIndex')
+require('./components/UserPageTab')
 require('./components/UserIndex')
 require('./components/UserProfileFollowButton')
-require('./components/ReviewShowFavoriteButton')
 require('./components/UserProfileFavoritesCount')

@@ -63,7 +63,8 @@
         </div>
 
         <!-- いいねボタン -->
-        <div id="reviewShowFavoriteButton" class="d-inline-flex align-items-center ml-4 mr-3"></div>
+        <div id="favoriteButtonWrapper" class="d-inline-flex align-items-center ml-4 mr-3"></div>
+        {{-- <div id="reviewShowFavoriteButton" class="d-inline-flex align-items-center ml-4 mr-3"></div> --}}
     </div>
 </div>
 <!-- コメント -->
