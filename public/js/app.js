@@ -71731,6 +71731,7 @@ var FavoriteButton = function FavoriteButton(props) {
       favoriteCount = _useState4[0],
       setFavoriteCount = _useState4[1];
 
+  var id = props.timeline.id;
   var toggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return setFavorite(function (prev) {
       return !prev;
@@ -71741,10 +71742,7 @@ var FavoriteButton = function FavoriteButton(props) {
     e.preventDefault();
     toggleFavorite();
     setFavoriteCount(favoriteCount + 1);
-    var review_id = props.timeline.id;
-    return axios.post("/api/favorites", {
-      review_id: review_id
-    }).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/add_favorite/".concat(id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -71753,12 +71751,7 @@ var FavoriteButton = function FavoriteButton(props) {
     e.preventDefault();
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
-    var favoritesArray = Array.from(props.timeline.favorites);
-    var favoritesIds = favoritesArray.map(function (v) {
-      return v.id;
-    });
-    var id = favoritesIds[0];
-    return axios["delete"]("/api/favorites/".concat(id)).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/remove_favorite/".concat(id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -72389,26 +72382,20 @@ var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
     loadIsFavorited();
   }, []);
 
-  var postFavorite = function postFavorite() {
+  var postFavorite = function postFavorite(e) {
+    e.preventDefault();
     toggleFavorite();
     setFavoriteCount(favoriteCount + 1);
-    var review_id = review.id;
-    return axios.post("/api/favorites", {
-      review_id: review_id
-    }).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/add_favorite/".concat(review.id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
 
-  var deleteFavorite = function deleteFavorite() {
+  var deleteFavorite = function deleteFavorite(e) {
+    e.preventDefault();
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
-    var favoritesArray = Array.from(review.favorites);
-    var favoritesIds = favoritesArray.map(function (v) {
-      return v.id;
-    });
-    var id = favoritesIds[0];
-    return axios["delete"]("/api/favorites/".concat(id)).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/remove_favorite/".concat(review.id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
