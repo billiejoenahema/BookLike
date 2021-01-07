@@ -71594,15 +71594,15 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/UserPageTab */ "./resources/js/components/UserPageTab.js");
+__webpack_require__(/*! ./components/FavoriteButtonWrapper */ "./resources/js/components/FavoriteButtonWrapper.js");
 
 __webpack_require__(/*! ./components/ReviewIndex */ "./resources/js/components/ReviewIndex.js");
+
+__webpack_require__(/*! ./components/UserPageTab */ "./resources/js/components/UserPageTab.js");
 
 __webpack_require__(/*! ./components/UserIndex */ "./resources/js/components/UserIndex.js");
 
 __webpack_require__(/*! ./components/UserProfileFollowButton */ "./resources/js/components/UserProfileFollowButton.js");
-
-__webpack_require__(/*! ./components/ReviewShowFavoriteButton */ "./resources/js/components/ReviewShowFavoriteButton.js");
 
 __webpack_require__(/*! ./components/UserProfileFavoritesCount */ "./resources/js/components/UserProfileFavoritesCount.js");
 
@@ -71731,7 +71731,7 @@ var FavoriteButton = function FavoriteButton(props) {
       favoriteCount = _useState4[0],
       setFavoriteCount = _useState4[1];
 
-  var id = props.timeline.id;
+  var reviewId = props.timeline.id;
   var toggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return setFavorite(function (prev) {
       return !prev;
@@ -71742,7 +71742,7 @@ var FavoriteButton = function FavoriteButton(props) {
     e.preventDefault();
     toggleFavorite();
     setFavoriteCount(favoriteCount + 1);
-    return axios.post("/api/add_favorite/".concat(id)).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/add_favorite/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -71751,7 +71751,7 @@ var FavoriteButton = function FavoriteButton(props) {
     e.preventDefault();
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
-    return axios.post("/api/remove_favorite/".concat(id)).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/remove_favorite/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
@@ -71772,6 +71772,100 @@ var FavoriteButton = function FavoriteButton(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FavoriteButton);
+
+/***/ }),
+
+/***/ "./resources/js/components/FavoriteButtonWrapper.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/FavoriteButtonWrapper.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/FavoriteButton.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var FavoriteButtonWrapper = function FavoriteButtonWrapper() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+      _useState2 = _slicedToArray(_useState, 2),
+      review = _useState2[0],
+      setReview = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loginUser = _useState4[0],
+      setLoginUser = _useState4[1];
+
+  var currentUrl = window.location.pathname;
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var loadIsFavorited = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get("/api".concat(currentUrl)).then(function (res) {
+                  setReview(res.data.review);
+                  setLoginUser(res.data.loginUser);
+                })["catch"](function (err) {
+                  console.log(err);
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function loadIsFavorited() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    loadIsFavorited();
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, review && loginUser && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    timeline: review,
+    loginUser: loginUser
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FavoriteButtonWrapper);
+
+if (document.getElementById('favoriteButtonWrapper')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(FavoriteButtonWrapper, null), document.getElementById('favoriteButtonWrapper'));
+}
 
 /***/ }),
 
@@ -72282,153 +72376,6 @@ var ReviewIndex = function ReviewIndex() {
 
 if (document.getElementById('reviewIndex')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ReviewIndex, null), document.getElementById('reviewIndex'));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/ReviewShowFavoriteButton.js":
-/*!*************************************************************!*\
-  !*** ./resources/js/components/ReviewShowFavoriteButton.js ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
-/* harmony import */ var _functions_isFavorited__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/isFavorited */ "./resources/js/functions/isFavorited.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var ReviewShowFavoriteButton = function ReviewShowFavoriteButton() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
-      _useState2 = _slicedToArray(_useState, 2),
-      review = _useState2[0],
-      setReview = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      favorite = _useState4[0],
-      setFavorite = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
-      _useState6 = _slicedToArray(_useState5, 2),
-      favoriteCount = _useState6[0],
-      setFavoriteCount = _useState6[1];
-
-  var toggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(function () {
-    return setFavorite(function (prev) {
-      return !prev;
-    });
-  }, [setFavorite]);
-  var currentUrl = window.location.pathname;
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    var loadIsFavorited = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return axios.get("/api".concat(currentUrl)).then(function (res) {
-                  var initialCount = res.data.review.favorites.length;
-                  var initialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_4__["default"])(res.data.review, res.data.loginUser);
-                  setReview(res.data.review);
-                  setFavoriteCount(initialCount);
-                  setFavorite(initialFavorite);
-                })["catch"](function (err) {
-                  console.log(err);
-                });
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function loadIsFavorited() {
-        return _ref.apply(this, arguments);
-      };
-    }();
-
-    loadIsFavorited();
-  }, []);
-
-  var postFavorite = function postFavorite(e) {
-    e.preventDefault();
-    toggleFavorite();
-    setFavoriteCount(favoriteCount + 1);
-    return axios.post("/api/add_favorite/".concat(review.id)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
-    });
-  };
-
-  var deleteFavorite = function deleteFavorite(e) {
-    e.preventDefault();
-    toggleFavorite();
-    setFavoriteCount(favoriteCount - 1);
-    return axios.post("/api/remove_favorite/".concat(review.id)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
-    });
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, favorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    onClick: deleteFavorite,
-    className: "btn p-0 border-0",
-    "data-tip": "\u3044\u3044\u306D"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-heart fa-fw text-red"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    effect: "float",
-    type: "info",
-    place: "top"
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    onClick: postFavorite,
-    className: "btn p-0 border-0",
-    "data-tip": "\u3044\u3044\u306D"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "far fa-heart fa-fw text-blog"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    effect: "float",
-    type: "info",
-    place: "top"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-    className: "mb-0 text-secondary"
-  }, favoriteCount));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (ReviewShowFavoriteButton);
-
-if (document.getElementById('reviewShowFavoriteButton')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ReviewShowFavoriteButton, null), document.getElementById('reviewShowFavoriteButton'));
 }
 
 /***/ }),
