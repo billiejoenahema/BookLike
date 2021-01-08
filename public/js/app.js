@@ -72319,16 +72319,16 @@ function Reviews(props) {
 
   var hoverUserIcon = function hoverUserIcon(e) {
     var id = e.target.dataset.id;
-    var userCounts = document.getElementsByClassName(id)[0]; // ユーザーアイコンにマウスポインターが乗ったら表示する
+    var userCountsDiv = document.getElementsByClassName("review-".concat(id))[0]; // ユーザーアイコンにマウスポインターが乗ったら表示する
 
-    userCounts.classList.remove('d-none');
+    userCountsDiv.classList.remove('d-none');
   };
 
   var leaveUserIcon = function leaveUserIcon(e) {
     var id = e.target.dataset.id;
-    var userCounts = document.getElementsByClassName(id)[0]; // ユーザーアイコンからマウスポインターが外れたら非表示にする
+    var userCountsDiv = document.getElementsByClassName("review-".concat(id))[0]; // ユーザーアイコンからマウスポインターが外れたら非表示にする
 
-    userCounts.classList.add('d-none');
+    userCountsDiv.classList.add('d-none');
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, reviews.map(function (review) {
@@ -72338,7 +72338,7 @@ function Reviews(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-haeder p-3 d-flex"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "user-counts shadow-sm d-none ".concat(review.id)
+      className: "user-counts shadow-sm d-none review-".concat(review.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "count d-flex justify-content-between mb-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_ReviewsCount__WEBPACK_IMPORTED_MODULE_4__["default"], {

@@ -15,16 +15,16 @@ function Reviews(props) {
 
     const hoverUserIcon = (e) => {
         const id = e.target.dataset.id
-        const userCounts = document.getElementsByClassName(id)[0]
+        const userCountsDiv = document.getElementsByClassName(`review-${id}`)[0]
         // ユーザーアイコンにマウスポインターが乗ったら表示する
-        userCounts.classList.remove('d-none')
+        userCountsDiv.classList.remove('d-none')
     }
 
     const leaveUserIcon = (e) => {
         const id = e.target.dataset.id
-        const userCounts = document.getElementsByClassName(id)[0]
+        const userCountsDiv = document.getElementsByClassName(`review-${id}`)[0]
         // ユーザーアイコンからマウスポインターが外れたら非表示にする
-        userCounts.classList.add('d-none')
+        userCountsDiv.classList.add('d-none')
     }
 
     return (
@@ -33,7 +33,7 @@ function Reviews(props) {
                 <div className="card shadow-sm mb-3" key={review.id}>
                     <div className="card-haeder p-3 d-flex">
                         {/* ユーザー情報 */}
-                        <div className={`user-counts shadow-sm d-none ${review.id}`} >
+                        <div className={`user-counts shadow-sm d-none review-${review.id}`} >
                             <div className="count d-flex justify-content-between mb-1">
                                 <ReviewsCount user={review.user} />
                             </div>
