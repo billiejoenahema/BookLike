@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-12 col-sm-8 mt-sm-5 p-3 d-flex flex-column">
-            <div class="d-flex flex-wrap text-secondary">
+            <div class="d-flex flex-wrap text-secondary mb-1">
                 <span class="pr-5">登録日: {{ $create_date }}</span>
                 <span>更新日: {{ $update_date }}</span>
             </div>
