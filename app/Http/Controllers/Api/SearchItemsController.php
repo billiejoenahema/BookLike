@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\Api\SearchItems;
+use App\Models\SearchItems;
 use App\Http\Controllers\Controller;
 
 class SearchItemsController extends Controller

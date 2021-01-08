@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Review;
 use App\Models\Comment;
 use App\Models\Follower;
-use App\Http\Controllers\Api\GetItem;
+use App\Models\GetItem;
 
 class ReviewController extends Controller
 {
