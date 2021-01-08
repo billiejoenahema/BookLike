@@ -71669,11 +71669,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var EditReviewButton = function EditReviewButton(props) {
-  var timelineId = props.timeline.id;
+  var reviewId = props.review.id;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex-grow-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/reviews/".concat(timelineId, "/edit"),
+    href: "/reviews/".concat(reviewId, "/edit"),
     role: "button",
     className: "text-reset btn py-0",
     "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
@@ -71718,8 +71718,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var FavoriteButton = function FavoriteButton(props) {
-  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_1__["default"])(props.timeline, props.loginUser);
-  var InitialCount = props.timeline.favorites.length;
+  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_1__["default"])(props.review, props.loginUser);
+  var InitialCount = props.review.favorites.length;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFavorite),
       _useState2 = _slicedToArray(_useState, 2),
@@ -71731,7 +71731,7 @@ var FavoriteButton = function FavoriteButton(props) {
       favoriteCount = _useState4[0],
       setFavoriteCount = _useState4[1];
 
-  var reviewId = props.timeline.id;
+  var reviewId = props.review.id;
   var toggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return setFavorite(function (prev) {
       return !prev;
@@ -71856,7 +71856,7 @@ var FavoriteButtonWrapper = function FavoriteButtonWrapper() {
     loadIsFavorited();
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, review && loginUser && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    timeline: review,
+    review: review,
     loginUser: loginUser
   }));
 };
@@ -72001,7 +72001,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Timeline__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Timeline */ "./resources/js/components/Timeline.js");
+/* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/Reviews.js");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
 
 
@@ -72050,8 +72050,8 @@ var ReviewIndex = function ReviewIndex() {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      timelines = _useState4[0],
-      setTimelines = _useState4[1];
+      reviews = _useState4[0],
+      setReviews = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialCategory),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -72089,9 +72089,9 @@ var ReviewIndex = function ReviewIndex() {
       setSearchWord = _useState18[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    var loadTimeline = /*#__PURE__*/function () {
+    var loadReviews = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var newTimelines;
+        var newReviews;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -72100,19 +72100,16 @@ var ReviewIndex = function ReviewIndex() {
                 _context.next = 3;
                 return axios.get("/api/reviews?criteria=".concat(criteria, "&search=").concat(searchWord, "&category=").concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
                   setLoginUser(res.data.loginUser);
-                  page < res.data.timelines.last_page && setHasMore(true);
-                  return res.data.timelines.data;
+                  page < res.data.reviews.last_page && setHasMore(true);
+                  return res.data.reviews.data;
                 })["catch"](function (err) {
                   console.log(err);
                 });
 
               case 3:
-                newTimelines = _context.sent;
-                // const addTimelines = newTimelines.filter(item => {
-                //     return item[criteria].indexOf(searchWord) > -1
-                // })
-                setTimelines(function (prev) {
-                  return [].concat(_toConsumableArray(prev), _toConsumableArray(newTimelines));
+                newReviews = _context.sent;
+                setReviews(function (prev) {
+                  return [].concat(_toConsumableArray(prev), _toConsumableArray(newReviews));
                 });
                 setLoading(false);
 
@@ -72124,12 +72121,12 @@ var ReviewIndex = function ReviewIndex() {
         }, _callee);
       }));
 
-      return function loadTimeline() {
+      return function loadReviews() {
         return _ref.apply(this, arguments);
       };
     }();
 
-    loadTimeline();
+    loadReviews();
   }, [page, category, searchWord, sort]); // カテゴリー選択時にセレクトボックスを操作する
 
   var changeSelectBox = function changeSelectBox(selectedCategory) {
@@ -72176,7 +72173,7 @@ var ReviewIndex = function ReviewIndex() {
 
     if (searchBooks.value === searchWord) return;
     setSearchWord('');
-    setTimelines([]);
+    setReviews([]);
     setPage(1);
     setHasMore(false);
     setSearchWord(searchBooks.value);
@@ -72196,7 +72193,7 @@ var ReviewIndex = function ReviewIndex() {
 
     searchModal.classList.remove('show');
     modalMapDrop.classList.remove('show');
-    setTimelines([]);
+    setReviews([]);
     setPage(1);
     setHasMore(false);
     setSearchWord(modalSearchBooks.value);
@@ -72210,7 +72207,7 @@ var ReviewIndex = function ReviewIndex() {
     var selectedCategory = clickedCategory || selectedValue;
     if (clickedCategory === selectedValue) return;
     changeSelectBox(selectedCategory);
-    setTimelines([]);
+    setReviews([]);
     setCategory(selectedCategory);
     setPage(1);
     setHasMore(false);
@@ -72221,7 +72218,7 @@ var ReviewIndex = function ReviewIndex() {
     console.log('sort changed!');
     var selectedSort = document.getElementById('selectSort').value;
     setSort(selectedSort);
-    setTimelines([]);
+    setReviews([]);
     setPage(1);
     setHasMore(false);
   }; // 一定量スクロールしたら投稿をさらに読み込み
@@ -72231,7 +72228,7 @@ var ReviewIndex = function ReviewIndex() {
 
   body.onscroll = function () {
     var scrollAmount = window.scrollY;
-    var clientHeight = document.getElementById('timelinesComponent').clientHeight;
+    var clientHeight = document.getElementById('reviewsComponent').clientHeight;
 
     if (hasMore && clientHeight - scrollAmount < 1200) {
       setPage(function (prev) {
@@ -72362,14 +72359,14 @@ var ReviewIndex = function ReviewIndex() {
   }, "\u65B0\u7740\u9806"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "favorite"
   }, "\u3044\u3044\u306D\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    id: "timelinesComponent"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    timelines: timelines,
+    id: "reviewsComponent"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Reviews__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    reviews: reviews,
     loginUser: loginUser,
     changeCategory: changeCategory
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
-  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null), !loading && timelines.length === 0 && '該当する投稿は見つかりませんでした'));
+  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null), !loading && reviews.length === 0 && '該当する投稿は見つかりませんでした'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewIndex);
@@ -72377,6 +72374,133 @@ var ReviewIndex = function ReviewIndex() {
 if (document.getElementById('reviewIndex')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ReviewIndex, null), document.getElementById('reviewIndex'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Reviews.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Reviews.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
+/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/FavoriteButton.js");
+/* harmony import */ var _EditReviewButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditReviewButton */ "./resources/js/components/EditReviewButton.js");
+/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/omittedText */ "./resources/js/functions/omittedText.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants */ "./resources/js/constants.js");
+
+
+
+
+
+
+
+function Reviews(props) {
+  var reviews = props.reviews,
+      loginUser = props.loginUser;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, reviews.map(function (review) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card shadow-sm mb-3",
+      key: review.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-haeder p-3 d-flex"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/users/".concat(review.user.id),
+      className: "text-reset",
+      "data-tip": "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u30DA\u30FC\u30B8\u3078"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_5__["STORAGE"], "/").concat(review.user.profile_image),
+      className: "rounded-circle shadow-sm",
+      width: "48",
+      height: "48"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      effect: "float",
+      type: "info",
+      place: "top"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "ml-2 d-flex flex-column"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "mb-0"
+    }, review.user.name || review.user.screen_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "text-secondary"
+    }, review.user.screen_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-flex justify-content-end flex-grow-1"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "mb-0 text-secondary"
+    }, formatDate(review.created_at, 'yyyy-MM-dd')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-body py-0 px-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-flex flex-row py-3 border-top border-bottom"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/reviews/".concat(review.id),
+      className: "d-block text-reset text-decoration-none",
+      "data-tip": "\u6295\u7A3F\u306E\u8A73\u7D30\u30DA\u30FC\u30B8\u3078"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: review.image_url,
+      width: "100",
+      className: "shadow-sm"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      effect: "float",
+      type: "info",
+      place: "top"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-8 d-flex flex-column text-left pl-3 px-0"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+      className: "mb-3"
+    }, review.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      className: "list-unstyled"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), review.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), review.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "btn p-0 text-blue anchor",
+      onClick: props.changeCategory,
+      "data-category": review.category
+    }, review.category)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: review.page_url,
+      target: "_blank",
+      rel: "noopener",
+      "data-tip": "Amazon\u30B5\u30A4\u30C8\u3078\u79FB\u52D5"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fab fa-amazon"
+    }), " Amazon", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      effect: "float",
+      type: "info",
+      place: "top"
+    })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-body p-0"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/reviews/".concat(review.id),
+      className: "d-block p-3 text-reset text-decoration-none",
+      "data-tip": "\u6295\u7A3F\u306E\u8A73\u7D30\u30DA\u30FC\u30B8\u3078"
+    }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_4__["default"])(review.text, 80), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      effect: "float",
+      type: "info",
+      place: "top"
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
+    }, loginUser.id === review.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      review: review
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-flex align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "/reviews/".concat(review.id)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "far fa-comment fa-fw text-blog"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "mb-0 text-secondary"
+    }, review.comments.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "ml-4 mr-3 d-flex align-items-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      review: review,
+      loginUser: loginUser
+    }))));
+  }));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Reviews);
 
 /***/ }),
 
@@ -72401,133 +72525,6 @@ var ReviewsCount = function ReviewsCount(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewsCount);
-
-/***/ }),
-
-/***/ "./resources/js/components/Timeline.js":
-/*!*********************************************!*\
-  !*** ./resources/js/components/Timeline.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
-/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/FavoriteButton.js");
-/* harmony import */ var _EditReviewButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditReviewButton */ "./resources/js/components/EditReviewButton.js");
-/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/omittedText */ "./resources/js/functions/omittedText.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants */ "./resources/js/constants.js");
-
-
-
-
-
-
-
-function Timeline(props) {
-  var timelines = props.timelines,
-      loginUser = props.loginUser;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, timelines.map(function (timeline) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card shadow-sm mb-3",
-      key: timeline.id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-haeder p-3 d-flex"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/users/".concat(timeline.user.id),
-      className: "text-reset",
-      "data-tip": "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u30DA\u30FC\u30B8\u3078"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_5__["STORAGE"], "/").concat(timeline.user.profile_image),
-      className: "rounded-circle shadow-sm",
-      width: "48",
-      height: "48"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      effect: "float",
-      type: "info",
-      place: "top"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "ml-2 d-flex flex-column"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "mb-0"
-    }, timeline.user.name || timeline.user.screen_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "text-secondary"
-    }, timeline.user.screen_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex justify-content-end flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "mb-0 text-secondary"
-    }, formatDate(timeline.created_at, 'yyyy-MM-dd')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-body py-0 px-3"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex flex-row py-3 border-top border-bottom"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews/".concat(timeline.id),
-      className: "d-block text-reset text-decoration-none",
-      "data-tip": "\u6295\u7A3F\u306E\u8A73\u7D30\u30DA\u30FC\u30B8\u3078"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: timeline.image_url,
-      width: "100",
-      className: "shadow-sm"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      effect: "float",
-      type: "info",
-      place: "top"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-md-8 d-flex flex-column text-left pl-3 px-0"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-      className: "mb-3"
-    }, timeline.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-      className: "list-unstyled"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), timeline.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), timeline.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "btn p-0 text-blue anchor",
-      onClick: props.changeCategory,
-      "data-category": timeline.category
-    }, timeline.category)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("object", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: timeline.page_url,
-      target: "_blank",
-      rel: "noopener",
-      "data-tip": "Amazon\u30B5\u30A4\u30C8\u3078\u79FB\u52D5"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "fab fa-amazon"
-    }), " Amazon", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      effect: "float",
-      type: "info",
-      place: "top"
-    })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-body p-0"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews/".concat(timeline.id),
-      className: "d-block p-3 text-reset text-decoration-none",
-      "data-tip": "\u6295\u7A3F\u306E\u8A73\u7D30\u30DA\u30FC\u30B8\u3078"
-    }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_4__["default"])(timeline.text, 80), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      effect: "float",
-      type: "info",
-      place: "top"
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
-    }, loginUser.id === timeline.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      timeline: timeline
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews/".concat(timeline.id)
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "far fa-comment fa-fw text-blog"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "mb-0 text-secondary"
-    }, timeline.comments.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "ml-4 mr-3 d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      timeline: timeline,
-      loginUser: loginUser
-    }))));
-  }));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Timeline);
 
 /***/ }),
 
@@ -72792,7 +72789,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Timeline__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Timeline */ "./resources/js/components/Timeline.js");
+/* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/Reviews.js");
 /* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Users */ "./resources/js/components/Users.js");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
 /* harmony import */ var react_tabs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js");
@@ -72901,13 +72898,13 @@ var UserPageTab = function UserPageTab() {
     className: "text-center small px-0"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followingUsers.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center small px-0"
-  }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followedUsers.length))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, userReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    timelines: userReviews,
+  }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followedUsers.length))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, userReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    reviews: userReviews,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
-  }, "\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, favoriteReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Timeline__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    timelines: favoriteReviews,
+  }, "\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, favoriteReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    reviews: favoriteReviews,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
@@ -73268,9 +73265,9 @@ var STORAGE = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFavorited; });
-function isFavorited(timeline, loginUser) {
+function isFavorited(review, loginUser) {
   // 対象の投稿にログインユーザーがいいねしているかどうかを判定
-  var favoritesArray = Array.from(timeline.favorites);
+  var favoritesArray = Array.from(review.favorites);
   var userIds = favoritesArray.map(function (v) {
     return v.user_id;
   });

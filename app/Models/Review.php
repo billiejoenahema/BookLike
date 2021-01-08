@@ -109,7 +109,7 @@ class Review extends Model
     }
 
     // 投稿一覧の取得
-    public function getTimeline($request, $pagination)
+    public function getReviews($request, $pagination)
     {
         $sort = $request['sort'];
         $category = $request['category'];

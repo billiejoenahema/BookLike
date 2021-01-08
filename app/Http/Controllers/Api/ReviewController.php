@@ -29,11 +29,11 @@ class ReviewController extends Controller
         $loginUser = auth()->user();
 
         // 並び替えられた投稿一覧
-        $timelines = $review->getTimeline($request, $pagination);
+        $reviews = $review->getReviews($request, $pagination);
 
         return
             [
-            'timelines' => $timelines,
+            'reviews' => $reviews,
             'loginUser' => $loginUser,
             ];
     }

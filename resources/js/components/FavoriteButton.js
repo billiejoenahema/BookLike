@@ -3,11 +3,11 @@ import isFavorited from '../functions/isFavorited'
 
 const FavoriteButton = (props) => {
 
-    const InitialFavorite = isFavorited(props.timeline, props.loginUser)
-    const InitialCount = props.timeline.favorites.length
+    const InitialFavorite = isFavorited(props.review, props.loginUser)
+    const InitialCount = props.review.favorites.length
     const [favorite, setFavorite] = useState(InitialFavorite)
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
-    const reviewId = props.timeline.id
+    const reviewId = props.review.id
 
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
