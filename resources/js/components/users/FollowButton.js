@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import isFollowed from '../functions/isFollowed'
+import isFollowed from '../../functions/isFollowed'
 
 const FollowButton = (props) => {
 

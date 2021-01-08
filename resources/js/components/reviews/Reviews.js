@@ -2,8 +2,8 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 import EditReviewButton from './EditReviewButton'
-import omittedText from '../functions/omittedText'
-import { STORAGE } from '../constants'
+import omittedText from '../../functions/omittedText'
+import { STORAGE } from '../../constants'
 
 function Reviews(props) {
 

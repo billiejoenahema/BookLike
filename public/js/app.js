@@ -71594,17 +71594,17 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/FavoriteButtonWrapper */ "./resources/js/components/FavoriteButtonWrapper.js");
+__webpack_require__(/*! ./components/reviews/FavoriteButtonWrapper */ "./resources/js/components/reviews/FavoriteButtonWrapper.js");
 
-__webpack_require__(/*! ./components/ReviewIndex */ "./resources/js/components/ReviewIndex.js");
+__webpack_require__(/*! ./components/reviews/ReviewIndex */ "./resources/js/components/reviews/ReviewIndex.js");
 
-__webpack_require__(/*! ./components/UserPageTab */ "./resources/js/components/UserPageTab.js");
+__webpack_require__(/*! ./components/users/UserPageTab */ "./resources/js/components/users/UserPageTab.js");
 
-__webpack_require__(/*! ./components/UserIndex */ "./resources/js/components/UserIndex.js");
+__webpack_require__(/*! ./components/users/UserIndex */ "./resources/js/components/users/UserIndex.js");
 
-__webpack_require__(/*! ./components/UserProfileFollowButton */ "./resources/js/components/UserProfileFollowButton.js");
+__webpack_require__(/*! ./components/users/UserProfileFollowButton */ "./resources/js/components/users/UserProfileFollowButton.js");
 
-__webpack_require__(/*! ./components/UserProfileFavoritesCount */ "./resources/js/components/UserProfileFavoritesCount.js");
+__webpack_require__(/*! ./components/users/UserProfileFavoritesCount */ "./resources/js/components/users/UserProfileFavoritesCount.js");
 
 /***/ }),
 
@@ -71653,10 +71653,34 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/EditReviewButton.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/EditReviewButton.js ***!
-  \*****************************************************/
+/***/ "./resources/js/components/Loading.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Loading.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loading; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Loading() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spinner-border text-blog m-5",
+    role: "status"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "sr-only"
+  }, "Loading..."));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/reviews/EditReviewButton.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/reviews/EditReviewButton.js ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -71690,10 +71714,10 @@ var EditReviewButton = function EditReviewButton(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/FavoriteButton.js":
-/*!***************************************************!*\
-  !*** ./resources/js/components/FavoriteButton.js ***!
-  \***************************************************/
+/***/ "./resources/js/components/reviews/FavoriteButton.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/reviews/FavoriteButton.js ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -71701,7 +71725,7 @@ var EditReviewButton = function EditReviewButton(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions_isFavorited__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/isFavorited */ "./resources/js/functions/isFavorited.js");
+/* harmony import */ var _functions_isFavorited__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../functions/isFavorited */ "./resources/js/functions/isFavorited.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -71775,10 +71799,10 @@ var FavoriteButton = function FavoriteButton(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/FavoriteButtonWrapper.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/FavoriteButtonWrapper.js ***!
-  \**********************************************************/
+/***/ "./resources/js/components/reviews/FavoriteButtonWrapper.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/reviews/FavoriteButtonWrapper.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -71790,7 +71814,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/FavoriteButton.js");
+/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -71869,127 +71893,10 @@ if (document.getElementById('favoriteButtonWrapper')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/FollowButton.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/FollowButton.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-var FollowButton = function FollowButton(props) {
-  var InitialFollowState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__["default"])(props.user, props.loginUser);
-  var userId = props.user.id;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFollowState),
-      _useState2 = _slicedToArray(_useState, 2),
-      following = _useState2[0],
-      setFollowing = _useState2[1];
-
-  var toggleFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
-    return setFollowing(function (prev) {
-      return !prev;
-    });
-  }, [setFollowing]);
-
-  var PostFollow = function PostFollow(e) {
-    toggleFollow();
-    return axios.post("/api/follow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
-    });
-  };
-
-  var DeleteFollow = function DeleteFollow(e) {
-    toggleFollow();
-    return axios.post("/api/unfollow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
-    });
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: DeleteFollow,
-    className: "btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn"
-  }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: PostFollow,
-    className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn"
-  }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (FollowButton);
-
-/***/ }),
-
-/***/ "./resources/js/components/FollowerCount.js":
-/*!**************************************************!*\
-  !*** ./resources/js/components/FollowerCount.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var FollowerCount = function FollowerCount(props) {
-  var followerCount = props.user.followers.length;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "badge-teal badge-pill text-white ml-1 user-select-none"
-  }, followerCount));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (FollowerCount);
-
-/***/ }),
-
-/***/ "./resources/js/components/Loading.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/Loading.js ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loading; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function Loading() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "spinner-border text-blog m-5",
-    role: "status"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "sr-only"
-  }, "Loading..."));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/ReviewIndex.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/ReviewIndex.js ***!
-  \************************************************/
+/***/ "./resources/js/components/reviews/ReviewIndex.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/reviews/ReviewIndex.js ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -72001,8 +71908,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/Reviews.js");
-/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/reviews/Reviews.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -72377,10 +72284,10 @@ if (document.getElementById('reviewIndex')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Reviews.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/Reviews.js ***!
-  \********************************************/
+/***/ "./resources/js/components/reviews/Reviews.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/reviews/Reviews.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -72389,10 +72296,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
-/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/FavoriteButton.js");
-/* harmony import */ var _EditReviewButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditReviewButton */ "./resources/js/components/EditReviewButton.js");
-/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/omittedText */ "./resources/js/functions/omittedText.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants */ "./resources/js/constants.js");
+/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
+/* harmony import */ var _EditReviewButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditReviewButton */ "./resources/js/components/reviews/EditReviewButton.js");
+/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../functions/omittedText */ "./resources/js/functions/omittedText.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
 
 
 
@@ -72504,10 +72411,103 @@ function Reviews(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/ReviewsCount.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/ReviewsCount.js ***!
-  \*************************************************/
+/***/ "./resources/js/components/users/FollowButton.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/users/FollowButton.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var FollowButton = function FollowButton(props) {
+  var InitialFollowState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__["default"])(props.user, props.loginUser);
+  var userId = props.user.id;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFollowState),
+      _useState2 = _slicedToArray(_useState, 2),
+      following = _useState2[0],
+      setFollowing = _useState2[1];
+
+  var toggleFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+    return setFollowing(function (prev) {
+      return !prev;
+    });
+  }, [setFollowing]);
+
+  var PostFollow = function PostFollow(e) {
+    toggleFollow();
+    return axios.post("/api/follow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
+  var DeleteFollow = function DeleteFollow(e) {
+    toggleFollow();
+    return axios.post("/api/unfollow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: DeleteFollow,
+    className: "btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn"
+  }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: PostFollow,
+    className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn"
+  }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FollowButton);
+
+/***/ }),
+
+/***/ "./resources/js/components/users/FollowerCount.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/users/FollowerCount.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var FollowerCount = function FollowerCount(props) {
+  var followerCount = props.user.followers.length;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "badge-teal badge-pill text-white ml-1 user-select-none"
+  }, followerCount));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FollowerCount);
+
+/***/ }),
+
+/***/ "./resources/js/components/users/ReviewsCount.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/users/ReviewsCount.js ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -72528,10 +72528,10 @@ var ReviewsCount = function ReviewsCount(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/TotalFavoritesCount.js":
-/*!********************************************************!*\
-  !*** ./resources/js/components/TotalFavoritesCount.js ***!
-  \********************************************************/
+/***/ "./resources/js/components/users/TotalFavoritesCount.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/users/TotalFavoritesCount.js ***!
+  \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -72552,10 +72552,10 @@ var TotalFavoritesCount = function TotalFavoritesCount(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/UserIndex.js":
-/*!**********************************************!*\
-  !*** ./resources/js/components/UserIndex.js ***!
-  \**********************************************/
+/***/ "./resources/js/components/users/UserIndex.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/users/UserIndex.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -72567,8 +72567,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Users */ "./resources/js/components/Users.js");
-/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Users */ "./resources/js/components/users/Users.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -72772,10 +72772,10 @@ if (document.getElementById('userIndex')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/UserPageTab.js":
-/*!************************************************!*\
-  !*** ./resources/js/components/UserPageTab.js ***!
-  \************************************************/
+/***/ "./resources/js/components/users/UserPageTab.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/users/UserPageTab.js ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -72789,9 +72789,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/Reviews.js");
-/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Users */ "./resources/js/components/Users.js");
-/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var _reviews_Reviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reviews/Reviews */ "./resources/js/components/reviews/Reviews.js");
+/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Users */ "./resources/js/components/users/Users.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 /* harmony import */ var react_tabs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js");
 /* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-tabs/style/react-tabs.css */ "./node_modules/react-tabs/style/react-tabs.css");
 /* harmony import */ var react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_tabs_style_react_tabs_css__WEBPACK_IMPORTED_MODULE_8__);
@@ -72898,12 +72898,12 @@ var UserPageTab = function UserPageTab() {
     className: "text-center small px-0"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followingUsers.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center small px-0"
-  }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followedUsers.length))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, userReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followedUsers.length))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, userReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_reviews_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"], {
     reviews: userReviews,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
-  }, "\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, favoriteReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, "\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, favoriteReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_reviews_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"], {
     reviews: favoriteReviews,
     loginUser: loginUser
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -72931,10 +72931,10 @@ if (document.getElementById('userPageTab')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/UserProfileFavoritesCount.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/UserProfileFavoritesCount.js ***!
-  \**************************************************************/
+/***/ "./resources/js/components/users/UserProfileFavoritesCount.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/users/UserProfileFavoritesCount.js ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73022,10 +73022,10 @@ if (document.getElementById('totalFavoritesCount')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/UserProfileFollowButton.js":
-/*!************************************************************!*\
-  !*** ./resources/js/components/UserProfileFollowButton.js ***!
-  \************************************************************/
+/***/ "./resources/js/components/users/UserProfileFollowButton.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/users/UserProfileFollowButton.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73037,7 +73037,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
+/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -73140,10 +73140,10 @@ if (document.getElementById('userProfileFollowButton')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Users.js":
-/*!******************************************!*\
-  !*** ./resources/js/components/Users.js ***!
-  \******************************************/
+/***/ "./resources/js/components/users/Users.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/users/Users.js ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73152,13 +73152,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
-/* harmony import */ var _FollowButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FollowButton */ "./resources/js/components/FollowButton.js");
-/* harmony import */ var _FollowerCount__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FollowerCount */ "./resources/js/components/FollowerCount.js");
-/* harmony import */ var _TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TotalFavoritesCount */ "./resources/js/components/TotalFavoritesCount.js");
-/* harmony import */ var _ReviewsCount__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ReviewsCount */ "./resources/js/components/ReviewsCount.js");
-/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
-/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../functions/omittedText */ "./resources/js/functions/omittedText.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../constants */ "./resources/js/constants.js");
+/* harmony import */ var _FollowButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FollowButton */ "./resources/js/components/users/FollowButton.js");
+/* harmony import */ var _FollowerCount__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FollowerCount */ "./resources/js/components/users/FollowerCount.js");
+/* harmony import */ var _TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TotalFavoritesCount */ "./resources/js/components/users/TotalFavoritesCount.js");
+/* harmony import */ var _ReviewsCount__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ReviewsCount */ "./resources/js/components/users/ReviewsCount.js");
+/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
+/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../functions/omittedText */ "./resources/js/functions/omittedText.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
 
 
 

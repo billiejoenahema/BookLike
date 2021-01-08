@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import ReactDOM from 'react-dom'
-import isFollowed from '../functions/isFollowed'
+import isFollowed from '../../functions/isFollowed'
 
 const UserProfileFollowButton = () => {
 

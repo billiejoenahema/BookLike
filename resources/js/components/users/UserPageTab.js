@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-import Reviews from './Reviews'
+import Reviews from '../reviews/Reviews'
 import Users from './Users'
-import Loading from './Loading'
+import Loading from '../Loading'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 
