@@ -25,7 +25,7 @@ const FavoriteButtonWrapper = () => {
 
     return (
         <>
-            {review && loginUser && <FavoriteButton timeline={review} loginUser={loginUser} />}
+            {review && loginUser && <FavoriteButton review={review} loginUser={loginUser} />}
         </>
     )
 }

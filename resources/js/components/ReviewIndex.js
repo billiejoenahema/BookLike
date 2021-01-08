@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import Timeline from './Timeline'
+import Reviews from './Reviews'
 import Loading from './Loading'
 
 const ReviewIndex = () => {
@@ -12,7 +12,7 @@ const ReviewIndex = () => {
     const initialCategory = params.get('category') || 'default'
 
     const [loginUser, setLoginUser] = useState()
-    const [timelines, setTimelines] = useState([])
+    const [reviews, setReviews] = useState([])
     const [category, setCategory] = useState(initialCategory)
     const [criteria, setCriteria] = useState(initialCriteria)
     const [sort, setSort] = useState('default')
@@ -22,25 +22,23 @@ const ReviewIndex = () => {
     const [searchWord, setSearchWord] = useState(initialSearchWord)
 
     useEffect(() => {
-        const loadTimeline = async () => {
+        const loadReviews = async () => {
             setLoading(true)
-            const newTimelines = await axios
+            const newReviews = await axios
                 .get(`/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`)
                 .then(res => {
                     setLoginUser(res.data.loginUser)
-                    page < res.data.timelines.last_page && setHasMore(true)
-                    return res.data.timelines.data
+                    page < res.data.reviews.last_page && setHasMore(true)
+                    return res.data.reviews.data
                 })
                 .catch(err => {
                     console.log(err)
                 })
-            // const addTimelines = newTimelines.filter(item => {
-            //     return item[criteria].indexOf(searchWord) > -1
-            // })
-            setTimelines(prev => [...prev, ...newTimelines])
+
+            setReviews(prev => [...prev, ...newReviews])
             setLoading(false)
         }
-        loadTimeline()
+        loadReviews()
     }, [page, category, searchWord, sort])
 
     // カテゴリー選択時にセレクトボックスを操作する
@@ -79,7 +77,7 @@ const ReviewIndex = () => {
         if (searchBooks.value === searchWord) return
 
         setSearchWord('')
-        setTimelines([])
+        setReviews([])
         setPage(1)
         setHasMore(false)
         setSearchWord(searchBooks.value)
@@ -102,7 +100,7 @@ const ReviewIndex = () => {
         // モーダルを閉じる
         searchModal.classList.remove('show')
         modalMapDrop.classList.remove('show')
-        setTimelines([])
+        setReviews([])
         setPage(1)
         setHasMore(false)
         setSearchWord(modalSearchBooks.value)
@@ -118,7 +116,7 @@ const ReviewIndex = () => {
         if (clickedCategory === selectedValue) return
 
         changeSelectBox(selectedCategory)
-        setTimelines([])
+        setReviews([])
         setCategory(selectedCategory)
         setPage(1)
         setHasMore(false)
@@ -129,7 +127,7 @@ const ReviewIndex = () => {
         console.log('sort changed!')
         const selectedSort = document.getElementById('selectSort').value
         setSort(selectedSort)
-        setTimelines([])
+        setReviews([])
         setPage(1)
         setHasMore(false)
     }
@@ -138,7 +136,7 @@ const ReviewIndex = () => {
     const body = document.getElementById('body')
     body.onscroll = () => {
         const scrollAmount = window.scrollY
-        const clientHeight = document.getElementById('timelinesComponent').clientHeight
+        const clientHeight = document.getElementById('reviewsComponent').clientHeight
 
         if (hasMore && clientHeight - scrollAmount < 1200) {
             setPage(prev => prev + 1)
@@ -237,14 +235,14 @@ const ReviewIndex = () => {
             </div>
 
             {/* 投稿一覧 */}
-            <div id="timelinesComponent">
-                <Timeline timelines={timelines} loginUser={loginUser} changeCategory={changeCategory} />
+            <div id="reviewsComponent">
+                <Reviews reviews={reviews} loginUser={loginUser} changeCategory={changeCategory} />
             </div>
 
             {/* Loading Spinner */}
             <div className="text-center">
                 {loading && < Loading />}
-                {!loading && (timelines.length === 0) && '該当する投稿は見つかりませんでした'}
+                {!loading && (reviews.length === 0) && '該当する投稿は見つかりませんでした'}
             </div>
         </>
     )

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-import Timeline from './Timeline'
+import Reviews from './Reviews'
 import Users from './Users'
 import Loading from './Loading'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
@@ -50,14 +50,14 @@ const UserPageTab = () => {
                 <TabPanel>
                     {
                         userReviews.length !== 0 ?
-                            <Timeline timelines={userReviews} loginUser={loginUser} />
+                            <Reviews reviews={userReviews} loginUser={loginUser} />
                             : <div className="pb-5 my-5">投稿はまだありません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         favoriteReviews.length !== 0 ?
-                            <Timeline timelines={favoriteReviews} loginUser={loginUser} />
+                            <Reviews reviews={favoriteReviews} loginUser={loginUser} />
                             : <div className="pb-5 my-5">いいねした投稿はまだありません</div>
                     }
                 </TabPanel>
