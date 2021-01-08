@@ -35,10 +35,10 @@ const UserIndex = () => {
     const userList = allUsers.filter((item) => {
         // nameとscreen_nameのどちらかが部分一致するユーザーを探す
         if (item.name) {
-            return item.name.toLowerCase().indexOf(searchWord) > -1 || item.screen_name.toLowerCase().indexOf(searchWord) > -1
+            return item.name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1 || item.screen_name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1
         }
         // nameがNULLの場合はscreen_nameのみで処理
-        return item.screen_name.toLowerCase().indexOf(searchWord) > -1
+        return item.screen_name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1
     })
 
     const handleSearch = (e) => {
