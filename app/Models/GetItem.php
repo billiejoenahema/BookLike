@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Models;
 
 use Exception;
-use App\Http\Controllers\Api\AwsV4;
+use App\Models\AwsV4;
 
 /* Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved. */
 /* Licensed under the Apache License, Version 2.0. */
