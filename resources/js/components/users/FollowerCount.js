@@ -3,7 +3,6 @@ import React from 'react'
 const FollowerCount = (props) => {
 
     const followerCount = props.user.followers_count
-    // const followerCount = props.user.followers.length
 
     return (
         <>

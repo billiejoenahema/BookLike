@@ -29,9 +29,7 @@ const Users = (props) => {
                     </div>
                     <div className="mx-3 pt-2 pb-3 d-flex border-bottom">
                         <a href={`/users/${user.id}`}>
-                            <img src={`${STORAGE}/${user.profile_image}`} className="rounded-circle shadow-sm" data-tip="プロフィールページへ" width="48" height="48" />
-                            <ReactTooltip effect="float" type="info" place="top" />
-
+                            <img src={`${STORAGE}/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
                         </a>
                         <div className="ml-2 px-0 flex-column">
                             <p className="mb-0">{user.name || user.screen_name}</p>

@@ -72321,7 +72321,9 @@ function Reviews(props) {
     var id = e.target.dataset.id;
     var userCountsDiv = document.getElementsByClassName("review-".concat(id))[0]; // ユーザーアイコンにマウスポインターが乗ったら表示する
 
-    userCountsDiv.classList.remove('d-none');
+    setTimeout(function () {
+      userCountsDiv.classList.remove('d-none');
+    }, 500);
   };
 
   var leaveUserIcon = function leaveUserIcon(e) {
@@ -72527,8 +72529,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var FollowerCount = function FollowerCount(props) {
-  var followerCount = props.user.followers_count; // const followerCount = props.user.followers.length
-
+  var followerCount = props.user.followers_count;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge-teal badge-pill text-white ml-1 user-select-none"
   }, followerCount));
@@ -73227,13 +73228,8 @@ var Users = function Users(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_8__["STORAGE"], "/").concat(user.profile_image),
       className: "rounded-circle shadow-sm",
-      "data-tip": "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u30DA\u30FC\u30B8\u3078",
       width: "48",
       height: "48"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      effect: "float",
-      type: "info",
-      place: "top"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-2 px-0 flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
