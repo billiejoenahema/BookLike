@@ -4,6 +4,10 @@ a:hover {
     transition:0.2s all;
 }
 
+.text-link:hover {
+    color: #6c757d !important;
+}
+
 .user-counts {
     position: absolute;
     top: 70px;

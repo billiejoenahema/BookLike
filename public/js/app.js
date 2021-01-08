@@ -72415,13 +72415,9 @@ function Reviews(props) {
       className: "card-body p-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(review.id),
-      className: "d-block p-3 text-reset text-decoration-none",
-      "data-tip": "\u6295\u7A3F\u306E\u8A73\u7D30\u30DA\u30FC\u30B8\u3078"
-    }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_7__["default"])(review.text, 80), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      effect: "float",
-      type: "info",
-      place: "top"
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-block p-3 text-reset text-link",
+      title: review.text
+    }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_7__["default"])(review.text, 80))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
     }, loginUser.id === review.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
       review: review
@@ -73340,7 +73336,7 @@ __webpack_require__.r(__webpack_exports__);
 function omittedText(description, _int) {
   // 文字数を制限して自己紹介文を表示
   if (description.length > _int) {
-    return "".concat(description.substr(0, _int), "...");
+    return "".concat(description.substr(0, _int), " ...\u7D9A\u304D\u3092\u8AAD\u3080");
   }
 
   return description;

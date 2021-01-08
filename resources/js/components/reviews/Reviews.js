@@ -93,9 +93,8 @@ function Reviews(props) {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <a href={`/reviews/${review.id}`} className="d-block p-3 text-reset text-decoration-none" data-tip="投稿の詳細ページへ">
+                        <a href={`/reviews/${review.id}`} className="d-block p-3 text-reset text-link" title={review.text}>
                             {omittedText(review.text, 80)}
-                            <ReactTooltip effect="float" type="info" place="top" />
                         </a>
                     </div>
                     <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
