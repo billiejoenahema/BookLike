@@ -133,7 +133,9 @@ class Review extends Model
                             $search = $searches['search'];
                             return $query->where($criteria, 'LIKE', "%$search%");
                         })
-                        ->with('user:id,screen_name,name,profile_image')
+                        ->with(['user' => function ($query) {
+                            return $query->withCount(['reviews', 'followers', 'favorites']);
+                        }])
                         ->with(['comments:id', 'favorites'])
                         ->withCount('favorites')
                         ->orderBy('favorites_count', 'DESC')
@@ -148,7 +150,9 @@ class Review extends Model
                             $search = $searches['search'];
                             return $query->where($criteria, 'LIKE', "%$search%");
                         })
-                        ->with('user:id,screen_name,name,profile_image')
+                        ->with(['user' => function ($query) {
+                            return $query->withCount(['reviews', 'followers', 'favorites']);
+                        }])
                         ->with(['comments:id','favorites'])
                         ->orderBy('created_at', 'DESC')
                         ->paginate($pagination);

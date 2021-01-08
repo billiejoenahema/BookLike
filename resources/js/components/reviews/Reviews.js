@@ -2,24 +2,57 @@ import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 import EditReviewButton from './EditReviewButton'
+import ReviewsCount from '../users/ReviewsCount'
+import FollowerCount from '../users/FollowerCount'
+import TotalFavoritesCount from '../users/TotalFavoritesCount'
 import omittedText from '../../functions/omittedText'
+
 import { STORAGE } from '../../constants'
 
 function Reviews(props) {
 
     const { reviews, loginUser } = props
 
+    const hoverUserIcon = (e) => {
+        const id = e.target.dataset.id
+        const userCounts = document.getElementsByClassName(id)[0]
+        // ユーザーアイコンにマウスポインターが乗ったら表示する
+        userCounts.classList.remove('d-none')
+    }
+
+    const leaveUserIcon = (e) => {
+        const id = e.target.dataset.id
+        const userCounts = document.getElementsByClassName(id)[0]
+        // ユーザーアイコンからマウスポインターが外れたら非表示にする
+        userCounts.classList.add('d-none')
+    }
+
     return (
         <>
             {reviews.map((review) => (
                 <div className="card shadow-sm mb-3" key={review.id}>
                     <div className="card-haeder p-3 d-flex">
+                        {/* ユーザー情報 */}
+                        <div className={`user-counts shadow-sm d-none ${review.id}`} >
+                            <div className="count d-flex justify-content-between mb-1">
+                                <ReviewsCount user={review.user} />
+                            </div>
+                            <div className="count d-flex justify-content-between mb-1">
+                                <FollowerCount user={review.user} />
+                            </div>
+                            <div className="count d-flex justify-content-between">
+                                <TotalFavoritesCount user={review.user} />
+                            </div>
+                        </div>
                         {/* ユーザーアイコン */}
-                        <a href={`/users/${review.user.id}`} className="text-reset" data-tip="プロフィールページへ">
+                        <a href={`/users/${review.user.id}`} className="text-reset">
                             <img src={`${STORAGE}/${review.user.profile_image}`}
                                 className="rounded-circle shadow-sm"
-                                width="48" height="48" />
-                            <ReactTooltip effect="float" type="info" place="top" />
+                                width="48" height="48"
+                                data-id={review.id}
+                                onMouseEnter={hoverUserIcon}
+                                onMouseLeave={leaveUserIcon}
+                            />
                         </a>
                         {/* ユーザーネーム */}
                         <div className="ml-2 d-flex flex-column">
