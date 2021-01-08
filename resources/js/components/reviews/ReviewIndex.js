@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Reviews from './Reviews'
-import Loading from './Loading'
+import Loading from '../Loading'
 
 const ReviewIndex = () => {
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Users from './Users'
-import Loading from './Loading'
+import Loading from '../Loading'
 
 const UserIndex = () => {
 
