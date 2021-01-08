@@ -158,5 +158,4 @@ class Review extends Model
                         ->paginate($pagination);
         }
     }
-
 }
