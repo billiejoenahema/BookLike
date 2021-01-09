@@ -41,8 +41,8 @@ class UsersController extends Controller
         $storage = Storage::disk('s3');
         $created_at = new DateTime($user->created_at);
         $updated_at = new DateTime($user->updated_at);
-        $create_date = $created_at->format('Y-m-d');
-        $update_date = $updated_at->format('Y-m-d');
+        $create_date = $created_at->format('Y/m/d');
+        $update_date = $updated_at->format('Y/m/d');
         $asin = $user->asin;
 
         // デフォルト値

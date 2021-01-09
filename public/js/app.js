@@ -72374,7 +72374,7 @@ function Reviews(props) {
       className: "d-flex justify-content-end flex-grow-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-0 text-secondary"
-    }, formatDate(review.created_at, 'yyyy-MM-dd')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, formatDate(review.created_at, 'yyyy/MM/dd')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body py-0 px-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-flex flex-row py-3 border-top border-bottom"
