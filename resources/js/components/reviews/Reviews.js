@@ -63,7 +63,7 @@ function Reviews(props) {
                         </div>
                         {/* 登録日 */}
                         <div className="d-flex justify-content-end flex-grow-1">
-                            <p className="mb-0 text-secondary">{formatDate(review.created_at, 'yyyy-MM-dd')}</p>
+                            <p className="mb-0 text-secondary">{formatDate(review.created_at, 'yyyy/MM/dd')}</p>
                         </div>
                     </div>
                     <div className="card-body py-0 px-3">
