@@ -72323,7 +72323,7 @@ function Reviews(props) {
 
     setTimeout(function () {
       userCountsDiv.classList.remove('d-none');
-    }, 500);
+    }, 300);
   };
 
   var leaveUserIcon = function leaveUserIcon(e) {
