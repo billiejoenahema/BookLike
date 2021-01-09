@@ -5,7 +5,7 @@
         @if ($comment->deleted_at)
         <div class="card-header p-3 border-bottom-0 bg-white d-flex flex-column">
             <div class="d-flex flex-column text-right">
-                <span class="text-secondary">{{ $comment->created_at->format('Y-m-d') }}</span>
+                <span class="text-secondary">{{ $comment->created_at->format('Y/m/d') }}</span>
             </div>
             <div class="text-secondary">このコメントは削除されました</div>
         </div>
