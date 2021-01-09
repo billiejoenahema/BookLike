@@ -7,12 +7,6 @@ use App\Models\User;
 
 class HttpStatusTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-
     use RefreshDatabase;
 
     private $attributes;
@@ -26,6 +20,7 @@ class HttpStatusTest extends TestCase
 
         // テストデータ挿入
         $this->seed('UsersTableSeeder');
+        $this->seed('ReviewsTableSeeder');
     }
 
     public function testIndexStatus()
@@ -38,6 +33,13 @@ class HttpStatusTest extends TestCase
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get('/reviews');
+        $response->assertStatus(200);
+    }
+
+    public function testReviewsShowStatus()
+    {
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->get('/reviews/1');
         $response->assertStatus(200);
     }
 
@@ -75,4 +77,12 @@ class HttpStatusTest extends TestCase
         $response = $this->actingAs($user)->get('/privacy');
         $response->assertStatus(200);
     }
+
+    public function testSearchItemsStatus()
+    {
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->get('/api/reviews/search_items?keyword=factfulness');
+        $response->assertStatus(200);
+    }
+
 }
