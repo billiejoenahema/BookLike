@@ -12,7 +12,7 @@
             <span class="text-secondary">{{ $review->user->screen_name }}</span>
         </div>
         <div class="d-flex justify-content-end flex-grow-1">
-            <p class="mb-0 text-secondary">{{ $review->created_at->format('Y-m-d') }}</p>
+            <p class="mb-0 text-secondary">{{ $review->created_at->format('Y/m/d') }}</p>
         </div>
     </div>
     <div class="card-body d-flex border-top border-bottom py-3 px-0 mx-3">
@@ -64,7 +64,6 @@
 
         <!-- いいねボタン -->
         <div id="favoriteButtonWrapper" class="d-inline-flex align-items-center ml-4 mr-3"></div>
-        {{-- <div id="reviewShowFavoriteButton" class="d-inline-flex align-items-center ml-4 mr-3"></div> --}}
     </div>
 </div>
 <!-- コメント -->
