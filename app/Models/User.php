@@ -139,7 +139,7 @@ class User extends Authenticatable
     public function updateProfile($request)
     {
         if (isset($request->profile_image)) {
-            $profile_image = Storage::disk('s3')->put('/', $params->profile_image, 'public');
+            $profile_image = Storage::disk('s3')->put('/', $request->profile_image, 'public');
             $this::where('id', $this->id)->update(
             [
                 'screen_name'   => $request->screen_name,
