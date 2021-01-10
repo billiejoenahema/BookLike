@@ -1,5 +1,5 @@
 ## BookLike
-<a href="https://gyazo.com/f00b879be3ba413e91611d39ba0ceee0"><img src="https://i.gyazo.com/f00b879be3ba413e91611d39ba0ceee0.png" alt="Image from Gyazo" width="1240"/></a>
+<a href="https://gyazo.com/1d1e4b6e5fb64ec34d0790c816462fcc"><img src="https://i.gyazo.com/1d1e4b6e5fb64ec34d0790c816462fcc.png" alt="Image from Gyazo" width="1201"/></a>
 
 ## URL
 https://booklikeapp.com
@@ -14,46 +14,40 @@ https://booklikeapp.com
 
 ## 機能一覧
 ### ユーザー機能
-- ユーザー (登録/編集/削除)
-- ゲストログイン
-- ユーザーアイコン画像 (登録・変更)
-- マイページ (自分の投稿/いいねした投稿/フォロー中/フォロワー)
-- フォロー
+- ユーザー (登録, 編集, 削除)
+- ゲストログイン (ゲストユーザーはプロフィール編集不可)
+- ユーザーアイコン画像 (登録, 変更)
+- マイページ (タブで表示切り替え[自分の投稿, いいねした投稿, フォロー中, フォロワー])
+- ユーザーをフォロー
 
 ### ユーザー一覧
-- 並び替え (登録順/フォロワー数)
+- 並び替え (登録順, 投稿数, フォロワー数, いいね獲得数)
 - ユーザー検索
 - 無限スクロール
 
 ### 投稿機能
-- 投稿 (新規投稿/編集/削除)
-- いいね
-- コメント
-- 書籍検索機能 (Amazon API)
+- 投稿 (新規投稿, 編集, 削除)
+- 投稿にいいね
+- コメント (リアルタイム文字数カウント)
+- 書籍検索機能 (Amazon API 利用)
 
 ### 投稿一覧
-- 並び替え (投稿順/いいね順)
-- 検索 (タイトル/著者/出版社)
-- 絞り込み
+- 並び替え (投稿順, いいね順)
+- 検索 (タイトル, 著者, 出版社)
+- カテゴリーで絞り込み
 - 無限スクロール
-
-## モバイルファースト
-スマホ表示を優先してCSSをカスタマイズしました
-<br />
-左から、マイページ / 書籍検索画面 / 投稿一覧
-<a href="https://gyazo.com/314644882185aa0c181725a752f524c8"><img src="https://i.gyazo.com/314644882185aa0c181725a752f524c8.jpg" alt="Image from Gyazo" width="2282"/></a>
 
 ## 使用技術
 ### フロントエンド
-- HTML
-- CSS
+- HTML5
+- CSS3
 - JavaScript
-- Bootstrap4
-- React
+- Bootstrap 4.5
+- React 16.13
 
 ### バックエンド
-- PHP
-- Laravel
+- PHP 7.3
+- Laravel 6.20
 
 ### 開発環境・インフラなど
 - Apache
@@ -69,6 +63,17 @@ https://booklikeapp.com
 <a href="https://gyazo.com/811c351cd60543f6e965e23c92849cf7"><img src="https://i.gyazo.com/811c351cd60543f6e965e23c92849cf7.png" alt="Image from Gyazo" width="922"/></a>
 
 ## ER図
-<a href="https://gyazo.com/1993b96c3d895861d215a44a79e6aa7f"><img src="https://i.gyazo.com/1993b96c3d895861d215a44a79e6aa7f.png" alt="Image from Gyazo" width="1000"/></a>
+<a href="https://gyazo.com/882e9057ad87d8e1b59ddb3bbd01dcdd"><img src="https://i.gyazo.com/882e9057ad87d8e1b59ddb3bbd01dcdd.png" alt="Image from Gyazo" width="942"/></a>
 
 ## 開発において意識したこと
+
+### モバイルファースト
+スマホ表示を優先してCSSをカスタマイズしました
+<br />
+投稿一覧 / 書籍検索画面 / ユーザープロフィール
+<a href="https://gyazo.com/fb41f18984fe11582f00c03d9c498cb0"><img src="https://i.gyazo.com/fb41f18984fe11582f00c03d9c498cb0.jpg" alt="Image from Gyazo" width="2282"/></a>
+
+### UI/UXの改善
+ユーザー目線を重視して使い勝手の向上に努めました
+- ロード時間の短縮
+- 誤操作の防止
