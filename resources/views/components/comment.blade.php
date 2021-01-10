@@ -30,7 +30,7 @@
                     </a>
                 </form>
                 @endif
-                <span class="text-secondary">{{ $comment->created_at->format('Y-m-d') }}</span>
+                <span class="text-secondary">{{ $comment->created_at->format('Y/m/d') }}</span>
             </div>
         </div>
         <div class="card-body p-3">

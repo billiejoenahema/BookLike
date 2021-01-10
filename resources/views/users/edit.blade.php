@@ -112,7 +112,9 @@
                     class="col-md-4 col-form-label text-md-right user-select-none">{{ __('人生を変えた一冊') }}</label>
                 <div class="col-md-7">
                     <select name="asin" id="asin" class="form-control">
-                        @if($userReviews)
+                        @if(count($userReviews) == 0)
+                        <option value="" default>レビューを投稿してください</option>
+                        @else
                         <option value="" default>{{ $selected_book_title }}</option>
                         @foreach($userReviews as $userReview)
                         {{-- 選択済みのtitleはdefaultと重複するためoptionsから除外する --}}
@@ -121,8 +123,6 @@
                         @endif
                         <option value="{{ $userReview->asin }}">{{ $userReview->title }}</option>
                         @endforeach
-                        @else
-                        <option value="" default>レビューを投稿してください</option>
                         @endif
                     </select>
                 </div>
