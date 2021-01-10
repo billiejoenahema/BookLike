@@ -94,6 +94,9 @@ class Review extends Model
     {
         return $this->where('user_id', $user_id)
                     ->with(['user:id,screen_name,name,profile_image', 'comments:id', 'favorites'])
+                    ->with(['user' => function ($query) {
+                        return $query->withCount(['reviews', 'followers', 'favorites']);
+                    }])
                     ->orderBy('created_at', 'DESC')
                     ->get();
     }
@@ -105,6 +108,9 @@ class Review extends Model
                         $query->where('user_id', $user_id);
                     })
                     ->with(['user:id,screen_name,name,profile_image','comments:id','favorites'])
+                    ->with(['user' => function ($query) {
+                        return $query->withCount(['reviews', 'followers', 'favorites']);
+                    }])
                     ->get();
     }
 
