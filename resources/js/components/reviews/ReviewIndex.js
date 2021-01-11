@@ -5,21 +5,15 @@ import Loading from '../Loading'
 
 const ReviewIndex = () => {
 
-    // 投稿詳細ページのリンクをクリックしたときのためにparamsから初期値を取得
-    const params = (new URL(document.location)).searchParams
-    const initialSearchWord = params.get('search') || ''
-    const initialCriteria = params.get('value') || 'title'
-    const initialCategory = params.get('category') || 'default'
-
     const [loginUser, setLoginUser] = useState()
     const [reviews, setReviews] = useState([])
-    const [category, setCategory] = useState(initialCategory)
-    const [criteria, setCriteria] = useState(initialCriteria)
+    const [category, setCategory] = useState('default')
+    const [criteria, setCriteria] = useState('title')
     const [sort, setSort] = useState('default')
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [searchWord, setSearchWord] = useState(initialSearchWord)
+    const [searchWord, setSearchWord] = useState('')
 
     useEffect(() => {
         const loadReviews = async () => {

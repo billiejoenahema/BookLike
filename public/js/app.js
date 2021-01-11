@@ -71944,12 +71944,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewIndex = function ReviewIndex() {
-  // 投稿詳細ページのリンクをクリックしたときのためにparamsから初期値を取得
-  var params = new URL(document.location).searchParams;
-  var initialSearchWord = params.get('search') || '';
-  var initialCriteria = params.get('value') || 'title';
-  var initialCategory = params.get('category') || 'default';
-
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       loginUser = _useState2[0],
@@ -71960,12 +71954,12 @@ var ReviewIndex = function ReviewIndex() {
       reviews = _useState4[0],
       setReviews = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialCategory),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('default'),
       _useState6 = _slicedToArray(_useState5, 2),
       category = _useState6[0],
       setCategory = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialCriteria),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('title'),
       _useState8 = _slicedToArray(_useState7, 2),
       criteria = _useState8[0],
       setCriteria = _useState8[1];
@@ -71990,7 +71984,7 @@ var ReviewIndex = function ReviewIndex() {
       loading = _useState16[0],
       setLoading = _useState16[1];
 
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialSearchWord),
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState18 = _slicedToArray(_useState17, 2),
       searchWord = _useState18[0],
       setSearchWord = _useState18[1];
