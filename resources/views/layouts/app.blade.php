@@ -58,17 +58,19 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{{ $storage->url($login_user->profile_image) }}"
                                 class="rounded-circle shadow-sm nav-icon" width="36" height="36" data-toggle="tooltip"
-                                data-placement="bottom" title="{{ $login_user->name }}">
+                                data-placement="bottom" title="{{ $login_user->screen_name }}">
                         </a>
                         {{-- Dropdown Menu --}}
                         <div class="dropdown-menu dropdown-menu-right pb-0" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item pb-2 text-iron font-weight-bold border-bottom dropdown-user-name"
+                                href="{{ url('users/' .$login_user->id) }}">{{ $login_user->name ?? $login_user->screen_name }}</a>
                             <a class="dropdown-item pt-2 pb-2" href="{{ url('users/' .$login_user->id) }}"><i
                                     class="fas fa-user-cog fa-fw mr-2"></i>マイページ</a>
                             <a class="dropdown-item py-2" href="{{ url('reviews/create') }}"><i
                                     class="fas fa-pen fa-fw mr-2"></i>新規投稿</a>
                             <a class="dropdown-item py-2" href="{{ url('reviews') }}"><i
                                     class="fas fa-book-open fa-fw mr-2"></i>投稿一覧</a>
-                            <a class="dropdown-item pt-2 pb-3" href="{{ url('users') }}"><i
+                            <a class="dropdown-item pt-2 pb-2" href="{{ url('users') }}"><i
                                     class="fas fa-users fa-fw mr-2"></i>ユーザー一覧</a>
                             <a class="dropdown-item border-top py-3 bg-light logout" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
