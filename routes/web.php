@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
     // コメント関連
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
 
+    // 利用規約
     Route::get('terms', function(User $user) {
         $login_user = auth()->user();
         $storage = Storage::disk('s3');
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
         return view('/terms', compact('login_user', 'storage'));
     });
 
+    // プライバシーポリシー
     Route::get('privacy', function(User $user) {
         $login_user = auth()->user();
         $storage = Storage::disk('s3');
