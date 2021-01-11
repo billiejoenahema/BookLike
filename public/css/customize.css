@@ -4,6 +4,12 @@ a:hover {
     transition:0.2s all;
 }
 
+.dropdown-user-name:hover {
+    background: white;
+    cursor: default;
+    color: #48494b;
+}
+
 .text-link:hover {
     color: #6c757d !important;
 }
