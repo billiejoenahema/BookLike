@@ -49,11 +49,11 @@ class ReviewController extends Controller
 
         $asin = $request->asin;
         $item = $get_item->getItem($asin);
-        $page_url = $item->DetailPageURL;
-        $title = $item->ItemInfo->Title->DisplayValue;
-        $author = $item->ItemInfo->ByLineInfo->Contributors[0]->Name;
-        $manufacturer = $item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue;
-        $image_url = $item->Images->Primary->Large->URL;
+        $page_url = $item->DetailPageURL ?? NULL;
+        $title = $item->ItemInfo->Title->DisplayValue ?? NULL;
+        $author = $item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? NULL;
+        $manufacturer = $item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? NULL;
+        $image_url = $item->Images->Primary->Large->URL ?? NULL;
 
         // 選択した書籍と同じ書籍が投稿済みかどうかをチェック
         $isPosted = $review->isPosted($asin, $user_id);
