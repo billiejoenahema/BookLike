@@ -10,22 +10,24 @@ $line-height-base: 1.6;
 
 // Colors
 $bodyColor: #f8fafc;
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
 $pink: #f66d9b;
 $palePink: #ffa7c4;
 $red: #e3342f;
 $crimson: #DC143C;
 $orange: #f6993f;
+$mango: #fdbe02;
+$pineapple: #fee12b;
 $yellow: #fcf7c9;
 $green: #38c172;
 $seaGreen: #2E8B57;
 $darkGreen: #006400;
 $teal: #4dc0b5;
-$cyan: #6cb2eb;
 $blog: #7092be;
 $blogLight: #93adce;
+$cyan: #6cb2eb;
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
 $blogPale: #f0f4f8;
 $graphite: #2b2e2e;
 $iron: #48494b;
@@ -36,19 +38,21 @@ $lightYellow: #FFFFE0;
 
 $theme-colors: (
     "bodyColor": $bodyColor,
-    "blue": $blue,
-    "indigo": $indigo,
-    "purple": $purple,
     "pink": $pink,
     "palePink": $palePink,
     "red": $red,
     "crimson": $crimson,
     "orange": $orange,
     "yellow": $yellow,
+    "pineapple": $pineapple,
+    "mango": $mango,
     "green": $green,
     "seaGreen": $seaGreen,
     "darkGreen": $darkGreen,
     "teal": $teal,
+    "blue": $blue,
+    "indigo": $indigo,
+    "purple": $purple,
     "cyan": $cyan,
     "blog": $blog,
     "blogLight": $blogLight,

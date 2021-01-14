@@ -71893,6 +71893,38 @@ if (document.getElementById('favoriteButtonWrapper')) {
 
 /***/ }),
 
+/***/ "./resources/js/components/reviews/Recommend.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/reviews/Recommend.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var recommend = function recommend(_recommend) {
+  var recommendLength = _recommend['recommend'];
+  var defaultStars = ['fas', 'fas', 'fas', 'fas', 'fas']; // 星5つ
+
+  var stars = defaultStars.fill('far', recommendLength);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, stars.map(function (star, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "text-mango",
+      key: index
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "".concat(star, " fa-star")
+    }));
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (recommend);
+
+/***/ }),
+
 /***/ "./resources/js/components/reviews/ReviewIndex.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/reviews/ReviewIndex.js ***!
@@ -72295,7 +72327,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_ReviewsCount__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../users/ReviewsCount */ "./resources/js/components/users/ReviewsCount.js");
 /* harmony import */ var _users_FollowerCount__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../users/FollowerCount */ "./resources/js/components/users/FollowerCount.js");
 /* harmony import */ var _users_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../users/TotalFavoritesCount */ "./resources/js/components/users/TotalFavoritesCount.js");
-/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../functions/omittedText */ "./resources/js/functions/omittedText.js");
+/* harmony import */ var _Recommend__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Recommend */ "./resources/js/components/reviews/Recommend.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
 
 
@@ -72405,13 +72437,9 @@ function Reviews(props) {
       effect: "float",
       type: "info",
       place: "top"
-    })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-body p-0"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews/".concat(review.id),
-      className: "d-block p-3 text-reset text-link",
-      title: review.text
-    }, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_7__["default"])(review.text, 80))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u304A\u3059\u3059\u3081\u5EA6 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Recommend__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      recommend: review.recommend
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, review.spoiler))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
     }, loginUser.id === review.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
       review: review
