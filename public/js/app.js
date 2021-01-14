@@ -72328,7 +72328,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_FollowerCount__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../users/FollowerCount */ "./resources/js/components/users/FollowerCount.js");
 /* harmony import */ var _users_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../users/TotalFavoritesCount */ "./resources/js/components/users/TotalFavoritesCount.js");
 /* harmony import */ var _Recommend__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Recommend */ "./resources/js/components/reviews/Recommend.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
+/* harmony import */ var _functions_isSpoiler__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../functions/isSpoiler */ "./resources/js/functions/isSpoiler.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
+
 
 
 
@@ -72383,7 +72385,7 @@ function Reviews(props) {
       href: "/users/".concat(review.user.id),
       className: "text-reset"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_8__["STORAGE"], "/").concat(review.user.profile_image),
+      src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_9__["STORAGE"], "/").concat(review.user.profile_image),
       className: "rounded-circle shadow-sm",
       width: "48",
       height: "48",
@@ -72439,7 +72441,7 @@ function Reviews(props) {
       place: "top"
     })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u304A\u3059\u3059\u3081\u5EA6 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Recommend__WEBPACK_IMPORTED_MODULE_7__["default"], {
       recommend: review.recommend
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, review.spoiler))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, Object(_functions_isSpoiler__WEBPACK_IMPORTED_MODULE_8__["default"])(review.spoiler)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
     }, loginUser.id === review.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
       review: review
@@ -73341,6 +73343,27 @@ function isFollowed(user, loginUser) {
     return v.id;
   });
   return userIds.includes(loginUser.id);
+}
+
+/***/ }),
+
+/***/ "./resources/js/functions/isSpoiler.js":
+/*!*********************************************!*\
+  !*** ./resources/js/functions/isSpoiler.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isSpoiler; });
+function isSpoiler(spoiler) {
+  // spoiler: 0 or 1
+  if (spoiler === 0) {
+    return 'ネタバレなし';
+  }
+
+  return 'ネタバレあり';
 }
 
 /***/ }),

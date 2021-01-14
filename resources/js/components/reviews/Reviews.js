@@ -6,6 +6,8 @@ import ReviewsCount from '../users/ReviewsCount'
 import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
 import Recommend from './Recommend'
+import isSpoiler from '../../functions/isSpoiler'
+
 
 import { STORAGE } from '../../constants'
 
@@ -89,7 +91,7 @@ function Reviews(props) {
                                         </a></object>
                                     </li>
                                     <li><span>おすすめ度 </span><Recommend recommend={review.recommend} /></li>
-                                    <li>{review.spoiler}</li>
+                                    <li>{isSpoiler(review.spoiler)}</li>
                                 </ul>
                             </div>
                         </div>
