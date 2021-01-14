@@ -17,10 +17,10 @@
                     <div class="col-md-8 d-flex flex-column text-left p-2">
                         <h5>{{ $title }}</h5>
                         <ul class="list-unstyled">
-                            <li class="list-item">著者：{{ $author ?? '' }}
+                            <li class="list-item">著者：{{ $author ?? '不明' }}
                             </li>
                             <li class="list-item">
-                                出版社：{{ $manufacturer ?? '' }}</li>
+                                出版社：{{ $manufacturer ?? '不明' }}</li>
                         </ul>
                     </div>
                 </div>
@@ -61,8 +61,8 @@
                         @enderror
                     </div>
                     <input type="hidden" name="asin" id="asin" value="{{ $asin }}">
-                    <input type="hidden" name="page_url" id="page_url" value="{{ $page_url }}">
-                    <input type="hidden" name="title" id="title" value="{{ $title }}">
+                    <input type="hidden" name="page_url" id="page_url" value="{{ $page_url ?? '不明' }}">
+                    <input type="hidden" name="title" id="title" value="{{ $title ?? '不明' }}">
                     <input type="hidden" name="author" id="author" value="{{ $author ?? '不明' }}">
                     <input type="hidden" name="manufacturer" id="manufacturer" value="{{ $manufacturer ?? '不明' }}">
                     <input type="hidden" name="image_url" id="image_url"
