@@ -5,7 +5,7 @@ import EditReviewButton from './EditReviewButton'
 import ReviewsCount from '../users/ReviewsCount'
 import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
-import omittedText from '../../functions/omittedText'
+import Recommend from './Recommend'
 
 import { STORAGE } from '../../constants'
 
@@ -88,14 +88,11 @@ function Reviews(props) {
                                                 <ReactTooltip effect="float" type="info" place="top" />
                                         </a></object>
                                     </li>
+                                    <li><span>おすすめ度 </span><Recommend recommend={review.recommend} /></li>
+                                    <li>{review.spoiler}</li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div className="card-body p-0">
-                        <a href={`/reviews/${review.id}`} className="d-block p-3 text-reset text-link" title={review.text}>
-                            {omittedText(review.text, 80)}
-                        </a>
                     </div>
                     <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
                         {/* 投稿を編集 */}
