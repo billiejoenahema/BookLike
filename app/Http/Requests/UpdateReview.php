@@ -24,7 +24,9 @@ class UpdateReview extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'required | string | max:400'
+            'ratings' => 'required | digits:1', // 数値の桁数を指定
+            'spoiler' => 'required | digits:1', // 数値の桁数を指定
+            'text' => 'required | string | max:400',
         ];
     }
 }
