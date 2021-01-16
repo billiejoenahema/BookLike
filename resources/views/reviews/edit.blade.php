@@ -22,22 +22,55 @@
                 <span class="text-secondary">{{ $login_user->screen_name }}</span>
             </div>
         </div>
-        <div class="d-flex py-2 border-top">
-            <div class="mb-3 py-2 pr-4">
-                <img src="{{ $review->image_url }}" width="100" class="shadow-sm">
-            </div>
-            <div class="col-md-8 d-flex flex-column text-left py-2 px-0">
-                <h5>{{ $review->title }}</h5>
-                <ul class="list-unstyled">
-                    <li class="list-item">著者：{{ $review->author }}</li>
-                    <li class="list-item">出版社：{{ $review->manufacturer }}</li>
-                    <li class="list-item">カテゴリー：{{ $review->category }}</li>
-                </ul>
-            </div>
-        </div>
         <form method="POST" action="{{ route('reviews.update', $review) }}" id="reviewEdit">
             @csrf
             @method('PUT')
+            <div class="d-flex py-2 border-top form-group">
+                <div class="mb-3 py-2 pr-4">
+                    <img src="{{ $review->image_url }}" width="128" class="shadow-sm">
+                </div>
+                <div class="col-md-8 d-flex flex-column text-left py-2 px-0">
+                    <h5>{{ $review->title }}</h5>
+                    <ul class="list-unstyled">
+                        <li class="list-item">著者：{{ $review->author }}</li>
+                        <li class="list-item">出版社：{{ $review->manufacturer }}</li>
+                        <li class="list-item">カテゴリー：{{ $review->category }}</li>
+                        <li class="list-item">評価：<label for="ratings"
+                                class="ratings-value">{{ $review->ratings}}</label>
+                            <div class="d-flex">
+                                <div class="flex-row text-mango lead border py-1 px-3" id="ratings"
+                                    data-ratings="{{ $review->ratings }}" title="クリックして選択">
+                                    <span><i id="1" onclick="changeStars(this)"
+                                            class="edit-star far fa-star"></i></span>
+                                    <span><i id="2" onclick="changeStars(this)"
+                                            class="edit-star far fa-star"></i></span>
+                                    <span><i id="3" onclick="changeStars(this)"
+                                            class="edit-star far fa-star"></i></span>
+                                    <span><i id="4" onclick="changeStars(this)"
+                                            class="edit-star far fa-star"></i></span>
+                                    <span><i id="5" onclick="changeStars(this)"
+                                            class="edit-star far fa-star"></i></span>
+                                </div>
+                                <input type="hidden" name="ratings" id="inputRatings" value="{{ $review->ratings }}">
+                            </div>
+                        </li>
+                    </ul>
+                    {{-- ネタバレありなし選択 --}}
+                    <div class="d-flex-column">
+                        <label for="spoiler" class="d-flex">ネタバレ</label>
+                        <select name="spoiler" class="form-controll p-1">
+                            @if($review->spoiler === 0)
+                            <option value="0">ネタバレなし</option>
+                            <option value="1">ネタバレあり</option>
+                            @else
+                            <option value="1">ネタバレあり</option>
+                            <option value="0">ネタバレなし</option>
+                            @endif
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group row mb-0">
                 <div class="col-md-12">
                     <textarea class="form-control
@@ -54,7 +87,7 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-12 text-right">
-                    <p id="currentLength">0 / 800文字</p>
+                    <p id="currentLength">{{ strlen($review->text) ?? '0'}} / 800文字</p>
                     <div class="w-100 m-0 row justify-content-end">
                         <button type="button" onclick="history.back()"
                             class="btn btn-secondary rounded-pill">キャンセル</button>

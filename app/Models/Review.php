@@ -48,6 +48,7 @@ class Review extends Model
                     ->first();
     }
 
+    // 投稿済みかどうか
     public function isPosted($asin, Int $user_id)
     {
         return (boolean) $this->where('user_id', $user_id)
@@ -55,6 +56,7 @@ class Review extends Model
                               ->first('asin');
     }
 
+    // 新規投稿
     public function reviewStore(Int $user_id, $request)
     {
         $this->user_id = $user_id;
@@ -78,14 +80,18 @@ class Review extends Model
     //                 ->first();
     // }
 
+    // 投稿をアップデート
     public function reviewUpdate(Int $review_id, $request)
     {
         $this->id = $review_id;
+        $this->ratings = $request->ratings;
+        $this->spoiler = $request->spoiler;
         $this->text = $request->text;
         $this->update();
         return;
     }
 
+    // レビュー削除
     public function reviewDestroy(Int $user_id, Int $review_id)
     {
         return $this->where('user_id', $user_id)

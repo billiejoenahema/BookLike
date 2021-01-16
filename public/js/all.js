@@ -9,6 +9,8 @@ function categorySelectValidate() {
 
 function changeStars(e) {
 
+    // 星評価のインプット値
+    const inputRatings = document.getElementById('inputRatings')
     // 星の要素をすべて取得
     const starElements = document.querySelectorAll('.edit-star')
     // 評価の数値
@@ -16,8 +18,10 @@ function changeStars(e) {
     // 選んだ星の数
     const ratings = e.id
 
+    // インプット用の星評価をセット
+    inputRatings.value = ratings
     // 評価の数値を選んだ星の数に書き換える
-    ratingsValue.textContent = e.id
+    ratingsValue.textContent = ratings
 
     // 初期化処理
     starElements.forEach((starElement) => {
