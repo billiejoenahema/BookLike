@@ -14,6 +14,7 @@ require('./bootstrap')
 
 require('./components/reviews/FavoriteButtonWrapper')
 require('./components/reviews/ReviewIndex')
+require('./components/reviews/ShowReview')
 require('./components/users/UserPageTab')
 require('./components/users/UserIndex')
 require('./components/users/UserProfileFollowButton')

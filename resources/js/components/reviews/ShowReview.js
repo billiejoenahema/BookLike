@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 import EditReviewButton from './EditReviewButton'
+import Ratings from './Ratings'
+import Spoiler from './Spoiler'
 import ReviewsCount from '../users/ReviewsCount'
 import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
-import Ratings from './Ratings'
-import isSpoiler from '../../functions/isSpoiler'
 import { STORAGE } from '../../constants'
 
 const ShowReview = () => {
@@ -104,7 +104,7 @@ const ShowReview = () => {
                                         </a></object>
                                     </li>
                                     <li data-tip={review.ratings}><span>評価 </span><Ratings ratings={review.ratings} /></li>
-                                    <li>{isSpoiler(review.spoiler)}</li>
+                                    <li><Spoiler spoiler={review.spoiler} /></li>
                                 </ul>
                             </div>
                         </div>
