@@ -95,7 +95,7 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review, Comment $comment, GetItem $get_item)
+    public function show(Review $review, Comment $comment)
     {
         $login_user = auth()->user();
         $review = $review->getReview($review->id);
