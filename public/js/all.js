@@ -7,6 +7,16 @@ function categorySelectValidate() {
     selectedCategory === 'default' ? window.alert('カテゴリーを選択してください') : reviewPost.submit()
 }
 
+
+function changeStars(e) {
+    let stars = document.getElementById('ratings').dataset.ratings
+    const clickedStar = e.id
+    stars = clickedStar
+
+    console.log(stars)
+
+}
+
 function checkInputLoginForm() {
     'use strict'
 
