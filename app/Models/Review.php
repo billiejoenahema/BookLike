@@ -101,6 +101,7 @@ class Review extends Model
                     ->with(['user' => function ($query) {
                         return $query->withCount(['reviews', 'followers', 'favorites']);
                     }])
+                    ->withCount('comments')
                     ->orderBy('created_at', 'DESC')
                     ->get();
     }
@@ -115,6 +116,7 @@ class Review extends Model
                     ->with(['user' => function ($query) {
                         return $query->withCount(['reviews', 'followers', 'favorites']);
                     }])
+                    ->withCount('comments')
                     ->get();
     }
 
