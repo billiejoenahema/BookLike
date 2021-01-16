@@ -5,13 +5,11 @@ import EditReviewButton from './EditReviewButton'
 import ReviewsCount from '../users/ReviewsCount'
 import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
-import Recommend from './Recommend'
+import Ratings from './Ratings'
 import isSpoiler from '../../functions/isSpoiler'
-
-
 import { STORAGE } from '../../constants'
 
-function Reviews(props) {
+const Reviews = (props) => {
 
     const { reviews, loginUser } = props
 
@@ -73,7 +71,7 @@ function Reviews(props) {
                             {/* 書籍イメージ */}
                             <a href={`/reviews/${review.id}`} className="d-block text-reset text-decoration-none" data-tip="投稿の詳細ページへ">
                                 <div>
-                                    <img src={review.image_url} width="100" className="shadow-sm" />
+                                    <img src={review.image_url} width="104" className="shadow-sm" />
                                 </div>
                                 <ReactTooltip effect="float" type="info" place="top" />
                             </a>
@@ -90,7 +88,7 @@ function Reviews(props) {
                                                 <ReactTooltip effect="float" type="info" place="top" />
                                         </a></object>
                                     </li>
-                                    <li><span>おすすめ度 </span><Recommend recommend={review.recommend} /></li>
+                                    <li><span>評価 </span><Ratings ratings={review.ratings} /></li>
                                     <li>{isSpoiler(review.spoiler)}</li>
                                 </ul>
                             </div>
@@ -102,7 +100,7 @@ function Reviews(props) {
                         {/* コメントボタン */}
                         <div className="d-flex align-items-center">
                             <a href={`/reviews/${review.id}`}><i className="far fa-comment fa-fw text-blog"></i></a>
-                            <p className="mb-0 text-secondary">{review.comments.length}</p>
+                            <p className="mb-0 text-secondary">{review.comments_count}</p>
                         </div>
                         {/* いいねボタン */}
                         <div className="ml-4 mr-3 d-flex align-items-center">
