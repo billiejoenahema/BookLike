@@ -109,8 +109,9 @@ const ShowReview = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card-body p-3">
-                        {review.text}
+                    <div className="card-body border-bottom p-3">
+                        <div class="d-inline text-blog font-weight-bold">評価の理由</div>
+                        <p class="mt-1 mb-0">{review.text || '未投稿'}</p>
                     </div>
                     <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
                         {/* 投稿を編集 */}
