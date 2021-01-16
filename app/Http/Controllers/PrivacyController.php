@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class RootController extends Controller
+class PrivacyController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -15,9 +15,9 @@ class RootController extends Controller
      */
     public function __invoke(Request $request)
     {
-        if (Auth::check()) {
-            return redirect('/reviews');
-        }
-        return view('welcome');
+        $login_user = auth()->user();
+        $storage = Storage::disk('s3');
+
+        return view('/privacy', compact('login_user', 'storage'));
     }
 }
