@@ -17,14 +17,15 @@ mix.react("resources/js/app.js", "public/js")
 mix.scripts([
     'public/js/bookDescription.js',
     'public/js/categorySelectValidate.js',
+    'public/js/changeStars.js',
     'public/js/checkInputLoginForm.js',
     'public/js/checkTextLength.js',
-    'public/js/currentPageHighlight.js',
     'public/js/deleteCheck.js',
     'public/js/editProfileButton.js',
     'public/js/flashMessageFadeout.js',
     'public/js/footerMenuShowHide.js',
     'public/js/formatDate.js',
+    'public/js/onLoad.js',
     'public/js/scrollTop.js',
     'public/js/selectItem.js'
 ], 'public/js/all.js')

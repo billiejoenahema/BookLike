@@ -7,14 +7,34 @@ function categorySelectValidate() {
     selectedCategory === 'default' ? window.alert('カテゴリーを選択してください') : reviewPost.submit()
 }
 
-
 function changeStars(e) {
-    let stars = document.getElementById('ratings').dataset.ratings
-    const clickedStar = e.id
-    stars = clickedStar
 
-    console.log(stars)
+    // 星の要素をすべて取得
+    const starElements = document.querySelectorAll('.edit-star')
+    // 評価の数値
+    const ratingsValue = document.querySelector('.ratings-value')
+    // 選んだ星の数
+    const ratings = e.id
 
+    // 評価の数値を選んだ星の数に書き換える
+    ratingsValue.textContent = e.id
+
+    // 初期化処理
+    starElements.forEach((starElement) => {
+        // 選択状態を初期化
+        starElement.classList.remove('selected')
+        // 星の数を0にする
+        if (starElement.classList.contains('fas')) starElement.classList.replace('fas', 'far')
+    })
+
+    // 選んだ星の数だけ星に色をつける
+    starElements.forEach((starElement, index) => {
+        if (index < ratings) {
+            starElement.classList.replace('far', 'fas')
+        }
+    })
+    // 選択した星にselectedを付与
+    e.classList.add('selected')
 }
 
 function checkInputLoginForm() {
@@ -58,42 +78,6 @@ function checkTextLength() {
     postButton.classList.add('disabled')
     postButton.disabled = true
 }
-
-function currentPageHighlight() {
-    'use strict'
-    const path = window.location.pathname
-    const reviewsIcon = document.getElementById('reviewsIcon')
-    const usersIcon = document.getElementById('usersIcon')
-    const myPageIcon = document.getElementById('myPageIcon')
-    const newPostIcon = document.getElementById('newPostIcon')
-    const footerMenuItems = document.querySelectorAll('footerMenuItem')
-    const loginUserId = myPageIcon && document.getElementById('myPageIcon').dataset.id
-    const addCurrentPage = (icon) => icon.classList.add('currentPage')
-
-    // footerMenuItemsを配列に変換後、mapでcurrentPageを取り除く
-    Array.from(footerMenuItems).map((item) => {
-        item.classList.remove('currentPage')
-    })
-
-    switch (path) {
-        case '/reviews':
-            addCurrentPage(reviewsIcon)
-            break
-        case '/users':
-            addCurrentPage(usersIcon)
-            break
-        case `/users/${loginUserId}`:
-            addCurrentPage(myPageIcon)
-            break
-        case '/reviews/create':
-            addCurrentPage(newPostIcon)
-            break
-        default:
-            return
-    }
-}
-
-window.onload = currentPageHighlight()
 
 function deleteCheck() {
     'use strict'
@@ -169,6 +153,64 @@ function formatDate(createdAt, format) {
     return format
 }
 
+
+// 投稿編集ページにおける星評価の初期値
+const showRatings = (initialRatings) => {
+    let ratings = initialRatings
+    const starElements = document.querySelectorAll('.edit-star')
+
+    starElements.forEach((starElement, index) => {
+        // ratingの数値だけ星に色をつける
+        if (index < ratings) {
+            starElement.classList.replace('far', 'fas')
+        }
+    })
+}
+
+// スマホ用フッターメニューの現在のページのアイコンに色をつける
+function currentPageHighlight() {
+    'use strict'
+    const path = window.location.pathname
+    const reviewsIcon = document.getElementById('reviewsIcon')
+    const usersIcon = document.getElementById('usersIcon')
+    const myPageIcon = document.getElementById('myPageIcon')
+    const newPostIcon = document.getElementById('newPostIcon')
+    const footerMenuItems = document.querySelectorAll('footerMenuItem')
+    const loginUserId = myPageIcon && document.getElementById('myPageIcon').dataset.id
+    const addCurrentPage = (icon) => icon.classList.add('currentPage')
+
+    // footerMenuItemsを配列に変換後、mapでcurrentPageを取り除く
+    Array.from(footerMenuItems).map((item) => {
+        item.classList.remove('currentPage')
+    })
+
+    switch (path) {
+        case '/reviews':
+            addCurrentPage(reviewsIcon)
+            break
+        case '/users':
+            addCurrentPage(usersIcon)
+            break
+        case `/users/${loginUserId}`:
+            addCurrentPage(myPageIcon)
+            break
+        case '/reviews/create':
+            addCurrentPage(newPostIcon)
+            break
+        default:
+            return
+    }
+}
+
+window.addEventListener('load', () => {
+    //ページが読み込まれたときにratingsの初期値を取得する
+    if (document.getElementById('ratings')) {
+        const initialRatings = document.getElementById('ratings').dataset.ratings
+        initialRatings && showRatings(initialRatings)
+    }
+
+    currentPageHighlight()
+})
 
 const scrollTop = (e) => {
     'use strict'
