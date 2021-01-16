@@ -1,21 +1,15 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Support\Facades\Storage;
+// 認証機能
+Auth::routes();
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        return Redirect::to('/reviews');
-    }
-    return view('welcome');
-});
+// ログイン＆ログアウト時のリダイレクト
+Route::get('/', 'RootController');
 
 // ゲストログイン用ルート
 Route::get('guest', 'Auth\LoginController@guestUserLogin')->name('login.guest');
 
-Auth::routes();
-
-// ログイン状態
+// ログイン中のルーティング
 Route::group(['middleware' => 'auth'], function() {
 
     // ユーザ関連
@@ -32,18 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
 
     // 利用規約
-    Route::get('terms', function(User $user) {
-        $login_user = auth()->user();
-        $storage = Storage::disk('s3');
-
-        return view('/terms', compact('login_user', 'storage'));
-    });
+    Route::get('terms', 'TermsController');
 
     // プライバシーポリシー
-    Route::get('privacy', function(User $user) {
-        $login_user = auth()->user();
-        $storage = Storage::disk('s3');
-
-        return view('/privacy', compact('login_user', 'storage'));
-    });
+    Route::get('privacy', 'PrivacyController');
 });
