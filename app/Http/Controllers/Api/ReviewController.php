@@ -9,17 +9,28 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    public function show(Review $review, User $user)
+    public function show(Request $request, Review $review)
     {
         $loginUser = auth()->user();
-        $review = $review->with('favorites')
-                        ->where('id', $review->id)
-                        ->first();
+        $reviewId = $request->review->id;
+        $review = $review->getReview($reviewId);
 
         return
             [
+                'review' => $review,
                 'loginUser' => $loginUser,
-                'review' => $review
+            ];
+    }
+
+    public function edit(Review $review)
+    {
+        $review = $review->with('favorites')
+                        ->where('id', $review->id)
+                        ->first();
+        $ratings = $review->ratings;
+        return
+            [
+                'ratings' => $ratings
             ];
     }
 
@@ -33,8 +44,8 @@ class ReviewController extends Controller
 
         return
             [
-            'reviews' => $reviews,
-            'loginUser' => $loginUser,
+                'reviews' => $reviews,
+                'loginUser' => $loginUser,
             ];
     }
 }
