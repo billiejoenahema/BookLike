@@ -25,8 +25,8 @@
         <form method="POST" action="{{ route('reviews.update', $review) }}" id="reviewEdit">
             @csrf
             @method('PUT')
-            <div class="d-flex py-2 border-top form-group">
-                <div class="mb-3 py-2 pr-4">
+            <div class="d-flex py-2 border-top form-group mb-0">
+                <div class="py-2 pr-4">
                     <img src="{{ $review->image_url }}" width="128" class="shadow-sm">
                 </div>
                 <div class="col-md-8 d-flex flex-column text-left py-2 px-0">
@@ -60,11 +60,11 @@
                         <label for="spoiler" class="d-flex">ネタバレ</label>
                         <select name="spoiler" class="form-controll p-1">
                             @if($review->spoiler === 0)
-                            <option value="0">ネタバレなし</option>
+                            <option value="0" selected>ネタバレなし</option>
                             <option value="1">ネタバレあり</option>
                             @else
-                            <option value="1">ネタバレあり</option>
                             <option value="0">ネタバレなし</option>
+                            <option value="1" selected>ネタバレあり</option>
                             @endif
                         </select>
                     </div>
@@ -73,9 +73,10 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-12">
+                    <span>評価の理由</span>
                     <textarea class="form-control
-                        @error('text') is-invalid @enderror" name="text" id="textarea" required autocomplete="text"
-                        rows="10" onkeyup="checkTextLength()"
+                        @error('text') is-invalid @enderror" name="text" id="textarea" autocomplete="text" rows="10"
+                        onkeyup="checkTextLength()"
                         onfocus="checkTextLength()">{{ old('text') ? : $review->text }}</textarea>
                     @error('text')
                     <span class="invalid-feedback" role="alert">
