@@ -39,7 +39,11 @@ class Review extends Model
     // 詳細画面
     public function getReview(Int $review_id)
     {
-        return $this->with('user')
+        return $this->with(['user' => function ($query) {
+                        return $query->withCount(['reviews', 'followers', 'favorites']);
+                    }])
+                    ->with(['comments:id', 'favorites'])
+                    ->withCount(['comments', 'favorites'])
                     ->where('id', $review_id)
                     ->first();
     }
@@ -143,7 +147,7 @@ class Review extends Model
                             return $query->withCount(['reviews', 'followers', 'favorites']);
                         }])
                         ->with(['comments:id', 'favorites'])
-                        ->withCount('favorites')
+                        ->withCount(['comments', 'favorites'])
                         ->orderBy('favorites_count', 'DESC')
                         ->paginate($pagination);
         } else {
@@ -160,6 +164,7 @@ class Review extends Model
                             return $query->withCount(['reviews', 'followers', 'favorites']);
                         }])
                         ->with(['comments:id','favorites'])
+                        ->withCount(['comments', 'favorites'])
                         ->orderBy('created_at', 'DESC')
                         ->paginate($pagination);
         }
