@@ -26,7 +26,7 @@ class UpdateReview extends FormRequest
         return [
             'ratings' => 'required | digits:1', // 数値の桁数を指定
             'spoiler' => 'required | digits:1', // 数値の桁数を指定
-            'text' => 'required | string | max:400',
+            'text'    => 'nullable | string | max:800',
         ];
     }
 }

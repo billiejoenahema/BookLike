@@ -72656,8 +72656,12 @@ var ShowReview = function ShowReview() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_7__["default"], {
     spoiler: review.spoiler
   })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "card-body p-3"
-  }, review.text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card-body border-bottom p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    "class": "d-inline text-blog font-weight-bold"
+  }, "\u8A55\u4FA1\u306E\u7406\u7531"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    "class": "mt-1 mb-0"
+  }, review.text || '未投稿')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
   }, loginUser.id === review.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
     review: review
