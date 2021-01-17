@@ -37,7 +37,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        // 書籍検索フォームをモーダル化したためこのページは不要に
+        return redirect('/');
     }
 
     // Post review text form
