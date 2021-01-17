@@ -25,7 +25,7 @@
         <form method="POST" action="{{ route('reviews.update', $review) }}" id="reviewEdit">
             @csrf
             @method('PUT')
-            <div class="d-flex py-2 border-top form-group mb-0">
+            <div class="d-flex pt-2 border-top form-group mb-0">
                 <div class="py-2 pr-4">
                     <img src="{{ $review->image_url }}" width="128" class="shadow-sm">
                 </div>
