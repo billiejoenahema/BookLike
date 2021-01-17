@@ -136,40 +136,32 @@ class Review extends Model
         if ($search === NULL ) $search = false;
         $searches = ['criteria' => $criteria, 'search' => $search];
 
-        if ($sort === 'favorite') {
-            // いいねが多い順に投稿を並び替え
-            return $this->when($category, function ($query, $category) {
-                            return $query->where('category', $category);
-                        })
-                        ->when($searches, function ($query, $searches) {
-                            $criteria = $searches['criteria'];
-                            $search = $searches['search'];
-                            return $query->where($criteria, 'LIKE', "%$search%");
-                        })
-                        ->with(['user' => function ($query) {
-                            return $query->withCount(['reviews', 'followers', 'favorites']);
-                        }])
-                        ->with(['comments:id', 'favorites'])
-                        ->withCount(['comments', 'favorites'])
-                        ->orderBy('favorites_count', 'DESC')
-                        ->paginate($pagination);
-        } else {
-            // 登録順に投稿を並び替え（デフォルト）
-            return $this->when($category, function ($query, $category) {
-                            return $query->where('category', $category);
-                        })
-                        ->when($searches, function ($query, $searches) {
-                            $criteria = $searches['criteria'];
-                            $search = $searches['search'];
-                            return $query->where($criteria, 'LIKE', "%$search%");
-                        })
-                        ->with(['user' => function ($query) {
-                            return $query->withCount(['reviews', 'followers', 'favorites']);
-                        }])
-                        ->with(['comments:id','favorites'])
-                        ->withCount(['comments', 'favorites'])
-                        ->orderBy('created_at', 'DESC')
-                        ->paginate($pagination);
+        // すべての投稿を取得
+        $allReviews = $this->when($category, function ($query, $category) {
+            return $query->where('category', $category);
+        })
+        ->when($searches, function ($query, $searches) {
+            $criteria = $searches['criteria'];
+            $search = $searches['search'];
+            return $query->where($criteria, 'LIKE', "%$search%");
+        })
+        ->with(['user' => function ($query) {
+            return $query->withCount(['reviews', 'followers', 'favorites']);
+        }])
+        ->with(['comments:id','favorites'])
+        ->withCount(['comments', 'favorites']);
+
+        switch ($sort) {
+            case 'favorite':
+                // いいねが多い順に投稿を並び替え
+                return $allReviews->orderBy('favorites_count', 'DESC')->paginate($pagination);
+            case 'ratings':
+                // 評価が高い順に投稿を並び替え
+                return $allReviews->orderBy('ratings', 'DESC')->paginate($pagination);
+            case 'default':
+            default:
+                // 登録順に投稿を並び替え（デフォルト）
+                return $allReviews->orderBy('created_at', 'DESC')->paginate($pagination);
         }
     }
 }
