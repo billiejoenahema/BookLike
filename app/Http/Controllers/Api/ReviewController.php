@@ -9,6 +9,22 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
+
+    public function index(Request $request, Review $review, User $user)
+    {
+        $pagination = 6;
+        $loginUser = auth()->user();
+
+        // 並び替えられた投稿一覧
+        $reviews = $review->getReviews($request, $pagination);
+
+        return
+            [
+                'reviews' => $reviews,
+                'loginUser' => $loginUser,
+            ];
+    }
+
     public function show(Request $request, Review $review)
     {
         $loginUser = auth()->user();
@@ -31,21 +47,6 @@ class ReviewController extends Controller
         return
             [
                 'ratings' => $ratings
-            ];
-    }
-
-    public function index(Request $request, Review $review, User $user)
-    {
-        $pagination = 6;
-        $loginUser = auth()->user();
-
-        // 並び替えられた投稿一覧
-        $reviews = $review->getReviews($request, $pagination);
-
-        return
-            [
-                'reviews' => $reviews,
-                'loginUser' => $loginUser,
             ];
     }
 }

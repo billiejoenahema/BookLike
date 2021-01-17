@@ -223,6 +223,7 @@ const ReviewIndex = () => {
                     <select onChange={sortChange} className="form-control-sm" id="selectSort">
                         <option value="default">新着順</option>
                         <option value="favorite">いいね数</option>
+                        <option value="ratings">評価順</option>
                     </select>
                 </div>
             </div>

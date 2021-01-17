@@ -72290,7 +72290,9 @@ var ReviewIndex = function ReviewIndex() {
     value: "default"
   }, "\u65B0\u7740\u9806"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "favorite"
-  }, "\u3044\u3044\u306D\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "\u3044\u3044\u306D\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "ratings"
+  }, "\u8A55\u4FA1\u9806")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "reviewsComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Reviews__WEBPACK_IMPORTED_MODULE_3__["default"], {
     reviews: reviews,
