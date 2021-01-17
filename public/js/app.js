@@ -72136,7 +72136,6 @@ var ReviewIndex = function ReviewIndex() {
 
 
   var changeCategory = function changeCategory(e) {
-    console.log('Category changed!');
     var selectedValue = document.getElementById('categorySelector').value;
     var clickedCategory = e.target.dataset.category;
     var selectedCategory = clickedCategory || selectedValue;

@@ -33,7 +33,9 @@ class StoreReview extends FormRequest
             'author' => 'string | nullable',
             'manufacturer' => 'string | nullable',
             'image_url' => 'required',
-            'text' => 'required | string | max:800'
+            'ratings' => 'required | digits:1',
+            'spoiler' => 'required | digits:1',
+            'text' => 'nullable | string | max:800'
         ];
     }
 }

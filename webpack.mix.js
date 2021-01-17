@@ -17,6 +17,7 @@ mix.react("resources/js/app.js", "public/js")
 mix.scripts([
     'public/js/bookDescription.js',
     'public/js/categorySelectValidate.js',
+    'public/js/changeCategory.js',
     'public/js/changeStars.js',
     'public/js/checkInputLoginForm.js',
     'public/js/checkTextLength.js',
