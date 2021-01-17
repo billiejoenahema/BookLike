@@ -73569,7 +73569,8 @@ var STORAGE = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com';
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFavorited; });
 function isFavorited(review, loginUser) {
-  // 対象の投稿にログインユーザーがいいねしているかどうかを判定
+  'use strict'; // 対象の投稿にログインユーザーがいいねしているかどうかを判定
+
   var favoritesArray = Array.from(review.favorites);
   var userIds = favoritesArray.map(function (v) {
     return v.user_id;
@@ -73590,7 +73591,8 @@ function isFavorited(review, loginUser) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFollowed; });
 function isFollowed(user, loginUser) {
-  // 対象のユーザーをログインユーザーがフォローしているかどうかを判定
+  'use strict'; // 対象のユーザーをログインユーザーがフォローしているかどうかを判定
+
   var followedArray = Array.from(user.followers);
   var userIds = followedArray.map(function (v) {
     return v.id;
@@ -73611,7 +73613,8 @@ function isFollowed(user, loginUser) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return omittedText; });
 function omittedText(description, _int) {
-  // 文字数を制限して自己紹介文を表示
+  'use strict'; // 文字数を制限して自己紹介文を表示
+
   if (description.length > _int) {
     return "".concat(description.substr(0, _int), " ...\u7D9A\u304D\u3092\u8AAD\u3080");
   }

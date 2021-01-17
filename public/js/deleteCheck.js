@@ -1,3 +1,4 @@
+// アカウント削除ボタン有効化のための処理
 function deleteCheck() {
     'use strict'
     const deleteCheck = document.getElementById('deleteCheck')

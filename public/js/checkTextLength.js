@@ -1,3 +1,4 @@
+// コメント＆レビュー投稿のテキスト入力時の処理
 function checkTextLength() {
     'use strict'
     const inputtedLength = document.getElementById('textarea').value.length

@@ -1,3 +1,4 @@
+// ページトップへ戻るボタンを押した時の処理
 const scrollTop = (e) => {
     'use strict'
     e.preventDefault()

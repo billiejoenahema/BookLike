@@ -1,3 +1,4 @@
+// レビュー投稿画面でカテゴリーを選択せずにボタンを押せてしまった時の処理
 function categorySelectValidate() {
     'use strict'
     const selectedCategory = document.getElementById('categorySelector').value

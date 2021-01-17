@@ -1,6 +1,6 @@
+// ログインフォームのバリデーション
 function checkInputLoginForm() {
     'use strict'
-
     const email = document.getElementById('email')
     const password = document.getElementById('password')
     const login = document.getElementById('login')

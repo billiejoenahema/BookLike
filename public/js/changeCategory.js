@@ -1,8 +1,9 @@
+// レビュー投稿画面でカテゴリーを選択したときの処理
 function changeCategory() {
+    'use strict'
     const categoryAlert = document.getElementById('categoryAlert')
     const selectedValue = document.getElementById('categorySelector').value
     const postButton = document.getElementById('postButton')
-    console.log(selectedValue)
 
     // カテゴリー未選択だとボタンを無効化
     if (selectedValue === 'default') {
