@@ -11,7 +11,7 @@
             <div class="d-flex flex-column p-0">
                 <!-- 選択した書籍情報 -->
                 <h6>選択した書籍</h6>
-                <div class="card mb-2">
+                <div class="card mb-3">
                     <div class="d-flex p-2">
                         <div class="d-flex flex-column p-2 mr-2">
                             <img src="{{ $image_url ?? asset('images/NoImage.png') }}" width="100">
@@ -56,7 +56,7 @@
 
                 <!-- レビュー投稿テキストエリア -->
                 <div class="form-group">
-                    <div class="mb-3">
+                    <div class="mb-3 flex-column flex-wrap">
                         <select name="category" id="categorySelector" onchange="changeCategory()">
                             <option value="default">カテゴリーを選択してください</option>
                             <option value="文学">文学</option>
@@ -74,7 +74,7 @@
                             <option value="ライトノベル">ライトノベル</option>
                             <option value="その他">その他</option>
                         </select>
-                        <span class="text-danger">必須</span>
+                        <span class="d-block d-sm-inline pl-1 text-danger" id="categoryAlert">カテゴリーを選択してください</span>
                     </div>
                     <div class="col-12 p-0">
                         <label>お気に入りの理由を教えてください</label>

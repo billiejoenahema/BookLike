@@ -15,7 +15,7 @@
         </div>
     </form>
     <div class="card-body">
-        <div class="px-3 pb-3 w-100 d-flex">
+        <div class="pr-3 pb-3 w-100 d-flex">
             @include('components.user_image', ['user' => $login_user])
             <div class="ml-2 d-flex flex-column">
                 <p class="mb-0">{{ $login_user->name ?? $login_user->screen_name }}</p>
@@ -31,12 +31,12 @@
                 </div>
                 <div class="col-md-8 d-flex flex-column text-left py-2 px-0">
                     <h5>{{ $review->title }}</h5>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled mb-2">
                         <li class="list-item">著者：{{ $review->author }}</li>
                         <li class="list-item">出版社：{{ $review->manufacturer }}</li>
                         <li class="list-item">カテゴリー：{{ $review->category }}</li>
-                        <li class="list-item">評価：<label for="ratings"
-                                class="ratings-value">{{ $review->ratings}}</label>
+                        <li class="list-item mt-2">評価：<label for="ratings"
+                                class="ratings-value mb-0">{{ $review->ratings}}</label>
                             <div class="d-flex">
                                 <div class="flex-row text-mango lead border py-1 px-3" id="ratings"
                                     data-ratings="{{ $review->ratings }}" title="クリックして選択">
@@ -57,7 +57,7 @@
                     </ul>
                     {{-- ネタバレありなし選択 --}}
                     <div class="d-flex-column">
-                        <label for="spoiler" class="d-flex">ネタバレ：</label>
+                        <label for="spoiler" class="d-flex mb-0">ネタバレ：</label>
                         <select name="spoiler" class="form-controll p-1">
                             @if($review->spoiler === 0)
                             <option value="0" selected>ネタバレなし</option>
@@ -73,7 +73,7 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-12">
-                    <span>評価の理由</span>
+                    <label class="d-inline text-blog font-weight-bold">レビュー</label>
                     <textarea class="form-control
                         @error('text') is-invalid @enderror" name="text" id="textarea" autocomplete="text" rows="10"
                         onkeyup="checkTextLength()"

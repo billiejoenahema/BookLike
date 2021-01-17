@@ -54,10 +54,10 @@
                         <h5>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h5>
                         <ul class="list-unstyled">
                             <li class="list-item">
-                                {{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}
+                                <span>著者：</span>{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}
                             </li>
                             <li class="list-item">
-                                {{ $search_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}
+                                <span>出版社：</span>{{ $search_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}
                             </li>
                             <li class="list-item">
                                 <object><a href={{ $search_item->DetailPageURL }} target="_blank" rel="noopener"><i
