@@ -24,6 +24,7 @@ $darkGreen: #006400;
 $teal: #4dc0b5;
 $blog: #7092be;
 $blogLight: #93adce;
+$blogDark: #5a7598; // darken 20%
 $cyan: #6cb2eb;
 $blue: #3490dc;
 $indigo: #6574cd;
@@ -56,6 +57,7 @@ $theme-colors: (
     "cyan": $cyan,
     "blog": $blog,
     "blogLight": $blogLight,
+    "blogDark": $blogDark,
     "blogPale": $blogPale,
     "graphite": $graphite,
     "iron": $iron,
