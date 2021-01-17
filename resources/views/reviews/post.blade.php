@@ -53,9 +53,8 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- レビュー投稿テキストエリア -->
                 <div class="form-group">
+                    {{-- カテゴリー選択 --}}
                     <div class="mb-3 flex-column flex-wrap">
                         <select name="category" id="categorySelector" onchange="changeCategory()">
                             <option value="default">カテゴリーを選択してください</option>
@@ -76,8 +75,9 @@
                         </select>
                         <span class="d-block d-sm-inline pl-1 text-danger" id="categoryAlert">カテゴリーを選択してください</span>
                     </div>
+                    {{-- レビュー投稿 --}}
                     <div class="col-12 p-0">
-                        <label>お気に入りの理由を教えてください</label>
+                        <label class="d-inline text-blog font-weight-bold">レビュー</label>
                         <textarea id="textarea" class="form-control @error('text') is-invalid @enderror" name="text"
                             autocomplete="text" rows="8" onkeyup="checkTextLength()">{{ old('text') ? : '' }}</textarea>
                         @error('text')
