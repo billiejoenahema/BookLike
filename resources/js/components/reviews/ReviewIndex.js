@@ -102,7 +102,6 @@ const ReviewIndex = () => {
 
     // セレクトボックスを操作またはアンカーテキストをクリックしたときの処理
     const changeCategory = (e) => {
-        console.log('Category changed!')
         const selectedValue = document.getElementById('categorySelector').value
         const clickedCategory = e.target.dataset.category
         const selectedCategory = clickedCategory || selectedValue
