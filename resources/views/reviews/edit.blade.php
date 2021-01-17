@@ -57,7 +57,7 @@
                     </ul>
                     {{-- ネタバレありなし選択 --}}
                     <div class="d-flex-column">
-                        <label for="spoiler" class="d-flex">ネタバレ</label>
+                        <label for="spoiler" class="d-flex">ネタバレ：</label>
                         <select name="spoiler" class="form-controll p-1">
                             @if($review->spoiler === 0)
                             <option value="0" selected>ネタバレなし</option>
@@ -92,8 +92,8 @@
                     <div class="w-100 m-0 row justify-content-end">
                         <button type="button" onclick="history.back()"
                             class="btn btn-secondary rounded-pill">キャンセル</button>
-                        <button id="postButton" type="submit" disabled
-                            class="btn btn-primary rounded-pill shadow-sm ml-4 disabled">投稿を編集する</button>
+                        <button id="postButton" type="submit"
+                            class="btn btn-primary rounded-pill shadow-sm ml-4">投稿を編集する</button>
                     </div>
                 </div>
             </div>
