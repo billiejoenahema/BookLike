@@ -66,8 +66,8 @@
                                 href="{{ url('users/' .$login_user->id) }}">{{ $login_user->name ?? $login_user->screen_name }}</a>
                             <a class="dropdown-item pt-2 pb-2" href="{{ url('users/' .$login_user->id) }}"><i
                                     class="fas fa-user-cog fa-fw mr-2"></i>マイページ</a>
-                            <a class="dropdown-item py-2" href="{{ url('reviews/create') }}"><i
-                                    class="fas fa-pen fa-fw mr-2"></i>新規投稿</a>
+                            <a class="dropdown-item py-2" href="#" data-toggle="modal" data-target="#newPostModal"
+                                role="button"><i class="fas fa-pen fa-fw mr-2"></i>新規投稿</a>
                             <a class="dropdown-item py-2" href="{{ url('reviews') }}"><i
                                     class="fas fa-book-open fa-fw mr-2"></i>投稿一覧</a>
                             <a class="dropdown-item pt-2 pb-2" href="{{ url('users') }}"><i
