@@ -85,10 +85,15 @@ const ShowReview = () => {
                         </div>
                     </div>
                     <div className="card-body py-0 px-3">
-                        <div className="d-flex flex-row py-3 border-top border-bottom">
-                            {/* 書籍イメージ */}
-                            <div>
-                                <img src={review.image_url} width="128" className="shadow-sm" />
+                        <div className="d-flex flex-row pt-3 border-top border-bottom">
+                            <div className="flex-column text-center">
+                                {/* 書籍イメージ */}
+                                <img src={review.image_url} width="128" className="d-block shadow-sm" />
+                                {/* Amazonリンク */}
+                                <a href={review.page_url} className="d-block pt-1" target="_blank" rel="noopener" data-tip="Amazonサイトへ移動">
+                                    <i className="fab fa-amazon"></i> Amazon
+                                    <ReactTooltip effect="float" type="info" place="top" />
+                                </a>
                             </div>
                             {/* 書籍情報 */}
                             <div className="col-md-8 d-flex flex-column text-left pl-3 px-0">
@@ -97,27 +102,22 @@ const ShowReview = () => {
                                     <li><span>著者：</span>{review.author}</li>
                                     <li><span>出版社：</span>{review.manufacturer}</li>
                                     <li><span>カテゴリー：</span><span className="p-0">{review.category}</span></li>
-                                    <li>
-                                        <object><a href={review.page_url} target="_blank" rel="noopener" data-tip="Amazonサイトへ移動">
-                                            <i className="fab fa-amazon"></i> Amazon
-                                                <ReactTooltip effect="float" type="info" place="top" />
-                                        </a></object>
-                                    </li>
-                                    <li data-tip={review.ratings}><span>評価 </span><Ratings ratings={review.ratings} /></li>
+                                    <li className="mt-2"><span>評価 </span><Ratings ratings={review.ratings} /></li>
                                     <li><Spoiler spoiler={review.spoiler} /></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                    {/* レビュー */}
                     <div className="card-body border-bottom p-3">
-                        <div class="d-inline text-blog font-weight-bold">評価の理由</div>
-                        <p class="mt-1 mb-0">{review.text || '未投稿'}</p>
+                        <div className="d-inline text-blog font-weight-bold">レビュー</div>
+                        <p className="mt-1 mb-0">{review.text || '未投稿'}</p>
                     </div>
                     <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
                         {/* 投稿を編集 */}
                         {loginUser.id === review.user.id && <EditReviewButton review={review} />}
                         {/* コメントボタン */}
-                        <div className="d-flex align-items-center">
+                        <div className="ml-3 d-flex align-items-center">
                             <span><i className="far fa-comment fa-fw text-blog"></i></span>
                             <p className="mb-0 text-secondary">{review.comments_count}</p>
                         </div>
