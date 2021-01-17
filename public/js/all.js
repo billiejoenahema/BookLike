@@ -1,3 +1,4 @@
+// レビュー投稿画面でカテゴリーを選択せずにボタンを押せてしまった時の処理
 function categorySelectValidate() {
     'use strict'
     const selectedCategory = document.getElementById('categorySelector').value
@@ -7,11 +8,12 @@ function categorySelectValidate() {
     selectedCategory === 'default' ? window.alert('カテゴリーを選択してください') : reviewPost.submit()
 }
 
+// レビュー投稿画面でカテゴリーを選択したときの処理
 function changeCategory() {
+    'use strict'
     const categoryAlert = document.getElementById('categoryAlert')
     const selectedValue = document.getElementById('categorySelector').value
     const postButton = document.getElementById('postButton')
-    console.log(selectedValue)
 
     // カテゴリー未選択だとボタンを無効化
     if (selectedValue === 'default') {
@@ -28,8 +30,9 @@ function changeCategory() {
     postButton.disabled = false
 }
 
+// レビュー投稿＆編集画面で星評価を変更した時の処理
 function changeStars(e) {
-
+    'use strict'
     // 星評価のインプット値
     const inputRatings = document.getElementById('inputRatings')
     // 星の要素をすべて取得
@@ -62,9 +65,9 @@ function changeStars(e) {
     e.classList.add('selected')
 }
 
+// ログインフォームのバリデーション
 function checkInputLoginForm() {
     'use strict'
-
     const email = document.getElementById('email')
     const password = document.getElementById('password')
     const login = document.getElementById('login')
@@ -79,6 +82,7 @@ function checkInputLoginForm() {
     }
 }
 
+// コメント＆レビュー投稿のテキスト入力時の処理
 function checkTextLength() {
     'use strict'
     const inputtedLength = document.getElementById('textarea').value.length
@@ -111,6 +115,7 @@ function checkTextLength() {
     }
 }
 
+// アカウント削除ボタン有効化のための処理
 function deleteCheck() {
     'use strict'
     const deleteCheck = document.getElementById('deleteCheck')
@@ -126,26 +131,7 @@ function deleteCheck() {
     deleteButton.disabled = true
 }
 
-const card = document.getElementById('userProfileCard')
-const editButton = document.getElementById('editButton')
-
-if (card) {
-
-    // カードをマウスホバーしたら編集ボタンを表示する
-    card.addEventListener('mouseover', () => {
-        editButton.classList.remove('text-white')
-        editButton.classList.add('text-secondary')
-    })
-
-    // カードからマウスが外れたら非表示にする
-    card.addEventListener('mouseout', () => {
-        editButton.classList.remove('text-secondary')
-        editButton.classList.add('text-white')
-    })
-}
-
-
-
+// フラッシュメッセージのフェイドアウトアニメーション
 const flashMessage = document.getElementById('flashMessage')
 flashMessage && flashMessage.classList.add('fadeout')
 
@@ -153,6 +139,7 @@ let currentPosition = 0
 let lastPosition = 0
 
 const onScroll = () => {
+    'use strict'
     const footerMenu = document.getElementById("footer-menu")
     const footerHeight = footerMenu.clientHeight
 
@@ -176,7 +163,7 @@ window.addEventListener("scroll", () => {
 })
 
 function formatDate(createdAt, format) {
-
+    'use strict'
     const date = new Date(createdAt.replace(/-/g, '/'))
     format = format.replace(/yyyy/g, date.getFullYear())
     format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2))
@@ -187,7 +174,8 @@ function formatDate(createdAt, format) {
 
 
 // 投稿編集ページにおける星評価の初期値
-const showRatings = (initialRatings) => {
+function showRatings(initialRatings) {
+    'use strict'
     let ratings = initialRatings
     const starElements = document.querySelectorAll('.edit-star')
 
@@ -244,6 +232,7 @@ window.addEventListener('load', () => {
     currentPageHighlight()
 })
 
+// ページトップへ戻るボタンを押した時の処理
 const scrollTop = (e) => {
     'use strict'
     e.preventDefault()
@@ -256,7 +245,9 @@ const scrollTop = (e) => {
     return
 }
 
+// 投稿する書籍を選択した時の処理
 function selectItem(e) {
+    'use strict'
     // 投稿する書籍選択画面でクリックした書籍を選択状態にする
     const elements = document.querySelectorAll('.search-item')
     elements.forEach((element) => {
@@ -264,12 +255,33 @@ function selectItem(e) {
         element.classList.remove('selected')
     })
 
+    // 選択した書籍をインプットするための処理
     e.classList.add('selected')
     e.style.border = "solid 3px #7092be"
     document.getElementById('asin').value = e.id
 
+    // 確定ボタンを有効化
     const confirmButton = document.getElementById('confirmButton')
     confirmButton.classList.remove('disabled')
     confirmButton.disabled = false
     confirmButton.classList.add('active')
 }
+
+// ユーザープロフィール編集ボタンの表示/非表示
+const card = document.getElementById('userProfileCard')
+const editButton = document.getElementById('editButton')
+
+if (card) {
+    // カードをマウスホバーしたら編集ボタンを表示する
+    card.addEventListener('mouseover', () => {
+        editButton.classList.remove('text-white')
+        editButton.classList.add('text-secondary')
+    })
+    // カードからマウスが外れたら非表示にする
+    card.addEventListener('mouseout', () => {
+        editButton.classList.remove('text-secondary')
+        editButton.classList.add('text-white')
+    })
+}
+
+

@@ -2,6 +2,7 @@ let currentPosition = 0
 let lastPosition = 0
 
 const onScroll = () => {
+    'use strict'
     const footerMenu = document.getElementById("footer-menu")
     const footerHeight = footerMenu.clientHeight
 

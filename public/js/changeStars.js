@@ -1,5 +1,6 @@
+// レビュー投稿＆編集画面で星評価を変更した時の処理
 function changeStars(e) {
-
+    'use strict'
     // 星評価のインプット値
     const inputRatings = document.getElementById('inputRatings')
     // 星の要素をすべて取得

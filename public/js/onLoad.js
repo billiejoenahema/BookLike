@@ -1,5 +1,6 @@
 // 投稿編集ページにおける星評価の初期値
-const showRatings = (initialRatings) => {
+function showRatings(initialRatings) {
+    'use strict'
     let ratings = initialRatings
     const starElements = document.querySelectorAll('.edit-star')
 
