@@ -85,7 +85,7 @@ const ShowReview = () => {
                         </div>
                     </div>
                     <div className="card-body py-0 px-3">
-                        <div className="d-flex flex-row pt-3 border-top border-bottom">
+                        <div className="d-flex flex-row py-3 border-top border-bottom">
                             <div className="flex-column text-center">
                                 {/* 書籍イメージ */}
                                 <img src={review.image_url} width="128" className="d-block shadow-sm" />
@@ -98,19 +98,20 @@ const ShowReview = () => {
                             {/* 書籍情報 */}
                             <div className="col-md-8 d-flex flex-column text-left pl-3 px-0">
                                 <h5 className="mb-3">{review.title}</h5>
-                                <ul className="list-unstyled">
+                                <ul className="list-unstyled mb-0">
                                     <li><span>著者：</span>{review.author}</li>
                                     <li><span>出版社：</span>{review.manufacturer}</li>
                                     <li><span>カテゴリー：</span><span className="p-0">{review.category}</span></li>
                                     <li className="mt-2"><span>評価 </span><Ratings ratings={review.ratings} /></li>
-                                    <li><Spoiler spoiler={review.spoiler} /></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     {/* レビュー */}
                     <div className="card-body border-bottom p-3">
-                        <div className="d-inline text-blog font-weight-bold">レビュー</div>
+                        <div className="d-inline text-blog font-weight-bold">
+                            レビュー <Spoiler spoiler={review.spoiler} />
+                        </div>
                         <p className="mt-1 mb-0">{review.text || '未投稿'}</p>
                     </div>
                     <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
