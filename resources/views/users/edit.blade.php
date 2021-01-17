@@ -8,7 +8,7 @@
         @if($login_user->id !== 1)
         <a href="#" class=" text-decoration-none text-danger" data-toggle="modal" data-target="#deleteComfirmModal"
             role="button" title="アカウント削除">
-            <i class="fas fa-user-times"></i>
+            <i class="fas fa-lg fa-user-times"></i>
         </a>
         @endif
     </div>
