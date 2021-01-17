@@ -48,6 +48,7 @@
   --cyan: #6cb2eb;
   --blog: #7092be;
   --blogLight: #93adce;
+  --blogDark: #5a7598;
   --blogPale: #f0f4f8;
   --graphite: #2b2e2e;
   --iron: #48494b;
@@ -2447,6 +2448,28 @@ pre code {
   background-color: #d0dbe9;
 }
 
+.table-blogDark,
+.table-blogDark > th,
+.table-blogDark > td {
+  background-color: #d1d8e2;
+}
+
+.table-blogDark th,
+.table-blogDark td,
+.table-blogDark thead th,
+.table-blogDark tbody + tbody {
+  border-color: #a9b7c9;
+}
+
+.table-hover .table-blogDark:hover {
+  background-color: #c1cbd8;
+}
+
+.table-hover .table-blogDark:hover > td,
+.table-hover .table-blogDark:hover > th {
+  background-color: #c1cbd8;
+}
+
 .table-blogPale,
 .table-blogPale > th,
 .table-blogPale > td {
@@ -4471,6 +4494,50 @@ fieldset:disabled a.btn {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(163, 185, 213, 0.5);
 }
 
+.btn-blogDark {
+  color: #fff;
+  background: #5a7598 linear-gradient(180deg, #7289a7, #5a7598) repeat-x;
+  border-color: #5a7598;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.btn-blogDark:hover {
+  color: #fff;
+  background: #4c6380 linear-gradient(180deg, #667a93, #4c6380) repeat-x;
+  border-color: #475c78;
+}
+
+.btn-blogDark:focus,
+.btn-blogDark.focus {
+  color: #fff;
+  background: #4c6380 linear-gradient(180deg, #667a93, #4c6380) repeat-x;
+  border-color: #475c78;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(115, 138, 167, 0.5);
+}
+
+.btn-blogDark.disabled,
+.btn-blogDark:disabled {
+  color: #fff;
+  background-color: #5a7598;
+  border-color: #5a7598;
+  background-image: none;
+}
+
+.btn-blogDark:not(:disabled):not(.disabled):active,
+.btn-blogDark:not(:disabled):not(.disabled).active,
+.show > .btn-blogDark.dropdown-toggle {
+  color: #fff;
+  background-color: #475c78;
+  background-image: none;
+  border-color: #425670;
+}
+
+.btn-blogDark:not(:disabled):not(.disabled):active:focus,
+.btn-blogDark:not(:disabled):not(.disabled).active:focus,
+.show > .btn-blogDark.dropdown-toggle:focus {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(115, 138, 167, 0.5);
+}
+
 .btn-blogPale {
   color: #fff;
   background: #f0f4f8 linear-gradient(180deg, #f1f5f9, #f0f4f8) repeat-x;
@@ -5749,6 +5816,42 @@ fieldset:disabled a.btn {
 .btn-outline-blogLight:not(:disabled):not(.disabled).active:focus,
 .show > .btn-outline-blogLight.dropdown-toggle:focus {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(147, 173, 206, 0.5);
+}
+
+.btn-outline-blogDark {
+  color: #5a7598;
+  border-color: #5a7598;
+}
+
+.btn-outline-blogDark:hover {
+  color: #fff;
+  background-color: #5a7598;
+  border-color: #5a7598;
+}
+
+.btn-outline-blogDark:focus,
+.btn-outline-blogDark.focus {
+  box-shadow: 0 0 0 0.2rem rgba(90, 117, 152, 0.5);
+}
+
+.btn-outline-blogDark.disabled,
+.btn-outline-blogDark:disabled {
+  color: #5a7598;
+  background-color: transparent;
+}
+
+.btn-outline-blogDark:not(:disabled):not(.disabled):active,
+.btn-outline-blogDark:not(:disabled):not(.disabled).active,
+.show > .btn-outline-blogDark.dropdown-toggle {
+  color: #fff;
+  background-color: #5a7598;
+  border-color: #5a7598;
+}
+
+.btn-outline-blogDark:not(:disabled):not(.disabled):active:focus,
+.btn-outline-blogDark:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-blogDark.dropdown-toggle:focus {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(90, 117, 152, 0.5);
 }
 
 .btn-outline-blogPale {
@@ -8539,6 +8642,23 @@ a.badge-blogLight.focus {
   box-shadow: 0 0 0 0.2rem rgba(147, 173, 206, 0.5);
 }
 
+.badge-blogDark {
+  color: #fff;
+  background-color: #5a7598;
+}
+
+a.badge-blogDark:hover,
+a.badge-blogDark:focus {
+  color: #fff;
+  background-color: #475c78;
+}
+
+a.badge-blogDark:focus,
+a.badge-blogDark.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(90, 117, 152, 0.5);
+}
+
 .badge-blogPale {
   color: #fff;
   background-color: #f0f4f8;
@@ -9081,6 +9201,20 @@ a.badge-lightYellow.focus {
 
 .alert-blogLight .alert-link {
   color: #37414d;
+}
+
+.alert-blogDark {
+  color: #2f3d4f;
+  background: #dee3ea linear-gradient(180deg, #e2e6ed, #dee3ea) repeat-x;
+  border-color: #d1d8e2;
+}
+
+.alert-blogDark hr {
+  border-top-color: #c1cbd8;
+}
+
+.alert-blogDark .alert-link {
+  color: #1c242f;
 }
 
 .alert-blogPale {
@@ -9941,6 +10075,23 @@ a.badge-lightYellow.focus {
   color: #fff;
   background-color: #4c5a6b;
   border-color: #4c5a6b;
+}
+
+.list-group-item-blogDark {
+  color: #2f3d4f;
+  background-color: #d1d8e2;
+}
+
+.list-group-item-blogDark.list-group-item-action:hover,
+.list-group-item-blogDark.list-group-item-action:focus {
+  color: #2f3d4f;
+  background-color: #c1cbd8;
+}
+
+.list-group-item-blogDark.list-group-item-action.active {
+  color: #fff;
+  background-color: #2f3d4f;
+  border-color: #2f3d4f;
 }
 
 .list-group-item-blogPale {
@@ -11245,6 +11396,17 @@ button.bg-blogLight:focus {
   background-color: #7092be !important;
 }
 
+.bg-blogDark {
+  background-color: #5a7598 !important;
+}
+
+a.bg-blogDark:hover,
+a.bg-blogDark:focus,
+button.bg-blogDark:hover,
+button.bg-blogDark:focus {
+  background-color: #475c78 !important;
+}
+
 .bg-blogPale {
   background-color: #f0f4f8 !important;
 }
@@ -11430,6 +11592,10 @@ button.bg-lightYellow:focus {
   background: #93adce linear-gradient(180deg, #a2b9d5, #93adce) repeat-x !important;
 }
 
+.bg-gradient-blogDark {
+  background: #5a7598 linear-gradient(180deg, #7289a7, #5a7598) repeat-x !important;
+}
+
 .bg-gradient-blogPale {
   background: #f0f4f8 linear-gradient(180deg, #f1f5f9, #f0f4f8) repeat-x !important;
 }
@@ -11612,6 +11778,10 @@ button.bg-lightYellow:focus {
 
 .border-blogLight {
   border-color: #93adce !important;
+}
+
+.border-blogDark {
+  border-color: #5a7598 !important;
 }
 
 .border-blogPale {
@@ -15449,6 +15619,15 @@ a.text-blog:focus {
 a.text-blogLight:hover,
 a.text-blogLight:focus {
   color: #5e85b6 !important;
+}
+
+.text-blogDark {
+  color: #5a7598 !important;
+}
+
+a.text-blogDark:hover,
+a.text-blogDark:focus {
+  color: #3e5068 !important;
 }
 
 .text-blogPale {

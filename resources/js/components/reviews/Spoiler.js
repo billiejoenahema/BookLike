@@ -6,8 +6,8 @@ const Spoiler = (props) => {
         <>
             {
                 isSpoiler ?
-                    <span className="badge badge-danger">ネタバレあり</span>
-                    : <span className="badge badge-info">ネタバレなし</span>
+                    <span className="badge badge-pill badge-danger pt-1">ネタバレあり</span>
+                    : <span className="badge badge-pill badge-info pt-1">ネタバレなし</span>
             }
         </>
     )

@@ -71699,10 +71699,10 @@ var EditReviewButton = function EditReviewButton(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/reviews/".concat(reviewId, "/edit"),
     role: "button",
-    className: "text-reset btn py-0",
+    className: "btn py-0 pl-0",
     "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-fw fa-edit text-secondary"
+    className: "fas fa-fw fa-edit text-secondary anchor"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
     effect: "float",
     type: "info",
@@ -71789,7 +71789,7 @@ var FavoriteButton = function FavoriteButton(props) {
     onClick: postFavorite,
     className: "btn p-0 border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "far fa-heart fa-fw text-blog"
+    className: "far fa-heart fa-fw text-blogDark"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0 text-secondary"
   }, favoriteCount));
@@ -72406,22 +72406,14 @@ var Reviews = function Reviews(props) {
     }, formatDate(review.created_at, 'yyyy/MM/dd')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body py-0 px-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex flex-row pt-3 border-top border-bottom"
+      className: "d-flex flex-row py-3 border-top border-bottom"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex-column text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews/".concat(review.id),
-      className: "d-block text-reset text-decoration-none",
-      "data-tip": "\u30EC\u30D3\u30E5\u30FC\u8A73\u7D30\u30DA\u30FC\u30B8\u3078"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: review.image_url,
       width: "104",
       className: "shadow-sm"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      effect: "float",
-      type: "info",
-      place: "top"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: review.page_url,
       className: "d-block pt-1",
       target: "_blank",
@@ -72438,36 +72430,40 @@ var Reviews = function Reviews(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
       className: "mb-3"
     }, review.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-      className: "list-unstyled"
+      className: "list-unstyled mb-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), review.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), review.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "btn p-0 text-blue anchor",
+      className: "btn p-0 text-blogDark anchor",
       onClick: props.changeCategory,
       "data-category": review.category
     }, review.category)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "mt-2"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8A55\u4FA1 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Ratings__WEBPACK_IMPORTED_MODULE_4__["default"], {
       ratings: review.ratings
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      spoiler: review.spoiler
     })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "flex-grow-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(review.id),
-      className: "flex-grow-1 text-reset text-secondary"
-    }, "\u30EC\u30D3\u30E5\u30FC\u8A73\u7D30 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "fas fa-fw fa-angle-right text-secondary"
-    })), loginUser.id === review.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      className: "align-text-top text-blogDark anchor"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fas fa-angle-right"
+    }), "\u30EC\u30D3\u30E5\u30FC\u3092\u307F\u308B "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      spoiler: review.spoiler
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-d-flex align-items-center"
+    }, loginUser.id === review.user.id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
       review: review
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "ml-3 d-flex align-items-center"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "ml-sm-3 d-flex align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(review.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "far fa-comment fa-fw text-blog"
+      className: "far fa-comment fa-fw text-blogDark anchor"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-0 text-secondary"
     }, review.comments_count)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "ml-4 mr-3 d-flex align-items-center"
+      className: "ml-3 ml-sm-4 mr-sm-3 d-flex align-items-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       review: review,
       loginUser: loginUser
@@ -72634,7 +72630,7 @@ var ShowReview = function ShowReview() {
   }, formatDate(review.created_at, 'yyyy/MM/dd')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "card-body py-0 px-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex flex-row pt-3 border-top border-bottom"
+    className: "d-flex flex-row py-3 border-top border-bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex-column text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
@@ -72658,20 +72654,20 @@ var ShowReview = function ShowReview() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
     className: "mb-3"
   }, review.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-    className: "list-unstyled"
+    className: "list-unstyled mb-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), review.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), review.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "p-0"
   }, review.category)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
     className: "mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u8A55\u4FA1 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Ratings__WEBPACK_IMPORTED_MODULE_6__["default"], {
     ratings: review.ratings
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    spoiler: review.spoiler
   })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "card-body border-bottom p-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-inline text-blog font-weight-bold"
-  }, "\u30EC\u30D3\u30E5\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+  }, "\u30EC\u30D3\u30E5\u30FC ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    spoiler: review.spoiler
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "mt-1 mb-0"
   }, review.text || '未投稿')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
@@ -72715,9 +72711,9 @@ __webpack_require__.r(__webpack_exports__);
 var Spoiler = function Spoiler(props) {
   var isSpoiler = props.spoiler === 1 ? true : false;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, isSpoiler ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "badge badge-danger"
+    className: "badge badge-pill badge-danger pt-1"
   }, "\u30CD\u30BF\u30D0\u30EC\u3042\u308A") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "badge badge-info"
+    className: "badge badge-pill badge-info pt-1"
   }, "\u30CD\u30BF\u30D0\u30EC\u306A\u3057"));
 };
 
