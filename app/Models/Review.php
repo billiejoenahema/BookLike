@@ -67,18 +67,13 @@ class Review extends Model
         $this->author = $request->author;
         $this->manufacturer = $request->manufacturer;
         $this->image_url = $request->image_url;
+        $this->ratings = $request->ratings;
+        $this->spoiler = $request->spoiler;
         $this->text = $request->text;
         $this->save();
 
         return;
     }
-
-    // public function getEditReview(Int $user_id, Int $review_id)
-    // {
-    //     return $this->where('user_id', $user_id)
-    //                 ->where('id', $review_id)
-    //                 ->first();
-    // }
 
     // 投稿をアップデート
     public function reviewUpdate(Int $review_id, $request)
