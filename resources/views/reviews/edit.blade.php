@@ -8,6 +8,7 @@
         @method('DELETE')
         <div class="card-header d-flex align-items-center justify-content-between">
             <div class="h5 mb-0">編集</div>
+            {{-- 投稿削除ボタン --}}
             <a href="#" role="button" data-toggle="modal" data-target="#deleteReview" title="投稿を削除"
                 class="text-secondary mb-0 d-block h5">
                 <i class="fas fa-trash"></i>
@@ -26,6 +27,7 @@
             @csrf
             @method('PUT')
             <div class="d-flex pt-2 border-top form-group mb-0">
+                {{-- 書籍イメージ --}}
                 <div class="py-2 pr-4">
                     <img src="{{ $review->image_url }}" width="128" class="shadow-sm">
                 </div>
@@ -38,6 +40,7 @@
                         <li class="list-item mt-2">評価：<label for="ratings"
                                 class="ratings-value mb-0">{{ $review->ratings}}</label>
                             <div class="d-flex">
+                                {{-- 評価 --}}
                                 <div class="flex-row text-mango lead border py-1 px-3" id="ratings"
                                     data-ratings="{{ $review->ratings }}" title="クリックして選択">
                                     <span><i id="1" onclick="changeStars(this)"
@@ -88,7 +91,7 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-12 text-right">
-                    <p id="currentLength">{{ strlen($review->text) ?? '0'}} / 800文字</p>
+                    <p id="currentLength">{{ mb_strlen($review->text) ?? '0'}} / 800文字</p>
                     <div class="w-100 m-0 row justify-content-end">
                         <button type="button" onclick="history.back()"
                             class="btn btn-secondary rounded-pill">キャンセル</button>
