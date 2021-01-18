@@ -71784,7 +71784,7 @@ var FavoriteButton = function FavoriteButton(props) {
     onClick: deleteFavorite,
     className: "btn p-0 border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-heart fa-fw text-red"
+    className: "fas fa-heart fa-fw text-red click-heart"
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: postFavorite,
     className: "btn p-0 border-0"
