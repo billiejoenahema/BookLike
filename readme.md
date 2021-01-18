@@ -1,5 +1,5 @@
 ## BookLike
-<a href="https://gyazo.com/1d1e4b6e5fb64ec34d0790c816462fcc"><img src="https://i.gyazo.com/1d1e4b6e5fb64ec34d0790c816462fcc.png" alt="Image from Gyazo" width="1201"/></a>
+<a href="https://gyazo.com/f6d0d6ec415ca3ac0a999cc207c47841"><img src="https://i.gyazo.com/f6d0d6ec415ca3ac0a999cc207c47841.png" alt="Image from Gyazo" width="1200"/></a>
 
 ## URL
 https://booklikeapp.com
@@ -7,10 +7,7 @@ https://booklikeapp.com
 お試しログインをご利用いただけます（ユーザー登録不要）
 
 ## 概要
-ユーザーが自分のお気に入りの書籍を気軽に共有したり、みんなのお気に入りの中から読みたい本を探すことができるサービスです。
-
-## 背景
-スマホで本を読むようになってからすっかり読書の習慣が身についたのはいいものの、自分の知っている範囲内において、めぼしいタイトルはあらかた読み終えてしまいました。面白そうな本はないかといろんなサイトで検索してみてもおすすめされているのは大体既読の作品だったり、たとえ未読であってもその本が自分に合っているかどうか判別がむずかしい。
+読み終えた本を気軽に投稿することで、電子書籍、紙の本にかかわらず既読本の履歴を確認したり、ほかのユーザーが読んだ本の評価や感想を参考にして読みたい本を見つけたりするとができるサービスです。
 
 ## 機能一覧
 ### ユーザー機能
@@ -22,17 +19,17 @@ https://booklikeapp.com
 
 ### ユーザー一覧
 - 並び替え (登録順, 投稿数, フォロワー数, いいね獲得数)
-- ユーザー検索
+- ユーザー検索（非同期・あいまい検索）
 - 無限スクロール
 
 ### 投稿機能
 - 投稿 (新規投稿, 編集, 削除)
 - 投稿にいいね
-- コメント (リアルタイム文字数カウント)
+- コメント
 - 書籍検索機能 (Amazon API 利用)
 
 ### 投稿一覧
-- 並び替え (投稿順, いいね順)
+- 並び替え (投稿順, いいね順, 評価順)
 - 検索 (タイトル, 著者, 出版社)
 - カテゴリーで絞り込み
 - 無限スクロール
@@ -63,17 +60,25 @@ https://booklikeapp.com
 <a href="https://gyazo.com/811c351cd60543f6e965e23c92849cf7"><img src="https://i.gyazo.com/811c351cd60543f6e965e23c92849cf7.png" alt="Image from Gyazo" width="922"/></a>
 
 ## ER図
-<a href="https://gyazo.com/882e9057ad87d8e1b59ddb3bbd01dcdd"><img src="https://i.gyazo.com/882e9057ad87d8e1b59ddb3bbd01dcdd.png" alt="Image from Gyazo" width="942"/></a>
+<a href="https://gyazo.com/045f627e5cb9fc582748ba1e63fc8d3e"><img src="https://i.gyazo.com/045f627e5cb9fc582748ba1e63fc8d3e.png" alt="Image from Gyazo" width="936"/></a>
 
 ## 開発において意識したこと
 
 ### モバイルファースト
-スマホ表示を優先してCSSをカスタマイズしました
+スマホ表示を優先しつつ、タブレットやPCでも適切な表示になるようCSSを調整しました。
 <br />
 投稿一覧 / 書籍検索画面 / ユーザープロフィール
 <a href="https://gyazo.com/fb41f18984fe11582f00c03d9c498cb0"><img src="https://i.gyazo.com/fb41f18984fe11582f00c03d9c498cb0.jpg" alt="Image from Gyazo" width="2282"/></a>
 
-### UI/UXの改善
-ユーザー目線を重視して使い勝手の向上に努めました
-- ロード時間の短縮
-- 誤操作の防止
+### 誤操作の防止
+入力フォームでは必要な入力がされるまでsubmitボタンを無効化し誤操作による不要なエラー処理を抑えました。
+
+### 非同期処理を多用して無駄なレンダリングを削減
+フロントエンドにReactを採用、非同期処理を多用することで不要なレンダリングを削減、UXの向上に努めました。
+
+### 通信量の削減
+DBから取得するデータを必要最低限に絞ることで通信量の削減に努めました。
+
+### メンテナンスコストを意識
+コードの重複を必要最小限にするとともに、ひと目で処理の流れがわかるように適宜コメントを挿入しました。
+
