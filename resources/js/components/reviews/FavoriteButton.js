@@ -43,7 +43,7 @@ const FavoriteButton = (props) => {
         <>
             {
                 favorite ?
-                    <button onClick={deleteFavorite} className="btn p-0 border-0"><i className="fas fa-heart fa-fw text-red"></i></button >
+                    <button onClick={deleteFavorite} className="btn p-0 border-0"><i className="fas fa-heart fa-fw text-red click-heart"></i></button >
                     : <button onClick={postFavorite} className="btn p-0 border-0"><i className="far fa-heart fa-fw text-blogDark"></i></button >
             }
 
