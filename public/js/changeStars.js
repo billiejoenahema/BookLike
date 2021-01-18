@@ -1,24 +1,22 @@
 // レビュー投稿＆編集画面で星評価を変更した時の処理
 function changeStars(e) {
     'use strict'
-    // 星評価のインプット値
+    // element of input value
     const inputRatings = document.getElementById('inputRatings')
-    // 星の要素をすべて取得
+    // 星の表示部分
     const starElements = document.querySelectorAll('.edit-star')
     // 評価の数値
     const ratingsValue = document.querySelector('.ratings-value')
     // 選んだ星の数
     const ratings = e.id
 
-    // インプット用の星評価をセット
+    // 選んだ星の数をinputにセットする
     inputRatings.value = ratings
-    // 評価の数値を選んだ星の数に書き換える
+    // 評価の数値の表示を選んだ星の数に書き換える
     ratingsValue.textContent = ratings
 
     // 初期化処理
     starElements.forEach((starElement) => {
-        // 選択状態を初期化
-        starElement.classList.remove('selected')
         // 星の数を0にする
         if (starElement.classList.contains('fas')) starElement.classList.replace('fas', 'far')
     })
@@ -29,6 +27,4 @@ function changeStars(e) {
             starElement.classList.replace('far', 'fas')
         }
     })
-    // 選択した星にselectedを付与
-    e.classList.add('selected')
 }
