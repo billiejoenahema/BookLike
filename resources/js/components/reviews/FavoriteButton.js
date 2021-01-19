@@ -12,9 +12,17 @@ const FavoriteButton = (props) => {
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
     const postFavorite = (e) => {
-        e.preventDefault()
-        toggleFavorite()
-        setFavoriteCount(favoriteCount + 1)
+        const heartClassList = e.target.classList
+        // アニメーションのためのクラス付与
+        heartClassList.replace('text-blogDark', 'text-red')
+        heartClassList.replace('far', 'fas')
+        heartClassList.add('click-heart')
+
+        // アニメーションの時間分だけ待ってから実行
+        setTimeout(() => {
+            toggleFavorite()
+            setFavoriteCount(favoriteCount + 1)
+        }, 200)
 
         return axios.post(`/api/add_favorite/${reviewId}`)
             .then(
@@ -25,8 +33,7 @@ const FavoriteButton = (props) => {
             })
     }
 
-    const deleteFavorite = (e) => {
-        e.preventDefault()
+    const deleteFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
 
@@ -43,8 +50,8 @@ const FavoriteButton = (props) => {
         <>
             {
                 favorite ?
-                    <div onClick={deleteFavorite} className="btn p-0 border-0"><i className="fas fa-heart fa-fw text-red click-heart"></i></div >
-                    : <div onClick={postFavorite} className="btn p-0 border-0"><i className="far fa-heart fa-fw text-blogDark"></i></div >
+                    <div onClick={deleteFavorite} className="p-0 border-0"><i className="fas fa-heart fa-fw text-red"></i></div >
+                    : <div onClick={postFavorite} className="p-0 border-0"><i className="far fa-heart fa-fw text-blogDark"></i></div >
             }
 
             <p className="mb-0 text-secondary">{favoriteCount}</p>

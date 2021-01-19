@@ -72,13 +72,11 @@ a:hover {
 
 /* いいねを押した時のアニメーション */
 .click-heart {
+    /* color: #e3342f; */
     animation: heart-animation .2s;
-    color: #e3342f;
-  }
-
+}
 @keyframes heart-animation {
     0% {
-      /* アイコンサイズをもとのより小さくする */
         transform: scale(0.5);
     }
     10% {
@@ -94,7 +92,6 @@ a:hover {
         transform: scale(1.5);
     }
     100% {
-      /* もとのサイズに戻す */
         transform: scale(1.0);
     }
 }
