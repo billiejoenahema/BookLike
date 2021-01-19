@@ -47,7 +47,7 @@
             </div>
             <h5>{{ $book_title }}</h5>
             <span class=" border-bottom font-weight-bold text-blogDark">この本を選んだ理由</span>
-            <p class="flex-wrap">{{ $user->story ?? '未設定' }}</p>
+            <p class="flex-wrap">{{ $user->story ?? '設定されていません' }}</p>
         </div>
     </details>
 </div>
