@@ -101,7 +101,7 @@ class User extends Authenticatable
             default :
                 // 登録順にユーザーを取得
                 return $this->getAllUsers($loginUserId)
-                            ->orderBy('updated_at', 'DESC')
+                            ->orderBy('created_at', 'DESC')
                             ->paginate($pagination);
                 break;
         }
