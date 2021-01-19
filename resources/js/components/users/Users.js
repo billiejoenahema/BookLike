@@ -50,11 +50,11 @@ const Users = (props) => {
                         <a href={`/users/${user.id}`} className="text-reset">
                             <div className="flex-column">
                                 <span className="font-weight-bold">好きなジャンル</span>
-                                <p>{omittedText(user.category, 50)}</p>
+                                <p>{omittedText(user.category, 30)}</p>
                             </div>
                             <div className="flex-column">
                                 <span className="font-weight-bold">自己紹介</span>
-                                <p>{omittedText(user.description, 50)}</p>
+                                <p>{omittedText(user.description, 30)}</p>
                             </div>
                         </a>
                     </div>
