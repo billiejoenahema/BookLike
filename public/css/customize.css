@@ -96,6 +96,10 @@ a:hover {
     }
 }
 
+.fa-heart:hover {
+    cursor: pointer;
+}
+
 #profile-edit-button {
     position: absolute;
     top: 0.3rem;
