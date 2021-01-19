@@ -48,11 +48,13 @@ class UsersController extends Controller
         // デフォルト値
         $book_image = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com/default_book_image.png';
         $book_url = '#';
+        $book_title = 'タイトル';
 
         if ($asin) {
             $item = $get_item->getItem($asin);
             $book_image = $item->Images->Primary->Large->URL;
             $book_url = $item->DetailPageURL;
+            $book_title = $item->ItemInfo->Title->DisplayValue;
         }
 
         return view('users.show', compact(
@@ -62,6 +64,7 @@ class UsersController extends Controller
             'update_date',
             'book_image',
             'book_url',
+            'book_title',
             'storage'
         ));
         }
