@@ -19,7 +19,7 @@ const Reviews = (props) => {
         // ユーザーアイコンにマウスポインターが乗ったら表示する
         setTimeout(() => {
             userCountsDiv.classList.remove('d-none')
-        }, 300)
+        }, 200)
     }
 
     const leaveUserIcon = (e) => {

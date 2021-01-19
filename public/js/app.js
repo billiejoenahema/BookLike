@@ -71763,16 +71763,22 @@ var FavoriteButton = function FavoriteButton(props) {
   }, [setFavorite]);
 
   var postFavorite = function postFavorite(e) {
-    e.preventDefault();
-    toggleFavorite();
-    setFavoriteCount(favoriteCount + 1);
+    var heartClassList = e.target.classList; // アニメーションのためのクラス付与
+
+    heartClassList.replace('text-blogDark', 'text-red');
+    heartClassList.replace('far', 'fas');
+    heartClassList.add('click-heart'); // アニメーションの時間分だけ待ってから実行
+
+    setTimeout(function () {
+      toggleFavorite();
+      setFavoriteCount(favoriteCount + 1);
+    }, 200);
     return axios.post("/api/add_favorite/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   };
 
-  var deleteFavorite = function deleteFavorite(e) {
-    e.preventDefault();
+  var deleteFavorite = function deleteFavorite() {
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
     return axios.post("/api/remove_favorite/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
@@ -71782,12 +71788,12 @@ var FavoriteButton = function FavoriteButton(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: deleteFavorite,
-    className: "btn p-0 border-0"
+    className: "p-0 border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-heart fa-fw text-red click-heart"
+    className: "fas fa-heart fa-fw text-red"
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: postFavorite,
-    className: "btn p-0 border-0"
+    className: "p-0 border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "far fa-heart fa-fw text-blogDark"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -72352,7 +72358,7 @@ var Reviews = function Reviews(props) {
 
     setTimeout(function () {
       userCountsDiv.classList.remove('d-none');
-    }, 300);
+    }, 200);
   };
 
   var leaveUserIcon = function leaveUserIcon(e) {
