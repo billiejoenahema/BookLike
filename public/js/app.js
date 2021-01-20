@@ -71510,6 +71510,346 @@ module.exports = function (css) {
 
 /***/ }),
 
+/***/ "./node_modules/use-debounce/esm/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/use-debounce/esm/index.js ***!
+  \************************************************/
+/*! exports provided: useDebounce, useDebouncedCallback, useThrottledCallback */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _useDebounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDebounce */ "./node_modules/use-debounce/esm/useDebounce.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useDebounce", function() { return _useDebounce__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _useDebouncedCallback__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDebouncedCallback */ "./node_modules/use-debounce/esm/useDebouncedCallback.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useDebouncedCallback", function() { return _useDebouncedCallback__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _useThrottledCallback__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useThrottledCallback */ "./node_modules/use-debounce/esm/useThrottledCallback.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useThrottledCallback", function() { return _useThrottledCallback__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/use-debounce/esm/useDebounce.js":
+/*!******************************************************!*\
+  !*** ./node_modules/use-debounce/esm/useDebounce.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return useDebounce; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useDebouncedCallback__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDebouncedCallback */ "./node_modules/use-debounce/esm/useDebouncedCallback.js");
+
+
+function valueEquality(left, right) {
+    return left === right;
+}
+function useDebounce(value, delay, options) {
+    var eq = (options && options.equalityFn) || valueEquality;
+    var _a = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(value), state = _a[0], dispatch = _a[1];
+    var debounced = Object(_useDebouncedCallback__WEBPACK_IMPORTED_MODULE_1__["default"])(Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (value) { return dispatch(value); }, []), delay, options);
+    var previousValue = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(value);
+    Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+        // We need to use this condition otherwise we will run debounce timer for the first render (including maxWait option)
+        if (!eq(previousValue.current, value)) {
+            debounced.callback(value);
+            previousValue.current = value;
+        }
+    }, [value, debounced, eq]);
+    return [state, { cancel: debounced.cancel, pending: debounced.pending, flush: debounced.flush }];
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/use-debounce/esm/useDebouncedCallback.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/use-debounce/esm/useDebouncedCallback.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return useDebouncedCallback; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked, or until the next browser frame is drawn. The debounced function
+ * comes with a `cancel` method to cancel delayed `func` invocations and a
+ * `flush` method to immediately invoke them. Provide `options` to indicate
+ * whether `func` should be invoked on the leading and/or trailing edge of the
+ * `wait` timeout. The `func` is invoked with the last arguments provided to the
+ * debounced function. Subsequent calls to the debounced function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * If `wait` is omitted in an environment with `requestAnimationFrame`, `func`
+ * invocation will be deferred until the next frame is drawn (typically about
+ * 16ms).
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `debounce` and `throttle`.
+ *
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0]
+ *  The number of milliseconds to delay; if omitted, `requestAnimationFrame` is
+ *  used (if available, otherwise it will be setTimeout(...,0)).
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * const resizeHandler = useDebouncedCallback(calculateLayout, 150);
+ * window.addEventListener('resize', resizeHandler)
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * const clickHandler = useDebouncedCallback(sendMail, 300, {
+ *   leading: true,
+ *   trailing: false,
+ * })
+ * <button onClick={clickHandler}>click me</button>
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * const debounced = useDebouncedCallback(batchLog, 250, { 'maxWait': 1000 })
+ * const source = new EventSource('/stream')
+ * source.addEventListener('message', debounced)
+ *
+ * // Cancel the trailing debounced invocation.
+ * window.addEventListener('popstate', debounced.cancel)
+ *
+ * // Check for pending invocations.
+ * const status = debounced.pending() ? "Pending..." : "Ready"
+ */
+function useDebouncedCallback(func, wait, options) {
+    var _this = this;
+    var lastCallTime = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+    var lastInvokeTime = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(0);
+    var timerId = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+    var lastArgs = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])([]);
+    var lastThis = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
+    var result = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
+    var funcRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(func);
+    var mounted = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(true);
+    funcRef.current = func;
+    // Bypass `requestAnimationFrame` by explicitly setting `wait=0`.
+    var useRAF = !wait && wait !== 0 && typeof window !== 'undefined';
+    if (typeof func !== 'function') {
+        throw new TypeError('Expected a function');
+    }
+    wait = +wait || 0;
+    options = options || {};
+    var leading = !!options.leading;
+    var trailing = 'trailing' in options ? !!options.trailing : true; // `true` by default
+    var maxing = 'maxWait' in options;
+    var maxWait = maxing ? Math.max(+options.maxWait || 0, wait) : null;
+    var invokeFunc = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (time) {
+        var args = lastArgs.current;
+        var thisArg = lastThis.current;
+        lastArgs.current = lastThis.current = null;
+        lastInvokeTime.current = time;
+        return (result.current = funcRef.current.apply(thisArg, args));
+    }, []);
+    var startTimer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (pendingFunc, wait) {
+        if (useRAF)
+            cancelAnimationFrame(timerId.current);
+        timerId.current = useRAF ? requestAnimationFrame(pendingFunc) : setTimeout(pendingFunc, wait);
+    }, [useRAF]);
+    var shouldInvoke = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (time) {
+        if (!mounted.current)
+            return false;
+        var timeSinceLastCall = time - lastCallTime.current;
+        var timeSinceLastInvoke = time - lastInvokeTime.current;
+        // Either this is the first call, activity has stopped and we're at the
+        // trailing edge, the system time has gone backwards and we're treating
+        // it as the trailing edge, or we've hit the `maxWait` limit.
+        return (!lastCallTime.current ||
+            timeSinceLastCall >= wait ||
+            timeSinceLastCall < 0 ||
+            (maxing && timeSinceLastInvoke >= maxWait));
+    }, [maxWait, maxing, wait]);
+    var trailingEdge = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (time) {
+        timerId.current = null;
+        // Only invoke if we have `lastArgs` which means `func` has been
+        // debounced at least once.
+        if (trailing && lastArgs.current) {
+            return invokeFunc(time);
+        }
+        lastArgs.current = lastThis.current = null;
+        return result.current;
+    }, [invokeFunc, trailing]);
+    var timerExpired = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+        var time = Date.now();
+        if (shouldInvoke(time)) {
+            return trailingEdge(time);
+        }
+        // Remaining wait calculation
+        var timeSinceLastCall = time - lastCallTime.current;
+        var timeSinceLastInvoke = time - lastInvokeTime.current;
+        var timeWaiting = wait - timeSinceLastCall;
+        var remainingWait = maxing ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+        // Restart the timer
+        startTimer(timerExpired, remainingWait);
+    }, [maxWait, maxing, shouldInvoke, startTimer, trailingEdge, wait]);
+    var cancel = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+        if (timerId.current) {
+            useRAF ? cancelAnimationFrame(timerId.current) : clearTimeout(timerId.current);
+        }
+        lastInvokeTime.current = 0;
+        lastArgs.current = lastCallTime.current = lastThis.current = timerId.current = null;
+    }, [useRAF]);
+    var flush = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+        return !timerId.current ? result.current : trailingEdge(Date.now());
+    }, [trailingEdge]);
+    Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+        mounted.current = true;
+        return function () {
+            mounted.current = false;
+        };
+    }, []);
+    var debounced = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var time = Date.now();
+        var isInvoking = shouldInvoke(time);
+        lastArgs.current = args;
+        lastThis.current = _this;
+        lastCallTime.current = time;
+        if (isInvoking) {
+            if (!timerId.current && mounted.current) {
+                // Reset any `maxWait` timer.
+                lastInvokeTime.current = lastCallTime.current;
+                // Start the timer for the trailing edge.
+                startTimer(timerExpired, wait);
+                // Invoke the leading edge.
+                return leading ? invokeFunc(lastCallTime.current) : result.current;
+            }
+            if (maxing) {
+                // Handle invocations in a tight loop.
+                startTimer(timerExpired, wait);
+                return invokeFunc(lastCallTime.current);
+            }
+        }
+        if (!timerId.current) {
+            startTimer(timerExpired, wait);
+        }
+        return result.current;
+    }, [invokeFunc, leading, maxing, shouldInvoke, startTimer, timerExpired, wait]);
+    var pending = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+        return !!timerId.current;
+    }, []);
+    var debouncedState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () { return ({
+        callback: debounced,
+        cancel: cancel,
+        flush: flush,
+        pending: pending,
+    }); }, [debounced, cancel, flush, pending]);
+    return debouncedState;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/use-debounce/esm/useThrottledCallback.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/use-debounce/esm/useThrottledCallback.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return useThrottledCallback; });
+/* harmony import */ var _useDebouncedCallback__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDebouncedCallback */ "./node_modules/use-debounce/esm/useDebouncedCallback.js");
+
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds (or once per browser frame). The throttled function
+ * comes with a `cancel` method to cancel delayed `func` invocations and a
+ * `flush` method to immediately invoke them. Provide `options` to indicate
+ * whether `func` should be invoked on the leading and/or trailing edge of the
+ * `wait` timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * If `wait` is omitted in an environment with `requestAnimationFrame`, `func`
+ * invocation will be deferred until the next frame is drawn (typically about
+ * 16ms).
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `throttle` and `debounce`.
+ *
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0]
+ *  The number of milliseconds to throttle invocations to; if omitted,
+ *  `requestAnimationFrame` is used (if available, otherwise it will be setTimeout(...,0)).
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * const scrollHandler = useThrottledCallback(updatePosition, 100)
+ * window.addEventListener('scroll', scrollHandler)
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * const { callback } = useThrottledCallback(renewToken, 300000, { 'trailing': false })
+ * <button onClick={callback}>click</button>
+ *
+ * // Cancel the trailing throttled invocation.
+ * window.addEventListener('popstate', throttled.cancel);
+ */
+function useThrottledCallback(func, wait, _a) {
+    var _b = _a === void 0 ? {} : _a, _c = _b.leading, leading = _c === void 0 ? true : _c, _d = _b.trailing, trailing = _d === void 0 ? true : _d;
+    return Object(_useDebouncedCallback__WEBPACK_IMPORTED_MODULE_0__["default"])(func, wait, {
+        maxWait: wait,
+        leading: leading,
+        trailing: trailing,
+    });
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -72883,8 +73223,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Users */ "./resources/js/components/users/Users.js");
-/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var use_debounce__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-debounce */ "./node_modules/use-debounce/esm/index.js");
+/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Users */ "./resources/js/components/users/Users.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -72910,6 +73251,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -72949,8 +73291,12 @@ var UserIndex = function UserIndex() {
 
   var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState14 = _slicedToArray(_useState13, 2),
-      searchWord = _useState14[0],
-      setSearchWord = _useState14[1];
+      value = _useState14[0],
+      setValue = _useState14[1];
+
+  var _useDebounce = Object(use_debounce__WEBPACK_IMPORTED_MODULE_3__["useDebounce"])(value, 500),
+      _useDebounce2 = _slicedToArray(_useDebounce, 1),
+      searchWord = _useDebounce2[0];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadUsers = /*#__PURE__*/function () {
@@ -73003,7 +73349,7 @@ var UserIndex = function UserIndex() {
   });
 
   var handleSearch = function handleSearch(e) {
-    setSearchWord(e.target.value);
+    setValue(e.target.value);
   };
 
   var sortChange = function sortChange(e) {
@@ -73044,7 +73390,7 @@ var UserIndex = function UserIndex() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     className: "form-control col-5 col-sm-4 col-md-3 col-lg-2 user-search-form rounded-pill pr-0",
     type: "search",
-    value: searchWord,
+    value: value,
     onChange: handleSearch,
     placeholder: "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22...",
     "aria-label": "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22",
@@ -73071,13 +73417,13 @@ var UserIndex = function UserIndex() {
     value: "favorite"
   }, "\u3044\u3044\u306D\u7372\u5F97\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "usersComponent"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_4__["default"], {
     users: userList,
     loginUser: loginUser,
     loading: loading
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
-  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null), !loading && userList.length === 0 && 'ユーザーは見つかりませんでした'));
+  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], null), !loading && userList.length === 0 && 'ユーザーは見つかりませんでした'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserIndex);
