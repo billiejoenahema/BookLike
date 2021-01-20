@@ -68,7 +68,7 @@ https://booklikeapp.com
 スマホ表示を優先しつつ、タブレットやPCでも適切な表示になるようCSSを調整しました。
 <br />
 投稿一覧 / 書籍検索画面 / ユーザープロフィール
-<a href="https://gyazo.com/fb41f18984fe11582f00c03d9c498cb0"><img src="https://i.gyazo.com/fb41f18984fe11582f00c03d9c498cb0.jpg" alt="Image from Gyazo" width="2282"/></a>
+<a href="https://gyazo.com/480ca08919a20affe6215878e4cfc62c"><img src="https://i.gyazo.com/480ca08919a20affe6215878e4cfc62c.jpg" alt="Image from Gyazo" width="1600"/></a>
 
 ### 誤操作の防止
 入力フォームでは必要な入力がされるまでsubmitボタンを無効化し誤操作による不要なエラー処理を抑えました。
