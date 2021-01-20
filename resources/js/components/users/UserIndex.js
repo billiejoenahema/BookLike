@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import ReactDOM from 'react-dom'
+import { useDebounce } from 'use-debounce'
 import Users from './Users'
 import Loading from '../Loading'
 
@@ -11,7 +12,8 @@ const UserIndex = () => {
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [searchWord, setSearchWord] = useState('')
+    const [value, setValue] = useState('')
+    const [searchWord] = useDebounce(value, 500)
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -42,7 +44,7 @@ const UserIndex = () => {
     })
 
     const handleSearch = (e) => {
-        setSearchWord(e.target.value)
+        setValue(e.target.value)
     }
 
     const sortChange = (e) => {
@@ -79,7 +81,7 @@ const UserIndex = () => {
             <input
                 className="form-control col-5 col-sm-4 col-md-3 col-lg-2 user-search-form rounded-pill pr-0"
                 type="search"
-                value={searchWord}
+                value={value}
                 onChange={handleSearch}
                 placeholder="ユーザー検索..."
                 aria-label="ユーザー検索"
