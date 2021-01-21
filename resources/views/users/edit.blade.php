@@ -17,7 +17,7 @@
         {{ __('ゲストユーザーはプロフィールを編集できません') }}
     </div>
     @endif
-    <div class="card-body px-5 px-md-3">
+    <div class="card-body px-sm-5 px-md-3">
         @if ($errors->any())
         <div class="alert alert-danger mb-3">
             <ul>
@@ -106,10 +106,10 @@
                         rows="4">{{ $login_user->description }}</textarea>
                 </div>
             </div>
-            {{-- 人生を変えた一冊 --}}
+            {{-- マイベストブック --}}
             <div class="form-group row">
                 <label for="asin"
-                    class="col-md-4 col-form-label text-md-right user-select-none">{{ __('人生を変えた一冊') }}</label>
+                    class="col-md-4 col-form-label text-md-right user-select-none">{{ __('My Best Book') }}</label>
                 <div class="col-md-7">
                     <select name="asin" id="asin" class="form-control">
                         @if(count($userReviews) == 0)
