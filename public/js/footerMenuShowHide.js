@@ -4,6 +4,8 @@ let lastPosition = 0
 const onScroll = () => {
     'use strict'
     const footerMenu = document.getElementById("footer-menu")
+    // フッターメニューを表示しないときは処理を中止
+    if (!footerMenu) return
     const footerHeight = footerMenu.clientHeight
 
     // 下にスクロールしたらfooterMenuを非表示に
