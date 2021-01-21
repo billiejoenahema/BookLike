@@ -5,7 +5,8 @@
     <div class="card-header">
         {{ __('新規登録') }}
     </div>
-    <div class="card-body mr-3 ml-3 ml-md-0">
+
+    <div class="card-body m-auto">
         <form method="POST" action="{{ route('register') }}" class="m-auto">
             @csrf
             <div class="form-group row">
@@ -97,6 +98,5 @@
             </div>
         </form>
     </div>
-</div>
 </div>
 @endsection

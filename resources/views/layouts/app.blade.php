@@ -29,7 +29,7 @@
 </head>
 
 <body id="body">
-    <div class="flex-1 footer-fixed">
+    <div class="footer-fixed">
         <nav class="navbar navbar-expand navbar-light sticky-top bg-imageColor shadow-sm py-0 mb-1">
             <div class="container">
                 {{-- Brand Logo --}}
