@@ -17,7 +17,7 @@
         {{ __('ゲストユーザーはプロフィールを編集できません') }}
     </div>
     @endif
-    <div class="card-body">
+    <div class="card-body px-5 px-md-3">
         @if ($errors->any())
         <div class="alert alert-danger mb-3">
             <ul>
@@ -31,7 +31,7 @@
             @csrf
             @method('PUT')
             {{-- プロフィール写真 --}}
-            <div class="form-group row align-items-center">
+            <div class="d-flex flex-wrap form-group align-items-center">
                 <label for="profile_image"
                     class="col-md-4 col-form-label text-md-right user-select-none">{{ __('プロフィール写真') }}</label>
                 <div class="col-md-7 d-flex align-items-center">
