@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import Reviews from './Reviews'
 import Loading from '../Loading'
@@ -116,14 +116,13 @@ const ReviewIndex = () => {
     }
 
     // 一覧の並び替え
-    const sortChange = () => {
-        console.log('sort changed!')
+    const sortChange = useCallback(() => {
         const selectedSort = document.getElementById('selectSort').value
         setSort(selectedSort)
         setReviews([])
         setPage(1)
         setHasMore(false)
-    }
+    })
 
     // 一定量スクロールしたら投稿をさらに読み込み
     const body = document.getElementById('body')
