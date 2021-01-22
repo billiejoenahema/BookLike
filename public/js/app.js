@@ -72492,15 +72492,13 @@ var ReviewIndex = function ReviewIndex() {
   }; // 一覧の並び替え
 
 
-  var sortChange = function sortChange() {
-    console.log('sort changed!');
+  var sortChange = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(function () {
     var selectedSort = document.getElementById('selectSort').value;
     setSort(selectedSort);
     setReviews([]);
     setPage(1);
     setHasMore(false);
-  }; // 一定量スクロールしたら投稿をさらに読み込み
-
+  }); // 一定量スクロールしたら投稿をさらに読み込み
 
   var body = document.getElementById('body');
 
