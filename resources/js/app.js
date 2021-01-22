@@ -12,7 +12,6 @@ require('./bootstrap')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// require('./components/reviews/FavoriteButtonWrapper')
 require('./components/reviews/ReviewIndex')
 require('./components/reviews/ShowReview')
 require('./components/users/UserPageTab')

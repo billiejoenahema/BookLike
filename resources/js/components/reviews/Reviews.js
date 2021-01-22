@@ -7,25 +7,13 @@ import Spoiler from './Spoiler'
 import ReviewsCount from '../users/ReviewsCount'
 import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
+import hoverUserIcon from '../../functions/hoverUserIcon'
+import leaveUserIcon from '../../functions/leaveUserIcon'
 import { STORAGE } from '../../constants'
 
 const Reviews = (props) => {
 
     const { reviews, loginUser } = props
-
-    const hoverUserIcon = (e) => {
-        const id = e.target.dataset.id
-        const userCountsDiv = document.getElementsByClassName(`review-${id}`)[0]
-        // ユーザーアイコンにマウスポインターが乗ったら表示する
-        userCountsDiv.classList.remove('d-none')
-    }
-
-    const leaveUserIcon = (e) => {
-        const id = e.target.dataset.id
-        const userCountsDiv = document.getElementsByClassName(`review-${id}`)[0]
-        // ユーザーアイコンからマウスポインターが外れたら非表示にする
-        userCountsDiv.classList.add('d-none')
-    }
 
     return (
         <>

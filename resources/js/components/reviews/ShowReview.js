@@ -8,6 +8,9 @@ import Spoiler from './Spoiler'
 import ReviewsCount from '../users/ReviewsCount'
 import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
+import hoverUserIcon from '../../functions/hoverUserIcon'
+import leaveUserIcon from '../../functions/leaveUserIcon'
+
 import { STORAGE } from '../../constants'
 
 const ShowReview = () => {
@@ -17,34 +20,20 @@ const ShowReview = () => {
     const currentUrl = window.location.pathname
 
     useEffect(() => {
-        const loadReview = async () => {
-            await axios
-                .get(`/api${currentUrl}`)
-                .then(res => {
-                    setLoginUser(res.data.loginUser)
-                    setReview(res.data.review)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        }
         loadReview()
+        return () => { }
     }, [])
 
-    const hoverUserIcon = (e) => {
-        const id = e.target.dataset.id
-        const userCountsDiv = document.getElementsByClassName(`review-${id}`)[0]
-        // ユーザーアイコンにマウスポインターが乗ったら表示する
-        setTimeout(() => {
-            userCountsDiv.classList.remove('d-none')
-        }, 300)
-    }
-
-    const leaveUserIcon = (e) => {
-        const id = e.target.dataset.id
-        const userCountsDiv = document.getElementsByClassName(`review-${id}`)[0]
-        // ユーザーアイコンからマウスポインターが外れたら非表示にする
-        userCountsDiv.classList.add('d-none')
+    const loadReview = async () => {
+        await axios
+            .get(`/api${currentUrl}`)
+            .then(res => {
+                setLoginUser(res.data.loginUser)
+                setReview(res.data.review)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
