@@ -72696,9 +72696,7 @@ var Reviews = function Reviews(props) {
     var id = e.target.dataset.id;
     var userCountsDiv = document.getElementsByClassName("review-".concat(id))[0]; // ユーザーアイコンにマウスポインターが乗ったら表示する
 
-    setTimeout(function () {
-      userCountsDiv.classList.remove('d-none');
-    }, 200);
+    userCountsDiv.classList.remove('d-none');
   };
 
   var leaveUserIcon = function leaveUserIcon(e) {
