@@ -17,9 +17,7 @@ const Reviews = (props) => {
         const id = e.target.dataset.id
         const userCountsDiv = document.getElementsByClassName(`review-${id}`)[0]
         // ユーザーアイコンにマウスポインターが乗ったら表示する
-        setTimeout(() => {
-            userCountsDiv.classList.remove('d-none')
-        }, 200)
+        userCountsDiv.classList.remove('d-none')
     }
 
     const leaveUserIcon = (e) => {

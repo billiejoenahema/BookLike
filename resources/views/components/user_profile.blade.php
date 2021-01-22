@@ -34,9 +34,9 @@
             </div>
         </div>
     </div>
-    <details class="card mx-3 mb-3 pt-3 border-right-0 border-left-0 border-bottom-0">
-        <summary class="btn text-left shadow-none user-select-none text-white font-weight-bold bg-blog shadow-sm"><i
-                class="fas fa-fx fa-angle-down"></i>
+    <details class="card mx-3 mb-3 pt-0 border-0">
+        <summary class="btn text-left user-select-none text-white font-weight-bold bg-blog shadow-sm"><i
+                class="fas fa-fx fa-lg fa-angle-down mr-1 align-middle"></i>
             My Best Book
         </summary>
         <div class="mt-3 mb-3">
