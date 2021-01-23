@@ -79,7 +79,7 @@
                     <div class="col-12 p-0">
                         <label class="d-inline text-blog font-weight-bold">レビュー</label>
                         <textarea id="textarea" class="form-control @error('text') is-invalid @enderror" name="text"
-                            autocomplete="text" rows="8" onkeyup="checkTextLength()">{{ old('text') ? : '' }}</textarea>
+                            autocomplete="text" rows="6" onkeyup="checkTextLength()">{{ old('text') ? : '' }}</textarea>
                         @error('text')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ '800文字以内で入力してください' }}</strong>
