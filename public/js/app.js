@@ -72986,26 +72986,23 @@ var FollowButton = function FollowButton(props) {
       return !prev;
     });
   }, [setFollowing]);
-
-  var PostFollow = function PostFollow(e) {
+  var postFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     toggleFollow();
     return axios.post("/api/follow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
-  };
-
-  var DeleteFollow = function DeleteFollow(e) {
+  });
+  var removeFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     toggleFollow();
     return axios.post("/api/unfollow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
-  };
-
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: DeleteFollow,
+    onClick: removeFollow,
     className: "btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: PostFollow,
+    onClick: postFollow,
     className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
 };
