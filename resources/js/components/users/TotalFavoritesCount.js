@@ -2,11 +2,11 @@ import React from 'react'
 
 const TotalFavoritesCount = (props) => {
 
-    const totalFavoritesCount = props.user.favorites_count
+    const totalFavoritesCount = props.favorites_count
 
     return (
         <>
-            <span>いいね獲得数</span><span className="badge-pink badge-pill text-white ml-1 user-select-none">{totalFavoritesCount}</span>
+            いいね獲得数<span className="badge-pink badge-pill text-white ml-1 user-select-none">{totalFavoritesCount}</span>
         </>
     )
 }
