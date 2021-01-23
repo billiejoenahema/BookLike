@@ -72063,7 +72063,8 @@ var EditReviewButton = function EditReviewButton(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions_isFavorited__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../functions/isFavorited */ "./resources/js/functions/isFavorited.js");
+/* harmony import */ var _functions_favoriteAnimation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../functions/favoriteAnimation */ "./resources/js/functions/favoriteAnimation.js");
+/* harmony import */ var _functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../functions/isFavorited */ "./resources/js/functions/isFavorited.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -72079,8 +72080,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var FavoriteButton = function FavoriteButton(props) {
-  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_1__["default"])(props.review, props.loginUser);
+  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["default"])(props.review, props.loginUser);
   var InitialCount = props.review.favorites.length;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFavorite),
@@ -72099,35 +72101,36 @@ var FavoriteButton = function FavoriteButton(props) {
       return !prev;
     });
   }, [setFavorite]);
-  var postFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (e) {
-    var heartClassList = e.target.classList; // アニメーションのためのクラス付与
+  var requestFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (request) {
+    return axios.post("/api/".concat(request, "_favorite/").concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
+      console.log(err);
+    });
+  });
 
-    heartClassList.replace('text-blogDark', 'text-red');
-    heartClassList.replace('far', 'fas');
-    heartClassList.add('click-heart'); // アニメーションの時間分だけ待ってから実行
+  var addFavorite = function addFavorite(e) {
+    var heartClassList = e.target.classList;
+    Object(_functions_favoriteAnimation__WEBPACK_IMPORTED_MODULE_1__["default"])(heartClassList); // アニメーションの時間分だけ待ってから実行
 
     setTimeout(function () {
       toggleFavorite();
       setFavoriteCount(favoriteCount + 1);
     }, 200);
-    return axios.post("/api/add_favorite/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
-    });
-  });
-  var removeFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+    requestFavorite('add');
+  };
+
+  var removeFavorite = function removeFavorite() {
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
-    return axios.post("/api/remove_favorite/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
-    });
-  });
+    requestFavorite('remove');
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: removeFavorite,
     className: "p-0 border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-heart fa-fw text-red"
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: postFavorite,
+    onClick: addFavorite,
     className: "p-0 border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "far fa-heart fa-fw text-blogDark"
@@ -72983,23 +72986,27 @@ var FollowButton = function FollowButton(props) {
       return !prev;
     });
   }, [setFollowing]);
-  var postFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
-    toggleFollow();
-    return axios.post("/api/follow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
+  var requestFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (request) {
+    return axios.post("/api/".concat(request, "/").concat(userId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
   });
-  var removeFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+
+  var addFollow = function addFollow() {
     toggleFollow();
-    return axios.post("/api/unfollow/".concat(userId)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
-    });
-  });
+    requestFollow('follow');
+  };
+
+  var removeFollow = function removeFollow() {
+    toggleFollow();
+    requestFollow('unfollow');
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: removeFollow,
     className: "btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: postFollow,
+    onClick: addFollow,
     className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u3059\u308B"));
 };
@@ -73779,6 +73786,24 @@ var Users = function Users(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "STORAGE", function() { return STORAGE; });
 var STORAGE = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com';
+
+/***/ }),
+
+/***/ "./resources/js/functions/favoriteAnimation.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/functions/favoriteAnimation.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function (heartClassList) {
+  // アニメーションのためのクラス付与
+  heartClassList.replace('text-blogDark', 'text-red');
+  heartClassList.replace('far', 'fas');
+  heartClassList.add('click-heart');
+});
 
 /***/ }),
 
