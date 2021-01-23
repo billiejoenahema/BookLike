@@ -6,6 +6,7 @@ const FavoriteButton = (props) => {
 
     const InitialFavorite = isFavorited(props.review, props.loginUser)
     const InitialCount = props.review.favorites.length
+
     const [favorite, setFavorite] = useState(InitialFavorite)
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
     const reviewId = props.review.id
@@ -31,7 +32,6 @@ const FavoriteButton = (props) => {
         }, 200)
         requestFavorite('add')
     }
-
     const removeFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)

@@ -188,10 +188,6 @@ details[open] summary i{
     display: none;
 }
 
-#search-word-display {
-    display: none;
-}
-
 /* トップへ戻るボタン */
 .floating-button {
     display: block;

@@ -4,6 +4,7 @@ import isFollowed from '../../functions/isFollowed'
 const FollowButton = (props) => {
 
     const InitialFollowState = isFollowed(props.user, props.loginUser)
+
     const userId = props.user.id
     const [following, setFollowing] = useState(InitialFollowState)
 
