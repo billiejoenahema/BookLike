@@ -11,7 +11,7 @@ const FollowButton = (props) => {
         () => setFollowing((prev) => !prev), [setFollowing]
     )
 
-    const PostFollow = (e) => {
+    const postFollow = useCallback(() => {
         toggleFollow()
 
         return axios.post(`/api/follow/${userId}`)
@@ -21,9 +21,9 @@ const FollowButton = (props) => {
             .catch(err => {
                 console.log(err)
             })
-    }
+    })
 
-    const DeleteFollow = (e) => {
+    const removeFollow = useCallback(() => {
         toggleFollow()
 
         return axios.post(`/api/unfollow/${userId}`)
@@ -34,14 +34,14 @@ const FollowButton = (props) => {
                 console.log(err)
 
             })
-    }
+    })
 
     return (
         <>
             {
                 following ?
-                    <div onClick={DeleteFollow} className="btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn">フォロー中</div>
-                    : <div onClick={PostFollow} className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn">フォローする</div>
+                    <div onClick={removeFollow} className="btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn">フォロー中</div>
+                    : <div onClick={postFollow} className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn">フォローする</div>
             }
         </>
     )
