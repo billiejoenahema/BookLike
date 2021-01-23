@@ -73007,7 +73007,7 @@ var FollowButton = function FollowButton(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, following ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: removeFollow,
-    className: "btn-sm btn-blog rounded-pill shadow-sm border-0 follow-btn"
+    className: "btn-sm btn-blog rounded-pill shadow-sm border-0 unfollow-btn"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: addFollow,
     className: "btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn"
@@ -73713,8 +73713,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Users = function Users(props) {
   var users = props.users,
-      loginUser = props.loginUser,
-      loading = props.loading;
+      loginUser = props.loginUser;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, users.map(function (user) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card mb-3 shadow-sm",
