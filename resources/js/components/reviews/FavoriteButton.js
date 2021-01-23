@@ -11,7 +11,7 @@ const FavoriteButton = (props) => {
 
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
 
-    const postFavorite = (e) => {
+    const postFavorite = useCallback((e) => {
         const heartClassList = e.target.classList
         // アニメーションのためのクラス付与
         heartClassList.replace('text-blogDark', 'text-red')
@@ -31,9 +31,9 @@ const FavoriteButton = (props) => {
             .catch(err => {
                 console.log(err)
             })
-    }
+    })
 
-    const deleteFavorite = () => {
+    const removeFavorite = useCallback(() => {
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
 
@@ -44,13 +44,13 @@ const FavoriteButton = (props) => {
             .catch(err => {
                 console.log(err)
             })
-    }
+    })
 
     return (
         <>
             {
                 favorite ?
-                    <div onClick={deleteFavorite} className="p-0 border-0"><i className="fas fa-heart fa-fw text-red"></i></div >
+                    <div onClick={removeFavorite} className="p-0 border-0"><i className="fas fa-heart fa-fw text-red"></i></div >
                     : <div onClick={postFavorite} className="p-0 border-0"><i className="far fa-heart fa-fw text-blogDark"></i></div >
             }
 

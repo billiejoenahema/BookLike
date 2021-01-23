@@ -72099,8 +72099,7 @@ var FavoriteButton = function FavoriteButton(props) {
       return !prev;
     });
   }, [setFavorite]);
-
-  var postFavorite = function postFavorite(e) {
+  var postFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (e) {
     var heartClassList = e.target.classList; // アニメーションのためのクラス付与
 
     heartClassList.replace('text-blogDark', 'text-red');
@@ -72114,18 +72113,16 @@ var FavoriteButton = function FavoriteButton(props) {
     return axios.post("/api/add_favorite/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
-  };
-
-  var deleteFavorite = function deleteFavorite() {
+  });
+  var removeFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
     return axios.post("/api/remove_favorite/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
       console.log(err);
     });
-  };
-
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: deleteFavorite,
+    onClick: removeFavorite,
     className: "p-0 border-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-heart fa-fw text-red"
