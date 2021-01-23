@@ -4,6 +4,10 @@ a:hover {
     transition:0.2s all;
 }
 
+a > img:hover {
+    opacity: 0.8;
+}
+
 summary:hover {
     box-shadow: none;
 }
@@ -169,12 +173,18 @@ details[open] summary i{
     padding: 0.2rem 0;
 }
 
-.follow-btn {
+.follow-btn, .unfollow-btn {
     user-select: none;
     cursor: pointer;
+    opacity: 1;
 }
 .follow-btn:hover {
-    opacity: 0.6;
+    color: #5a7598;
+    background: white;
+    opacity: 1;
+}
+.unfollow-btn:hover {
+    opacity: 1;
 }
 
 .search-form {

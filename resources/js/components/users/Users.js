@@ -9,7 +9,7 @@ import { STORAGE } from '../../constants'
 
 const Users = (props) => {
 
-    const { users, loginUser, loading } = props
+    const { users, loginUser } = props
 
     return (
         <>
