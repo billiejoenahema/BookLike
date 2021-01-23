@@ -42,7 +42,7 @@ const Users = (props) => {
                                 <FollowerCount user={user} />
                             </div>
                             <div className="mt-1 ml-sm-4 count">
-                                <TotalFavoritesCount user={user} />
+                                <TotalFavoritesCount user={user} favorites_count={user.favorites_count} />
                             </div>
                         </div>
                     </div>

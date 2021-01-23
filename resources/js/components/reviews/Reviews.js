@@ -29,7 +29,7 @@ const Reviews = (props) => {
                                 <FollowerCount user={review.user} />
                             </div>
                             <div className="count d-flex justify-content-between">
-                                <TotalFavoritesCount user={review.user} />
+                                <TotalFavoritesCount user={review.user} favorites_count={review.user.favorites_count} />
                             </div>
                         </div>
                         {/* ユーザーアイコン */}

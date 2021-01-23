@@ -15,7 +15,7 @@
                 <h5 class="mb-0 font-weight-bold">{{ $login_user->name ?? $login_user->screen_name}}</h5>
                 <span class="text-secondary">{{ $login_user->screen_name }}</span>
                 {{-- いいね獲得数 --}}
-                <div id="totalFavoritesCount" class="mt-2"></div>
+                <div id="totalFavoritesCountWrapper" class="mt-2"></div>
             </div>
         </div>
         <div class="col-12 col-sm-8 p-3 d-flex flex-column">
