@@ -7,7 +7,7 @@
             </div>
             @endif
             {{-- フォローボタン --}}
-            <div id="userProfileFollowButton"></div>
+            <div id="followButtonWrapper"></div>
         </div>
         <div class="col-12 col-sm-4 mt-5 pt-3 px-3 pb-0 p-sm-3 d-flex flex-row flex-sm-column">
             <img src="{{ $storage->url($user->profile_image) }}" class="rounded-circle shadow-sm" width="100"
