@@ -173,6 +173,9 @@ details[open] summary i{
     user-select: none;
     cursor: pointer;
 }
+.follow-btn:hover {
+    opacity: 0.6;
+}
 
 .search-form {
     position: fixed;
