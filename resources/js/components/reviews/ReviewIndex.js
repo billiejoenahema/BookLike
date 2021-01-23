@@ -63,14 +63,11 @@ const ReviewIndex = () => {
     const searchSubmit = (e) => {
         e.preventDefault()
         const searchBooks = document.getElementById('searchBooks')
-
         // フォーカスを外す
         searchBooks.blur()
-
         // 検索ワードに変化がなければ何もしない
         if (searchBooks.value === searchWord) return
 
-        setSearchWord('')
         setReviews([])
         setPage(1)
         setHasMore(false)
@@ -92,7 +89,9 @@ const ReviewIndex = () => {
         if (modalSearchBooks.value === searchWord) return
 
         // モーダルを閉じる
+        searchModal.style.display = 'none'
         searchModal.classList.remove('show')
+        modalMapDrop.style.display = 'none'
         modalMapDrop.classList.remove('show')
         setReviews([])
         setPage(1)
@@ -106,6 +105,7 @@ const ReviewIndex = () => {
         const clickedCategory = e.target.dataset.category
         const selectedCategory = clickedCategory || selectedValue
 
+        // クリックしたカテゴリーが選択中のカテゴリーと同じならなにもしない
         if (clickedCategory === selectedValue) return
 
         changeSelectBox(selectedCategory)
@@ -124,7 +124,7 @@ const ReviewIndex = () => {
         setHasMore(false)
     })
 
-    // 一定量スクロールしたら投稿をさらに読み込み
+    // 一定量スクロールしたら投稿をさらに読み込み(無限スクロール)
     const body = document.getElementById('body')
     body.onscroll = () => {
         const scrollAmount = window.scrollY
@@ -162,9 +162,10 @@ const ReviewIndex = () => {
             </div>
 
             {/* スマホ用検索ボタン */}
-            <button type="button" id="modalSearchButton" className="btn search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
+            <div type="button" id="modalSearchButton" className="btn search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
                 <i className="fas fa-search text-teal"></i>
-            </button>
+            </div>
+
             {/* スマホ用検索モーダル */}
             <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
@@ -193,11 +194,11 @@ const ReviewIndex = () => {
                 </div>
             </div>
 
-            <div id="search-word-display">
-                {searchWord && `検索ワード: \"${searchWord}\"`}
+            <div id="search-word-display" className="mt-2">
+                {searchWord && `検索ワード: \" ${searchWord}\ "`}
             </div>
 
-            <div className="form-group d-flex justify-content-between mt-2 flex-wrap mb-2">
+            <div className="form-group d-flex flex-wrap justify-content-between mt-2 mb-0">
                 {/* カテゴリー選択 */}
                 <select onChange={changeCategory} id="categorySelector" className="form-control-sm mt-1 mt-sm-0" placeholder="カテゴリーで絞り込み">
                     <option value="default">すべてのカテゴリー</option>

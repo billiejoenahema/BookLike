@@ -72355,7 +72355,6 @@ var ReviewIndex = function ReviewIndex() {
     searchBooks.blur(); // 検索ワードに変化がなければ何もしない
 
     if (searchBooks.value === searchWord) return;
-    setSearchWord('');
     setReviews([]);
     setPage(1);
     setHasMore(false);
@@ -72374,7 +72373,9 @@ var ReviewIndex = function ReviewIndex() {
 
     if (modalSearchBooks.value === searchWord) return; // モーダルを閉じる
 
+    searchModal.style.display = 'none';
     searchModal.classList.remove('show');
+    modalMapDrop.style.display = 'none';
     modalMapDrop.classList.remove('show');
     setReviews([]);
     setPage(1);
@@ -72386,7 +72387,8 @@ var ReviewIndex = function ReviewIndex() {
   var changeCategory = function changeCategory(e) {
     var selectedValue = document.getElementById('categorySelector').value;
     var clickedCategory = e.target.dataset.category;
-    var selectedCategory = clickedCategory || selectedValue;
+    var selectedCategory = clickedCategory || selectedValue; // クリックしたカテゴリーが選択中のカテゴリーと同じならなにもしない
+
     if (clickedCategory === selectedValue) return;
     changeSelectBox(selectedCategory);
     setReviews([]);
@@ -72402,7 +72404,7 @@ var ReviewIndex = function ReviewIndex() {
     setReviews([]);
     setPage(1);
     setHasMore(false);
-  }); // 一定量スクロールしたら投稿をさらに読み込み
+  }); // 一定量スクロールしたら投稿をさらに読み込み(無限スクロール)
 
   var body = document.getElementById('body');
 
@@ -72443,7 +72445,7 @@ var ReviewIndex = function ReviewIndex() {
     placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
     "aria-label": "\u66F8\u7C4D\u691C\u7D22",
     autoComplete: "on"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     type: "button",
     id: "modalSearchButton",
     className: "btn search-modal-button search-modal",
@@ -72487,9 +72489,10 @@ var ReviewIndex = function ReviewIndex() {
     "aria-label": "\u66F8\u7C4D\u691C\u7D22",
     autoComplete: "on"
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    id: "search-word-display"
-  }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \"".concat(searchWord, "\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "form-group d-flex justify-content-between mt-2 flex-wrap mb-2"
+    id: "search-word-display",
+    className: "mt-2"
+  }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \" ".concat(searchWord, " \"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group d-flex flex-wrap justify-content-between mt-2 mb-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: changeCategory,
     id: "categorySelector",
@@ -73030,7 +73033,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var FollowerCount = function FollowerCount(props) {
   var followerCount = props.user.followers_count;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30D5\u30A9\u30ED\u30EF\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge-teal badge-pill text-white ml-1 user-select-none"
   }, followerCount));
 };

@@ -6,7 +6,7 @@ const FollowerCount = (props) => {
 
     return (
         <>
-            フォロワー<span className="badge-teal badge-pill text-white ml-1 user-select-none">{followerCount}</span>
+            <span>フォロワー</span><span className="badge-teal badge-pill text-white ml-1 user-select-none">{followerCount}</span>
         </>
     )
 }
