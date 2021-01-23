@@ -78,7 +78,7 @@
                 <div class="col-md-12">
                     <label class="d-inline text-blog font-weight-bold">レビュー</label>
                     <textarea class="form-control
-                        @error('text') is-invalid @enderror" name="text" id="textarea" autocomplete="text" rows="10"
+                        @error('text') is-invalid @enderror" name="text" id="textarea" autocomplete="text" rows="6"
                         onkeyup="checkTextLength()"
                         onfocus="checkTextLength()">{{ old('text') ? : $review->text }}</textarea>
                     @error('text')
