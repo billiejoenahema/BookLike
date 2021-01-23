@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react'
+import favoriteAnimation from '../../functions/favoriteAnimation'
 import isFavorited from '../../functions/isFavorited'
 
 const FavoriteButton = (props) => {
@@ -10,48 +11,39 @@ const FavoriteButton = (props) => {
     const reviewId = props.review.id
 
     const toggleFavorite = useCallback(() => setFavorite((prev) => !prev), [setFavorite])
+    const requestFavorite = useCallback((request) => {
+        return axios.post(`/api/${request}_favorite/${reviewId}`)
+            .then(
+                console.log('success!')
+            )
+            .catch(err => {
+                console.log(err)
+            })
+    })
 
-    const postFavorite = useCallback((e) => {
+    const addFavorite = (e) => {
         const heartClassList = e.target.classList
-        // アニメーションのためのクラス付与
-        heartClassList.replace('text-blogDark', 'text-red')
-        heartClassList.replace('far', 'fas')
-        heartClassList.add('click-heart')
-
+        favoriteAnimation(heartClassList)
         // アニメーションの時間分だけ待ってから実行
         setTimeout(() => {
             toggleFavorite()
             setFavoriteCount(favoriteCount + 1)
         }, 200)
+        requestFavorite('add')
+    }
 
-        return axios.post(`/api/add_favorite/${reviewId}`)
-            .then(
-                console.log('success!')
-            )
-            .catch(err => {
-                console.log(err)
-            })
-    })
-
-    const removeFavorite = useCallback(() => {
+    const removeFavorite = () => {
         toggleFavorite()
         setFavoriteCount(favoriteCount - 1)
-
-        return axios.post(`/api/remove_favorite/${reviewId}`)
-            .then(
-                console.log('success!')
-            )
-            .catch(err => {
-                console.log(err)
-            })
-    })
+        requestFavorite('remove')
+    }
 
     return (
         <>
             {
                 favorite ?
                     <div onClick={removeFavorite} className="p-0 border-0"><i className="fas fa-heart fa-fw text-red"></i></div >
-                    : <div onClick={postFavorite} className="p-0 border-0"><i className="far fa-heart fa-fw text-blogDark"></i></div >
+                    : <div onClick={addFavorite} className="p-0 border-0"><i className="far fa-heart fa-fw text-blogDark"></i></div >
             }
 
             <p className="mb-0 text-secondary">{favoriteCount}</p>
