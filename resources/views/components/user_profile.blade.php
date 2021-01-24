@@ -42,7 +42,7 @@
         <div class="mt-3 mb-3">
             <div class="float-left mr-3 w-25 h-25 text-center">
                 <img src="{{ $book_image }}" class="shadow-sm w-100 h-100" alt="">
-                <a href="{{ $book_url }} " target="_blank" rel="noopener" title="Amazonサイトへ移動"><i
+                <a href="{{ $book_url }} " target="_blank" rel="noopener" title="Amazonサイトへ移動" class="amazon-link"><i
                         class="fab fa-amazon"></i> Amazon</a>
             </div>
             <h5>{{ $book_title }}</h5>

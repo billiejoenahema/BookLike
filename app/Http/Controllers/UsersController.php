@@ -47,7 +47,7 @@ class UsersController extends Controller
 
         // デフォルト値
         $book_image = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com/default_book_image.png';
-        $book_url = '#';
+        $book_url = 'https://amzn.to/3o6eEow';
         $book_title = 'タイトル';
 
         if ($asin) {

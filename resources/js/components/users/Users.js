@@ -44,7 +44,7 @@ const Users = (props) => {
                         </div>
                     </div>
                     <div className="px-3 pt-3 flex-column">
-                        <a href={`/users/${user.id}`} className="text-reset">
+                        <a href={`/users/${user.id}`} className="text-reset internal-link">
                             <div className="flex-column">
                                 <span className="font-weight-bold">好きなジャンル</span>
                                 <p>{omittedText(user.category, 30)}</p>
