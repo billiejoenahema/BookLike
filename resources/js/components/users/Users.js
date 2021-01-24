@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import FollowButton from './FollowButton'
 import FollowerCount from './FollowerCount'
 import TotalFavoritesCount from './TotalFavoritesCount'
@@ -10,21 +10,18 @@ import { STORAGE } from '../../constants'
 const Users = (props) => {
 
     const { users, loginUser } = props
+    const isFollowedClassName = "text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4"
+    const notLoginUser = useCallback(() => (user.id === loginUser) ? false : true)
 
     return (
         <>
             {users.map((user) =>
                 <div className="card mb-3 shadow-sm" key={user.id}>
                     <div className="card-haeder pt-3 px-3 pb-0 d-flex flex-row justify-content-end">
-                        {
-                            isFollowed(loginUser, user) ?
-                                <div className="text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4"><i className="far fa-laugh"></i>フォローされています</div>
-                                : ''
-                        }
+                        {/* フォローされているかどうか */}
+                        {isFollowed(loginUser, user) && <div className={isFollowedClassName}><i className="far fa-laugh"></i>フォローされています</div>}
                         {/* フォローボタン */}
-                        {
-                            user.id !== loginUser.id ? <FollowButton user={user} loginUser={loginUser} /> : ''
-                        }
+                        {notLoginUser && <FollowButton user={user} loginUser={loginUser} />}
                     </div>
                     <div className="mx-3 pt-2 pb-3 d-flex border-bottom">
                         <a href={`/users/${user.id}`}>

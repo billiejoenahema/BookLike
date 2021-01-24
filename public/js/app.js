@@ -72126,14 +72126,14 @@ var FavoriteButton = function FavoriteButton(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, favorite ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: removeFavorite,
-    className: "p-0 border-0"
+    role: "btn"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-heart fa-fw text-red"
+    className: "text-red fas fa-heart fa-fw"
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: addFavorite,
-    className: "p-0 border-0"
+    role: "btn"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "far fa-heart fa-fw text-blogDark"
+    className: "text-blogDark far fa-heart fa-fw"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0 text-secondary"
   }, favoriteCount));
@@ -72939,9 +72939,9 @@ __webpack_require__.r(__webpack_exports__);
 var Spoiler = function Spoiler(props) {
   var isSpoiler = props.spoiler === 1 ? true : false;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, isSpoiler ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "badge badge-pill badge-danger pt-1"
+    className: "badge badge-danger badge-pill pt-1"
   }, "\u30CD\u30BF\u30D0\u30EC\u3042\u308A") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "badge badge-pill badge-info pt-1"
+    className: "badge badge-info badge-pill pt-1"
   }, "\u30CD\u30BF\u30D0\u30EC\u306A\u3057"));
 };
 
@@ -73695,20 +73695,24 @@ __webpack_require__.r(__webpack_exports__);
 var Users = function Users(props) {
   var users = props.users,
       loginUser = props.loginUser;
+  var isFollowedClassName = "text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4";
+  var notLoginUser = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
+    return user.id === loginUser ? false : true;
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, users.map(function (user) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card mb-3 shadow-sm",
       key: user.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-haeder pt-3 px-3 pb-0 d-flex flex-row justify-content-end"
-    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_5__["default"])(loginUser, user) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4"
+    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_5__["default"])(loginUser, user) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: isFollowedClassName
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "far fa-laugh"
-    }), "\u30D5\u30A9\u30ED\u30FC\u3055\u308C\u3066\u3044\u307E\u3059") : '', user.id !== loginUser.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), "\u30D5\u30A9\u30ED\u30FC\u3055\u308C\u3066\u3044\u307E\u3059"), notLoginUser && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
       user: user,
       loginUser: loginUser
-    }) : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mx-3 pt-2 pb-3 d-flex border-bottom"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/users/".concat(user.id)

@@ -6,7 +6,6 @@ const FavoriteButton = (props) => {
 
     const InitialFavorite = isFavorited(props.review, props.loginUser)
     const InitialCount = props.review.favorites.length
-
     const [favorite, setFavorite] = useState(InitialFavorite)
     const [favoriteCount, setFavoriteCount] = useState(InitialCount)
     const reviewId = props.review.id
@@ -42,8 +41,8 @@ const FavoriteButton = (props) => {
         <>
             {
                 favorite ?
-                    <div onClick={removeFavorite} className="p-0 border-0"><i className="fas fa-heart fa-fw text-red"></i></div >
-                    : <div onClick={addFavorite} className="p-0 border-0"><i className="far fa-heart fa-fw text-blogDark"></i></div >
+                    <div onClick={removeFavorite} role="btn"><i className="text-red fas fa-heart fa-fw"></i></div>
+                    : <div onClick={addFavorite} role="btn"><i className="text-blogDark far fa-heart fa-fw"></i></div>
             }
 
             <p className="mb-0 text-secondary">{favoriteCount}</p>
