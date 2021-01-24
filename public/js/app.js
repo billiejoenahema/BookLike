@@ -72040,7 +72040,7 @@ var EditReviewButton = function EditReviewButton(props) {
     className: "btn py-0 pl-0",
     "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-fw fa-edit text-secondary anchor"
+    className: "fas fa-fw fa-edit text-secondary internal-link"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
     effect: "float",
     type: "info",
@@ -72600,6 +72600,15 @@ __webpack_require__.r(__webpack_exports__);
 var Reviews = function Reviews(props) {
   var reviews = props.reviews,
       loginUser = props.loginUser;
+  var currentUrl = window.location.pathname;
+  var internalLinks = document.querySelectorAll('.internal-link'); // ユーザー詳細画面では「カテゴリー」のcssをリセット（押しても何も起きないため）
+
+  if (currentUrl.includes('/users/')) {
+    internalLinks.forEach(function (internalLink) {
+      internalLink.classList.remove('btn', 'text-blog', 'internal-link');
+    });
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, reviews.map(function (review) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card shadow-sm mb-3",
@@ -72654,7 +72663,7 @@ var Reviews = function Reviews(props) {
       className: "shadow-sm"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: review.page_url,
-      className: "d-block pt-1",
+      className: "d-block pt-1 amazon-link",
       target: "_blank",
       rel: "noopener",
       "data-tip": "Amazon\u30B5\u30A4\u30C8\u3078\u79FB\u52D5"
@@ -72671,7 +72680,7 @@ var Reviews = function Reviews(props) {
     }, review.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
       className: "list-unstyled mb-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u8457\u8005\uFF1A"), review.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u51FA\u7248\u793E\uFF1A"), review.manufacturer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "btn p-0 text-blogDark anchor",
+      className: "btn p-0 text-blog internal-link",
       onClick: props.changeCategory,
       "data-category": review.category
     }, review.category)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -72684,7 +72693,7 @@ var Reviews = function Reviews(props) {
       className: "flex-grow-1"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(review.id),
-      className: "align-text-top text-blogDark anchor"
+      className: "align-text-top text-blogDark internal-link"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fas fa-angle-right"
     }), "\u30EC\u30D3\u30E5\u30FC\u3092\u307F\u308B "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -72698,7 +72707,7 @@ var Reviews = function Reviews(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/reviews/".concat(review.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "far fa-comment fa-fw text-blogDark anchor"
+      className: "far fa-comment fa-fw text-blogDark internal-link"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-0 text-secondary"
     }, review.comments_count)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -72867,7 +72876,7 @@ var ShowReview = function ShowReview() {
     className: "d-block shadow-sm"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     href: review.page_url,
-    className: "d-block pt-1",
+    className: "d-block pt-1 amazon-link",
     target: "_blank",
     rel: "noopener",
     "data-tip": "Amazon\u30B5\u30A4\u30C8\u3078\u79FB\u52D5"
@@ -72890,7 +72899,7 @@ var ShowReview = function ShowReview() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u8A55\u4FA1 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Ratings__WEBPACK_IMPORTED_MODULE_6__["default"], {
     ratings: review.ratings
   })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "card-body border-bottom p-3"
+    className: "card-body border-bottom py-3 px-0 mx-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-inline text-blog font-weight-bold"
   }, "\u30EC\u30D3\u30E5\u30FC ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -72904,7 +72913,7 @@ var ShowReview = function ShowReview() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "ml-3 d-flex align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "far fa-comment fa-fw text-blog"
+    className: "far fa-comment fa-fw text-blog internal-link"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "mb-0 text-secondary"
   }, review.comments_count)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -73267,7 +73276,7 @@ var TotalFavoritesCountWrapper = function TotalFavoritesCountWrapper() {
     };
   }();
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, totalFavoritesCount && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_3__["default"], {
     favorites_count: totalFavoritesCount
   }));
 };
@@ -73746,7 +73755,7 @@ var Users = function Users(props) {
       className: "px-3 pt-3 flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "/users/".concat(user.id),
-      className: "text-reset"
+      className: "text-reset internal-link"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {

@@ -78,7 +78,7 @@ const ShowReview = () => {
                                 {/* 書籍イメージ */}
                                 <img src={review.image_url} width="128" className="d-block shadow-sm" />
                                 {/* Amazonリンク */}
-                                <a href={review.page_url} className="d-block pt-1" target="_blank" rel="noopener" data-tip="Amazonサイトへ移動">
+                                <a href={review.page_url} className="d-block pt-1 amazon-link" target="_blank" rel="noopener" data-tip="Amazonサイトへ移動">
                                     <i className="fab fa-amazon"></i> Amazon
                                     <ReactTooltip effect="float" type="info" place="top" />
                                 </a>
@@ -96,7 +96,7 @@ const ShowReview = () => {
                         </div>
                     </div>
                     {/* レビュー */}
-                    <div className="card-body border-bottom p-3">
+                    <div className="card-body border-bottom py-3 px-0 mx-3">
                         <div className="d-inline text-blog font-weight-bold">
                             レビュー <Spoiler spoiler={review.spoiler} />
                         </div>
@@ -107,7 +107,7 @@ const ShowReview = () => {
                         {loginUser.id === review.user.id && <EditReviewButton review={review} />}
                         {/* コメントボタン */}
                         <div className="ml-3 d-flex align-items-center">
-                            <span><i className="far fa-comment fa-fw text-blog"></i></span>
+                            <span><i className="far fa-comment fa-fw text-blog internal-link"></i></span>
                             <p className="mb-0 text-secondary">{review.comments_count}</p>
                         </div>
                         {/* いいねボタン */}

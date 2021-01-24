@@ -1,15 +1,24 @@
-a:hover {
+/* a:hover {
     text-decoration: none;
     color: #f66d9b;
     transition:0.2s all;
-}
-
+} */
 a > img:hover {
     opacity: 0.8;
 }
+/* 内部テキストリンク */
+.internal-link:hover {
+    text-decoration: none !important;
+    color: #5a7598 !important;
+}
+/* Amazonリンク */
+.amazon-link:hover {
+    text-decoration: none;
+    color: #f66d9b !important;
+}
 
-summary:hover {
-    box-shadow: none;
+.navbar-brand:hover {
+    opacity: 0.8;
 }
 
 .dropdown-user-name:hover {
@@ -18,32 +27,31 @@ summary:hover {
     color: #48494b;
 }
 
-.text-link:hover {
-    color: #6c757d !important;
-}
-
-#ratings:hover {
-    cursor: pointer;
-}
-
-.user-counts {
-    position: absolute;
-    top: 70px;
-    font-size: 0.8rem;
-    background: #FFFFE0;
-    padding: 0.7rem 1rem;
-    z-index: 100;
-    border-radius: 5px;
-    opacity: 0.95;
-}
-
 .logout:hover {
     color: #e3342f;
 }
 
-.anchor:hover {
-    color: #f66d9b !important;
+.user-search-form {
+    position: fixed;
+    top: 0.47rem;
+    left: 30%;
+    z-index:1020;
+}
+.search-modal-button {
+    line-height: 1rem;
+}
+.search-button {
+    font-size: 1.2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.search-button:hover {
+    transform:scale(1.2,1.2);
     transition:0.2s all;
+}
+.search-results {
+    height: 80vw;
+    max-height: 500px;
 }
 
 .flash_message {
@@ -78,6 +86,40 @@ summary:hover {
     }
 }
 
+#index-toggle {
+    line-height: 26px;
+    width: 220px;
+    margin-right: auto;
+    user-select: none;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.switch-index {
+    height: 26px;
+    width: 110px;
+}
+.toggle-button:hover {
+    text-decoration: none !important;
+}
+.toggle-button > .switch-index:hover {
+    background: #5a7598 !important;
+}
+
+.user-counts {
+    position: absolute;
+    top: 70px;
+    font-size: 0.8rem;
+    background: #FFFFE0;
+    padding: 0.7rem 1rem;
+    z-index: 100;
+    border-radius: 5px;
+    opacity: 0.95;
+}
+
+#ratings:hover {
+    cursor: pointer;
+}
+
 /* いいねを押した時のアニメーション */
 .click-heart {
     /* color: #e3342f; */
@@ -103,7 +145,6 @@ summary:hover {
         transform: scale(1.0);
     }
 }
-
 .fa-heart:hover {
     cursor: pointer;
 }
@@ -122,33 +163,6 @@ summary:hover {
     z-index: 1000;
 }
 
-.user-search-form {
-    position: fixed;
-    top: 0.47rem;
-    left: 30%;
-    z-index:1020;
-}
-
-.search-modal-button {
-    line-height: 1rem;
-}
-
-.search-button {
-    font-size: 1.2rem;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.search-button:hover {
-    transform:scale(1.2,1.2);
-    transition:0.2s all;
-}
-
-.search-results {
-    height: 80vw;
-    max-height: 500px;
-}
-
 /* My Best Book */
 summary {
     display:inline-block; /*Firefox でデフォルトの summary マーカーを消す。*/
@@ -158,11 +172,13 @@ summary {
 summary::-webkit-details-marker {
     display: none; /*Firefox 以外でデフォルトの summary マーカーを消す。*/
 }
+summary:hover {
+    background: #5a7598 !important;
+}
 
 details summary i {
     transition: .3s;
 }
-
 details[open] summary i{
     transform: rotate(180deg);
 }
@@ -208,6 +224,7 @@ details[open] summary i{
     z-index: 1041;
 }
 .floating-button:hover {
+    background: #5a7598 !important;
     transform: scale(1.1, 1.1);
     transition: 0.2s;
 }
@@ -241,24 +258,6 @@ footer {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
-}
-
-#index-toggle {
-    line-height: 26px;
-    width: 220px;
-    margin-right: auto;
-    user-select: none;
-    overflow: hidden;
-    border-radius: 3px;
-}
-#index-toggle .toggle-button:hover {
-    opacity: 0.8;
-    text-decoration: none;
-}
-
-.switch-index {
-    height: 26px;
-    width: 110px;
 }
 
 /* ワイドスクリーン用スタイル */

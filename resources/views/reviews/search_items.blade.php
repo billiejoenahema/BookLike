@@ -60,8 +60,8 @@
                                 <span>出版社：</span>{{ $search_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}
                             </li>
                             <li class="list-item">
-                                <object><a href={{ $search_item->DetailPageURL }} target="_blank" rel="noopener"><i
-                                            class="fab fa-amazon"></i> Amazon</a></object>
+                                <object><a href={{ $search_item->DetailPageURL }} target="_blank" rel="noopener"
+                                        class="amazon-link"><i class="fab fa-amazon"></i> Amazon</a></object>
                             </li>
                         </ul>
                     </div>

@@ -14,6 +14,15 @@ import { STORAGE } from '../../constants'
 const Reviews = (props) => {
 
     const { reviews, loginUser } = props
+    const currentUrl = window.location.pathname
+    const internalLinks = document.querySelectorAll('.internal-link')
+
+    // ユーザー詳細画面では「カテゴリー」のcssをリセット（押しても何も起きないため）
+    if (currentUrl.includes('/users/')) {
+        internalLinks.forEach(internalLink => {
+            internalLink.classList.remove('btn', 'text-blog', 'internal-link')
+        })
+    }
 
     return (
         <>
@@ -58,7 +67,7 @@ const Reviews = (props) => {
                                 {/* 書籍イメージ */}
                                 <img src={review.image_url} width="104" className="shadow-sm" />
                                 {/* Amazonリンク */}
-                                <a href={review.page_url} className="d-block pt-1" target="_blank" rel="noopener" data-tip="Amazonサイトへ移動">
+                                <a href={review.page_url} className="d-block pt-1 amazon-link" target="_blank" rel="noopener" data-tip="Amazonサイトへ移動">
                                     <i className="fab fa-amazon"></i> Amazon
                                     <ReactTooltip effect="float" type="info" place="top" />
                                 </a>
@@ -69,7 +78,7 @@ const Reviews = (props) => {
                                 <ul className="list-unstyled mb-0">
                                     <li><span>著者：</span>{review.author}</li>
                                     <li><span>出版社：</span>{review.manufacturer}</li>
-                                    <li><span>カテゴリー：</span><span className="btn p-0 text-blogDark anchor" onClick={props.changeCategory} data-category={review.category}>{review.category}</span></li>
+                                    <li><span>カテゴリー：</span><span className="btn p-0 text-blog internal-link" onClick={props.changeCategory} data-category={review.category}>{review.category}</span></li>
                                     <li className="mt-2"><span>評価 </span><Ratings ratings={review.ratings} /></li>
                                 </ul>
                             </div>
@@ -78,7 +87,7 @@ const Reviews = (props) => {
                     <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
                         {/* レビュー詳細 */}
                         <div className="flex-grow-1">
-                            <a href={`/reviews/${review.id}`} className="align-text-top text-blogDark anchor"><i className="fas fa-angle-right"></i>レビューをみる </a><Spoiler spoiler={review.spoiler} />
+                            <a href={`/reviews/${review.id}`} className="align-text-top text-blogDark internal-link"><i className="fas fa-angle-right"></i>レビューをみる </a><Spoiler spoiler={review.spoiler} />
                         </div>
                         {/* 投稿を編集 */}
                         <div className="d-d-flex align-items-center">
@@ -86,7 +95,7 @@ const Reviews = (props) => {
                         </div>
                         {/* コメントボタン */}
                         <div className="ml-sm-3 d-flex align-items-center">
-                            <a href={`/reviews/${review.id}`}><i className="far fa-comment fa-fw text-blogDark anchor"></i></a>
+                            <a href={`/reviews/${review.id}`}><i className="far fa-comment fa-fw text-blogDark internal-link"></i></a>
                             <p className="mb-0 text-secondary">{review.comments_count}</p>
                         </div>
                         {/* いいねボタン */}

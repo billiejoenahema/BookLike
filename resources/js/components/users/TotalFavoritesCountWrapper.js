@@ -29,7 +29,7 @@ const TotalFavoritesCountWrapper = () => {
 
     return (
         <>
-            {totalFavoritesCount && < TotalFavoritesCount favorites_count={totalFavoritesCount} />}
+            < TotalFavoritesCount favorites_count={totalFavoritesCount} />
         </>
     )
 }
