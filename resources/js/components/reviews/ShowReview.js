@@ -10,7 +10,6 @@ import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
 import hoverUserIcon from '../../functions/hoverUserIcon'
 import leaveUserIcon from '../../functions/leaveUserIcon'
-
 import { STORAGE } from '../../constants'
 
 const ShowReview = () => {
