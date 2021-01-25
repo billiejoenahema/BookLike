@@ -72313,7 +72313,6 @@ var ReviewIndex = function ReviewIndex() {
   }, [page, category, searchWord, sort]); // カテゴリー選択時にセレクトボックスを操作する
 
   var changeSelectBox = function changeSelectBox(selectedCategory) {
-    console.log('Change select box!');
     var selectedOption = document.getElementById('categorySelector').options;
 
     var _iterator = _createForOfIteratorHelper(selectedOption),
