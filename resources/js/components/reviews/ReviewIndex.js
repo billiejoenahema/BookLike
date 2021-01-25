@@ -37,7 +37,6 @@ const ReviewIndex = () => {
 
     // カテゴリー選択時にセレクトボックスを操作する
     const changeSelectBox = (selectedCategory) => {
-        console.log('Change select box!')
         const selectedOption = document.getElementById('categorySelector').options
         for (const option of selectedOption) {
             option.selected = false
