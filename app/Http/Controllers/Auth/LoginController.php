@@ -43,6 +43,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    // for guest user
     public function guestUserLogin()
     {
         $email = 'guestuser@example.com';

@@ -138,18 +138,18 @@ class Review extends Model
 
         // すべての投稿を取得
         $allReviews = $this->when($category, function ($query, $category) {
-            return $query->where('category', $category);
-        })
-        ->when($searches, function ($query, $searches) {
-            $criteria = $searches['criteria'];
-            $search = $searches['search'];
-            return $query->where($criteria, 'LIKE', "%$search%");
-        })
-        ->with(['user' => function ($query) {
-            return $query->withCount(['reviews', 'followers', 'favorites']);
-        }])
-        ->with(['comments:id','favorites'])
-        ->withCount(['comments', 'favorites']);
+                        return $query->where('category', $category);
+                    })
+                    ->when($searches, function ($query, $searches) {
+                        $criteria = $searches['criteria'];
+                        $search = $searches['search'];
+                        return $query->where($criteria, 'LIKE', "%$search%");
+                    })
+                    ->with(['user' => function ($query) {
+                        return $query->withCount(['reviews', 'followers', 'favorites']);
+                    }])
+                    ->with(['comments:id','favorites'])
+                    ->withCount(['comments', 'favorites']);
 
         switch ($sort) {
             case 'favorite':
