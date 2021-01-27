@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
-use App\Models\Favorite;
 
 class UsersController extends Controller
 {
@@ -16,7 +15,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request, User $user, Review $review, Favorite $favorite)
+    public function index(Request $request, User $user)
     {
         $sort = $request['sort'];
         $pagination = 6;

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 
 class FollowController extends Controller
 {
-    public function follow(Int $id, User $user)
+    public function follow(Int $id)
     {
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($id);
@@ -20,7 +19,7 @@ class FollowController extends Controller
         return ['status' => 'error'];
     }
 
-    public function unfollow(Int $id, User $user)
+    public function unfollow(Int $id)
     {
         $login_user = auth()->user();
         $is_following = $login_user->isFollowing($id);

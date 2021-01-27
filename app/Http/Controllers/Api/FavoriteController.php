@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Favorite;
 
-
 class FavoriteController extends Controller
 {
     /**
@@ -19,6 +18,7 @@ class FavoriteController extends Controller
     {
         $loginUser = auth()->user();
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
+
         if(!$is_favorite) {
             $favorite->storeFavorite($loginUser->id, $review_id);
             return ['status' => 'success'];
