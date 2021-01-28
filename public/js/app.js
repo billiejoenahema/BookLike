@@ -72352,8 +72352,8 @@ var ReviewIndex = function ReviewIndex() {
     var searchBooks = document.getElementById('searchBooks'); // フォーカスを外す
 
     searchBooks.blur(); // 検索ワードに変化がなければ何もしない
+    // if (searchBooks.value === searchWord) return
 
-    if (searchBooks.value === searchWord) return;
     setReviews([]);
     setPage(1);
     setHasMore(false);
@@ -72363,19 +72363,18 @@ var ReviewIndex = function ReviewIndex() {
 
   var modalSearchSubmit = function modalSearchSubmit(e) {
     e.preventDefault();
+    setSearchWord('');
     var modalSearchBooks = document.getElementById('modalSearchBooks');
-    var modalMapDrop = document.getElementsByClassName('modal-backdrop')[0];
     var searchModal = document.getElementById('searchModal');
+    var modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
     var modalSearchButton = document.getElementById('modalSearchButton'); // フォーカスを外す
 
-    modalSearchButton.blur(); // 検索ワードに変化がなければ何もしない
+    modalSearchButton.blur(); // モーダルを非表示にする
 
-    if (modalSearchBooks.value === searchWord) return; // モーダルを閉じる
-
-    searchModal.style.display = 'none';
+    body.classList.remove('modal-open');
     searchModal.classList.remove('show');
-    modalMapDrop.style.display = 'none';
-    modalMapDrop.classList.remove('show');
+    searchModal.style.display = 'none';
+    modalBackdrop.remove();
     setReviews([]);
     setPage(1);
     setHasMore(false);
@@ -72465,7 +72464,7 @@ var ReviewIndex = function ReviewIndex() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-body"
+    className: "modal-body p-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex flex-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
