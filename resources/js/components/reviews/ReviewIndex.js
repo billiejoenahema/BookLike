@@ -65,7 +65,7 @@ const ReviewIndex = () => {
         // フォーカスを外す
         searchBooks.blur()
         // 検索ワードに変化がなければ何もしない
-        if (searchBooks.value === searchWord) return
+        // if (searchBooks.value === searchWord) return
 
         setReviews([])
         setPage(1)
@@ -76,22 +76,21 @@ const ReviewIndex = () => {
     // 検索ワード入力時の処理（スマホ用）
     const modalSearchSubmit = (e) => {
         e.preventDefault()
+        setSearchWord('')
         const modalSearchBooks = document.getElementById('modalSearchBooks')
-        const modalMapDrop = document.getElementsByClassName('modal-backdrop')[0]
         const searchModal = document.getElementById('searchModal')
+        const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0]
         const modalSearchButton = document.getElementById('modalSearchButton')
 
         // フォーカスを外す
         modalSearchButton.blur()
 
-        // 検索ワードに変化がなければ何もしない
-        if (modalSearchBooks.value === searchWord) return
-
-        // モーダルを閉じる
-        searchModal.style.display = 'none'
+        // モーダルを非表示にする
+        body.classList.remove('modal-open')
         searchModal.classList.remove('show')
-        modalMapDrop.style.display = 'none'
-        modalMapDrop.classList.remove('show')
+        searchModal.style.display = 'none'
+        modalBackdrop.remove()
+
         setReviews([])
         setPage(1)
         setHasMore(false)
@@ -169,7 +168,7 @@ const ReviewIndex = () => {
             <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
-                        <div className="modal-body">
+                        <div className="modal-body p-1">
                             <div className="d-flex flex-row">
                                 <select onChange={selectCriteria} className="text-right bg-transparent border-0 mr-1">
                                     <option value="title">タイトル</option>
