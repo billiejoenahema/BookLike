@@ -65,7 +65,7 @@ const ReviewIndex = () => {
         // フォーカスを外す
         searchBooks.blur()
         // 検索ワードに変化がなければ何もしない
-        // if (searchBooks.value === searchWord) return
+        if (searchBooks.value === searchWord) return
 
         setReviews([])
         setPage(1)
@@ -76,7 +76,6 @@ const ReviewIndex = () => {
     // 検索ワード入力時の処理（スマホ用）
     const modalSearchSubmit = (e) => {
         e.preventDefault()
-        setSearchWord('')
         const modalSearchBooks = document.getElementById('modalSearchBooks')
         const searchModal = document.getElementById('searchModal')
         const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0]
@@ -91,9 +90,14 @@ const ReviewIndex = () => {
         searchModal.style.display = 'none'
         modalBackdrop.remove()
 
+        // 検索ワードに変化がなければ処理を終了する
+        if (modalSearchBooks.value === searchWord) {
+            return
+        }
+
         setReviews([])
         setPage(1)
-        setHasMore(false)
+        setHasMore(true)
         setSearchWord(modalSearchBooks.value)
     }
 
