@@ -72352,8 +72352,8 @@ var ReviewIndex = function ReviewIndex() {
     var searchBooks = document.getElementById('searchBooks'); // フォーカスを外す
 
     searchBooks.blur(); // 検索ワードに変化がなければ何もしない
-    // if (searchBooks.value === searchWord) return
 
+    if (searchBooks.value === searchWord) return;
     setReviews([]);
     setPage(1);
     setHasMore(false);
@@ -72363,7 +72363,6 @@ var ReviewIndex = function ReviewIndex() {
 
   var modalSearchSubmit = function modalSearchSubmit(e) {
     e.preventDefault();
-    setSearchWord('');
     var modalSearchBooks = document.getElementById('modalSearchBooks');
     var searchModal = document.getElementById('searchModal');
     var modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
@@ -72374,10 +72373,15 @@ var ReviewIndex = function ReviewIndex() {
     body.classList.remove('modal-open');
     searchModal.classList.remove('show');
     searchModal.style.display = 'none';
-    modalBackdrop.remove();
+    modalBackdrop.remove(); // 検索ワードに変化がなければ処理を終了する
+
+    if (modalSearchBooks.value === searchWord) {
+      return;
+    }
+
     setReviews([]);
     setPage(1);
-    setHasMore(false);
+    setHasMore(true);
     setSearchWord(modalSearchBooks.value);
   }; // セレクトボックスを操作またはアンカーテキストをクリックしたときの処理
 
