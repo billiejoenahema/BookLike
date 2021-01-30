@@ -14,6 +14,7 @@ const UserIndex = () => {
     const [loading, setLoading] = useState(false)
     const [value, setValue] = useState('')
     const [searchWord] = useDebounce(value, 500)
+    const [textLength, setTextLength] = useState(100)
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -31,6 +32,12 @@ const UserIndex = () => {
             setAllUsers(prev => [...prev, ...newUsers])
             setLoading(false)
         }
+
+        // スマホのときは表示する文字数を減らす
+        if (window.matchMedia('(max-device-width: 640px)').matches) {
+            setTextLength(30)
+        }
+
         loadUsers()
     }, [page, sort])
 
@@ -73,7 +80,6 @@ const UserIndex = () => {
             setPage(prev => prev + 1)
             setHasMore(false)
         }
-        return
     }, [userList])
 
     return (
@@ -99,7 +105,7 @@ const UserIndex = () => {
                 </div>
             </div>
             <div id="usersComponent">
-                <Users users={userList} loginUser={loginUser} loading={loading} />
+                <Users users={userList} loginUser={loginUser} textLength={textLength} />
             </div>
 
             {/* Loading Spinner */}

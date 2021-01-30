@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import FollowButton from './FollowButton'
 import FollowerCount from './FollowerCount'
 import TotalFavoritesCount from './TotalFavoritesCount'
@@ -9,13 +9,13 @@ import { STORAGE } from '../../constants'
 
 const Users = (props) => {
 
-    const { users, loginUser } = props
+    const { users, loginUser, textLength } = props
     const isFollowedClassName = "text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4"
     const notLoginUser = useCallback(() => (user.id === loginUser) ? false : true)
 
     return (
         <>
-            {users.map((user) =>
+            {textLength && (users.map((user) =>
                 <div className="card mb-3 shadow-sm" key={user.id}>
                     <div className="card-haeder pt-3 px-3 pb-0 d-flex flex-row justify-content-end">
                         {/* フォローされているかどうか */}
@@ -47,16 +47,16 @@ const Users = (props) => {
                         <a href={`/users/${user.id}`} className="text-reset internal-link">
                             <div className="flex-column">
                                 <span className="font-weight-bold">好きなジャンル</span>
-                                <p>{omittedText(user.category, 30)}</p>
+                                <p>{user.category}</p>
                             </div>
                             <div className="flex-column">
                                 <span className="font-weight-bold">自己紹介</span>
-                                <p>{omittedText(user.description, 30)}</p>
+                                <p>{omittedText(user.description, textLength)}</p>
                             </div>
                         </a>
                     </div>
                 </div>
-            )
+            ))
             }
         </>
     )
