@@ -71,7 +71,7 @@ class SearchItems {
 
         // json形式からオブジェクトへ変換
         $results = json_decode($response);
-        if (array_key_exists('Errors', $results)) {
+        if (property_exists($results, 'Errors')) {
             return null;
         }
         $items = $results->SearchResult->Items;
