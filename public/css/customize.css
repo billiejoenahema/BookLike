@@ -7,8 +7,8 @@ a > img:hover {
 }
 /* 内部テキストリンク */
 .internal-link:hover {
-    text-decoration: none !important;
     color: #5a7598 !important;
+    text-decoration: none !important;
 }
 /* Amazonリンク */
 .amazon-link:hover {
@@ -36,16 +36,14 @@ a > img:hover {
     left: 30%;
     z-index:1020;
 }
-.search-modal-button {
-    line-height: 1rem;
-}
+
 .search-button {
     font-size: 1.2rem;
     padding-top: 0;
     padding-bottom: 0;
 }
 .search-button:hover {
-    transform:scale(1.2,1.2);
+    transform:scale(1.1,1.1);
     transition:0.2s all;
 }
 .search-results {
@@ -159,10 +157,12 @@ a > img:hover {
     cursor: pointer;
     color: #e3342f !important;
     text-shadow: 0px 0px 16px rgba(227, 52, 47, 1);
+    transition: 0.2s;
 }
 
 .fa-comment:hover {
     text-shadow: 0px 0px 16px rgba(112, 146, 190, 1);
+    transition: 0.2s;
 }
 
 #profile-edit-button {
@@ -290,17 +290,16 @@ footer {
         display: none;
     }
 
-    .search-modal {
+    #searchModal {
         position: fixed;
         top:3.2rem;
     }
 
     .search-modal-button {
-        font-size: 0.8rem;
         position: fixed;
-        top: 0.47rem;
+        top: 1rem;
         left: 30%;
-        z-index:1020;
+        z-index:1050;
         display: block;
     }
 
