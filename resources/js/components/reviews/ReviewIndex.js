@@ -164,7 +164,7 @@ const ReviewIndex = () => {
             </div>
 
             {/* スマホ用検索ボタン */}
-            <div type="button" id="modalSearchButton" className="btn search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
+            <div type="button" id="modalSearchButton" className="search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
                 <i className="fas fa-search text-teal"></i>
             </div>
 
