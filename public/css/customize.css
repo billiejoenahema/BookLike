@@ -112,6 +112,10 @@ a > img:hover {
     background: #5a7598 !important;
 }
 
+.back_button {
+    -webkit-appearance: none;
+}
+
 .user-counts {
     position: absolute;
     top: 70px;
@@ -301,6 +305,7 @@ footer {
         left: 30%;
         z-index:1050;
         display: block;
+        -webkit-appearance: none;
     }
 
     .search-modal-button > i {
