@@ -1,3 +1,3 @@
-<div type="button" onclick="history.back()" class="d-inline my-2 text-blog">
+<div type="button" onclick="history.back()" class="d-inline my-2 text-blog back_button">
     <i class="fas fa-chevron-left"></i> 戻る
 </div>
