@@ -72450,7 +72450,7 @@ var ReviewIndex = function ReviewIndex() {
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     type: "button",
     id: "modalSearchButton",
-    className: "search-modal-button search-modal",
+    className: "search-modal-button search-modal bg-transparent",
     "data-toggle": "modal",
     "data-target": "#searchModal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
