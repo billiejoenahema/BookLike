@@ -73,7 +73,8 @@
                             <option value="ライトノベル">ライトノベル</option>
                             <option value="その他">その他</option>
                         </select>
-                        <span class="d-block d-sm-inline pl-1 text-danger" id="categoryAlert">カテゴリーを選択してください</span>
+                        <span class="d-block d-sm-inline pl-1 text-danger user-select-none"
+                            id="categoryAlert">カテゴリーを選択してください</span>
                     </div>
                     {{-- レビュー投稿 --}}
                     <div class="col-12 p-0">
