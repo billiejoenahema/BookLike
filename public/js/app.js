@@ -72037,11 +72037,11 @@ var EditReviewButton = function EditReviewButton(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/reviews/".concat(reviewId, "/edit"),
     role: "button",
-    className: "btn py-0 pl-0",
+    className: "text-secondary internal-link py-0 pl-0 pr-2",
     "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-fw fa-edit text-secondary internal-link"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "fas fa-fw fa-edit"
+  }), " \u7DE8\u96C6", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
     effect: "float",
     type: "info",
     place: "top"

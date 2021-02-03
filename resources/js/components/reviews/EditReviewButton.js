@@ -7,8 +7,8 @@ const EditReviewButton = (props) => {
 
     return (
         <>
-            <a href={`/reviews/${reviewId}/edit`} role="button" className="btn py-0 pl-0" data-tip="投稿を編集">
-                <i className="fas fa-fw fa-edit text-secondary internal-link"></i><ReactTooltip effect="float" type="info" place="top" />
+            <a href={`/reviews/${reviewId}/edit`} role="button" className="text-secondary internal-link py-0 pl-0 pr-2" data-tip="投稿を編集">
+                <i className="fas fa-fw fa-edit"></i> 編集<ReactTooltip effect="float" type="info" place="top" />
             </a>
         </>
     )
