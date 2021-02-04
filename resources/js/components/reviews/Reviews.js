@@ -95,7 +95,7 @@ const Reviews = (props) => {
                         </div>
                         {/* コメントボタン */}
                         <div className="ml-sm-3 d-flex align-items-center">
-                            <a href={`/reviews/${review.id}`}><i className="far fa-comment fa-fw text-blogDark internal-link"></i></a>
+                            <a href={`/reviews/${review.id}`}><i className="far fa-comment fa-fw text-blogDark"></i></a>
                             <p className="mb-0 text-secondary">{review.comments_count}</p>
                         </div>
                         {/* いいねボタン */}

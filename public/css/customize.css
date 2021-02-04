@@ -165,8 +165,13 @@ a > img:hover {
 }
 
 .fa-comment:hover {
-    text-shadow: 0px 0px 16px rgba(112, 146, 190, 1);
+    color: #3490dc !important;
+    text-shadow: 0px 0px 16px rgba(52, 144, 220, 1);
     transition: 0.2s;
+}
+
+.edit:hover {
+    color: #4dc0b5 !important;
 }
 
 #profile-edit-button {
