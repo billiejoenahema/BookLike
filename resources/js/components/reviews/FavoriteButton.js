@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
-import favoriteAnimation from '../../functions/favoriteAnimation'
-import isFavorited from '../../functions/isFavorited'
+import { favoriteAnimation } from '../../functions/favoriteAnimation'
+import { isFavorited } from '../../functions/isFavorited'
 
 const FavoriteButton = (props) => {
 

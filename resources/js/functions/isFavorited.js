@@ -1,4 +1,4 @@
-export default function isFavorited(review, loginUser) {
+export const isFavorited = (review, loginUser) => {
     'use strict'
     // 対象の投稿にログインユーザーがいいねしているかどうかを判定
     const favoritesArray = Array.from(review.favorites)

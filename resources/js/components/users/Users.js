@@ -3,8 +3,8 @@ import FollowButton from './FollowButton'
 import FollowerCount from './FollowerCount'
 import TotalFavoritesCount from './TotalFavoritesCount'
 import ReviewsCount from './ReviewsCount'
-import isFollowed from '../../functions/isFollowed'
-import omittedText from '../../functions/omittedText'
+import { isFollowed } from '../../functions/isFollowed'
+import { omittedText } from '../../functions/omittedText'
 import { STORAGE } from '../../constants'
 
 const Users = (props) => {

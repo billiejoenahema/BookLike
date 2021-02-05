@@ -1,4 +1,4 @@
-export default function leaveUserIcon(e) {
+export const leaveUserIcon = (e) => {
     const id = e.target.dataset.id
     const userCountsDiv = document.getElementsByClassName(`review-${id}`)[0]
     // ユーザーアイコンからマウスポインターが外れたら非表示にする

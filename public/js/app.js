@@ -72028,21 +72028,18 @@ function Loading() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/index.es.js");
-
 
 
 var EditReviewButton = function EditReviewButton(props) {
   var reviewId = props.review.id;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/reviews/".concat(reviewId, "/edit"),
-    role: "button",
-    className: "text-secondary py-0 pl-0 pr-2"
+    className: "edit text-secondary pr-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "edit"
+    className: "edit-text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-fw fa-edit"
-  }), " \u7DE8\u96C6")));
+  }), "\u7DE8\u96C6")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (EditReviewButton);
@@ -72079,7 +72076,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var FavoriteButton = function FavoriteButton(props) {
-  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["default"])(props.review, props.loginUser);
+  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["isFavorited"])(props.review, props.loginUser);
   var InitialCount = props.review.favorites.length;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFavorite),
@@ -72106,7 +72103,7 @@ var FavoriteButton = function FavoriteButton(props) {
 
   var addFavorite = function addFavorite(e) {
     var heartClassList = e.target.classList;
-    Object(_functions_favoriteAnimation__WEBPACK_IMPORTED_MODULE_1__["default"])(heartClassList); // アニメーションの時間分だけ待ってから実行
+    Object(_functions_favoriteAnimation__WEBPACK_IMPORTED_MODULE_1__["favoriteAnimation"])(heartClassList); // アニメーションの時間分だけ待ってから実行
 
     setTimeout(function () {
       toggleFavorite();
@@ -72638,8 +72635,8 @@ var Reviews = function Reviews(props) {
       width: "48",
       height: "48",
       "data-id": review.id,
-      onMouseEnter: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_9__["default"],
-      onMouseLeave: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_10__["default"]
+      onMouseEnter: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_9__["hoverUserIcon"],
+      onMouseLeave: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_10__["leaveUserIcon"]
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-2 d-flex flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -72851,8 +72848,8 @@ var ShowReview = function ShowReview() {
     width: "48",
     height: "48",
     "data-id": review.id,
-    onMouseEnter: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__["default"],
-    onMouseLeave: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__["default"]
+    onMouseEnter: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__["hoverUserIcon"],
+    onMouseLeave: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__["leaveUserIcon"]
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "ml-2 d-flex flex-column"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
@@ -72985,7 +72982,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var FollowButton = function FollowButton(props) {
-  var InitialFollowState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__["default"])(props.user, props.loginUser);
+  var InitialFollowState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__["isFollowed"])(props.user, props.loginUser);
   var userId = props.user.id;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFollowState),
@@ -73734,7 +73731,7 @@ var Users = function Users(props) {
       key: user.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-haeder pt-3 px-3 pb-0 d-flex flex-row justify-content-end"
-    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_5__["default"])(loginUser, user) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_5__["isFollowed"])(loginUser, user) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: isFollowedClassName
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "far fa-laugh"
@@ -73784,7 +73781,7 @@ var Users = function Users(props) {
       className: "flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "font-weight-bold"
-    }, "\u81EA\u5DF1\u7D39\u4ECB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_6__["default"])(user.description, textLength))))));
+    }, "\u81EA\u5DF1\u7D39\u4ECB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_6__["omittedText"])(user.description, textLength))))));
   }));
 };
 
@@ -73810,17 +73807,18 @@ var STORAGE = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com';
 /*!*****************************************************!*\
   !*** ./resources/js/functions/favoriteAnimation.js ***!
   \*****************************************************/
-/*! exports provided: default */
+/*! exports provided: favoriteAnimation */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (function (heartClassList) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "favoriteAnimation", function() { return favoriteAnimation; });
+var favoriteAnimation = function favoriteAnimation(heartClassList) {
   // アニメーションのためのクラス付与
   heartClassList.replace('text-blogDark', 'text-red');
   heartClassList.replace('far', 'fas');
   heartClassList.add('click-heart');
-});
+};
 
 /***/ }),
 
@@ -73828,18 +73826,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/functions/hoverUserIcon.js ***!
   \*************************************************/
-/*! exports provided: default */
+/*! exports provided: hoverUserIcon */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return hoverUserIcon; });
-function hoverUserIcon(e) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hoverUserIcon", function() { return hoverUserIcon; });
+var hoverUserIcon = function hoverUserIcon(e) {
   var id = e.target.dataset.id;
   var userCountsDiv = document.getElementsByClassName("review-".concat(id))[0]; // ユーザーアイコンにマウスポインターが乗ったら表示する
 
   userCountsDiv.classList.remove('d-none');
-}
+};
 
 /***/ }),
 
@@ -73847,13 +73845,13 @@ function hoverUserIcon(e) {
 /*!***********************************************!*\
   !*** ./resources/js/functions/isFavorited.js ***!
   \***********************************************/
-/*! exports provided: default */
+/*! exports provided: isFavorited */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFavorited; });
-function isFavorited(review, loginUser) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isFavorited", function() { return isFavorited; });
+var isFavorited = function isFavorited(review, loginUser) {
   'use strict'; // 対象の投稿にログインユーザーがいいねしているかどうかを判定
 
   var favoritesArray = Array.from(review.favorites);
@@ -73861,7 +73859,7 @@ function isFavorited(review, loginUser) {
     return v.user_id;
   });
   return userIds.includes(loginUser.id);
-}
+};
 
 /***/ }),
 
@@ -73869,13 +73867,13 @@ function isFavorited(review, loginUser) {
 /*!**********************************************!*\
   !*** ./resources/js/functions/isFollowed.js ***!
   \**********************************************/
-/*! exports provided: default */
+/*! exports provided: isFollowed */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isFollowed; });
-function isFollowed(user, loginUser) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isFollowed", function() { return isFollowed; });
+var isFollowed = function isFollowed(user, loginUser) {
   'use strict'; // 対象のユーザーをログインユーザーがフォローしているかどうかを判定
 
   var followedArray = Array.from(user.followers);
@@ -73883,7 +73881,7 @@ function isFollowed(user, loginUser) {
     return v.id;
   });
   return userIds.includes(loginUser.id);
-}
+};
 
 /***/ }),
 
@@ -73891,18 +73889,18 @@ function isFollowed(user, loginUser) {
 /*!*************************************************!*\
   !*** ./resources/js/functions/leaveUserIcon.js ***!
   \*************************************************/
-/*! exports provided: default */
+/*! exports provided: leaveUserIcon */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return leaveUserIcon; });
-function leaveUserIcon(e) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveUserIcon", function() { return leaveUserIcon; });
+var leaveUserIcon = function leaveUserIcon(e) {
   var id = e.target.dataset.id;
   var userCountsDiv = document.getElementsByClassName("review-".concat(id))[0]; // ユーザーアイコンからマウスポインターが外れたら非表示にする
 
   userCountsDiv.classList.add('d-none');
-}
+};
 
 /***/ }),
 
@@ -73910,13 +73908,13 @@ function leaveUserIcon(e) {
 /*!***********************************************!*\
   !*** ./resources/js/functions/omittedText.js ***!
   \***********************************************/
-/*! exports provided: default */
+/*! exports provided: omittedText */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return omittedText; });
-function omittedText(description, _int) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "omittedText", function() { return omittedText; });
+var omittedText = function omittedText(description, _int) {
   'use strict'; // 文字数を制限して自己紹介文を表示
 
   if (description.length > _int) {
@@ -73924,7 +73922,7 @@ function omittedText(description, _int) {
   }
 
   return description;
-}
+};
 
 /***/ }),
 
