@@ -72037,17 +72037,12 @@ var EditReviewButton = function EditReviewButton(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/reviews/".concat(reviewId, "/edit"),
     role: "button",
-    className: "text-secondary py-0 pl-0 pr-2",
-    "data-tip": "\u6295\u7A3F\u3092\u7DE8\u96C6"
+    className: "text-secondary py-0 pl-0 pr-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "edit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-fw fa-edit"
-  }), " \u7DE8\u96C6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    effect: "float",
-    type: "info",
-    place: "top"
-  })));
+  }), " \u7DE8\u96C6")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (EditReviewButton);
