@@ -62,21 +62,24 @@ a > img:hover {
 }
 
 .flash_message {
-    margin: auto;
+    position: fixed;
+    top: 4.1rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
     text-align: center;
+    font-size: 1rem;
+    z-index: 1010;
     background: white;
-    padding: 0.2rem;
-    border-radius: 10px;
     opacity: 0.8;
 }
 
 /* フラッシュメッセージを一定時間後にフェードアウト */
 .fadeout {
-    opacity: 0.8;
     animation-name: fadeout-keyframes;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-fill-mode: forwards;
-    animation-delay: 3s;
+    animation-delay: 4s;
 }
 @keyframes fadeout-keyframes {
     0% {
@@ -89,7 +92,7 @@ a > img:hover {
         opacity: 0;
         height: 0;
         position: relative;
-        top: -100px;
+        top: -200px;
     }
 }
 
