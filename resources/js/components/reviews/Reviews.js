@@ -67,7 +67,7 @@ const Reviews = (props) => {
                                 {/* 書籍イメージ */}
                                 <img src={review.image_url} width="104" className="shadow-sm" />
                                 {/* Amazonリンク */}
-                                <a href={review.page_url} className="d-block pt-1 amazon-link" target="_blank" rel="noopener" data-tip="Amazonサイトへ移動">
+                                <a href={review.page_url} className="d-block pt-1 amazon-link" target="_blank" rel="noopener" data-tip="Amazonサイトへ移動します">
                                     <i className="fab fa-amazon"></i> Amazon
                                     <ReactTooltip effect="float" type="info" place="top" />
                                 </a>
