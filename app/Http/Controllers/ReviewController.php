@@ -84,7 +84,7 @@ class ReviewController extends Controller
     {
         $login_user = auth()->user();
         $review->reviewStore($login_user->id, $request);
-        session()->flash('flash_message', '投稿しました');
+        session()->flash('flash_message', 'レビューを投稿しました');
         return redirect('reviews');
     }
 

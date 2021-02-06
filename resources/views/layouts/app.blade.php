@@ -88,10 +88,10 @@
         </nav>
         <main class="pt-2 main-min-height mb-5">
             <div class="container px-0">
-                <div class="col-md-10 col-lg-8 mb-3 m-auto p-2">
+                <div class="col-md-10 col-lg-8 mb-3 m-auto px-2">
                     {{-- Flash Message --}}
                     @if (session('flash_message'))
-                    <div class="flash_message col-10 col-sm-8 col-md-6" id="flashMessage">
+                    <div class="flash_message text-iron" id="flashMessage">
                         {{ session('flash_message') }}
                     </div>
                     @endif
