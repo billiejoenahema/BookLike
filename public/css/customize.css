@@ -171,6 +171,9 @@ a > img:hover {
 }
 
 .edit:hover {
+    text-decoration: none;
+}
+.edit-text:hover {
     color: #4dc0b5 !important;
 }
 
