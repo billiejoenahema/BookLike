@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import FollowButton from './FollowButton'
 import FollowerCount from './FollowerCount'
 import TotalFavoritesCount from './TotalFavoritesCount'
