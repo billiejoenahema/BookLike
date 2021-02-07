@@ -7,10 +7,6 @@ const FollowButton = (props) => {
     const userId = props.user.id
     const [following, setFollowing] = useState(InitialFollowState)
 
-    const toggleFollow = useCallback(
-        () => setFollowing((prev) => !prev), [setFollowing]
-    )
-
     const requestFollow = useCallback((request) => {
         return axios.post(`/api/${request}/${userId}`)
             .then(
@@ -18,8 +14,14 @@ const FollowButton = (props) => {
             )
             .catch(err => {
                 console.log(err)
+                // リクエストに失敗した時はボタンのUIを元に戻す
+                toggleFollow()
             })
     })
+
+    const toggleFollow = useCallback(
+        () => setFollowing((prev) => !prev), [setFollowing]
+    )
 
     const addFollow = () => {
         toggleFollow()
