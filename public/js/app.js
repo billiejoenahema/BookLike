@@ -72489,7 +72489,7 @@ var ReviewIndex = function ReviewIndex() {
     id: "search-word-display",
     className: "mt-2"
   }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \" ".concat(searchWord, " \"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "form-group d-flex flex-wrap justify-content-between mt-2 mb-0"
+    className: "form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: changeCategory,
     id: "categorySelector",
