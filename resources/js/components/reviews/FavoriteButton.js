@@ -18,6 +18,7 @@ const FavoriteButton = (props) => {
             )
             .catch(err => {
                 console.log(err)
+                toggleFavorite()
             })
     })
 
