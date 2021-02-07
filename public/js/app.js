@@ -72662,7 +72662,7 @@ var Reviews = function Reviews(props) {
       className: "d-block pt-1 amazon-link",
       target: "_blank",
       rel: "noopener",
-      "data-tip": "Amazon\u30B5\u30A4\u30C8\u3078\u79FB\u52D5"
+      "data-tip": "Amazon\u30B5\u30A4\u30C8\u3078\u79FB\u52D5\u3057\u307E\u3059"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fab fa-amazon"
     }), " Amazon", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_tooltip__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -72990,16 +72990,18 @@ var FollowButton = function FollowButton(props) {
       following = _useState2[0],
       setFollowing = _useState2[1];
 
+  var requestFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (request) {
+    return axios.post("/api/".concat(request, "/").concat(userId)).then(console.log('success!'))["catch"](function (err) {
+      console.log(err); // リクエストに失敗した時はボタンのUIを元に戻す
+
+      toggleFollow();
+    });
+  });
   var toggleFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return setFollowing(function (prev) {
       return !prev;
     });
   }, [setFollowing]);
-  var requestFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (request) {
-    return axios.post("/api/".concat(request, "/").concat(userId)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
-    });
-  });
 
   var addFollow = function addFollow() {
     toggleFollow();
@@ -73182,7 +73184,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var TotalFavoritesCount = function TotalFavoritesCount(props) {
   var totalFavoritesCount = props.favorites_count;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u3044\u3044\u306D\u7372\u5F97\u6570", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u3044\u3044\u306D\u7372\u5F97\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge-pink badge-pill text-white ml-1 user-select-none"
   }, totalFavoritesCount));
 };
