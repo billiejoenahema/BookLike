@@ -18,6 +18,7 @@ const FavoriteButton = (props) => {
             )
             .catch(err => {
                 console.log(err)
+                // リクエストに失敗した時はボタンのUIを元に戻す
                 toggleFavorite()
             })
     })

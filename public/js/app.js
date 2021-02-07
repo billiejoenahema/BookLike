@@ -72097,7 +72097,8 @@ var FavoriteButton = function FavoriteButton(props) {
   }, [setFavorite]);
   var requestFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (request) {
     return axios.post("/api/".concat(request, "_favorite/").concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err);
+      console.log(err); // リクエストに失敗した時はボタンのUIを元に戻す
+
       toggleFavorite();
     });
   });
