@@ -72529,7 +72529,7 @@ var ReviewIndex = function ReviewIndex() {
     className: "d-flex flex-row p-0 mt-1 mt-sm-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "selectSort",
-    className: "text-right py-1 mr-1"
+    className: "text-right py-1 mr-1 mb-0"
   }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: sortChange,
     className: "form-control-sm",
@@ -73485,12 +73485,12 @@ var UserIndex = function UserIndex() {
     required: true,
     autoComplete: "on"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "form-group d-flex justify-content-end"
+    className: "form-group d-flex justify-content-end pt-2 sort-changer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex flex-row col-8 p-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "selectSort",
-    className: "w-100 text-right py-1 mr-1"
+    className: "w-100 text-right py-1 mr-1 mb-0"
   }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     onChange: sortChange,
     className: "form-control-sm",
