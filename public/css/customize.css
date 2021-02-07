@@ -220,12 +220,12 @@ details[open] summary i{
     padding: 0.2rem 0;
 }
 
-.category-selector {
+.category-selector, .sort-changer {
     position: sticky;
     top: 3.2rem;
     z-index: 1000;
     background: #f8fafc;
-    box-shadow: 0 -0.25rem 0 0.25rem rgba(248, 250, 252, 1)
+    box-shadow: 0 0 0 0.25rem rgba(248, 250, 252, 1)
 }
 
 .follow-btn, .unfollow-btn {
