@@ -200,7 +200,7 @@ const ReviewIndex = () => {
                 {searchWord && `検索ワード: \" ${searchWord}\ "`}
             </div>
 
-            <div className="form-group d-flex flex-wrap justify-content-between mt-2 mb-0">
+            <div className="form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector">
                 {/* カテゴリー選択 */}
                 <select onChange={changeCategory} id="categorySelector" className="form-control-sm mt-1 mt-sm-0" placeholder="カテゴリーで絞り込み">
                     <option value="default">すべてのカテゴリー</option>
