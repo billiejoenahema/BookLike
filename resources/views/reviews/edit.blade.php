@@ -79,8 +79,7 @@
                     <label class="d-inline text-blog font-weight-bold">レビュー</label>
                     <textarea class="form-control
                         @error('text') is-invalid @enderror" name="text" id="textarea" autocomplete="text" rows="6"
-                        onkeyup="checkTextLength()"
-                        onfocus="checkTextLength()">{{ old('text') ? : $review->text }}</textarea>
+                        onkeyup="checkTextLength()">{{ old('text') ? : $review->text }}</textarea>
                     @error('text')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ '800文字まで投稿可能です' }}</strong>
