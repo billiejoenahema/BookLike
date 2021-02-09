@@ -4,7 +4,7 @@ function categorySelectValidate() {
     const selectedCategory = document.getElementById('categorySelector').value
     const reviewPost = document.getElementById('reviewPost')
 
-    // カテゴリーを選択せずに投稿ボタンを押すとアラートを出す
+    // カテゴリーを選択せずに投稿ボタンを押せてしまったときはアラートを出す
     selectedCategory === 'default' ? window.alert('カテゴリーを選択してください') : reviewPost.submit()
 }
 
@@ -15,7 +15,7 @@ function changeCategory() {
     const selectedValue = document.getElementById('categorySelector').value
     const postButton = document.getElementById('postButton')
 
-    // カテゴリー未選択だとボタンを無効化
+    // カテゴリー未選択ならメッセージ表示＆投稿するボタン無効化
     if (selectedValue === 'default') {
         categoryAlert.classList.remove('text-white')
         categoryAlert.classList.add('text-danger')
@@ -23,7 +23,7 @@ function changeCategory() {
         postButton.disabled = true
         return
     }
-    // カテゴリーを選択していればボタンを有効化
+    // カテゴリーを選択していればメッセージを非表示＆投稿するボタン有効化
     categoryAlert.classList.remove('text-danger')
     categoryAlert.classList.add('text-white')
     postButton.classList.remove('disabled')
@@ -127,7 +127,7 @@ function deleteCheck() {
     deleteButton.disabled = true
 }
 
-// フラッシュメッセージのフェイドアウトアニメーション
+// フラッシュメッセージにフェイドアウトアニメーション付与
 const flashMessage = document.getElementById('flashMessage')
 flashMessage && flashMessage.classList.add('fadeout')
 
@@ -185,7 +185,7 @@ function showRatings(initialRatings) {
     })
 }
 
-// スマホ用フッターメニューの現在のページのアイコンに色をつける
+// スマホ用フッターメニューの現在ページのアイコンをハイライト
 function currentPageHighlight() {
     'use strict'
     const path = window.location.pathname

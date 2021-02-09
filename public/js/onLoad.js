@@ -12,7 +12,7 @@ function showRatings(initialRatings) {
     })
 }
 
-// スマホ用フッターメニューの現在のページのアイコンに色をつける
+// スマホ用フッターメニューの現在ページのアイコンをハイライト
 function currentPageHighlight() {
     'use strict'
     const path = window.location.pathname
