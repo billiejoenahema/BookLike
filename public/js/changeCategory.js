@@ -5,7 +5,7 @@ function changeCategory() {
     const selectedValue = document.getElementById('categorySelector').value
     const postButton = document.getElementById('postButton')
 
-    // カテゴリー未選択だとボタンを無効化
+    // カテゴリー未選択ならメッセージ表示＆投稿するボタン無効化
     if (selectedValue === 'default') {
         categoryAlert.classList.remove('text-white')
         categoryAlert.classList.add('text-danger')
@@ -13,7 +13,7 @@ function changeCategory() {
         postButton.disabled = true
         return
     }
-    // カテゴリーを選択していればボタンを有効化
+    // カテゴリーを選択していればメッセージを非表示＆投稿するボタン有効化
     categoryAlert.classList.remove('text-danger')
     categoryAlert.classList.add('text-white')
     postButton.classList.remove('disabled')
