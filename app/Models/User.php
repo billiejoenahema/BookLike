@@ -152,6 +152,7 @@ class User extends Authenticatable
                 'email'         => $request->email,
             ]);
         } else {
+            // 画像ファイルが選択されていない場合の処理
             $this::where('id', $this->id)->update(
             [
                 'screen_name'   => $request->screen_name,
