@@ -44,7 +44,7 @@ class UsersController extends Controller
         $loginUserId = auth()->user()->id;
         $loginUser = $user->with('followers')->find($loginUserId);
 
-        // 投稿一覧
+        // 自分の投稿一覧
         $userReviews = $review->getUserReviews($user->id);
         // いいねした投稿一覧
         $favoriteReviews = $review->getFavoriteReviews($user->id);
