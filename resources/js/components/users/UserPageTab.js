@@ -15,7 +15,7 @@ const UserPageTab = () => {
     const [followingUsers, setFollowingUsers] = useState([])
     const [followedUsers, setFollowedUsers] = useState([])
     const [loading, setLoading] = useState(true)
-    const [textLength, setTextLength] = useState(100)
+    const [maxTextLength, setTextLength] = useState(100)
 
     const currentPath = window.location.pathname
     const userId = currentPath.replace(/[^0-9]/g, '')
@@ -73,14 +73,14 @@ const UserPageTab = () => {
                 <TabPanel>
                     {
                         followingUsers.length !== 0 ?
-                            <Users users={followingUsers} loginUser={loginUser} textLength={textLength} />
+                            <Users users={followingUsers} loginUser={loginUser} maxTextLength={maxTextLength} />
                             : <div className="pb-5 my-5">フォロー中のユーザーはまだいません</div>
                     }
                 </TabPanel>
                 <TabPanel>
                     {
                         followedUsers.length !== 0 ?
-                            <Users users={followedUsers} loginUser={loginUser} textLength={textLength} />
+                            <Users users={followedUsers} loginUser={loginUser} maxTextLength={maxTextLength} />
                             : <div className="pb-5 my-5">フォロワーはまだいません</div>
                     }
                 </TabPanel>
