@@ -9,13 +9,13 @@ import { STORAGE } from '../../constants'
 
 const Users = (props) => {
 
-    const { users, loginUser, textLength } = props
+    const { users, loginUser, maxTextLength } = props
     const isFollowedClassName = "text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4"
     const notLoginUser = useCallback(() => (user.id === loginUser) ? false : true)
 
     return (
         <>
-            {textLength && (users.map((user) =>
+            {maxTextLength && (users.map((user) =>
                 <div className="card mb-3 shadow-sm" key={user.id}>
                     <div className="card-haeder pt-3 px-3 pb-0 d-flex flex-row justify-content-end">
                         {/* フォローされているかどうか */}
@@ -51,7 +51,7 @@ const Users = (props) => {
                             </div>
                             <div className="flex-column">
                                 <span className="font-weight-bold">自己紹介</span>
-                                <p>{omittedText(user.description, textLength)}</p>
+                                <p>{omittedText(user.description, maxTextLength)}</p>
                             </div>
                         </a>
                     </div>

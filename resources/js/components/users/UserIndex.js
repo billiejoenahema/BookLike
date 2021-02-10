@@ -14,7 +14,7 @@ const UserIndex = () => {
     const [loading, setLoading] = useState(false)
     const [value, setValue] = useState('')
     const [searchWord] = useDebounce(value, 500)
-    const [textLength, setTextLength] = useState(100)
+    const [maxTextLength, setTextLength] = useState(100)
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -105,7 +105,7 @@ const UserIndex = () => {
                 </div>
             </div>
             <div id="usersComponent">
-                <Users users={userList} loginUser={loginUser} textLength={textLength} />
+                <Users users={userList} loginUser={loginUser} maxTextLength={maxTextLength} />
             </div>
 
             {/* Loading Spinner */}

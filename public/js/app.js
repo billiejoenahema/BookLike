@@ -73381,7 +73381,7 @@ var UserIndex = function UserIndex() {
 
   var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(100),
       _useState16 = _slicedToArray(_useState15, 2),
-      textLength = _useState16[0],
+      maxTextLength = _useState16[0],
       setTextLength = _useState16[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
@@ -73509,7 +73509,7 @@ var UserIndex = function UserIndex() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_4__["default"], {
     users: userList,
     loginUser: loginUser,
-    textLength: textLength
+    maxTextLength: maxTextLength
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
   }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], null), !loading && userList.length === 0 && 'ユーザーは見つかりませんでした'));
@@ -73606,7 +73606,7 @@ var UserPageTab = function UserPageTab() {
 
   var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(100),
       _useState14 = _slicedToArray(_useState13, 2),
-      textLength = _useState14[0],
+      maxTextLength = _useState14[0],
       setTextLength = _useState14[1];
 
   var currentPath = window.location.pathname;
@@ -73672,13 +73672,13 @@ var UserPageTab = function UserPageTab() {
   }, "\u3044\u3044\u306D\u3057\u305F\u6295\u7A3F\u306F\u307E\u3060\u3042\u308A\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, followingUsers.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
     users: followingUsers,
     loginUser: loginUser,
-    textLength: textLength
+    maxTextLength: maxTextLength
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D\u306E\u30E6\u30FC\u30B6\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, followedUsers.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
     users: followedUsers,
     loginUser: loginUser,
-    textLength: textLength
+    maxTextLength: maxTextLength
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "pb-5 my-5"
   }, "\u30D5\u30A9\u30ED\u30EF\u30FC\u306F\u307E\u3060\u3044\u307E\u305B\u3093")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -73724,12 +73724,12 @@ __webpack_require__.r(__webpack_exports__);
 var Users = function Users(props) {
   var users = props.users,
       loginUser = props.loginUser,
-      textLength = props.textLength;
+      maxTextLength = props.maxTextLength;
   var isFollowedClassName = "text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4";
   var notLoginUser = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return user.id === loginUser ? false : true;
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, textLength && users.map(function (user) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, maxTextLength && users.map(function (user) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card mb-3 shadow-sm",
       key: user.id
@@ -73785,7 +73785,7 @@ var Users = function Users(props) {
       className: "flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "font-weight-bold"
-    }, "\u81EA\u5DF1\u7D39\u4ECB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_6__["omittedText"])(user.description, textLength))))));
+    }, "\u81EA\u5DF1\u7D39\u4ECB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_6__["omittedText"])(user.description, maxTextLength))))));
   }));
 };
 
