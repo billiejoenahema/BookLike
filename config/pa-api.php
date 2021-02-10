@@ -1,5 +1,5 @@
 <?php
-
+// Amazon Product Advertising API
 return [
 
     /*
