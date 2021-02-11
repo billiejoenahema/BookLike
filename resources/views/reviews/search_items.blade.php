@@ -43,7 +43,7 @@
             <div class="overflow-auto search-results">
                 <!-- 検索結果をforeachでまわす -->
                 @foreach ($search_items as $search_item)
-                <div class="card flex-row p-2 mb-2 search-item btn text-left shadow-sm" onClick="selectItem(this)"
+                <div class="card flex-row p-2 mb-2 search-item text-left shadow-sm pointer" onClick="selectItem(this)"
                     id="{{ $search_item->ASIN }}">
                     <div>
                         <img class="align-items-start"
