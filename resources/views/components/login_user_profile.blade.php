@@ -34,7 +34,7 @@
         </div>
     </div>
     <details class="card mx-3 mb-3 pt-0 border-0">
-        <summary class="btn text-left shadow-none user-select-none text-white font-weight-bold bg-blog shadow-sm"><i
+        <summary class="text-left user-select-none text-white font-weight-bold bg-blog shadow-sm"><i
                 class="fas fa-fx fa-lg fa-angle-down mr-1 align-middle"></i>
             My Best Book
         </summary>
