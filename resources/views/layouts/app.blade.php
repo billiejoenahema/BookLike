@@ -86,7 +86,7 @@
                 </ul>
             </div>
         </nav>
-        <main class="pt-2 main-min-height mb-5">
+        <main class="pt-2 main-min-height mb-3">
             <div class="container px-0">
                 <div class="col-md-10 col-lg-8 mb-3 m-auto px-2">
                     {{-- Flash Message --}}
