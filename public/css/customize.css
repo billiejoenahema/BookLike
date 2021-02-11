@@ -57,10 +57,6 @@ a > img:hover {
     transform:scale(1.1,1.1);
     transition:0.2s all;
 }
-.search-results {
-    height: 80vw;
-    max-height: 500px;
-}
 
 .search-form {
     position: fixed;
@@ -70,6 +66,12 @@ a > img:hover {
 }
 .search-modal {
     display: none;
+}
+
+/* api/reviews/search_items */
+.search-results {
+    height: 80vw;
+    max-height: 500px;
 }
 
 .flash_message {
@@ -345,6 +347,13 @@ footer {
     .search-modal-button > i {
         font-size: 1.4rem;
     }
+
+    /* api/reviews/search_items */
+    .search-results {
+        height: 90vw;
+        max-height: 800px;
+    }
+
 
     .react-tabs > ul > li {
         padding-left: 0.5rem;

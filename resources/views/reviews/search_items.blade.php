@@ -48,15 +48,15 @@
                     <div>
                         <img class="align-items-start"
                             src="{{ $search_item->Images->Primary->Large->URL ?? asset('images/NoImage.png') }}"
-                            width="80">
+                            width="64">
                     </div>
                     <div class="d-flex flex-column pl-2">
-                        <h5>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h5>
+                        <h6>{{ $search_item->ItemInfo->Title->DisplayValue ?? '' }}</h6>
                         <ul class="list-unstyled">
-                            <li class="list-item">
+                            <li class="list-item small">
                                 <span>著者：</span>{{ $search_item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? '' }}
                             </li>
-                            <li class="list-item">
+                            <li class="list-item small">
                                 <span>出版社：</span>{{ $search_item->ItemInfo->ByLineInfo->Manufacturer->DisplayValue ?? '' }}
                             </li>
                             <li class="list-item">
