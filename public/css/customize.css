@@ -16,6 +16,13 @@ a > img:hover {
     color: #f66d9b !important;
 }
 
+.btn:focus {
+    outline: unset;
+}
+.btn:active {
+    transform: scale(0.96);
+}
+
 .navbar-brand:hover {
     opacity: 0.8;
 }
@@ -198,13 +205,17 @@ a > img:hover {
 summary {
     display:inline-block; /*Firefox でデフォルトの summary マーカーを消す。*/
     cursor:pointer;
-    padding:10px;
+    padding:8px;
+    border-radius: 3px;
 }
 summary::-webkit-details-marker {
     display: none; /*Firefox 以外でデフォルトの summary マーカーを消す。*/
 }
 summary:hover {
     background: #5a7598 !important;
+}
+summary:focus {
+outline: unset;
 }
 
 details summary i {
