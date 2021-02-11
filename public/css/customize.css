@@ -23,6 +23,10 @@ a > img:hover {
     transform: scale(0.96);
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .navbar-brand:hover {
     opacity: 0.8;
 }
