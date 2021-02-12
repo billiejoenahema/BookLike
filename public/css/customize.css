@@ -180,7 +180,7 @@ a > img:hover {
     transition: 0.2s;
 }
 
-.fa-comment:hover {
+.comment-button:hover {
     color: #3490dc !important;
     text-shadow: 0px 0px 16px rgba(52, 144, 220, 1);
     transition: 0.2s;
