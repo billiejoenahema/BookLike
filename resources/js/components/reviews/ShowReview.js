@@ -107,7 +107,7 @@ const ShowReview = () => {
                         {loginUser.id === review.user.id && <EditReviewButton review={review} />}
                         {/* コメントボタン */}
                         <div className="ml-3 d-flex align-items-center">
-                            <span><i className="far fa-comment fa-fw text-blog internal-link"></i></span>
+                            <span><i className="far fa-comment fa-fw text-blog"></i></span>
                             <p className="mb-0 text-secondary">{review.comments_count}</p>
                         </div>
                         {/* いいねボタン */}
