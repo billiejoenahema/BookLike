@@ -104,6 +104,7 @@
         @include('layouts.footer')
         @include('layouts.new_post_modal')
     </div>
+    <div id="fadeLayer"></div>
 </body>
 
 </html>

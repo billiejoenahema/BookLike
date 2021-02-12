@@ -72267,6 +72267,7 @@ var ReviewIndex = function ReviewIndex() {
       searchWord = _useState18[0],
       setSearchWord = _useState18[1];
 
+  var fadeLayer = document.getElementById('fadeLayer');
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadReviews = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72402,7 +72403,16 @@ var ReviewIndex = function ReviewIndex() {
     setReviews([]);
     setPage(1);
     setHasMore(false);
-  }); // 一定量スクロールしたら投稿をさらに読み込み(無限スクロール)
+  });
+
+  var showOverlay = function showOverlay() {
+    fadeLayer.style.visibility = 'visible';
+  };
+
+  var hideOverlay = function hideOverlay() {
+    fadeLayer.style.visibility = 'hidden';
+  }; // 一定量スクロールしたら投稿をさらに読み込み(無限スクロール)
+
 
   var body = document.getElementById('body');
 
@@ -72436,6 +72446,8 @@ var ReviewIndex = function ReviewIndex() {
   }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
     onSubmit: searchSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    onFocus: showOverlay,
+    onBlur: hideOverlay,
     className: "form-control rounded-pill pr-0",
     id: "searchBooks",
     type: "search",
@@ -72485,7 +72497,7 @@ var ReviewIndex = function ReviewIndex() {
     name: "search",
     placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
     "aria-label": "\u66F8\u7C4D\u691C\u7D22",
-    autoComplete: "on"
+    autoComplete: "off"
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "search-word-display",
     className: "mt-2"

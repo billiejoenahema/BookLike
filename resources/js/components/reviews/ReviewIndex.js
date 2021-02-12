@@ -14,6 +14,7 @@ const ReviewIndex = () => {
     const [hasMore, setHasMore] = useState(false)
     const [loading, setLoading] = useState(false)
     const [searchWord, setSearchWord] = useState('')
+    const fadeLayer = document.getElementById('fadeLayer')
 
     useEffect(() => {
         const loadReviews = async () => {
@@ -126,6 +127,13 @@ const ReviewIndex = () => {
         setHasMore(false)
     })
 
+    const showOverlay = () => {
+        fadeLayer.style.visibility = 'visible';
+    }
+    const hideOverlay = () => {
+        fadeLayer.style.visibility = 'hidden'
+    }
+
     // 一定量スクロールしたら投稿をさらに読み込み(無限スクロール)
     const body = document.getElementById('body')
     body.onscroll = () => {
@@ -151,6 +159,8 @@ const ReviewIndex = () => {
                     </select>
                     <form onSubmit={searchSubmit}>
                         <input
+                            onFocus={showOverlay}
+                            onBlur={hideOverlay}
                             className="form-control rounded-pill pr-0"
                             id="searchBooks"
                             type="search"
@@ -187,7 +197,7 @@ const ReviewIndex = () => {
                                         name="search"
                                         placeholder="タイトルで検索..."
                                         aria-label="書籍検索"
-                                        autoComplete="on"
+                                        autoComplete="off"
                                     />
                                 </form>
                             </div>
