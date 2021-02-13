@@ -84,7 +84,7 @@ a > img:hover {
     font-size: 1rem;
     z-index: 1010;
     background: white;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 /* フラッシュメッセージを一定時間後にフェードアウト */
