@@ -167,7 +167,7 @@ const ReviewIndex = () => {
                             name="search"
                             placeholder="タイトルで検索..."
                             aria-label="書籍検索"
-                            autoComplete="on"
+                            autoComplete="off"
                         />
                     </form>
                 </div>
