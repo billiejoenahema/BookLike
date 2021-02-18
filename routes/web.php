@@ -1,7 +1,8 @@
 <?php
 
 // 認証機能
-Auth::routes();
+// Auth::routes();
+Auth::routes(['verify' => true]);
 
 // ログイン＆ログアウト時のリダイレクト
 Route::get('/', 'RootController');
@@ -10,7 +11,7 @@ Route::get('/', 'RootController');
 Route::get('guest', 'Auth\LoginController@guestUserLogin')->name('login.guest');
 
 // ログイン中のルーティング
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth','verified']], function() {
 
     // ユーザ関連
     Route::resource('users', 'UsersController', ['only'
