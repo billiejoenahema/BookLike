@@ -37,7 +37,7 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <ul class="navbar-nav text-blog">
-                    @guest
+                    @if(!Auth::check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
                     </li>
@@ -46,6 +46,14 @@
                         <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
                     </li>
                     @endif
+                    @elseif(Auth::user() && !Auth::user()->hasVerifiedEmail())
+                    <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        ログアウト
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                     @else
                     {{-- New Post Button --}}
                     <li class="nav-item d-flex align-items-center"><a href="#" class="text-darkGreen"

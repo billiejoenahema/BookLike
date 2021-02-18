@@ -11,7 +11,7 @@
 </footer>
 
 {{-- スマホ用のフッターメニュー --}}
-@auth
+@if((Auth::check()) && Auth::user()->hasVerifiedEmail())
 <div id="footer-menu" class="d-flex flex-row justify-content-between text-reset text-center bg-bodyColor">
     <a href="{{ url('reviews') }}" id="reviewsIcon" class="text-blog footerMenuItem"><i
             class="fas fa-book-open"></i><br /><span>Reviews</span></a>
