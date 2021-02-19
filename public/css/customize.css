@@ -31,6 +31,10 @@ a > img:hover {
     opacity: 0.8;
 }
 
+.dropdown:hover > .dropdown-menu{
+    display: block;
+  }
+
 .dropdown-user-name:hover {
     background: white;
     cursor: default;
