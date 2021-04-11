@@ -11,22 +11,22 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.react("resources/js/app.js", "public/js")
-    .sass("resources/sass/app.scss", "public/css")
+mix.ts("resources/js/app.ts", "public/js")
+  .sass("resources/sass/app.scss", "public/css")
 
 mix.scripts([
-    'public/js/bookDescription.js',
-    'public/js/categorySelectValidate.js',
-    'public/js/changeCategory.js',
-    'public/js/changeStars.js',
-    'public/js/checkInputLoginForm.js',
-    'public/js/checkTextLength.js',
-    'public/js/deleteCheck.js',
-    'public/js/flashMessageFadeout.js',
-    'public/js/footerMenuShowHide.js',
-    'public/js/formatDate.js',
-    'public/js/onLoad.js',
-    'public/js/scrollTop.js',
-    'public/js/selectItem.js',
-    'public/js/showEditProfileButton.js'
+  'public/js/bookDescription.js',
+  'public/js/categorySelectValidate.js',
+  'public/js/changeCategory.js',
+  'public/js/changeStars.js',
+  'public/js/checkInputLoginForm.js',
+  'public/js/checkTextLength.js',
+  'public/js/deleteCheck.js',
+  'public/js/flashMessageFadeout.js',
+  'public/js/footerMenuShowHide.js',
+  'public/js/formatDate.js',
+  'public/js/onLoad.js',
+  'public/js/scrollTop.js',
+  'public/js/selectItem.js',
+  'public/js/showEditProfileButton.js'
 ], 'public/js/all.js')
