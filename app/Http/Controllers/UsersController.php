@@ -21,11 +21,11 @@ class UsersController extends Controller
     public function index(User $user)
     {
         $login_user = auth()->user();
-        $storage = Storage::disk('s3');
+        // $storage = Storage::disk('s3');
 
         return view('users.index', compact(
             'login_user',
-            'storage'
+            // 'storage'
         ));
     }
 
