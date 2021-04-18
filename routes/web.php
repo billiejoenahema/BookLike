@@ -27,8 +27,8 @@ Route::group(['middleware' => ['auth','verified']], function() {
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
 
     // 利用規約
-    Route::get('terms', 'TermsController');
+    Route::view('/terms', 'terms');
 
     // プライバシーポリシー
-    Route::get('privacy', 'PrivacyController');
+    Route::view('/privacy', 'privacy');
 });
