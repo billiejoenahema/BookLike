@@ -6,10 +6,8 @@ use App\Http\Requests\StoreReview;
 use App\Http\Requests\UpdateReview;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Review;
 use App\Models\Comment;
-use App\Models\Follower;
 use App\Models\GetItem;
 
 class ReviewController extends Controller
@@ -19,15 +17,9 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Review $reviews, Follower $follower)
+    public function index()
     {
-        $login_user = auth()->user();
-        $storage = Storage::disk('s3');
-
-        return view('reviews.index', compact(
-            'login_user',
-            'storage'
-        ));
+        return view('reviews.index');
     }
 
     /**
@@ -43,10 +35,6 @@ class ReviewController extends Controller
     // Post review text form
     public function post(Request $request, GetItem $get_item, Review $review)
     {
-        $login_user = auth()->user();
-        $user_id = $login_user->id;
-        $storage = Storage::disk('s3');
-
         $asin = $request->asin;
         $item = $get_item->getItem($asin);
         $page_url = $item->DetailPageURL ?? NULL;
@@ -56,15 +44,13 @@ class ReviewController extends Controller
         $image_url = $item->Images->Primary->Large->URL ?? NULL;
 
         // 選択した書籍と同じ書籍が投稿済みかどうかをチェック
-        $isPosted = $review->isPosted($asin, $user_id);
+        $isPosted = $review->isPosted($asin, auth()->user()->id);
         // 投稿済みならエラーメッセージを表示
         if($isPosted) {
             return back()->with('error', 'この本はすでに投稿済みです');
         }
 
         return view('reviews.post', compact(
-            'login_user',
-            'storage',
             'asin',
             'page_url',
             'title',
@@ -82,8 +68,7 @@ class ReviewController extends Controller
      */
     public function store(StoreReview $request, Review $review)
     {
-        $login_user = auth()->user();
-        $review->reviewStore($login_user->id, $request);
+        $review->reviewStore(auth()->user()->id, $request);
         session()->flash('flash_message', 'レビューを投稿しました');
         return redirect('reviews');
     }
@@ -96,16 +81,12 @@ class ReviewController extends Controller
      */
     public function show(Review $review, Comment $comment)
     {
-        $login_user = auth()->user();
         $review = $review->getReview($review->id);
         $comments = $comment->getComments($review->id);
-        $storage = Storage::disk('s3');
 
         return view('reviews.show', compact(
             'review',
             'comments',
-            'login_user',
-            'storage'
         ));
     }
 
@@ -117,12 +98,7 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        $login_user = auth()->user();
-        $storage = Storage::disk('s3');
-
         return view('reviews.edit', compact(
-            'login_user',
-            'storage',
             'review'
         ));
     }

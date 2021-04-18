@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\GetItem;
@@ -18,15 +17,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(User $user)
+    public function index()
     {
-        $login_user = auth()->user();
-        // $storage = Storage::disk('s3');
-
-        return view('users.index', compact(
-            'login_user',
-            // 'storage'
-        ));
+        return view('users.index');
     }
 
     /**
@@ -37,8 +30,6 @@ class UsersController extends Controller
      */
     public function show(User $user, GetItem $get_item)
     {
-        $login_user = auth()->user();
-        $storage = Storage::disk('s3');
         $created_at = new DateTime($user->created_at);
         $updated_at = new DateTime($user->updated_at);
         $create_date = $created_at->format('Y/m/d');
@@ -59,13 +50,11 @@ class UsersController extends Controller
 
         return view('users.show', compact(
             'user',
-            'login_user',
             'create_date',
             'update_date',
             'book_image',
             'book_url',
             'book_title',
-            'storage'
         ));
         }
 
@@ -77,8 +66,6 @@ class UsersController extends Controller
          */
         public function edit(User $user, Review $review, GetItem $get_item)
         {
-            $login_user = auth()->user();
-            $storage = Storage::disk('s3');
             $userReviews = $review->getUserReviews($user->id);
             $selected_book_title = '未設定';
             if($user->asin) {
@@ -87,8 +74,6 @@ class UsersController extends Controller
             }
 
         return view('users.edit', compact(
-            'login_user',
-            'storage',
             'userReviews',
             'selected_book_title',
         ));
