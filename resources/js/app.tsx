@@ -12,9 +12,9 @@ require('./bootstrap')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/reviews/ReviewIndex')
-require('./components/reviews/ShowReview')
-require('./components/users/UserPageTab')
-require('./components/users/UserIndex')
-require('./components/users/FollowButtonWrapper')
-require('./components/users/TotalFavoritesCountWrapper')
+require('./components/reviews/ReviewIndex.tsx')
+require('./components/reviews/ShowReview.tsx')
+require('./components/users/UserPageTab.tsx')
+require('./components/users/UserIndex.tsx')
+require('./components/users/FollowButtonWrapper.tsx')
+require('./components/users/TotalFavoritesCountWrapper.tsx')
