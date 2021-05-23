@@ -4,6 +4,7 @@ import Reviews from './Reviews'
 import Loading from '../Loading'
 import CategoryList from './CategoryList'
 import SortChange from './SortChange'
+import { changeSelectBox } from '/resources/js/functions/changeSelectBox'
 
 const ReviewIndex = React.memo(() => {
 
@@ -37,17 +38,6 @@ const ReviewIndex = React.memo(() => {
     }
     loadReviews()
   }, [page, category, searchWord, sort])
-
-  // カテゴリー選択時にセレクトボックスを操作する
-  const changeSelectBox = (selectedCategory) => {
-    const selectedOption = document.getElementById('categorySelector').options
-    for (const option of selectedOption) {
-      option.selected = false
-      if (option.value === selectedCategory) {
-        option.selected = true
-      }
-    }
-  }
 
   // 検索条件を選択
   const selectCriteria = (e) => {
