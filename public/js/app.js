@@ -72254,9 +72254,7 @@ __webpack_require__.r(__webpack_exports__);
 var CategoryList = function CategoryList(_ref) {
   var changeCategory = _ref.changeCategory,
       sortChange = _ref.sortChange;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     onChange: changeCategory,
     id: "categorySelector",
     className: "form-control-sm mt-1 mt-sm-0",
@@ -72291,22 +72289,7 @@ var CategoryList = function CategoryList(_ref) {
     value: "\u30E9\u30A4\u30C8\u30CE\u30D9\u30EB"
   }, "\u30E9\u30A4\u30C8\u30CE\u30D9\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "\u305D\u306E\u4ED6"
-  }, "\u305D\u306E\u4ED6")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "d-flex flex-row p-0 mt-1 mt-sm-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "selectSort",
-    className: "text-right py-1 mr-1 mb-0"
-  }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    onChange: sortChange,
-    className: "form-control-sm",
-    id: "selectSort"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "default"
-  }, "\u65B0\u7740\u9806"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "favorite"
-  }, "\u3044\u3044\u306D\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "ratings"
-  }, "\u8A55\u4FA1\u9806"))));
+  }, "\u305D\u306E\u4ED6"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CategoryList);
@@ -72485,6 +72468,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/reviews/Reviews.js");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 /* harmony import */ var _CategoryList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CategoryList */ "./resources/js/components/reviews/CategoryList.js");
+/* harmony import */ var _SortChange__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SortChange */ "./resources/js/components/reviews/SortChange.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 
@@ -72519,7 +72503,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var ReviewIndex = function ReviewIndex() {
+var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo(function () {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
       _useState2 = _slicedToArray(_useState, 2),
       loginUser = _useState2[0],
@@ -72681,7 +72665,7 @@ var ReviewIndex = function ReviewIndex() {
   }; // セレクトボックスを操作またはアンカーテキストをクリックしたときの処理
 
 
-  var changeCategory = function changeCategory(e) {
+  var changeCategory = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(function (e) {
     var selectedValue = document.getElementById('categorySelector').value;
     var clickedCategory = e.target.dataset.category;
     var selectedCategory = clickedCategory || selectedValue; // クリックしたカテゴリーが選択中のカテゴリーと同じならなにもしない
@@ -72692,8 +72676,7 @@ var ReviewIndex = function ReviewIndex() {
     setCategory(selectedCategory);
     setPage(1);
     setHasMore(false);
-  }; // 一覧の並び替え
-
+  }); // 一覧の並び替え
 
   var sortChange = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(function () {
     var selectedSort = document.getElementById('selectSort').value;
@@ -72799,10 +72782,13 @@ var ReviewIndex = function ReviewIndex() {
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "search-word-display",
     className: "mt-2"
-  }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \" ".concat(searchWord, " \"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_CategoryList__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    changeCategory: changeCategory,
+  }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \" ".concat(searchWord, " \"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_CategoryList__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    changeCategory: changeCategory
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SortChange__WEBPACK_IMPORTED_MODULE_6__["default"], {
     sortChange: sortChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "reviewsComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Reviews__WEBPACK_IMPORTED_MODULE_3__["default"], {
     reviews: reviews,
@@ -72811,8 +72797,7 @@ var ReviewIndex = function ReviewIndex() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
   }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null), !loading && reviews.length === 0 && '該当する投稿は見つかりませんでした'));
-};
-
+});
 /* harmony default export */ __webpack_exports__["default"] = (ReviewIndex);
 
 if (document.getElementById('reviewIndex')) {
@@ -73188,6 +73173,43 @@ var ShowReview = function ShowReview() {
 if (document.getElementById('showReview')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ShowReview, null), document.getElementById('showReview'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/reviews/SortChange.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/reviews/SortChange.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var SortChange = function SortChange(_ref) {
+  var sortChange = _ref.sortChange;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex flex-row p-0 mt-1 mt-sm-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "selectSort",
+    className: "text-right py-1 mr-1 mb-0"
+  }, "\u4E26\u3073\u66FF\u3048"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    onChange: sortChange,
+    className: "form-control-sm",
+    id: "selectSort"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "default"
+  }, "\u65B0\u7740\u9806"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "favorite"
+  }, "\u3044\u3044\u306D\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "ratings"
+  }, "\u8A55\u4FA1\u9806")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SortChange);
 
 /***/ }),
 

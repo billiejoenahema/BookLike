@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom'
 import Reviews from './Reviews'
 import Loading from '../Loading'
 import CategoryList from './CategoryList'
+import SortChange from './SortChange'
 
-const ReviewIndex = () => {
+const ReviewIndex = React.memo(() => {
 
   const [loginUser, setLoginUser] = useState()
   const [reviews, setReviews] = useState([])
@@ -104,7 +105,7 @@ const ReviewIndex = () => {
   }
 
   // セレクトボックスを操作またはアンカーテキストをクリックしたときの処理
-  const changeCategory = (e) => {
+  const changeCategory = useCallback((e) => {
     const selectedValue = document.getElementById('categorySelector').value
     const clickedCategory = e.target.dataset.category
     const selectedCategory = clickedCategory || selectedValue
@@ -117,7 +118,7 @@ const ReviewIndex = () => {
     setCategory(selectedCategory)
     setPage(1)
     setHasMore(false)
-  }
+  })
 
   // 一覧の並び替え
   const sortChange = useCallback(() => {
@@ -211,7 +212,12 @@ const ReviewIndex = () => {
         {searchWord && `検索ワード: \" ${searchWord}\ "`}
       </div>
 
-      <CategoryList changeCategory={changeCategory} sortChange={sortChange} />
+      {/* カテゴリー選択とレビュー一覧の並び替え */}
+      <div className="form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector">
+        <CategoryList changeCategory={changeCategory} />
+        <SortChange sortChange={sortChange} />
+      </div>
+
 
       {/* 投稿一覧 */}
       <div id="reviewsComponent">
@@ -225,7 +231,7 @@ const ReviewIndex = () => {
       </div>
     </>
   )
-}
+})
 
 export default ReviewIndex
 
