@@ -17,13 +17,13 @@ const ReviewIndex = React.memo(() => {
   const [hasMore, setHasMore] = useState(false)
   const [loading, setLoading] = useState(false)
   const [searchWord, setSearchWord] = useState('')
-  const fadeLayer = document.getElementById('fadeLayer')
+  const URL = `/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`
 
   useEffect(() => {
     const loadReviews = async () => {
       setLoading(true)
       const newReviews = await axios
-        .get(`/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`)
+        .get(URL)
         .then(res => {
           setLoginUser(res.data.loginUser)
           page < res.data.reviews.last_page && setHasMore(true)
@@ -119,8 +119,9 @@ const ReviewIndex = React.memo(() => {
     setHasMore(false)
   })
 
+  const fadeLayer = document.getElementById('fadeLayer')
   const showOverlay = () => {
-    fadeLayer.style.visibility = 'visible';
+    fadeLayer.style.visibility = 'visible'
   }
   const hideOverlay = () => {
     fadeLayer.style.visibility = 'hidden'
@@ -171,6 +172,7 @@ const ReviewIndex = React.memo(() => {
       </div>
 
       {/* スマホ用検索モーダル */}
+      {/* モーダルをコンポーネント化する */}
       <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
@@ -198,6 +200,7 @@ const ReviewIndex = React.memo(() => {
         </div>
       </div>
 
+      {/* 検索ワードの表示 */}
       <div id="search-word-display" className="mt-2">
         {searchWord && `検索ワード: \" ${searchWord}\ "`}
       </div>
@@ -205,9 +208,8 @@ const ReviewIndex = React.memo(() => {
       {/* カテゴリー選択とレビュー一覧の並び替え */}
       <div className="form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector">
         <CategoryList changeCategory={changeCategory} />
-        <SortChange sortChange={sortChange} />
+        <SortChange sortChange={sortChange} setSort={setSort} />
       </div>
-
 
       {/* 投稿一覧 */}
       <div id="reviewsComponent">
@@ -228,5 +230,3 @@ export default ReviewIndex
 if (document.getElementById('reviewIndex')) {
   ReactDOM.render(<ReviewIndex />, document.getElementById('reviewIndex'))
 }
-
-

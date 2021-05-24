@@ -72549,7 +72549,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
       searchWord = _useState18[0],
       setSearchWord = _useState18[1];
 
-  var fadeLayer = document.getElementById('fadeLayer');
+  var URL = "/api/reviews?criteria=".concat(criteria, "&search=").concat(searchWord, "&category=").concat(category, "&sort=").concat(sort, "&page=").concat(page);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadReviews = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -72560,7 +72560,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/reviews?criteria=".concat(criteria, "&search=").concat(searchWord, "&category=").concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
+                return axios.get(URL).then(function (res) {
                   setLoginUser(res.data.loginUser);
                   page < res.data.reviews.last_page && setHasMore(true);
                   return res.data.reviews.data;
@@ -72662,6 +72662,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     setPage(1);
     setHasMore(false);
   });
+  var fadeLayer = document.getElementById('fadeLayer');
 
   var showOverlay = function showOverlay() {
     fadeLayer.style.visibility = 'visible';
@@ -72764,7 +72765,8 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_CategoryList__WEBPACK_IMPORTED_MODULE_5__["default"], {
     changeCategory: changeCategory
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SortChange__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    sortChange: sortChange
+    sortChange: sortChange,
+    setSort: setSort
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "reviewsComponent"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Reviews__WEBPACK_IMPORTED_MODULE_3__["default"], {
