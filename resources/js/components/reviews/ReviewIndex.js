@@ -47,7 +47,6 @@ const ReviewIndex = React.memo(() => {
     const searchBooks = document.getElementById('searchBooks') || document.getElementById('modalSearchBooks')
     const selectedIndex = e.target.selectedIndex
     const selectedCriteria = e.target.options[selectedIndex].label
-    searchBooks.value = ''
     searchBooks.placeholder = `${selectedCriteria}で検索...`
     modalSearchBooks.placeholder = `${selectedCriteria}で検索...`
     setHasMore(false)
