@@ -63,10 +63,6 @@ const ReviewIndex = React.memo(() => {
     // 検索ワードに変化がなければ何もしない
     if (searchBooks.value === searchWord || '') return
 
-    const showSearchCriteriaAndWord = () => {
-
-    }
-
     setReviews([])
     setPage(1)
     setHasMore(false)
