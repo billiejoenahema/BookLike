@@ -7,6 +7,7 @@ import SortChange from './SortChange'
 import SearchForm from './SearchForm'
 import ModalSearchForm from './ModalSearchForm'
 import { changeSelectBox } from '/resources/js/functions/changeSelectBox'
+import { hideModal } from '/resources/js/functions/hideModal'
 
 const ReviewIndex = React.memo(() => {
 
@@ -60,7 +61,7 @@ const ReviewIndex = React.memo(() => {
     // フォーカスを外す
     searchBooks.blur()
     // 検索ワードに変化がなければ何もしない
-    if (searchBooks.value === searchWord) return
+    if (searchBooks.value === searchWord || '') return
 
     setReviews([])
     setPage(1)
@@ -72,21 +73,12 @@ const ReviewIndex = React.memo(() => {
   const modalSearchSubmit = (e) => {
     e.preventDefault()
     const modalSearchBooks = document.getElementById('modalSearchBooks')
-    const searchModal = document.getElementById('searchModal')
-    const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0]
-    const modalSearchButton = document.getElementById('modalSearchButton')
-
-    // フォーカスを外す
-    modalSearchButton.blur()
 
     // モーダルを非表示にする
-    body.classList.remove('modal-open')
-    searchModal.classList.remove('show')
-    searchModal.style.display = 'none'
-    modalBackdrop.remove()
+    hideModal()
 
     // 検索ワードに変化がなければ処理を終了する
-    if (modalSearchBooks.value === searchWord) {
+    if (modalSearchBooks.value === searchWord || '') {
       return
     }
 

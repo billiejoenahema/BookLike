@@ -72538,6 +72538,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SearchForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SearchForm */ "./resources/js/components/reviews/SearchForm.js");
 /* harmony import */ var _ModalSearchForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ModalSearchForm */ "./resources/js/components/reviews/ModalSearchForm.js");
 /* harmony import */ var _resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! /resources/js/functions/changeSelectBox */ "./resources/js/functions/changeSelectBox.js");
+/* harmony import */ var _resources_js_functions_hideModal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! /resources/js/functions/hideModal */ "./resources/js/functions/hideModal.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -72563,6 +72564,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -72679,7 +72681,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
 
     searchBooks.blur(); // 検索ワードに変化がなければ何もしない
 
-    if (searchBooks.value === searchWord) return;
+    if (searchBooks.value === searchWord || '') return;
     setReviews([]);
     setPage(1);
     setHasMore(false);
@@ -72689,19 +72691,11 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
 
   var modalSearchSubmit = function modalSearchSubmit(e) {
     e.preventDefault();
-    var modalSearchBooks = document.getElementById('modalSearchBooks');
-    var searchModal = document.getElementById('searchModal');
-    var modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
-    var modalSearchButton = document.getElementById('modalSearchButton'); // フォーカスを外す
+    var modalSearchBooks = document.getElementById('modalSearchBooks'); // モーダルを非表示にする
 
-    modalSearchButton.blur(); // モーダルを非表示にする
+    Object(_resources_js_functions_hideModal__WEBPACK_IMPORTED_MODULE_10__["hideModal"])(); // 検索ワードに変化がなければ処理を終了する
 
-    body.classList.remove('modal-open');
-    searchModal.classList.remove('show');
-    searchModal.style.display = 'none';
-    modalBackdrop.remove(); // 検索ワードに変化がなければ処理を終了する
-
-    if (modalSearchBooks.value === searchWord) {
+    if (modalSearchBooks.value === searchWord || '') {
       return;
     }
 
@@ -74181,6 +74175,30 @@ var favoriteAnimation = function favoriteAnimation(heartClassList) {
   heartClassList.replace('text-blogDark', 'text-red');
   heartClassList.replace('far', 'fas');
   heartClassList.add('click-heart');
+};
+
+/***/ }),
+
+/***/ "./resources/js/functions/hideModal.js":
+/*!*********************************************!*\
+  !*** ./resources/js/functions/hideModal.js ***!
+  \*********************************************/
+/*! exports provided: hideModal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hideModal", function() { return hideModal; });
+var hideModal = function hideModal() {
+  var searchModal = document.getElementById('searchModal');
+  var modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
+  var modalSearchButton = document.getElementById('modalSearchButton'); // フォーカスを外す
+
+  modalSearchButton.blur();
+  body.classList.remove('modal-open');
+  searchModal.classList.remove('show');
+  searchModal.style.display = 'none';
+  modalBackdrop.remove();
 };
 
 /***/ }),
