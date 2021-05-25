@@ -72418,6 +72418,72 @@ var FavoriteButton = function FavoriteButton(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/reviews/ModalSearchForm.js":
+/*!************************************************************!*\
+  !*** ./resources/js/components/reviews/ModalSearchForm.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ModalSearchForm = function ModalSearchForm(_ref) {
+  var selectCriteria = _ref.selectCriteria,
+      modalSearchSubmit = _ref.modalSearchSubmit;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    type: "button",
+    id: "modalSearchButton",
+    className: "search-modal-button search-modal",
+    "data-toggle": "modal",
+    "data-target": "#searchModal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-search text-teal"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal fade search-modal",
+    id: "searchModal",
+    tabIndex: "-1",
+    role: "dialog",
+    "aria-labelledby": "searchModalLabel",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-dialog",
+    role: "document"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-body p-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex flex-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    onChange: selectCriteria,
+    className: "text-right bg-transparent border-0 mr-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "title"
+  }, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "author"
+  }, "\u8457\u8005"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "manufacturer"
+  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: modalSearchSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-control rounded-pill pr-0",
+    id: "modalSearchBooks",
+    type: "search",
+    name: "search",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
+    "aria-label": "\u66F8\u7C4D\u691C\u7D22",
+    autoComplete: "off"
+  }))))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ModalSearchForm);
+
+/***/ }),
+
 /***/ "./resources/js/components/reviews/Ratings.js":
 /*!****************************************************!*\
   !*** ./resources/js/components/reviews/Ratings.js ***!
@@ -72469,7 +72535,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 /* harmony import */ var _CategoryList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CategoryList */ "./resources/js/components/reviews/CategoryList.js");
 /* harmony import */ var _SortChange__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SortChange */ "./resources/js/components/reviews/SortChange.js");
-/* harmony import */ var _resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! /resources/js/functions/changeSelectBox */ "./resources/js/functions/changeSelectBox.js");
+/* harmony import */ var _SearchForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SearchForm */ "./resources/js/components/reviews/SearchForm.js");
+/* harmony import */ var _ModalSearchForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ModalSearchForm */ "./resources/js/components/reviews/ModalSearchForm.js");
+/* harmony import */ var _resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! /resources/js/functions/changeSelectBox */ "./resources/js/functions/changeSelectBox.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -72495,6 +72563,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -72648,7 +72718,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     var selectedCategory = clickedCategory || selectedValue; // クリックしたカテゴリーが選択中のカテゴリーと同じならなにもしない
 
     if (clickedCategory === selectedValue) return;
-    Object(_resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_7__["changeSelectBox"])(selectedCategory);
+    Object(_resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_9__["changeSelectBox"])(selectedCategory);
     setReviews([]);
     setCategory(selectedCategory);
     setPage(1);
@@ -72661,17 +72731,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     setReviews([]);
     setPage(1);
     setHasMore(false);
-  });
-  var fadeLayer = document.getElementById('fadeLayer');
-
-  var showOverlay = function showOverlay() {
-    fadeLayer.style.visibility = 'visible';
-  };
-
-  var hideOverlay = function hideOverlay() {
-    fadeLayer.style.visibility = 'hidden';
-  }; // 一定量スクロールしたら投稿をさらに読み込み(無限スクロール)
-
+  }); // 一定量スクロールしたら投稿をさらに読み込み(無限スクロール)
 
   var body = document.getElementById('body');
 
@@ -72689,75 +72749,13 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     return;
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "search-form"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex flex-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-    onChange: selectCriteria,
-    className: "text-right text-graphite bg-transparent border-0 mr-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "title"
-  }, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "author"
-  }, "\u8457\u8005"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "manufacturer"
-  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-    onSubmit: searchSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    onFocus: showOverlay,
-    onBlur: hideOverlay,
-    className: "form-control rounded-pill pr-0",
-    id: "searchBooks",
-    type: "search",
-    name: "search",
-    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
-    "aria-label": "\u66F8\u7C4D\u691C\u7D22",
-    autoComplete: "off"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    type: "button",
-    id: "modalSearchButton",
-    className: "search-modal-button search-modal",
-    "data-toggle": "modal",
-    "data-target": "#searchModal"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-search text-teal"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal fade search-modal",
-    id: "searchModal",
-    tabIndex: "-1",
-    role: "dialog",
-    "aria-labelledby": "searchModalLabel",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-dialog",
-    role: "document"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-body p-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex flex-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-    onChange: selectCriteria,
-    className: "text-right bg-transparent border-0 mr-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "title"
-  }, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "author"
-  }, "\u8457\u8005"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "manufacturer"
-  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-    onSubmit: modalSearchSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "form-control rounded-pill pr-0",
-    id: "modalSearchBooks",
-    type: "search",
-    name: "search",
-    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
-    "aria-label": "\u66F8\u7C4D\u691C\u7D22",
-    autoComplete: "off"
-  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SearchForm__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    selectCriteria: selectCriteria,
+    searchSubmit: searchSubmit
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ModalSearchForm__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    selectCriteria: selectCriteria,
+    modalSearchSubmit: modalSearchSubmit
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "search-word-display",
     className: "mt-2"
   }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \" ".concat(searchWord, " \"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -72943,6 +72941,64 @@ var Reviews = function Reviews(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Reviews);
+
+/***/ }),
+
+/***/ "./resources/js/components/reviews/SearchForm.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/reviews/SearchForm.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var SearchForm = function SearchForm(_ref) {
+  var selectCriteria = _ref.selectCriteria,
+      searchSubmit = _ref.searchSubmit;
+  var fadeLayer = document.getElementById('fadeLayer');
+
+  var showOverlay = function showOverlay() {
+    fadeLayer.style.visibility = 'visible';
+  };
+
+  var hideOverlay = function hideOverlay() {
+    fadeLayer.style.visibility = 'hidden';
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "search-form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex flex-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    onChange: selectCriteria,
+    className: "text-right text-graphite bg-transparent border-0 mr-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "title"
+  }, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "author"
+  }, "\u8457\u8005"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "manufacturer"
+  }, "\u51FA\u7248\u793E")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: searchSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onFocus: showOverlay,
+    onBlur: hideOverlay,
+    className: "form-control rounded-pill pr-0",
+    id: "searchBooks",
+    type: "search",
+    name: "search",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22...",
+    "aria-label": "\u66F8\u7C4D\u691C\u7D22",
+    autoComplete: "off"
+  }))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchForm);
 
 /***/ }),
 

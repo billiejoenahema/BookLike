@@ -4,6 +4,8 @@ import Reviews from './Reviews'
 import Loading from '../Loading'
 import CategoryList from './CategoryList'
 import SortChange from './SortChange'
+import SearchForm from './SearchForm'
+import ModalSearchForm from './ModalSearchForm'
 import { changeSelectBox } from '/resources/js/functions/changeSelectBox'
 
 const ReviewIndex = React.memo(() => {
@@ -119,14 +121,6 @@ const ReviewIndex = React.memo(() => {
     setHasMore(false)
   })
 
-  const fadeLayer = document.getElementById('fadeLayer')
-  const showOverlay = () => {
-    fadeLayer.style.visibility = 'visible'
-  }
-  const hideOverlay = () => {
-    fadeLayer.style.visibility = 'hidden'
-  }
-
   // 一定量スクロールしたら投稿をさらに読み込み(無限スクロール)
   const body = document.getElementById('body')
   body.onscroll = () => {
@@ -143,62 +137,10 @@ const ReviewIndex = React.memo(() => {
   return (
     <>
       {/* 投稿検索フォーム */}
-      <div className="search-form">
-        <div className="d-flex flex-row">
-          <select onChange={selectCriteria} className="text-right text-graphite bg-transparent border-0 mr-1">
-            <option value="title">タイトル</option>
-            <option value="author">著者</option>
-            <option value="manufacturer">出版社</option>
-          </select>
-          <form onSubmit={searchSubmit}>
-            <input
-              onFocus={showOverlay}
-              onBlur={hideOverlay}
-              className="form-control rounded-pill pr-0"
-              id="searchBooks"
-              type="search"
-              name="search"
-              placeholder="タイトルで検索..."
-              aria-label="書籍検索"
-              autoComplete="off"
-            />
-          </form>
-        </div>
-      </div>
-
-      {/* スマホ用検索ボタン */}
-      <div type="button" id="modalSearchButton" className="search-modal-button search-modal" data-toggle="modal" data-target="#searchModal">
-        <i className="fas fa-search text-teal"></i>
-      </div>
+      <SearchForm selectCriteria={selectCriteria} searchSubmit={searchSubmit} />
 
       {/* スマホ用検索モーダル */}
-      {/* モーダルをコンポーネント化する */}
-      <div className="modal fade search-modal" id="searchModal" tabIndex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-body p-1">
-              <div className="d-flex flex-row">
-                <select onChange={selectCriteria} className="text-right bg-transparent border-0 mr-1">
-                  <option value="title">タイトル</option>
-                  <option value="author">著者</option>
-                  <option value="manufacturer">出版社</option>
-                </select>
-                <form onSubmit={modalSearchSubmit}>
-                  <input
-                    className="form-control rounded-pill pr-0"
-                    id="modalSearchBooks"
-                    type="search"
-                    name="search"
-                    placeholder="タイトルで検索..."
-                    aria-label="書籍検索"
-                    autoComplete="off"
-                  />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ModalSearchForm selectCriteria={selectCriteria} modalSearchSubmit={modalSearchSubmit} />
 
       {/* 検索ワードの表示 */}
       <div id="search-word-display" className="mt-2">
