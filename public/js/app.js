@@ -72533,12 +72533,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Reviews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Reviews */ "./resources/js/components/reviews/Reviews.js");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
-/* harmony import */ var _CategoryList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CategoryList */ "./resources/js/components/reviews/CategoryList.js");
-/* harmony import */ var _SortChange__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SortChange */ "./resources/js/components/reviews/SortChange.js");
-/* harmony import */ var _SearchForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SearchForm */ "./resources/js/components/reviews/SearchForm.js");
-/* harmony import */ var _ModalSearchForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ModalSearchForm */ "./resources/js/components/reviews/ModalSearchForm.js");
-/* harmony import */ var _resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! /resources/js/functions/changeSelectBox */ "./resources/js/functions/changeSelectBox.js");
-/* harmony import */ var _resources_js_functions_hideModal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! /resources/js/functions/hideModal */ "./resources/js/functions/hideModal.js");
+/* harmony import */ var _SearchCriteriaAndWord__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SearchCriteriaAndWord */ "./resources/js/components/reviews/SearchCriteriaAndWord.js");
+/* harmony import */ var _CategoryList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CategoryList */ "./resources/js/components/reviews/CategoryList.js");
+/* harmony import */ var _SortChange__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SortChange */ "./resources/js/components/reviews/SortChange.js");
+/* harmony import */ var _SearchForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./SearchForm */ "./resources/js/components/reviews/SearchForm.js");
+/* harmony import */ var _ModalSearchForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ModalSearchForm */ "./resources/js/components/reviews/ModalSearchForm.js");
+/* harmony import */ var _resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! /resources/js/functions/changeSelectBox */ "./resources/js/functions/changeSelectBox.js");
+/* harmony import */ var _resources_js_functions_hideModal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! /resources/js/functions/hideModal */ "./resources/js/functions/hideModal.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -72564,6 +72565,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -72667,7 +72669,6 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     var searchBooks = document.getElementById('searchBooks') || document.getElementById('modalSearchBooks');
     var selectedIndex = e.target.selectedIndex;
     var selectedCriteria = e.target.options[selectedIndex].label;
-    searchBooks.value = '';
     searchBooks.placeholder = "".concat(selectedCriteria, "\u3067\u691C\u7D22...");
     modalSearchBooks.placeholder = "".concat(selectedCriteria, "\u3067\u691C\u7D22...");
     setHasMore(false);
@@ -72682,6 +72683,9 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     searchBooks.blur(); // 検索ワードに変化がなければ何もしない
 
     if (searchBooks.value === searchWord || '') return;
+
+    var showSearchCriteriaAndWord = function showSearchCriteriaAndWord() {};
+
     setReviews([]);
     setPage(1);
     setHasMore(false);
@@ -72693,7 +72697,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     e.preventDefault();
     var modalSearchBooks = document.getElementById('modalSearchBooks'); // モーダルを非表示にする
 
-    Object(_resources_js_functions_hideModal__WEBPACK_IMPORTED_MODULE_10__["hideModal"])(); // 検索ワードに変化がなければ処理を終了する
+    Object(_resources_js_functions_hideModal__WEBPACK_IMPORTED_MODULE_11__["hideModal"])(); // 検索ワードに変化がなければ処理を終了する
 
     if (modalSearchBooks.value === searchWord || '') {
       return;
@@ -72712,7 +72716,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     var selectedCategory = clickedCategory || selectedValue; // クリックしたカテゴリーが選択中のカテゴリーと同じならなにもしない
 
     if (clickedCategory === selectedValue) return;
-    Object(_resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_9__["changeSelectBox"])(selectedCategory);
+    Object(_resources_js_functions_changeSelectBox__WEBPACK_IMPORTED_MODULE_10__["changeSelectBox"])(selectedCategory);
     setReviews([]);
     setCategory(selectedCategory);
     setPage(1);
@@ -72743,20 +72747,23 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     return;
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SearchForm__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SearchForm__WEBPACK_IMPORTED_MODULE_8__["default"], {
     selectCriteria: selectCriteria,
     searchSubmit: searchSubmit
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ModalSearchForm__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ModalSearchForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
     selectCriteria: selectCriteria,
     modalSearchSubmit: modalSearchSubmit
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "search-word-display",
     className: "mt-2"
-  }, searchWord && "\u691C\u7D22\u30EF\u30FC\u30C9: \" ".concat(searchWord, " \"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, searchWord && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SearchCriteriaAndWord__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    criteria: criteria,
+    searchWord: searchWord
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_CategoryList__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_CategoryList__WEBPACK_IMPORTED_MODULE_6__["default"], {
     changeCategory: changeCategory
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SortChange__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_SortChange__WEBPACK_IMPORTED_MODULE_7__["default"], {
     sortChange: sortChange,
     setSort: setSort
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -72935,6 +72942,34 @@ var Reviews = function Reviews(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Reviews);
+
+/***/ }),
+
+/***/ "./resources/js/components/reviews/SearchCriteriaAndWord.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/reviews/SearchCriteriaAndWord.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var SearchCriteriaAndWord = function SearchCriteriaAndWord(_ref) {
+  var criteria = _ref.criteria,
+      searchWord = _ref.searchWord;
+  var criterion = {
+    title: 'タイトル',
+    author: '著者',
+    manufacturer: '出版社'
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, criterion[criteria], "\u3067\u691C\u7D22: ", searchWord);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchCriteriaAndWord);
 
 /***/ }),
 

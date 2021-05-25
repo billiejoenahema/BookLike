@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import Reviews from './Reviews'
 import Loading from '../Loading'
+import SearchCriteriaAndWord from './SearchCriteriaAndWord'
 import CategoryList from './CategoryList'
 import SortChange from './SortChange'
 import SearchForm from './SearchForm'
@@ -61,6 +62,10 @@ const ReviewIndex = React.memo(() => {
     searchBooks.blur()
     // 検索ワードに変化がなければ何もしない
     if (searchBooks.value === searchWord || '') return
+
+    const showSearchCriteriaAndWord = () => {
+
+    }
 
     setReviews([])
     setPage(1)
@@ -135,7 +140,7 @@ const ReviewIndex = React.memo(() => {
 
       {/* 検索ワードの表示 */}
       <div id="search-word-display" className="mt-2">
-        {searchWord && `検索ワード: \" ${searchWord}\ "`}
+        {searchWord && <SearchCriteriaAndWord criteria={criteria} searchWord={searchWord} />}
       </div>
 
       {/* カテゴリー選択とレビュー一覧の並び替え */}
