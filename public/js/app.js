@@ -72683,9 +72683,6 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
     searchBooks.blur(); // 検索ワードに変化がなければ何もしない
 
     if (searchBooks.value === searchWord || '') return;
-
-    var showSearchCriteriaAndWord = function showSearchCriteriaAndWord() {};
-
     setReviews([]);
     setPage(1);
     setHasMore(false);
@@ -73494,6 +73491,38 @@ var FollowerCount = function FollowerCount(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/users/InputField.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/users/InputField.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var InputField = function InputField(_ref) {
+  var value = _ref.value,
+      handleSearch = _ref.handleSearch;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-control col-5 col-sm-4 col-md-3 col-lg-2 user-search-form rounded-pill pr-0",
+    type: "search",
+    value: value,
+    onChange: handleSearch,
+    placeholder: "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22...",
+    "aria-label": "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22",
+    required: true,
+    autoComplete: "on"
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (InputField);
+
+/***/ }),
+
 /***/ "./resources/js/components/users/ReviewsCount.js":
 /*!*******************************************************!*\
   !*** ./resources/js/components/users/ReviewsCount.js ***!
@@ -73652,8 +73681,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var use_debounce__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! use-debounce */ "./node_modules/use-debounce/esm/index.js");
-/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Users */ "./resources/js/components/users/Users.js");
-/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var _InputField__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InputField */ "./resources/js/components/users/InputField.js");
+/* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Users */ "./resources/js/components/users/Users.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -73679,6 +73709,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -73823,15 +73854,9 @@ var UserIndex = function UserIndex() {
       setHasMore(false);
     }
   }, [userList]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "form-control col-5 col-sm-4 col-md-3 col-lg-2 user-search-form rounded-pill pr-0",
-    type: "search",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_InputField__WEBPACK_IMPORTED_MODULE_4__["default"], {
     value: value,
-    onChange: handleSearch,
-    placeholder: "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22...",
-    "aria-label": "\u30E6\u30FC\u30B6\u30FC\u691C\u7D22",
-    required: true,
-    autoComplete: "on"
+    handleSearch: handleSearch
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group d-flex justify-content-end pt-2 sort-changer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -73853,13 +73878,13 @@ var UserIndex = function UserIndex() {
     value: "favorite"
   }, "\u3044\u3044\u306D\u7372\u5F97\u6570")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "usersComponent"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Users__WEBPACK_IMPORTED_MODULE_5__["default"], {
     users: userList,
     loginUser: loginUser,
     maxTextLength: maxTextLength
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-center"
-  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_5__["default"], null), !loading && userList.length === 0 && 'ユーザーは見つかりませんでした'));
+  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_6__["default"], null), !loading && userList.length === 0 && 'ユーザーは見つかりませんでした'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserIndex);
