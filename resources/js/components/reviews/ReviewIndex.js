@@ -4,7 +4,7 @@ import Reviews from './Reviews'
 import Loading from '../Loading'
 import SearchCriteriaAndWord from './SearchCriteriaAndWord'
 import CategoryList from './CategoryList'
-import SortChange from './SortChange'
+import SortReviews from './SortReviews'
 import SearchForm from './SearchForm'
 import ModalSearchForm from './ModalSearchForm'
 import { changeSelectBox } from '/resources/js/functions/changeSelectBox'
@@ -142,7 +142,7 @@ const ReviewIndex = React.memo(() => {
       {/* カテゴリー選択とレビュー一覧の並び替え */}
       <div className="form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector">
         <CategoryList changeCategory={changeCategory} />
-        <SortChange sortChange={sortChange} setSort={setSort} />
+        <SortReviews sortChange={sortChange} setSort={setSort} />
       </div>
 
       {/* 投稿一覧 */}

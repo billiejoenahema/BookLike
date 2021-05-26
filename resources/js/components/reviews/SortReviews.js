@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SortChange = ({ sortChange }) => {
+const SortReviews = ({ sortChange }) => {
   return (
     <div className="d-flex flex-row p-0 mt-1 mt-sm-0">
       <label htmlFor="selectSort" className="text-right py-1 mr-1 mb-0">並び替え</label>
@@ -13,5 +13,5 @@ const SortChange = ({ sortChange }) => {
   )
 }
 
-export default SortChange
+export default SortReviews
 
