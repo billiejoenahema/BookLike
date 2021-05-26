@@ -34,22 +34,24 @@ const UserIndex = () => {
       setAllUsers(prev => [...prev, ...newUsers])
       setLoading(false)
     }
-
     // スマホのときは表示する文字数を減らす
     if (window.matchMedia('(max-device-width: 640px)').matches) {
       setTextLength(30)
     }
-
     loadUsers()
   }, [page, sort])
 
   const userList = allUsers.filter((item) => {
+
+    const findUsers = (name) => {
+      return name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1
+    }
     // nameとscreen_nameのどちらかが部分一致するユーザーを探す
     if (item.name) {
-      return item.name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1 || item.screen_name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1
+      return findUsers(item.name) || findUsers(item.screen_name)
     }
     // nameがNULLの場合はscreen_nameのみで処理
-    return item.screen_name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1
+    return findUsers(item.screen_name)
   })
 
   const handleSearch = (e) => {
@@ -86,8 +88,9 @@ const UserIndex = () => {
   return (
     <>
       <InputField value={value} handleSearch={handleSearch} />
-      {/* 並び替え条件の選択 */}
+      {/* ユーザーの並び替え */}
       <SortUsers sortChange={sortChange} />
+      {/* ユーザー一覧 */}
       <div id="usersComponent">
         <Users users={userList} loginUser={loginUser} maxTextLength={maxTextLength} />
       </div>
@@ -96,9 +99,7 @@ const UserIndex = () => {
       <div className="text-center">
         {loading && < Loading />}
         {!loading && (userList.length === 0) && 'ユーザーは見つかりませんでした'}
-
       </div>
-
     </>
   )
 }

@@ -73851,13 +73851,17 @@ var UserIndex = function UserIndex() {
     loadUsers();
   }, [page, sort]);
   var userList = allUsers.filter(function (item) {
-    // nameとscreen_nameのどちらかが部分一致するユーザーを探す
+    var findUsers = function findUsers(name) {
+      return name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1;
+    }; // nameとscreen_nameのどちらかが部分一致するユーザーを探す
+
+
     if (item.name) {
-      return item.name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1 || item.screen_name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1;
+      return findUsers(item.name) || findUsers(item.screen_name);
     } // nameがNULLの場合はscreen_nameのみで処理
 
 
-    return item.screen_name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1;
+    return findUsers(item.screen_name);
   });
 
   var handleSearch = function handleSearch(e) {
