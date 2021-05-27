@@ -74122,11 +74122,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Users = function Users(props) {
-  var users = props.users,
-      loginUser = props.loginUser,
-      maxTextLength = props.maxTextLength;
-  var isFollowedClassName = "text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4";
+var Users = function Users(_ref) {
+  var users = _ref.users,
+      loginUser = _ref.loginUser,
+      maxTextLength = _ref.maxTextLength;
+  var isFollowedStyle = "text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4";
   var notLoginUser = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return user.id === loginUser ? false : true;
   });
@@ -74135,9 +74135,9 @@ var Users = function Users(props) {
       className: "card mb-3 shadow-sm",
       key: user.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card-haeder pt-3 px-3 pb-0 d-flex flex-row justify-content-end"
+      className: "pt-3 px-3 pb-0 d-flex flex-row justify-content-end"
     }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_5__["isFollowed"])(loginUser, user) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: isFollowedClassName
+      className: isFollowedStyle
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "far fa-laugh"
     }), "\u30D5\u30A9\u30ED\u30FC\u3055\u308C\u3066\u3044\u307E\u3059"), notLoginUser && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
