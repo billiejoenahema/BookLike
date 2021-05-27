@@ -74010,6 +74010,7 @@ var UserPageTab = function UserPageTab() {
 
   var currentPath = window.location.pathname;
   var userId = currentPath.replace(/[^0-9]/g, '');
+  var tabStyle = 'text-center small px-0';
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var loadTab = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -74020,11 +74021,12 @@ var UserPageTab = function UserPageTab() {
                 setLoading(true);
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/users/".concat(userId)).then(function (res) {
-                  setLoginUser(res.data.loginUser);
-                  setUserReviews(res.data.userReviews);
-                  setFavoriteReviews(res.data.favoriteReviews);
-                  setFollowingUsers(res.data.followingUsers);
-                  setFollowedUsers(res.data.followedUsers);
+                  var data = res.data;
+                  setLoginUser(data.loginUser);
+                  setUserReviews(data.userReviews);
+                  setFavoriteReviews(data.favoriteReviews);
+                  setFollowingUsers(data.followingUsers);
+                  setFollowedUsers(data.followedUsers);
                 })["catch"](function (err) {
                   console.log(err);
                 });
@@ -74051,13 +74053,13 @@ var UserPageTab = function UserPageTab() {
     setLoading(false);
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tabs"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabList"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small px-0"
+    className: tabStyle
   }, "\u6295\u7A3F", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), userReviews.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small px-0"
+    className: tabStyle
   }, "\u3044\u3044\u306D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), favoriteReviews.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small px-0"
+    className: tabStyle
   }, "\u30D5\u30A9\u30ED\u30FC\u4E2D", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followingUsers.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["Tab"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "text-center small px-0"
+    className: tabStyle
   }, "\u30D5\u30A9\u30ED\u30EF\u30FC", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), followedUsers.length))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_tabs__WEBPACK_IMPORTED_MODULE_7__["TabPanel"], null, userReviews.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_reviews_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"], {
     reviews: userReviews,
     loginUser: loginUser
