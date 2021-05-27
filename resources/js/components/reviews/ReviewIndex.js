@@ -7,8 +7,8 @@ import CategoryList from './CategoryList'
 import SortReviews from './SortReviews'
 import SearchForm from './SearchForm'
 import ModalSearchForm from './ModalSearchForm'
-import { changeSelectBox } from '/resources/js/functions/changeSelectBox'
-import { hideModal } from '/resources/js/functions/hideModal'
+import { changeSelectBox } from '../../functions/changeSelectBox'
+import { hideModal } from '../../functions/hideModal'
 
 const ReviewIndex = React.memo(() => {
 
