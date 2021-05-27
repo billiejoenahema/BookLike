@@ -1,7 +1,7 @@
 import React from 'react'
-import ReactTooltip from 'react-tooltip'
 import FavoriteButton from './FavoriteButton'
 import EditReviewButton from './EditReviewButton'
+import BookImage from './BookImage'
 import BookInfo from './BookInfo'
 import Spoiler from './Spoiler'
 import ReviewsCount from '../users/ReviewsCount'
@@ -58,16 +58,7 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
           </div>
           <div className="card-body py-0 px-3">
             <div className="d-flex flex-row py-3 border-top border-bottom">
-              <div className="flex-column text-center">
-                {/* 書籍イメージ */}
-                <img src={review.image_url} width="104" className="shadow-sm" />
-                {/* Amazonリンク */}
-                <a href={review.page_url} className="d-block pt-1 amazon-link" target="_blank" rel="noopener" data-tip="Amazonサイトへ移動します">
-                  <i className="fab fa-amazon"></i> Amazon
-                  <ReactTooltip effect="float" type="info" place="top" />
-                </a>
-              </div>
-              {/* 書籍情報 */}
+              <BookImage imageUrl={review.image_url} pageUrl={review.page_url} />
               <BookInfo
                 title={review.title}
                 author={review.author}
@@ -79,7 +70,7 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
             </div>
           </div>
           <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
-            {/* レビュー詳細 */}
+            {/* レビューを見る */}
             <div className="flex-grow-1">
               <a href={`/reviews/${review.id}`} className="align-text-top text-blogDark internal-link"><i className="fas fa-angle-right"></i>レビューをみる </a><Spoiler spoiler={review.spoiler} />
             </div>
