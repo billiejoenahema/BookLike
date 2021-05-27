@@ -5,6 +5,7 @@ import InputField from './InputField'
 import SortUsers from './SortUsers'
 import Users from './Users'
 import Loading from '../Loading'
+import { findUsers } from '/resources/js/functions/findUsers'
 
 const UserIndex = () => {
 
@@ -42,16 +43,12 @@ const UserIndex = () => {
   }, [page, sort])
 
   const userList = allUsers.filter((item) => {
-
-    const findUsers = (name) => {
-      return name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1
-    }
     // nameとscreen_nameのどちらかが部分一致するユーザーを探す
     if (item.name) {
-      return findUsers(item.name) || findUsers(item.screen_name)
+      return findUsers(item.name, searchWord) || findUsers(item.screen_name, searchWord)
     }
     // nameがNULLの場合はscreen_nameのみで処理
-    return findUsers(item.screen_name)
+    return findUsers(item.screen_name, searchWord)
   })
 
   const handleSearch = (e) => {

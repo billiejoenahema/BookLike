@@ -73726,6 +73726,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SortUsers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SortUsers */ "./resources/js/components/users/SortUsers.js");
 /* harmony import */ var _Users__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Users */ "./resources/js/components/users/Users.js");
 /* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var _resources_js_functions_findUsers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! /resources/js/functions/findUsers */ "./resources/js/functions/findUsers.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -73751,6 +73752,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -73851,17 +73853,13 @@ var UserIndex = function UserIndex() {
     loadUsers();
   }, [page, sort]);
   var userList = allUsers.filter(function (item) {
-    var findUsers = function findUsers(name) {
-      return name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1;
-    }; // nameとscreen_nameのどちらかが部分一致するユーザーを探す
-
-
+    // nameとscreen_nameのどちらかが部分一致するユーザーを探す
     if (item.name) {
-      return findUsers(item.name) || findUsers(item.screen_name);
+      return Object(_resources_js_functions_findUsers__WEBPACK_IMPORTED_MODULE_8__["findUsers"])(item.name, searchWord) || Object(_resources_js_functions_findUsers__WEBPACK_IMPORTED_MODULE_8__["findUsers"])(item.screen_name, searchWord);
     } // nameがNULLの場合はscreen_nameのみで処理
 
 
-    return findUsers(item.screen_name);
+    return Object(_resources_js_functions_findUsers__WEBPACK_IMPORTED_MODULE_8__["findUsers"])(item.screen_name, searchWord);
   });
 
   var handleSearch = function handleSearch(e) {
@@ -74264,6 +74262,22 @@ var favoriteAnimation = function favoriteAnimation(heartClassList) {
   heartClassList.replace('text-blogDark', 'text-red');
   heartClassList.replace('far', 'fas');
   heartClassList.add('click-heart');
+};
+
+/***/ }),
+
+/***/ "./resources/js/functions/findUsers.js":
+/*!*********************************************!*\
+  !*** ./resources/js/functions/findUsers.js ***!
+  \*********************************************/
+/*! exports provided: findUsers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findUsers", function() { return findUsers; });
+var findUsers = function findUsers(name, searchWord) {
+  return name.toLowerCase().indexOf(searchWord.toLowerCase()) > -1;
 };
 
 /***/ }),
