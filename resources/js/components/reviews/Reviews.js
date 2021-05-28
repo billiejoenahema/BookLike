@@ -1,12 +1,13 @@
 import React from 'react'
-import FavoriteButton from './FavoriteButton'
-import EditReviewButton from './EditReviewButton'
-import BookImage from './BookImage'
-import BookInfo from './BookInfo'
-import Spoiler from './Spoiler'
 import ReviewsCount from '../users/ReviewsCount'
 import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
+import BookImage from './BookImage'
+import BookInfo from './BookInfo'
+import Spoiler from './Spoiler'
+import EditReviewButton from './EditReviewButton'
+import CommentButton from './CommentButton'
+import FavoriteButton from './FavoriteButton'
 import UserIcon from '../users/UserIcon'
 import { hoverUserIcon } from '../../functions/hoverUserIcon'
 import { leaveUserIcon } from '../../functions/leaveUserIcon'
@@ -70,20 +71,16 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
             </div>
           </div>
           <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
-            {/* レビューを見る */}
+            {/* レビュー詳細ページへのリンク */}
             <div className="flex-grow-1">
               <a href={`/reviews/${review.id}`} className="align-text-top text-blogDark internal-link"><i className="fas fa-angle-right"></i>レビューをみる </a><Spoiler spoiler={review.spoiler} />
             </div>
-            {/* 投稿を編集 */}
             <div className="d-d-flex align-items-center">
-              {loginUser.id === review.user.id && <EditReviewButton reviewId={review.id} />}
+              <EditReviewButton loginUser={loginUser.id} reviewUser={review.user.id} id={review.id} />
             </div>
-            {/* コメントボタン */}
             <div className="ml-sm-3 d-flex align-items-center">
-              <a href={`/reviews/${review.id}`}><i className="far fa-comment fa-fw text-blogDark comment-button"></i></a>
-              <p className="mb-0 text-secondary">{review.comments_count}</p>
+              <CommentButton id={review.id} commentCount={review.comments_count} />
             </div>
-            {/* いいねボタン */}
             <div className="ml-3 ml-sm-4 mr-sm-3 d-flex align-items-center">
               <FavoriteButton review={review} loginUser={loginUser} />
             </div>
