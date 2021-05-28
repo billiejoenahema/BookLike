@@ -1,4 +1,6 @@
 import React from 'react'
+import UserIcon from '../users/UserIcon'
+import UserName from '../users/UserName'
 import ReviewsCount from '../users/ReviewsCount'
 import FollowerCount from '../users/FollowerCount'
 import TotalFavoritesCount from '../users/TotalFavoritesCount'
@@ -9,7 +11,6 @@ import ShowReviewLink from './ShowReviewLink'
 import EditReviewButton from './EditReviewButton'
 import CommentButton from './CommentButton'
 import FavoriteButton from './FavoriteButton'
-import UserIcon from '../users/UserIcon'
 import { hoverUserIcon } from '../../functions/hoverUserIcon'
 import { leaveUserIcon } from '../../functions/leaveUserIcon'
 
@@ -48,11 +49,10 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
               hoverUserIcon={hoverUserIcon}
               leaveUserIcon={leaveUserIcon}
             />
-            {/* ユーザーネーム */}
-            <div className="ml-2 d-flex flex-column">
-              <p className="mb-0">{review.user.name || review.user.screen_name}</p>
-              <span className="text-secondary">{review.user.screen_name}</span>
-            </div>
+            <UserName
+              userName={review.user.name}
+              screenName={review.user.screen_name}
+            />
             {/* 登録日 */}
             <div className="d-flex justify-content-end flex-grow-1">
               <p className="mb-0 text-secondary">{formatDate(review.created_at, 'yyyy/MM/dd')}</p>
