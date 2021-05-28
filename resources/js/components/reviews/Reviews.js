@@ -76,7 +76,7 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
             </div>
             {/* 投稿を編集 */}
             <div className="d-d-flex align-items-center">
-              {loginUser.id === review.user.id && <EditReviewButton review={review} />}
+              {loginUser.id === review.user.id && <EditReviewButton reviewId={review.id} />}
             </div>
             {/* コメントボタン */}
             <div className="ml-sm-3 d-flex align-items-center">
