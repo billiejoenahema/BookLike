@@ -72915,12 +72915,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BookImage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BookImage */ "./resources/js/components/reviews/BookImage.js");
 /* harmony import */ var _BookInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BookInfo */ "./resources/js/components/reviews/BookInfo.js");
 /* harmony import */ var _Spoiler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Spoiler */ "./resources/js/components/reviews/Spoiler.js");
-/* harmony import */ var _EditReviewButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./EditReviewButton */ "./resources/js/components/reviews/EditReviewButton.js");
-/* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
-/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
-/* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
-/* harmony import */ var _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../functions/hoverUserIcon */ "./resources/js/functions/hoverUserIcon.js");
-/* harmony import */ var _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../functions/leaveUserIcon */ "./resources/js/functions/leaveUserIcon.js");
+/* harmony import */ var _ShowReviewLink__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ShowReviewLink */ "./resources/js/components/reviews/ShowReviewLink.js");
+/* harmony import */ var _EditReviewButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./EditReviewButton */ "./resources/js/components/reviews/EditReviewButton.js");
+/* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
+/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
+/* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
+/* harmony import */ var _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../functions/hoverUserIcon */ "./resources/js/functions/hoverUserIcon.js");
+/* harmony import */ var _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../functions/leaveUserIcon */ "./resources/js/functions/leaveUserIcon.js");
+
 
 
 
@@ -72969,11 +72971,11 @@ var Reviews = function Reviews(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_3__["default"], {
       user: review.user,
       favorites_count: review.user.favorites_count
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_UserIcon__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_UserIcon__WEBPACK_IMPORTED_MODULE_11__["default"], {
       reviewId: review.id,
       reviewUser: review.user,
-      hoverUserIcon: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__["hoverUserIcon"],
-      leaveUserIcon: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__["leaveUserIcon"]
+      hoverUserIcon: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_12__["hoverUserIcon"],
+      leaveUserIcon: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_13__["leaveUserIcon"]
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-2 d-flex flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -73002,27 +73004,24 @@ var Reviews = function Reviews(_ref) {
       className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/reviews/".concat(review.id),
-      className: "align-text-top text-blogDark internal-link"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "fas fa-angle-right"
-    }), "\u30EC\u30D3\u30E5\u30FC\u3092\u307F\u308B "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ShowReviewLink__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      id: review.id
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_6__["default"], {
       spoiler: review.spoiler
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
       loginUser: loginUser.id,
       reviewUser: review.user.id,
       id: review.id
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-sm-3 d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CommentButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CommentButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
       id: review.id,
       commentCount: review.comments_count
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-3 ml-sm-4 mr-sm-3 d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
       review: review,
       loginUser: loginUser
     }))));
@@ -73325,6 +73324,33 @@ var ShowReview = function ShowReview() {
 if (document.getElementById('showReview')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ShowReview, null), document.getElementById('showReview'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/reviews/ShowReviewLink.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/reviews/ShowReviewLink.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ShowReviewLink = function ShowReviewLink(_ref) {
+  var id = _ref.id;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/reviews/".concat(id),
+    className: "align-text-top text-blogDark internal-link mr-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-angle-right"
+  }), "\u30EC\u30D3\u30E5\u30FC\u3092\u307F\u308B"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ShowReviewLink);
 
 /***/ }),
 

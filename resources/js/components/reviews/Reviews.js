@@ -5,6 +5,7 @@ import TotalFavoritesCount from '../users/TotalFavoritesCount'
 import BookImage from './BookImage'
 import BookInfo from './BookInfo'
 import Spoiler from './Spoiler'
+import ShowReviewLink from './ShowReviewLink'
 import EditReviewButton from './EditReviewButton'
 import CommentButton from './CommentButton'
 import FavoriteButton from './FavoriteButton'
@@ -71,9 +72,9 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
             </div>
           </div>
           <div className="card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0">
-            {/* レビュー詳細ページへのリンク */}
             <div className="flex-grow-1">
-              <a href={`/reviews/${review.id}`} className="align-text-top text-blogDark internal-link"><i className="fas fa-angle-right"></i>レビューをみる </a><Spoiler spoiler={review.spoiler} />
+              <ShowReviewLink id={review.id} />
+              <Spoiler spoiler={review.spoiler} />
             </div>
             <div className="d-d-flex align-items-center">
               <EditReviewButton loginUser={loginUser.id} reviewUser={review.user.id} id={review.id} />
