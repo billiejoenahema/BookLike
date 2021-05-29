@@ -73385,9 +73385,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var FollowButton = function FollowButton(props) {
-  var InitialFollowState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__["isFollowed"])(props.user, props.loginUser);
-  var userId = props.user.id;
+var FollowButton = function FollowButton(_ref) {
+  var user = _ref.user,
+      loginUser = _ref.loginUser;
+  var InitialFollowState = Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_1__["isFollowed"])(user, loginUser);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFollowState),
       _useState2 = _slicedToArray(_useState, 2),
@@ -73395,7 +73396,7 @@ var FollowButton = function FollowButton(props) {
       setFollowing = _useState2[1];
 
   var requestFollow = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (request) {
-    return axios.post("/api/".concat(request, "/").concat(userId)).then(console.log('success!'))["catch"](function (err) {
+    return axios.post("/api/".concat(request, "/").concat(user.id)).then(console.log('success!'))["catch"](function (err) {
       console.log(err); // リクエストに失敗した時はボタンのUIを元に戻す
 
       toggleFollow();
@@ -73538,8 +73539,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var FollowerCount = function FollowerCount(props) {
-  var followerCount = props.user.followers_count;
+var FollowerCount = function FollowerCount(_ref) {
+  var user = _ref.user;
+  var followerCount = user.followers_count;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u30D5\u30A9\u30ED\u30EF\u30FC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge-teal badge-pill text-white ml-1 user-select-none"
   }, followerCount));
