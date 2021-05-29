@@ -72470,9 +72470,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var FavoriteButton = function FavoriteButton(props) {
-  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["isFavorited"])(props.review, props.loginUser);
-  var InitialCount = props.review.favorites.length;
+var FavoriteButton = function FavoriteButton(_ref) {
+  var review = _ref.review,
+      loginUser = _ref.loginUser;
+  var InitialFavorite = Object(_functions_isFavorited__WEBPACK_IMPORTED_MODULE_2__["isFavorited"])(review, loginUser);
+  var InitialCount = review.favorites.length;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(InitialFavorite),
       _useState2 = _slicedToArray(_useState, 2),
@@ -72484,7 +72486,7 @@ var FavoriteButton = function FavoriteButton(props) {
       favoriteCount = _useState4[0],
       setFavoriteCount = _useState4[1];
 
-  var reviewId = props.review.id;
+  var reviewId = review.id;
   var toggleFavorite = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function () {
     return setFavorite(function (prev) {
       return !prev;
