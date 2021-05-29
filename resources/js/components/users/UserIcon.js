@@ -25,7 +25,7 @@ const UserIcon = (
           <FollowerCount user={reviewUser} />
         </div>
         <div className="count d-flex justify-content-between">
-          <TotalFavoritesCount user={reviewUser} favorites_count={favoritesCount} />
+          <TotalFavoritesCount user={reviewUser} favoritesCount={favoritesCount} />
         </div>
       </div>
       {/* ユーザーアイコン */}

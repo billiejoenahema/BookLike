@@ -38,7 +38,7 @@ const Users = ({ users, loginUser, maxTextLength }) => {
                 <FollowerCount user={user} />
               </div>
               <div className="mt-1 ml-sm-4 count">
-                <TotalFavoritesCount user={user} favorites_count={user.favorites_count} />
+                <TotalFavoritesCount user={user} favoritesCount={user.favorites_count} />
               </div>
             </div>
           </div>

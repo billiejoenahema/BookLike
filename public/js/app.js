@@ -72953,7 +72953,7 @@ var Reviews = function Reviews(_ref) {
       className: "p-3 d-flex"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_UserIcon__WEBPACK_IMPORTED_MODULE_1__["default"], {
       reviewUser: review.user,
-      favoritesCount: review.user.favorites_count,
+      totalFavoritesCount: review.user.favorites_count,
       reviewId: review.id,
       profileImage: review.user.profile_image,
       hoverUserIcon: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_10__["hoverUserIcon"],
@@ -73596,8 +73596,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var ReviewsCount = function ReviewsCount(props) {
-  var reviewsCount = props.user.reviews_count;
+var ReviewsCount = function ReviewsCount(_ref) {
+  var user = _ref.user;
+  var reviewsCount = user.reviews_count;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u6295\u7A3F\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge-purple badge-pill text-white ml-1 user-select-none"
   }, reviewsCount));
@@ -73661,11 +73662,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var TotalFavoritesCount = function TotalFavoritesCount(props) {
-  var totalFavoritesCount = props.favorites_count;
+var TotalFavoritesCount = function TotalFavoritesCount(_ref) {
+  var favoritesCount = _ref.favoritesCount;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u3044\u3044\u306D\u7372\u5F97\u6570"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "badge-pink badge-pill text-white ml-1 user-select-none"
-  }, totalFavoritesCount));
+  }, favoritesCount));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TotalFavoritesCount);
@@ -73754,7 +73755,7 @@ var TotalFavoritesCountWrapper = function TotalFavoritesCountWrapper() {
   }();
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    favorites_count: totalFavoritesCount
+    favoritesCount: totalFavoritesCount
   }));
 };
 
@@ -73809,7 +73810,7 @@ var UserIcon = function UserIcon(_ref) {
     className: "count d-flex justify-content-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_4__["default"], {
     user: reviewUser,
-    favorites_count: favoritesCount
+    favoritesCount: favoritesCount
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/users/".concat(reviewUser.id),
     className: "text-reset"
@@ -74328,7 +74329,7 @@ var Users = function Users(_ref) {
       className: "mt-1 ml-sm-4 count"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_3__["default"], {
       user: user,
-      favorites_count: user.favorites_count
+      favoritesCount: user.favorites_count
     })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "px-3 pt-3 flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {

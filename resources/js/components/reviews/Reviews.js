@@ -30,7 +30,7 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
           <div className="p-3 d-flex">
             <UserIcon
               reviewUser={review.user}
-              favoritesCount={review.user.favorites_count}
+              totalFavoritesCount={review.user.favorites_count}
               reviewId={review.id}
               profileImage={review.user.profile_image}
               hoverUserIcon={hoverUserIcon}
