@@ -1,6 +1,7 @@
 import React from 'react'
 import UserIcon from '../users/UserIcon'
-import UserInfo from '../users/UserInfo'
+import UserName from '../users/UserName'
+import CreatedAt from '../users/CreatedAt'
 import BookImage from './BookImage'
 import BookInfo from './BookInfo'
 import Spoiler from './Spoiler'
@@ -37,11 +38,11 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
               leaveUserIcon={leaveUserIcon}
               iconSize={48}
             />
-            <UserInfo
+            <UserName
               userName={review.user.name}
               screenName={review.user.screen_name}
-              created_at={review.created_at}
             />
+            <CreatedAt createdAt={review.user.created_at} />
           </div>
           <div className="card-body py-0 px-3">
             <div className="d-flex flex-row py-3 border-top border-bottom">

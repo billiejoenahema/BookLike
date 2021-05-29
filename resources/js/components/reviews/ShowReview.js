@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import UserIcon from '../users/UserIcon'
-import UserInfo from '../users/UserInfo'
+import UserName from '../users/UserName'
 import BookImage from './BookImage'
 import BookInfo from './BookInfo'
 import Spoiler from './Spoiler'
@@ -49,11 +49,11 @@ const ShowReview = () => {
               leaveUserIcon={leaveUserIcon}
               iconSize={48}
             />
-            <UserInfo
+            <UserName
               userName={review.user.name}
               screenName={review.user.screen_name}
-              created_at={review.created_at}
             />
+            <CreatedAt createdAt={review.created_at} />
           </div>
 
           <div className="card-body py-0 px-3">
