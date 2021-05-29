@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react'
 import FollowButton from './FollowButton'
+import UserIcon from '../users/UserIcon'
+import UserName from '../users/UserName'
 import FollowerCount from './FollowerCount'
 import TotalFavoritesCount from './TotalFavoritesCount'
 import ReviewsCount from './ReviewsCount'
@@ -23,13 +25,14 @@ const Users = ({ users, loginUser, maxTextLength }) => {
             {notLoginUser && <FollowButton user={user} loginUser={loginUser} />}
           </div>
           <div className="mx-3 pt-2 pb-3 d-flex border-bottom">
-            <a href={`/users/${user.id}`}>
-              <img src={`${STORAGE}/${user.profile_image}`} className="rounded-circle shadow-sm" width="48" height="48" />
-            </a>
-            <div className="ml-2 px-0 flex-column">
-              <p className="mb-0">{user.name || user.screen_name}</p>
-              <span className="text-secondary small font-weight-lighter">{user.screen_name}</span>
-            </div>
+            <UserIcon
+              reviewUser={user}
+              totalFavoritesCount={user.favorites_count}
+              reviewId={user.id}
+              profileImage={user.profile_image}
+              iconSize={48}
+            />
+            <UserName userName={user.name} screenName={user.screen_name} />
             <div className="px-0 d-sm-inline-flex ml-auto text-right">
               <div className="mt-1 count">
                 <ReviewsCount user={user} />

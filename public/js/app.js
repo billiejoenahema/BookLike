@@ -72909,16 +72909,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
-/* harmony import */ var _users_UserInfo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../users/UserInfo */ "./resources/js/components/users/UserInfo.js");
-/* harmony import */ var _BookImage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./BookImage */ "./resources/js/components/reviews/BookImage.js");
-/* harmony import */ var _BookInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BookInfo */ "./resources/js/components/reviews/BookInfo.js");
-/* harmony import */ var _Spoiler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Spoiler */ "./resources/js/components/reviews/Spoiler.js");
-/* harmony import */ var _ShowReviewLink__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ShowReviewLink */ "./resources/js/components/reviews/ShowReviewLink.js");
-/* harmony import */ var _EditReviewButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./EditReviewButton */ "./resources/js/components/reviews/EditReviewButton.js");
-/* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
-/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
-/* harmony import */ var _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../functions/hoverUserIcon */ "./resources/js/functions/hoverUserIcon.js");
-/* harmony import */ var _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../functions/leaveUserIcon */ "./resources/js/functions/leaveUserIcon.js");
+/* harmony import */ var _users_UserName__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../users/UserName */ "./resources/js/components/users/UserName.js");
+/* harmony import */ var _users_CreatedAt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../users/CreatedAt */ "./resources/js/components/users/CreatedAt.js");
+/* harmony import */ var _BookImage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BookImage */ "./resources/js/components/reviews/BookImage.js");
+/* harmony import */ var _BookInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BookInfo */ "./resources/js/components/reviews/BookInfo.js");
+/* harmony import */ var _Spoiler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Spoiler */ "./resources/js/components/reviews/Spoiler.js");
+/* harmony import */ var _ShowReviewLink__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ShowReviewLink */ "./resources/js/components/reviews/ShowReviewLink.js");
+/* harmony import */ var _EditReviewButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./EditReviewButton */ "./resources/js/components/reviews/EditReviewButton.js");
+/* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
+/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
+/* harmony import */ var _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../functions/hoverUserIcon */ "./resources/js/functions/hoverUserIcon.js");
+/* harmony import */ var _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../functions/leaveUserIcon */ "./resources/js/functions/leaveUserIcon.js");
+
 
 
 
@@ -72956,22 +72958,23 @@ var Reviews = function Reviews(_ref) {
       totalFavoritesCount: review.user.favorites_count,
       reviewId: review.id,
       profileImage: review.user.profile_image,
-      hoverUserIcon: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_10__["hoverUserIcon"],
-      leaveUserIcon: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_11__["leaveUserIcon"],
+      hoverUserIcon: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__["hoverUserIcon"],
+      leaveUserIcon: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__["leaveUserIcon"],
       iconSize: 48
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_UserInfo__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_UserName__WEBPACK_IMPORTED_MODULE_2__["default"], {
       userName: review.user.name,
-      screenName: review.user.screen_name,
-      created_at: review.created_at
+      screenName: review.user.screen_name
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_CreatedAt__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      createdAt: review.user.created_at
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body py-0 px-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-flex flex-row py-3 border-top border-bottom"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BookImage__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BookImage__WEBPACK_IMPORTED_MODULE_4__["default"], {
       imageUrl: review.image_url,
       pageUrl: review.page_url,
       bookImageSize: 104
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BookInfo__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BookInfo__WEBPACK_IMPORTED_MODULE_5__["default"], {
       title: review.title,
       author: review.author,
       manufacturer: review.manufacturer,
@@ -72982,24 +72985,24 @@ var Reviews = function Reviews(_ref) {
       className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex-grow-1"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ShowReviewLink__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ShowReviewLink__WEBPACK_IMPORTED_MODULE_7__["default"], {
       id: review.id
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spoiler__WEBPACK_IMPORTED_MODULE_6__["default"], {
       spoiler: review.spoiler
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditReviewButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
       loginUser: loginUser.id,
       reviewUser: review.user.id,
       id: review.id
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-sm-3 d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CommentButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CommentButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
       id: review.id,
       commentCount: review.comments_count
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "ml-3 ml-sm-4 mr-sm-3 d-flex align-items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FavoriteButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
       review: review,
       loginUser: loginUser
     }))));
@@ -73115,7 +73118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
-/* harmony import */ var _users_UserInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../users/UserInfo */ "./resources/js/components/users/UserInfo.js");
+/* harmony import */ var _users_UserName__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../users/UserName */ "./resources/js/components/users/UserName.js");
 /* harmony import */ var _BookImage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BookImage */ "./resources/js/components/reviews/BookImage.js");
 /* harmony import */ var _BookInfo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./BookInfo */ "./resources/js/components/reviews/BookInfo.js");
 /* harmony import */ var _Spoiler__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Spoiler */ "./resources/js/components/reviews/Spoiler.js");
@@ -73211,10 +73214,11 @@ var ShowReview = function ShowReview() {
     hoverUserIcon: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__["hoverUserIcon"],
     leaveUserIcon: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__["leaveUserIcon"],
     iconSize: 48
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_users_UserInfo__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_users_UserName__WEBPACK_IMPORTED_MODULE_4__["default"], {
     userName: review.user.name,
-    screenName: review.user.screen_name,
-    created_at: review.created_at
+    screenName: review.user.screen_name
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(CreatedAt, {
+    createdAt: review.created_at
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "card-body py-0 px-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -73355,6 +73359,31 @@ var Spoiler = function Spoiler(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Spoiler);
+
+/***/ }),
+
+/***/ "./resources/js/components/users/CreatedAt.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/users/CreatedAt.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var CreatedAt = function CreatedAt(createdAt) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-end flex-grow-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "mb-0 text-secondary"
+  }, formatDate(createdAt, 'yyyy/MM/dd')));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CreatedAt);
 
 /***/ }),
 
@@ -74045,9 +74074,9 @@ if (document.getElementById('userIndex')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/users/UserInfo.js":
+/***/ "./resources/js/components/users/UserName.js":
 /*!***************************************************!*\
-  !*** ./resources/js/components/users/UserInfo.js ***!
+  !*** ./resources/js/components/users/UserName.js ***!
   \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -74058,24 +74087,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var UserInfo = function UserInfo(_ref) {
+var UserName = function UserName(_ref) {
   var userName = _ref.userName,
-      screenName = _ref.screenName,
-      created_at = _ref.created_at;
+      screenName = _ref.screenName;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-2 d-flex flex-column"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0"
   }, userName || screenName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-secondary"
-  }, screenName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "d-flex justify-content-end flex-grow-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "mb-0 text-secondary"
-  }, formatDate(created_at, 'yyyy/MM/dd'))));
+  }, screenName)));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (UserInfo);
+/* harmony default export */ __webpack_exports__["default"] = (UserName);
 
 /***/ }),
 
@@ -74264,12 +74288,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _FollowButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FollowButton */ "./resources/js/components/users/FollowButton.js");
-/* harmony import */ var _FollowerCount__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FollowerCount */ "./resources/js/components/users/FollowerCount.js");
-/* harmony import */ var _TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TotalFavoritesCount */ "./resources/js/components/users/TotalFavoritesCount.js");
-/* harmony import */ var _ReviewsCount__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReviewsCount */ "./resources/js/components/users/ReviewsCount.js");
-/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
-/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions/omittedText */ "./resources/js/functions/omittedText.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
+/* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
+/* harmony import */ var _users_UserName__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../users/UserName */ "./resources/js/components/users/UserName.js");
+/* harmony import */ var _FollowerCount__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FollowerCount */ "./resources/js/components/users/FollowerCount.js");
+/* harmony import */ var _TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TotalFavoritesCount */ "./resources/js/components/users/TotalFavoritesCount.js");
+/* harmony import */ var _ReviewsCount__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ReviewsCount */ "./resources/js/components/users/ReviewsCount.js");
+/* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
+/* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../functions/omittedText */ "./resources/js/functions/omittedText.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
+
+
 
 
 
@@ -74293,7 +74321,7 @@ var Users = function Users(_ref) {
       key: user.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "pt-3 px-3 pb-0 d-flex flex-row justify-content-end"
-    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_5__["isFollowed"])(loginUser, user) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, Object(_functions_isFollowed__WEBPACK_IMPORTED_MODULE_7__["isFollowed"])(loginUser, user) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: isFollowedStyle
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "far fa-laugh"
@@ -74302,32 +74330,28 @@ var Users = function Users(_ref) {
       loginUser: loginUser
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mx-3 pt-2 pb-3 d-flex border-bottom"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "/users/".concat(user.id)
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_7__["STORAGE"], "/").concat(user.profile_image),
-      className: "rounded-circle shadow-sm",
-      width: "48",
-      height: "48"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "ml-2 px-0 flex-column"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "mb-0"
-    }, user.name || user.screen_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "text-secondary small font-weight-lighter"
-    }, user.screen_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_UserIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      reviewUser: user,
+      totalFavoritesCount: user.favorites_count,
+      reviewId: user.id,
+      profileImage: user.profile_image,
+      iconSize: 48
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_UserName__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      userName: user.name,
+      screenName: user.screen_name
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "px-0 d-sm-inline-flex ml-auto text-right"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mt-1 count"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ReviewsCount__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ReviewsCount__WEBPACK_IMPORTED_MODULE_6__["default"], {
       user: user
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mt-1 ml-sm-4 count"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowerCount__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FollowerCount__WEBPACK_IMPORTED_MODULE_4__["default"], {
       user: user
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mt-1 ml-sm-4 count"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TotalFavoritesCount__WEBPACK_IMPORTED_MODULE_5__["default"], {
       user: user,
       favoritesCount: user.favorites_count
     })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74343,7 +74367,7 @@ var Users = function Users(_ref) {
       className: "flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "font-weight-bold"
-    }, "\u81EA\u5DF1\u7D39\u4ECB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_6__["omittedText"])(user.description, maxTextLength))))));
+    }, "\u81EA\u5DF1\u7D39\u4ECB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, Object(_functions_omittedText__WEBPACK_IMPORTED_MODULE_8__["omittedText"])(user.description, maxTextLength))))));
   }));
 };
 
