@@ -11,9 +11,9 @@ const UserIcon = (
     reviewId,
     profileImage,
     hoverUserIcon,
-    leaveUserIcon
+    leaveUserIcon,
+    iconSize
   }) => {
-
   return (
     <>
       {/* ツールチップ */}
@@ -32,7 +32,7 @@ const UserIcon = (
       <a href={`/users/${reviewUser.id}`} className="text-reset">
         <img src={`${STORAGE}/${profileImage}`}
           className="rounded-circle shadow-sm"
-          width="48" height="48"
+          width={iconSize} height={iconSize}
           data-id={reviewId}
           onMouseEnter={hoverUserIcon}
           onMouseLeave={leaveUserIcon}

@@ -35,6 +35,7 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
               profileImage={review.user.profile_image}
               hoverUserIcon={hoverUserIcon}
               leaveUserIcon={leaveUserIcon}
+              iconSize={48}
             />
             <UserInfo
               userName={review.user.name}
@@ -44,7 +45,11 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
           </div>
           <div className="card-body py-0 px-3">
             <div className="d-flex flex-row py-3 border-top border-bottom">
-              <BookImage imageUrl={review.image_url} pageUrl={review.page_url} />
+              <BookImage
+                imageUrl={review.image_url}
+                pageUrl={review.page_url}
+                bookImageSize={104}
+              />
               <BookInfo
                 title={review.title}
                 author={review.author}
