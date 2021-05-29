@@ -9,9 +9,13 @@ const SearchCriteriaAndWord = ({ criteria, searchWord }) => {
   }
 
   return (
-    <span>
-      {criterion[criteria]}で検索: {searchWord}
-    </span>
+    <div id="search-word-display" className="mt-2">
+      {
+        searchWord ?
+          <span>{criterion[criteria]}で検索: {searchWord}</span>
+          : ''
+      }
+    </div>
   )
 }
 
