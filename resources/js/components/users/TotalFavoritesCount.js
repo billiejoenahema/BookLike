@@ -1,14 +1,14 @@
 import React from 'react'
 
-const TotalFavoritesCount = (props) => {
+const TotalFavoritesCount = ({ favoritesCount }) => {
 
-    const totalFavoritesCount = props.favorites_count
 
-    return (
-        <>
-            <span>いいね獲得数</span><span className="badge-pink badge-pill text-white ml-1 user-select-none">{totalFavoritesCount}</span>
-        </>
-    )
+  return (
+    <>
+      <span>いいね獲得数</span>
+      <span className="badge-pink badge-pill text-white ml-1 user-select-none">{favoritesCount}</span>
+    </>
+  )
 }
 export default TotalFavoritesCount
 
