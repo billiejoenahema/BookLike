@@ -135,9 +135,7 @@ const ReviewIndex = React.memo(() => {
       <ModalSearchForm selectCriteria={selectCriteria} modalSearchSubmit={modalSearchSubmit} />
 
       {/* 検索ワードの表示 */}
-      <div id="search-word-display" className="mt-2">
-        {searchWord && <SearchCriteriaAndWord criteria={criteria} searchWord={searchWord} />}
-      </div>
+      <SearchCriteriaAndWord criteria={criteria} searchWord={searchWord} />
 
       {/* カテゴリー選択とレビュー一覧の並び替え */}
       <div className="form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector">

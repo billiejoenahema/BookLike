@@ -1,9 +1,6 @@
 import React from 'react'
 import UserIcon from '../users/UserIcon'
-import UserName from '../users/UserName'
-import ReviewsCount from '../users/ReviewsCount'
-import FollowerCount from '../users/FollowerCount'
-import TotalFavoritesCount from '../users/TotalFavoritesCount'
+import UserInfo from '../users/UserInfo'
 import BookImage from './BookImage'
 import BookInfo from './BookInfo'
 import Spoiler from './Spoiler'
@@ -31,32 +28,19 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
       {reviews.map((review) => (
         <div className="card shadow-sm mb-3" key={review.id}>
           <div className="p-3 d-flex">
-            {/* ユーザー情報 */}
-            <div className={`user-counts shadow-sm d-none review-${review.id}`} >
-              <div className="count d-flex justify-content-between mb-1">
-                <ReviewsCount user={review.user} />
-              </div>
-              <div className="count d-flex justify-content-between mb-1">
-                <FollowerCount user={review.user} />
-              </div>
-              <div className="count d-flex justify-content-between">
-                <TotalFavoritesCount user={review.user} favorites_count={review.user.favorites_count} />
-              </div>
-            </div>
             <UserIcon
-              reviewId={review.id}
               reviewUser={review.user}
+              favoritesCount={review.user.favorites_count}
+              reviewId={review.id}
+              profileImage={review.user.profile_image}
               hoverUserIcon={hoverUserIcon}
               leaveUserIcon={leaveUserIcon}
             />
-            <UserName
+            <UserInfo
               userName={review.user.name}
               screenName={review.user.screen_name}
+              created_at={review.created_at}
             />
-            {/* 登録日 */}
-            <div className="d-flex justify-content-end flex-grow-1">
-              <p className="mb-0 text-secondary">{formatDate(review.created_at, 'yyyy/MM/dd')}</p>
-            </div>
           </div>
           <div className="card-body py-0 px-3">
             <div className="d-flex flex-row py-3 border-top border-bottom">
