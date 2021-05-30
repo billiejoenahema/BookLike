@@ -73375,7 +73375,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var CreatedAt = function CreatedAt(createdAt) {
+var CreatedAt = function CreatedAt(_ref) {
+  var createdAt = _ref.createdAt;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex justify-content-end flex-grow-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -74295,8 +74296,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ReviewsCount__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ReviewsCount */ "./resources/js/components/users/ReviewsCount.js");
 /* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
 /* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../functions/omittedText */ "./resources/js/functions/omittedText.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
-
 
 
 

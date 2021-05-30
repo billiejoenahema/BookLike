@@ -2,7 +2,11 @@ import React from 'react'
 
 const CategoryList = ({ changeCategory }) => {
   return (
-    <select onChange={changeCategory} id="categorySelector" className="form-control-sm mt-1 mt-sm-0" placeholder="カテゴリーで絞り込み">
+    <select onChange={changeCategory}
+      id="categorySelector"
+      className="form-control-sm mt-1 mt-sm-0"
+      placeholder="カテゴリーで絞り込み"
+    >
       <option value="default">すべてのカテゴリー</option>
       <option value="文学">文学</option>
       <option value="エンターテインメント">エンターテインメント</option>

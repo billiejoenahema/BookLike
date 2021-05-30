@@ -1,58 +1,58 @@
 // 投稿編集ページにおける星評価の初期値
 function showRatings(initialRatings) {
-    'use strict'
-    let ratings = initialRatings
-    const starElements = document.querySelectorAll('.edit-star')
+  'use strict'
+  let ratings = initialRatings
+  const starElements = document.querySelectorAll('.edit-star')
 
-    starElements.forEach((starElement, index) => {
-        // ratingの数値だけ星に色をつける
-        if (index < ratings) {
-            starElement.classList.replace('far', 'fas')
-        }
-    })
+  starElements.forEach((starElement, index) => {
+    // ratingの数値だけ星に色をつける
+    if (index < ratings) {
+      starElement.classList.replace('far', 'fas')
+    }
+  })
 }
 
 // スマホ用フッターメニューの現在ページのアイコンをハイライト
 function currentPageHighlight() {
-    'use strict'
-    const path = window.location.pathname
-    const reviewsIcon = document.getElementById('reviewsIcon')
-    const usersIcon = document.getElementById('usersIcon')
-    const myPageIcon = document.getElementById('myPageIcon')
-    const newPostIcon = document.getElementById('newPostIcon')
-    const footerMenuItems = document.querySelectorAll('footerMenuItem')
-    const loginUserId = myPageIcon && document.getElementById('myPageIcon').dataset.id
-    const addCurrentPage = (icon) => icon.classList.add('currentPage')
+  'use strict'
+  const path = window.location.pathname
+  const reviewsIcon = document.getElementById('reviewsIcon')
+  const usersIcon = document.getElementById('usersIcon')
+  const myPageIcon = document.getElementById('myPageIcon')
+  const newPostIcon = document.getElementById('newPostIcon')
+  const footerMenuItems = document.querySelectorAll('footerMenuItem')
+  const loginUserId = myPageIcon && document.getElementById('myPageIcon').dataset.id
+  const addCurrentPage = (icon) => icon.classList.add('currentPage')
 
-    // footerMenuItemsを配列に変換後、mapでcurrentPageを取り除く
-    Array.from(footerMenuItems).map((item) => {
-        item.classList.remove('currentPage')
-    })
+  // footerMenuItemsを配列に変換後、mapでcurrentPageを取り除く
+  Array.from(footerMenuItems).map((item) => {
+    item.classList.remove('currentPage')
+  })
 
-    switch (path) {
-        case '/reviews':
-            addCurrentPage(reviewsIcon)
-            break
-        case '/users':
-            addCurrentPage(usersIcon)
-            break
-        case `/users/${loginUserId}`:
-            addCurrentPage(myPageIcon)
-            break
-        case '/reviews/create':
-            addCurrentPage(newPostIcon)
-            break
-        default:
-            return
-    }
+  switch (path) {
+    case '/reviews':
+      addCurrentPage(reviewsIcon)
+      break
+    case '/users':
+      addCurrentPage(usersIcon)
+      break
+    case `/users/${loginUserId}`:
+      addCurrentPage(myPageIcon)
+      break
+    case '/reviews/create':
+      addCurrentPage(newPostIcon)
+      break
+    default:
+      return
+  }
 }
 
 window.addEventListener('load', () => {
-    //ページが読み込まれたときにratingsの初期値を取得する
-    if (document.getElementById('ratings')) {
-        const initialRatings = document.getElementById('ratings').dataset.ratings
-        initialRatings && showRatings(initialRatings)
-    }
+  //ページが読み込まれたときにratingsの初期値を取得する
+  if (document.getElementById('ratings')) {
+    const initialRatings = document.getElementById('ratings').dataset.ratings
+    initialRatings && showRatings(initialRatings)
+  }
 
-    currentPageHighlight()
+  currentPageHighlight()
 })

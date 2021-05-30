@@ -6,7 +6,10 @@ const EditReviewButton = ({ loginUser, reviewUser, id }) => {
       {
         (loginUser === reviewUser) ?
           <a href={`/reviews/${id}/edit`} className="edit text-secondary pr-2">
-            <span className="edit-text"><i className="fas fa-fw fa-edit"></i>編集</span>
+            <span className="edit-text">
+              <i className="fas fa-fw fa-edit"></i>
+              編集
+            </span>
           </a>
           : ''
       }
