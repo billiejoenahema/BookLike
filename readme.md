@@ -1,11 +1,6 @@
 ## BookLike
 <a href="https://gyazo.com/f6d0d6ec415ca3ac0a999cc207c47841"><img src="https://i.gyazo.com/f6d0d6ec415ca3ac0a999cc207c47841.png" alt="Image from Gyazo" width="1200"/></a>
 
-## URL
-https://booklikeapp.com
-<br />
-お試しログインをご利用いただけます（ユーザー登録不要）
-
 ## 概要
 読み終えた本を気軽に投稿することで、電子書籍、紙の本にかかわらず既読本の履歴を確認したり、ほかのユーザーが読んだ本の評価や感想を参考にして読みたい本を見つけたりするとができるサービスです。
 
