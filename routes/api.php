@@ -12,11 +12,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('/users', 'Api\UsersController', ['only' => ['index', 'show']]);
 
     // いいね機能
-    Route::post('/add_favorite/{id}', 'Api\FavoriteController@addFavorite');
-    Route::post('/remove_favorite/{id}', 'Api\FavoriteController@removeFavorite');
+    Route::post('/add_favorite/{id}', 'Api\FavoriteController@addFavorite')->where('id', '[0-9]+');
+    Route::post('/remove_favorite/{id}', 'Api\FavoriteController@removeFavorite')->where('id', '[0-9]+');
 
     // フォロー/フォロー解除
-    Route::post('/follow/{id}', 'Api\FollowController@follow');
-    Route::post('/unfollow/{id}', 'Api\FollowController@unfollow');
+    Route::post('/follow/{id}', 'Api\FollowController@follow')->where('id', '[0-9]+');
+    Route::post('/unfollow/{id}', 'Api\FollowController@unfollow')->where('id', '[0-9]+');
 
 });
