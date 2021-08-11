@@ -29,9 +29,10 @@ const ReviewIndex = React.memo(() => {
       const newReviews = await axios
         .get(URL)
         .then(res => {
+          const reviews = res.data.reviews
           setLoginUser(res.data.loginUser)
-          page < res.data.reviews.last_page && setHasMore(true)
-          return res.data.reviews.data
+          page < reviews.last_page && setHasMore(true)
+          return reviews.data
         })
         .catch(err => {
           console.log(err)

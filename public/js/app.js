@@ -72754,9 +72754,10 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.memo
                 setLoading(true);
                 _context.next = 3;
                 return axios.get(URL).then(function (res) {
+                  var reviews = res.data.reviews;
                   setLoginUser(res.data.loginUser);
-                  page < res.data.reviews.last_page && setHasMore(true);
-                  return res.data.reviews.data;
+                  page < reviews.last_page && setHasMore(true);
+                  return reviews.data;
                 })["catch"](function (err) {
                   console.log(err);
                 });
