@@ -26,12 +26,12 @@ a > img:hover {
 .pointer {
     cursor: pointer;
 }
-
+/*
 .navbar-brand:hover {
     opacity: 0.8;
-}
+} */
 
-.dropdown:hover > .dropdown-menu{
+.navbar-nav > .dropdown:hover > .dropdown-menu{
     display: block;
   }
 
