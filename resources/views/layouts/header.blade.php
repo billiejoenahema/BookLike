@@ -10,7 +10,7 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-         >
+        >
             {{ config('app.name', 'Laravel') }}
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

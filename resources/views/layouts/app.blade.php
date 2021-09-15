@@ -27,11 +27,7 @@
             <div class="container px-0">
                 <div class="col-md-10 col-lg-8 mb-3 m-auto px-2">
                     {{-- Flash Message --}}
-                    @if (session('flash_message'))
-                    <div class="flash_message text-iron" id="flashMessage">
-                        {{ session('flash_message') }}
-                    </div>
-                    @endif
+                    @include('components.flash_message')
                     {{-- Main Content --}}
                     @yield('content')
                 </div>
