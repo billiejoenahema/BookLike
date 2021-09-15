@@ -5,7 +5,7 @@ import InputField from './InputField'
 import SortUsers from './SortUsers'
 import Users from './Users'
 import Loading from '../Loading'
-import { findUsers } from '/resources/js/functions/findUsers'
+import { findUsers } from '../../functions/findUsers'
 
 const UserIndex = () => {
 

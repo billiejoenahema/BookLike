@@ -7,6 +7,7 @@ import BookInfo from './BookInfo'
 import Spoiler from './Spoiler'
 import EditReviewButton from './EditReviewButton'
 import CommentButton from './CommentButton'
+import CreatedAt from '../users/CreatedAt'
 import FavoriteButton from './FavoriteButton'
 import { hoverUserIcon } from '../../functions/hoverUserIcon'
 import { leaveUserIcon } from '../../functions/leaveUserIcon'
@@ -16,6 +17,8 @@ const ShowReview = () => {
   const [loginUser, setLoginUser] = useState()
   const [review, setReview] = useState('')
   const currentUrl = window.location.pathname
+
+  console.log({ review: review })
 
   useEffect(() => {
     loadReview()
