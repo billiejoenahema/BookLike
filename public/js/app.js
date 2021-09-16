@@ -3253,12 +3253,8 @@ var ShowReview = function ShowReview() {
       setReview = _useState4[1];
 
   var currentUrl = window.location.pathname;
-  console.log({
-    review: review
-  });
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     loadReview();
-    return function () {};
   }, []);
 
   var loadReview = /*#__PURE__*/function () {

@@ -18,11 +18,8 @@ const ShowReview = () => {
   const [review, setReview] = useState('')
   const currentUrl = window.location.pathname
 
-  console.log({ review: review })
-
   useEffect(() => {
     loadReview()
-    return () => { }
   }, [])
 
   const loadReview = async () => {
