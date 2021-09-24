@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Favorite;
 
 class FavoriteController extends Controller
 {
@@ -14,7 +13,7 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function addFavorite(Favorite $favorite, Int $review_id)
+    public function addFavorite(Int $review_id)
     {
         $loginUser = auth()->user();
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
@@ -32,7 +31,7 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function removeFavorite(Favorite $favorite, Int $review_id)
+    public function removeFavorite(Int $review_id)
     {
         $loginUser = auth()->user();
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
