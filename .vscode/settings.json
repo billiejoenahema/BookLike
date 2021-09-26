@@ -2,4 +2,8 @@
   "cSpell.words": [
     "authenticatable"
   ],
+  "files.associations": {
+    "*.blade.php": "html"
+  },
+
 }

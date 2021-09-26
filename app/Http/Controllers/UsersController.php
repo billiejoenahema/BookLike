@@ -11,109 +11,108 @@ use DateTime;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
 
-    public function index()
-    {
-        return view('users.index');
+  public function index()
+  {
+    return view('users.index');
+  }
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show(User $user, GetItem $get_item)
+  {
+    $created_at = new DateTime($user->created_at);
+    $updated_at = new DateTime($user->updated_at);
+    $create_date = $created_at->format('Y/m/d');
+    $update_date = $updated_at->format('Y/m/d');
+
+    // デフォルト値
+    $book = (object) [
+      'image' => 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com/default_book_image.png',
+      'url' => 'https://amzn.to/3o6eEow',
+      'title' => 'タイトル',
+    ];
+
+    if ($user->asin) {
+      $item = $get_item->getItem($user->asin);
+      $book->image = $item->Images->Primary->Large->URL;
+      $book->url = $item->DetailPageURL;
+      $book->title = $item->ItemInfo->Title->DisplayValue;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user, GetItem $get_item)
-    {
-        $created_at = new DateTime($user->created_at);
-        $updated_at = new DateTime($user->updated_at);
-        $create_date = $created_at->format('Y/m/d');
-        $update_date = $updated_at->format('Y/m/d');
-        $asin = $user->asin;
 
-        // デフォルト値
-        $book_image = 'https://s3-ap-northeast-1.amazonaws.com/www.booklikeapp.com/default_book_image.png';
-        $book_url = 'https://amzn.to/3o6eEow';
-        $book_title = 'タイトル';
+    return view('users.show', compact(
+      'user',
+      'create_date',
+      'update_date',
+      'book',
+    ));
+  }
 
-        if ($asin) {
-            $item = $get_item->getItem($asin);
-            $book_image = $item->Images->Primary->Large->URL;
-            $book_url = $item->DetailPageURL;
-            $book_title = $item->ItemInfo->Title->DisplayValue;
-        }
-
-        return view('users.show', compact(
-            'user',
-            'create_date',
-            'update_date',
-            'book_image',
-            'book_url',
-            'book_title',
-        ));
-        }
-
-        /**
-         * Show the form for editing the specified resource.
-         *
-         * @param  int  $id
-         * @return \Illuminate\Http\Response
-         */
-        public function edit(User $user, Review $review, GetItem $get_item)
-        {
-            $userReviews = $review->getUserReviews($user->id);
-            $selected_book_title = '未設定';
-            if($user->asin) {
-                $user_book = $get_item->getItem($user->asin);
-                $selected_book_title = $user_book->ItemInfo->Title->DisplayValue;
-            }
-
-        return view('users.edit', compact(
-            'userReviews',
-            'selected_book_title',
-        ));
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit(User $user, Review $review, GetItem $get_item)
+  {
+    $userReviews = $review->getUserReviews($user->id);
+    $selected_book_title = '未設定';
+    if ($user->asin) {
+      $user_book = $get_item->getItem($user->asin);
+      $selected_book_title = $user_book->ItemInfo->Title->DisplayValue;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateUser $request, User $user)
-    {
-        if ($user->id === 1) {
-            return redirect('users/'.$user->id)
-                ->with('error', 'ゲストユーザー はプロフィールを編集できません');
-        }
-        $user->updateProfile($request);
-        session()->flash('flash_message', 'プロフィールを編集しました');
+    return view('users.edit', compact(
+      'userReviews',
+      'selected_book_title',
+    ));
+  }
 
-        return redirect('users/'.$user->id);
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(UpdateUser $request, User $user)
+  {
+    if ($user->id === 1) {
+      return redirect('users/' . $user->id)
+        ->with('error', 'ゲストユーザー はプロフィールを編集できません');
     }
+    $user->updateProfile($request);
+    session()->flash('flash_message', 'プロフィールを編集しました');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        if ($user->id === 1) {
-            return redirect('users/'.$user->id)
-                ->with('error', 'ゲストユーザー はアカウントを削除できません');
-        }
-        $login_user = auth()->user();
-        $login_user->delete();
+    return redirect('users/' . $user->id);
+  }
 
-        return redirect('/');
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($user)
+  {
+    if ($user->id === 1) {
+      return redirect('users/' . $user->id)
+        ->with('error', 'ゲストユーザー はアカウントを削除できません');
     }
+    $login_user = auth()->user();
+    $login_user->delete();
 
+    return redirect('/');
+  }
 }
