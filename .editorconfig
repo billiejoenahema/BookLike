@@ -8,6 +8,10 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
+[*.{js,ts,jsx,tsx}]
+indent_size = 2
+quote_type = single
+
 [*.md]
 trim_trailing_whitespace = false
 

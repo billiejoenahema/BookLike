@@ -1,27 +1,26 @@
-import React from 'react'
-import UserIcon from '../users/UserIcon'
-import UserName from '../users/UserName'
-import CreatedAt from '../users/CreatedAt'
-import BookImage from './BookImage'
-import BookInfo from './BookInfo'
-import Spoiler from './Spoiler'
-import ShowReviewLink from './ShowReviewLink'
-import EditReviewButton from './EditReviewButton'
-import CommentButton from './CommentButton'
-import FavoriteButton from './FavoriteButton'
-import { hoverUserIcon } from '../../functions/hoverUserIcon'
-import { leaveUserIcon } from '../../functions/leaveUserIcon'
+import React from 'react';
+import UserIcon from '../users/UserIcon';
+import UserName from '../users/UserName';
+import CreatedAt from '../users/CreatedAt';
+import BookImage from './BookImage';
+import BookInfo from './BookInfo';
+import Spoiler from './Spoiler';
+import ShowReviewLink from './ShowReviewLink';
+import EditReviewButton from './EditReviewButton';
+import CommentButton from './CommentButton';
+import FavoriteButton from './FavoriteButton';
+import { hoverUserIcon } from '../../functions/hoverUserIcon';
+import { leaveUserIcon } from '../../functions/leaveUserIcon';
 
 const Reviews = ({ reviews, loginUser, changeCategory }) => {
-
-  const currentUrl = window.location.pathname
-  const internalLinks = document.querySelectorAll('.internal-link')
+  const currentUrl = window.location.pathname;
+  const internalLinks = document.querySelectorAll('.internal-link');
 
   // ユーザー詳細画面では「カテゴリー」のcssをリセット（押しても何も起きないため）
   if (currentUrl.includes('/users/')) {
-    internalLinks.forEach(internalLink => {
-      internalLink.classList.remove('btn', 'text-blog', 'internal-link')
-    })
+    internalLinks.forEach((internalLink) => {
+      internalLink.classList.remove('btn', 'text-blog', 'internal-link');
+    });
   }
 
   return (
@@ -67,10 +66,17 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
               <Spoiler spoiler={review.spoiler} />
             </div>
             <div className="d-d-flex align-items-center">
-              <EditReviewButton loginUser={loginUser.id} reviewUser={review.user.id} id={review.id} />
+              <EditReviewButton
+                loginUser={loginUser.id}
+                reviewUser={review.user.id}
+                id={review.id}
+              />
             </div>
             <div className="ml-sm-3 d-flex align-items-center">
-              <CommentButton id={review.id} commentCount={review.comments_count} />
+              <CommentButton
+                id={review.id}
+                commentCount={review.comments_count}
+              />
             </div>
             <div className="ml-3 ml-sm-4 mr-sm-3 d-flex align-items-center">
               <FavoriteButton review={review} loginUser={loginUser} />
@@ -79,7 +85,7 @@ const Reviews = ({ reviews, loginUser, changeCategory }) => {
         </div>
       ))}
     </>
-  )
-}
+  );
+};
 
-export default Reviews
+export default Reviews;

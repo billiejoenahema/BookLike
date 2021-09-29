@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const UserName = ({ userName, screenName }) => {
   return (
@@ -8,7 +8,7 @@ const UserName = ({ userName, screenName }) => {
         <span className="text-secondary">{screenName}</span>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default UserName
+export default UserName;

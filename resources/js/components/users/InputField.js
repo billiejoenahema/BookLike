@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const InputField = ({ value, handleSearch }) => {
   return (
@@ -9,9 +9,10 @@ const InputField = ({ value, handleSearch }) => {
       onChange={handleSearch}
       placeholder="ユーザー検索..."
       aria-label="ユーザー検索"
-      required autoComplete="on"
+      required
+      autoComplete="on"
     />
-  )
-}
+  );
+};
 
-export default InputField
+export default InputField;

@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 const CategoryList = ({ changeCategory }) => {
   return (
-    <select onChange={changeCategory}
+    <select
+      onChange={changeCategory}
       id="categorySelector"
       className="form-control-sm mt-1 mt-sm-0"
       placeholder="カテゴリーで絞り込み"
@@ -23,7 +24,7 @@ const CategoryList = ({ changeCategory }) => {
       <option value="ライトノベル">ライトノベル</option>
       <option value="その他">その他</option>
     </select>
-  )
-}
+  );
+};
 
-export default CategoryList
+export default CategoryList;

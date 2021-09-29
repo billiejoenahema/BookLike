@@ -1,18 +1,21 @@
-import React from 'react'
+import React from 'react';
 
 const SearchForm = ({ selectCriteria, searchSubmit }) => {
-  const fadeLayer = document.getElementById('fadeLayer')
+  const fadeLayer = document.getElementById('fadeLayer');
   const showOverlay = () => {
-    fadeLayer.style.visibility = 'visible'
-  }
+    fadeLayer.style.visibility = 'visible';
+  };
   const hideOverlay = () => {
-    fadeLayer.style.visibility = 'hidden'
-  }
+    fadeLayer.style.visibility = 'hidden';
+  };
 
   return (
     <div className="search-form">
       <div className="d-flex flex-row">
-        <select onChange={selectCriteria} className="text-right text-graphite bg-transparent border-0 mr-1">
+        <select
+          onChange={selectCriteria}
+          className="text-right text-graphite bg-transparent border-0 mr-1"
+        >
           <option value="title">タイトル</option>
           <option value="author">著者</option>
           <option value="manufacturer">出版社</option>
@@ -32,7 +35,7 @@ const SearchForm = ({ selectCriteria, searchSubmit }) => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SearchForm
+export default SearchForm;
