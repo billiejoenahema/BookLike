@@ -3,18 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Favorite;
 
 class FavoriteController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Int $review_id
      * @return \Illuminate\Http\Response
      */
     public function addFavorite(Int $review_id)
     {
+        $favorite = new Favorite();
         $loginUser = auth()->user();
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
 
@@ -33,6 +34,7 @@ class FavoriteController extends Controller
      */
     public function removeFavorite(Int $review_id)
     {
+        $favorite = new Favorite();
         $loginUser = auth()->user();
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
         $favorite_id = $favorite->where('user_id', $loginUser->id)->where('review_id', $review_id)->value('id');

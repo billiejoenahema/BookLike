@@ -130,5 +130,3 @@ class AwsV4 {
         return gmdate ( "Ymd" );
     }
 }
-
-
