@@ -14,8 +14,9 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Comment $comment)
+    public function store(Request $request)
     {
+        $comment = new Comment();
         $user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [

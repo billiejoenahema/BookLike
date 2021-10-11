@@ -38,8 +38,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Review $review, User $user)
+    public function show(Request $request, User $user)
     {
+        $review = new Review();
         $profileUserId = $user->id;
         $profileUser = $user->with('followers')->find($profileUserId);
         $loginUserId = auth()->user()->id;

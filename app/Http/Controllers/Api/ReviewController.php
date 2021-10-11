@@ -9,8 +9,9 @@ use App\Models\Review;
 class ReviewController extends Controller
 {
 
-    public function index(Request $request, Review $review)
+    public function index(Request $request)
     {
+        $review = new Review();
         $pagination = 6;
         $loginUser = auth()->user();
 
@@ -24,10 +25,11 @@ class ReviewController extends Controller
             ];
     }
 
-    public function show(Request $request, Review $review)
+    public function show(Request $request)
     {
+        $review = new Review();
         $loginUser = auth()->user();
-        $reviewId = $request->review->id;
+        $reviewId = $request->review;
         $review = $review->getReview($reviewId);
 
         return

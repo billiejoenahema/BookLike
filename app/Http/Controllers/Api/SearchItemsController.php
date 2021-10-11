@@ -15,8 +15,9 @@ class SearchItemsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, SearchItems $searchitems)
+    public function __invoke(Request $request)
     {
+        $searchItems = new SearchItems;
         $login_user = auth()->user();
         $keyword = $request->input('keyword');
 
@@ -24,7 +25,7 @@ class SearchItemsController extends Controller
         $search_word = str_replace('\\', '', $keyword);
         if(!$search_word) return back();
 
-        $search_items = $searchitems->getSearchItems($search_word);
+        $search_items = $searchItems->getSearchItems($search_word);
         $storage = Storage::disk('s3');
 
         return view('reviews.search_items', compact(
