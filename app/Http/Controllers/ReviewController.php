@@ -33,8 +33,10 @@ class ReviewController extends Controller
     }
 
     // Post review text form
-    public function post(Request $request, GetItem $get_item, Review $review)
+    public function post(Request $request, Review $review)
     {
+        $get_item = new GetItem;
+        $review = new Review;
         $asin = $request->asin;
         $item = $get_item->getItem($asin);
         $page_url = $item->DetailPageURL ?? NULL;
@@ -68,6 +70,7 @@ class ReviewController extends Controller
      */
     public function store(StoreReview $request, Review $review)
     {
+        $review = new Review;
         $review->reviewStore(auth()->user()->id, $request);
         session()->flash('flash_message', 'レビューを投稿しました');
         return redirect('reviews');

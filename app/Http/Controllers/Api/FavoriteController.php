@@ -15,7 +15,7 @@ class FavoriteController extends Controller
      */
     public function addFavorite(Int $review_id)
     {
-        $favorite = new Favorite();
+        $favorite = new Favorite;
         $loginUser = auth()->user();
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
 
@@ -34,7 +34,7 @@ class FavoriteController extends Controller
      */
     public function removeFavorite(Int $review_id)
     {
-        $favorite = new Favorite();
+        $favorite = new Favorite;
         $loginUser = auth()->user();
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
         $favorite_id = $favorite->where('user_id', $loginUser->id)->where('review_id', $review_id)->value('id');

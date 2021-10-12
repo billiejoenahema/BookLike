@@ -28,8 +28,9 @@ class UsersController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show(User $user, GetItem $get_item)
+  public function show(User $user)
   {
+    $get_item = new GetItem;
     $created_at = new DateTime($user->created_at);
     $updated_at = new DateTime($user->updated_at);
     $create_date = $created_at->format('Y/m/d');
@@ -64,8 +65,10 @@ class UsersController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit(User $user, Review $review, GetItem $get_item)
+  public function edit(User $user)
   {
+    $review = new Review;
+    $get_item = new GetItem;
     $userReviews = $review->getUserReviews($user->id);
     $selected_book_title = '未設定';
     if ($user->asin) {

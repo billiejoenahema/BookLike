@@ -40,7 +40,7 @@ class UsersController extends Controller
      */
     public function show(Request $request, User $user)
     {
-        $review = new Review();
+        $review = new Review;
         $profileUserId = $user->id;
         $profileUser = $user->with('followers')->find($profileUserId);
         $loginUserId = auth()->user()->id;

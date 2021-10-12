@@ -16,7 +16,7 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        $comment = new Comment();
+        $comment = new Comment;
         $user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
