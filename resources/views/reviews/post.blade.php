@@ -47,7 +47,6 @@
                                 <select name="spoiler" class="form-controll p-1">
                                     <option value="0" selected>ネタバレなし</option>
                                     <option value="1">ネタバレあり</option>
-
                                 </select>
                             </div>
                         </div>
@@ -95,7 +94,6 @@
                     <input type="hidden" name="image_url" id="image_url"
                         value="{{ $image_url ?? asset('images/NoImage.png') }}">
                     <input type="hidden" name="ratings" id="inputRatings" value="3">
-
                     <div class="form-group row mb-0">
                         <div class="col-12 text-right">
                             <p id="currentLength">0 / 800文字</p>
