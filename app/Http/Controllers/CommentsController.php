@@ -20,7 +20,7 @@ class CommentsController extends Controller
         $user = auth()->user();
         $data = $request->all();
         $validator = Validator::make($data, [
-            'review_id' =>'required | integer',
+            'review_id' => 'required | integer',
             'text'     => 'required | string | max:200'
         ]);
 
@@ -34,7 +34,7 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Comment $comment
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comment $comment)

@@ -26,12 +26,12 @@ class Comment extends Model
     public function getComments(Int $review_id)
     {
         return $this->with('user')
-                    ->withTrashed()
-                    ->where('review_id', $review_id)
-                    ->get();
+            ->withTrashed()
+            ->where('review_id', $review_id)
+            ->get();
     }
 
-    public function commentStore(Int $user_id, Array $data)
+    public function commentStore(Int $user_id, array $data)
     {
         $this->user_id = $user_id;
         $this->review_id = $data['review_id'];
@@ -44,6 +44,6 @@ class Comment extends Model
     public function commentDestroy(Int $comment_id)
     {
         return $this->where('id', $comment_id)
-                    ->delete();
+            ->delete();
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 
-class UpdateUser extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class UpdateUser extends FormRequest
             'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($this->user)],
             'name'          => ['nullable', 'string', 'max:50'],
             'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'category'      => ['nullable','string', 'max:255'],
+            'category'      => ['nullable', 'string', 'max:255'],
             'asin'          => ['nullable', 'string', 'max:10'],
             'story'         => ['nullable', 'string', 'max:800'],
             'description'   => ['string', 'max:255'],

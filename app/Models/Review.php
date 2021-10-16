@@ -40,20 +40,20 @@ class Review extends Model
     public function getReview(Int $review_id)
     {
         return $this->with(['user' => function ($query) {
-                        return $query->withCount(['reviews', 'followers', 'favorites']);
-                    }])
-                    ->with(['comments:id', 'favorites'])
-                    ->withCount(['comments', 'favorites'])
-                    ->where('id', $review_id)
-                    ->first();
+            return $query->withCount(['reviews', 'followers', 'favorites']);
+        }])
+            ->with(['comments:id', 'favorites'])
+            ->withCount(['comments', 'favorites'])
+            ->where('id', $review_id)
+            ->first();
     }
 
     // 投稿済みかどうか
     public function isPosted($asin, Int $user_id)
     {
-        return (boolean) $this->where('user_id', $user_id)
-                              ->where('asin', $asin)
-                              ->first('asin');
+        return (bool) $this->where('user_id', $user_id)
+            ->where('asin', $asin)
+            ->first('asin');
     }
 
     // 新規投稿
@@ -76,9 +76,9 @@ class Review extends Model
     }
 
     // 投稿をアップデート
-    public function reviewUpdate(Int $review_id, $request)
+    public function reviewUpdate($request)
     {
-        $this->id = $review_id;
+        $this->id = $request->review;
         $this->ratings = $request->ratings;
         $this->spoiler = $request->spoiler;
         $this->text = $request->text;
@@ -90,35 +90,35 @@ class Review extends Model
     public function reviewDestroy(Int $user_id, Int $review_id)
     {
         return $this->where('user_id', $user_id)
-                    ->where('id', $review_id)
-                    ->delete();
+            ->where('id', $review_id)
+            ->delete();
     }
 
     // ユーザーの投稿をすべて取得
     public function getUserReviews(Int $user_id)
     {
         return $this->where('user_id', $user_id)
-                    ->with(['user:id,screen_name,name,profile_image', 'comments:id', 'favorites'])
-                    ->with(['user' => function ($query) {
-                        return $query->withCount(['reviews', 'followers', 'favorites']);
-                    }])
-                    ->withCount('comments')
-                    ->orderBy('created_at', 'DESC')
-                    ->get();
+            ->with(['user:id,screen_name,name,profile_image', 'comments:id', 'favorites'])
+            ->with(['user' => function ($query) {
+                return $query->withCount(['reviews', 'followers', 'favorites']);
+            }])
+            ->withCount('comments')
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 
     // いいねした投稿を取得
     public function getFavoriteReviews(Int $user_id)
     {
-        return $this->whereHas('favorites', function($query) use ($user_id) {
-                        $query->where('user_id', $user_id);
-                    })
-                    ->with(['user:id,screen_name,name,profile_image','comments:id','favorites'])
-                    ->with(['user' => function ($query) {
-                        return $query->withCount(['reviews', 'followers', 'favorites']);
-                    }])
-                    ->withCount('comments')
-                    ->get();
+        return $this->whereHas('favorites', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })
+            ->with(['user:id,screen_name,name,profile_image', 'comments:id', 'favorites'])
+            ->with(['user' => function ($query) {
+                return $query->withCount(['reviews', 'followers', 'favorites']);
+            }])
+            ->withCount('comments')
+            ->get();
     }
 
     // 投稿一覧の取得
@@ -133,23 +133,23 @@ class Review extends Model
         if ($category === 'default') $category = false;
 
         // 検索ワードが入力されていなければ該当するwhen文をスルー
-        if ($search === NULL ) $search = false;
+        if ($search === NULL) $search = false;
         $searches = ['criteria' => $criteria, 'search' => $search];
 
         // すべての投稿を取得
         $allReviews = $this->when($category, function ($query, $category) {
-                        return $query->where('category', $category);
-                    })
-                    ->when($searches, function ($query, $searches) {
-                        $criteria = $searches['criteria'];
-                        $search = $searches['search'];
-                        return $query->where($criteria, 'LIKE', "%$search%");
-                    })
-                    ->with(['user' => function ($query) {
-                        return $query->withCount(['reviews', 'followers', 'favorites']);
-                    }])
-                    ->with(['comments:id','favorites'])
-                    ->withCount(['comments', 'favorites']);
+            return $query->where('category', $category);
+        })
+            ->when($searches, function ($query, $searches) {
+                $criteria = $searches['criteria'];
+                $search = $searches['search'];
+                return $query->where($criteria, 'LIKE', "%$search%");
+            })
+            ->with(['user' => function ($query) {
+                return $query->withCount(['reviews', 'followers', 'favorites']);
+            }])
+            ->with(['comments:id', 'favorites'])
+            ->withCount(['comments', 'favorites']);
 
         switch ($sort) {
             case 'favorite':

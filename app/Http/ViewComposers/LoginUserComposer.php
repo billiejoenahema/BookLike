@@ -5,7 +5,8 @@ namespace App\Http\ViewComposers;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Auth\Guard;
 
-class LoginUserComposer {
+class LoginUserComposer
+{
     /**
      * @var String
      */
@@ -23,6 +24,6 @@ class LoginUserComposer {
      */
     public function compose(View $view)
     {
-        $view->with('login_user', $this->auth->user());
+        $view->with('login_user', auth()->user());
     }
 }

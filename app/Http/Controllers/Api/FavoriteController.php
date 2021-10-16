@@ -19,7 +19,7 @@ class FavoriteController extends Controller
         $loginUser = auth()->user();
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
 
-        if(!$is_favorite) {
+        if (!$is_favorite) {
             $favorite->storeFavorite($loginUser->id, $review_id);
             return ['status' => 'success'];
         }
@@ -29,7 +29,7 @@ class FavoriteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $review_id
      * @return \Illuminate\Http\Response
      */
     public function removeFavorite(Int $review_id)
@@ -39,11 +39,10 @@ class FavoriteController extends Controller
         $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
         $favorite_id = $favorite->where('user_id', $loginUser->id)->where('review_id', $review_id)->value('id');
 
-        if($is_favorite) {
+        if ($is_favorite) {
             $favorite->destroyFavorite($favorite_id);
             return ['status' => 'success'];
         }
         return ['status' => 'error'];
-
     }
 }

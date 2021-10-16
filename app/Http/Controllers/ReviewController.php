@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReview;
-use App\Http\Requests\UpdateReview;
+use App\Http\Requests\StoreReviewRequest;
+use App\Http\Requests\UpdateReviewRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Review;
@@ -32,8 +32,13 @@ class ReviewController extends Controller
         return redirect('/');
     }
 
-    // Post review text form
-    public function post(Request $request, Review $review)
+    /**
+     * Post review text form.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function post(Request $request)
     {
         $get_item = new GetItem;
         $review = new Review;
@@ -48,7 +53,7 @@ class ReviewController extends Controller
         // 選択した書籍と同じ書籍が投稿済みかどうかをチェック
         $isPosted = $review->isPosted($asin, auth()->user()->id);
         // 投稿済みならエラーメッセージを表示
-        if($isPosted) {
+        if ($isPosted) {
             return back()->with('error', 'この本はすでに投稿済みです');
         }
 
@@ -65,10 +70,10 @@ class ReviewController extends Controller
     /**
      * Store new review.
      *
-     * @param  App\Http\Requests\StoreReview  $request
+     * @param  StoreReviewRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreReview $request, Review $review)
+    public function store(StoreReviewRequest $request)
     {
         $review = new Review;
         $review->reviewStore(auth()->user()->id, $request);
@@ -79,7 +84,8 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Review $review
+     * @param  Comment $comment
      * @return \Illuminate\Http\Response
      */
     public function show(Review $review, Comment $comment)
@@ -96,7 +102,7 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the review.
      *
-     * @param  int  $id
+     * @param  Review $review
      * @return \Illuminate\Http\Response
      */
     public function edit(Review $review)
@@ -109,13 +115,13 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  UpdateReviewRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReview $request, Review $review)
+    public function update(UpdateReviewRequest $request)
     {
-        $review->reviewUpdate($review->id, $request);
+        $review = new Review;
+        $review->reviewUpdate($request);
         session()->flash('flash_message', '投稿を編集しました');
 
         return redirect('reviews');

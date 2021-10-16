@@ -68,8 +68,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAllUsers(Int $user_id)
     {
         return $this->where('id', '<>', $user_id)
-                    ->with('followers:id')
-                    ->withCount(['reviews', 'followers', 'favorites']);
+            ->with('followers:id')
+            ->withCount(['reviews', 'followers', 'favorites']);
     }
 
     // ユーザー一覧の並び替え
@@ -80,31 +80,24 @@ class User extends Authenticatable implements MustVerifyEmail
             case 'review':
                 // いいね獲得数順にユーザーを取得
                 return $this->getAllUsers($loginUserId)
-                            ->orderBy('reviews_count', 'DESC')
-                            ->paginate($pagination);
-                break;
-
+                    ->orderBy('reviews_count', 'DESC')
+                    ->paginate($pagination);
             case 'follower':
                 // フォロワーが多い順にユーザーを取得
                 return $this->getAllUsers($loginUserId)
-                            ->orderBy('followers_count', 'DESC')
-                            ->paginate($pagination);
-                break;
-
+                    ->orderBy('followers_count', 'DESC')
+                    ->paginate($pagination);
             case 'favorite':
                 // いいね獲得数順にユーザーを取得
                 return $this->getAllUsers($loginUserId)
-                            ->orderBy('favorites_count', 'DESC')
-                            ->paginate($pagination);
-                break;
-
+                    ->orderBy('favorites_count', 'DESC')
+                    ->paginate($pagination);
             case 'default':
-            default :
+            default:
                 // 登録順にユーザーを取得
                 return $this->getAllUsers($loginUserId)
-                            ->orderBy('created_at', 'DESC')
-                            ->paginate($pagination);
-                break;
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate($pagination);
         }
     }
 
@@ -123,47 +116,54 @@ class User extends Authenticatable implements MustVerifyEmail
     // フォローしているか
     public function isFollowing(Int $user_id)
     {
-        return (boolean) $this->follows()
-        ->where('followed_id', $user_id)
-        ->first(['id']);
+        return (bool) $this->follows()
+            ->where('followed_id', $user_id)
+            ->first(['id']);
     }
 
     // フォローされているか
     public function isFollowed(Int $user_id)
     {
-        return (boolean) $this->followers()
-        ->where('following_id', $user_id)
-        ->first(['id']);
+        return (bool) $this->followers()
+            ->where('following_id', $user_id)
+            ->first(['id']);
     }
 
-    // ユーザープロフィール編集
-    public function updateProfile($request)
+    /**
+     * ユーザープロフィール編集
+     *
+     * @param object $request
+     * @return void
+     */
+    public function updateProfile($request): void
     {
         if (isset($request->profile_image)) {
             $profile_image = Storage::disk('s3')->put('/', $request->profile_image, 'public');
             $this::where('id', $this->id)->update(
-            [
-                'screen_name'   => $request->screen_name,
-                'name'          => $request->name,
-                'profile_image' => $profile_image,
-                'category'      => $request->category,
-                'description'   => $request->description,
-                'asin'          => $request->asin,
-                'story'         => $request->story,
-                'email'         => $request->email,
-            ]);
+                [
+                    'screen_name'   => $request->screen_name,
+                    'name'          => $request->name,
+                    'profile_image' => $profile_image,
+                    'category'      => $request->category,
+                    'description'   => $request->description,
+                    'asin'          => $request->asin,
+                    'story'         => $request->story,
+                    'email'         => $request->email,
+                ]
+            );
         } else {
             // 画像ファイルが選択されていない場合の処理
             $this::where('id', $this->id)->update(
-            [
-                'screen_name'   => $request->screen_name,
-                'name'          => $request->name,
-                'category'      => $request->category,
-                'description'   => $request->description,
-                'asin'          => $request->asin,
-                'story'         => $request->story,
-                'email'         => $request->email,
-            ]);
+                [
+                    'screen_name'   => $request->screen_name,
+                    'name'          => $request->name,
+                    'category'      => $request->category,
+                    'description'   => $request->description,
+                    'asin'          => $request->asin,
+                    'story'         => $request->story,
+                    'email'         => $request->email,
+                ]
+            );
         }
         return;
     }
@@ -172,21 +172,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getFollowingUsers(Int $id)
     {
         return $this->follows()
-                    ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
-                    ->with('followers:id')
-                    ->withCount(['reviews', 'followers', 'favorites'])
-                    ->orderBy('created_at', 'DESC')
-                    ->get();
+            ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
+            ->with('followers:id')
+            ->withCount(['reviews', 'followers', 'favorites'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 
     // フォロワーを取得
     public function getFollowers(Int $id)
     {
         return $this->followers()
-                    ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
-                    ->with('followers:id')
-                    ->withCount(['reviews', 'followers', 'favorites'])
-                    ->orderBy('created_at', 'DESC')
-                    ->get();
+            ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
+            ->with('followers:id')
+            ->withCount(['reviews', 'followers', 'favorites'])
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 }
