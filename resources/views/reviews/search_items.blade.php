@@ -113,12 +113,12 @@
                             </li>
                             <li class="list-item">
                                 <object>
-                                    <a href="{{" $search_item-
-                                        >DetailPageURL }} target="_blank"
-                                        rel="noopener" class="amazon-link"><i
-                                            class="fab fa-amazon"
-                                        ></i>
-                                        Amazon</a
+                                    <a
+                                        href="{{ $search_item->DetailPageURL }}"
+                                        target="_blank"
+                                        rel="noopener"
+                                        class="amazon-link"
+                                        ><i class="fab fa-amazon"></i> Amazon</a
                                     >
                                 </object>
                             </li>
