@@ -8,7 +8,7 @@ use App\Models\Review;
 use App\Models\GetItem;
 use DateTime;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.

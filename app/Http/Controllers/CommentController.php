@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Comment;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
     /**
      * Store a newly created resource in storage.

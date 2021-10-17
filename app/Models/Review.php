@@ -86,14 +86,6 @@ class Review extends Model
         return;
     }
 
-    // レビュー削除
-    public function reviewDestroy(Int $user_id, Int $review_id)
-    {
-        return $this->where('user_id', $user_id)
-            ->where('id', $review_id)
-            ->delete();
-    }
-
     // ユーザーの投稿をすべて取得
     public function getUserReviews(Int $user_id)
     {

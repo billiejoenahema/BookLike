@@ -115,7 +115,7 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateReviewRequest
+     * @param  UpdateReviewRequest $request
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateReviewRequest $request)
@@ -130,13 +130,13 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Int $review_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review, Request $request)
+    public function destroy($review_id)
     {
-        $login_user = auth()->user();
-        $review->reviewDestroy($login_user->id, $review->id);
+        Review::where('id', $review_id)
+            ->delete();
         session()->flash('flash_message', '投稿を削除しました');
 
         return redirect('reviews');

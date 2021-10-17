@@ -7,17 +7,17 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param \Illuminate\Http\Request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-
-    public function index(Request $request, User $user)
+    public function index(Request $request)
     {
+        $user = new User;
         $sort = $request['sort'];
         $pagination = 6;
         $loginUserId = auth()->user()->id;
@@ -35,7 +35,8 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Request $request
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, User $user)
@@ -65,5 +66,4 @@ class UsersController extends Controller
                 'followedUsers' => $followedUsers,
             ];
     }
-
 }

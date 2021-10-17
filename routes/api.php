@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
 
     // 書籍検索（resourceよりも上に書かないと'404 Not found'になってしまう）
     Route::get('/reviews/search_items', 'Api\SearchItemsController')->name('search_items');
@@ -9,7 +9,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('/reviews', 'Api\ReviewController', ['only' => ['index', 'show']]);
 
     // ユーザー関連
-    Route::resource('/users', 'Api\UsersController', ['only' => ['index', 'show']]);
+    Route::resource('/users', 'Api\UserController', ['only' => ['index', 'show']]);
 
     // いいね機能
     Route::post('/add_favorite/{id}', 'Api\FavoriteController@addFavorite')->where('id', '[0-9]+');
@@ -18,5 +18,4 @@ Route::group(['middleware' => 'auth'], function() {
     // フォロー/フォロー解除
     Route::post('/follow/{id}', 'Api\FollowController@follow')->where('id', '[0-9]+');
     Route::post('/unfollow/{id}', 'Api\FollowController@unfollow')->where('id', '[0-9]+');
-
 });
