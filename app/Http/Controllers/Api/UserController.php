@@ -13,7 +13,7 @@ class UserController extends Controller
      * Display a listing of the resource.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return array<string, mixed>
      */
     public function index(Request $request)
     {
@@ -37,7 +37,7 @@ class UserController extends Controller
      *
      * @param  Request $request
      * @param  User $user
-     * @return \Illuminate\Http\Response
+     * @return array<string, mixed>
      */
     public function show(Request $request, User $user)
     {

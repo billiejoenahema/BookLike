@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Models\Review;
 use App\Models\Comment;
 use App\Models\GetItem;
@@ -15,7 +14,7 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -25,7 +24,7 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create()
     {
@@ -36,7 +35,6 @@ class ReviewController extends Controller
      * Post review text form.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
      */
     public function post(Request $request)
     {
@@ -71,7 +69,7 @@ class ReviewController extends Controller
      * Store new review.
      *
      * @param  StoreReviewRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreReviewRequest $request)
     {
@@ -86,7 +84,7 @@ class ReviewController extends Controller
      *
      * @param  Review $review
      * @param  Comment $comment
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Review $review, Comment $comment)
     {
@@ -103,7 +101,7 @@ class ReviewController extends Controller
      * Show the form for editing the review.
      *
      * @param  Review $review
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Review $review)
     {
@@ -116,7 +114,7 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdateReviewRequest $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateReviewRequest $request)
     {
@@ -131,7 +129,7 @@ class ReviewController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Int $review_id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($review_id)
     {

@@ -11,7 +11,7 @@ class FavoriteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Int $review_id
-     * @return \Illuminate\Http\Response
+     * @return array<string, string>
      */
     public function addFavorite(Int $review_id)
     {
@@ -30,7 +30,7 @@ class FavoriteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $review_id
-     * @return \Illuminate\Http\Response
+     * @return array<string, string>
      */
     public function removeFavorite(Int $review_id)
     {
