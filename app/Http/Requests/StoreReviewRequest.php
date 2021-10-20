@@ -27,15 +27,15 @@ class StoreReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'asin' => 'required',
-            'page_url' => 'string',
-            'title' => 'required',
-            'author' => 'string | nullable',
-            'manufacturer' => 'string | nullable',
-            'image_url' => 'required',
-            'ratings' => 'required | digits:1',
-            'spoiler' => 'required | digits:1',
-            'text' => 'nullable | string | max:800'
+            'asin' => 'required | string | size:10',
+            'page_url' => 'nullable | string | max:255',
+            'title' => 'required | string | max:255',
+            'author' => 'nullable | string | max:255',
+            'manufacturer' => 'nullable | string | max:255',
+            'image_url' => 'required | string | url | max:255',
+            'ratings' => 'required | digits:1 | between:1,5',
+            'spoiler' => 'required | digits:1 | boolean',
+            'text' => 'nullable | string | max:800',
         ];
     }
 }

@@ -30,9 +30,9 @@ class UpdateUserRequest extends FormRequest
             'name'          => ['nullable', 'string', 'max:50'],
             'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'category'      => ['nullable', 'string', 'max:255'],
-            'asin'          => ['nullable', 'string', 'max:10'],
+            'asin'          => ['nullable', 'string', 'size:10'],
             'story'         => ['nullable', 'string', 'max:800'],
-            'description'   => ['string', 'max:255'],
+            'description'   => ['nullable', 'string', 'max:255'],
             'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)]
         ];
     }

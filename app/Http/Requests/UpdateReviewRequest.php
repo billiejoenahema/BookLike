@@ -24,9 +24,9 @@ class UpdateReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'ratings' => 'required | digits:1', // 桁数：1
-            'spoiler' => 'required | digits:1', // 桁数：1
-            'text'    => 'nullable | string | max:800',
+            'ratings' => 'required | digits:1 | between:1,5',
+            'spoiler' => 'required | digits:1 | boolean',
+            'text' => 'nullable | string | max:800',
         ];
     }
 }
