@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 // 認証機能
 // Auth::routes();
 Auth::routes(['verify' => true]);
@@ -14,8 +17,11 @@ Route::get('guest', 'Auth\LoginController@guestUserLogin')->name('login.guest');
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // ユーザ関連
-    Route::resource('users', 'UserController', ['only'
-    => ['index', 'show', 'edit', 'update', 'destroy']]);
+    Route::get('users', 'UserController@index');
+    Route::get('users/{user}', 'UserController@show')->name('users.show');
+    Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');
+    Route::post('users/{user}', 'UserController@update')->name('users.update');
+    Route::post('users/{user}', 'UserController@destroy')->name('users.destroy');
 
     // レビュー入力画面（resourceよりも上に書かないと'404 Not found'になってしまう）
     Route::get('reviews/post', 'ReviewController@post')->name('reviews.post');
