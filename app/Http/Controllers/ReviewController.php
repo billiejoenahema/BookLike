@@ -22,16 +22,6 @@ class ReviewController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function create()
-    {
-        return redirect('/');
-    }
-
-    /**
      * Post review text form.
      *
      * @param Request $request

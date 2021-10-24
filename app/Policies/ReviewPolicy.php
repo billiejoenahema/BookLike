@@ -39,9 +39,12 @@ class ReviewPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user, Review $review)
+    public function create(User $user)
     {
-        return $user->id === $review->user_id;
+        if ($user->id === auth()->user()->id) {
+            return true;
+        }
+        abort(403, $user->id);
     }
 
     /**

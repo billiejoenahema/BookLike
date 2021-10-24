@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['middleware' => 'auth'], function () {
 
     // 書籍検索（resourceよりも上に書かないと'404 Not found'になってしまう）
