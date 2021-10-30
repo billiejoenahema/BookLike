@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
 
+    // ログインユーザー
+    Route::resource('/login_user', 'Api\LoginUserController');
+
     // 書籍検索（resourceよりも上に書かないと'404 Not found'になってしまう）
     Route::get('/reviews/search_items', 'Api\SearchItemsController')->name('search_items');
 

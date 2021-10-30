@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Resources\LoginUserResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+
+class LoginUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +18,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        $login_user = User::with('followers')->find($user);
-        return LoginUserResource::collection($login_user);
+        $login_user = User::with(['follows:id', 'followers:id'])->findOrFail(Auth::id());
+        return new LoginUserResource($login_user);
     }
 
     /**
@@ -28,17 +29,6 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
     {
         //
     }
