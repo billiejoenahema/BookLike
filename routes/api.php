@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 
     // ログインユーザー
-    Route::resource('/login_user', 'Api\LoginUserController');
+    Route::get('/login_user', 'Api\LoginUserController@index');
 
     // 書籍検索（resourceよりも上に書かないと'404 Not found'になってしまう）
     Route::get('/reviews/search_items', 'Api\SearchItemsController')->name('search_items');
@@ -14,7 +14,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/reviews', 'Api\ReviewController', ['only' => ['index', 'show']]);
 
     // ユーザー関連
-    Route::resource('/users', 'Api\UserController', ['only' => ['index', 'show']]);
+    Route::get('/users', 'Api\UserController@index');
+    Route::get('/users/{user}', 'Api\UserController@show');
 
     // いいね機能
     Route::post('/add_favorite/{id}', 'Api\FavoriteController@addFavorite')->where('id', '[0-9]+');

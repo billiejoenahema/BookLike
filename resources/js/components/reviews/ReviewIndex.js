@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
+import { loginUser } from '../../hooks/useFetchLoginUser';
 import Reviews from './Reviews';
 import Loading from '../Loading';
 import SearchCriteriaAndWord from './SearchCriteriaAndWord';
@@ -11,7 +12,6 @@ import { changeSelectBox } from '../../functions/changeSelectBox';
 import { hideModal } from '../../functions/hideModal';
 
 const ReviewIndex = React.memo(() => {
-  const [loginUser, setLoginUser] = useState();
   const [reviews, setReviews] = useState([]);
   const [category, setCategory] = useState('default');
   const [criteria, setCriteria] = useState('title');
@@ -20,16 +20,17 @@ const ReviewIndex = React.memo(() => {
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchWord, setSearchWord] = useState('');
-  const URL = `/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`;
+  const { loginUser } = useFetchLoginUser();
 
   useEffect(() => {
     const loadReviews = async () => {
       setLoading(true);
       const newReviews = await axios
-        .get(URL)
+        .get(
+          `/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`
+        )
         .then((res) => {
           const reviews = res.data.reviews;
-          setLoginUser(res.data.loginUser);
           page < reviews.last_page && setHasMore(true);
           return reviews.data;
         })

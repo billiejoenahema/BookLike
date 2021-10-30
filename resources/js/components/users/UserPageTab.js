@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { useFetchLoginUser } from '../../hooks/useFetchLoginUser';
 import Reviews from '../reviews/Reviews';
 import Users from './Users';
 import Loading from '../Loading';
@@ -8,13 +9,13 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const UserPageTab = () => {
-  const [loginUser, setLoginUser] = useState({});
   const [userReviews, setUserReviews] = useState([]);
   const [favoriteReviews, setFavoriteReviews] = useState([]);
   const [followingUsers, setFollowingUsers] = useState([]);
   const [followedUsers, setFollowedUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [maxTextLength, setTextLength] = useState(100);
+  const { loginUser } = useFetchLoginUser();
 
   const currentPath = window.location.pathname;
   const userId = currentPath.replace(/[^0-9]/g, '');
@@ -26,12 +27,11 @@ const UserPageTab = () => {
       await axios
         .get(`/api/users/${userId}`)
         .then((res) => {
-          const data = res.data;
-          setLoginUser(data.loginUser);
-          setUserReviews(data.userReviews);
-          setFavoriteReviews(data.favoriteReviews);
-          setFollowingUsers(data.followingUsers);
-          setFollowedUsers(data.followedUsers);
+          console.log(res.data.user);
+          setUserReviews(['1', '2', '3']);
+          setFavoriteReviews();
+          setFollowingUsers();
+          setFollowedUsers();
         })
         .catch((err) => {
           console.log(err);

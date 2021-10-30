@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import { loginUser } from '../../hooks/useFetchLoginUser';
 import { useDebounce } from 'use-debounce';
 import InputField from './InputField';
 import SortUsers from './SortUsers';
@@ -8,7 +9,6 @@ import Loading from '../Loading';
 import { findUsers } from '../../functions/findUsers';
 
 const UserIndex = () => {
-  const [loginUser, setLoginUser] = useState();
   const [allUsers, setAllUsers] = useState([]);
   const [sort, setSort] = useState('default');
   const [page, setPage] = useState(1);
@@ -17,6 +17,7 @@ const UserIndex = () => {
   const [value, setValue] = useState('');
   const [searchWord] = useDebounce(value, 500);
   const [maxTextLength, setTextLength] = useState(100);
+  const { loginUser } = useFetchLoginUser();
 
   useEffect(() => {
     const loadUsers = async () => {
@@ -24,7 +25,6 @@ const UserIndex = () => {
       const newUsers = await axios
         .get(`/api/users?sort=${sort}&page=${page}`)
         .then((res) => {
-          setLoginUser(res.data.loginUser);
           page < res.data.users.last_page && setHasMore(true);
           return res.data.users.data || res.data.users;
         })
