@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import CommentList from '../comment/CommentList';
+import { loginUser } from '../../hooks/useFetchLoginUser';
 import UserIcon from '../users/UserIcon';
 import UserName from '../users/UserName';
 import BookImage from './BookImage';
@@ -13,8 +15,8 @@ import { hoverUserIcon } from '../../functions/hoverUserIcon';
 import { leaveUserIcon } from '../../functions/leaveUserIcon';
 
 const ShowReview = () => {
-  const [loginUser, setLoginUser] = useState();
   const [review, setReview] = useState('');
+  const { loginUser } = useFetchLoginUser();
   const currentUrl = window.location.pathname;
 
   useEffect(() => {
@@ -25,7 +27,6 @@ const ShowReview = () => {
     await axios
       .get(`/api${currentUrl}`)
       .then((res) => {
-        setLoginUser(res.data.loginUser);
         setReview(res.data.review);
       })
       .catch((err) => {
@@ -101,6 +102,7 @@ const ShowReview = () => {
           </div>
         </div>
       )}
+      <CommentList comment={review.comment} />
     </>
   );
 };
