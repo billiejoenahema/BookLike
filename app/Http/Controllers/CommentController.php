@@ -15,10 +15,14 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        $comment = new Comment;
         $user = auth()->user();
         $data = $request->all();
-        $comment->commentStore($user->id, $data);
+
+        $comment = new Comment();
+        $comment->user_id = $user->id;
+        $comment->review_id = $data['review_id'];
+        $comment->text = $data['text'];
+        $comment->save();
         session()->flash('flash_message', 'コメントを投稿しました');
 
         return back();
@@ -32,7 +36,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $comment->commentDestroy($comment->id);
+        $comment->where('id', $comment->id)->delete();
         session()->flash('flash_message', 'コメントを削除しました');
 
         return back();
