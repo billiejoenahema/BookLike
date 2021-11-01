@@ -167,26 +167,4 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return;
     }
-
-    // フォロー中のユーザーを取得
-    public function getFollowingUsers(Int $id)
-    {
-        return $this->follows()
-            ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
-            ->with('followers:id')
-            ->withCount(['reviews', 'followers', 'favorites'])
-            ->orderBy('created_at', 'DESC')
-            ->get();
-    }
-
-    // フォロワーを取得
-    public function getFollowers(Int $id)
-    {
-        return $this->followers()
-            ->select('id', 'screen_name', 'name', 'profile_image', 'category', 'description')
-            ->with('followers:id')
-            ->withCount(['reviews', 'followers', 'favorites'])
-            ->orderBy('created_at', 'DESC')
-            ->get();
-    }
 }
