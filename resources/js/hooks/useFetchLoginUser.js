@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 export const useFetchLoginUser = () => {
   const [loginUser, setLoginUser] = useState({});
-  useEffect(async () => {
-    await axios
+  const getLoginUser = () => {
+    axios
       .get('/api/login_user')
       .then((res) => {
-        setLoginUser(res.data.loginUser);
+        setLoginUser(res.login_user);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-  return { loginUser };
+  };
+  return { getLoginUser, loginUser };
 };
