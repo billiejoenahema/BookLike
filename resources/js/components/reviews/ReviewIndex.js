@@ -30,9 +30,9 @@ const ReviewIndex = React.memo(() => {
           `/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`
         )
         .then((res) => {
-          const reviews = res.reviews;
-          page < reviews.last_page && setHasMore(true);
-          return reviews.data;
+          console.log(res.data.data);
+          page < res.data.links.last_page && setHasMore(true);
+          return res.data.data;
         })
         .catch((err) => {
           console.log(err);

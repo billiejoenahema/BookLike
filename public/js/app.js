@@ -2925,9 +2925,9 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.memo(function 
                 setLoading(true);
                 _context.next = 3;
                 return axios.get("/api/reviews?criteria=".concat(criteria, "&search=").concat(searchWord, "&category=").concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
-                  var reviews = res.reviews;
-                  page < reviews.last_page && setHasMore(true);
-                  return reviews.data;
+                  console.log(res.data.data);
+                  page < res.data.links.last_page && setHasMore(true);
+                  return res.data.data;
                 })["catch"](function (err) {
                   console.log(err);
                 });

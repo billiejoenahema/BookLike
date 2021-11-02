@@ -22,25 +22,23 @@ class ReviewResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'review' => [
-                'id' => $this->id,
-                'user_id' => $this->user_id,
-                'category' => $this->category,
-                'asin' => $this->asin,
-                'page_url' => $this->page_url,
-                'title' => $this->title,
-                'author' => $this->author,
-                'manufacturer' => $this->manufacturer,
-                'image_url' => $this->image_url,
-                'text' => $this->text,
-                'ratings' => $this->ratings,
-                'spoiler' => $this->spoiler,
-                'created_at' => $this->created_at,
-                'favorites_count' => $this->favorites_count,
-                'favorites' => $this->favorites,
-                'comments' => $this->comments,
-                'user' => new UserResource($this->user),
-            ]
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'category' => $this->category,
+            'asin' => $this->asin,
+            'page_url' => $this->page_url,
+            'title' => $this->title,
+            'author' => $this->author,
+            'manufacturer' => $this->manufacturer,
+            'image_url' => $this->image_url,
+            'text' => $this->text,
+            'ratings' => $this->ratings,
+            'spoiler' => $this->spoiler,
+            'created_at' => $this->created_at,
+            'favorites_count' => $this->favorites_count,
+            'favorites' => $this->favorites,
+            'comments' => CommentResource::collection($this->comments),
+            'user' => new UserResource($this->user),
         ];
     }
 }

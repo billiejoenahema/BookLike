@@ -17,11 +17,7 @@ class ReviewController extends Controller
 
         // 並び替えられた投稿一覧
         $reviews = $review->getReviews($request, $pagination);
-
-        return
-            [
-                'reviews' => $reviews,
-            ];
+        return ReviewResource::collection($reviews);
     }
 
     public function show(Request $request)
