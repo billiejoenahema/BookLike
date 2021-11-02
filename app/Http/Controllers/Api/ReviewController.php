@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ReviewResource;
 use Illuminate\Http\Request;
 use App\Models\Review;
 
@@ -11,9 +12,8 @@ class ReviewController extends Controller
 
     public function index(Request $request)
     {
+        $pagination = config('PAGINATION.USERS');
         $review = new Review;
-        $pagination = 6;
-        $loginUser = auth()->user();
 
         // 並び替えられた投稿一覧
         $reviews = $review->getReviews($request, $pagination);
@@ -21,29 +21,26 @@ class ReviewController extends Controller
         return
             [
                 'reviews' => $reviews,
-                'loginUser' => $loginUser,
             ];
     }
 
     public function show(Request $request)
     {
-        $review = new Review;
-        $loginUser = auth()->user();
-        $reviewId = $request->review;
-        $review = $review->getReview($reviewId);
+        $query = Review::withCount(['favorites', 'comments'])
+            ->with(['user', 'favorites', 'comments' => function ($query) {
+                return $query->with('user');
+            }]);
+        $id = (int) $request->review;
+        $review = $query->findOrFail($id);
 
-        return
-            [
-                'review' => $review,
-                'loginUser' => $loginUser,
-            ];
+        return new ReviewResource($review);
     }
 
     public function edit(Review $review)
     {
         $review = $review->with('favorites')
-                        ->where('id', $review->id)
-                        ->first();
+            ->where('id', $review->id)
+            ->first();
         $ratings = $review->ratings;
         return
             [

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Review;
 
 class UserController extends Controller
 {
@@ -17,53 +17,40 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $pagination = config('PAGINATION.USERS');
         $user = new User;
         $sort = $request['sort'];
-        $pagination = 6;
         $loginUserId = auth()->user()->id;
-        $loginUser = $user->with('followers')->find($loginUserId);
         // 並び替えられたユーザー一覧を取得
         $users = $user->sortedUsers($sort, $pagination, $loginUserId);
 
-        return
-            [
-                'loginUser' => $loginUser,
-                'users' => $users,
-            ];
+        return UserResource::collection($users);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  Request $request
-     * @param  User $user
-     * @return array<string, mixed>
+     * @return array<mixed>
      */
-    public function show(Request $request, User $user)
+    public function show(Request $request)
     {
-        $review = new Review;
-        $profileUserId = $user->id;
-        $profileUser = $user->with('followers')->find($profileUserId);
-        $loginUserId = auth()->user()->id;
-        $loginUser = $user->with('followers')->find($loginUserId);
+        $id = (int) $request->user;
+        $query = User::with([
+            'follows',
+            'followers',
+            'reviews' => function ($query) {
+                return $query->withCount('favorites');
+            }
+        ])
+            ->withCount([
+                'follows',
+                'followers',
+                'reviews'
+            ]);
 
-        // 自分の投稿一覧
-        $userReviews = $review->getUserReviews($user->id);
-        // いいねした投稿一覧
-        $favoriteReviews = $review->getFavoriteReviews($user->id);
-        // フォローしているユーザー
-        $followingUsers = $user->getFollowingUsers($user->id);
-        // フォロワー
-        $followedUsers = $user->getFollowers($user->id);
+        $user = $query->findOrFail($id);
 
-        return
-            [
-                'profileUser' => $profileUser,
-                'loginUser' => $loginUser,
-                'userReviews' => $userReviews,
-                'favoriteReviews' => $favoriteReviews,
-                'followingUsers' => $followingUsers,
-                'followedUsers' => $followedUsers,
-            ];
+        return new UserResource($user);
     }
 }

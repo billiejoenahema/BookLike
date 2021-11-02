@@ -73,18 +73,11 @@ class ReviewController extends Controller
      * Display the specified resource.
      *
      * @param  Review $review
-     * @param  Comment $comment
      * @return \Illuminate\View\View
      */
-    public function show(Review $review, Comment $comment)
+    public function show(Review $review)
     {
-        $review = $review->getReview($review->id);
-        $comments = $comment->getComments($review->id);
-
-        return view('reviews.show', compact(
-            'review',
-            'comments',
-        ));
+        return view('reviews.show');
     }
 
     /**
