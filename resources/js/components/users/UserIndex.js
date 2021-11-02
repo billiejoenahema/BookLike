@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { loginUser } from '../../hooks/useFetchLoginUser';
+import { useFetchLoginUser } from '../../hooks/useFetchLoginUser';
 import { useDebounce } from 'use-debounce';
 import InputField from './InputField';
 import SortUsers from './SortUsers';
@@ -25,8 +25,8 @@ const UserIndex = () => {
       const newUsers = await axios
         .get(`/api/users?sort=${sort}&page=${page}`)
         .then((res) => {
-          page < res.data.users.last_page && setHasMore(true);
-          return res.data.users.data || res.data.users;
+          page < res.users.last_page && setHasMore(true);
+          return res.users.data;
         })
         .catch((err) => {
           console.log(err);

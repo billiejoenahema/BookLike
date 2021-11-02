@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import CommentList from '../comment/CommentList';
-import { loginUser } from '../../hooks/useFetchLoginUser';
+import { useFetchLoginUser } from '../../hooks/useFetchLoginUser';
 import UserIcon from '../users/UserIcon';
 import UserName from '../users/UserName';
 import BookImage from './BookImage';
@@ -16,7 +16,7 @@ import { leaveUserIcon } from '../../functions/leaveUserIcon';
 
 const ShowReview = () => {
   const [review, setReview] = useState('');
-  const { loginUser } = useFetchLoginUser();
+  const { getLoginUser, loginUser } = useFetchLoginUser();
   const currentUrl = window.location.pathname;
 
   useEffect(() => {
@@ -24,10 +24,11 @@ const ShowReview = () => {
   }, []);
 
   const loadReview = async () => {
+    await getLoginUser();
     await axios
       .get(`/api${currentUrl}`)
       .then((res) => {
-        setReview(res.data.review);
+        setReview(res.review);
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +43,7 @@ const ShowReview = () => {
             {/* ユーザー情報 */}
             <UserIcon
               reviewUser={review.user}
-              favoritesCount={review.user.favorites_count}
+              favoritesCount={1}
               reviewId={review.id}
               profileImage={review.user.profile_image}
               hoverUserIcon={hoverUserIcon}
@@ -100,9 +101,9 @@ const ShowReview = () => {
               <FavoriteButton review={review} loginUser={loginUser} />
             </div>
           </div>
+          <CommentList comments={review.comments} loginUser={loginUser} />
         </div>
       )}
-      <CommentList comment={review.comment} />
     </>
   );
 };

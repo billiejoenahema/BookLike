@@ -27,7 +27,7 @@ const UserPageTab = () => {
       await axios
         .get(`/api/users/${userId}`)
         .then((res) => {
-          console.log(res.data.user);
+          console.log(res.user);
           setUserReviews(['1', '2', '3']);
           setFavoriteReviews();
           setFollowingUsers();

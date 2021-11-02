@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import { loginUser } from '../../hooks/useFetchLoginUser';
+import { useFetchLoginUser } from '../../hooks/useFetchLoginUser';
 import Reviews from './Reviews';
 import Loading from '../Loading';
 import SearchCriteriaAndWord from './SearchCriteriaAndWord';
@@ -30,7 +30,7 @@ const ReviewIndex = React.memo(() => {
           `/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`
         )
         .then((res) => {
-          const reviews = res.data.reviews;
+          const reviews = res.reviews;
           page < reviews.last_page && setHasMore(true);
           return reviews.data;
         })
