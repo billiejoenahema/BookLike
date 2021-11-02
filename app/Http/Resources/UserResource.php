@@ -4,14 +4,14 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LoginUserResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * 適用する「データ」ラッパー
      *
      * @var string
      */
-    public static $wrap = 'login_user';
+    public static $wrap = 'user';
 
     /**
      * Transform the resource into an array.
@@ -26,13 +26,16 @@ class LoginUserResource extends JsonResource
             'screen_name' => $this->screen_name,
             'name' => $this->name,
             'profile_image' => $this->profile_image,
-            'story' => $this->story,
-            'asin' => $this->asin,
-            'category' => $this->category,
             'description' => $this->description,
-            'email' => $this->email,
+            'follows_count' => $this->follows_count,
+            'followers_count' => $this->followers_count,
+            'reviews_count' => $this->reviews_count,
             'follows' => $this->follows,
             'followers' => $this->followers,
+            'reviews' => [
+                $this->reviews,
+                $this->favorites_count,
+            ]
         ];
     }
 }
