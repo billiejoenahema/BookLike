@@ -42,7 +42,7 @@
                     >{{ $login_user->screen_name }}</span
                 >
                 {{-- いいね獲得数 --}}
-                <div id="totalFavoritesCountWrapper" class="mt-2"></div>
+                <div id="favoritesCountTotalWrapper" class="mt-2"></div>
             </div>
         </div>
         <div class="col-12 col-sm-8 p-3 d-flex flex-column">
