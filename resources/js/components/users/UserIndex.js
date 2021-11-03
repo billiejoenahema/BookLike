@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useFetchLoginUser } from '../../hooks/useFetchLoginUser';
 import { useDebounce } from 'use-debounce';
-import InputField from './InputField';
-import SortUsers from './SortUsers';
-import Users from './Users';
+import UserSearchInputField from './UserSearchInputField';
+import UsersSort from './UsersSort';
+import UserList from './UserList';
 import Loading from '../Loading';
 import { findUsers } from '../../functions/findUsers';
 
@@ -86,12 +86,12 @@ const UserIndex = () => {
 
   return (
     <>
-      <InputField value={value} handleSearch={handleSearch} />
+      <UserSearchInputField value={value} handleSearch={handleSearch} />
       {/* ユーザーの並び替え */}
-      <SortUsers sortChange={sortChange} />
+      <UsersSort sortChange={sortChange} />
       {/* ユーザー一覧 */}
       <div id="usersComponent">
-        <Users
+        <UserList
           users={userList}
           loginUser={loginUser}
           maxTextLength={maxTextLength}

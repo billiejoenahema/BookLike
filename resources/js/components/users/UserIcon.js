@@ -1,8 +1,8 @@
 import React from 'react';
 import { STORAGE } from '../../constants';
-import ReviewsCount from '../users/ReviewsCount';
+import ReviewsCount from '../reviews/ReviewsCount';
 import FollowerCount from '../users/FollowerCount';
-import TotalFavoritesCount from '../users/TotalFavoritesCount';
+import FavoritesCountTotal from '../users/FavoritesCountTotal';
 
 const UserIcon = ({
   reviewUser,
@@ -24,7 +24,7 @@ const UserIcon = ({
           <FollowerCount user={reviewUser} />
         </div>
         <div className="count d-flex justify-content-between">
-          <TotalFavoritesCount
+          <FavoritesCountTotal
             user={reviewUser}
             favoritesCount={favoritesCount}
           />

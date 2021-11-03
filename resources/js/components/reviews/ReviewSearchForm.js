@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchForm = ({ selectCriteria, searchSubmit }) => {
+const ReviewSearchForm = ({ selectCriteria, searchSubmit }) => {
   const fadeLayer = document.getElementById('fadeLayer');
   const showOverlay = () => {
     fadeLayer.style.visibility = 'visible';
@@ -38,4 +38,4 @@ const SearchForm = ({ selectCriteria, searchSubmit }) => {
   );
 };
 
-export default SearchForm;
+export default ReviewSearchForm;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Ratings = ({ ratings }) => {
+const ReviewRatings = ({ ratings }) => {
   const defaultStars = ['fas', 'fas', 'fas', 'fas', 'fas']; // 星5つ
   const stars = defaultStars.fill('far', ratings);
 
@@ -16,4 +16,4 @@ const Ratings = ({ ratings }) => {
   );
 };
 
-export default Ratings;
+export default ReviewRatings;

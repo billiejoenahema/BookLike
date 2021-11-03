@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import TotalFavoritesCount from './TotalFavoritesCount';
+import FavoritesCountTotal from './FavoritesCountTotal';
 
-const TotalFavoritesCountWrapper = () => {
+const FavoritesCountTotalWrapper = () => {
   const [totalFavoritesCount, setTotalFavoritesCount] = useState(0);
   const currentPath = window.location.pathname;
   const id = currentPath.replace(/[^0-9]/g, '');
@@ -27,14 +27,14 @@ const TotalFavoritesCountWrapper = () => {
 
   return (
     <>
-      <TotalFavoritesCount favoritesCount={totalFavoritesCount} />
+      <FavoritesCountTotal favoritesCount={totalFavoritesCount} />
     </>
   );
 };
-export default TotalFavoritesCountWrapper;
-if (document.getElementById('totalFavoritesCountWrapper')) {
+export default FavoritesCountTotalWrapper;
+if (document.getElementById('favoritesCountTotalWrapper')) {
   ReactDOM.render(
-    <TotalFavoritesCountWrapper />,
-    document.getElementById('totalFavoritesCountWrapper')
+    <FavoritesCountTotalWrapper />,
+    document.getElementById('favoritesCountTotalWrapper')
   );
 }

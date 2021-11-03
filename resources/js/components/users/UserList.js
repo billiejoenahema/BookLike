@@ -3,12 +3,12 @@ import FollowButton from './FollowButton';
 import UserIcon from '../users/UserIcon';
 import UserName from '../users/UserName';
 import FollowerCount from './FollowerCount';
-import TotalFavoritesCount from './TotalFavoritesCount';
-import ReviewsCount from './ReviewsCount';
+import FavoritesCountTotal from './FavoritesCountTotal';
+import ReviewsCount from '../reviews/ReviewsCount';
 import { isFollowed } from '../../functions/isFollowed';
 import { omittedText } from '../../functions/omittedText';
 
-const Users = ({ users, loginUser, maxTextLength }) => {
+const UserList = ({ users, loginUser, maxTextLength }) => {
   const isFollowedStyle = 'text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4';
   const notLoginUser = useCallback(() =>
     user.id === loginUser ? false : true
@@ -48,7 +48,7 @@ const Users = ({ users, loginUser, maxTextLength }) => {
                   <FollowerCount user={user} />
                 </div>
                 <div className="mt-1 ml-sm-4 count">
-                  <TotalFavoritesCount
+                  <FavoritesCountTotal
                     user={user}
                     favoritesCount={user.favorites_count}
                   />
@@ -76,4 +76,4 @@ const Users = ({ users, loginUser, maxTextLength }) => {
   );
 };
 
-export default Users;
+export default UserList;

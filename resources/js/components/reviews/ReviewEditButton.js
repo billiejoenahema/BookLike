@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EditReviewButton = ({ loginUser, reviewUser, id }) => {
+const ReviewEditButton = ({ loginUser, reviewUser, id }) => {
   return (
     <>
       {loginUser === reviewUser ? (
@@ -17,4 +17,4 @@ const EditReviewButton = ({ loginUser, reviewUser, id }) => {
   );
 };
 
-export default EditReviewButton;
+export default ReviewEditButton;

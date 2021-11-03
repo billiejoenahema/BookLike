@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ModalSearchForm = ({ selectCriteria, modalSearchSubmit }) => {
+const ReviewSearchFormModal = ({ selectCriteria, modalSearchSubmit }) => {
   return (
     <>
       {/* スマホ用検索ボタン */}
@@ -54,4 +54,4 @@ const ModalSearchForm = ({ selectCriteria, modalSearchSubmit }) => {
   );
 };
 
-export default ModalSearchForm;
+export default ReviewSearchFormModal;

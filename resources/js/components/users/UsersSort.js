@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SortUsers = ({ sortChange }) => {
+const UsersSort = ({ sortChange }) => {
   return (
     <div className="form-group d-flex justify-content-end pt-2 sort-changer">
       <div className="d-flex flex-row col-8 p-0">
@@ -22,4 +22,4 @@ const SortUsers = ({ sortChange }) => {
   );
 };
 
-export default SortUsers;
+export default UsersSort;

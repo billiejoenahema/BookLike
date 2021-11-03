@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Spoiler = ({ spoiler }) => {
+const ReviewSpoiler = ({ spoiler }) => {
   const isSpoiler = spoiler === 1 ? true : false;
   return (
     <>
@@ -13,4 +13,4 @@ const Spoiler = ({ spoiler }) => {
   );
 };
 
-export default Spoiler;
+export default ReviewSpoiler;

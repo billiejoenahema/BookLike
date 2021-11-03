@@ -13,8 +13,8 @@ require('./bootstrap');
  */
 
 require('./components/reviews/ReviewIndex');
-require('./components/reviews/ShowReview');
+require('./components/reviews/ReviewShow');
 require('./components/users/UserPageTab');
 require('./components/users/UserIndex');
 require('./components/users/FollowButtonWrapper');
-require('./components/users/TotalFavoritesCountWrapper');
+require('./components/users/FavoritesCountTotalWrapper');

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchCriteriaAndWord = ({ criteria, searchWord }) => {
+const ReviewSearchCriteriaAndWord = ({ criteria, searchWord }) => {
   const criterion = {
     title: 'タイトル',
     author: '著者',
@@ -20,4 +20,4 @@ const SearchCriteriaAndWord = ({ criteria, searchWord }) => {
   );
 };
 
-export default SearchCriteriaAndWord;
+export default ReviewSearchCriteriaAndWord;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Ratings from './Ratings';
+import ReviewRatings from './ReviewRatings';
 
 const BookInfo = ({
   title,
@@ -33,7 +33,7 @@ const BookInfo = ({
         </li>
         <li className="mt-2">
           <span>評価 </span>
-          <Ratings ratings={ratings} />
+          <ReviewRatings ratings={ratings} />
         </li>
       </ul>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SortReviews = ({ sortChange }) => {
+const ReviewsSort = ({ sortChange }) => {
   return (
     <div className="d-flex flex-row p-0 mt-1 mt-sm-0">
       <label htmlFor="selectSort" className="text-right py-1 mr-1 mb-0">
@@ -15,4 +15,4 @@ const SortReviews = ({ sortChange }) => {
   );
 };
 
-export default SortReviews;
+export default ReviewsSort;

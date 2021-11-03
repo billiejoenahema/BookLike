@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ShowReviewLink = ({ id }) => {
+const ReviewShowLink = ({ id }) => {
   return (
     <>
       <a
@@ -13,4 +13,4 @@ const ShowReviewLink = ({ id }) => {
   );
 };
 
-export default ShowReviewLink;
+export default ReviewShowLink;

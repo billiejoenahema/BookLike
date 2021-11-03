@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { useFetchLoginUser } from '../../hooks/useFetchLoginUser';
-import Reviews from './Reviews';
+import ReviewList from './ReviewList';
 import Loading from '../Loading';
-import SearchCriteriaAndWord from './SearchCriteriaAndWord';
+import ReviewSearchCriteriaAndWord from './ReviewSearchCriteriaAndWord';
 import CategoryList from './CategoryList';
-import SortReviews from './SortReviews';
-import SearchForm from './SearchForm';
-import ModalSearchForm from './ModalSearchForm';
+import ReviewsSort from './ReviewsSort';
+import ReviewSearchForm from './ReviewSearchForm';
+import ReviewSearchFormModal from './ReviewSearchFormModal';
 import { changeSelectBox } from '../../functions/changeSelectBox';
 import { hideModal } from '../../functions/hideModal';
 
@@ -133,26 +133,32 @@ const ReviewIndex = React.memo(() => {
   return (
     <>
       {/* 投稿検索フォーム */}
-      <SearchForm selectCriteria={selectCriteria} searchSubmit={searchSubmit} />
+      <ReviewSearchForm
+        selectCriteria={selectCriteria}
+        searchSubmit={searchSubmit}
+      />
 
       {/* スマホ用検索モーダル */}
-      <ModalSearchForm
+      <SearchModalForm
         selectCriteria={selectCriteria}
         modalSearchSubmit={modalSearchSubmit}
       />
 
       {/* 検索ワードの表示 */}
-      <SearchCriteriaAndWord criteria={criteria} searchWord={searchWord} />
+      <ReviewSearchCriteriaAndWord
+        criteria={criteria}
+        searchWord={searchWord}
+      />
 
       {/* カテゴリー選択とレビュー一覧の並び替え */}
       <div className="form-group d-flex flex-wrap justify-content-between pt-2 pb-0 bg-body category-selector">
         <CategoryList changeCategory={changeCategory} />
-        <SortReviews sortChange={sortChange} setSort={setSort} />
+        <ReviewsSort sortChange={sortChange} setSort={setSort} />
       </div>
 
       {/* 投稿一覧 */}
       <div id="reviewsComponent">
-        <Reviews
+        <ReviewList
           reviews={reviews}
           loginUser={loginUser}
           changeCategory={changeCategory}

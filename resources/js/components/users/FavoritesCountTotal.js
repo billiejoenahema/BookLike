@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TotalFavoritesCount = ({ favoritesCount }) => {
+const FavoritesCountTotal = ({ favoritesCount }) => {
   return (
     <>
       <span>いいね獲得数</span>
@@ -10,4 +10,4 @@ const TotalFavoritesCount = ({ favoritesCount }) => {
     </>
   );
 };
-export default TotalFavoritesCount;
+export default FavoritesCountTotal;

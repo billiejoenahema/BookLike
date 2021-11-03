@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { useFetchLoginUser } from '../../hooks/useFetchLoginUser';
-import Reviews from '../reviews/Reviews';
-import Users from './Users';
+import ReviewList from '../reviews/ReviewList';
+import UserList from './UserList';
 import Loading from '../Loading';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -80,21 +80,21 @@ const UserPageTab = () => {
         </TabList>
         <TabPanel>
           {userReviews.length !== 0 ? (
-            <Reviews reviews={userReviews} loginUser={loginUser} />
+            <ReviewList reviews={userReviews} loginUser={loginUser} />
           ) : (
             <div className="pb-5 my-5">投稿はまだありません</div>
           )}
         </TabPanel>
         <TabPanel>
           {favoriteReviews.length !== 0 ? (
-            <Reviews reviews={favoriteReviews} loginUser={loginUser} />
+            <List reviews={favoriteReviews} loginUser={loginUser} />
           ) : (
             <div className="pb-5 my-5">いいねした投稿はまだありません</div>
           )}
         </TabPanel>
         <TabPanel>
           {followingUsers.length !== 0 ? (
-            <Users
+            <UserList
               users={followingUsers}
               loginUser={loginUser}
               maxTextLength={maxTextLength}
@@ -105,7 +105,7 @@ const UserPageTab = () => {
         </TabPanel>
         <TabPanel>
           {followedUsers.length !== 0 ? (
-            <Users
+            <UserList
               users={followedUsers}
               loginUser={loginUser}
               maxTextLength={maxTextLength}
