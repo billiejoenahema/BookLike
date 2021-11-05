@@ -23,13 +23,22 @@ const BookInfo = ({
         </li>
         <li>
           <span>カテゴリー：</span>
-          <span
-            className="btn p-0 text-blog internal-link"
-            onClick={changeCategory}
-            data-category={category}
-          >
-            {category}
-          </span>
+          {changeCategory ? (
+            <span
+              className="btn p-0 text-blog internal-link"
+              onClick={changeCategory}
+              data-category={category}
+            >
+              {category}
+            </span>
+          ) : (
+            <span
+              className="btn p-0 text-blog internal-link"
+              data-category={category}
+            >
+              {category}
+            </span>
+          )}
         </li>
         <li className="mt-2">
           <span>評価 </span>

@@ -14,6 +14,7 @@ require('./bootstrap');
 
 require('./components/reviews/ReviewIndex');
 require('./components/reviews/ReviewShow');
+require('./components/reviews/ReviewEdit');
 require('./components/users/UserPageTab');
 require('./components/users/UserIndex');
 require('./components/users/FollowButtonWrapper');
