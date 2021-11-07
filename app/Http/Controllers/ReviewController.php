@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReviewRequest;
-use App\Http\Requests\UpdateReviewRequest;
 use Illuminate\Http\Request;
 use App\Models\Review;
-use App\Models\Comment;
 use App\Models\GetItem;
 
 class ReviewController extends Controller
@@ -56,20 +53,6 @@ class ReviewController extends Controller
     }
 
     /**
-     * Store new review.
-     *
-     * @param  StoreReviewRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(StoreReviewRequest $request)
-    {
-        $review = new Review;
-        $review->reviewStore(auth()->user()->id, $request);
-        session()->flash('flash_message', 'レビューを投稿しました');
-        return redirect('reviews');
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  Review $review
@@ -88,38 +71,6 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        return view('reviews.edit', compact(
-            'review'
-        ));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  UpdateReviewRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(UpdateReviewRequest $request)
-    {
-        $review = new Review;
-        $review->reviewUpdate($request);
-        session()->flash('flash_message', '投稿を編集しました');
-
-        return redirect('reviews');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Int $review_id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy($review_id)
-    {
-        Review::where('id', $review_id)
-            ->delete();
-        session()->flash('flash_message', '投稿を削除しました');
-
-        return redirect('reviews');
+        return view('reviews.edit');
     }
 }
