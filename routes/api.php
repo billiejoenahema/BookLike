@@ -12,7 +12,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     // 投稿
     Route::get('/reviews', 'Api\ReviewController@index');
+    Route::post('/reviews', 'Api\ReviewController@store');
     Route::get('/reviews/{review}', 'Api\ReviewController@show');
+    Route::patch('/reviews/{review}', 'Api\ReviewController@update');
+    Route::delete('/reviews/{review}', 'Api\ReviewController@destroy');
 
     // コメント
     Route::post('comments', 'Api\CommentController@store');
@@ -21,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     // ユーザー
     Route::get('/users', 'Api\UserController@index');
     Route::get('/users/{user}', 'Api\UserController@show');
+    Route::patch('/users/{user}', 'Api\UserController@update');
 
     // いいね
     Route::post('/add_favorite/{id}', 'Api\FavoriteController@addFavorite')->where('id', '[0-9]+');
