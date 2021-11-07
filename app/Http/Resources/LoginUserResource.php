@@ -31,6 +31,7 @@ class LoginUserResource extends JsonResource
             'category' => $this->category,
             'description' => $this->description,
             'email' => $this->email,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'follows' => $this->follows,
             'followers' => $this->followers,
         ];

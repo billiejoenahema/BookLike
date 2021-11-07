@@ -34,7 +34,7 @@ class ReviewResource extends JsonResource
             'text' => $this->text,
             'ratings' => $this->ratings,
             'spoiler' => $this->spoiler,
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'favorites_count' => $this->favorites_count,
             'favorites' => $this->favorites,
             'comments' => CommentResource::collection($this->comments),
