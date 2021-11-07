@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReviewsCount = ({ user }) => {
+const UserReviewsCount = ({ user }) => {
   const reviewsCount = user.reviews_count;
 
   return (
@@ -12,4 +12,4 @@ const ReviewsCount = ({ user }) => {
     </>
   );
 };
-export default ReviewsCount;
+export default UserReviewsCount;
