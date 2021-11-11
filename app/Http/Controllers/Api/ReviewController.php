@@ -19,11 +19,35 @@ class ReviewController extends Controller
      */
     public function index(Request $request)
     {
+        $query = Review::withCount(['favorites', 'comments'])
+            ->with(['user', 'favorites']);
         $pagination = config('PAGINATION.USERS');
-        $review = new Review;
 
-        // 並び替えられた投稿一覧
-        $reviews = $review->getReviews($request, $pagination);
+        // カテゴリーで絞り込み
+        $query->when($request['category'], function ($query) use ($request) {
+            return $query->where('category', $request['category']);
+        });
+
+        // 検索
+        $query->when($request['search'], function ($query) use ($request) {
+            $search = $request['search'];
+            return $query->where($request['criteria'], 'LIKE', "%$search%");
+        });
+
+        // ソート
+        switch ($request['sort']) {
+            case 'favorite':
+                // いいねが多い順に投稿を並び替え
+                $query->orderBy('favorites_count', 'DESC');
+            case 'ratings':
+                // 評価が高い順に投稿を並び替え
+                $query->orderBy('ratings', 'DESC');
+            default:
+                // 登録順に投稿を並び替え（デフォルト）
+                $query->orderBy('created_at', 'DESC');
+        }
+
+        $reviews = $query->paginate($pagination);
         return ReviewResource::collection($reviews);
     }
 
@@ -36,7 +60,18 @@ class ReviewController extends Controller
     public function store(StoreReviewRequest $request)
     {
         $review = new Review;
-        $review->reviewStore(auth()->user()->id, $request);
+        $review->user_id = auth()->user()->id;
+        $review->category = $request->category;
+        $review->asin = $request->asin;
+        $review->page_url = $request->page_url;
+        $review->title = $request->title;
+        $review->author = $request->author;
+        $review->manufacturer = $request->manufacturer;
+        $review->image_url = $request->image_url;
+        $review->ratings = $request->ratings;
+        $review->spoiler = $request->spoiler;
+        $review->text = $request->text;
+        $review->save();
         session()->flash('flash_message', 'レビューを投稿しました');
         return redirect('reviews');
     }
@@ -61,7 +96,6 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        dd($review);
         $review = $review->with('favorites')
             ->where('id', $review->id)
             ->first();
@@ -77,7 +111,11 @@ class ReviewController extends Controller
     public function update(UpdateReviewRequest $request)
     {
         $review = new Review;
-        $review->reviewUpdate($request);
+        $review->id = $request->review;
+        $review->ratings = $request->ratings;
+        $review->spoiler = $request->spoiler;
+        $review->text = $request->text;
+        $review->update();
         session()->flash('flash_message', '投稿を編集しました');
 
         return redirect('reviews');
