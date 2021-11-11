@@ -1,9 +1,12 @@
 import React from 'react';
 
 export default function Loading() {
+  console.log('loading!');
   return (
-    <div className="spinner-border text-blog m-5" role="status">
-      <span className="sr-only">Loading...</span>
+    <div className="text-center">
+      <div className="spinner-border text-blog m-5" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
     </div>
   );
 }

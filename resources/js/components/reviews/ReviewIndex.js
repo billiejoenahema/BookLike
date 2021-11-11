@@ -13,9 +13,9 @@ import { hideModal } from '../../functions/hideModal';
 
 const ReviewIndex = React.memo(() => {
   const [reviews, setReviews] = useState([]);
-  const [category, setCategory] = useState('default');
+  const [category, setCategory] = useState('');
   const [criteria, setCriteria] = useState('title');
-  const [sort, setSort] = useState('default');
+  const [sort, setSort] = useState('');
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ const ReviewIndex = React.memo(() => {
         .get('/api/reviews', {
           params: {
             criteria: criteria,
-            searchWord: searchWord,
+            search: searchWord,
             category: category,
             sort: sort,
             page: page,
