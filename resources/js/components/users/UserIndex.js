@@ -23,7 +23,12 @@ const UserIndex = () => {
     const loadUsers = async () => {
       setLoading(true);
       const newUsers = await axios
-        .get(`/api/users?sort=${sort}&page=${page}`)
+        .get('/api/users', {
+          params: {
+            sort: sort,
+            page: page,
+          },
+        })
         .then((res) => {
           page < res.users.last_page && setHasMore(true);
           return res.users.data;

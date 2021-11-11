@@ -26,18 +26,22 @@ const ReviewIndex = React.memo(() => {
     const loadReviews = async () => {
       setLoading(true);
       const newReviews = await axios
-        .get(
-          `/api/reviews?criteria=${criteria}&search=${searchWord}&category=${category}&sort=${sort}&page=${page}`
-        )
+        .get('/api/reviews', {
+          params: {
+            criteria: criteria,
+            searchWord: searchWord,
+            category: category,
+            sort: sort,
+            page: page,
+          },
+        })
         .then((res) => {
-          console.log(res.data.data);
           page < res.data.links.last_page && setHasMore(true);
           return res.data.data;
         })
         .catch((err) => {
           console.log(err);
         });
-
       setReviews((prev) => [...prev, ...newReviews]);
       setLoading(false);
     };
@@ -139,7 +143,7 @@ const ReviewIndex = React.memo(() => {
       />
 
       {/* スマホ用検索モーダル */}
-      <SearchModalForm
+      <ReviewSearchFormModal
         selectCriteria={selectCriteria}
         modalSearchSubmit={modalSearchSubmit}
       />
