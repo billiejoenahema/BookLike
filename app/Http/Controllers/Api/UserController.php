@@ -17,12 +17,27 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $query = User::with(['follows', 'followers', 'reviews'])
+            ->withCount(['follows', 'followers', 'reviews'])
+            ->where('id', '!=', auth()->user()->id);
         $pagination = config('PAGINATION.USERS');
-        $user = new User;
-        $sort = $request['sort'];
-        $loginUserId = auth()->user()->id;
-        // 並び替えられたユーザー一覧を取得
-        $users = $user->sortedUsers($sort, $pagination, $loginUserId);
+
+        // ソート
+        switch ($request['sort']) {
+            case 'review':
+                // いいね獲得数順
+                $query->orderBy('reviews_count', 'DESC');
+            case 'follower':
+                // フォロワーが多い順
+                $query->orderBy('followers_count', 'DESC');
+            case 'favorite':
+                // いいね獲得数順
+                $query->orderBy('favorites_count', 'DESC');
+            case 'default':
+            default:
+                $query->orderBy('created_at', 'DESC');
+        }
+        $users = $query->paginate($pagination);
 
         return UserResource::collection($users);
     }
