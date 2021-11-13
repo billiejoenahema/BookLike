@@ -1,24 +1,27 @@
 import React from 'react';
 import { STORAGE } from '../../constants';
-import ReviewsCount from '../reviews/ReviewsCount';
+import UserReviewsCount from '../users/UserReviewsCount';
 import FollowerCount from '../users/FollowerCount';
 import FavoritesCountTotal from '../users/FavoritesCountTotal';
+import { hoverUserIcon } from '../../functions/hoverUserIcon';
+import { leaveUserIcon } from '../../functions/leaveUserIcon';
 
 const UserIcon = ({
   reviewUser,
   favoritesCount,
   reviewId,
   profileImage,
-  hoverUserIcon,
-  leaveUserIcon,
   iconSize,
 }) => {
+  const hoverUserIcon = () => {};
+  const leaveUserIcon = () => {};
+
   return (
     <>
       {/* ツールチップ */}
       <div className={`user-counts shadow-sm d-none review-${reviewId}`}>
         <div className="count d-flex justify-content-between mb-1">
-          <ReviewsCount user={reviewUser} />
+          <UserReviewsCount user={reviewUser} />
         </div>
         <div className="count d-flex justify-content-between mb-1">
           <FollowerCount user={reviewUser} />
@@ -33,7 +36,10 @@ const UserIcon = ({
       {/* ユーザーアイコン */}
       <a href={`/users/${reviewUser.id}`} className="text-reset">
         <img
-          src={`${STORAGE}/${profileImage}`}
+          src={
+            `public/profile_image/${profileImage}` ??
+            '/public/images/Default_User_Icon.jpeg'
+          }
           className="rounded-circle shadow-sm"
           width={iconSize}
           height={iconSize}
