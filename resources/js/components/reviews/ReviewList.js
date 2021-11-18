@@ -9,8 +9,6 @@ import ReviewShowLink from './ReviewShowLink';
 import ReviewEditButton from './ReviewEditButton';
 import CommentButton from './CommentButton';
 import FavoriteButton from './FavoriteButton';
-import { hoverUserIcon } from '../../functions/hoverUserIcon';
-import { leaveUserIcon } from '../../functions/leaveUserIcon';
 
 const ReviewList = ({ reviews, loginUser, changeCategory }) => {
   const currentUrl = window.location.pathname;
@@ -33,8 +31,6 @@ const ReviewList = ({ reviews, loginUser, changeCategory }) => {
               totalFavoritesCount={review.user.favorites_count}
               reviewId={review.id}
               profileImage={review.user.profile_image}
-              hoverUserIcon={hoverUserIcon}
-              leaveUserIcon={leaveUserIcon}
               iconSize={48}
             />
             <UserName
