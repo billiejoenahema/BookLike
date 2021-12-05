@@ -2192,11 +2192,14 @@ __webpack_require__.r(__webpack_exports__);
 
 function Loading() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "spinner-border text-blog m-5",
-    role: "status",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-      className: "sr-only",
-      children: "Loading..."
+    className: "text-center",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "spinner-border text-blog m-5",
+      role: "status",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "sr-only",
+        children: "Loading..."
+      })
     })
   });
 }
@@ -2693,17 +2696,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _hooks_useFetchLoginUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useFetchLoginUser */ "./resources/js/hooks/useFetchLoginUser.js");
-/* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
-/* harmony import */ var _users_UserName__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../users/UserName */ "./resources/js/components/users/UserName.js");
-/* harmony import */ var _BookImage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./BookImage */ "./resources/js/components/reviews/BookImage.js");
-/* harmony import */ var _BookInfo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BookInfo */ "./resources/js/components/reviews/BookInfo.js");
-/* harmony import */ var _ReviewSpoiler__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ReviewSpoiler */ "./resources/js/components/reviews/ReviewSpoiler.js");
-/* harmony import */ var _ReviewEditButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ReviewEditButton */ "./resources/js/components/reviews/ReviewEditButton.js");
-/* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
-/* harmony import */ var _CreatedAt__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../CreatedAt */ "./resources/js/components/CreatedAt.js");
-/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
-/* harmony import */ var _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../functions/hoverUserIcon */ "./resources/js/functions/hoverUserIcon.js");
-/* harmony import */ var _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../functions/leaveUserIcon */ "./resources/js/functions/leaveUserIcon.js");
+/* harmony import */ var _hooks_useFetchReview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useFetchReview */ "./resources/js/hooks/useFetchReview.js");
+/* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
+/* harmony import */ var _users_UserName__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../users/UserName */ "./resources/js/components/users/UserName.js");
+/* harmony import */ var _BookImage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BookImage */ "./resources/js/components/reviews/BookImage.js");
+/* harmony import */ var _BookInfo__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./BookInfo */ "./resources/js/components/reviews/BookInfo.js");
+/* harmony import */ var _ReviewSpoiler__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ReviewSpoiler */ "./resources/js/components/reviews/ReviewSpoiler.js");
+/* harmony import */ var _ReviewEditButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ReviewEditButton */ "./resources/js/components/reviews/ReviewEditButton.js");
+/* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
+/* harmony import */ var _CreatedAt__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../CreatedAt */ "./resources/js/components/CreatedAt.js");
+/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -2741,165 +2744,156 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewEdit = function ReviewEdit() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
-      _useState2 = _slicedToArray(_useState, 2),
-      review = _useState2[0],
-      setReview = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      textLength = _useState4[0],
-      setTextLength = _useState4[1];
-
   var _useFetchLoginUser = (0,_hooks_useFetchLoginUser__WEBPACK_IMPORTED_MODULE_3__.useFetchLoginUser)(),
       getLoginUser = _useFetchLoginUser.getLoginUser,
       loginUser = _useFetchLoginUser.loginUser;
 
-  var ratingStarMax = 5;
-  var currentUrl = window.location.pathname;
+  var _useFetchReview = (0,_hooks_useFetchReview__WEBPACK_IMPORTED_MODULE_4__.useFetchReview)(),
+      getReview = _useFetchReview.getReview,
+      review = _useFetchReview.review;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      textLength = _useState2[0],
+      setTextLength = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    loadReview();
-  }, []);
+    var getData = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                setLoading(true);
+                _context.next = 3;
+                return getLoginUser();
 
-  var loadReview = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return getLoginUser();
+              case 3:
+                _context.next = 5;
+                return getReview(currentUrl);
 
-            case 2:
-              _context.next = 4;
-              return axios.get("/api".concat(currentUrl, "/edit")).then(function (res) {
-                setReview(res.review);
-              })["catch"](function (err) {
-                console.log(err);
-              });
-
-            case 4:
-            case "end":
-              return _context.stop();
+              case 5:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      }, _callee);
-    }));
+        }, _callee);
+      }));
 
-    return function loadReview() {
-      return _ref.apply(this, arguments);
-    };
-  }();
+      return function getData() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    getData;
+    setLoading(false);
+  }, []);
 
   var checkTextLength = function checkTextLength(e) {
     setTextLength(e.target.value.length);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-    className: "card shadow-sm",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("form", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-        className: "card-header d-flex align-items-center justify-content-between",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-          className: "h5 mb-0",
-          children: "\u7DE8\u96C6"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("a", {
-          href: "#",
-          role: "button",
-          "data-toggle": "modal",
-          "data-target": "#deleteReview",
-          title: "\u6295\u7A3F\u3092\u524A\u9664",
-          className: "text-secondary mb-0 d-block h5",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
-            className: "fas fa-trash"
-          })
-        })]
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-      className: "card-body",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-        className: "pr-3 pb-3 w-100 d-flex",
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+    children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_14__["default"], {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+      className: "card shadow-sm",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("form", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-          className: "ml-2 d-flex flex-column",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
-            className: "mb-0",
-            children: loginUser.name
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("span", {
-            className: "text-secondary",
-            children: loginUser.screen_name
+          className: "card-header d-flex align-items-center justify-content-between",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+            className: "h5 mb-0",
+            children: "\u7DE8\u96C6"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("a", {
+            href: "#",
+            role: "button",
+            "data-toggle": "modal",
+            "data-target": "#deleteReview",
+            title: "\u6295\u7A3F\u3092\u524A\u9664",
+            className: "text-secondary mb-0 d-block h5",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("i", {
+              className: "fas fa-trash"
+            })
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("form", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+        className: "card-body",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-          className: "d-flex pt-2 border-top form-group mb-0",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_BookImage__WEBPACK_IMPORTED_MODULE_6__["default"], {
-            imageUrl: review.image_url,
-            pageUrl: review.page_url,
-            bookImageSize: 128
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_BookInfo__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            title: review.title,
-            author: review.author,
-            manufacturer: review.manufacturer,
-            category: review.category,
-            ratings: review.ratings
+          className: "pr-3 pb-3 w-100 d-flex",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_users_UserIcon__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            reviewUser: review.user,
+            favoritesCount: review.favorites_count,
+            reviewId: review.id,
+            profileImage: review.user.profile_image,
+            iconSize: 48
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_users_UserName__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            userName: loginUser.name,
+            screenName: loginUser.screen_name
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("form", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+            className: "d-flex pt-2 border-top form-group mb-0",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_BookImage__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              imageUrl: review.image_url,
+              pageUrl: review.page_url,
+              bookImageSize: 128
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_BookInfo__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              title: review.title,
+              author: review.author,
+              manufacturer: review.manufacturer,
+              category: review.category,
+              ratings: review.ratings
+            })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-            className: "col-md-8 d-flex flex-column text-left py-2 px-0",
+            className: "form-group row mb-0",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-              className: "d-flex-column",
+              className: "col-md-12",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("label", {
-                className: "d-flex mb-0",
-                children: "\u30CD\u30BF\u30D0\u30EC\uFF1A"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_ReviewSpoiler__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                spoiler: review.spoiler
+                className: "d-inline text-blog font-weight-bold",
+                children: "\u30EC\u30D3\u30E5\u30FC"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("textarea", {
+                className: "form-control",
+                name: "text",
+                autoComplete: "text",
+                rows: "6",
+                onKeyUp: function onKeyUp(e) {
+                  return checkTextLength();
+                },
+                children: review.text
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("span", {
+                className: "invalid-feedback",
+                role: "alert",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("strong", {
+                  children: "800\u6587\u5B57\u307E\u3067\u6295\u7A3F\u53EF\u80FD\u3067\u3059"
+                })
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+            className: "form-group row mb-0",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+              className: "col-md-12 text-right",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("p", {
+                children: [textLength, " / 800\u6587\u5B57"]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                className: "w-100 m-0 row justify-content-end",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("button", {
+                  type: "button",
+                  className: "btn btn-secondary rounded-pill",
+                  children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("button", {
+                  type: "submit",
+                  className: "btn btn-primary rounded-pill shadow-sm ml-4",
+                  children: "\u7DE8\u96C6\u3092\u4FDD\u5B58"
+                })]
               })]
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-          className: "form-group row mb-0",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-            className: "col-md-12",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("label", {
-              className: "d-inline text-blog font-weight-bold",
-              children: "\u30EC\u30D3\u30E5\u30FC"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("textarea", {
-              className: "form-control",
-              name: "text",
-              autoComplete: "text",
-              rows: "6",
-              onKeyUp: function onKeyUp(e) {
-                return checkTextLength();
-              },
-              children: review.text
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("span", {
-              className: "invalid-feedback",
-              role: "alert",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("strong", {
-                children: "800\u6587\u5B57\u307E\u3067\u6295\u7A3F\u53EF\u80FD\u3067\u3059"
-              })
-            })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-          className: "form-group row mb-0",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-            className: "col-md-12 text-right",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("p", {
-              children: [textLength, " / 800\u6587\u5B57"]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-              className: "w-100 m-0 row justify-content-end",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("button", {
-                type: "button",
-                className: "btn btn-secondary rounded-pill",
-                children: "\u30AD\u30E3\u30F3\u30BB\u30EB"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("button", {
-                type: "submit",
-                className: "btn btn-primary rounded-pill shadow-sm ml-4",
-                children: "\u6295\u7A3F\u3092\u7DE8\u96C6\u3059\u308B"
-              })]
-            })]
-          })
         })]
       })]
-    })]
+    })
   });
 };
 
@@ -3024,7 +3018,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.memo(function 
       reviews = _useState2[0],
       setReviews = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('default'),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       category = _useState4[0],
       setCategory = _useState4[1];
@@ -3034,7 +3028,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.memo(function 
       criteria = _useState6[0],
       setCriteria = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('default'),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
       sort = _useState8[0],
       setSort = _useState8[1];
@@ -3072,8 +3066,15 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.memo(function 
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/reviews?criteria=".concat(criteria, "&search=").concat(searchWord, "&category=").concat(category, "&sort=").concat(sort, "&page=").concat(page)).then(function (res) {
-                  console.log(res.data.data);
+                return axios.get('/api/reviews', {
+                  params: {
+                    criteria: criteria,
+                    search: searchWord,
+                    category: category,
+                    sort: sort,
+                    page: page
+                  }
+                }).then(function (res) {
                   page < res.data.links.last_page && setHasMore(true);
                   return res.data.data;
                 })["catch"](function (err) {
@@ -3186,7 +3187,7 @@ var ReviewIndex = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.memo(function 
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_ReviewSearchForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
       selectCriteria: selectCriteria,
       searchSubmit: searchSubmit
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(SearchModalForm, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_ReviewSearchFormModal__WEBPACK_IMPORTED_MODULE_10__["default"], {
       selectCriteria: selectCriteria,
       modalSearchSubmit: modalSearchSubmit
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_ReviewSearchCriteriaAndWord__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -3243,11 +3244,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ReviewEditButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ReviewEditButton */ "./resources/js/components/reviews/ReviewEditButton.js");
 /* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
 /* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
-/* harmony import */ var _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../functions/hoverUserIcon */ "./resources/js/functions/hoverUserIcon.js");
-/* harmony import */ var _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../functions/leaveUserIcon */ "./resources/js/functions/leaveUserIcon.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -3276,35 +3273,33 @@ var ReviewList = function ReviewList(_ref) {
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
     children: reviews.map(function (review) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
         className: "card shadow-sm mb-3",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
           className: "p-3 d-flex",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_users_UserIcon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_users_UserIcon__WEBPACK_IMPORTED_MODULE_1__["default"], {
             reviewUser: review.user,
             totalFavoritesCount: review.user.favorites_count,
             reviewId: review.id,
             profileImage: review.user.profile_image,
-            hoverUserIcon: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_11__.hoverUserIcon,
-            leaveUserIcon: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_12__.leaveUserIcon,
             iconSize: 48
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_users_UserName__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_users_UserName__WEBPACK_IMPORTED_MODULE_2__["default"], {
             userName: review.user.name,
             screenName: review.user.screen_name
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_CreatedAt__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_CreatedAt__WEBPACK_IMPORTED_MODULE_3__["default"], {
             createdAt: review.user.created_at
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
           className: "card-body py-0 px-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
             className: "d-flex flex-row py-3 border-top border-bottom",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_BookImage__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_BookImage__WEBPACK_IMPORTED_MODULE_4__["default"], {
               imageUrl: review.image_url,
               pageUrl: review.page_url,
               bookImageSize: 104
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_BookInfo__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_BookInfo__WEBPACK_IMPORTED_MODULE_5__["default"], {
               title: review.title,
               author: review.author,
               manufacturer: review.manufacturer,
@@ -3313,31 +3308,31 @@ var ReviewList = function ReviewList(_ref) {
               changeCategory: changeCategory
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
           className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
             className: "flex-grow-1",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_ReviewShowLink__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_ReviewShowLink__WEBPACK_IMPORTED_MODULE_7__["default"], {
               id: review.id
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_ReviewSpoiler__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_ReviewSpoiler__WEBPACK_IMPORTED_MODULE_6__["default"], {
               spoiler: review.spoiler
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
             className: "d-d-flex align-items-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_ReviewEditButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_ReviewEditButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
               loginUser: loginUser.id,
               reviewUser: review.user.id,
               id: review.id
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
             className: "ml-sm-3 d-flex align-items-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_CommentButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_CommentButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
               id: review.id,
               commentCount: review.comments_count
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
             className: "ml-3 ml-sm-4 mr-sm-3 d-flex align-items-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_FavoriteButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_FavoriteButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
               review: review,
               loginUser: loginUser
             })
@@ -3599,17 +3594,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _comment_CommentList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comment/CommentList */ "./resources/js/components/comment/CommentList.js");
 /* harmony import */ var _hooks_useFetchLoginUser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useFetchLoginUser */ "./resources/js/hooks/useFetchLoginUser.js");
-/* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
-/* harmony import */ var _users_UserName__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../users/UserName */ "./resources/js/components/users/UserName.js");
-/* harmony import */ var _BookImage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./BookImage */ "./resources/js/components/reviews/BookImage.js");
-/* harmony import */ var _BookInfo__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./BookInfo */ "./resources/js/components/reviews/BookInfo.js");
-/* harmony import */ var _ReviewSpoiler__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ReviewSpoiler */ "./resources/js/components/reviews/ReviewSpoiler.js");
-/* harmony import */ var _ReviewEditButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ReviewEditButton */ "./resources/js/components/reviews/ReviewEditButton.js");
-/* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
-/* harmony import */ var _CreatedAt__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../CreatedAt */ "./resources/js/components/CreatedAt.js");
-/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
-/* harmony import */ var _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../functions/hoverUserIcon */ "./resources/js/functions/hoverUserIcon.js");
-/* harmony import */ var _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../functions/leaveUserIcon */ "./resources/js/functions/leaveUserIcon.js");
+/* harmony import */ var _hooks_useFetchReview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../hooks/useFetchReview */ "./resources/js/hooks/useFetchReview.js");
+/* harmony import */ var _users_UserIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../users/UserIcon */ "./resources/js/components/users/UserIcon.js");
+/* harmony import */ var _users_UserName__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../users/UserName */ "./resources/js/components/users/UserName.js");
+/* harmony import */ var _BookImage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./BookImage */ "./resources/js/components/reviews/BookImage.js");
+/* harmony import */ var _BookInfo__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./BookInfo */ "./resources/js/components/reviews/BookInfo.js");
+/* harmony import */ var _ReviewSpoiler__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ReviewSpoiler */ "./resources/js/components/reviews/ReviewSpoiler.js");
+/* harmony import */ var _ReviewEditButton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ReviewEditButton */ "./resources/js/components/reviews/ReviewEditButton.js");
+/* harmony import */ var _CommentButton__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CommentButton */ "./resources/js/components/reviews/CommentButton.js");
+/* harmony import */ var _CreatedAt__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../CreatedAt */ "./resources/js/components/CreatedAt.js");
+/* harmony import */ var _FavoriteButton__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./FavoriteButton */ "./resources/js/components/reviews/FavoriteButton.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../Loading */ "./resources/js/components/Loading.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -3649,91 +3644,91 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ReviewShow = function ReviewShow() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      review = _useState2[0],
-      setReview = _useState2[1];
+  var _useFetchReview = (0,_hooks_useFetchReview__WEBPACK_IMPORTED_MODULE_5__.useFetchReview)(),
+      getReview = _useFetchReview.getReview,
+      review = _useFetchReview.review;
 
   var _useFetchLoginUser = (0,_hooks_useFetchLoginUser__WEBPACK_IMPORTED_MODULE_4__.useFetchLoginUser)(),
       getLoginUser = _useFetchLoginUser.getLoginUser,
       loginUser = _useFetchLoginUser.loginUser;
 
-  var currentUrl = window.location.pathname;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    loadReview();
-  }, []);
+    var getData = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                setLoading(true);
+                _context.next = 3;
+                return getLoginUser();
 
-  var loadReview = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return getLoginUser();
+              case 3:
+                _context.next = 5;
+                return getReview();
 
-            case 2:
-              _context.next = 4;
-              return axios.get("/api".concat(currentUrl)).then(function (res) {
-                setReview(res.review);
-              })["catch"](function (err) {
-                console.log(err);
-              });
-
-            case 4:
-            case "end":
-              return _context.stop();
+              case 5:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      }, _callee);
-    }));
+        }, _callee);
+      }));
 
-    return function loadReview() {
-      return _ref.apply(this, arguments);
+      return function getData() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    getData();
+    setLoading(false);
+    return function () {
+      return setLoading(false);
     };
-  }();
-
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.Fragment, {
-    children: review && loginUser && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+    children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_15__["default"], {}) : review && loginUser && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
       className: "card shadow-sm mb-3",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
         className: "p-3 d-flex",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_users_UserIcon__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_users_UserIcon__WEBPACK_IMPORTED_MODULE_6__["default"], {
           reviewUser: review.user,
           favoritesCount: 1,
           reviewId: review.id,
           profileImage: review.user.profile_image,
-          hoverUserIcon: _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_14__.hoverUserIcon,
-          leaveUserIcon: _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_15__.leaveUserIcon,
           iconSize: 48
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_users_UserName__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_users_UserName__WEBPACK_IMPORTED_MODULE_7__["default"], {
           userName: review.user.name,
           screenName: review.user.screen_name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_CreatedAt__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_CreatedAt__WEBPACK_IMPORTED_MODULE_13__["default"], {
           createdAt: review.created_at
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
         className: "card-body py-0 px-3",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
           className: "d-flex flex-row py-3 border-top border-bottom",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_BookImage__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_BookImage__WEBPACK_IMPORTED_MODULE_8__["default"], {
             imageUrl: review.image_url,
             pageUrl: review.page_url,
             bookImageSize: 128
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_BookInfo__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_BookInfo__WEBPACK_IMPORTED_MODULE_9__["default"], {
             title: review.title,
             author: review.author,
             manufacturer: review.manufacturer,
             category: review.category,
-            ratings: review.ratings,
-            changeCategory: changeCategory
+            ratings: review.ratings
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
         className: "card-body border-bottom py-3 px-0 mx-3",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
           className: "d-inline text-blog font-weight-bold",
-          children: ["\u30EC\u30D3\u30E5\u30FC ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_ReviewSpoiler__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          children: ["\u30EC\u30D3\u30E5\u30FC ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_ReviewSpoiler__WEBPACK_IMPORTED_MODULE_10__["default"], {
             spoiler: review.spoiler
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("p", {
@@ -3744,20 +3739,20 @@ var ReviewShow = function ReviewShow() {
         className: "card-footer pb-3 px-3 d-flex justify-content-end bg-white border-top-0",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
           className: "d-d-flex align-items-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_ReviewEditButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_ReviewEditButton__WEBPACK_IMPORTED_MODULE_11__["default"], {
             loginUser: loginUser.id,
             reviewUser: review.user.id,
             id: review.id
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
           className: "ml-sm-3 d-flex align-items-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_CommentButton__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_CommentButton__WEBPACK_IMPORTED_MODULE_12__["default"], {
             id: review.id,
             commentCount: review.comments_count
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
           className: "ml-3 ml-sm-4 mr-sm-3 d-flex align-items-center",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_FavoriteButton__WEBPACK_IMPORTED_MODULE_13__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_FavoriteButton__WEBPACK_IMPORTED_MODULE_14__["default"], {
             review: review,
             loginUser: loginUser
           })
@@ -3845,41 +3840,6 @@ var ReviewSpoiler = function ReviewSpoiler(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewSpoiler);
-
-/***/ }),
-
-/***/ "./resources/js/components/reviews/ReviewsCount.js":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/reviews/ReviewsCount.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-var ReviewsCount = function ReviewsCount(_ref) {
-  var user = _ref.user;
-  var reviewsCount = user.reviews_count;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-      children: "\u6295\u7A3F\u6570"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-      className: "badge-purple badge-pill text-white ml-1 user-select-none",
-      children: reviewsCount
-    })]
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewsCount);
 
 /***/ }),
 
@@ -4292,10 +4252,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants */ "./resources/js/constants.js");
-/* harmony import */ var _reviews_ReviewsCount__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reviews/ReviewsCount */ "./resources/js/components/reviews/ReviewsCount.js");
+/* harmony import */ var _users_UserReviewsCount__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../users/UserReviewsCount */ "./resources/js/components/users/UserReviewsCount.js");
 /* harmony import */ var _users_FollowerCount__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../users/FollowerCount */ "./resources/js/components/users/FollowerCount.js");
 /* harmony import */ var _users_FavoritesCountTotal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../users/FavoritesCountTotal */ "./resources/js/components/users/FavoritesCountTotal.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _functions_hoverUserIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../functions/hoverUserIcon */ "./resources/js/functions/hoverUserIcon.js");
+/* harmony import */ var _functions_leaveUserIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../functions/leaveUserIcon */ "./resources/js/functions/leaveUserIcon.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -4306,38 +4270,43 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var UserIcon = function UserIcon(_ref) {
+  var _ref2;
+
   var reviewUser = _ref.reviewUser,
       favoritesCount = _ref.favoritesCount,
       reviewId = _ref.reviewId,
       profileImage = _ref.profileImage,
-      hoverUserIcon = _ref.hoverUserIcon,
-      leaveUserIcon = _ref.leaveUserIcon,
       iconSize = _ref.iconSize;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+
+  var hoverUserIcon = function hoverUserIcon() {};
+
+  var leaveUserIcon = function leaveUserIcon() {};
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "user-counts shadow-sm d-none review-".concat(reviewId),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "count d-flex justify-content-between mb-1",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_reviews_ReviewsCount__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_users_UserReviewsCount__WEBPACK_IMPORTED_MODULE_2__["default"], {
           user: reviewUser
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "count d-flex justify-content-between mb-1",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_users_FollowerCount__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_users_FollowerCount__WEBPACK_IMPORTED_MODULE_3__["default"], {
           user: reviewUser
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "count d-flex justify-content-between",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_users_FavoritesCountTotal__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_users_FavoritesCountTotal__WEBPACK_IMPORTED_MODULE_4__["default"], {
           user: reviewUser,
           favoritesCount: favoritesCount
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
       href: "/users/".concat(reviewUser.id),
       className: "text-reset",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-        src: "".concat(_constants__WEBPACK_IMPORTED_MODULE_1__.STORAGE, "/").concat(profileImage),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+        src: (_ref2 = "public/profile_image/".concat(profileImage)) !== null && _ref2 !== void 0 ? _ref2 : '/public/images/Default_User_Icon.jpeg',
         className: "rounded-circle shadow-sm",
         width: iconSize,
         height: iconSize,
@@ -4468,9 +4437,14 @@ var UserIndex = function UserIndex() {
               case 0:
                 setLoading(true);
                 _context.next = 3;
-                return axios.get("/api/users?sort=".concat(sort, "&page=").concat(page)).then(function (res) {
-                  page < res.users.last_page && setHasMore(true);
-                  return res.users.data;
+                return axios.get('/api/users', {
+                  params: {
+                    sort: sort,
+                    page: page
+                  }
+                }).then(function (res) {
+                  page < res.meta.last_page && setHasMore(true);
+                  return res.data;
                 })["catch"](function (err) {
                   console.log(err);
                 });
@@ -4593,7 +4567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_UserName__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../users/UserName */ "./resources/js/components/users/UserName.js");
 /* harmony import */ var _FollowerCount__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FollowerCount */ "./resources/js/components/users/FollowerCount.js");
 /* harmony import */ var _FavoritesCountTotal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FavoritesCountTotal */ "./resources/js/components/users/FavoritesCountTotal.js");
-/* harmony import */ var _reviews_ReviewsCount__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../reviews/ReviewsCount */ "./resources/js/components/reviews/ReviewsCount.js");
+/* harmony import */ var _users_UserReviewsCount__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../users/UserReviewsCount */ "./resources/js/components/users/UserReviewsCount.js");
 /* harmony import */ var _functions_isFollowed__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../functions/isFollowed */ "./resources/js/functions/isFollowed.js");
 /* harmony import */ var _functions_omittedText__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../functions/omittedText */ "./resources/js/functions/omittedText.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -4614,6 +4588,7 @@ var UserList = function UserList(_ref) {
   var users = _ref.users,
       loginUser = _ref.loginUser,
       maxTextLength = _ref.maxTextLength;
+  console.log(loginUser);
   var isFollowedStyle = 'text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4';
   var notLoginUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function () {
     return user.id === loginUser ? false : true;
@@ -4648,7 +4623,7 @@ var UserList = function UserList(_ref) {
             className: "px-0 d-sm-inline-flex ml-auto text-right",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
               className: "mt-1 count",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_reviews_ReviewsCount__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_users_UserReviewsCount__WEBPACK_IMPORTED_MODULE_6__["default"], {
                 user: user
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
@@ -4939,6 +4914,41 @@ var UserPageTab = function UserPageTab() {
 if (document.getElementById('userPageTab')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(UserPageTab, {}), document.getElementById('userPageTab'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/users/UserReviewsCount.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/users/UserReviewsCount.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+var UserReviewsCount = function UserReviewsCount(_ref) {
+  var user = _ref.user;
+  var reviewsCount = user.reviews_count;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      children: "\u6295\u7A3F\u6570"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      className: "badge-purple badge-pill text-white ml-1 user-select-none",
+      children: reviewsCount
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserReviewsCount);
 
 /***/ }),
 
@@ -5291,6 +5301,7 @@ var useFetchLoginUser = function useFetchLoginUser() {
       setLoginUser = _useState2[1];
 
   var getLoginUser = function getLoginUser() {
+    console.log('get loginUser!');
     axios.get('/api/login_user').then(function (res) {
       setLoginUser(res.login_user);
     })["catch"](function (err) {
@@ -5301,6 +5312,56 @@ var useFetchLoginUser = function useFetchLoginUser() {
   return {
     getLoginUser: getLoginUser,
     loginUser: loginUser
+  };
+};
+
+/***/ }),
+
+/***/ "./resources/js/hooks/useFetchReview.js":
+/*!**********************************************!*\
+  !*** ./resources/js/hooks/useFetchReview.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useFetchReview": () => (/* binding */ useFetchReview)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var useFetchReview = function useFetchReview() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      review = _useState2[0],
+      setReview = _useState2[1];
+
+  var reviewId = window.location.pathname.includes('/edit') ? window.location.pathname.replace('/edit', '') : window.location.pathname;
+
+  var getReview = function getReview() {
+    console.log('get review!');
+    axios.get("/api".concat(reviewId)).then(function (res) {
+      setReview(res.data.review);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
+  return {
+    getReview: getReview,
+    review: review
   };
 };
 

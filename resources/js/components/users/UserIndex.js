@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useFetchLoginUser } from '../../hooks/useFetchLoginUser';
 import { useDebounce } from 'use-debounce';
@@ -8,7 +8,7 @@ import UserList from './UserList';
 import Loading from '../Loading';
 import { findUsers } from '../../functions/findUsers';
 
-const UserIndex = () => {
+const UserIndex = useMemo(() => {
   const [allUsers, setAllUsers] = useState([]);
   const [sort, setSort] = useState('default');
   const [page, setPage] = useState(1);
@@ -30,8 +30,8 @@ const UserIndex = () => {
           },
         })
         .then((res) => {
-          page < res.users.last_page && setHasMore(true);
-          return res.users.data;
+          page < res.meta.last_page && setHasMore(true);
+          return res.data;
         })
         .catch((err) => {
           console.log(err);
@@ -110,7 +110,7 @@ const UserIndex = () => {
       </div>
     </>
   );
-};
+});
 
 export default UserIndex;
 

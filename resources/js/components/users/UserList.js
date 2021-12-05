@@ -4,7 +4,7 @@ import UserIcon from '../users/UserIcon';
 import UserName from '../users/UserName';
 import FollowerCount from './FollowerCount';
 import FavoritesCountTotal from './FavoritesCountTotal';
-import ReviewsCount from '../reviews/ReviewsCount';
+import UserReviewsCount from '../users/UserReviewsCount';
 import { isFollowed } from '../../functions/isFollowed';
 import { omittedText } from '../../functions/omittedText';
 
@@ -42,7 +42,7 @@ const UserList = ({ users, loginUser, maxTextLength }) => {
               <UserName userName={user.name} screenName={user.screen_name} />
               <div className="px-0 d-sm-inline-flex ml-auto text-right">
                 <div className="mt-1 count">
-                  <ReviewsCount user={user} />
+                  <UserReviewsCount user={user} />
                 </div>
                 <div className="mt-1 ml-sm-4 count">
                   <FollowerCount user={user} />
