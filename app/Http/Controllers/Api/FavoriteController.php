@@ -13,7 +13,7 @@ class FavoriteController extends Controller
      * @param  Int $review_id
      * @return array<string, string>
      */
-    public function addFavorite(Int $review_id)
+    public function attach(Int $review_id)
     {
         $favorite = new Favorite;
         $loginUser = auth()->user();
@@ -32,7 +32,7 @@ class FavoriteController extends Controller
      * @param  int  $review_id
      * @return array<string, string>
      */
-    public function removeFavorite(Int $review_id)
+    public function detach(Int $review_id)
     {
         $favorite = new Favorite;
         $loginUser = auth()->user();

@@ -2631,13 +2631,6 @@ var FavoriteButton = function FavoriteButton(_ref) {
       return !prev;
     });
   }, [setFavorite]);
-  var requestFavorite = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (request) {
-    return axios.post("/api/".concat(request, "_favorite/").concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
-      console.log(err); // リクエストに失敗した時はボタンのUIを元に戻す
-
-      toggleFavorite();
-    });
-  });
 
   var addFavorite = function addFavorite(e) {
     var heartClassList = e.target.classList;
@@ -2647,13 +2640,21 @@ var FavoriteButton = function FavoriteButton(_ref) {
       toggleFavorite();
       setFavoriteCount(favoriteCount + 1);
     }, 200);
-    requestFavorite('add');
+    axios.post("/api/favorites/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
+      console.log(err); // リクエストに失敗した時はボタンのUIを元に戻す
+
+      toggleFavorite();
+    });
   };
 
   var removeFavorite = function removeFavorite() {
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
-    requestFavorite('remove');
+    axios["delete"]("/api/favorites/".concat(reviewId)).then(console.log('success!'))["catch"](function (err) {
+      console.log(err); // リクエストに失敗した時はボタンのUIを元に戻す
+
+      toggleFavorite();
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -4383,8 +4384,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-var UserIndex = function UserIndex() {
+var UserIndex = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(function () {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       allUsers = _useState2[0],
@@ -4540,8 +4540,7 @@ var UserIndex = function UserIndex() {
       children: [loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_7__["default"], {}), !loading && userList.length === 0 && 'ユーザーは見つかりませんでした']
     })]
   });
-};
-
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserIndex);
 
 if (document.getElementById('userIndex')) {
@@ -4588,7 +4587,6 @@ var UserList = function UserList(_ref) {
   var users = _ref.users,
       loginUser = _ref.loginUser,
       maxTextLength = _ref.maxTextLength;
-  console.log(loginUser);
   var isFollowedStyle = 'text-secondary mr-1 mr-sm-2 mr-md-3 mr-lg-4';
   var notLoginUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function () {
     return user.id === loginUser ? false : true;
@@ -5301,7 +5299,6 @@ var useFetchLoginUser = function useFetchLoginUser() {
       setLoginUser = _useState2[1];
 
   var getLoginUser = function getLoginUser() {
-    console.log('get loginUser!');
     axios.get('/api/login_user').then(function (res) {
       setLoginUser(res.login_user);
     })["catch"](function (err) {

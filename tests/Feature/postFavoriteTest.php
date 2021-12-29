@@ -18,13 +18,13 @@ class postFavoriteTest extends TestCase
 
         // いいね
         $response = $this->actingAs($user);
-        $response->post('/api/add_favorite/'.$review->id);
+        $response->post('/api/favorites/' . $review->id);
         $response->assertDatabaseHas('favorites', [
             'review_id' => $review->id,
         ]);
 
         // いいね解除
-        $response->delete('/api/remove_favorite/'.$review->id);
+        $response->delete('/api/favorites/' . $review->id);
         $response->assertDatabaseMissing('favorites', [
             'alert_id' => $review->id,
         ]);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export const useFetchLoginUser = () => {
   const [loginUser, setLoginUser] = useState({});

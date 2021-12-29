@@ -27,8 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/users/{user}', 'Api\UserController@update');
 
     // いいね
-    Route::post('/add_favorite/{id}', 'Api\FavoriteController@addFavorite')->where('id', '[0-9]+');
-    Route::post('/remove_favorite/{id}', 'Api\FavoriteController@removeFavorite')->where('id', '[0-9]+');
+    Route::post('/favorites/{id}', 'Api\FavoriteController@attach')->where('id', '[0-9]+');
+    Route::delete('/favorites/{id}', 'Api\FavoriteController@detach')->where('id', '[0-9]+');
 
     // フォロー
     Route::post('/follow/{id}', 'Api\FollowController@follow')->where('id', '[0-9]+');

@@ -13,16 +13,6 @@ const FavoriteButton = ({ review, loginUser }) => {
     () => setFavorite((prev) => !prev),
     [setFavorite]
   );
-  const requestFavorite = useCallback((request) => {
-    return axios
-      .post(`/api/${request}_favorite/${reviewId}`)
-      .then(console.log('success!'))
-      .catch((err) => {
-        console.log(err);
-        // リクエストに失敗した時はボタンのUIを元に戻す
-        toggleFavorite();
-      });
-  });
 
   const addFavorite = (e) => {
     const heartClassList = e.target.classList;
@@ -32,12 +22,26 @@ const FavoriteButton = ({ review, loginUser }) => {
       toggleFavorite();
       setFavoriteCount(favoriteCount + 1);
     }, 200);
-    requestFavorite('add');
+    axios
+      .post(`/api/favorites/${reviewId}`)
+      .then(console.log('success!'))
+      .catch((err) => {
+        console.log(err);
+        // リクエストに失敗した時はボタンのUIを元に戻す
+        toggleFavorite();
+      });
   };
   const removeFavorite = () => {
     toggleFavorite();
     setFavoriteCount(favoriteCount - 1);
-    requestFavorite('remove');
+    axios
+      .delete(`/api/favorites/${reviewId}`)
+      .then(console.log('success!'))
+      .catch((err) => {
+        console.log(err);
+        // リクエストに失敗した時はボタンのUIを元に戻す
+        toggleFavorite();
+      });
   };
 
   return (
