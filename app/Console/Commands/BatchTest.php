@@ -38,5 +38,6 @@ class BatchTest extends Command
     public function handle()
     {
         echo date('YmdHis');
+        // 条件を満たしたアイテムがあれば集計処理を実行する
     }
 }
