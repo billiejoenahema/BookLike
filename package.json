@@ -10,7 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@babel/preset-react": "^7.12.13",
+        "@babel/preset-react": "7.17.12",
         "@types/node": "^14.14.37",
         "@types/react": "^17.0.3",
         "@types/react-dom": "^17.0.3",
