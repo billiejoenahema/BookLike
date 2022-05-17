@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64f2d4edc15cf640eb54e03938fb51c8",
+    "content-hash": "f3c6a8493380460d988f53ae954cbc0f",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1578,16 +1578,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.3.5",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "fd4380d6fc37626e2f799f29d91195040137eba9"
+                "reference": "247918972acd74356b0a91dfaa5adcaec069b6c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd4380d6fc37626e2f799f29d91195040137eba9",
-                "reference": "fd4380d6fc37626e2f799f29d91195040137eba9",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/247918972acd74356b0a91dfaa5adcaec069b6c0",
+                "reference": "247918972acd74356b0a91dfaa5adcaec069b6c0",
                 "shasum": ""
             },
             "require": {
@@ -1600,18 +1600,23 @@
             "require-dev": {
                 "aws/aws-sdk-php": "^2.4.9 || ^3.0",
                 "doctrine/couchdb": "~1.0@dev",
-                "elasticsearch/elasticsearch": "^7",
+                "elasticsearch/elasticsearch": "^7 || ^8",
+                "ext-json": "*",
                 "graylog2/gelf-php": "^1.4.2",
+                "guzzlehttp/guzzle": "^7.4",
+                "guzzlehttp/psr7": "^2.2",
                 "mongodb/mongodb": "^1.8",
                 "php-amqplib/php-amqplib": "~2.4 || ^3",
                 "php-console/php-console": "^3.1.3",
-                "phpspec/prophecy": "^1.6.1",
+                "phpspec/prophecy": "^1.15",
                 "phpstan/phpstan": "^0.12.91",
-                "phpunit/phpunit": "^8.5",
+                "phpunit/phpunit": "^8.5.14",
                 "predis/predis": "^1.1",
-                "rollbar/rollbar": "^1.3",
-                "ruflin/elastica": ">=0.90@dev",
-                "swiftmailer/swiftmailer": "^5.3|^6.0"
+                "rollbar/rollbar": "^1.3 || ^2 || ^3",
+                "ruflin/elastica": "^7",
+                "swiftmailer/swiftmailer": "^5.3|^6.0",
+                "symfony/mailer": "^5.4 || ^6",
+                "symfony/mime": "^5.4 || ^6"
             },
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
@@ -1661,7 +1666,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/2.3.5"
+                "source": "https://github.com/Seldaek/monolog/tree/2.6.0"
             },
             "funding": [
                 {
@@ -1673,7 +1678,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-01T21:08:31+00:00"
+            "time": "2022-05-10T09:36:00+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -3398,16 +3403,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.4.37",
+            "version": "v4.4.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "27782a72399b92f44624f801adc5c28fb3f9d6c7"
+                "reference": "27441220aebeb096b4eb8267acaaa7feb5e4266c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/27782a72399b92f44624f801adc5c28fb3f9d6c7",
-                "reference": "27782a72399b92f44624f801adc5c28fb3f9d6c7",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/27441220aebeb096b4eb8267acaaa7feb5e4266c",
+                "reference": "27441220aebeb096b4eb8267acaaa7feb5e4266c",
                 "shasum": ""
             },
             "require": {
@@ -3446,7 +3451,7 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v4.4.37"
+                "source": "https://github.com/symfony/http-foundation/tree/v4.4.41"
             },
             "funding": [
                 {
@@ -3462,7 +3467,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-27T14:30:55+00:00"
+            "time": "2022-04-21T07:22:34+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -3570,16 +3575,16 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v5.4.3",
+            "version": "v5.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "e1503cfb5c9a225350f549d3bb99296f4abfb80f"
+                "reference": "af49bc163ec3272f677bde3bc44c0d766c1fd662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/e1503cfb5c9a225350f549d3bb99296f4abfb80f",
-                "reference": "e1503cfb5c9a225350f549d3bb99296f4abfb80f",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/af49bc163ec3272f677bde3bc44c0d766c1fd662",
+                "reference": "af49bc163ec3272f677bde3bc44c0d766c1fd662",
                 "shasum": ""
             },
             "require": {
@@ -3633,7 +3638,7 @@
                 "mime-type"
             ],
             "support": {
-                "source": "https://github.com/symfony/mime/tree/v5.4.3"
+                "source": "https://github.com/symfony/mime/tree/v5.4.8"
             },
             "funding": [
                 {
@@ -3649,7 +3654,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-02T09:53:40+00:00"
+            "time": "2022-04-12T15:48:08+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3818,7 +3823,7 @@
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
@@ -3885,7 +3890,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -4072,7 +4077,7 @@
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.24.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
@@ -4128,7 +4133,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php72/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-php72/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -4711,16 +4716,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.4.37",
+            "version": "v4.4.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "e74eee4ec02de71db3d60151aa5b203c990556df"
+                "reference": "58eb36075c04aaf92a7a9f38ee9a8b97e24eb481"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e74eee4ec02de71db3d60151aa5b203c990556df",
-                "reference": "e74eee4ec02de71db3d60151aa5b203c990556df",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/58eb36075c04aaf92a7a9f38ee9a8b97e24eb481",
+                "reference": "58eb36075c04aaf92a7a9f38ee9a8b97e24eb481",
                 "shasum": ""
             },
             "require": {
@@ -4780,7 +4785,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v4.4.37"
+                "source": "https://github.com/symfony/var-dumper/tree/v4.4.41"
             },
             "funding": [
                 {
@@ -4796,7 +4801,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-02T09:41:36+00:00"
+            "time": "2022-04-25T21:15:06+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5680,16 +5685,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.16.15",
+            "version": "1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "b6aea4a99303d9d32afd486a285162a89af8a8a3"
+                "reference": "d173a101b3dbbd7a3a7b849ab388a7a7ef6d90bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/b6aea4a99303d9d32afd486a285162a89af8a8a3",
-                "reference": "b6aea4a99303d9d32afd486a285162a89af8a8a3",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/d173a101b3dbbd7a3a7b849ab388a7a7ef6d90bf",
+                "reference": "d173a101b3dbbd7a3a7b849ab388a7a7ef6d90bf",
                 "shasum": ""
             },
             "require": {
@@ -5752,7 +5757,7 @@
                 "issues": "https://github.com/facade/ignition/issues",
                 "source": "https://github.com/facade/ignition"
             },
-            "time": "2021-02-15T10:21:49+00:00"
+            "time": "2022-02-23T20:20:52+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -6921,16 +6926,16 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "93ebd0014cab80c4ea9f5e297ea48672f1b87706"
+                "reference": "77a32518733312af16a44300404e945338981de3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/93ebd0014cab80c4ea9f5e297ea48672f1b87706",
-                "reference": "93ebd0014cab80c4ea9f5e297ea48672f1b87706",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/77a32518733312af16a44300404e945338981de3",
+                "reference": "77a32518733312af16a44300404e945338981de3",
                 "shasum": ""
             },
             "require": {
@@ -6965,9 +6970,9 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.6.0"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.6.1"
             },
-            "time": "2022-01-04T19:58:01+00:00"
+            "time": "2022-03-15T21:29:03+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -7648,13 +7653,13 @@
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "HighlightUtilities/functions.php"
+                ],
                 "psr-0": {
                     "Highlight\\": "",
                     "HighlightUtilities\\": ""
-                },
-                "files": [
-                    "HighlightUtilities/functions.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
