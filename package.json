@@ -31,7 +31,7 @@
     },
     "dependencies": {
         "npm-check-updates": "^11.8.5",
-        "react-router-dom": "^5.2.0",
+        "react-router-dom": "5.3.2",
         "react-tabs": "3.2.3",
         "react-tooltip": "^4.2.13",
         "use-debounce": "^5.2.0"
