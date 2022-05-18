@@ -12,28 +12,28 @@
     "devDependencies": {
         "@babel/preset-react": "7.17.12",
         "@types/node": "16.11.36",
-        "@types/react": "^17.0.3",
+        "@types/react": "18.0.9",
         "@types/react-dom": "18.0.4",
         "axios": "0.27.2",
         "bootstrap": "4.6.1",
         "cross-env": "7.0.3",
-        "jquery": "^3.2",
+        "jquery": "3.6.0",
         "laravel-mix": "6.0.43",
-        "lodash": "^4.17.20",
-        "popper.js": "^1.16.1",
-        "react": "^16.14.0",
-        "react-dom": "^16.14.0",
+        "lodash": "4.17.21",
+        "popper.js": "1.16.1",
+        "react": "16.14.0",
+        "react-dom": "16.14.0",
         "resolve-url-loader": "5.0.0",
         "sass": "1.51.0",
         "sass-loader": "13.0.0",
         "typescript": "4.6.4",
-        "vue-template-compiler": "^2.6.12"
+        "vue-template-compiler": "2.6.14"
     },
     "dependencies": {
-        "npm-check-updates": "^11.8.5",
+        "npm-check-updates": "11.8.5",
         "react-router-dom": "5.3.3",
         "react-tabs": "3.2.3",
-        "react-tooltip": "^4.2.13",
-        "use-debounce": "^5.2.0"
+        "react-tooltip": "4.2.21",
+        "use-debounce": "5.2.1"
     }
 }
