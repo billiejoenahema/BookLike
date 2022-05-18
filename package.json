@@ -16,7 +16,7 @@
         "@types/react-dom": "18.0.4",
         "axios": "0.27.2",
         "bootstrap": "4.6.1",
-        "cross-env": "^5.1",
+        "cross-env": "7.0.3",
         "jquery": "^3.2",
         "laravel-mix": "6.0.43",
         "lodash": "^4.17.20",
