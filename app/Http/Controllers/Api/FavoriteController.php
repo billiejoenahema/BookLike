@@ -8,19 +8,19 @@ use App\Models\Favorite;
 class FavoriteController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * レビューにいいねする。
      *
      * @param  Int $review_id
      * @return array<string, string>
      */
     public function attach(Int $review_id)
     {
-        $favorite = new Favorite;
+        $favoriteService = new FavoriteService;
         $loginUser = auth()->user();
-        $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
+        $is_favorite = $favoriteService->isFavorite($loginUser, $review_id);
 
         if (!$is_favorite) {
-            $favorite->storeFavorite($loginUser->id, $review_id);
+            $favoriteService->attachFavorite($loginUser, $review_id);
             return ['status' => 'success'];
         }
         return ['status' => 'error'];
