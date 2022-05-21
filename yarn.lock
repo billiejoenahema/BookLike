@@ -6789,10 +6789,10 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-use-debounce@5.2.1:
-  version "5.2.1"
-  resolved "https://registry.npmjs.org/use-debounce/-/use-debounce-5.2.1.tgz"
-  integrity sha512-BQG5uEypYHd/ASF6imzYR8tJHh5qGn28oZG/5iVAbljV6MUrfyT4jzxA8co+L+WLCT1U8VBwzzvlb3CHmUDpEA==
+use-debounce@8.0.1:
+  version "8.0.1"
+  resolved "https://registry.npmjs.org/use-debounce/-/use-debounce-8.0.1.tgz"
+  integrity sha512-6tGAFJKJ0qCalecaV7/gm/M6n238nmitNppvR89ff1yfwSFjwFKR7IQZzIZf1KZRQhqNireBzytzU6jgb29oVg==
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"

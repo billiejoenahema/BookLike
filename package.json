@@ -34,6 +34,6 @@
         "react-router-dom": "5.3.3",
         "react-tabs": "3.2.3",
         "react-tooltip": "4.2.21",
-        "use-debounce": "5.2.1"
+        "use-debounce": "8.0.1"
     }
 }
