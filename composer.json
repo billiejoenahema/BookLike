@@ -12,8 +12,8 @@
         "doctrine/dbal": "3.3.6",
         "fideloper/proxy": "4.4.1",
         "laravel/framework": "6.20.44",
-        "laravel/tinker": "1.0.10",
-        "league/flysystem-aws-s3-v3": "3.0.13"
+        "laravel/tinker": "2.7.2",
+        "league/flysystem-aws-s3-v3": "1.0.29"
     },
     "require-dev": {
         "facade/ignition": "2.17.5",
