@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Services;
-
 use App\Models\Favorite;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FavoriteService
@@ -13,23 +12,33 @@ class FavoriteService
     /**
      * いいねしているかどうかを返す。
      */
-    public function isFavorite(User $user, Int $review_id)
+    public function isFavorite(Int $review_id)
     {
-        return (boolean) $this->where('user_id', $user->id)
+        $loginUser = Auth::user();
+        return (boolean) $this->where('user_id', $loginUser->id)
             ->where('review_id', $review_id)
             ->first();
     }
     /**
-     * レビューにいいねをする。
+     * レビューにいいねをつける。
      */
-    public function attachFavorite(User $user, Int $review_id)
+    public function attachFavorite(Int $review_id)
     {
-        DB::transaction(function () use ($user, $review_id) {
+        $loginUser = Auth::user();
+        DB::transaction(function () use ($loginUser, $review_id) {
             $favorite = new Favorite;
-            $favorite->user_id = $user->id;
+            $favorite->user_id = $loginUser->id;
             $favorite->review_id = $review_id;
             $favorite->save();
             return;
         });
+    }
+
+    /**
+     * レビューのいいねを外す。
+     */
+    public function detachFavorite(Int $favorite_id)
+    {
+        return $this->where('id', $favorite_id)->delete();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Favorite;
+use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
@@ -16,11 +17,10 @@ class FavoriteController extends Controller
     public function attach(Int $review_id)
     {
         $favoriteService = new FavoriteService;
-        $loginUser = auth()->user();
-        $is_favorite = $favoriteService->isFavorite($loginUser, $review_id);
+        $is_favorite = $favoriteService->isFavorite($review_id);
 
         if (!$is_favorite) {
-            $favoriteService->attachFavorite($loginUser, $review_id);
+            $favoriteService->attachFavorite($review_id);
             return ['status' => 'success'];
         }
         return ['status' => 'error'];
@@ -34,13 +34,13 @@ class FavoriteController extends Controller
      */
     public function detach(Int $review_id)
     {
-        $favorite = new Favorite;
-        $loginUser = auth()->user();
-        $is_favorite = $favorite->isFavorite($loginUser->id, $review_id);
-        $favorite_id = $favorite->where('user_id', $loginUser->id)->where('review_id', $review_id)->value('id');
+        $loginUser = Auth::user();
+        $favoriteService = new FavoriteService;
+        $is_favorite = $favoriteService->isFavorite($review_id);
+        $favorite_id = Favorite::where('user_id', $loginUser->id)->where('review_id', $review_id)->value('id');
 
         if ($is_favorite) {
-            $favorite->destroyFavorite($favorite_id);
+            $favoriteService->detachFavorite($favorite_id);
             return ['status' => 'success'];
         }
         return ['status' => 'error'];
