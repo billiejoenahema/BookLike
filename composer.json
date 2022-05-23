@@ -11,8 +11,8 @@
         "php": "^7.2|^8.0",
         "doctrine/dbal": "3.3.6",
         "fideloper/proxy": "4.4.1",
-        "laravel/framework": "6.20.44",
-        "laravel/tinker": "1.0.10",
+        "laravel/framework": "9.13.0",
+        "laravel/tinker": "2.7.2",
         "league/flysystem-aws-s3-v3": "1.0.29"
     },
     "require-dev": {

@@ -24,16 +24,16 @@
         "react": "16.14.0",
         "react-dom": "16.14.0",
         "resolve-url-loader": "5.0.0",
-        "sass": "1.51.0",
+        "sass": "1.52.1",
         "sass-loader": "13.0.0",
         "typescript": "4.6.4",
         "vue-template-compiler": "2.6.14"
     },
     "dependencies": {
-        "npm-check-updates": "11.8.5",
-        "react-router-dom": "5.3.3",
-        "react-tabs": "3.2.3",
+        "npm-check-updates": "13.0.3",
+        "react-router-dom": "6.3.0",
+        "react-tabs": "5.1.0",
         "react-tooltip": "4.2.21",
-        "use-debounce": "5.2.1"
+        "use-debounce": "8.0.1"
     }
 }
