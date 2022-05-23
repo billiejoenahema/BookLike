@@ -18,21 +18,19 @@ class Comment extends Model
         'text'
     ];
 
+    /**
+     * 紐づくユーザーを取得する。
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * 紐づくレビューを取得する。
+     */
     public function review()
     {
         return $this->belongsTo(Review::class);
-    }
-
-    public function getComments(Int $review_id)
-    {
-        return $this->with('user')
-            ->withTrashed()
-            ->where('review_id', $review_id)
-            ->get();
     }
 }

@@ -5,32 +5,41 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentRequest;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * コメントを登録する。
      *
      * @param  StoreCommentRequest $request
      * @return RedirectResponse
      */
     public function store(StoreCommentRequest $request)
     {
-        $user = auth()->user();
-        $data = $request->all();
+        $loginUser = Auth::user();
 
-        $comment = new Comment();
-        $comment->user_id = $user->id;
-        $comment->review_id = $data['review_id'];
-        $comment->text = $data['text'];
-        $comment->save();
-        session()->flash('flash_message', 'コメントを投稿しました');
+        $comment = DB::transaction(function () use ($loginUser, $request) {
+            $comment = Comment::create([
+                'user_id' => $loginUser->id,
+                'review_id' => $request['review_id'],
+                'text' => $request['text'],
+                'user_id' => $request['user_id'],
+            ]);
+            return $comment;
+        });
+        if(isEmpty($comment)) {
+            session()->flash('flash_message', 'コメントの投稿に失敗しました');
+        } else {
+            session()->flash('flash_message', 'コメントを投稿しました');
+        }
 
         return back();
     }
 
     /**
-     * Remove the specified resource from storage.
+     * コメントを削除する。
      *
      * @param  Comment $comment
      * @return \Illuminate\Http\RedirectResponse
