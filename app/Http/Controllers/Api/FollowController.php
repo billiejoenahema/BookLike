@@ -6,27 +6,39 @@ use App\Http\Controllers\Controller;
 
 class FollowController extends Controller
 {
-    public function follow(Int $id)
+    /**
+     * フォローする。
+     *
+     * @param  int  $review_id
+     * @return array<string, string>
+     */
+    public function attachFollow(Int $id)
     {
-        $login_user = auth()->user();
+        $login_user = Auth::user();
         $is_following = $login_user->isFollowing($id);
 
         // フォローしていなければフォローする
         if(!$is_following) {
-            $login_user->follow($id);
+            $login_user->follows()->attach($login_user->id);
             return ['status' => 'success'];
         }
         return ['status' => 'error'];
     }
 
-    public function unfollow(Int $id)
+    /**
+     * フォロー解除する。
+     *
+     * @param  int  $review_id
+     * @return array<string, string>
+     */
+    public function detachFollow(Int $id)
     {
-        $login_user = auth()->user();
+        $login_user = Auth::user();
         $is_following = $login_user->isFollowing($id);
 
         // フォローしていればフォローを解除する
         if($is_following) {
-            $login_user->unfollow($id);
+            $login_user->follows()->detach($login_user->id);
             return ['status' => 'success'];
         }
         return ['status' => 'error'];

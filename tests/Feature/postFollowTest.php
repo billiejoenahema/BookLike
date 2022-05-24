@@ -18,13 +18,13 @@ class postFollowTest extends TestCase
 
         // フォロー
         $response = $this->actingAs($userA);
-        $response->post('/api/follow/'.$userB->id);
+        $response->post('/api/follows/'.$userB->id);
         $response->assertDatabaseHas('followers', [
             'followed_id' => $userB->id,
         ]);
 
         // フォロー解除
-        $response->post('/api/unfollow/'.$userB->id);
+        $response->delete('/api/follows/'.$userB->id);
         $response->assertDatabaseMissing('followers', [
             'followed_id' => $userB->id,
         ]);

@@ -31,6 +31,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/favorites/{id}', 'Api\FavoriteController@detach')->where('id', '[0-9]+');
 
     // フォロー
-    Route::post('/follow/{id}', 'Api\FollowController@follow')->where('id', '[0-9]+');
-    Route::post('/unfollow/{id}', 'Api\FollowController@unfollow')->where('id', '[0-9]+');
+    Route::post('/follows/{id}', 'Api\FollowController@attachFollow')->where('id', '[0-9]+');
+    Route::post('/follows/{id}', 'Api\FollowController@detachFollow')->where('id', '[0-9]+');
 });

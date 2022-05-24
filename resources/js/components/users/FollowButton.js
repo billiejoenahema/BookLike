@@ -5,44 +5,54 @@ const FollowButton = ({ user, loginUser }) => {
   const InitialFollowState = isFollowed(user, loginUser);
   const [following, setFollowing] = useState(InitialFollowState);
 
-  const requestFollow = useCallback((request) => {
-    return axios
-      .post(`/api/${request}/${user.id}`)
+  const postFollow = () => {
+    axios
+      .post(`/api/follows/${user.id}`)
       .then(console.log('success!'))
       .catch((err) => {
         console.log(err);
         // リクエストに失敗した時はボタンのUIを元に戻す
         toggleFollow();
       });
-  });
+  };
+  const deleteFollow = () => {
+    axios
+      .delete(`/api/follows/${user.id}`)
+      .then(console.log('success!'))
+      .catch((err) => {
+        console.log(err);
+        // リクエストに失敗した時はボタンのUIを元に戻す
+        toggleFollow();
+      });
+  };
 
   const toggleFollow = useCallback(
     () => setFollowing((prev) => !prev),
     [setFollowing]
   );
 
-  const addFollow = () => {
+  const attachFollow = () => {
     toggleFollow();
-    requestFollow('follow');
+    postFollow();
   };
-  const removeFollow = () => {
+  const detachFollow = () => {
     toggleFollow();
-    requestFollow('unfollow');
+    deleteFollow();
   };
 
   return (
     <>
       {following ? (
         <div
-          onClick={removeFollow}
-          className="btn-sm btn-blog rounded-pill shadow-sm border-0 unfollow-btn"
+          onClick={attachFollow}
+          className='btn-sm btn-blog rounded-pill shadow-sm border-0 unfollow-btn'
         >
           フォロー中
         </div>
       ) : (
         <div
-          onClick={addFollow}
-          className="btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn"
+          onClick={detachFollow}
+          className='btn-sm btn-outline-blog rounded-pill shadow-sm border-0 follow-btn'
         >
           フォローする
         </div>
