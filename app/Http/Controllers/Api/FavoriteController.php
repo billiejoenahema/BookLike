@@ -27,7 +27,7 @@ class FavoriteController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * レビューを削除する。
      *
      * @param  int  $review_id
      * @return array<string, string>
