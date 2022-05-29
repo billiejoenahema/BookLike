@@ -12,7 +12,7 @@ use App\Models\Review;
 class ReviewController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * レビュー一覧を取得する。
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -52,85 +52,82 @@ class ReviewController extends Controller
     }
 
     /**
-     * Store new review.
+     * レビューを新規登録する。
      *
      * @param  StoreReviewRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreReviewRequest $request)
     {
-        $review = new Review;
-        $review->user_id = auth()->user()->id;
-        $review->category = $request->category;
-        $review->asin = $request->asin;
-        $review->page_url = $request->page_url;
-        $review->title = $request->title;
-        $review->author = $request->author;
-        $review->manufacturer = $request->manufacturer;
-        $review->image_url = $request->image_url;
-        $review->ratings = $request->ratings;
-        $review->spoiler = $request->spoiler;
-        $review->text = $request->text;
-        $review->save();
+        DB::transaction(function () use ($request) {
+            $loginUser = Auth::user();
+            Review::create([
+                'user_id' => $loginUser->id,
+                'category' => $request['category'],
+                'asin' => $request['asin'],
+                'page_url' => $request['page_url'],
+                'title' => $request['title'],
+                'author' => $request['author'],
+                'manufacturer' => $request['manufacturer'],
+                'image_url' => $request['image_url'],
+                'ratings' => $request['ratings'],
+                'spoiler' => $request['spoiler'],
+                'text' => $request['text'],
+            ]);
+        });
         session()->flash('flash_message', 'レビューを投稿しました');
         return redirect('reviews');
     }
 
-    public function show(Request $request)
+    /**
+     * レビュー詳細を取得する。
+     *
+     * @param  Int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(Int $id)
     {
         $query = Review::withCount(['favorites', 'comments'])
             ->with(['user', 'favorites', 'comments' => function ($query) {
                 return $query->with('user');
             }]);
-        $id = (int) $request->review;
         $review = $query->findOrFail($id);
 
         return new ReviewResource($review);
     }
 
     /**
-     * Show the form for editing the review.
-     *
-     * @param  Review $review
-     * @return \Illuminate\View\View
-     */
-    public function edit(Review $review)
-    {
-        $review = $review->with('favorites')
-            ->where('id', $review->id)
-            ->first();
-        return new ReviewResource($review);
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * レビューを更新する。
      *
      * @param  UpdateReviewRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateReviewRequest $request)
     {
-        $review = new Review;
-        $review->id = $request->review;
-        $review->ratings = $request->ratings;
-        $review->spoiler = $request->spoiler;
-        $review->text = $request->text;
-        $review->update();
+        $review = DB::transaction(function () use ($request) {
+            $review = Review::findOrFail($request['id']);
+            $review->ratings = $request['ratings'];
+            $review->spoiler = $request['spoiler'];
+            $review->text = $request['text'];
+            $review->save();
+
+            return $review;
+        });
         session()->flash('flash_message', '投稿を編集しました');
 
-        return redirect('reviews');
+        return new ReviewResource($review);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * レビューを削除する。
      *
      * @param  Int $review_id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($review_id)
     {
-        Review::where('id', $review_id)
-            ->delete();
+        $review = Review::findOrFail($review_id);
+        $review->delete();
         session()->flash('flash_message', '投稿を削除しました');
 
         return redirect('reviews');

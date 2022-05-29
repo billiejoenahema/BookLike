@@ -27,7 +27,8 @@ class StoreReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'asin' => 'required | string | size:10',
+            'category' => 'required | string | max:255',
+            'asin' => 'required | string |size:10',
             'page_url' => 'nullable | string | max:255',
             'title' => 'required | string | max:255',
             'author' => 'nullable | string | max:255',

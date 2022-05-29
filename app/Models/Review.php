@@ -15,9 +15,15 @@ class Review extends Model
      * @var array
      */
     protected $fillable = [
+        'category',
         'asin',
+        'page_url',
         'title',
+        'author',
+        'manufacturer',
         'image_url',
+        'ratings',
+        'spoiler',
         'text'
     ];
 
