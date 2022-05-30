@@ -50,4 +50,27 @@ class Review extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    /**
+     * レビュー一覧をソートします。
+     *
+     * @param  string $sort
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function sortedReviews($sort)
+    {
+        $pagination = config('PAGINATION.USERS');
+
+        switch ($sort) {
+            case 'favorite':
+                // いいねが多い順に投稿を並び替え
+                return $this->orderBy('favorites_count', 'DESC')->paginate($pagination);
+            case 'ratings':
+                // 評価が高い順に投稿を並び替え
+                return $this->orderBy('ratings', 'DESC')->paginate($pagination);
+            default:
+                // 登録順に投稿を並び替え（デフォルト）
+                return $this->orderBy('created_at', 'DESC')->paginate($pagination);
+        }
+    }
 }

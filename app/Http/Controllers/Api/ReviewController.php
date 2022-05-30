@@ -21,7 +21,6 @@ class ReviewController extends Controller
     {
         $query = Review::withCount(['favorites', 'comments'])
             ->with(['user', 'favorites']);
-        $pagination = config('PAGINATION.USERS');
 
         // カテゴリーで絞り込み
         $query->when($request['category'], function ($query) use ($request) {
@@ -34,20 +33,7 @@ class ReviewController extends Controller
             return $query->where($request['criteria'], 'LIKE', "%$search%");
         });
 
-        // ソート
-        switch ($request['sort']) {
-            case 'favorite':
-                // いいねが多い順に投稿を並び替え
-                $query->orderBy('favorites_count', 'DESC');
-            case 'ratings':
-                // 評価が高い順に投稿を並び替え
-                $query->orderBy('ratings', 'DESC');
-            default:
-                // 登録順に投稿を並び替え（デフォルト）
-                $query->orderBy('created_at', 'DESC');
-        }
-
-        $reviews = $query->paginate($pagination);
+        $reviews = $query->sortedReviews($request['sort']);
         return ReviewResource::collection($reviews);
     }
 
