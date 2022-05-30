@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
-use App\Models\GetItem;
+use App\Models\Product;
 
 class ReviewController extends Controller
 {
@@ -25,10 +25,10 @@ class ReviewController extends Controller
      */
     public function post(Request $request)
     {
-        $get_item = new GetItem;
+        $product = new Product;
         $review = new Review;
         $asin = $request->asin;
-        $item = $get_item->getItem($asin);
+        $item = $product->getItem($asin);
         $page_url = $item->DetailPageURL ?? NULL;
         $title = $item->ItemInfo->Title->DisplayValue ?? NULL;
         $author = $item->ItemInfo->ByLineInfo->Contributors[0]->Name ?? NULL;

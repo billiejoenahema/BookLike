@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Models\Review;
-use App\Models\GetItem;
+use App\Models\Product;
 use DateTime;
 
 class UserController extends Controller
@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $get_item = new GetItem;
+        $product = new Product;
         $created_at = new DateTime($user->created_at);
         $updated_at = new DateTime($user->updated_at);
         $create_date = $created_at->format('Y/m/d');
@@ -42,7 +42,7 @@ class UserController extends Controller
         ];
 
         if ($user->asin) {
-            $item = $get_item->getItem($user->asin);
+            $item = $product->getItem($user->asin);
             $book->image = $item->Images->Primary->Large->URL;
             $book->url = $item->DetailPageURL;
             $book->title = $item->ItemInfo->Title->DisplayValue;
@@ -66,11 +66,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $review = new Review;
-        $get_item = new GetItem;
+        $product = new Product;
         $userReviews = $review->getUserReviews($user->id);
         $selected_book_title = '未設定';
         if ($user->asin) {
-            $user_book = $get_item->getItem($user->asin);
+            $user_book = $product->getItem($user->asin);
             $selected_book_title = $user_book->ItemInfo->Title->DisplayValue;
         }
 

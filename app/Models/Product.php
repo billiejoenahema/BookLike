@@ -9,7 +9,7 @@ use App\Models\AwsV4;
 /* Licensed under the Apache License, Version 2.0. */
 
 // Put your Secret Key in place of **********
-class GetItem {
+class Product {
 
     public function getItem($asin) {
 
