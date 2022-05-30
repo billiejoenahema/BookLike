@@ -27,52 +27,27 @@ class Review extends Model
         'text'
     ];
 
+    /**
+     * 所有するユーザーを取得する。
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * 紐づくいいねを取得する。
+     */
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
     }
 
+    /**
+     * 紐づくコメントを取得する。
+     */
     public function comments()
     {
         return $this->hasMany(Comment::class);
-    }
-
-    // 詳細画面
-    public function getReview(Int $review_id)
-    {
-        return $this->with(['user' => function ($query) {
-            return $query->withCount(['reviews', 'followers', 'favorites']);
-        }])
-            ->with(['comments:id', 'favorites'])
-            ->withCount(['comments', 'favorites'])
-            ->where('id', $review_id)
-            ->first();
-    }
-
-    // 投稿済みかどうか
-    public function isPosted($asin, Int $user_id)
-    {
-        return (bool) $this->where('user_id', $user_id)
-            ->where('asin', $asin)
-            ->first('asin');
-    }
-
-    // いいねした投稿を取得
-    public function getFavoriteReviews(Int $user_id)
-    {
-        return $this->whereHas('favorites', function ($query) use ($user_id) {
-            $query->where('user_id', $user_id);
-        })
-            ->with(['user:id,screen_name,name,profile_image', 'comments:id', 'favorites'])
-            ->with(['user' => function ($query) {
-                return $query->withCount(['reviews', 'followers', 'favorites']);
-            }])
-            ->withCount('comments')
-            ->get();
     }
 }
