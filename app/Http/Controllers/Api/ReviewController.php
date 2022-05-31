@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReviewResource;
-use App\Http\Requests\StoreReviewRequest;
-use App\Http\Requests\UpdateReviewRequest;
+use App\Http\Requests\Review\StoreRequest;
+use App\Http\Requests\Review\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Review;
 
@@ -40,10 +40,10 @@ class ReviewController extends Controller
     /**
      * レビューを新規登録する。
      *
-     * @param  StoreReviewRequest  $request
+     * @param  StoreRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreReviewRequest $request)
+    public function store(StoreRequest $request)
     {
         DB::transaction(function () use ($request) {
             $loginUser = Auth::user();
@@ -85,10 +85,10 @@ class ReviewController extends Controller
     /**
      * レビューを更新する。
      *
-     * @param  UpdateReviewRequest $request
+     * @param  UpdateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateReviewRequest $request)
+    public function update(UpdateRequest $request)
     {
         $review = DB::transaction(function () use ($request) {
             $review = Review::findOrFail($request['id']);

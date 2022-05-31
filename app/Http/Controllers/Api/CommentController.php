@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCommentRequest;
+use App\Http\Requests\Comment\StoreRequest;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,10 +13,10 @@ class CommentController extends Controller
     /**
      * コメントを登録する。
      *
-     * @param  StoreCommentRequest $request
+     * @param  StoreRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreCommentRequest $request)
+    public function store(StoreRequest $request)
     {
         $loginUser = Auth::user();
 
