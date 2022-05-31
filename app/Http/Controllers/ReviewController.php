@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Product;
+use App\Services\ReviewService;
 
 class ReviewController extends Controller
 {
+    private $reviewService;
+    public function __construct(ReviewService $reviewService)
+    {
+        $this->reviewService = $reviewService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +43,7 @@ class ReviewController extends Controller
         $image_url = $item->Images->Primary->Large->URL ?? NULL;
 
         // 選択した書籍と同じ書籍が投稿済みかどうかをチェック
-        $isPosted = $review->isPosted($asin, auth()->user()->id);
+        $isPosted = $this->reviewService->isPosted($asin);
         // 投稿済みならエラーメッセージを表示
         if ($isPosted) {
             return back()->with('error', 'この本はすでに投稿済みです');

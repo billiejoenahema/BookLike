@@ -21,6 +21,4 @@ class ReviewService
             ->where('asin', $asin)
             ->exists();
     }
-
-
 }
