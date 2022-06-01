@@ -33,7 +33,9 @@ class ReviewController extends Controller
             return $query->where($request['criteria'], 'LIKE', "%$search%");
         });
 
-        $reviews = $query->sortedReviews($request['sort']);
+        // ソート
+        $pagination = config('PAGINATION.USERS');
+        $reviews = $query->orderBy(getColumnForSort($request['sort']), 'DESC')->paginate($pagination);
         return ReviewResource::collection($reviews);
     }
 
