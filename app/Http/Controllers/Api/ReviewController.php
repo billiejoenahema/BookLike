@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Review\IndexRequest;
 use App\Http\Resources\ReviewResource;
 use App\Http\Requests\Review\StoreRequest;
 use App\Http\Requests\Review\UpdateRequest;
-use Illuminate\Http\Request;
 use App\Models\Review;
 
 class ReviewController extends Controller
@@ -14,10 +14,10 @@ class ReviewController extends Controller
     /**
      * レビュー一覧を取得する。
      *
-     * @param  Request  $request
+     * @param  IndexRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function index(Request $request)
+    public function index(IndexRequest $request)
     {
         $query = Review::withCount(['favorites', 'comments'])
             ->with(['user', 'favorites']);
@@ -35,7 +35,7 @@ class ReviewController extends Controller
 
         // ソート
         $pagination = config('PAGINATION.USERS');
-        $reviews = $query->orderBy(getColumnForSort($request['sort']), 'DESC')->paginate($pagination);
+        $reviews = $query->orderBy($request->getColumnForSort($request['sort']), 'DESC')->paginate($pagination);
         return ReviewResource::collection($reviews);
     }
 
