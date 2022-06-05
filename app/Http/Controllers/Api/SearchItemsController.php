@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class SearchItemsController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * 検索ワードに一致する作品を取得する
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -25,6 +25,7 @@ class SearchItemsController extends Controller
         $search_word = str_replace('\\', '', $keyword);
         if (!$search_word) return back();
 
+        // 検索ワードに一致する作品を取得
         $search_items = $searchItems->getSearchItems($search_word);
         $storage = Storage::disk('s3');
 

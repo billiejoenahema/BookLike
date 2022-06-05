@@ -11,10 +11,10 @@ use App\Models\User;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * ユーザー一覧を取得する。
      *
      * @param IndexRequest $request
-     * @return array<string, mixed>
+     * @return JsonResponse
      */
     public function index(IndexRequest $request)
     {
@@ -31,10 +31,10 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * ユーザー情報詳細を取得する。
      *
      * @param  Request $request
-     * @return array<mixed>
+     * @return JsonResponse
      */
     public function show(Request $request)
     {
@@ -45,12 +45,11 @@ class UserController extends Controller
             'reviews' => function ($query) {
                 return $query->withCount('favorites');
             }
-        ])
-            ->withCount([
-                'follows',
-                'followers',
-                'reviews'
-            ]);
+        ])->withCount([
+            'follows',
+            'followers',
+            'reviews'
+        ]);
 
         $user = $query->findOrFail($id);
 
