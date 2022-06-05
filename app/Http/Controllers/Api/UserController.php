@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Review\IndexRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -12,10 +13,10 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param IndexRequest $request
      * @return array<string, mixed>
      */
-    public function index(Request $request)
+    public function index(IndexRequest $request)
     {
         $query = User::with(['follows', 'followers', 'reviews'])
             ->withCount(['follows', 'followers', 'reviews'])
@@ -23,21 +24,8 @@ class UserController extends Controller
         $pagination = config('PAGINATION.USERS');
 
         // ソート
-        switch ($request['sort']) {
-            case 'review':
-                // いいね獲得数順
-                $query->orderBy('reviews_count', 'DESC');
-            case 'follower':
-                // フォロワーが多い順
-                $query->orderBy('followers_count', 'DESC');
-            case 'favorite':
-                // いいね獲得数順
-                $query->orderBy('favorites_count', 'DESC');
-            case 'default':
-            default:
-                $query->orderBy('created_at', 'DESC');
-        }
-        $users = $query->paginate($pagination);
+        $pagination = config('PAGINATION.REVIEWS');
+        $users = $query->orderBy($request->getColumnForSort($request['sort']), 'DESC')->paginate($pagination);
 
         return UserResource::collection($users);
     }
