@@ -64,43 +64,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasManyThrough(Favorite::class, Review::class, 'user_id', 'review_id');
     }
 
-    // ログインユーザーを除くすべてのユーザーを取得
-    public function getAllUsers(Int $user_id)
-    {
-        return $this->where('id', '<>', $user_id)
-            ->with('followers:id')
-            ->withCount(['reviews', 'followers', 'favorites']);
-    }
-
-    // ユーザー一覧の並び替え
-    public function sortedUsers($sort, $pagination, $loginUserId)
-    {
-        switch ($sort) {
-
-            case 'review':
-                // いいね獲得数順にユーザーを取得
-                return $this->getAllUsers($loginUserId)
-                    ->orderBy('reviews_count', 'DESC')
-                    ->paginate($pagination);
-            case 'follower':
-                // フォロワーが多い順にユーザーを取得
-                return $this->getAllUsers($loginUserId)
-                    ->orderBy('followers_count', 'DESC')
-                    ->paginate($pagination);
-            case 'favorite':
-                // いいね獲得数順にユーザーを取得
-                return $this->getAllUsers($loginUserId)
-                    ->orderBy('favorites_count', 'DESC')
-                    ->paginate($pagination);
-            case 'default':
-            default:
-                // 登録順にユーザーを取得
-                return $this->getAllUsers($loginUserId)
-                    ->orderBy('created_at', 'DESC')
-                    ->paginate($pagination);
-        }
-    }
-
     /**
      * ユーザープロフィール編集
      *
