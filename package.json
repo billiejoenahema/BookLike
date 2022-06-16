@@ -30,7 +30,7 @@
         "vue-template-compiler": "2.6.14"
     },
     "dependencies": {
-        "npm-check-updates": "13.1.5",
+        "npm-check-updates": "14.0.1",
         "react-router-dom": "6.3.0",
         "react-tabs": "5.1.0",
         "react-tooltip": "4.2.21",
