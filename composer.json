@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.2|^8.0",
         "doctrine/dbal": "3.3.6",
-        "fideloper/proxy": "4.4.1",
+        "fideloper/proxy": "4.4.2",
         "laravel/framework": "9.13.0",
         "laravel/tinker": "2.7.2",
         "league/flysystem-aws-s3-v3": "1.0.30"
