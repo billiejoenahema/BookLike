@@ -21,7 +21,7 @@
         "fzaninotto/faker": "1.9.2",
         "laravel/dusk": "7.0.0",
         "laravel/ui": "4.0.0",
-        "mockery/mockery": "1.5.0",
+        "mockery/mockery": "1.5.1",
         "nunomaduro/collision": "6.2.0",
         "nunomaduro/larastan": "0.7.15",
         "phpunit/phpunit": "9.5.24"
