@@ -31,7 +31,7 @@
     },
     "dependencies": {
         "npm-check-updates": "16.1.2",
-        "react-router-dom": "6.3.0",
+        "react-router-dom": "6.4.0",
         "react-tabs": "5.1.0",
         "react-tooltip": "4.2.21",
         "use-debounce": "8.0.4"
