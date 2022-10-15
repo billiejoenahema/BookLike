@@ -33,7 +33,7 @@
         "npm-check-updates": "16.3.11",
         "react-router-dom": "6.4.0",
         "react-tabs": "5.1.0",
-        "react-tooltip": "4.3.1",
+        "react-tooltip": "4.4.0",
         "use-debounce": "8.0.4"
     }
 }
