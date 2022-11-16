@@ -27,7 +27,7 @@
         "sass": "1.56.0",
         "sass-loader": "13.2.0",
         "typescript": "4.9.3",
-        "vue-template-compiler": "2.7.13"
+        "vue-template-compiler": "2.7.14"
     },
     "dependencies": {
         "npm-check-updates": "16.3.16",
