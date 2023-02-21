@@ -22,7 +22,7 @@
         "laravel/dusk": "7.0.0",
         "laravel/ui": "4.0.0",
         "mockery/mockery": "1.5.1",
-        "nunomaduro/collision": "6.2.0",
+        "nunomaduro/collision": "7.0.5",
         "nunomaduro/larastan": "0.7.15",
         "phpunit/phpunit": "10.0.7"
     },
