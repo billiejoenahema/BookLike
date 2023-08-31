@@ -1,10 +1,6 @@
-import React from 'react';
-import { STORAGE } from '../../constants';
-import UserReviewsCount from '../users/UserReviewsCount';
-import FollowerCount from '../users/FollowerCount';
 import FavoritesCountTotal from '../users/FavoritesCountTotal';
-import { hoverUserIcon } from '../../functions/hoverUserIcon';
-import { leaveUserIcon } from '../../functions/leaveUserIcon';
+import FollowerCount from '../users/FollowerCount';
+import UserReviewsCount from '../users/UserReviewsCount';
 
 const UserIcon = ({
   reviewUser,
@@ -41,6 +37,7 @@ const UserIcon = ({
             '/public/images/Default_User_Icon.jpeg'
           }
           className="rounded-circle shadow-sm"
+          loading="lazy"
           width={iconSize}
           height={iconSize}
           data-id={reviewId}
