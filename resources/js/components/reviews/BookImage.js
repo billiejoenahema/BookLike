@@ -1,11 +1,15 @@
-import React from 'react';
 import ReactTooltip from 'react-tooltip';
 
 const BookImage = ({ imageUrl, pageUrl, bookImageSize }) => {
   return (
     <div className="flex-column text-center">
       {/* 書籍イメージ */}
-      <img src={imageUrl} width={bookImageSize} className="shadow-sm" />
+      <img
+        src={imageUrl}
+        width={bookImageSize}
+        className="shadow-sm"
+        loading="lazy"
+      />
       {/* Amazonリンク */}
       <a
         href={pageUrl}
