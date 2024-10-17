@@ -24,7 +24,7 @@
         "react": "16.14.0",
         "react-dom": "16.14.0",
         "resolve-url-loader": "5.0.0",
-        "sass": "1.58.0",
+        "sass": "1.80.2",
         "sass-loader": "13.2.0",
         "typescript": "4.9.5",
         "vue-template-compiler": "2.7.14"
