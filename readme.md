@@ -69,3 +69,9 @@
 ## ER 図
 
 <a href="https://gyazo.com/045f627e5cb9fc582748ba1e63fc8d3e"><img src="https://i.gyazo.com/045f627e5cb9fc582748ba1e63fc8d3e.png" alt="Image from Gyazo" width="936"/></a>
+
+## スマホ表示
+
+<img src="./public/images/reviews.png" alt="レビュー一覧" width="300"/>
+<img src="./public/images/user_page.png" alt="ユーザーページ" width="300"/>
+<img src="./public/images/post.png" alt="投稿作成" width="300"/>
